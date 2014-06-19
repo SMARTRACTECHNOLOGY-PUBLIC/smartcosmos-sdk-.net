@@ -1,0 +1,38 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 2012
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Smartrac.SmartCosmos.ClientEndpoint.Base", "Smartrac.SmartCosmos.ClientEndpoint.Base.csproj", "{F0E26F53-5847-42D0-B16F-2DBD1952E452}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|x64 = Debug|x64
+		Debug|x86 = Debug|x86
+		DebugLocal|x64 = DebugLocal|x64
+		DebugLocal|x86 = DebugLocal|x86
+		Release|x64 = Release|x64
+		Release|x86 = Release|x86
+		ReleaseLocal|x64 = ReleaseLocal|x64
+		ReleaseLocal|x86 = ReleaseLocal|x86
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{F0E26F53-5847-42D0-B16F-2DBD1952E452}.Debug|x64.ActiveCfg = Debug|x64
+		{F0E26F53-5847-42D0-B16F-2DBD1952E452}.Debug|x64.Build.0 = Debug|x64
+		{F0E26F53-5847-42D0-B16F-2DBD1952E452}.Debug|x86.ActiveCfg = Debug|x86
+		{F0E26F53-5847-42D0-B16F-2DBD1952E452}.Debug|x86.Build.0 = Debug|x86
+		{F0E26F53-5847-42D0-B16F-2DBD1952E452}.DebugLocal|x64.ActiveCfg = DebugLocal|x64
+		{F0E26F53-5847-42D0-B16F-2DBD1952E452}.DebugLocal|x64.Build.0 = DebugLocal|x64
+		{F0E26F53-5847-42D0-B16F-2DBD1952E452}.DebugLocal|x86.ActiveCfg = DebugLocal|x86
+		{F0E26F53-5847-42D0-B16F-2DBD1952E452}.DebugLocal|x86.Build.0 = DebugLocal|x86
+		{F0E26F53-5847-42D0-B16F-2DBD1952E452}.Release|x64.ActiveCfg = Release|x64
+		{F0E26F53-5847-42D0-B16F-2DBD1952E452}.Release|x64.Build.0 = Release|x64
+		{F0E26F53-5847-42D0-B16F-2DBD1952E452}.Release|x86.ActiveCfg = Release|x86
+		{F0E26F53-5847-42D0-B16F-2DBD1952E452}.Release|x86.Build.0 = Release|x86
+		{F0E26F53-5847-42D0-B16F-2DBD1952E452}.ReleaseLocal|x64.ActiveCfg = ReleaseLocal|x64
+		{F0E26F53-5847-42D0-B16F-2DBD1952E452}.ReleaseLocal|x64.Build.0 = ReleaseLocal|x64
+		{F0E26F53-5847-42D0-B16F-2DBD1952E452}.ReleaseLocal|x86.ActiveCfg = ReleaseLocal|x86
+		{F0E26F53-5847-42D0-B16F-2DBD1952E452}.ReleaseLocal|x86.Build.0 = ReleaseLocal|x86
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal
