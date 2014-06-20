@@ -13,22 +13,18 @@ namespace Smartrac.SmartCosmos.SampleClient
     class Program
     {
         // CONFIG
-
-        /*
+        /* Mock server
          private static string ServerURL = "https://smartcosmos.apiary-mock.com";
          private static bool allowInvalidServerCertificates = true;
          private static string userName = "Aladdin";
          private static string userPassword = "open sesame";
         */
 
+        /* production server */
         private static string ServerURL = "https://www.smart-cosmos.com/service/rest";
         private static bool allowInvalidServerCertificates = false;
-        private static string userName = "jens.koehler"; //"api.tester";
-        //private static string userName = "Aladdin";
-        //private static string userPassword = "open sesame";
-        private static string userPassword = "080800"; //"api2014xy";
-        
-
+        private static string userName = "..."; 
+        private static string userPassword = "..."; 
 
         static void Main(string[] args)
         {
