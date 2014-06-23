@@ -20,7 +20,7 @@ namespace Smartrac.SmartCosmos.ClientEndpoint.DataImport
             : base(aServerURL, allowInvalidServerCertificates)
         {
         }
-        
+
 
         /// <summary>
         /// Upload a file stream as octet stream
@@ -37,7 +37,7 @@ namespace Smartrac.SmartCosmos.ClientEndpoint.DataImport
                 request.Method = WebRequestMethods.Http.Post;
                 request.ContentType = "application/octet-stream";
 
-                request.ContentLength = data.Length; 
+                request.ContentLength = data.Length;
                 using (var writer = request.GetRequestStream())
                 {
                     data.CopyTo(writer);
@@ -60,6 +60,30 @@ namespace Smartrac.SmartCosmos.ClientEndpoint.DataImport
             }
         }
 
+        /// <summary>
+        /// Upload a file stream as octet stream
+        /// </summary>
+        /// <param name="file">File path</param>
+        /// <param name="responseData">File upload response</param>
+        /// <returns>HTTP status code</returns>
+        public HttpStatusCode UploadFileAsOctetStream(string file, out FileUploadResponse responseData)
+        {
+            if (!File.Exists(file))
+            {
+                responseData = null;
+                return HttpStatusCode.NotFound;
+            }
+
+            FileStream fileStream = new FileStream(file, FileMode.Open);
+            try
+            {
+                return UploadFileAsOctetStream(fileStream, out responseData);
+            }
+            finally
+            {
+                fileStream.Close();
+            }
+        }
 
         /// <summary>
         /// Upload a file stream as multi part form
@@ -98,6 +122,6 @@ namespace Smartrac.SmartCosmos.ClientEndpoint.DataImport
             {
                 return HttpStatusCode.InternalServerError;
             }
-        }    
+        }
     }
 }
