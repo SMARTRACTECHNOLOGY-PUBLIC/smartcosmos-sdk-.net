@@ -12,3 +12,4 @@ CONTAINS
 
 REQUIREMENTS
 .Net Framework 4.0
+Visual Studio 2012
