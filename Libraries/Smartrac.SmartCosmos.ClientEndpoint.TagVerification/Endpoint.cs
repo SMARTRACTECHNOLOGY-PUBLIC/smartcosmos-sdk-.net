@@ -4,6 +4,7 @@ using System.IO;
 using System.Net;
 using System.Runtime.Serialization.Json;
 using System.Text;
+using Smartrac.Logging;
 using Smartrac.SmartCosmos.ClientEndpoint.Base;
 using Smartrac.SmartCosmos.ClientEndpoint.BaseObject;
 
@@ -14,8 +15,8 @@ namespace Smartrac.SmartCosmos.ClientEndpoint.TagVerification
     /// </summary>
     public class TagVerificationEndpoint : CommonEndpoint
     {
-        public TagVerificationEndpoint(string aServerURL, bool allowInvalidServerCertificates)
-            : base(aServerURL, allowInvalidServerCertificates)
+        public TagVerificationEndpoint(string aServerURL, bool allowInvalidServerCertificates, IMessageLogger logger)
+            : base(aServerURL, allowInvalidServerCertificates, logger)
         {
         }
         
@@ -35,14 +36,16 @@ namespace Smartrac.SmartCosmos.ClientEndpoint.TagVerification
                 object responseDataObj = null;
                 var returnHTTPCode = ExecuteWebRequestJSON(request, typeof(VerifyTagsRequest), requestData, typeof(VerifyTagsResponse), out responseDataObj);
 
-                if (returnHTTPCode == HttpStatusCode.OK)
+                if (null != responseDataObj)
                 {
                     responseData = responseDataObj as VerifyTagsResponse;
                 }
                 return returnHTTPCode;
             }
-            catch
+            catch(Exception e)
             {
+                if (null != Logger)
+                    Logger.AddLog(e.Message, LogType.Error);
                 return HttpStatusCode.InternalServerError;
             }
         }
@@ -63,14 +66,16 @@ namespace Smartrac.SmartCosmos.ClientEndpoint.TagVerification
                 object responseDataObj = null;
                 var returnHTTPCode = ExecuteWebRequestJSON(request, typeof(VerificationMessageRequest), requestData, typeof(VerificationMessageResponse), out responseDataObj);
 
-                if (returnHTTPCode == HttpStatusCode.OK)
+                if (null != responseDataObj)
                 {
                     responseData = responseDataObj as VerificationMessageResponse;
                 }
                 return returnHTTPCode;
             }
-            catch
+            catch(Exception e)
             {
+                if (null != Logger)
+                    Logger.AddLog(e.Message, LogType.Error);
                 return HttpStatusCode.InternalServerError;
             }
         }

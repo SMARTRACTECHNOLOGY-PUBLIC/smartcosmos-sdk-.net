@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Net;
 using System.Text;
+using Smartrac.Logging;
 using Smartrac.SmartCosmos.ClientEndpoint.Base;
 
 namespace Smartrac.SmartCosmos.ClientEndpoint.PlatformAvailability
@@ -12,8 +13,8 @@ namespace Smartrac.SmartCosmos.ClientEndpoint.PlatformAvailability
     /// </summary>
     public class PlatformAvailabilityEndpoint : CommonEndpoint
     {
-        public PlatformAvailabilityEndpoint(string aServerURL, bool allowInvalidServerCertificates)
-            : base(aServerURL, allowInvalidServerCertificates)
+        public PlatformAvailabilityEndpoint(string aServerURL, bool allowInvalidServerCertificates, IMessageLogger logger)
+            : base(aServerURL, allowInvalidServerCertificates, logger)
         {
         }
 

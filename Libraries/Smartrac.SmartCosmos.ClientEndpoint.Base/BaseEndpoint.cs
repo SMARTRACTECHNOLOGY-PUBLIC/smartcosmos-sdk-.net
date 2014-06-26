@@ -1,9 +1,12 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Net;
 using System.Runtime.Serialization.Json;
 using System.Security.Cryptography;
 using System.Text;
+using Newtonsoft.Json;
+using Smartrac.Logging;
 using Smartrac.SmartCosmos.ClientEndpoint.BaseObject;
 
 namespace Smartrac.SmartCosmos.ClientEndpoint.Base
@@ -29,26 +32,36 @@ namespace Smartrac.SmartCosmos.ClientEndpoint.Base
         public bool KeepAlive { get; set; }
         public string AcceptLanguage { get; set; }
 
-        public CommonEndpoint(string aServerURL, bool allowInvalidServerCertificates)
+        protected IMessageLogger Logger { get; set; }
+
+        public CommonEndpoint(string aServerURL, bool allowInvalidServerCertificates, IMessageLogger logger)
         {
             this.ServerURL = aServerURL;
             this.KeepAlive = true;
             this.AcceptLanguage = "en";
+            this.Logger = logger;
 
             if (allowInvalidServerCertificates)
+            {
+                if (null != Logger)
+                    Logger.AddLog("Invalid certificates are allowed...");
                 System.Net.ServicePointManager.ServerCertificateValidationCallback = delegate { return true; };
+            }
         }
 
 
         /// <summary>
         /// Set the user account which should be used for the authorization
         /// </summary>
-        /// <param name="userName">User name</param>
+        /// <param name="UserName">User name</param>
         /// <param name="userPassword">User password</param>
         public void SetUserAccount(string userName, string userPassword)
         {
-            // Username and hased password are combined into a string "username:hashedpassword"
-            // For example, if the user agent uses 'Aladdin' as the username and 'open sesame' as the password then the header is formed as follows:.
+            if (null != Logger)
+                Logger.AddLog("Login with user " + userName);
+
+            // UserName and hased password are combined into a string "UserName:hashedpassword"
+            // For example, if the user agent uses 'Aladdin' as the UserName and 'open sesame' as the password then the header is formed as follows:.
             // SHA512 hash of the password: 8470cdd3bf1ef85d5f092bce5ae5af97ce50820481bf43b2413807fec37e2785b533a65d4c7d71695b141d81ebcd4b6c4def4284e6067f0b9ddc318b1b230205
             // Authorization: Basic QWxhZGRpbjo4NDcwY2RkM2JmMWVmODVkNWYwOTJiY2U1YWU1YWY5N2NlNTA4MjA0ODFiZjQzYjI0MTM4MDdmZWMzN2UyNzg1YjUzM2E2NWQ0YzdkNzE2OTViMTQxZDgxZWJjZDRiNmM0ZGVmNDI4NGU2MDY3ZjBiOWRkYzMxOGIxYjIzMDIwNQ==
             AuthorizationToken =
@@ -94,7 +107,7 @@ namespace Smartrac.SmartCosmos.ClientEndpoint.Base
         /// <param name="requestData">Request data</param>
         /// <param name="responseType">Type of the responseData parameter</param>
         /// <param name="responseData">Response data</param>
-        /// <returns></returns>
+        /// <returns>HttpStatusCode</returns>
         protected HttpStatusCode ExecuteWebRequestJSON(WebRequest request, Type requestType, object requestData, Type responseType, out object responseData)
         {
             responseData = null;
@@ -112,19 +125,37 @@ namespace Smartrac.SmartCosmos.ClientEndpoint.Base
                 }
 
                 // call the server
-                using (var response = request.GetResponse() as System.Net.HttpWebResponse)
+                HttpWebResponse response = null;
+                try
                 {
-                    if (response.StatusCode == HttpStatusCode.OK)
+                    response = request.GetResponse() as System.Net.HttpWebResponse;
+
+                }
+                catch (WebException e)
+                {
+                    response = e.Response as System.Net.HttpWebResponse;
+                }
+
+                if (response != null)
+                {
+                    if ((response.StatusCode == HttpStatusCode.OK) ||
+                         (response.StatusCode == HttpStatusCode.BadRequest)
+                       )
                     {
                         DataContractJsonSerializer serializer = new DataContractJsonSerializer(responseType);
                         responseData = serializer.ReadObject(response.GetResponseStream());
                     }
-
                     return response.StatusCode;
                 }
+
+                if (null != Logger)
+                    Logger.AddLog("No respond", LogType.Warning);
+                return HttpStatusCode.InternalServerError;
             }
-            catch (Exception)
+            catch (Exception e)
             {
+                if (null != Logger)
+                    Logger.AddLog(e.Message, LogType.Error);
                 return HttpStatusCode.InternalServerError;
             }
         }

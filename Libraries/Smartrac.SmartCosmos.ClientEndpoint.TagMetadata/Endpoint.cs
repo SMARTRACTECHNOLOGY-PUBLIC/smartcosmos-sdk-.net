@@ -4,6 +4,7 @@ using System.IO;
 using System.Net;
 using System.Runtime.Serialization.Json;
 using System.Text;
+using Smartrac.Logging;
 using Smartrac.SmartCosmos.ClientEndpoint.Base;
 using Smartrac.SmartCosmos.ClientEndpoint.BaseObject;
 
@@ -14,8 +15,8 @@ namespace Smartrac.SmartCosmos.ClientEndpoint.TagMetadata
     /// </summary>
     public class TagMetadataEndpoint : CommonEndpoint
     {
-        public TagMetadataEndpoint(string aServerURL, bool allowInvalidServerCertificates)
-            : base(aServerURL, allowInvalidServerCertificates)
+        public TagMetadataEndpoint(string aServerURL, bool allowInvalidServerCertificates, IMessageLogger logger)
+            : base(aServerURL, allowInvalidServerCertificates, logger)
         {
         }
 
@@ -35,14 +36,16 @@ namespace Smartrac.SmartCosmos.ClientEndpoint.TagMetadata
                 object responseDataObj = null;
                 var returnHTTPCode = ExecuteWebRequestJSON(request, typeof(TagMetaDataRequest), requestData, typeof(TagMetaDataResponse), out responseDataObj);
 
-                if (returnHTTPCode == HttpStatusCode.OK)
+                if (null != responseDataObj)
                 {
                     responseData = responseDataObj as TagMetaDataResponse;
                 }
                 return returnHTTPCode;
             }
-            catch
+            catch (Exception e)
             {
+                if (null != Logger)
+                    Logger.AddLog(e.Message, LogType.Error);
                 return HttpStatusCode.InternalServerError;
             }
         }
@@ -62,14 +65,16 @@ namespace Smartrac.SmartCosmos.ClientEndpoint.TagMetadata
                 object responseDataObj = null;
                 var returnHTTPCode = ExecuteWebRequestJSON(request, typeof(TagMessageRequest), requestData, typeof(TagMessageResponse), out responseDataObj);
 
-                if (returnHTTPCode == HttpStatusCode.OK)
+                if (null != responseDataObj)
                 {
                     responseData = responseDataObj as TagMessageResponse;
                 }
                 return returnHTTPCode;
             }
-            catch
+            catch (Exception e)
             {
+                if (null != Logger)
+                    Logger.AddLog(e.Message, LogType.Error);
                 return HttpStatusCode.InternalServerError;
             }
         }
