@@ -1,6 +1,8 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 2012
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Smartrac.SmartCosmos.SampleClient.Console", "Smartrac.SmartCosmos.SampleClient.Console.csproj", "{D9FE3842-E69A-426A-94BF-52DF66364FF4}"
+EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Smartrac.SmartCosmos.ClientEndpoint.PlatformAvailability", "..\..\Libraries\Smartrac.SmartCosmos.ClientEndpoint.PlatformAvailability\Smartrac.SmartCosmos.ClientEndpoint.PlatformAvailability.csproj", "{5617DFBD-0CCB-4FE8-9871-40C680EAAE26}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Smartrac.SmartCosmos.ClientEndpoint.TagMetadata", "..\..\Libraries\Smartrac.SmartCosmos.ClientEndpoint.TagMetadata\Smartrac.SmartCosmos.ClientEndpoint.TagMetadata.csproj", "{EF7A70AC-3269-430F-9966-F00C08263AEB}"
@@ -20,8 +22,6 @@ EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Smartrac.Logging.File", "..\..\Libraries\Smartrac.Logging.File\Smartrac.Logging.File.csproj", "{C342D48D-A37D-486C-9B63-6333600445B2}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Smartrac.Logging", "..\..\Libraries\Smartrac.Logging\Smartrac.Logging.csproj", "{73BA0972-769B-4B84-9A21-9CF545A14A03}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Smartrac.SmartCosmos.SampleClient.Console", "Smartrac.SmartCosmos.SampleClient.Console.csproj", "{D9FE3842-E69A-426A-94BF-52DF66364FF4}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
