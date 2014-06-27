@@ -1,9 +1,12 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Diagnostics;
+using System.IO;
 using System.Linq;
 using System.Net;
 using System.Text;
+using System.Threading.Tasks;
+using System.Xml.Linq;
 using Smartrac.Logging;
 using Smartrac.SmartCosmos.ClientEndpoint.BaseObject;
 using Smartrac.SmartCosmos.ClientEndpoint.DataImport;
@@ -27,6 +30,7 @@ namespace Smartrac.SmartCosmos.ClientEndpoint.TestSuite
         public List<string> TagProperties;
         public string VerificationType;
         public string ImportId;
+        public string SampleDataFile;
 
         public IMessageLogger Logger = null;
         private Stopwatch stopwatch = new Stopwatch();
@@ -95,7 +99,7 @@ namespace Smartrac.SmartCosmos.ClientEndpoint.TestSuite
             // log response 
             Logger.AddLog("Result: " + (result == HttpStatusCode.OK));
             Logger.AddLog("Result HttpStatusCode: " + result);
-            Logger.AddLog("Result Data: " + responseImportState.ToJSON()); 
+            Logger.AddLog("Result Data: " + responseImportState.ToJSON());
             OnAfterTest();
         }
 
@@ -119,7 +123,7 @@ namespace Smartrac.SmartCosmos.ClientEndpoint.TestSuite
             // log response 
             Logger.AddLog("Result: " + (result == HttpStatusCode.OK));
             Logger.AddLog("Result HttpStatusCode: " + result);
-            Logger.AddLog("Result Data: " + responseTagMetaData.ToJSON());            
+            Logger.AddLog("Result Data: " + responseTagMetaData.ToJSON());
             OnAfterTest();
 
             OnBeforeTest("TagMetadataEndpoint", "GetTagMessage");
@@ -132,7 +136,7 @@ namespace Smartrac.SmartCosmos.ClientEndpoint.TestSuite
             // log response 
             Logger.AddLog("Result: " + (result == HttpStatusCode.OK));
             Logger.AddLog("Result HttpStatusCode: " + result);
-            Logger.AddLog("Result Data: " + responseTagMessage.ToJSON());           
+            Logger.AddLog("Result Data: " + responseTagMessage.ToJSON());
             OnAfterTest();
         }
 
@@ -141,7 +145,7 @@ namespace Smartrac.SmartCosmos.ClientEndpoint.TestSuite
             OnBeforeTest("PlatformAvailabilityEndpoint", "Ping");
             PlatformAvailabilityEndpoint testerPlatformAvailability = new PlatformAvailabilityEndpoint(ServerURL, AllowInvalidServerCertificates, Logger);
             // call endpoint & send response to console
-            HttpStatusCode result = testerPlatformAvailability.Ping();            
+            HttpStatusCode result = testerPlatformAvailability.Ping();
             Logger.AddLog("Result: " + (result == HttpStatusCode.NoContent));
             Logger.AddLog("Result HttpStatusCode: " + result);
             OnAfterTest();
@@ -163,5 +167,135 @@ namespace Smartrac.SmartCosmos.ClientEndpoint.TestSuite
             Logger.AddLog("");
             Logger.AddLog("");
         }
+
+        public void PerformanceTestCase_TagMetadataEndpoint()
+        {
+            if (File.Exists(SampleDataFile))
+            {
+                OnBeforeTest("TagMetadataEndpoint", "GetTagMetadata - PerformanceTest");
+                try
+                {
+                    TagMetadataEndpoint testerTagMetadata = new TagMetadataEndpoint(ServerURL, AllowInvalidServerCertificates, Logger);
+                    TagMetaDataRequest requestTagMetaData = new TagMetaDataRequest();
+                    requestTagMetaData.verificationTypes.Add(VerificationType);
+                    requestTagMetaData.properties.AddRange(TagProperties);
+                    TagMetaDataResponse responseTagMetaData;
+                    Stopwatch watch = new Stopwatch();
+                    int tagCount = 0;
+                    HttpStatusCode result;
+
+                    // set login data
+                    testerTagMetadata.SetUserAccount(UserName, UserPassword);
+
+                    // load data
+                    XDocument doc;
+                    doc = XDocument.Load(SampleDataFile);
+                    foreach (var tag in doc.Descendants("tag"))
+                    {
+
+                        var tagId = tag.Attribute("id");
+                        if (null == tagId)
+                            continue;
+
+                        requestTagMetaData.tagIds.Add(tagId.Value);
+
+                        // validate
+                        if (requestTagMetaData.tagIds.Count == 1000)
+                        {
+                            tagCount += requestTagMetaData.tagIds.Count;
+                            watch.Start();
+                            result = testerTagMetadata.GetTagMetadata(requestTagMetaData, out responseTagMetaData);
+                            watch.Stop();
+                            Logger.AddLog(requestTagMetaData.tagIds.Count + " tags checked. Result:" + result + "  Required time:" + watch.Elapsed);
+                            requestTagMetaData.tagIds.Clear();
+                            watch.Reset();
+                        }
+                    }
+
+                    // validate rest
+                    if (requestTagMetaData.tagIds.Count > 0)
+                    {
+                        tagCount += requestTagMetaData.tagIds.Count;
+                        watch.Start();
+                        result = testerTagMetadata.GetTagMetadata(requestTagMetaData, out responseTagMetaData);
+                        watch.Stop();
+                        Logger.AddLog(requestTagMetaData.tagIds.Count + " tags checked. Result:" + result + "  Required time:" + watch.Elapsed);
+                        requestTagMetaData.tagIds.Clear();
+                        watch.Reset();
+                    }
+
+                    Logger.AddLog("Test count: " + tagCount);
+                }
+                catch (Exception e)
+                {
+                    Logger.AddLog(e.Message, LogType.Error);
+                }
+
+                OnAfterTest();
+            }
+        }
+
+        public void PerformanceTestCase_TagMetadataEndpointParallel()
+        {
+            if (File.Exists(SampleDataFile))
+            {
+                OnBeforeTest("TagMetadataEndpoint", "GetTagMetadata - PerformanceTest Parallel");
+                try
+                {
+                    TagMetadataEndpoint testerTagMetadata = new TagMetadataEndpoint(ServerURL, AllowInvalidServerCertificates, Logger);
+                    List<TagMetaDataRequest> requestList = new List<TagMetaDataRequest>();
+                    TagMetaDataRequest requestTagMetaData = null;
+                    int tagCount = 0;
+
+                    // set login data
+                    testerTagMetadata.SetUserAccount(UserName, UserPassword);
+
+                    // load data
+                    XDocument doc;
+                    doc = XDocument.Load(SampleDataFile);
+                    foreach (var tag in doc.Descendants("tag"))
+                    {
+
+                        var tagId = tag.Attribute("id");
+                        if (null == tagId)
+                            continue;
+
+                        if ((null == requestTagMetaData) || (requestTagMetaData.tagIds.Count == 1000))
+                        {
+                            requestTagMetaData = new TagMetaDataRequest();
+                            requestTagMetaData.verificationTypes.Add(VerificationType);
+                            requestTagMetaData.properties.AddRange(TagProperties);
+                            requestList.Add(requestTagMetaData);
+                        }
+
+                        tagCount++;
+                        requestTagMetaData.tagIds.Add(tagId.Value);
+                    }
+
+
+                    Parallel.ForEach(requestList, request =>
+                        {
+                            TagMetaDataResponse responseTagMetaData;
+                            Stopwatch watch = new Stopwatch();
+                            watch.Start();
+                            HttpStatusCode result = testerTagMetadata.GetTagMetadata(request, out responseTagMetaData);
+                            watch.Stop();
+                            Logger.AddLog(request.tagIds.Count + " tags checked. Result:" + result + "  Required time:" + watch.Elapsed);
+                            request.tagIds.Clear();
+                            watch.Reset();
+                        }
+                    );
+
+                    Logger.AddLog("Test count: " + tagCount);
+                }
+                catch (Exception e)
+                {
+                    Logger.AddLog(e.Message, LogType.Error);
+                }
+
+                OnAfterTest();
+            }
+        }
+
     }
 }

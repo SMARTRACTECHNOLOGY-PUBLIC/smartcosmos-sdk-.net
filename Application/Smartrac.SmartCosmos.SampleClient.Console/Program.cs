@@ -1,7 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Text;
+using System.Threading.Tasks;
 using Smartrac.Logging.Console;
 using Smartrac.SmartCosmos.ClientEndpoint.TestSuite;
 
@@ -14,6 +16,7 @@ namespace Smartrac.SmartCosmos.SampleClient.Console
             SmartCosmosTestSuite testSuite = new SmartCosmosTestSuite();
 
             // CONFIGURATION ----
+            bool RunPerformanceTests = true; // define if performance test should be executed
 
             // General settings
             testSuite.UserName = "";        // please enter you SmartCosmos user name
@@ -28,6 +31,7 @@ namespace Smartrac.SmartCosmos.SampleClient.Console
             testSuite.TagProperties.Add("delivQty");    // Delivery quantity
             testSuite.VerificationType = "RR";          // verification id for RoundRock
             testSuite.ImportId = "20140624_104505-720"; // dummy import Id
+            testSuite.SampleDataFile = Path.Combine(Path.GetDirectoryName(System.Reflection.Assembly.GetExecutingAssembly().Location), @"..\..\..\..\..\Documentation\SampleData\SampleData30k.xml"); // c:\Develop\smartcosmos-sdk-.net\Documentation\SampleData.xml 
 
             // Output
             testSuite.Logger = new ConsoleLoggerService();
@@ -54,6 +58,14 @@ namespace Smartrac.SmartCosmos.SampleClient.Console
 
             // SAMPLE 4 - Test cases for tag verification endpoint
             testSuite.TestCase_TagVerificationEndpoint();
+
+            // SAMPLE 5 - Performance test for tag metadata endpoint
+            if (RunPerformanceTests)
+                testSuite.PerformanceTestCase_TagMetadataEndpoint();
+
+            // SAMPLE 6 - Performance test for tag metadata endpoint (Parallel)
+            if (RunPerformanceTests)
+                testSuite.PerformanceTestCase_TagMetadataEndpointParallel();
 
             System.Console.ReadLine();
         }
