@@ -131,6 +131,21 @@
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <Import Project="$(MSBuildExtensionsPath)\MSBuildCommunityTasks\MSBuild.Community.Tasks.Targets" Condition="'$(SetAssemblyInfo)' != ''"/>
+  <Target Name="BeforeBuild">
+    <AssemblyInfo
+    Condition="'$(SetAssemblyInfo)' != ''" 
+	CodeLanguage="CS"
+    OutputFile="Properties\AssemblyInfo.cs"
+    AssemblyTitle="$(ProjectName)"
+    AssemblyCompany="SMARTRAC TECHNOLOGY GROUP"
+    AssemblyProduct="(ProjectName)"
+    AssemblyDescription="$(ProjectName)"
+    AssemblyCopyright="© 2014 SMARTRAC TECHNOLOGY GROUP"
+    ComVisible="false" 
+    AssemblyVersion="$(CCNetLabel)"
+    AssemblyFileVersion="$(CCNetLabel)" /> 
+  </Target> 
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
   <Target Name="BeforeBuild">
