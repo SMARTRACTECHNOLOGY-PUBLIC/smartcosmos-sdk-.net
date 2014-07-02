@@ -18,6 +18,10 @@ namespace Smartrac.SmartCosmos.ClientEndpoint.PlatformAvailability
         {
         }
 
+        public PlatformAvailabilityEndpoint(IMessageLogger logger)
+            : base(logger)
+        {
+        }
 
         /// <summary>
         /// Resource for checking the Platform availability
@@ -35,8 +39,10 @@ namespace Smartrac.SmartCosmos.ClientEndpoint.PlatformAvailability
                     return response.StatusCode;
                 }
             }
-            catch
+            catch(Exception e)
             {
+                if (null != Logger)
+                    Logger.AddLog(e.Message, LogType.Error);
                 return HttpStatusCode.InternalServerError;
             }
         }

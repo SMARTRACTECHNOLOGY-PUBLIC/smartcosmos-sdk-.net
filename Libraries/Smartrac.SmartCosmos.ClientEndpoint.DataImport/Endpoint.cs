@@ -22,6 +22,11 @@ namespace Smartrac.SmartCosmos.ClientEndpoint.DataImport
         {
         }
 
+        public DataImportEndpoint(IMessageLogger logger)
+            : base(logger)
+        {
+        }
+
 
         /// <summary>
         /// Upload a file stream as octet stream

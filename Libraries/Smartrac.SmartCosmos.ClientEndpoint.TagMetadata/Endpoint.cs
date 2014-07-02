@@ -20,6 +20,10 @@ namespace Smartrac.SmartCosmos.ClientEndpoint.TagMetadata
         {
         }
 
+        public TagMetadataEndpoint(IMessageLogger logger)
+            : base(logger)
+        {
+        }
 
         /// <summary>
         /// Get tag related data

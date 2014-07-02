@@ -19,7 +19,11 @@ namespace Smartrac.SmartCosmos.ClientEndpoint.TagVerification
             : base(aServerURL, allowInvalidServerCertificates, logger)
         {
         }
-        
+
+        public TagVerificationEndpoint(IMessageLogger logger)
+            : base(logger)
+        {
+        }
 
         /// <summary>
         /// Verify tags for a verification type

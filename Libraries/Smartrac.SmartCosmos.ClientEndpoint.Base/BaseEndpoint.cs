@@ -27,8 +27,6 @@ namespace Smartrac.SmartCosmos.ClientEndpoint.Base
     public class CommonEndpoint
     {
         protected string AuthorizationToken = "";
-        protected string ServerURL { get; set; }
-
         public bool KeepAlive { get; set; }
         public string AcceptLanguage { get; set; }
 
@@ -46,6 +44,27 @@ namespace Smartrac.SmartCosmos.ClientEndpoint.Base
                 if (null != Logger)
                     Logger.AddLog("Invalid certificates are allowed...");
                 System.Net.ServicePointManager.ServerCertificateValidationCallback = delegate { return true; };
+            }
+        }
+
+        public CommonEndpoint(IMessageLogger logger)
+            : this("https://www.smart-cosmos.com/service/rest", false, logger)
+        {
+        }
+
+        private string ServerURL_; 
+        protected string ServerURL 
+        { 
+            get
+            {
+                return ServerURL_;
+            }
+            set
+            {
+                if (value.EndsWith("/"))
+                    ServerURL_ = value.Remove(value.Length - 1);
+                else
+                    ServerURL_ = value;
             }
         }
 
