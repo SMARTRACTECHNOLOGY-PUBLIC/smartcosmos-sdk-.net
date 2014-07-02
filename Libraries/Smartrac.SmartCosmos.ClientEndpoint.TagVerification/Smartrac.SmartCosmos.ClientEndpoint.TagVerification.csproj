@@ -141,12 +141,12 @@
     OutputFile="Properties\AssemblyInfo.cs"
     AssemblyTitle="$(ProjectName)"
     AssemblyCompany="SMARTRAC TECHNOLOGY GROUP"
-    AssemblyProduct="(ProjectName)"
+    AssemblyProduct="$(ProjectName)"
     AssemblyDescription="$(ProjectName)"
     AssemblyCopyright="© 2014 SMARTRAC TECHNOLOGY GROUP"
     ComVisible="false" 
-    AssemblyVersion="$(CCNetLabel)"
-    AssemblyFileVersion="$(CCNetLabel)" /> 
+    AssemblyVersion="$(VersionMajor).$(VersionMinor).$(VersionBuild).$(VersionRevision)"
+    AssemblyFileVersion="$(VersionMajor).$(VersionMinor).$(VersionBuild).$(VersionRevision)" /> 
   </Target> 
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
