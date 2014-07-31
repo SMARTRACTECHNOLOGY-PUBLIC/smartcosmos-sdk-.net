@@ -1,4 +1,21 @@
-﻿using System;
+﻿#region License
+// SMART COSMOS Profiles SDK
+// (C) Copyright 2014 SMARTRAC TECHNOLOGY GmbH, (http://www.smartrac-group.com)
+//
+// Licensed under the Apache License, Version 2.0 (the "License");
+// you may not use this file except in compliance with the License.
+// You may obtain a copy of the License at
+//
+// http://www.apache.org/licenses/LICENSE-2.0
+//
+// Unless required by applicable law or agreed to in writing, software
+// distributed under the License is distributed on an "AS IS" BASIS,
+// WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+// See the License for the specific language governing permissions and
+// limitations under the License.
+#endregion
+
+using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
@@ -14,27 +31,15 @@ namespace Smartrac.SmartCosmos.ClientEndpoint.DataImport
     /// <summary>
     /// Client for data import endpoint
     /// </summary>
-    public class DataImportEndpoint : CommonEndpoint
+    class DataImportEndpoint : BaseEndpoint, IDataImportEndpoint
     {
-
-        public DataImportEndpoint(string aServerURL, bool allowInvalidServerCertificates, IMessageLogger logger)
-            : base(aServerURL, allowInvalidServerCertificates, logger)
-        {
-        }
-
-        public DataImportEndpoint(IMessageLogger logger)
-            : base(logger)
-        {
-        }
-
-
         /// <summary>
         /// Upload a file stream as octet stream
         /// </summary>
         /// <param name="data">File or memory stream</param>
         /// <param name="responseData">File upload response</param>
         /// <returns>HTTP status code</returns>
-        public HttpStatusCode UploadFileAsOctetStream(Stream data, out FileUploadResponse responseData)
+        public DataActionResult UploadFileAsOctetStream(Stream data, out FileUploadResponse responseData)
         {
             responseData = null;
             try
@@ -51,20 +56,25 @@ namespace Smartrac.SmartCosmos.ClientEndpoint.DataImport
 
                 using (var response = request.GetResponse() as System.Net.HttpWebResponse)
                 {
-                    if (response.StatusCode == HttpStatusCode.OK)
+                    if (response == null)
                     {
-                        DataContractJsonSerializer serializer = new DataContractJsonSerializer(typeof(FileUploadResponse));
-                        responseData = serializer.ReadObject(response.GetResponseStream()) as FileUploadResponse;
+                        return DataActionResult.Failed;
                     }
 
-                    return response.StatusCode;
+                    DataContractJsonSerializer serializer = new DataContractJsonSerializer(typeof(FileUploadResponse));
+                    responseData = serializer.ReadObject(response.GetResponseStream()) as FileUploadResponse;
+
+                    if (response.StatusCode == HttpStatusCode.OK)
+                        return DataActionResult.Successful;
+                    else
+                        return DataActionResult.Failed;
                 }
             }
-            catch(Exception e)
+            catch (Exception e)
             {
                 if (null != Logger)
                     Logger.AddLog(e.Message, LogType.Error);
-                return HttpStatusCode.InternalServerError;
+                return DataActionResult.Failed;
             }
         }
 
@@ -74,22 +84,34 @@ namespace Smartrac.SmartCosmos.ClientEndpoint.DataImport
         /// <param name="file">File path</param>
         /// <param name="responseData">File upload response</param>
         /// <returns>HTTP status code</returns>
-        public HttpStatusCode UploadFileAsOctetStream(string file, out FileUploadResponse responseData)
+        public DataActionResult UploadFileAsOctetStream(string file, out FileUploadResponse responseData)
         {
+            responseData = null;
+
             if (!File.Exists(file))
-            {
-                responseData = null;
-                return HttpStatusCode.NotFound;
+            {                
+                if (null != Logger)
+                    Logger.AddLog("Import file does´t exists: " + file, LogType.Error);
+                return DataActionResult.Failed;
             }
 
-            FileStream fileStream = new FileStream(file, FileMode.Open);
             try
             {
-                return UploadFileAsOctetStream(fileStream, out responseData);
+                FileStream fileStream = new FileStream(file, FileMode.Open);
+                try
+                {
+                    return UploadFileAsOctetStream(fileStream, out responseData);
+                }
+                finally
+                {
+                    fileStream.Close();
+                }
             }
-            finally
+            catch (Exception e)
             {
-                fileStream.Close();
+                if (null != Logger)
+                    Logger.AddLog(e.Message, LogType.Error);
+                return DataActionResult.Failed;
             }
         }
 
@@ -99,8 +121,10 @@ namespace Smartrac.SmartCosmos.ClientEndpoint.DataImport
         /// <param name="data">File or memory stream</param>
         /// <param name="responseData">File upload response</param>
         /// <returns>HTTP status code</returns>
-        public HttpStatusCode UploadFileAsMultiPartForm(Stream data, out FileUploadResponse responseData)
+        public DataActionResult UploadFileAsMultiPartForm(Stream data, out FileUploadResponse responseData)
         {
+            if (null != Logger)
+                Logger.AddLog("UploadFileAsMultiPartForm is not yet implemented", LogType.Error);
             throw new NotImplementedException();
         }
 
@@ -111,7 +135,7 @@ namespace Smartrac.SmartCosmos.ClientEndpoint.DataImport
         /// <param name="requestData">Import identification (e.g. importId)</param>
         /// <param name="responseData">Import state</param>
         /// <returns>HTTP status code</returns>
-        public HttpStatusCode CheckImportState(ImportStateRequest requestData, out ImportStateResponse responseData)
+        public DataActionResult CheckImportState(ImportStateRequest requestData, out ImportStateResponse responseData)
         {
             responseData = null;
             try
@@ -124,13 +148,17 @@ namespace Smartrac.SmartCosmos.ClientEndpoint.DataImport
                 {
                     responseData = responseDataObj as ImportStateResponse;
                 }
-                return returnHTTPCode;
+
+                if (returnHTTPCode == HttpStatusCode.OK)
+                    return DataActionResult.Successful;
+                else
+                    return DataActionResult.Failed;
             }
-            catch(Exception e)
+            catch (Exception e)
             {
                 if (null != Logger)
                     Logger.AddLog(e.Message, LogType.Error);
-                return HttpStatusCode.InternalServerError;
+                return DataActionResult.Failed;
             }
         }
     }

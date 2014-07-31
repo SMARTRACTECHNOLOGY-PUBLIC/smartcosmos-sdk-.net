@@ -1,11 +1,33 @@
-﻿using System;
+﻿#region License
+// SMART COSMOS Profiles SDK
+// (C) Copyright 2014 SMARTRAC TECHNOLOGY GmbH, (http://www.smartrac-group.com)
+//
+// Licensed under the Apache License, Version 2.0 (the "License");
+// you may not use this file except in compliance with the License.
+// You may obtain a copy of the License at
+//
+// http://www.apache.org/licenses/LICENSE-2.0
+//
+// Unless required by applicable law or agreed to in writing, software
+// distributed under the License is distributed on an "AS IS" BASIS,
+// WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+// See the License for the specific language governing permissions and
+// limitations under the License.
+#endregion
+
+using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Smartrac.Logging;
 using Smartrac.Logging.Console;
-using Smartrac.SmartCosmos.ClientEndpoint.TestSuite;
+using Smartrac.SmartCosmos.ClientEndpoint.Factory;
+using Smartrac.SmartCosmos.TestSuite;
+using Smartrac.SmartCosmos.TestSuite.Sample;
+using Smartrac.SmartCosmos.DataContext;
+using Smartrac.SmartCosmos.DataContext.Sample;
 
 namespace Smartrac.SmartCosmos.SampleClient.Console
 {
@@ -13,60 +35,30 @@ namespace Smartrac.SmartCosmos.SampleClient.Console
     {
         static void Main(string[] args)
         {
-            SmartCosmosTestSuite testSuite = new SmartCosmosTestSuite();
+            // define output for logging
+            IMessageLogger logger = new ConsoleLoggerService();
 
-            // CONFIGURATION ----
-            bool RunPerformanceTests = true; // define if performance test should be executed
+            // Create default factory for endpoints
+            IEndpointFactory factory = new EndpointFactory(logger);
+            // user settings
+            factory.UserName = "finelinetech";        // please enter your SmartCosmos user name
+            factory.UserPassword = "smt1kcde7!";      // please enter your SmartCosmos password
 
-            // General settings
-            testSuite.UserName = "";        // please enter you SmartCosmos user name
-            testSuite.UserPassword = "";      // please enter you SmartCosmos password
+            // create data context with sample data
+            IDataContext dataContext = new SampleDataContext();
 
-            // Data settings
-            testSuite.TagIds.Add("0EEEE100000001");     // existing dummy TID 
-            testSuite.TagIds.Add("0EEEE200000002");     // existing dummy TID 
-            testSuite.TagProperties.Add("plantId");     // Manufacturer production side ID
-            testSuite.TagProperties.Add("batchId");     // Roll number / batch ID
-            testSuite.TagProperties.Add("delivDate");   // Delivery date
-            testSuite.TagProperties.Add("delivQty");    // Delivery quantity
-            testSuite.VerificationType = "RR";          // verification id for RoundRock
-            testSuite.ImportId = "20140624_104505-720"; // dummy import Id
-            testSuite.SampleDataFile = Path.Combine(Path.GetDirectoryName(System.Reflection.Assembly.GetExecutingAssembly().Location), @"..\..\..\..\..\Documentation\SampleData\SampleData30k.xml"); // c:\Develop\smartcosmos-sdk-.net\Documentation\SampleData.xml 
-
-            // Output
-            testSuite.Logger = new ConsoleLoggerService();
-
-            // Configuration for production server
-            testSuite.ServerURL = "https://www.smart-cosmos.com/service/rest";
-            testSuite.AllowInvalidServerCertificates = false; // production server has a valid certificate
-
-            // Configuration for Apiary mock server
-            //testSuite.ServerURL = "https://smartcosmos.apiary-mock.com";
-            //testSuite.AllowInvalidServerCertificates = true;
-
+            // initate tester suite
+            ISampleTestSuite testSuite = new SampleTestSuiteBuilder()
+                                            .setLogger(logger)
+                                            .setDataContext(dataContext)
+                                            .setFactory(factory)
+                                            .setRunPerformanceTests(true) // define if performance test should be executed
+                                            .build();
 
             // START TESTING ----
+            testSuite.Run();
 
-            // SAMPLE 1 - Test cases for platform availability endpoint
-            testSuite.TestCase_PlatformAvailabilityEndpoint();
-
-            // SAMPLE 2 - Test cases for tag metadata endpoint
-            testSuite.TestCase_TagMetadataEndpoint();
-
-            // SAMPLE 3 - Test cases for data import endpoint
-            testSuite.TestCase_DataImportEndpoint();
-
-            // SAMPLE 4 - Test cases for tag verification endpoint
-            testSuite.TestCase_TagVerificationEndpoint();
-
-            // SAMPLE 5 - Performance test for tag metadata endpoint
-            if (RunPerformanceTests)
-                testSuite.PerformanceTestCase_TagMetadataEndpoint();
-
-            // SAMPLE 6 - Performance test for tag metadata endpoint (Parallel)
-            if (RunPerformanceTests)
-                testSuite.PerformanceTestCase_TagMetadataEndpointParallel();
-
+            System.Console.WriteLine("Press a key for exit...");
             System.Console.ReadLine();
         }
 

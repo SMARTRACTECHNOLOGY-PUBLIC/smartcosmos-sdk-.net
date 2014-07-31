@@ -1,4 +1,21 @@
-﻿using System;
+﻿#region License
+// SMART COSMOS Profiles SDK
+// (C) Copyright 2014 SMARTRAC TECHNOLOGY GmbH, (http://www.smartrac-group.com)
+//
+// Licensed under the Apache License, Version 2.0 (the "License");
+// you may not use this file except in compliance with the License.
+// You may obtain a copy of the License at
+//
+// http://www.apache.org/licenses/LICENSE-2.0
+//
+// Unless required by applicable law or agreed to in writing, software
+// distributed under the License is distributed on an "AS IS" BASIS,
+// WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+// See the License for the specific language governing permissions and
+// limitations under the License.
+#endregion
+
+using System;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Net;
@@ -24,37 +41,63 @@ namespace Smartrac.SmartCosmos.ClientEndpoint.Base
     /// <summary>
     /// Base class for all endpoints
     /// </summary>
-    public class CommonEndpoint
+    public class BaseEndpoint : IBaseEndpoint
     {
         protected string AuthorizationToken = "";
-        public bool KeepAlive { get; set; }
-        public string AcceptLanguage { get; set; }
+        private string ServerURL_;
+        private bool AllowInvalidServerCertificates_;
 
-        protected IMessageLogger Logger { get; set; }
 
-        public CommonEndpoint(string aServerURL, bool allowInvalidServerCertificates, IMessageLogger logger)
+        public BaseEndpoint()
         {
-            this.ServerURL = aServerURL;
             this.KeepAlive = true;
             this.AcceptLanguage = "en";
-            this.Logger = logger;
+            this.ServerURL = "https://www.smart-cosmos.com/service/rest";
+            this.AllowInvalidServerCertificates_ = false;
+        }
 
-            if (allowInvalidServerCertificates)
+        /// <summary>
+        /// For a couple of functions the client can use the HTTP Accept-Language to define the lanugage of the respond content. 
+        /// If the header attribute is missing or the server does not support the client language, English will be used.
+        /// </summary>
+        public string AcceptLanguage { get; set; }
+
+        /// <summary>
+        /// Logger
+        /// </summary>
+        public IMessageLogger Logger { get; set; }
+
+        /// <summary>
+        /// Allow invalid server certificates of SMART COSMOS server?
+        /// </summary>
+        public bool AllowInvalidServerCertificates
+        {
+            get
             {
-                if (null != Logger)
-                    Logger.AddLog("Invalid certificates are allowed...");
-                System.Net.ServicePointManager.ServerCertificateValidationCallback = delegate { return true; };
+                return AllowInvalidServerCertificates_;
+            }
+            set
+            {
+                AllowInvalidServerCertificates_ = value;
+                if(AllowInvalidServerCertificates)
+                {
+                    System.Net.ServicePointManager.ServerCertificateValidationCallback += delegate { return AllowInvalidServerCertificates_; };
+                    if (null != Logger)
+                        Logger.AddLog("Invalid certificates are allowed...");
+                }
             }
         }
 
-        public CommonEndpoint(IMessageLogger logger)
-            : this("https://www.smart-cosmos.com/service/rest", false, logger)
-        {
-        }
+        /// <summary>
+        /// Keep server connection alive
+        /// </summary>
+        public bool KeepAlive { get; set; }
 
-        private string ServerURL_; 
-        protected string ServerURL 
-        { 
+        /// <summary>
+        /// URL of the SMART COSMOS server
+        /// </summary>
+        public string ServerURL
+        {
             get
             {
                 return ServerURL_;
@@ -67,17 +110,25 @@ namespace Smartrac.SmartCosmos.ClientEndpoint.Base
                     ServerURL_ = value;
             }
         }
-
-
+        
         /// <summary>
         /// Set the user account which should be used for the authorization
         /// </summary>
         /// <param name="UserName">User name</param>
         /// <param name="userPassword">User password</param>
-        public void SetUserAccount(string userName, string userPassword)
+        public void setUserAccount(string userName, string userPassword)
         {
+            if ((userName == "") || (userPassword == ""))
+            {
+                if (null != Logger)
+                    Logger.AddLog("Clear authorization token");    
+             
+                AuthorizationToken = "";
+                return;
+            }
+
             if (null != Logger)
-                Logger.AddLog("Login with user " + userName);
+                Logger.AddLog("Login with user " + userName);           
 
             // UserName and hased password are combined into a string "UserName:hashedpassword"
             // For example, if the user agent uses 'Aladdin' as the UserName and 'open sesame' as the password then the header is formed as follows:.

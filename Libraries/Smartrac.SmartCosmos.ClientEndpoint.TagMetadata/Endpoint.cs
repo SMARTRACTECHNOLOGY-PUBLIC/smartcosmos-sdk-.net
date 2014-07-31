@@ -1,4 +1,21 @@
-﻿using System;
+﻿#region License
+// SMART COSMOS Profiles SDK
+// (C) Copyright 2014 SMARTRAC TECHNOLOGY GmbH, (http://www.smartrac-group.com)
+//
+// Licensed under the Apache License, Version 2.0 (the "License");
+// you may not use this file except in compliance with the License.
+// You may obtain a copy of the License at
+//
+// http://www.apache.org/licenses/LICENSE-2.0
+//
+// Unless required by applicable law or agreed to in writing, software
+// distributed under the License is distributed on an "AS IS" BASIS,
+// WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+// See the License for the specific language governing permissions and
+// limitations under the License.
+#endregion
+
+using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Net;
@@ -13,25 +30,15 @@ namespace Smartrac.SmartCosmos.ClientEndpoint.TagMetadata
     /// <summary>
     /// Client for tag metadata endpoint
     /// </summary>
-    public class TagMetadataEndpoint : CommonEndpoint
+    class TagMetadataEndpoint : BaseEndpoint, ITagMetadataEndpoint
     {
-        public TagMetadataEndpoint(string aServerURL, bool allowInvalidServerCertificates, IMessageLogger logger)
-            : base(aServerURL, allowInvalidServerCertificates, logger)
-        {
-        }
-
-        public TagMetadataEndpoint(IMessageLogger logger)
-            : base(logger)
-        {
-        }
-
         /// <summary>
         /// Get tag related data
         /// </summary>
         /// <param name="requestData">Input data</param>
         /// <param name="responseData">Output data</param>
-        /// <returns>HTTP status code</returns>
-        public HttpStatusCode GetTagMetadata(TagMetaDataRequest requestData, out TagMetaDataResponse responseData)
+        /// <returns>TagMetaDataActionResult</returns>
+        public TagMetaDataActionResult GetTagMetadata(TagMetaDataRequest requestData, out TagMetaDataResponse responseData)
         {
             responseData = null;
             try
@@ -44,13 +51,17 @@ namespace Smartrac.SmartCosmos.ClientEndpoint.TagMetadata
                 {
                     responseData = responseDataObj as TagMetaDataResponse;
                 }
-                return returnHTTPCode;
+
+                if (returnHTTPCode == HttpStatusCode.OK)
+                    return TagMetaDataActionResult.Successful;
+                else
+                    return TagMetaDataActionResult.Failed;
             }
             catch (Exception e)
             {
                 if (null != Logger)
                     Logger.AddLog(e.Message, LogType.Error);
-                return HttpStatusCode.InternalServerError;
+                return TagMetaDataActionResult.Failed;
             }
         }
 
@@ -59,8 +70,8 @@ namespace Smartrac.SmartCosmos.ClientEndpoint.TagMetadata
         /// </summary>
         /// <param name="requestData">Input data</param>
         /// <param name="responseData">Output data</param>
-        /// <returns>HTTP status code</returns>
-        public HttpStatusCode GetTagMessage(TagMessageRequest requestData, out TagMessageResponse responseData)
+        /// <returns>TagMetaDataActionResult</returns>
+        public TagMetaDataActionResult GetTagMessage(TagMessageRequest requestData, out TagMessageResponse responseData)
         {
             responseData = null;
             try
@@ -73,13 +84,17 @@ namespace Smartrac.SmartCosmos.ClientEndpoint.TagMetadata
                 {
                     responseData = responseDataObj as TagMessageResponse;
                 }
-                return returnHTTPCode;
+
+                if (returnHTTPCode == HttpStatusCode.OK)
+                    return TagMetaDataActionResult.Successful;
+                else
+                    return TagMetaDataActionResult.Failed;
             }
             catch (Exception e)
             {
                 if (null != Logger)
                     Logger.AddLog(e.Message, LogType.Error);
-                return HttpStatusCode.InternalServerError;
+                return TagMetaDataActionResult.Failed;
             }
         }
     
