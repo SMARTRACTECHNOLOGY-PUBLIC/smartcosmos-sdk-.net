@@ -4,50 +4,30 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{D9FE3842-E69A-426A-94BF-52DF66364FF4}</ProjectGuid>
-    <OutputType>Exe</OutputType>
+    <ProjectGuid>{69CC67D7-DA26-4699-9532-005FC9F5782A}</ProjectGuid>
+    <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>Smartrac.SmartCosmos.SampleClient.Console</RootNamespace>
-    <AssemblyName>Smartrac.SmartCosmos.SampleClient.Console</AssemblyName>
+    <RootNamespace>Smartrac.SmartCosmos.TestSuite</RootNamespace>
+    <AssemblyName>Smartrac.SmartCosmos.TestSuite</AssemblyName>
     <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
-    <PlatformTarget>AnyCPU</PlatformTarget>
     <DebugSymbols>true</DebugSymbols>
     <DebugType>full</DebugType>
     <Optimize>false</Optimize>
-    <OutputPath>$(SolutionDir)\bin\$(Platform)\$(Configuration)</OutputPath>
+    <OutputPath>bin\Debug\</OutputPath>
     <DefineConstants>DEBUG;TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
-    <PlatformTarget>AnyCPU</PlatformTarget>
     <DebugType>pdbonly</DebugType>
     <Optimize>true</Optimize>
-    <OutputPath>$(SolutionDir)\bin\$(Platform)\$(Configuration)</OutputPath>
+    <OutputPath>bin\Release\</OutputPath>
     <DefineConstants>TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
-  </PropertyGroup>
-  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug|x86'">
-    <DebugSymbols>true</DebugSymbols>
-    <OutputPath>$(SolutionDir)\bin\$(Platform)\$(Configuration)</OutputPath>
-    <DefineConstants>DEBUG;TRACE</DefineConstants>
-    <DebugType>full</DebugType>
-    <PlatformTarget>x86</PlatformTarget>
-    <ErrorReport>prompt</ErrorReport>
-    <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
-  </PropertyGroup>
-  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Release|x86'">
-    <OutputPath>$(SolutionDir)\bin\$(Platform)\$(Configuration)</OutputPath>
-    <DefineConstants>TRACE</DefineConstants>
-    <Optimize>true</Optimize>
-    <DebugType>pdbonly</DebugType>
-    <PlatformTarget>x86</PlatformTarget>
-    <ErrorReport>prompt</ErrorReport>
-    <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug|x64'">
     <DebugSymbols>true</DebugSymbols>
@@ -67,9 +47,26 @@
     <ErrorReport>prompt</ErrorReport>
     <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
   </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug|x86'">
+    <DebugSymbols>true</DebugSymbols>
+    <OutputPath>$(SolutionDir)\bin\$(Platform)\$(Configuration)</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <DebugType>full</DebugType>
+    <PlatformTarget>x86</PlatformTarget>
+    <ErrorReport>prompt</ErrorReport>
+    <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Release|x86'">
+    <OutputPath>$(SolutionDir)\bin\$(Platform)\$(Configuration)</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <Optimize>true</Optimize>
+    <DebugType>pdbonly</DebugType>
+    <PlatformTarget>x86</PlatformTarget>
+    <ErrorReport>prompt</ErrorReport>
+    <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
+  </PropertyGroup>
   <ItemGroup>
     <Reference Include="System" />
-    <Reference Include="System.configuration" />
     <Reference Include="System.Core" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
@@ -78,51 +75,31 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Program.cs" />
+    <Compile Include="Builder\TestSuiteBuilder.cs" />
+    <Compile Include="Interfaces\ITestSuite.cs" />
+    <Compile Include="TestSuite.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
-    <ProjectReference Include="..\..\Libraries\Smartrac.Base\Smartrac.Base.csproj">
+    <ProjectReference Include="..\Smartrac.Base\Smartrac.Base.csproj">
       <Project>{fc09830c-0f35-4fc3-85bf-0b43fcb91f06}</Project>
       <Name>Smartrac.Base</Name>
     </ProjectReference>
-    <ProjectReference Include="..\..\Libraries\Smartrac.Logging.Console\Smartrac.Logging.Console.csproj">
-      <Project>{f50c4adc-6a33-4644-b608-2b2584bf15ce}</Project>
-      <Name>Smartrac.Logging.Console</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\..\Libraries\Smartrac.Logging\Smartrac.Logging.csproj">
+    <ProjectReference Include="..\Smartrac.Logging\Smartrac.Logging.csproj">
       <Project>{73ba0972-769b-4b84-9a21-9cf545a14a03}</Project>
       <Name>Smartrac.Logging</Name>
     </ProjectReference>
-    <ProjectReference Include="..\..\Libraries\Smartrac.SmartCosmos.ClientEndpoint.Factory\Smartrac.SmartCosmos.ClientEndpoint.Factory.csproj">
+    <ProjectReference Include="..\Smartrac.SmartCosmos.ClientEndpoint.Factory\Smartrac.SmartCosmos.ClientEndpoint.Factory.csproj">
       <Project>{692630bd-502b-4a8a-bb36-84b322d0276f}</Project>
       <Name>Smartrac.SmartCosmos.ClientEndpoint.Factory</Name>
     </ProjectReference>
-    <ProjectReference Include="..\..\Libraries\Smartrac.SmartCosmos.DataContext.Sample\Smartrac.SmartCosmos.DataContext.Sample.csproj">
-      <Project>{7ff4702d-5854-4f59-bee5-bc6f2f3e3ea9}</Project>
-      <Name>Smartrac.SmartCosmos.DataContext.Sample</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\..\Libraries\Smartrac.SmartCosmos.DataContext\Smartrac.SmartCosmos.DataContext.csproj">
+    <ProjectReference Include="..\Smartrac.SmartCosmos.DataContext\Smartrac.SmartCosmos.DataContext.csproj">
       <Project>{d3a5db54-fd8f-4c15-8e1d-e0a10c55465c}</Project>
       <Name>Smartrac.SmartCosmos.DataContext</Name>
     </ProjectReference>
-    <ProjectReference Include="..\..\Libraries\Smartrac.SmartCosmos.TestSuite.Sample\Smartrac.SmartCosmos.TestSuite.Sample.csproj">
-      <Project>{dc8040e3-e2cd-454a-9ffb-e0c5ac931c8c}</Project>
-      <Name>Smartrac.SmartCosmos.TestSuite.Sample</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\..\Libraries\Smartrac.SmartCosmos.TestSuite\Smartrac.SmartCosmos.TestSuite.csproj">
-      <Project>{69cc67d7-da26-4699-9532-005fc9f5782a}</Project>
-      <Name>Smartrac.SmartCosmos.TestSuite</Name>
-    </ProjectReference>
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="App.config" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
-  <Import Project="$(MSBuildExtensionsPath)\MSBuildCommunityTasks\MSBuild.Community.Tasks.Targets" Condition="'$(SetAssemblyInfo)' != ''" />
-  <Target Name="BeforeBuild">
-    <AssemblyInfo Condition="'$(SetAssemblyInfo)' != ''" CodeLanguage="CS" OutputFile="Properties\AssemblyInfo.cs" AssemblyTitle="$(ProjectName)" AssemblyCompany="SMARTRAC TECHNOLOGY GROUP" AssemblyProduct="$(ProjectName)" AssemblyDescription="$(ProjectName)" AssemblyCopyright="© 2014 SMARTRAC TECHNOLOGY GROUP" ComVisible="false" AssemblyVersion="$(VersionMajor).$(VersionMinor).$(VersionBuild).$(VersionRevision)" AssemblyFileVersion="$(VersionMajor).$(VersionMinor).$(VersionBuild).$(VersionRevision)" />
-  </Target>
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
   <Target Name="BeforeBuild">

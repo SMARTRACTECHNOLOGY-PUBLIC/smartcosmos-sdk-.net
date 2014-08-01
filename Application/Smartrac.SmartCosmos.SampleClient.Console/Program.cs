@@ -28,6 +28,7 @@ using Smartrac.SmartCosmos.TestSuite;
 using Smartrac.SmartCosmos.TestSuite.Sample;
 using Smartrac.SmartCosmos.DataContext;
 using Smartrac.SmartCosmos.DataContext.Sample;
+using System.Configuration;
 
 namespace Smartrac.SmartCosmos.SampleClient.Console
 {
@@ -40,9 +41,11 @@ namespace Smartrac.SmartCosmos.SampleClient.Console
 
             // Create default factory for endpoints
             IEndpointFactory factory = new EndpointFactory(logger);
+
             // user settings
-            factory.UserName = "finelinetech";        // please enter your SmartCosmos user name
-            factory.UserPassword = "smt1kcde7!";      // please enter your SmartCosmos password
+            // NOTE: please enter your SmartCosmos user name and password in the app.config
+            factory.UserName = ConfigurationManager.AppSettings["UserName"]; 
+            factory.UserPassword = ConfigurationManager.AppSettings["UserPassword"];      
 
             // create data context with sample data
             IDataContext dataContext = new SampleDataContext();
