@@ -36,11 +36,11 @@ namespace Smartrac.SmartCosmos.DataContext.Sample
            TagIds = new List<string>();
            TagIds.Add("0EEEE100000001");     // existing dummy TID 
            TagIds.Add("0EEEE200000002");     // existing dummy TID 
-           TagIds.Add("E280110C20005042D5B602B1999");
-           TagIds.Add("E280110C2000505110850282");
-           TagIds.Add("E280110C20005103115E0282");
+        //   TagIds.Add("E280110C20005042D5B602B1999");
+        //   TagIds.Add("E280110C2000505110850282");
+        //   TagIds.Add("E280110C20005103115E0282");
            TagIds.Add("0EEEE100000781");
-           TagIds.Add("E12345678912345777");
+        //   TagIds.Add("E12345678912345777");
 
             TagProperties = new List<string>();
             TagProperties.Add("plantId");     // Manufacturer production side ID
