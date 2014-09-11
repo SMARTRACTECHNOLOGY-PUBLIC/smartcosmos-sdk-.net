@@ -29,7 +29,7 @@ namespace Smartrac.SmartCosmos.Objects.File
     public enum FileActionResult
     {
         /// <summary>
-        /// validation of import package was successful and data import will start immediately
+        /// action was successful
         /// </summary>
         Successful,
 

@@ -17,24 +17,16 @@
 
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Text;
-using Smartrac.Logging;
-using Smartrac.SmartCosmos.ClientEndpoint.Factory;
-using Smartrac.SmartCosmos.Objects.DataContext;
-using Smartrac.SmartCosmos.Profiles.DataContext;
+using Smartrac.SmartCosmos.Objects.Base;
 
-namespace Smartrac.SmartCosmos.TestSuite
+namespace Smartrac.SmartCosmos.Objects.DataContext
 {
-    public interface ITestSuite
+    public interface IRegistrationDataContext
     {
-        IMessageLogger Logger { get; set; }
-        IEndpointFactory Factory { get; set; }
-
-        ITagDataContext TagDataContext { get; set; }
-        IFileDataContext FileDataContext { get; set; }
-        IRegistrationDataContext RegistrationDataContext { get; set; }
-        
-        bool Run();
+        string GetRealm();
+        string GeteMailAddress();
     }
 }

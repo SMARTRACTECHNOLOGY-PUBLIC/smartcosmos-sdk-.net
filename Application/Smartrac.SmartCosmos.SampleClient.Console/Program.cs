@@ -49,17 +49,12 @@ namespace Smartrac.SmartCosmos.SampleClient.Console
             factory.UserName = ConfigurationManager.AppSettings["UserName"]; 
             factory.UserPassword = ConfigurationManager.AppSettings["UserPassword"];
 
-            // create data context with sample data for tags (Profiles)
-            ITagDataContext tagdataContext = new SampleTagDataContext();
-
-            // create data context with sample data for files (Objects)
-            IFileDataContext filedataContext = new SampleFileDataContext();
-
             // initate tester suite
             ISampleTestSuite testSuite = new SampleTestSuiteBuilder()
                                             .setLogger(logger)
-                                            .setTagDataContext(tagdataContext)
-                                            .setFileDataContext(filedataContext)
+                                            .setTagDataContext(new SampleTagDataContext()) // create data context with sample data for tags (Profiles)
+                                            .setFileDataContext(new SampleFileDataContext()) // create data context with sample data for files (Objects)
+                                            .setRegistrationDataContext(new SampleRegistrationDataContext()) // create data context with sample data for files (Objects)
                                             .setFactory(factory)
                                             .setRunPerformanceTests(true) // define if performance test should be executed
                                             .build();

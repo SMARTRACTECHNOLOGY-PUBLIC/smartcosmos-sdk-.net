@@ -96,6 +96,10 @@
       <Project>{7aa95048-8346-4dab-94f5-90f898b41824}</Project>
       <Name>Smartrac.SmartCosmos.Objects.File</Name>
     </ProjectReference>
+    <ProjectReference Include="..\Smartrac.SmartCosmos.Objects.Registration\Smartrac.SmartCosmos.Objects.Registration.csproj">
+      <Project>{c0345647-e3b3-42f2-8136-f8ac8a03cb08}</Project>
+      <Name>Smartrac.SmartCosmos.Objects.Registration</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Smartrac.SmartCosmos.Profiles.DataImport\Smartrac.SmartCosmos.Profiles.DataImport.csproj">
       <Project>{0a933dfb-c8e8-403c-9a6d-d152871e366c}</Project>
       <Name>Smartrac.SmartCosmos.Profiles.DataImport</Name>

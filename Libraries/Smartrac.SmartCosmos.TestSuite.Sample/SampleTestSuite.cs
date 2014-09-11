@@ -34,6 +34,7 @@ using Smartrac.SmartCosmos.Profiles.TagVerification;
 using Smartrac.SmartCosmos.Objects.File;
 using Smartrac.SmartCosmos.Objects.Base;
 using Smartrac.SmartCosmos.Objects.DataContext;
+using Smartrac.SmartCosmos.Objects.Registration;
 
 namespace Smartrac.SmartCosmos.TestSuite.Sample
 {
@@ -77,11 +78,33 @@ namespace Smartrac.SmartCosmos.TestSuite.Sample
             // SAMPLE 7 - Objects: File endpoint
             result = TestCase_FileEndpoint() && result;
 
+            // SAMPLE 7 - Objects: Registration endpoint
+            result = TestCase_RegistrationEndpoint() && result;
+
             Logger.AddLog("");
             Logger.AddLog("Total result: " + result);
             return result;
         }
 
+        private void OnBeforeTest(string component, string endpoint, string function)
+        {
+            Logger.AddLog("-----------------------");
+            Logger.AddLog("Component: " + component);
+            Logger.AddLog("Endpoint: " + endpoint);
+            Logger.AddLog("Function: " + function);
+            stopwatch.Reset();
+            stopwatch.Start();
+        }
+
+        private void OnAfterTest()
+        {
+            stopwatch.Stop();
+            Logger.AddLog("Required time: " + stopwatch.Elapsed);
+            Logger.AddLog("");
+            Logger.AddLog("");
+        }
+
+        #region PROFILES
         /// <summary>
         /// Test cases for verification endpoint
         /// </summary>
@@ -194,123 +217,6 @@ namespace Smartrac.SmartCosmos.TestSuite.Sample
             return result;
         }
 
-        public bool TestCase_FileEndpoint()
-        {
-            bool result = true;
-            FileActionResult actionResult;
-
-            OnBeforeTest("Objects", "FileEndpoint", "Related File Definitions Retrieval");
-            // create client for endpoint
-            IFileEndpoint tester = Factory.CreateFileEndpoint();
-            FileDefinitionRetrievalListResponse responseListData;
-            // create request & call endpoint
-            actionResult = tester.RelatedFileDefinitionsRetrieval(FileDataContext.GetEntityReferenceType(),
-                                                                  FileDataContext.GetUrnReference(),
-                                                                  FileDataContext.GetViewType(),
-                                                                  out responseListData
-                                                                  );
-            result = result && (actionResult == FileActionResult.Successful);
-            // log response 
-            Logger.AddLog("Result: " + actionResult);
-            Logger.AddLog("Result Data: " + responseListData.ToJSON());
-            OnAfterTest();
-
-            if( (null != responseListData) && (responseListData.Count > 0))
-            {
-                foreach(var item in responseListData)
-                {
-                    OnBeforeTest("Objects", "FileEndpoint", "File Delete");
-                    // create request & call endpoint
-                    actionResult = tester.FileDeletion(item.Urn);
-                    result = result && (actionResult == FileActionResult.Successful);
-                    // log response 
-                    Logger.AddLog("Result: " + actionResult);
-                    Logger.AddLog("Result Data: " + responseListData.ToJSON());
-                    OnAfterTest();
-                }
-            }
-
-            IEnumerable<FileDefinition> files = FileDataContext.GetFileDefinitions();
-            foreach (var file in files)
-            {
-                OnBeforeTest("Objects", "FileEndpoint", "File Definition");
-                // create request
-                FileDefinitionRequest requestDefData = new FileDefinitionRequest { entityReferenceType = FileDataContext.GetEntityReferenceType(),
-                                                                                   referenceUrn = FileDataContext.GetUrnReference(),
-                                                                                   mimeType = file.mimeType
-                                                                                 };
-                FileDefinitionResponse responseDefData;
-                actionResult = tester.GetFileDefinition(requestDefData, out responseDefData);
-                result = result && (actionResult == FileActionResult.Successful);
-                // log response 
-                Logger.AddLog("Result: " + actionResult);
-                Logger.AddLog("Result Data: " + responseDefData.ToJSON());
-                OnAfterTest();
-
-                OnBeforeTest("Objects", "FileEndpoint", "File Upload - Octet-Stream");
-                Smartrac.SmartCosmos.Objects.File.FileUploadResponse responseUploadData;
-                // create request & call endpoint
-                actionResult = tester.UploadFileAsOctetStream(responseDefData.fileUrn, file.file, out responseUploadData);
-                result = result && (actionResult == FileActionResult.Successful);
-                // log response 
-                Logger.AddLog("Result: " + actionResult);
-                Logger.AddLog("Result Data: " + responseUploadData.ToJSON());
-                OnAfterTest();
-
-                OnBeforeTest("Objects", "FileEndpoint", "Specific File Definition Retrieval");
-                // create request & call endpoint
-                FileDefinitionRetrievalResponse responseRetrievalData;
-                actionResult = tester.SpecificFileDefinitionRetrieval(responseDefData.fileUrn, FileDataContext.GetViewType(), out responseRetrievalData);
-                result = result && (actionResult == FileActionResult.Successful);
-                // log response 
-                Logger.AddLog("Result: " + actionResult);
-                Logger.AddLog("Result Data: " + responseRetrievalData.ToJSON());
-                OnAfterTest();
-
-                OnBeforeTest("Objects", "FileEndpoint", "File Content Retrieval");
-                // create request & call endpoint
-                FileContentRetrievalResponse responseContentData;
-                actionResult = tester.FileContentRetrieval(responseDefData.fileUrn, out responseContentData);
-                result = result && (actionResult == FileActionResult.Successful);
-                // log response 
-                Logger.AddLog("Result: " + actionResult);
-                Logger.AddLog("Result Data: " + responseContentData.ToJSON());
-                OnAfterTest();
-            }
-
-            OnBeforeTest("Objects", "FileEndpoint", "Related File Definitions Retrieval");
-            // create request & call endpoint
-            FileDefinitionRetrievalListResponse responseListResultData;
-            actionResult = tester.RelatedFileDefinitionsRetrieval( FileDataContext.GetEntityReferenceType(), 
-                                                                   FileDataContext.GetUrnReference(),                
-                                                                   FileDataContext.GetViewType(),
-                                                                   out responseListResultData);
-            result = result && (actionResult == FileActionResult.Successful);
-            // log response 
-            Logger.AddLog("Result: " + actionResult);
-            Logger.AddLog("Result Data: " + responseListResultData.ToJSON());
-            OnAfterTest();
-
-            return result;
-        }
-
-        private void OnBeforeTest(string component, string endpoint, string function)
-        {
-            Logger.AddLog("-----------------------");
-            Logger.AddLog("Component: " + component);
-            Logger.AddLog("Endpoint: " + endpoint);
-            Logger.AddLog("Function: " + function);
-            stopwatch.Reset();
-            stopwatch.Start();
-        }
-
-        private void OnAfterTest()
-        {
-            stopwatch.Stop();
-            Logger.AddLog("Required time: " + stopwatch.Elapsed);
-            Logger.AddLog("");
-            Logger.AddLog("");
-        }
 
         public bool PerformanceTestCase_TagMetadataEndpoint()
         {
@@ -387,7 +293,7 @@ namespace Smartrac.SmartCosmos.TestSuite.Sample
 
             if (File.Exists(TagDataContext.GetTagDataFile()))
             {
-                OnBeforeTest("Profiles","TagMetadataEndpoint", "GetTagMetadata - PerformanceTest Parallel");
+                OnBeforeTest("Profiles", "TagMetadataEndpoint", "GetTagMetadata - PerformanceTest Parallel");
                 try
                 {
                     ITagMetadataEndpoint tester = Factory.CreateTagMetadataEndpoint();
@@ -418,18 +324,18 @@ namespace Smartrac.SmartCosmos.TestSuite.Sample
 
 
                     Parallel.ForEach(requestList, request =>
-                        {
-                            TagMetaDataResponse responseTagMetaData;
-                            Stopwatch watch = new Stopwatch();
-                            watch.Start();
+                    {
+                        TagMetaDataResponse responseTagMetaData;
+                        Stopwatch watch = new Stopwatch();
+                        watch.Start();
 
-                            TagMetaDataActionResult actionResult = tester.GetTagMetadata(requestTagMetaData, out responseTagMetaData);
-                            result = result && (actionResult == TagMetaDataActionResult.Successful);
-                            watch.Stop();
-                            Logger.AddLog(request.tagIds.Count + " tags checked. Result:" + result + "  Required time:" + watch.Elapsed);
-                            request.tagIds.Clear();
-                            watch.Reset();
-                        }
+                        TagMetaDataActionResult actionResult = tester.GetTagMetadata(requestTagMetaData, out responseTagMetaData);
+                        result = result && (actionResult == TagMetaDataActionResult.Successful);
+                        watch.Stop();
+                        Logger.AddLog(request.tagIds.Count + " tags checked. Result:" + result + "  Required time:" + watch.Elapsed);
+                        request.tagIds.Clear();
+                        watch.Reset();
+                    }
                     );
 
                     Logger.AddLog("Test count: " + tagCount);
@@ -444,6 +350,147 @@ namespace Smartrac.SmartCosmos.TestSuite.Sample
 
             return result;
         }
+        #endregion
 
-    }
+        #region OBJECTS        
+        public bool TestCase_FileEndpoint()
+        {
+            bool result = true;
+            FileActionResult actionResult;
+
+            OnBeforeTest("Objects", "FileEndpoint", "Related File Definitions Retrieval");
+            // create client for endpoint
+            IFileEndpoint tester = Factory.CreateFileEndpoint();
+            FileDefinitionRetrievalListResponse responseListData;
+            // create request & call endpoint
+            actionResult = tester.RelatedFileDefinitionsRetrieval(FileDataContext.GetEntityReferenceType(),
+                                                                  FileDataContext.GetUrnReference(),
+                                                                  FileDataContext.GetViewType(),
+                                                                  out responseListData
+                                                                  );
+            result = result && (actionResult == FileActionResult.Successful);
+            // log response 
+            Logger.AddLog("Result: " + actionResult);
+            Logger.AddLog("Result Data: " + responseListData.ToJSON());
+            OnAfterTest();
+
+            if ((null != responseListData) && (responseListData.Count > 0))
+            {
+                foreach (var item in responseListData)
+                {
+                    OnBeforeTest("Objects", "FileEndpoint", "File Delete");
+                    // create request & call endpoint
+                    actionResult = tester.FileDeletion(item.Urn);
+                    result = result && (actionResult == FileActionResult.Successful);
+                    // log response 
+                    Logger.AddLog("Result: " + actionResult);
+                    Logger.AddLog("Result Data: " + responseListData.ToJSON());
+                    OnAfterTest();
+                }
+            }
+
+            IEnumerable<FileDefinition> files = FileDataContext.GetFileDefinitions();
+            foreach (var file in files)
+            {
+                OnBeforeTest("Objects", "FileEndpoint", "File Definition");
+                // create request
+                FileDefinitionRequest requestDefData = new FileDefinitionRequest
+                {
+                    entityReferenceType = FileDataContext.GetEntityReferenceType(),
+                    referenceUrn = FileDataContext.GetUrnReference(),
+                    mimeType = file.mimeType
+                };
+                FileDefinitionResponse responseDefData;
+                actionResult = tester.GetFileDefinition(requestDefData, out responseDefData);
+                result = result && (actionResult == FileActionResult.Successful);
+                // log response 
+                Logger.AddLog("Result: " + actionResult);
+                Logger.AddLog("Result Data: " + responseDefData.ToJSON());
+                OnAfterTest();
+
+                OnBeforeTest("Objects", "FileEndpoint", "File Upload - Octet-Stream");
+                Smartrac.SmartCosmos.Objects.File.FileUploadResponse responseUploadData;
+                // create request & call endpoint
+                actionResult = tester.UploadFileAsOctetStream(responseDefData.fileUrn, file.file, out responseUploadData);
+                result = result && (actionResult == FileActionResult.Successful);
+                // log response 
+                Logger.AddLog("Result: " + actionResult);
+                Logger.AddLog("Result Data: " + responseUploadData.ToJSON());
+                OnAfterTest();
+
+                OnBeforeTest("Objects", "FileEndpoint", "Specific File Definition Retrieval");
+                // create request & call endpoint
+                FileDefinitionRetrievalResponse responseRetrievalData;
+                actionResult = tester.SpecificFileDefinitionRetrieval(responseDefData.fileUrn, FileDataContext.GetViewType(), out responseRetrievalData);
+                result = result && (actionResult == FileActionResult.Successful);
+                // log response 
+                Logger.AddLog("Result: " + actionResult);
+                Logger.AddLog("Result Data: " + responseRetrievalData.ToJSON());
+                OnAfterTest();
+
+                OnBeforeTest("Objects", "FileEndpoint", "File Content Retrieval");
+                // create request & call endpoint
+                FileContentRetrievalResponse responseContentData;
+                actionResult = tester.FileContentRetrieval(responseDefData.fileUrn, out responseContentData);
+                result = result && (actionResult == FileActionResult.Successful);
+                // log response 
+                Logger.AddLog("Result: " + actionResult);
+                Logger.AddLog("Result Data: " + responseContentData.ToJSON());
+                OnAfterTest();
+            }
+
+            OnBeforeTest("Objects", "FileEndpoint", "Related File Definitions Retrieval");
+            // create request & call endpoint
+            FileDefinitionRetrievalListResponse responseListResultData;
+            actionResult = tester.RelatedFileDefinitionsRetrieval(FileDataContext.GetEntityReferenceType(),
+                                                                   FileDataContext.GetUrnReference(),
+                                                                   FileDataContext.GetViewType(),
+                                                                   out responseListResultData);
+            result = result && (actionResult == FileActionResult.Successful);
+            // log response 
+            Logger.AddLog("Result: " + actionResult);
+            Logger.AddLog("Result Data: " + responseListResultData.ToJSON());
+            OnAfterTest();
+
+            return result;
+        }
+
+        public bool TestCase_RegistrationEndpoint()
+        {
+            bool result = true;
+            RegistrationActionResult actionResult;
+
+            OnBeforeTest("Objects", "RegistrationEndpoint", "Realm Availability");
+            // create client for endpoint
+            IRegistrationEndpoint tester = Factory.CreateRegistrationEndpoint();
+            RealmAvailabilityResponse responseRealmData;
+            // call endpoint            
+            actionResult = tester.GetRealmAvailability(RegistrationDataContext.GetRealm(), out responseRealmData);
+            result = result && (actionResult == RegistrationActionResult.Successful);
+            // log response 
+            Logger.AddLog("Result: " + actionResult);
+            Logger.AddLog("Result Data: " + responseRealmData.ToJSON());
+            OnAfterTest();
+
+            OnBeforeTest("Objects", "RegistrationEndpoint", "Account Registration");
+            // create client for endpoint
+            AccountRegistrationRequest requestRegisterData = new AccountRegistrationRequest { 
+                realm = RegistrationDataContext.GetRealm(), 
+                emailAddress = RegistrationDataContext.GeteMailAddress() 
+            };
+            AccountRegistrationResponse responseRegisterData;
+            // call endpoint            
+            actionResult = tester.AccountRegistration(requestRegisterData, out responseRegisterData);
+            result = result && (actionResult == RegistrationActionResult.Successful);
+            // log response 
+            Logger.AddLog("Result: " + actionResult);
+            Logger.AddLog("Result Data: " + responseRegisterData.ToJSON());
+            OnAfterTest();
+
+            return result;
+        }
+
+        #endregion
+
+   }
 }

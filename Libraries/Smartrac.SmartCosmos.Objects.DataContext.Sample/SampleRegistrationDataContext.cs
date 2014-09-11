@@ -17,34 +17,24 @@
 
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Text;
-using Smartrac.Logging;
-using Smartrac.SmartCosmos.ClientEndpoint.Factory;
+using Smartrac.SmartCosmos.Objects.Base;
 using Smartrac.SmartCosmos.Objects.DataContext;
-using Smartrac.SmartCosmos.Profiles.DataContext;
 
-namespace Smartrac.SmartCosmos.TestSuite
+namespace Smartrac.SmartCosmos.Objects.DataContext.Sample
 {
-    /// <summary>
-    /// Base class for test suites
-    /// </summary>
-    public class BaseTestSuite : ITestSuite
+    public class SampleRegistrationDataContext : BaseRegistrationDataContext
     {
-        public IMessageLogger Logger { get; set; }
-        public IEndpointFactory Factory { get; set; }
-
-        public ITagDataContext TagDataContext { get; set; }
-        public IFileDataContext FileDataContext { get; set; }
-        public IRegistrationDataContext RegistrationDataContext { get; set; }
-        
-        /// <summary>
-        /// Start testing
-        /// </summary>
-        /// <returns>test result</returns>
-        public virtual bool Run()
+        public override string GetRealm()
         {
-            return true;
+            return "foobar.com";
+        }
+
+        public override string GeteMailAddress()
+        {
+            return "you@foo.com";
         }
     }
 }

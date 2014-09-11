@@ -77,6 +77,8 @@
   <ItemGroup>
     <Compile Include="BaseFileDataContext.cs" />
     <Compile Include="Interfaces\IFileDataContext.cs" />
+    <Compile Include="BaseRegistrationDataContext.cs" />
+    <Compile Include="Interfaces\IRegistrationDataContext.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

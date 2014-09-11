@@ -25,6 +25,7 @@ using System.Text;
 using Newtonsoft.Json;
 using Smartrac.Logging;
 using Smartrac.SmartCosmos.ClientEndpoint.BaseObject;
+using Smartrac.SmartCosmos.Objects.Base;
 
 namespace Smartrac.SmartCosmos.ClientEndpoint.Base
 {
@@ -169,53 +170,48 @@ namespace Smartrac.SmartCosmos.ClientEndpoint.Base
         }
 
 
-        /// <summary>
-        /// Execute a web request and submit the request and response data as JSON
-        /// </summary>
-        /// <param name="request">Created WebRequest object</param>
-        /// <param name="requestType">Type of the requestData parameter</param>
-        /// <param name="requestData">Request data</param>
-        /// <param name="responseType">Type of the responseData parameter</param>
-        /// <param name="responseData">Response data</param>
-        /// <returns>HttpStatusCode</returns>
-        protected HttpStatusCode ExecuteWebRequestJSON(WebRequest request, Type requestType, object requestData, Type responseType, out object responseData, string sendMethod = WebRequestMethods.Http.Post)
+        private HttpStatusCode ExecuteWebRequestJSON(WebRequest request, Type requestType, object requestData, Type responseType, out object responseData, out HttpWebResponse webResponse, string sendMethod = WebRequestMethods.Http.Post)
         {
             responseData = null;
+            webResponse = null;
             try
             {
                 request.Method = sendMethod;
                 request.ContentType = "application/json";
 
                 // Copy object to a JSON byte array
-                byte[] byteArray = System.Text.Encoding.UTF8.GetBytes(requestData.ToJSON(requestType));
-                request.ContentLength = byteArray.Length;
-                using (var writer = request.GetRequestStream())
+                if (requestData != null)
                 {
-                    writer.Write(byteArray, 0, byteArray.Length);
+                    byte[] byteArray = System.Text.Encoding.UTF8.GetBytes(requestData.ToJSON(requestType));
+                    request.ContentLength = byteArray.Length;
+                    using (var writer = request.GetRequestStream())
+                    {
+                        writer.Write(byteArray, 0, byteArray.Length);
+                    }
                 }
 
                 // call the server
-                HttpWebResponse response = null;
+                webResponse = null;
                 try
                 {
-                    response = request.GetResponse() as System.Net.HttpWebResponse;
+                    webResponse = request.GetResponse() as System.Net.HttpWebResponse;
 
                 }
                 catch (WebException e)
                 {
-                    response = e.Response as System.Net.HttpWebResponse;
+                    webResponse = e.Response as System.Net.HttpWebResponse;
                 }
 
-                if (response != null)
+                if (webResponse != null)
                 {
-                    if ((response.StatusCode == HttpStatusCode.OK) ||
-                         (response.StatusCode == HttpStatusCode.BadRequest)
-                       )
+                    DataContractJsonSerializer serializer = new DataContractJsonSerializer(responseType);
+                    responseData = serializer.ReadObject(webResponse.GetResponseStream());
+
+                    if(responseData is BaseResponse)
                     {
-                        DataContractJsonSerializer serializer = new DataContractJsonSerializer(responseType);
-                        responseData = serializer.ReadObject(response.GetResponseStream());
+                        ((BaseResponse)responseData).HTTPStatusCode = webResponse.StatusCode;
                     }
-                    return response.StatusCode;
+                    return webResponse.StatusCode;
                 }
 
                 if (null != Logger)
@@ -228,6 +224,49 @@ namespace Smartrac.SmartCosmos.ClientEndpoint.Base
                     Logger.AddLog(e.Message, LogType.Error);
                 return HttpStatusCode.InternalServerError;
             }
+        }
+
+        /// <summary>
+        /// GET: Execute a web request and get the response data as JSON
+        /// </summary>
+        /// <param name="request">Created WebRequest object</param>
+        /// <param name="responseType">Type of the responseData parameter</param>
+        /// <param name="responseData">Response data</param>
+        /// <returns>HttpStatusCode</returns>
+        protected HttpStatusCode ExecuteWebRequestJSON(WebRequest request, Type responseType, out object responseData)
+        {
+            responseData = null;
+            return ExecuteWebRequestJSON(request, null, null, responseType, out responseData, WebRequestMethods.Http.Get);
+        }
+
+        /// <summary>
+        /// GET: Execute a web request and get the response data as JSON
+        /// </summary>
+        /// <param name="request">Created WebRequest object</param>
+        /// <param name="responseType">Type of the responseData parameter</param>
+        /// <param name="responseData">Response data</param>
+        /// <returns>HttpStatusCode</returns>
+        protected HttpStatusCode ExecuteWebRequestJSON(WebRequest request, Type responseType, out object responseData, out HttpWebResponse webResponse)
+        {
+            responseData = null;
+            webResponse = null;
+            return ExecuteWebRequestJSON(request, null, null, responseType, out responseData, out webResponse, WebRequestMethods.Http.Get);
+        }
+
+        /// <summary>
+        /// Execute a web request and submit the request and response data as JSON
+        /// </summary>
+        /// <param name="request">Created WebRequest object</param>
+        /// <param name="requestType">Type of the requestData parameter</param>
+        /// <param name="requestData">Request data</param>
+        /// <param name="responseType">Type of the responseData parameter</param>
+        /// <param name="responseData">Response data</param>
+        /// <returns>HttpStatusCode</returns>
+        protected HttpStatusCode ExecuteWebRequestJSON(WebRequest request, Type requestType, object requestData, Type responseType, out object responseData, string sendMethod = WebRequestMethods.Http.Post)
+        {
+            responseData = null;
+            HttpWebResponse webResponse;
+            return ExecuteWebRequestJSON(request, requestType, requestData, responseType, out responseData, out webResponse, sendMethod);       
         }
     }
 }

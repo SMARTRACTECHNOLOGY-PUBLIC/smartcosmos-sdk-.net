@@ -21,6 +21,7 @@ using System.Linq;
 using System.Text;
 using Smartrac.Logging;
 using Smartrac.SmartCosmos.Objects.File;
+using Smartrac.SmartCosmos.Objects.Registration;
 using Smartrac.SmartCosmos.Profiles.DataImport;
 using Smartrac.SmartCosmos.Profiles.PlatformAvailability;
 using Smartrac.SmartCosmos.Profiles.TagMetadata;
@@ -101,7 +102,18 @@ namespace Smartrac.SmartCosmos.ClientEndpoint.Factory
             return new FileEndpointBuilder()
             .setLogger(Logger)
             .setKeepAlive(KeepAlive)
-            .setServerURL(ProfilesServerURL)
+            .setServerURL(ObjectsServerURL)
+            .setAllowInvalidServerCertificates(AllowInvalidServerCertificates)
+            .setUserAccount(UserName, UserPassword)
+            .build();
+        }
+
+        public IRegistrationEndpoint CreateRegistrationEndpoint()
+        {
+            return new RegistrationEndpointBuilder()
+            .setLogger(Logger)
+            .setKeepAlive(KeepAlive)
+            .setServerURL(ObjectsServerURL)
             .setAllowInvalidServerCertificates(AllowInvalidServerCertificates)
             .setUserAccount(UserName, UserPassword)
             .build();

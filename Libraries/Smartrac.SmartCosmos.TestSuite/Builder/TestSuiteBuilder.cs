@@ -61,7 +61,13 @@ namespace Smartrac.SmartCosmos.TestSuite
             return this as E;
         }
 
+        public E setRegistrationDataContext(IRegistrationDataContext dataContext)
+        {
+            instance.RegistrationDataContext = dataContext;
+            return this as E;
+        }
 
+        
         public E setFactory(IEndpointFactory factory)
         {
             instance.Factory = factory;

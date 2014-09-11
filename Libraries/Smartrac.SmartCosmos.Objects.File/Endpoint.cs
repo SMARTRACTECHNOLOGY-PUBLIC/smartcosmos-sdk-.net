@@ -30,7 +30,7 @@ using Smartrac.SmartCosmos.Objects.Base;
 namespace Smartrac.SmartCosmos.Objects.File
 {
     /// <summary>
-    /// Client for tag verification endpoint
+    /// Client for file endpoint
     /// </summary>
     class FileEndpoint : BaseObjectsEndpoint, IFileEndpoint
     {
@@ -288,26 +288,16 @@ namespace Smartrac.SmartCosmos.Objects.File
                 string viewTypeParam = ((null != viewType) && viewType.HasValue) ? "?view=" + viewType.Value.GetDescription() : "";
 
                 var request = CreateWebRequest("/files/" + fileUrn.UUID + viewTypeParam);
-                request.Method = WebRequestMethods.Http.Get;
-
-                using (var response = request.GetResponse() as System.Net.HttpWebResponse)
+                object responseDataObj;
+                HttpWebResponse webResponse;
+                var returnHTTPCode = ExecuteWebRequestJSON(request, typeof(FileDefinitionRetrievalResponse), out responseDataObj, out webResponse);
+                if (null != responseDataObj)
                 {
-                    if (response == null)
+                    responseData = responseDataObj as FileDefinitionRetrievalResponse;
+                    if ((responseData != null) && (webResponse != null))
                     {
-                        return FileActionResult.Failed;
-                    }
-
-                    DataContractJsonSerializer serializer = new DataContractJsonSerializer(typeof(FileDefinitionRetrievalResponse));
-                    responseData = serializer.ReadObject(response.GetResponseStream()) as FileDefinitionRetrievalResponse; // as DefaultResponse ???
-                    if (responseData == null)
-                    {
-                        return FileActionResult.Failed;
-                    }
-                    else
-                    {
-                        responseData.HTTPStatusCode = response.StatusCode;
-                        responseData.SmartCosmosEvent = response.Headers.Get("SmartCosmos-Event");
-                        switch (response.StatusCode)
+                        responseData.SmartCosmosEvent = webResponse.Headers.Get("SmartCosmos-Event");
+                        switch (responseData.HTTPStatusCode)
                         {
                             case HttpStatusCode.OK: return FileActionResult.Successful;
                             case HttpStatusCode.BadRequest: return FileActionResult.Failed;
@@ -315,6 +305,7 @@ namespace Smartrac.SmartCosmos.Objects.File
                         }
                     }
                 }
+                return FileActionResult.Failed;
             }
             catch (Exception e)
             {
@@ -426,21 +417,16 @@ namespace Smartrac.SmartCosmos.Objects.File
                 string viewTypeParam = ((null != viewType) && viewType.HasValue) ? "?view=" + viewType.Value.GetDescription() : "";
 
                 var request = CreateWebRequest("/files/" + entityReferenceType.GetDescription() + "/" + referenceUrn.UUID + viewTypeParam);
-                request.Method = WebRequestMethods.Http.Get;
-
-                using (var response = request.GetResponse() as System.Net.HttpWebResponse)
+                object responseDataObj;
+                var returnHTTPCode = ExecuteWebRequestJSON(request, typeof(FileDefinitionRetrievalListResponse), out responseDataObj);
+                if (null != responseDataObj)
                 {
-                    DataContractJsonSerializer serializer = new DataContractJsonSerializer(typeof(FileDefinitionRetrievalListResponse));
-                    responseData = serializer.ReadObject(response.GetResponseStream()) as FileDefinitionRetrievalListResponse;
-                    if (responseData == null)
+                    responseData = responseDataObj as FileDefinitionRetrievalListResponse;
+                    if (responseData != null)
                     {
-                        return FileActionResult.Failed;
-                    }
-                    else
-                    {
-                        responseData.HTTPStatusCode = response.StatusCode;
+                        // responseData.HTTPStatusCode = response.StatusCode;
                         //responseData.SmartCosmosEvent = response.Headers.Get("SmartCosmos-Event");
-                        switch (response.StatusCode)
+                        switch (responseData.HTTPStatusCode)
                         {
                             case HttpStatusCode.OK: return FileActionResult.Successful;
                             case HttpStatusCode.BadRequest: return FileActionResult.Failed;
@@ -448,6 +434,8 @@ namespace Smartrac.SmartCosmos.Objects.File
                         }
                     }
                 }
+
+                return FileActionResult.Failed;
             }
             catch (Exception e)
             {

@@ -21,6 +21,7 @@ using System.Linq;
 using System.Text;
 using Smartrac.Logging;
 using Smartrac.SmartCosmos.Objects.File;
+using Smartrac.SmartCosmos.Objects.Registration;
 using Smartrac.SmartCosmos.Profiles.DataImport;
 using Smartrac.SmartCosmos.Profiles.PlatformAvailability;
 using Smartrac.SmartCosmos.Profiles.TagMetadata;
@@ -47,6 +48,7 @@ namespace Smartrac.SmartCosmos.ClientEndpoint.Factory
 
         #region Objects
         IFileEndpoint CreateFileEndpoint();
+        IRegistrationEndpoint CreateRegistrationEndpoint();
         #endregion
     }
 }

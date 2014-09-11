@@ -19,32 +19,20 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-using Smartrac.Logging;
-using Smartrac.SmartCosmos.ClientEndpoint.Factory;
-using Smartrac.SmartCosmos.Objects.DataContext;
-using Smartrac.SmartCosmos.Profiles.DataContext;
+using Smartrac.SmartCosmos.Objects.Base;
 
-namespace Smartrac.SmartCosmos.TestSuite
+namespace Smartrac.SmartCosmos.Objects.DataContext
 {
-    /// <summary>
-    /// Base class for test suites
-    /// </summary>
-    public class BaseTestSuite : ITestSuite
+    public class BaseRegistrationDataContext : IRegistrationDataContext
     {
-        public IMessageLogger Logger { get; set; }
-        public IEndpointFactory Factory { get; set; }
-
-        public ITagDataContext TagDataContext { get; set; }
-        public IFileDataContext FileDataContext { get; set; }
-        public IRegistrationDataContext RegistrationDataContext { get; set; }
-        
-        /// <summary>
-        /// Start testing
-        /// </summary>
-        /// <returns>test result</returns>
-        public virtual bool Run()
+        public virtual string GetRealm()
         {
-            return true;
+            return "";
+        }
+
+        public virtual string GeteMailAddress()
+        {
+            return "";
         }
     }
 }
