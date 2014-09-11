@@ -1,5 +1,5 @@
 ﻿#region License
-// SMART COSMOS Profiles SDK
+// SMART COSMOS .Net SDK
 // (C) Copyright 2014 SMARTRAC TECHNOLOGY GmbH, (http://www.smartrac-group.com)
 //
 // Licensed under the Apache License, Version 2.0 (the "License");
@@ -23,7 +23,8 @@ using System.Text;
 using Smartrac.Base;
 using Smartrac.Logging;
 using Smartrac.SmartCosmos.ClientEndpoint.Factory;
-using Smartrac.SmartCosmos.DataContext;
+using Smartrac.SmartCosmos.Objects.DataContext;
+using Smartrac.SmartCosmos.Profiles.DataContext;
 
 namespace Smartrac.SmartCosmos.TestSuite
 {
@@ -48,9 +49,15 @@ namespace Smartrac.SmartCosmos.TestSuite
         }
 
 
-        public E setDataContext(IDataContext dataContext)
+        public E setTagDataContext(ITagDataContext dataContext)
         {
-            instance.DataContext = dataContext;
+            instance.TagDataContext = dataContext;
+            return this as E;
+        }
+
+        public E setFileDataContext(IFileDataContext dataContext)
+        {
+            instance.FileDataContext = dataContext;
             return this as E;
         }
 
@@ -63,7 +70,7 @@ namespace Smartrac.SmartCosmos.TestSuite
 
         protected override void onValidate()
         {
-            Contract.Requires(instance.DataContext != null);
+            Contract.Requires(instance.TagDataContext != null);
             Contract.Requires(instance.Factory != null);
         }
     }

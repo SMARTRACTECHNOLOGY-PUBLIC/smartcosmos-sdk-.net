@@ -97,29 +97,41 @@
       <Project>{f0e26f53-5847-42d0-b16f-2dbd1952e452}</Project>
       <Name>Smartrac.SmartCosmos.ClientEndpoint.Base</Name>
     </ProjectReference>
-    <ProjectReference Include="..\Smartrac.SmartCosmos.ClientEndpoint.DataImport\Smartrac.SmartCosmos.ClientEndpoint.DataImport.csproj">
-      <Project>{0a933dfb-c8e8-403c-9a6d-d152871e366c}</Project>
-      <Name>Smartrac.SmartCosmos.ClientEndpoint.DataImport</Name>
-    </ProjectReference>
     <ProjectReference Include="..\Smartrac.SmartCosmos.ClientEndpoint.Factory\Smartrac.SmartCosmos.ClientEndpoint.Factory.csproj">
       <Project>{692630bd-502b-4a8a-bb36-84b322d0276f}</Project>
       <Name>Smartrac.SmartCosmos.ClientEndpoint.Factory</Name>
     </ProjectReference>
-    <ProjectReference Include="..\Smartrac.SmartCosmos.ClientEndpoint.PlatformAvailability\Smartrac.SmartCosmos.ClientEndpoint.PlatformAvailability.csproj">
-      <Project>{5617dfbd-0ccb-4fe8-9871-40c680eaae26}</Project>
-      <Name>Smartrac.SmartCosmos.ClientEndpoint.PlatformAvailability</Name>
+    <ProjectReference Include="..\Smartrac.SmartCosmos.Objects.Base\Smartrac.SmartCosmos.Objects.Base.csproj">
+      <Project>{96f35cdc-1fe4-4d39-afad-907466426a72}</Project>
+      <Name>Smartrac.SmartCosmos.Objects.Base</Name>
     </ProjectReference>
-    <ProjectReference Include="..\Smartrac.SmartCosmos.ClientEndpoint.TagMetadata\Smartrac.SmartCosmos.ClientEndpoint.TagMetadata.csproj">
-      <Project>{ef7a70ac-3269-430f-9966-f00c08263aeb}</Project>
-      <Name>Smartrac.SmartCosmos.ClientEndpoint.TagMetadata</Name>
+    <ProjectReference Include="..\Smartrac.SmartCosmos.Objects.DataContext\Smartrac.SmartCosmos.Objects.DataContext.csproj">
+      <Project>{955046d9-aa9a-462c-9057-8046c61ed701}</Project>
+      <Name>Smartrac.SmartCosmos.Objects.DataContext</Name>
     </ProjectReference>
-    <ProjectReference Include="..\Smartrac.SmartCosmos.ClientEndpoint.TagVerification\Smartrac.SmartCosmos.ClientEndpoint.TagVerification.csproj">
-      <Project>{83e86795-1eb5-4135-bf50-6573b1780542}</Project>
-      <Name>Smartrac.SmartCosmos.ClientEndpoint.TagVerification</Name>
+    <ProjectReference Include="..\Smartrac.SmartCosmos.Objects.File\Smartrac.SmartCosmos.Objects.File.csproj">
+      <Project>{7aa95048-8346-4dab-94f5-90f898b41824}</Project>
+      <Name>Smartrac.SmartCosmos.Objects.File</Name>
     </ProjectReference>
-    <ProjectReference Include="..\Smartrac.SmartCosmos.DataContext\Smartrac.SmartCosmos.DataContext.csproj">
+    <ProjectReference Include="..\Smartrac.SmartCosmos.Profiles.DataContext\Smartrac.SmartCosmos.Profiles.DataContext.csproj">
       <Project>{d3a5db54-fd8f-4c15-8e1d-e0a10c55465c}</Project>
-      <Name>Smartrac.SmartCosmos.DataContext</Name>
+      <Name>Smartrac.SmartCosmos.Profiles.DataContext</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Smartrac.SmartCosmos.Profiles.DataImport\Smartrac.SmartCosmos.Profiles.DataImport.csproj">
+      <Project>{0a933dfb-c8e8-403c-9a6d-d152871e366c}</Project>
+      <Name>Smartrac.SmartCosmos.Profiles.DataImport</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Smartrac.SmartCosmos.Profiles.PlatformAvailability\Smartrac.SmartCosmos.Profiles.PlatformAvailability.csproj">
+      <Project>{5617dfbd-0ccb-4fe8-9871-40c680eaae26}</Project>
+      <Name>Smartrac.SmartCosmos.Profiles.PlatformAvailability</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Smartrac.SmartCosmos.Profiles.TagMetadata\Smartrac.SmartCosmos.Profiles.TagMetadata.csproj">
+      <Project>{ef7a70ac-3269-430f-9966-f00c08263aeb}</Project>
+      <Name>Smartrac.SmartCosmos.Profiles.TagMetadata</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Smartrac.SmartCosmos.Profiles.TagVerification\Smartrac.SmartCosmos.Profiles.TagVerification.csproj">
+      <Project>{83e86795-1eb5-4135-bf50-6573b1780542}</Project>
+      <Name>Smartrac.SmartCosmos.Profiles.TagVerification</Name>
     </ProjectReference>
     <ProjectReference Include="..\Smartrac.SmartCosmos.TestSuite\Smartrac.SmartCosmos.TestSuite.csproj">
       <Project>{69cc67d7-da26-4699-9532-005fc9f5782a}</Project>

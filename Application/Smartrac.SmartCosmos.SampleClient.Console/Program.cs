@@ -1,5 +1,5 @@
 ﻿#region License
-// SMART COSMOS Profiles SDK
+// SMART COSMOS .Net SDK
 // (C) Copyright 2014 SMARTRAC TECHNOLOGY GmbH, (http://www.smartrac-group.com)
 //
 // Licensed under the Apache License, Version 2.0 (the "License");
@@ -26,9 +26,11 @@ using Smartrac.Logging.Console;
 using Smartrac.SmartCosmos.ClientEndpoint.Factory;
 using Smartrac.SmartCosmos.TestSuite;
 using Smartrac.SmartCosmos.TestSuite.Sample;
-using Smartrac.SmartCosmos.DataContext;
-using Smartrac.SmartCosmos.DataContext.Sample;
 using System.Configuration;
+using Smartrac.SmartCosmos.Profiles.DataContext;
+using Smartrac.SmartCosmos.Objects.DataContext;
+using Smartrac.SmartCosmos.Profiles.DataContext.Sample;
+using Smartrac.SmartCosmos.Objects.DataContext.Sample;
 
 namespace Smartrac.SmartCosmos.SampleClient.Console
 {
@@ -45,15 +47,19 @@ namespace Smartrac.SmartCosmos.SampleClient.Console
             // user settings
             // NOTE: please enter your SmartCosmos user name and password in the app.config
             factory.UserName = ConfigurationManager.AppSettings["UserName"]; 
-            factory.UserPassword = ConfigurationManager.AppSettings["UserPassword"];      
+            factory.UserPassword = ConfigurationManager.AppSettings["UserPassword"];
 
-            // create data context with sample data
-            IDataContext dataContext = new SampleDataContext();
+            // create data context with sample data for tags (Profiles)
+            ITagDataContext tagdataContext = new SampleTagDataContext();
+
+            // create data context with sample data for files (Objects)
+            IFileDataContext filedataContext = new SampleFileDataContext();
 
             // initate tester suite
             ISampleTestSuite testSuite = new SampleTestSuiteBuilder()
                                             .setLogger(logger)
-                                            .setDataContext(dataContext)
+                                            .setTagDataContext(tagdataContext)
+                                            .setFileDataContext(filedataContext)
                                             .setFactory(factory)
                                             .setRunPerformanceTests(true) // define if performance test should be executed
                                             .build();

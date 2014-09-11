@@ -1302,7 +1302,7 @@
   <xs:simpleType name="NLog.Targets.Wrappers.SecurityImpersonationLevel">
     <xs:restriction base="xs:string">
       <xs:enumeration value="Anonymous" />
-      <xs:enumeration value="Identification" />
+      <xs:enumeration value="urnification" />
       <xs:enumeration value="Impersonation" />
       <xs:enumeration value="Delegation" />
     </xs:restriction>
@@ -2109,12 +2109,12 @@
     </xs:choice>
     <xs:attribute name="backgroundColor" type="xs:string">
       <xs:annotation>
-        <xs:documentation>Background color. Names are identical with KnownColor enum extended with Empty value which means that background color won't be changed.</xs:documentation>
+        <xs:documentation>Background color. Names are urnical with KnownColor enum extended with Empty value which means that background color won't be changed.</xs:documentation>
       </xs:annotation>
     </xs:attribute>
     <xs:attribute name="fontColor" type="xs:string">
       <xs:annotation>
-        <xs:documentation>Font color. Names are identical with KnownColor enum extended with Empty value which means that font color won't be changed.</xs:documentation>
+        <xs:documentation>Font color. Names are urnical with KnownColor enum extended with Empty value which means that font color won't be changed.</xs:documentation>
       </xs:annotation>
     </xs:attribute>
     <xs:attribute name="ignoreCase" type="xs:boolean">

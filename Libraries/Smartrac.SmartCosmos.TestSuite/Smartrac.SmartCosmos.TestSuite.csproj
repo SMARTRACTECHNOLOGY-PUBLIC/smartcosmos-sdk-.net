@@ -94,9 +94,29 @@
       <Project>{692630bd-502b-4a8a-bb36-84b322d0276f}</Project>
       <Name>Smartrac.SmartCosmos.ClientEndpoint.Factory</Name>
     </ProjectReference>
-    <ProjectReference Include="..\Smartrac.SmartCosmos.DataContext\Smartrac.SmartCosmos.DataContext.csproj">
+    <ProjectReference Include="..\Smartrac.SmartCosmos.Objects.DataContext\Smartrac.SmartCosmos.Objects.DataContext.csproj">
+      <Project>{955046d9-aa9a-462c-9057-8046c61ed701}</Project>
+      <Name>Smartrac.SmartCosmos.Objects.DataContext</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Smartrac.SmartCosmos.Profiles.DataContext\Smartrac.SmartCosmos.Profiles.DataContext.csproj">
       <Project>{d3a5db54-fd8f-4c15-8e1d-e0a10c55465c}</Project>
-      <Name>Smartrac.SmartCosmos.DataContext</Name>
+      <Name>Smartrac.SmartCosmos.Profiles.DataContext</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Smartrac.SmartCosmos.Profiles.DataImport\Smartrac.SmartCosmos.Profiles.DataImport.csproj">
+      <Project>{0a933dfb-c8e8-403c-9a6d-d152871e366c}</Project>
+      <Name>Smartrac.SmartCosmos.Profiles.DataImport</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Smartrac.SmartCosmos.Profiles.PlatformAvailability\Smartrac.SmartCosmos.Profiles.PlatformAvailability.csproj">
+      <Project>{5617dfbd-0ccb-4fe8-9871-40c680eaae26}</Project>
+      <Name>Smartrac.SmartCosmos.Profiles.PlatformAvailability</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Smartrac.SmartCosmos.Profiles.TagMetadata\Smartrac.SmartCosmos.Profiles.TagMetadata.csproj">
+      <Project>{ef7a70ac-3269-430f-9966-f00c08263aeb}</Project>
+      <Name>Smartrac.SmartCosmos.Profiles.TagMetadata</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Smartrac.SmartCosmos.Profiles.TagVerification\Smartrac.SmartCosmos.Profiles.TagVerification.csproj">
+      <Project>{83e86795-1eb5-4135-bf50-6573b1780542}</Project>
+      <Name>Smartrac.SmartCosmos.Profiles.TagVerification</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

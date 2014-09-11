@@ -1,5 +1,5 @@
 ﻿#region License
-// SMART COSMOS Profiles SDK
+// SMART COSMOS .Net SDK
 // (C) Copyright 2014 SMARTRAC TECHNOLOGY GmbH, (http://www.smartrac-group.com)
 //
 // Licensed under the Apache License, Version 2.0 (the "License");
@@ -52,7 +52,7 @@ namespace Smartrac.SmartCosmos.ClientEndpoint.Base
         {
             this.KeepAlive = true;
             this.AcceptLanguage = "en";
-            this.ServerURL = "https://www.smart-cosmos.com/service/rest";
+            this.ServerURL = "";
             this.AllowInvalidServerCertificates_ = false;
         }
 
@@ -178,12 +178,12 @@ namespace Smartrac.SmartCosmos.ClientEndpoint.Base
         /// <param name="responseType">Type of the responseData parameter</param>
         /// <param name="responseData">Response data</param>
         /// <returns>HttpStatusCode</returns>
-        protected HttpStatusCode ExecuteWebRequestJSON(WebRequest request, Type requestType, object requestData, Type responseType, out object responseData)
+        protected HttpStatusCode ExecuteWebRequestJSON(WebRequest request, Type requestType, object requestData, Type responseType, out object responseData, string sendMethod = WebRequestMethods.Http.Post)
         {
             responseData = null;
             try
             {
-                request.Method = WebRequestMethods.Http.Post;
+                request.Method = sendMethod;
                 request.ContentType = "application/json";
 
                 // Copy object to a JSON byte array

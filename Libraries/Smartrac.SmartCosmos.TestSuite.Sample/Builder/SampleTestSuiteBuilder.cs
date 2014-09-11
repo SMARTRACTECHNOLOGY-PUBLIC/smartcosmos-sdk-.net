@@ -1,5 +1,5 @@
 ﻿#region License
-// SMART COSMOS Profiles SDK
+// SMART COSMOS .Net SDK
 // (C) Copyright 2014 SMARTRAC TECHNOLOGY GmbH, (http://www.smartrac-group.com)
 //
 // Licensed under the Apache License, Version 2.0 (the "License");
@@ -22,7 +22,6 @@ using System.Linq;
 using System.Text;
 using Smartrac.Base;
 using Smartrac.Logging;
-using Smartrac.SmartCosmos.DataContext;
 
 namespace Smartrac.SmartCosmos.TestSuite.Sample
 {

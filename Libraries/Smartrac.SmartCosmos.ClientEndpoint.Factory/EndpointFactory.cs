@@ -1,5 +1,5 @@
 ﻿#region License
-// SMART COSMOS Profiles SDK
+// SMART COSMOS .Net SDK
 // (C) Copyright 2014 SMARTRAC TECHNOLOGY GmbH, (http://www.smartrac-group.com)
 //
 // Licensed under the Apache License, Version 2.0 (the "License");
@@ -20,16 +20,19 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using Smartrac.Logging;
-using Smartrac.SmartCosmos.ClientEndpoint.DataImport;
-using Smartrac.SmartCosmos.ClientEndpoint.PlatformAvailability;
-using Smartrac.SmartCosmos.ClientEndpoint.TagMetadata;
-using Smartrac.SmartCosmos.ClientEndpoint.TagVerification;
+using Smartrac.SmartCosmos.Objects.File;
+using Smartrac.SmartCosmos.Profiles.DataImport;
+using Smartrac.SmartCosmos.Profiles.PlatformAvailability;
+using Smartrac.SmartCosmos.Profiles.TagMetadata;
+using Smartrac.SmartCosmos.Profiles.TagVerification;
 
 namespace Smartrac.SmartCosmos.ClientEndpoint.Factory
 {
     public class EndpointFactory : IEndpointFactory
     {
-        public string ServerURL { get; set; }
+        public string ProfilesServerURL { get; set; }
+        public string ObjectsServerURL { get; set; }
+
         public bool KeepAlive { get; set; }
         public bool AllowInvalidServerCertificates { get; set; }
         public string AcceptLanguage { get; set; }
@@ -42,16 +45,18 @@ namespace Smartrac.SmartCosmos.ClientEndpoint.Factory
             this.Logger = logger;
             this.KeepAlive = true;
             this.AcceptLanguage = "en";
-            this.ServerURL = "https://www.smart-cosmos.com/service/rest";
+            this.ProfilesServerURL = "https://www.smart-cosmos.com/service/rest";
+            this.ObjectsServerURL = ""; // TODO
             this.AllowInvalidServerCertificates = false;
         }
 
+        #region PROFILES
         public IPlatformAvailabilityEndpoint CreatePlatformAvailabilityEndpoint()
         {
             return new PlatformAvailabilityEndpointBuilder()
                 .setLogger(Logger)
                 .setKeepAlive(KeepAlive)
-                .setServerURL(ServerURL)
+                .setServerURL(ProfilesServerURL)
                 .setAllowInvalidServerCertificates(AllowInvalidServerCertificates)
                 .build();
         }
@@ -61,7 +66,7 @@ namespace Smartrac.SmartCosmos.ClientEndpoint.Factory
             return new DataImportEndpointBuilder()
                 .setLogger(Logger)
                 .setKeepAlive(KeepAlive)
-                .setServerURL(ServerURL)
+                .setServerURL(ProfilesServerURL)
                 .setAllowInvalidServerCertificates(AllowInvalidServerCertificates)
                 .setUserAccount(UserName, UserPassword)
                 .build();
@@ -72,7 +77,7 @@ namespace Smartrac.SmartCosmos.ClientEndpoint.Factory
             return new TagVerificationEndpointBuilder()
                 .setLogger(Logger)
                 .setKeepAlive(KeepAlive)
-                .setServerURL(ServerURL)
+                .setServerURL(ProfilesServerURL)
                 .setAllowInvalidServerCertificates(AllowInvalidServerCertificates)
                 .setUserAccount(UserName, UserPassword)
                 .build();
@@ -83,10 +88,24 @@ namespace Smartrac.SmartCosmos.ClientEndpoint.Factory
             return new TagMetadataEndpointBuilder()
                 .setLogger(Logger)
                 .setKeepAlive(KeepAlive)
-                .setServerURL(ServerURL)
+                .setServerURL(ProfilesServerURL)
                 .setAllowInvalidServerCertificates(AllowInvalidServerCertificates)
                 .setUserAccount(UserName, UserPassword)
                 .build();
         }
+        #endregion
+
+        #region OBJECTS
+        public IFileEndpoint CreateFileEndpoint()
+        {
+            return new FileEndpointBuilder()
+            .setLogger(Logger)
+            .setKeepAlive(KeepAlive)
+            .setServerURL(ProfilesServerURL)
+            .setAllowInvalidServerCertificates(AllowInvalidServerCertificates)
+            .setUserAccount(UserName, UserPassword)
+            .build();
+        }
+        #endregion
     }
 }

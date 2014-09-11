@@ -1,5 +1,5 @@
 ﻿#region License
-// SMART COSMOS Profiles SDK
+// SMART COSMOS .Net SDK
 // (C) Copyright 2014 SMARTRAC TECHNOLOGY GmbH, (http://www.smartrac-group.com)
 //
 // Licensed under the Apache License, Version 2.0 (the "License");
@@ -20,16 +20,17 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using Smartrac.Logging;
-using Smartrac.SmartCosmos.ClientEndpoint.DataImport;
-using Smartrac.SmartCosmos.ClientEndpoint.PlatformAvailability;
-using Smartrac.SmartCosmos.ClientEndpoint.TagMetadata;
-using Smartrac.SmartCosmos.ClientEndpoint.TagVerification;
+using Smartrac.SmartCosmos.Objects.File;
+using Smartrac.SmartCosmos.Profiles.DataImport;
+using Smartrac.SmartCosmos.Profiles.PlatformAvailability;
+using Smartrac.SmartCosmos.Profiles.TagMetadata;
+using Smartrac.SmartCosmos.Profiles.TagVerification;
 
 namespace Smartrac.SmartCosmos.ClientEndpoint.Factory
 {
     public interface IEndpointFactory
     {
-        string ServerURL { get; set; }
+        string ProfilesServerURL { get; set; }
         bool KeepAlive { get; set; }
         bool AllowInvalidServerCertificates { get; set; }
         string AcceptLanguage { get; set; }
@@ -37,9 +38,15 @@ namespace Smartrac.SmartCosmos.ClientEndpoint.Factory
         string UserName { get; set; }
         string UserPassword { get; set; }
 
+        #region Profiles
         IPlatformAvailabilityEndpoint CreatePlatformAvailabilityEndpoint();
         IDataImportEndpoint CreateDataImportEndpoint();
         ITagVerificationEndpoint CreateTagVerificationEndpoint();
         ITagMetadataEndpoint CreateTagMetadataEndpoint();
+        #endregion
+
+        #region Objects
+        IFileEndpoint CreateFileEndpoint();
+        #endregion
     }
 }

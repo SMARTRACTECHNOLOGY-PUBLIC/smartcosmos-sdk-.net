@@ -98,13 +98,21 @@
       <Project>{692630bd-502b-4a8a-bb36-84b322d0276f}</Project>
       <Name>Smartrac.SmartCosmos.ClientEndpoint.Factory</Name>
     </ProjectReference>
-    <ProjectReference Include="..\..\Libraries\Smartrac.SmartCosmos.DataContext.Sample\Smartrac.SmartCosmos.DataContext.Sample.csproj">
-      <Project>{7ff4702d-5854-4f59-bee5-bc6f2f3e3ea9}</Project>
-      <Name>Smartrac.SmartCosmos.DataContext.Sample</Name>
+    <ProjectReference Include="..\..\Libraries\Smartrac.SmartCosmos.Objects.DataContext.Sample\Smartrac.SmartCosmos.Objects.DataContext.Sample.csproj">
+      <Project>{5bccf20e-9442-42e6-a4f2-d5dc156190da}</Project>
+      <Name>Smartrac.SmartCosmos.Objects.DataContext.Sample</Name>
     </ProjectReference>
-    <ProjectReference Include="..\..\Libraries\Smartrac.SmartCosmos.DataContext\Smartrac.SmartCosmos.DataContext.csproj">
+    <ProjectReference Include="..\..\Libraries\Smartrac.SmartCosmos.Objects.DataContext\Smartrac.SmartCosmos.Objects.DataContext.csproj">
+      <Project>{955046d9-aa9a-462c-9057-8046c61ed701}</Project>
+      <Name>Smartrac.SmartCosmos.Objects.DataContext</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\Libraries\Smartrac.SmartCosmos.Profiles.DataContext.Sample\Smartrac.SmartCosmos.Profiles.DataContext.Sample.csproj">
+      <Project>{7ff4702d-5854-4f59-bee5-bc6f2f3e3ea9}</Project>
+      <Name>Smartrac.SmartCosmos.Profiles.DataContext.Sample</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\Libraries\Smartrac.SmartCosmos.Profiles.DataContext\Smartrac.SmartCosmos.Profiles.DataContext.csproj">
       <Project>{d3a5db54-fd8f-4c15-8e1d-e0a10c55465c}</Project>
-      <Name>Smartrac.SmartCosmos.DataContext</Name>
+      <Name>Smartrac.SmartCosmos.Profiles.DataContext</Name>
     </ProjectReference>
     <ProjectReference Include="..\..\Libraries\Smartrac.SmartCosmos.TestSuite.Sample\Smartrac.SmartCosmos.TestSuite.Sample.csproj">
       <Project>{dc8040e3-e2cd-454a-9ffb-e0c5ac931c8c}</Project>
