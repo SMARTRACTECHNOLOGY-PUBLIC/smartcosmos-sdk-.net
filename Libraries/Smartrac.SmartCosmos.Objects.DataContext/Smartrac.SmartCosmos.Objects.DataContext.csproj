@@ -4,7 +4,7 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{955046D9-AA9A-462C-9057-8046C61ED701}</ProjectGuid>
+    <ProjectGuid>{D3A5DB54-FD8F-4C15-8E1D-E0A10C55465C}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>Smartrac.SmartCosmos.Objects.DataContext</RootNamespace>

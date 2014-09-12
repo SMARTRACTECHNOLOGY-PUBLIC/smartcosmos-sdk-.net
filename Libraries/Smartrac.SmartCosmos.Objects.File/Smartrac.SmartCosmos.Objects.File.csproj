@@ -4,7 +4,7 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{7AA95048-8346-4DAB-94F5-90F898B41824}</ProjectGuid>
+    <ProjectGuid>{83E86795-1EB5-4135-BF50-6573B1780542}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>Smartrac.SmartCosmos.Objects.File</RootNamespace>
@@ -142,10 +142,6 @@
     <ProjectReference Include="..\Smartrac.SmartCosmos.Objects.Base\Smartrac.SmartCosmos.Objects.Base.csproj">
       <Project>{96f35cdc-1fe4-4d39-afad-907466426a72}</Project>
       <Name>Smartrac.SmartCosmos.Objects.Base</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\Smartrac.SmartCosmos.Profiles.DataContext\Smartrac.SmartCosmos.Profiles.DataContext.csproj">
-      <Project>{d3a5db54-fd8f-4c15-8e1d-e0a10c55465c}</Project>
-      <Name>Smartrac.SmartCosmos.Profiles.DataContext</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup />
