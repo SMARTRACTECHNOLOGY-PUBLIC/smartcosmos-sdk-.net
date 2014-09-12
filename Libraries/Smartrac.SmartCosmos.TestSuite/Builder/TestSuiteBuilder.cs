@@ -74,7 +74,7 @@ namespace Smartrac.SmartCosmos.TestSuite
         }
 
 
-        public E seUserManagmentDataContext(IUserManagmentDataContext dataContext)
+        public E setUserManagmentDataContext(IUserManagmentDataContext dataContext)
         {
             instance.UserManagmentDataContext = dataContext;
             return this as E;

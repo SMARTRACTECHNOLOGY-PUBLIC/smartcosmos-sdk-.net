@@ -57,7 +57,7 @@ namespace Smartrac.SmartCosmos.Objects.DataContext.Sample
             return "me";
         }
 
-        public virtual string GetSurname()
+        public override string GetSurname()
         {
             return "too";
         }
