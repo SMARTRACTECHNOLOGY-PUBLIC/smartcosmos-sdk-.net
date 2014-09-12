@@ -72,6 +72,13 @@ namespace Smartrac.SmartCosmos.TestSuite
             instance.AccountManagmentDataContext = dataContext;
             return this as E;
         }
+
+
+        public E seUserManagmentDataContext(IUserManagmentDataContext dataContext)
+        {
+            instance.UserManagmentDataContext = dataContext;
+            return this as E;
+        }
         
         public E setFactory(IEndpointFactory factory)
         {

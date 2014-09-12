@@ -17,25 +17,49 @@
 
 using System;
 using System.Collections.Generic;
-using System.Net.Mime;
+using System.IO;
 using System.Runtime.Serialization;
 using System.Text;
+using Smartrac.SmartCosmos.ClientEndpoint.BaseObject;
 using Smartrac.SmartCosmos.Objects.Base;
 
-namespace Smartrac.SmartCosmos.Objects.File
+namespace Smartrac.SmartCosmos.Objects.UserManagement
 {
     [DataContract]
-    public class FileDefinitionRequest
+    public class UserDataResponse : BaseResponse
     {
+        private Urn userUrn_;
+
         [DataMember]
-        public EntityReferenceType entityReferenceType { get; set; }
+        public string urn
+        {
+            get
+            {
+                return (userUrn_ != null) ? userUrn_.UUID : "";
+            }
+            set
+            {
+                userUrn_ = new Urn(value);
+            }
+        }
+
         [DataMember]
-        public Urn referenceUrn { get; set; }
+        public RoleType roleType { get; set; }
         [DataMember]
-        public string mimeType { get; set; }
+        public long lastModifiedTimestamp { get; set; }
         [DataMember]
-        public string contentUrl { get; set; }
-        //[DataMember]
-        //public string moniker { get; set; }
+        public string emailAddress { get; set; }
+        [DataMember]
+        public string givenName { get; set; }
+        [DataMember]
+        public string surname { get; set; }
+
+        public Urn userUrn
+        {
+            get
+            {
+                return userUrn_;
+            }
+        }
     }
 }

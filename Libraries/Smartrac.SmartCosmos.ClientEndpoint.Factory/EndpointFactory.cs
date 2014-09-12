@@ -23,6 +23,7 @@ using Smartrac.Logging;
 using Smartrac.SmartCosmos.Objects.AccountManagement;
 using Smartrac.SmartCosmos.Objects.File;
 using Smartrac.SmartCosmos.Objects.Registration;
+using Smartrac.SmartCosmos.Objects.UserManagement;
 using Smartrac.SmartCosmos.Profiles.DataImport;
 using Smartrac.SmartCosmos.Profiles.PlatformAvailability;
 using Smartrac.SmartCosmos.Profiles.TagMetadata;
@@ -123,6 +124,17 @@ namespace Smartrac.SmartCosmos.ClientEndpoint.Factory
         public IAccountManagementEndpoint CreateAccountManagementEndpoint()
         {
             return new AccountManagementEndpointBuilder()
+            .setLogger(Logger)
+            .setKeepAlive(KeepAlive)
+            .setServerURL(ObjectsServerURL)
+            .setAllowInvalidServerCertificates(AllowInvalidServerCertificates)
+            .setUserAccount(UserName, UserPassword)
+            .build();
+        }
+
+        public IUserManagementEndpoint CreateUserManagementEndpoint()
+        {
+            return new UserManagementEndpointBuilder()
             .setLogger(Logger)
             .setKeepAlive(KeepAlive)
             .setServerURL(ObjectsServerURL)

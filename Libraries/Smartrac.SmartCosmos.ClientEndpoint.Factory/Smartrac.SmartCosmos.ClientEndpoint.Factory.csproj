@@ -104,6 +104,10 @@
       <Project>{c0345647-e3b3-42f2-8136-f8ac8a03cb08}</Project>
       <Name>Smartrac.SmartCosmos.Objects.Registration</Name>
     </ProjectReference>
+    <ProjectReference Include="..\Smartrac.SmartCosmos.Objects.UserManagement\Smartrac.SmartCosmos.Objects.UserManagement.csproj">
+      <Project>{401ea240-52ed-4a3f-b475-c7edbda211fe}</Project>
+      <Name>Smartrac.SmartCosmos.Objects.UserManagement</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Smartrac.SmartCosmos.Profiles.DataImport\Smartrac.SmartCosmos.Profiles.DataImport.csproj">
       <Project>{0a933dfb-c8e8-403c-9a6d-d152871e366c}</Project>
       <Name>Smartrac.SmartCosmos.Profiles.DataImport</Name>

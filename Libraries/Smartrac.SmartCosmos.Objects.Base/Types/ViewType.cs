@@ -25,7 +25,11 @@ namespace Smartrac.SmartCosmos.Objects.Base
 {
     public enum ViewType
     {
+        [DescriptionAttribute("Minimum")]
+        Minimum = 0,
         [DescriptionAttribute("Standard")]
-        Standard = 1
+        Standard = 1,
+        [DescriptionAttribute("Full")]
+        Full = 2
     }
 }

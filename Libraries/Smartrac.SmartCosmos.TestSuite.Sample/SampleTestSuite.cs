@@ -36,6 +36,7 @@ using Smartrac.SmartCosmos.Objects.Base;
 using Smartrac.SmartCosmos.Objects.DataContext;
 using Smartrac.SmartCosmos.Objects.Registration;
 using Smartrac.SmartCosmos.Objects.AccountManagement;
+using Smartrac.SmartCosmos.Objects.UserManagement;
 
 namespace Smartrac.SmartCosmos.TestSuite.Sample
 {
@@ -84,6 +85,9 @@ namespace Smartrac.SmartCosmos.TestSuite.Sample
 
             // SAMPLE 9 - Objects: AccountManagement endpoint
             result = TestCase_AccountManagementEndpoint() && result;
+
+            // SAMPLE 10 - Objects: UserManagement endpoint
+            result = TestCase_UserManagementEndpoint() && result;
 
             Logger.AddLog("");
             Logger.AddLog("Total result: " + result);
@@ -536,6 +540,86 @@ namespace Smartrac.SmartCosmos.TestSuite.Sample
             Logger.AddLog("Result: " + actionResult);
             Logger.AddLog("Result Data: " + responsePwdResetData.ToJSON());
             OnAfterTest();
+
+            return result;
+        }
+
+        public bool TestCase_UserManagementEndpoint()
+        {
+            bool result = true;
+            UserManagementActionResult actionResult;
+
+            // create client for endpoint
+            IUserManagementEndpoint tester = Factory.CreateUserManagementEndpoint();
+
+            OnBeforeTest("Objects", "UserManagementEndpoint", "Create new user");
+            // create request         
+            UserManagementRequest requestNewUserData = new UserManagementRequest
+            {
+                emailAddress = UserManagmentDataContext.GeteMailAddress(),
+                givenName = UserManagmentDataContext.GetGivenName(),
+                surname = UserManagmentDataContext.GetSurname(),
+                roleType = UserManagmentDataContext.GetRoleType()
+            };
+            UserManagementResponse responseNewUserData;
+            // call endpoint  
+            actionResult = tester.CreateNewUser(requestNewUserData, out responseNewUserData);
+            result = result && (actionResult == UserManagementActionResult.Successful);
+            // log response 
+            Logger.AddLog("Result: " + actionResult);
+            Logger.AddLog("Result Data: " + responseNewUserData.ToJSON());
+            OnAfterTest();
+
+            OnBeforeTest("Objects", "UserManagementEndpoint", "Update an existing user");
+            // create request
+            UserManagementRequest requestUpdateUserData = new UserManagementRequest
+            {
+                emailAddress = UserManagmentDataContext.GeteMailAddress(),
+                givenName = UserManagmentDataContext.GetGivenName(),
+                surname = UserManagmentDataContext.GetSurname() + "_updated",
+            };
+            UserManagementResponse responseUpdateUserData;
+            // call endpoint  
+            actionResult = tester.UpdateUser(requestUpdateUserData, out responseUpdateUserData);
+            result = result && (actionResult == UserManagementActionResult.Successful);
+            // log response 
+            Logger.AddLog("Result: " + actionResult);
+            Logger.AddLog("Result Data: " + responseNewUserData.ToJSON());
+            OnAfterTest();
+
+            OnBeforeTest("Objects", "UserManagementEndpoint", "Lookup Specific User by URN");
+            UserDataResponse responseUserData;
+            // call endpoint  
+            actionResult = tester.LookupSpecificUser(responseNewUserData.userUrn, UserManagmentDataContext.GetViewType(), out responseUserData);
+            result = result && (actionResult == UserManagementActionResult.Successful);
+            // log response 
+            Logger.AddLog("Result: " + actionResult);
+            Logger.AddLog("Result Data: " + responseUserData.ToJSON());
+            OnAfterTest();
+
+            OnBeforeTest("Objects", "UserManagementEndpoint", "Lookup Specific User by Email Address");
+            UserDataResponse responseUserEMailData;
+            // call endpoint  
+            actionResult = tester.LookupSpecificUser(UserManagmentDataContext.GeteMailAddress(), UserManagmentDataContext.GetViewType(), out responseUserEMailData);
+            result = result && (actionResult == UserManagementActionResult.Successful);
+            // log response 
+            Logger.AddLog("Result: " + actionResult);
+            Logger.AddLog("Result Data: " + responseUserEMailData.ToJSON());
+            OnAfterTest();
+
+            OnBeforeTest("Objects", "UserManagementEndpoint", "Change or Reset User Password");
+            ChangeOrResetUserPasswordRequest requestPasswordResetData = new ChangeOrResetUserPasswordRequest {
+                emailAddress = UserManagmentDataContext.GeteMailAddress(),
+                newPassword = UserManagmentDataContext.GetNewPassword()
+            };
+            ChangeOrResetUserPasswordResponse responsePasswordResetData;
+            // call endpoint  
+            actionResult = tester.ChangeOrResetUserPassword(requestPasswordResetData, out responsePasswordResetData);
+            result = result && (actionResult == UserManagementActionResult.Successful);
+            // log response 
+            Logger.AddLog("Result: " + actionResult);
+            Logger.AddLog("Result Data: " + responsePasswordResetData.ToJSON());
+            OnAfterTest(); 
 
             return result;
         }

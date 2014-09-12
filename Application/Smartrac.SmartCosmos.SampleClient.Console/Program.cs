@@ -56,6 +56,7 @@ namespace Smartrac.SmartCosmos.SampleClient.Console
                                             .setFileDataContext(new SampleFileDataContext()) // create data context with sample data for files (Objects)
                                             .setRegistrationDataContext(new SampleRegistrationDataContext()) // create data context with sample data for registration (Objects)
                                             .setAccountManagmentDataContext(new SampleAccountManagmentDataContext()) // create data context with sample data for account management (Objects)
+                                            .setUserManagmentDataContext(new SampleUserManagmentDataContext()) // create data context with sample data for user management (Objects)
                                             .setFactory(factory)
                                             .setRunPerformanceTests(true) // define if performance test should be executed
                                             .build();

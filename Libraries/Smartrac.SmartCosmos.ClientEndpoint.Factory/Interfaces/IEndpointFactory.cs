@@ -23,6 +23,7 @@ using Smartrac.Logging;
 using Smartrac.SmartCosmos.Objects.AccountManagement;
 using Smartrac.SmartCosmos.Objects.File;
 using Smartrac.SmartCosmos.Objects.Registration;
+using Smartrac.SmartCosmos.Objects.UserManagement;
 using Smartrac.SmartCosmos.Profiles.DataImport;
 using Smartrac.SmartCosmos.Profiles.PlatformAvailability;
 using Smartrac.SmartCosmos.Profiles.TagMetadata;
@@ -51,6 +52,7 @@ namespace Smartrac.SmartCosmos.ClientEndpoint.Factory
         IFileEndpoint CreateFileEndpoint();
         IRegistrationEndpoint CreateRegistrationEndpoint();
         IAccountManagementEndpoint CreateAccountManagementEndpoint();
+        IUserManagementEndpoint CreateUserManagementEndpoint();
         #endregion
     }
 }
