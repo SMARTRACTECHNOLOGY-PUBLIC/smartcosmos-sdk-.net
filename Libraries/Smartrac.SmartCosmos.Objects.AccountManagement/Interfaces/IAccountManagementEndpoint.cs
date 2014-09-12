@@ -41,6 +41,28 @@ namespace Smartrac.SmartCosmos.Objects.AccountManagement
 
     public interface IAccountManagementEndpoint : IBaseEndpoint
     {
+        /// <summary>
+        /// Lookup my account details
+        /// </summary>
+        /// <param name="viewType">A valid JSON Serialization View name (case-sensitive)</param>
+        /// <param name="responseData">out: Account details</param>
+        /// <returns>AccountManagementActionResult</returns>
+        AccountManagementActionResult GetAccountDetails(ViewType? viewType, out AccountDetailsResponse responseData);
 
+        /// <summary>
+        /// Change the authenticated user's password, presuming they know their existing password to change to a new password.
+        /// </summary>
+        /// <param name="requestData">old and new password</param>
+        /// <param name="responseData">out: Account details</param>
+        /// <returns>AccountManagementActionResult</returns>
+        AccountManagementActionResult ChangeYourPassword(ChangeYourPasswordRequest requestData, out ChangeYourPasswordResponse responseData);
+
+        /// <summary>
+        /// Trigger a password reset workflow via email for the specified Account associated with the indicated email address.
+        /// </summary>
+        /// <param name="requestData">contains your emailAddress</param>
+        /// <param name="responseData">out: Account details</param>
+        /// <returns>AccountManagementActionResult</returns>
+        AccountManagementActionResult ResetLostPassword(ResetLostPasswordRequest requestData, out ResetLostPasswordResponse responseData);
     }
 }

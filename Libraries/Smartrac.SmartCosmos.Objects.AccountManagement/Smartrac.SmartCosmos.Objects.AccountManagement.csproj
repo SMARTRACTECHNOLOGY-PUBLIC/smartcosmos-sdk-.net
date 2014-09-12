@@ -42,11 +42,13 @@
   <ItemGroup>
     <Compile Include="AccountDetails\AccountDetailsResponse.cs" />
     <Compile Include="Builder\RegistrationEndpointBuilder.cs" />
-    <Compile Include="ResetLostPassword\ResetLostPasswordRequest.cs" />
-    <Compile Include="ResetLostPassword\ResetLostPasswordResponse.cs" />
+    <Compile Include="ChangeYourPassword\ChangeYourPasswordRequest.cs" />
+    <Compile Include="ChangeYourPassword\ChangeYourPasswordResponse.cs" />
     <Compile Include="Endpoint.cs" />
     <Compile Include="Interfaces\IAccountManagementEndpoint.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="ResetLostPassword\ResetLostPasswordRequest.cs" />
+    <Compile Include="ResetLostPassword\ResetLostPasswordResponse.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Smartrac.Base\Smartrac.Base.csproj">
@@ -70,9 +72,7 @@
       <Name>Smartrac.SmartCosmos.Objects.Base</Name>
     </ProjectReference>
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="ChangeYourPassword\" />
-  </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

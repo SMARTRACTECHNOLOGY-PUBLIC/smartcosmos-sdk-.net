@@ -17,25 +17,16 @@
 
 using System;
 using System.Collections.Generic;
-using System.Linq;
+using System.IO;
+using System.Runtime.Serialization;
 using System.Text;
-using Smartrac.Logging;
-using Smartrac.SmartCosmos.ClientEndpoint.Factory;
-using Smartrac.SmartCosmos.Objects.DataContext;
-using Smartrac.SmartCosmos.Profiles.DataContext;
+using Smartrac.SmartCosmos.ClientEndpoint.BaseObject;
+using Smartrac.SmartCosmos.Objects.Base;
 
-namespace Smartrac.SmartCosmos.TestSuite
+namespace Smartrac.SmartCosmos.Objects.AccountManagement
 {
-    public interface ITestSuite
+    [DataContract]
+    public class ChangeYourPasswordResponse : DefaultResponse
     {
-        IMessageLogger Logger { get; set; }
-        IEndpointFactory Factory { get; set; }
-
-        ITagDataContext TagDataContext { get; set; }
-        IFileDataContext FileDataContext { get; set; }
-        IRegistrationDataContext RegistrationDataContext { get; set; }
-        IAccountManagmentDataContext AccountManagmentDataContext { get; set; }
-        
-        bool Run();
     }
 }

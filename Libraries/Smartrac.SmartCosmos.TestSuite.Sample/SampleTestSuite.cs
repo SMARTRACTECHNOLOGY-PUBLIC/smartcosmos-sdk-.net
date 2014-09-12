@@ -35,6 +35,7 @@ using Smartrac.SmartCosmos.Objects.File;
 using Smartrac.SmartCosmos.Objects.Base;
 using Smartrac.SmartCosmos.Objects.DataContext;
 using Smartrac.SmartCosmos.Objects.Registration;
+using Smartrac.SmartCosmos.Objects.AccountManagement;
 
 namespace Smartrac.SmartCosmos.TestSuite.Sample
 {
@@ -78,8 +79,11 @@ namespace Smartrac.SmartCosmos.TestSuite.Sample
             // SAMPLE 7 - Objects: File endpoint
             result = TestCase_FileEndpoint() && result;
 
-            // SAMPLE 7 - Objects: Registration endpoint
+            // SAMPLE 8 - Objects: Registration endpoint
             result = TestCase_RegistrationEndpoint() && result;
+
+            // SAMPLE 9 - Objects: AccountManagement endpoint
+            result = TestCase_AccountManagementEndpoint() && result;
 
             Logger.AddLog("");
             Logger.AddLog("Total result: " + result);
@@ -489,6 +493,53 @@ namespace Smartrac.SmartCosmos.TestSuite.Sample
 
             return result;
         }
+
+        public bool TestCase_AccountManagementEndpoint()
+        {
+            bool result = true;
+            AccountManagementActionResult actionResult;
+
+            // create client for endpoint
+            IAccountManagementEndpoint tester = Factory.CreateAccountManagementEndpoint();
+
+            OnBeforeTest("Objects", "AccountManagementEndpoint", "Account Details");
+            // call endpoint          
+            AccountDetailsResponse responseDetailsData;
+            actionResult = tester.GetAccountDetails(AccountManagmentDataContext.GetViewType(), out responseDetailsData);
+            result = result && (actionResult == AccountManagementActionResult.Successful);
+            // log response 
+            Logger.AddLog("Result: " + actionResult);
+            Logger.AddLog("Result Data: " + responseDetailsData.ToJSON());
+            OnAfterTest();
+            
+            OnBeforeTest("Objects", "AccountManagementEndpoint", "Change Your Password");
+            // call endpoint          
+            ChangeYourPasswordRequest requestPwdData = new ChangeYourPasswordRequest{ 
+                newPassword = AccountManagmentDataContext.GetNewPassword(), 
+                oldPassword = AccountManagmentDataContext.GetOldPassword()
+            };
+            ChangeYourPasswordResponse responsePwdData;
+            actionResult = tester.ChangeYourPassword(requestPwdData, out responsePwdData);
+            result = result && (actionResult == AccountManagementActionResult.Successful);
+            // log response 
+            Logger.AddLog("Result: " + actionResult);
+            Logger.AddLog("Result Data: " + responsePwdData.ToJSON());
+            OnAfterTest();
+
+            OnBeforeTest("Objects", "AccountManagementEndpoint", "Reset Lost Password");
+            // call endpoint          
+            ResetLostPasswordRequest requestPwdResetData = new ResetLostPasswordRequest{ emailAddress = AccountManagmentDataContext.GeteMailAddress() };
+            ResetLostPasswordResponse responsePwdResetData;
+            actionResult = tester.ResetLostPassword(requestPwdResetData, out responsePwdResetData);
+            result = result && (actionResult == AccountManagementActionResult.Successful);
+            // log response 
+            Logger.AddLog("Result: " + actionResult);
+            Logger.AddLog("Result Data: " + responsePwdResetData.ToJSON());
+            OnAfterTest();
+
+            return result;
+        }
+
 
         #endregion
 

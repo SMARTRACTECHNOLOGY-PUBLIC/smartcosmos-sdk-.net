@@ -17,25 +17,34 @@
 
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Text;
-using Smartrac.Logging;
-using Smartrac.SmartCosmos.ClientEndpoint.Factory;
+using Smartrac.SmartCosmos.Objects.Base;
 using Smartrac.SmartCosmos.Objects.DataContext;
-using Smartrac.SmartCosmos.Profiles.DataContext;
 
-namespace Smartrac.SmartCosmos.TestSuite
+namespace Smartrac.SmartCosmos.Objects.DataContext.Sample
 {
-    public interface ITestSuite
+    public class SampleAccountManagmentDataContext : BaseAccountManagmentDataContext
     {
-        IMessageLogger Logger { get; set; }
-        IEndpointFactory Factory { get; set; }
+        public override ViewType GetViewType()
+        {
+            return ViewType.Standard;
+        }
 
-        ITagDataContext TagDataContext { get; set; }
-        IFileDataContext FileDataContext { get; set; }
-        IRegistrationDataContext RegistrationDataContext { get; set; }
-        IAccountManagmentDataContext AccountManagmentDataContext { get; set; }
-        
-        bool Run();
+        public override string GetOldPassword()
+        {
+            return "111";
+        }
+
+        public override string GetNewPassword()
+        {
+            return "222";
+        }
+
+        public override string GeteMailAddress()
+        {
+            return "you@foo.com";
+        }
     }
 }

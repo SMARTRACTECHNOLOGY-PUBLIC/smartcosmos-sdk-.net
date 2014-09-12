@@ -75,6 +75,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="SampleAccountManagmentDataContext.cs" />
     <Compile Include="SampleRegistrationDataContext.cs" />
     <Compile Include="SampleFileDataContext.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

@@ -20,6 +20,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using Smartrac.Logging;
+using Smartrac.SmartCosmos.Objects.AccountManagement;
 using Smartrac.SmartCosmos.Objects.File;
 using Smartrac.SmartCosmos.Objects.Registration;
 using Smartrac.SmartCosmos.Profiles.DataImport;
@@ -49,6 +50,7 @@ namespace Smartrac.SmartCosmos.ClientEndpoint.Factory
         #region Objects
         IFileEndpoint CreateFileEndpoint();
         IRegistrationEndpoint CreateRegistrationEndpoint();
+        IAccountManagementEndpoint CreateAccountManagementEndpoint();
         #endregion
     }
 }

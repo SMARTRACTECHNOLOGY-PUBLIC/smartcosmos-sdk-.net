@@ -227,7 +227,7 @@ namespace Smartrac.SmartCosmos.ClientEndpoint.Base
         }
 
         /// <summary>
-        /// GET: Execute a web request and get the response data as JSON
+        /// Execute a web request and get the response data as JSON (GET only)
         /// </summary>
         /// <param name="request">Created WebRequest object</param>
         /// <param name="responseType">Type of the responseData parameter</param>

@@ -92,6 +92,10 @@
       <Project>{f0e26f53-5847-42d0-b16f-2dbd1952e452}</Project>
       <Name>Smartrac.SmartCosmos.ClientEndpoint.Base</Name>
     </ProjectReference>
+    <ProjectReference Include="..\Smartrac.SmartCosmos.Objects.AccountManagement\Smartrac.SmartCosmos.Objects.AccountManagement.csproj">
+      <Project>{2c79fc96-b023-465d-9374-77235df068f4}</Project>
+      <Name>Smartrac.SmartCosmos.Objects.AccountManagement</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Smartrac.SmartCosmos.Objects.File\Smartrac.SmartCosmos.Objects.File.csproj">
       <Project>{7aa95048-8346-4dab-94f5-90f898b41824}</Project>
       <Name>Smartrac.SmartCosmos.Objects.File</Name>

@@ -54,7 +54,8 @@ namespace Smartrac.SmartCosmos.SampleClient.Console
                                             .setLogger(logger)
                                             .setTagDataContext(new SampleTagDataContext()) // create data context with sample data for tags (Profiles)
                                             .setFileDataContext(new SampleFileDataContext()) // create data context with sample data for files (Objects)
-                                            .setRegistrationDataContext(new SampleRegistrationDataContext()) // create data context with sample data for files (Objects)
+                                            .setRegistrationDataContext(new SampleRegistrationDataContext()) // create data context with sample data for registration (Objects)
+                                            .setAccountManagmentDataContext(new SampleAccountManagmentDataContext()) // create data context with sample data for account management (Objects)
                                             .setFactory(factory)
                                             .setRunPerformanceTests(true) // define if performance test should be executed
                                             .build();
