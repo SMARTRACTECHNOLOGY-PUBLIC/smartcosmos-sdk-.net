@@ -44,10 +44,10 @@ namespace Smartrac.SmartCosmos.Objects.UserManagement
             responseData = null;
             try
             {
-                if ((requestData == null) || String.IsNullOrEmpty(requestData.emailAddress))
+                if ((requestData == null) || !requestData.IsValid())
                 {
                     if (null != Logger)
-                        Logger.AddLog("Required data is missing (emailAddress)!", LogType.Error);
+                        Logger.AddLog("Request data is invalid!", LogType.Error);
                     return UserManagementActionResult.Failed;
                 }
 
@@ -93,10 +93,10 @@ namespace Smartrac.SmartCosmos.Objects.UserManagement
             responseData = null;
             try
             {
-                if ((requestData == null) || String.IsNullOrEmpty(requestData.emailAddress))
+                if ((requestData == null) || !requestData.IsValid())
                 {
                     if (null != Logger)
-                        Logger.AddLog("Required data is missing (emailAddress)!", LogType.Error);
+                        Logger.AddLog("Request data is invalid!", LogType.Error);
                     return UserManagementActionResult.Failed;
                 }
 
@@ -217,10 +217,10 @@ namespace Smartrac.SmartCosmos.Objects.UserManagement
             responseData = null;
             try
             {
-                if ((null == requestData) || String.IsNullOrEmpty(requestData.emailAddress))
+                if ((requestData == null) || !requestData.IsValid())
                 {
                     if (null != Logger)
-                        Logger.AddLog("Required data is missing (emailAddress)!", LogType.Error);
+                        Logger.AddLog("Request data is invalid!", LogType.Error);
                     return UserManagementActionResult.Failed;
                 }
 

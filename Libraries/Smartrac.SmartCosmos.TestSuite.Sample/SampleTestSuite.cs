@@ -37,6 +37,7 @@ using Smartrac.SmartCosmos.Objects.DataContext;
 using Smartrac.SmartCosmos.Objects.Registration;
 using Smartrac.SmartCosmos.Objects.AccountManagement;
 using Smartrac.SmartCosmos.Objects.UserManagement;
+using Smartrac.SmartCosmos.Objects.ObjectManagement;
 
 namespace Smartrac.SmartCosmos.TestSuite.Sample
 {
@@ -373,8 +374,8 @@ namespace Smartrac.SmartCosmos.TestSuite.Sample
             // create request & call endpoint
             actionResult = tester.RelatedFileDefinitionsRetrieval(FileDataContext.GetEntityReferenceType(),
                                                                   FileDataContext.GetUrnReference(),
-                                                                  FileDataContext.GetViewType(),
-                                                                  out responseListData
+                                                                  out responseListData,
+                                                                  FileDataContext.GetViewType()
                                                                   );
             result = result && (actionResult == FileActionResult.Successful);
             // log response 
@@ -429,7 +430,7 @@ namespace Smartrac.SmartCosmos.TestSuite.Sample
                 OnBeforeTest("Objects", "FileEndpoint", "Specific File Definition Retrieval");
                 // create request & call endpoint
                 FileDefinitionRetrievalResponse responseRetrievalData;
-                actionResult = tester.SpecificFileDefinitionRetrieval(responseDefData.fileUrn, FileDataContext.GetViewType(), out responseRetrievalData);
+                actionResult = tester.SpecificFileDefinitionRetrieval(responseDefData.fileUrn, out responseRetrievalData, FileDataContext.GetViewType());
                 result = result && (actionResult == FileActionResult.Successful);
                 // log response 
                 Logger.AddLog("Result: " + actionResult);
@@ -452,8 +453,8 @@ namespace Smartrac.SmartCosmos.TestSuite.Sample
             FileDefinitionRetrievalListResponse responseListResultData;
             actionResult = tester.RelatedFileDefinitionsRetrieval(FileDataContext.GetEntityReferenceType(),
                                                                    FileDataContext.GetUrnReference(),
-                                                                   FileDataContext.GetViewType(),
-                                                                   out responseListResultData);
+                                                                   out responseListResultData,
+                                                                   FileDataContext.GetViewType());
             result = result && (actionResult == FileActionResult.Successful);
             // log response 
             Logger.AddLog("Result: " + actionResult);
@@ -584,7 +585,7 @@ namespace Smartrac.SmartCosmos.TestSuite.Sample
             result = result && (actionResult == UserManagementActionResult.Successful);
             // log response 
             Logger.AddLog("Result: " + actionResult);
-            Logger.AddLog("Result Data: " + responseNewUserData.ToJSON());
+            Logger.AddLog("Result Data: " + responseUpdateUserData.ToJSON());
             OnAfterTest();
 
             OnBeforeTest("Objects", "UserManagementEndpoint", "Lookup Specific User by URN");
@@ -620,6 +621,86 @@ namespace Smartrac.SmartCosmos.TestSuite.Sample
             Logger.AddLog("Result: " + actionResult);
             Logger.AddLog("Result Data: " + responsePasswordResetData.ToJSON());
             OnAfterTest(); 
+
+            return result;
+        }
+
+        public bool TestCase_ObjectManagementEndpoint()
+        {
+            bool result = true;
+            ObjectManagementActionResult actionResult;
+
+            // create client for endpoint
+            IObjectManagementEndpoint tester = Factory.CreateObjectManagementEndpoint();
+
+            OnBeforeTest("Objects", "ObjectManagementEndpoint", "Create new object");
+            // create request         
+            ObjectManagementNewRequest requestNewObjectData = new ObjectManagementNewRequest
+            {
+                urn = ObjectManagmentDataContext.GetObjectUrn(),
+                type = ObjectManagmentDataContext.GetType(),
+                name = ObjectManagmentDataContext.GetName(),
+                description = ObjectManagmentDataContext.GetDescription(),
+                activeFlag = ObjectManagmentDataContext.GetActiveFlag()
+            };
+            ObjectManagementResponse responseNewObjectData;
+            // call endpoint  
+            actionResult = tester.CreateNewObject(requestNewObjectData, out responseNewObjectData);
+            result = result && (actionResult == ObjectManagementActionResult.Successful);
+            // log response 
+            Logger.AddLog("Result: " + actionResult);
+            Logger.AddLog("Result Data: " + responseNewObjectData.ToJSON());
+            OnAfterTest();
+
+            OnBeforeTest("Objects", "ObjectManagementEndpoint", "Update an existing Object");
+            // create request
+            ObjectManagementRequest requestUpdateObjectData = new ObjectManagementRequest
+            {
+                urn = ObjectManagmentDataContext.GetObjectUrn(),
+                description = ObjectManagmentDataContext.GetDescription() + "_updated"
+            };
+            ObjectManagementResponse responseUpdateObjectData;
+            // call endpoint  
+            actionResult = tester.UpdateObject(requestUpdateObjectData, out responseUpdateObjectData);
+            result = result && (actionResult == ObjectManagementActionResult.Successful);
+            // log response 
+            Logger.AddLog("Result: " + actionResult);
+            Logger.AddLog("Result Data: " + responseUpdateObjectData.ToJSON());
+            OnAfterTest();
+
+            OnBeforeTest("Objects", "ObjectManagementEndpoint", "Lookup Specific Object by URN");
+            ObjectDataResponse responseObjectData;
+            // call endpoint  
+            actionResult = tester.LookupSpecificObjectByUrn(ObjectManagmentDataContext.GetObjectUrn(), out responseObjectData, ObjectManagmentDataContext.GetViewType() );
+            result = result && (actionResult == ObjectManagementActionResult.Successful);
+            // log response 
+            Logger.AddLog("Result: " + actionResult);
+            Logger.AddLog("Result Data: " + responseObjectData.ToJSON());
+            OnAfterTest();
+
+            OnBeforeTest("Objects", "ObjectManagementEndpoint", "Lookup Object by Object URN");
+            // call endpoint  
+            actionResult = tester.LookupSpecificObjectByObjectUrn(responseNewObjectData.objectUrn, out responseObjectData, ObjectManagmentDataContext.GetViewType());
+            result = result && (actionResult == ObjectManagementActionResult.Successful);
+            // log response 
+            Logger.AddLog("Result: " + actionResult);
+            Logger.AddLog("Result Data: " + responseObjectData.ToJSON());
+            OnAfterTest();
+
+            OnBeforeTest("Objects", "ObjectManagementEndpoint", "Query Objects");
+            // create request
+            QueryObjectsRequest requestQueryObjectData = new QueryObjectsRequest
+            {
+                type = ObjectManagmentDataContext.GetType()
+            };
+            // call endpoint 
+            QueryObjectsResponse responseQueryObjectsData;
+            actionResult = tester.QueryObjects(requestQueryObjectData, out responseQueryObjectsData);
+            result = result && (actionResult == ObjectManagementActionResult.Successful);
+            // log response 
+            Logger.AddLog("Result: " + actionResult);
+            Logger.AddLog("Result Data: " + responseQueryObjectsData.ToJSON());
+            OnAfterTest();
 
             return result;
         }

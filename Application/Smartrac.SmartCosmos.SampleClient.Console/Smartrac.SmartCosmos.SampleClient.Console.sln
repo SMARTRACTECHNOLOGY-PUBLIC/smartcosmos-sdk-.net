@@ -53,6 +53,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Smartrac.SmartCosmos.Object
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Smartrac.SmartCosmos.Objects.UserManagement", "..\..\Libraries\Smartrac.SmartCosmos.Objects.UserManagement\Smartrac.SmartCosmos.Objects.UserManagement.csproj", "{401EA240-52ED-4A3F-B475-C7EDBDA211FE}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Smartrac.SmartCosmos.Objects.ObjectManagement", "..\..\Libraries\Smartrac.SmartCosmos.Objects.ObjectManagement\Smartrac.SmartCosmos.Objects.ObjectManagement.csproj", "{E1C1B7B7-5437-4D43-A598-5C4B00FAE58D}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -351,6 +353,18 @@ Global
 		{401EA240-52ED-4A3F-B475-C7EDBDA211FE}.Release|x64.Build.0 = Release|x64
 		{401EA240-52ED-4A3F-B475-C7EDBDA211FE}.Release|x86.ActiveCfg = Release|x86
 		{401EA240-52ED-4A3F-B475-C7EDBDA211FE}.Release|x86.Build.0 = Release|x86
+		{E1C1B7B7-5437-4D43-A598-5C4B00FAE58D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E1C1B7B7-5437-4D43-A598-5C4B00FAE58D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E1C1B7B7-5437-4D43-A598-5C4B00FAE58D}.Debug|x64.ActiveCfg = Debug|x64
+		{E1C1B7B7-5437-4D43-A598-5C4B00FAE58D}.Debug|x64.Build.0 = Debug|x64
+		{E1C1B7B7-5437-4D43-A598-5C4B00FAE58D}.Debug|x86.ActiveCfg = Debug|x86
+		{E1C1B7B7-5437-4D43-A598-5C4B00FAE58D}.Debug|x86.Build.0 = Debug|x86
+		{E1C1B7B7-5437-4D43-A598-5C4B00FAE58D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E1C1B7B7-5437-4D43-A598-5C4B00FAE58D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{E1C1B7B7-5437-4D43-A598-5C4B00FAE58D}.Release|x64.ActiveCfg = Release|x64
+		{E1C1B7B7-5437-4D43-A598-5C4B00FAE58D}.Release|x64.Build.0 = Release|x64
+		{E1C1B7B7-5437-4D43-A598-5C4B00FAE58D}.Release|x86.ActiveCfg = Release|x86
+		{E1C1B7B7-5437-4D43-A598-5C4B00FAE58D}.Release|x86.Build.0 = Release|x86
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

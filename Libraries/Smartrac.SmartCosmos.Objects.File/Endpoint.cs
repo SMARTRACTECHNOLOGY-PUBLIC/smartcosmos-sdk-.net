@@ -45,6 +45,13 @@ namespace Smartrac.SmartCosmos.Objects.File
             responseData = null;
             try
             {
+                if ((requestData == null) || !requestData.IsValid())
+                {
+                    if (null != Logger)
+                        Logger.AddLog("Request data is invalid!", LogType.Error);
+                    return FileActionResult.Failed;
+                }
+
                 var request = CreateWebRequest("/files", WebRequestOption.Authorization);
                 object responseDataObj = null;
                 var returnHTTPCode = ExecuteWebRequestJSON(request, typeof(FileDefinitionRequest), requestData, typeof(FileDefinitionResponse), out responseDataObj, WebRequestMethods.Http.Put);
@@ -266,7 +273,7 @@ namespace Smartrac.SmartCosmos.Objects.File
         /// <param name="view">A valid JSON Serialization View name (case-sensitive)</param> 
         /// <param name="responseData">File properties</param>
         /// <returns>FileActionResult</returns>
-        public FileActionResult SpecificFileDefinitionRetrieval(Urn fileUrn, ViewType? viewType, out FileDefinitionRetrievalResponse responseData)
+        public FileActionResult SpecificFileDefinitionRetrieval(Urn fileUrn, out FileDefinitionRetrievalResponse responseData, ViewType viewType = ViewType.Standard)
         {
             responseData = null;
             try
@@ -285,9 +292,7 @@ namespace Smartrac.SmartCosmos.Objects.File
                     return FileActionResult.Failed;
                 }
 
-                string viewTypeParam = ((null != viewType) && viewType.HasValue) ? "?view=" + viewType.Value.GetDescription() : "";
-
-                var request = CreateWebRequest("/files/" + fileUrn.UUID + viewTypeParam);
+                var request = CreateWebRequest("/files/" + fileUrn.UUID + "?view=" + viewType.GetDescription());
                 object responseDataObj;
                 HttpWebResponse webResponse;
                 var returnHTTPCode = ExecuteWebRequestJSON(request, typeof(FileDefinitionRetrievalResponse), out responseDataObj, out webResponse);
@@ -395,7 +400,7 @@ namespace Smartrac.SmartCosmos.Objects.File
         /// <param name="view">A valid JSON Serialization View name (case-sensitive)</param> 
         /// <param name="responseData">File properties</param>
         /// <returns>FileActionResult</returns>
-        public FileActionResult RelatedFileDefinitionsRetrieval(EntityReferenceType entityReferenceType, Urn referenceUrn, ViewType? viewType, out FileDefinitionRetrievalListResponse responseData)
+        public FileActionResult RelatedFileDefinitionsRetrieval(EntityReferenceType entityReferenceType, Urn referenceUrn, out FileDefinitionRetrievalListResponse responseData, ViewType viewType = ViewType.Standard)
         {
             responseData = null;
             try
@@ -414,9 +419,7 @@ namespace Smartrac.SmartCosmos.Objects.File
                     return FileActionResult.Failed;
                 }
 
-                string viewTypeParam = ((null != viewType) && viewType.HasValue) ? "?view=" + viewType.Value.GetDescription() : "";
-
-                var request = CreateWebRequest("/files/" + entityReferenceType.GetDescription() + "/" + referenceUrn.UUID + viewTypeParam);
+                var request = CreateWebRequest("/files/" + entityReferenceType.GetDescription() + "/" + referenceUrn.UUID + "?view=" + viewType.GetDescription());
                 object responseDataObj;
                 var returnHTTPCode = ExecuteWebRequestJSON(request, typeof(FileDefinitionRetrievalListResponse), out responseDataObj);
                 if (null != responseDataObj)

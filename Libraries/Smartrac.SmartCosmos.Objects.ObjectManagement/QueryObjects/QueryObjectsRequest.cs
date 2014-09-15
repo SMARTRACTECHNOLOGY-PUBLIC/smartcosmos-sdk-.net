@@ -22,30 +22,43 @@ using System.Runtime.Serialization;
 using System.Text;
 using Smartrac.SmartCosmos.Objects.Base;
 
-namespace Smartrac.SmartCosmos.Objects.UserManagement
+namespace Smartrac.SmartCosmos.Objects.ObjectManagement
 {
     [DataContract]
-    public class UserManagementRequest : BaseRequest
+    public class QueryObjectsRequest : BaseRequest
     {
         [DataMember]
-        public string emailAddress { get; set; }
+        public string objectUrnLike { get; set; }
         [DataMember]
-        public RoleType roleType { get; set; }
+        public string type { get; set; }
         [DataMember]
-        public string givenName { get; set; }
+        public string nameLike { get; set; }
         [DataMember]
-        public string surname { get; set; }
+        public string monikerLike { get; set; }
         [DataMember]
-        public string moniker { get; set; }
+        public long? modifiedAfter { get; set; }
+        [DataMember]
+        public ViewType viewType { get; set; }
+
+        public QueryObjectsRequest() : base()
+        {
+            viewType = ViewType.Standard;
+            objectUrnLike = null;
+            type = null;
+            nameLike = null;
+            monikerLike = null;
+            modifiedAfter = null;
+        }
 
         public override bool IsValid()
         {
-            return base.IsValid() &&
-                !String.IsNullOrEmpty(emailAddress) &&
-                emailAddress.Length <= 128 &&
-                (String.IsNullOrEmpty(givenName) || givenName.Length <= 50) &&
-                (String.IsNullOrEmpty(surname) || surname.Length <= 50) &&
-                (String.IsNullOrEmpty(moniker) || surname.Length <= 2048);
+            return base.IsValid() && 
+               ! ( String.IsNullOrEmpty(objectUrnLike) &&
+                 String.IsNullOrEmpty(type) &&
+                 String.IsNullOrEmpty(nameLike) &&
+                 String.IsNullOrEmpty(monikerLike) &&
+                 (modifiedAfter == null)
+               );
         }
     }
 }

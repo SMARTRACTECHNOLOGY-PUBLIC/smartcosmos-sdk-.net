@@ -25,11 +25,18 @@ using Smartrac.SmartCosmos.Objects.Base;
 namespace Smartrac.SmartCosmos.Objects.AccountManagement
 {
     [DataContract]
-    public class ChangeYourPasswordRequest
+    public class ChangeYourPasswordRequest : BaseRequest
     {
         [DataMember]
         public string oldPassword { get; set; }
         [DataMember]
         public string newPassword { get; set; }
+
+        public override bool IsValid()
+        {
+            return base.IsValid() &&
+                !String.IsNullOrEmpty(oldPassword) &&
+                !String.IsNullOrEmpty(newPassword);
+        }
     }
 }

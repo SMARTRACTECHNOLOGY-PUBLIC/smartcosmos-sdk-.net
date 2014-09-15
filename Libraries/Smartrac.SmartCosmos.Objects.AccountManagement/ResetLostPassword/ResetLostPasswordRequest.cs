@@ -25,9 +25,15 @@ using Smartrac.SmartCosmos.Objects.Base;
 namespace Smartrac.SmartCosmos.Objects.AccountManagement
 {
     [DataContract]
-    public class ResetLostPasswordRequest
+    public class ResetLostPasswordRequest : BaseRequest
     {
         [DataMember]
         public string emailAddress { get; set; }
+
+        public override bool IsValid()
+        {
+            return base.IsValid() &&
+                !String.IsNullOrEmpty(emailAddress);
+        }
     }
 }

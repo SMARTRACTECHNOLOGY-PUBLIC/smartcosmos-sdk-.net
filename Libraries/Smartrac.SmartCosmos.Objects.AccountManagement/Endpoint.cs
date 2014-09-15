@@ -76,7 +76,7 @@ namespace Smartrac.SmartCosmos.Objects.AccountManagement
             responseData = null;
             try
             {
-                if ((requestData == null) || String.IsNullOrEmpty(requestData.oldPassword) || String.IsNullOrEmpty(requestData.newPassword))
+                if ((requestData == null) || !requestData.IsValid())
                 {
                     if (null != Logger)
                         Logger.AddLog("Change Your Password: required data is missing!", LogType.Error);
@@ -115,7 +115,7 @@ namespace Smartrac.SmartCosmos.Objects.AccountManagement
             responseData = null;
             try
             {
-                if ((requestData == null) || String.IsNullOrEmpty(requestData.emailAddress))
+                if ((requestData == null) || !requestData.IsValid())
                 {
                     if (null != Logger)
                         Logger.AddLog("Reset Lost Password: required data is missing!", LogType.Error);

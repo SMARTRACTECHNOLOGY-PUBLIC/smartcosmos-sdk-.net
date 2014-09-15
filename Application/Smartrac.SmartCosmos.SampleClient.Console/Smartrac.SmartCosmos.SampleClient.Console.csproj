@@ -106,6 +106,10 @@
       <Project>{955046d9-aa9a-462c-9057-8046c61ed701}</Project>
       <Name>Smartrac.SmartCosmos.Objects.DataContext</Name>
     </ProjectReference>
+    <ProjectReference Include="..\..\Libraries\Smartrac.SmartCosmos.Objects.ObjectManagement\Smartrac.SmartCosmos.Objects.ObjectManagement.csproj">
+      <Project>{e1c1b7b7-5437-4d43-a598-5c4b00fae58d}</Project>
+      <Name>Smartrac.SmartCosmos.Objects.ObjectManagement</Name>
+    </ProjectReference>
     <ProjectReference Include="..\..\Libraries\Smartrac.SmartCosmos.Profiles.DataContext.Sample\Smartrac.SmartCosmos.Profiles.DataContext.Sample.csproj">
       <Project>{7ff4702d-5854-4f59-bee5-bc6f2f3e3ea9}</Project>
       <Name>Smartrac.SmartCosmos.Profiles.DataContext.Sample</Name>

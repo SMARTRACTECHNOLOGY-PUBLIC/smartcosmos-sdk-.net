@@ -17,35 +17,20 @@
 
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Text;
+using Smartrac.SmartCosmos.Objects.Base;
 
-namespace Smartrac.SmartCosmos.Objects.Base
+namespace Smartrac.SmartCosmos.Objects.DataContext
 {
-    public class Urn
+    public interface IObjectManagmentDataContext
     {
-        private string UUID_;
-        
-        /// <summary>
-        /// Any API call that requires a {referenceUrn} parameter must provide a full URN UUID reference, e.g. urn:uuid:66b7d3e9-69e1-499e-a867-9c4a939c6f7d
-        /// </summary>
-        public string UUID 
-        {
-            get
-            {
-                return UUID_;
-            }
-        }
-
-        public Urn(string uuid) : base()
-        {
-            this.UUID_ = uuid;
-        }
-
-        public virtual bool IsValid()
-        {
-            return !String.IsNullOrEmpty(UUID) &&
-                UUID.Length <= 1024;
-        }
+        Urn GetObjectUrn();
+        string GetType();
+        string GetName();
+        string GetDescription();
+        bool GetActiveFlag();
+        ViewType GetViewType();
     }
 }

@@ -25,17 +25,25 @@ using Smartrac.SmartCosmos.Objects.Base;
 namespace Smartrac.SmartCosmos.Objects.File
 {
     [DataContract]
-    public class FileDefinitionRequest
+    public class FileDefinitionRequest : BaseRequest
     {
-        [DataMember]
+        [DataMember(IsRequired=true)]
         public EntityReferenceType entityReferenceType { get; set; }
-        [DataMember]
+        [DataMember(IsRequired = true)]
         public Urn referenceUrn { get; set; }
-        [DataMember]
+        [DataMember(IsRequired = true)]
         public string mimeType { get; set; }
         [DataMember]
         public string contentUrl { get; set; }
-        //[DataMember]
-        //public string moniker { get; set; }
+        [DataMember]
+        public string moniker { get; set; }
+
+        public override bool IsValid()
+        {
+            return base.IsValid() &&
+                referenceUrn.IsValid() &&
+                mimeType.Length <= 100 &&
+                moniker.Length <= 2048;
+        }
     }
 }

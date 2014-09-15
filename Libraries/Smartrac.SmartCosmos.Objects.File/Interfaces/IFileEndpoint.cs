@@ -80,7 +80,7 @@ namespace Smartrac.SmartCosmos.Objects.File
         /// <param name="view">A valid JSON Serialization View name (case-sensitive)</param> 
         /// <param name="responseData">File properties</param>
         /// <returns>FileActionResult</returns>
-        FileActionResult SpecificFileDefinitionRetrieval(Urn fileUrn, ViewType? viewType, out FileDefinitionRetrievalResponse responseData);
+        FileActionResult SpecificFileDefinitionRetrieval(Urn fileUrn, out FileDefinitionRetrievalResponse responseData, ViewType viewType = ViewType.Standard );
 
         /// <summary>
         /// Retrieves the actual file content from the cloud
@@ -98,7 +98,7 @@ namespace Smartrac.SmartCosmos.Objects.File
         /// <param name="view">A valid JSON Serialization View name (case-sensitive)</param> 
         /// <param name="responseData">File properties</param>
         /// <returns>FileActionResult</returns>
-        FileActionResult RelatedFileDefinitionsRetrieval(EntityReferenceType entityReferenceType, Urn referenceUrn, ViewType? viewType, out FileDefinitionRetrievalListResponse responseData);
+        FileActionResult RelatedFileDefinitionsRetrieval(EntityReferenceType entityReferenceType, Urn referenceUrn, out FileDefinitionRetrievalListResponse responseData, ViewType viewType = ViewType.Standard);
 
         /// <summary>
         /// Deletes an existing relationship by its system-assigned URN key
