@@ -37,9 +37,10 @@ namespace Smartrac.SmartCosmos.TestSuite
         public ITagDataContext TagDataContext { get; set; }
         public IFileDataContext FileDataContext { get; set; }
         public IRegistrationDataContext RegistrationDataContext { get; set; }
-        public IAccountManagmentDataContext AccountManagmentDataContext { get; set; }
-        public IUserManagmentDataContext UserManagmentDataContext { get; set; }
-        public IObjectManagmentDataContext ObjectManagmentDataContext { get; set; }
+        public IAccountManagementDataContext AccountManagementDataContext { get; set; }
+        public IUserManagementDataContext UserManagementDataContext { get; set; }
+        public IObjectManagementDataContext ObjectManagementDataContext { get; set; }
+        public IObjectInteractionDataContext ObjectInteractionDataContext { get; set; }
 
         /// <summary>
         /// Start testing

@@ -25,41 +25,47 @@ using Smartrac.SmartCosmos.Objects.DataContext;
 
 namespace Smartrac.SmartCosmos.Objects.DataContext.Sample
 {
-    public class SampleUserManagementDataContext : BaseUserManagementDataContext
+    public class SampleObjectInteractionDataContext : BaseObjectInteractionDataContext
     {
-        public override Urn GetUserUrn()
+        public override Urn GetObjectUrn()
         {
-            return null;
+            return new Urn("urn:building:mall:ParadiseValley");
         }
+
+        public override Urn GetReferenceUrn()
+        {
+            return new Urn("urn:instagram:FooQux:47c23bc6-2a58-4e37-93b0-848776b42404");
+        }
+
+        public override string GetInteractionType()
+        {
+            return "Building";
+        }
+
+        public override long GetRecordedTimestamp()
+        {
+            return 0;
+        }
+
+        public override string GetDescription()
+        {
+            return "test";
+        }
+
+        public override bool GetActiveFlag()
+        {
+            return true;
+        }
+
+        public override EntityReferenceType GetEntityReferenceType()
+        {
+            return EntityReferenceType.Object;
+        }
+
 
         public override ViewType GetViewType()
         {
             return ViewType.Standard;
-        }
-
-        public override string GetNewPassword()
-        {
-            return "";
-        }
-
-        public override string GeteMailAddress()
-        {
-            return "me@foo.com";
-        }
-
-        public override RoleType GetRoleType()
-        {
-            return RoleType.User;
-        }
-
-        public override string GetGivenName()
-        {
-            return "me";
-        }
-
-        public override string GetSurname()
-        {
-            return "too";
         }
     }
 }

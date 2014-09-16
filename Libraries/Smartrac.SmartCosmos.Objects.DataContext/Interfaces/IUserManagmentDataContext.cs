@@ -24,7 +24,7 @@ using Smartrac.SmartCosmos.Objects.Base;
 
 namespace Smartrac.SmartCosmos.Objects.DataContext
 {
-    public interface IUserManagmentDataContext
+    public interface IUserManagementDataContext
     {
         Urn GetUserUrn();        
         ViewType GetViewType();

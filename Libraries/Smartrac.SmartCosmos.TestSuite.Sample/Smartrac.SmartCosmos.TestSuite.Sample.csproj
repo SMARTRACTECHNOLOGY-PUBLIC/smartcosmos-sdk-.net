@@ -117,6 +117,10 @@
       <Project>{7aa95048-8346-4dab-94f5-90f898b41824}</Project>
       <Name>Smartrac.SmartCosmos.Objects.File</Name>
     </ProjectReference>
+    <ProjectReference Include="..\Smartrac.SmartCosmos.Objects.ObjectInteraction\Smartrac.SmartCosmos.Objects.ObjectInteraction.csproj">
+      <Project>{308a0d3b-64b2-42b8-b3e0-6308dc07e945}</Project>
+      <Name>Smartrac.SmartCosmos.Objects.ObjectInteraction</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Smartrac.SmartCosmos.Objects.ObjectManagement\Smartrac.SmartCosmos.Objects.ObjectManagement.csproj">
       <Project>{e1c1b7b7-5437-4d43-a598-5c4b00fae58d}</Project>
       <Name>Smartrac.SmartCosmos.Objects.ObjectManagement</Name>

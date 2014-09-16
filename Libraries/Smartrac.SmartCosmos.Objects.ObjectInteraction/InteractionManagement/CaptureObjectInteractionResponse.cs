@@ -18,38 +18,16 @@
 using System;
 using System.Collections.Generic;
 using System.IO;
-using System.Linq;
+using System.Runtime.Serialization;
 using System.Text;
+using Smartrac.SmartCosmos.ClientEndpoint.BaseObject;
 using Smartrac.SmartCosmos.Objects.Base;
-using Smartrac.SmartCosmos.Objects.DataContext;
 
-namespace Smartrac.SmartCosmos.Objects.DataContext.Sample
+namespace Smartrac.SmartCosmos.Objects.ObjectInteraction
 {
-    public class SampleObjectManagementDataContext : BaseObjectManagementDataContext
+    [DataContract]
+    public class CaptureObjectInteractionResponse : DefaultResponse
     {
-        public override Urn GetObjectUrn()
-        {
-            return new Urn("urn:building:mall:ParadiseValley");
-        }
-
-        public override string GetType()
-        {
-            return "Building";
-        }
-
-        public override string GetName()
-        {
-            return "Paradise Valley Merchant's Mall";
-        }
-
-        public override string GetDescription()
-        {
-            return "test";
-        }
-
-        public override bool GetActiveFlag()
-        {
-            return true;
-        }
+        public Urn interactionUrn { get; set; }
     }
 }

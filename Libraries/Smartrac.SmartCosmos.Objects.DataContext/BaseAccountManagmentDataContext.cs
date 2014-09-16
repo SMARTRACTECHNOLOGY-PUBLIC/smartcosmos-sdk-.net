@@ -23,7 +23,7 @@ using Smartrac.SmartCosmos.Objects.Base;
 
 namespace Smartrac.SmartCosmos.Objects.DataContext
 {
-    public class BaseAccountManagmentDataContext : IAccountManagmentDataContext
+    public class BaseAccountManagementDataContext : IAccountManagementDataContext
     {
         public virtual ViewType GetViewType()
         {

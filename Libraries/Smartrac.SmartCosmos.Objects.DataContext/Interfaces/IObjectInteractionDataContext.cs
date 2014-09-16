@@ -21,35 +21,18 @@ using System.IO;
 using System.Linq;
 using System.Text;
 using Smartrac.SmartCosmos.Objects.Base;
-using Smartrac.SmartCosmos.Objects.DataContext;
 
-namespace Smartrac.SmartCosmos.Objects.DataContext.Sample
+namespace Smartrac.SmartCosmos.Objects.DataContext
 {
-    public class SampleObjectManagementDataContext : BaseObjectManagementDataContext
+    public interface IObjectInteractionDataContext
     {
-        public override Urn GetObjectUrn()
-        {
-            return new Urn("urn:building:mall:ParadiseValley");
-        }
-
-        public override string GetType()
-        {
-            return "Building";
-        }
-
-        public override string GetName()
-        {
-            return "Paradise Valley Merchant's Mall";
-        }
-
-        public override string GetDescription()
-        {
-            return "test";
-        }
-
-        public override bool GetActiveFlag()
-        {
-            return true;
-        }
+        Urn GetObjectUrn();
+        Urn GetReferenceUrn();
+        string GetInteractionType();
+        long GetRecordedTimestamp();
+        string GetDescription();
+        bool GetActiveFlag();
+        EntityReferenceType GetEntityReferenceType();
+        ViewType GetViewType();
     }
 }

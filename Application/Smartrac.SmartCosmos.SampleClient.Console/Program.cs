@@ -40,8 +40,7 @@ namespace Smartrac.SmartCosmos.SampleClient.Console
         {
             // define output for logging
             IMessageLogger logger = new ConsoleLoggerService();
-
-            // Create default factory for endpoints
+            
             IEndpointFactory factory = new EndpointFactory(logger);
 
             // user settings
@@ -55,10 +54,11 @@ namespace Smartrac.SmartCosmos.SampleClient.Console
                                             .setTagDataContext(new SampleTagDataContext()) // create data context with sample data for tags (Profiles)
                                             .setFileDataContext(new SampleFileDataContext()) // create data context with sample data for files (Objects)
                                             .setRegistrationDataContext(new SampleRegistrationDataContext()) // create data context with sample data for registration (Objects)
-                                            .setAccountManagmentDataContext(new SampleAccountManagmentDataContext()) // create data context with sample data for account management (Objects)
-                                            .setUserManagmentDataContext(new SampleUserManagmentDataContext()) // create data context with sample data for user management (Objects)
-                                            .setObjectManagmentDataContext(new SampleObjectManagmentDataContext()) // create data context with sample data for object management (Objects)
-                                            .setFactory(factory)
+                                            .setAccountManagementDataContext(new SampleAccountManagementDataContext()) // create data context with sample data for account management (Objects)
+                                            .setUserManagementDataContext(new SampleUserManagementDataContext()) // create data context with sample data for user management (Objects)
+                                            .setObjectManagementDataContext(new SampleObjectManagementDataContext()) // create data context with sample data for object management (Objects)
+                                            .setObjectInteractionDataContext(new SampleObjectInteractionDataContext()) // create data context with sample data for object interaction (Objects)
+                                            .setFactory(new EndpointFactory(logger)) // Create default factory for endpoints
                                             .setRunPerformanceTests(true) // define if performance test should be executed
                                             .build();
 

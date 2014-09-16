@@ -17,39 +17,17 @@
 
 using System;
 using System.Collections.Generic;
-using System.IO;
 using System.Linq;
 using System.Text;
-using Smartrac.SmartCosmos.Objects.Base;
-using Smartrac.SmartCosmos.Objects.DataContext;
+using Smartrac.SmartCosmos.ClientEndpoint.Base;
 
-namespace Smartrac.SmartCosmos.Objects.DataContext.Sample
+namespace Smartrac.SmartCosmos.Objects.ObjectInteraction
 {
-    public class SampleObjectManagementDataContext : BaseObjectManagementDataContext
+    public class ObjectInteractionEndpointBuilder : BaseEndpointBuilder<IObjectInteractionEndpoint, ObjectInteractionEndpointBuilder>
     {
-        public override Urn GetObjectUrn()
+        public ObjectInteractionEndpointBuilder() :
+            base(new ObjectInteractionEndpoint())
         {
-            return new Urn("urn:building:mall:ParadiseValley");
-        }
-
-        public override string GetType()
-        {
-            return "Building";
-        }
-
-        public override string GetName()
-        {
-            return "Paradise Valley Merchant's Mall";
-        }
-
-        public override string GetDescription()
-        {
-            return "test";
-        }
-
-        public override bool GetActiveFlag()
-        {
-            return true;
         }
     }
 }

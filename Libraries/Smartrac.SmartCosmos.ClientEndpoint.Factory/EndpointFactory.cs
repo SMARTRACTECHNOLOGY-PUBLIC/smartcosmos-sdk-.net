@@ -22,6 +22,7 @@ using System.Text;
 using Smartrac.Logging;
 using Smartrac.SmartCosmos.Objects.AccountManagement;
 using Smartrac.SmartCosmos.Objects.File;
+using Smartrac.SmartCosmos.Objects.ObjectInteraction;
 using Smartrac.SmartCosmos.Objects.ObjectManagement;
 using Smartrac.SmartCosmos.Objects.Registration;
 using Smartrac.SmartCosmos.Objects.UserManagement;
@@ -154,6 +155,18 @@ namespace Smartrac.SmartCosmos.ClientEndpoint.Factory
             .setUserAccount(UserName, UserPassword)
             .build();
         }
+
+        public IObjectInteractionEndpoint CreateObjectInteractionEndpoint()
+        {
+            return new ObjectInteractionEndpointBuilder()
+            .setLogger(Logger)
+            .setKeepAlive(KeepAlive)
+            .setServerURL(ObjectsServerURL)
+            .setAllowInvalidServerCertificates(AllowInvalidServerCertificates)
+            .setUserAccount(UserName, UserPassword)
+            .build();
+        }
+
         #endregion
     }
 }

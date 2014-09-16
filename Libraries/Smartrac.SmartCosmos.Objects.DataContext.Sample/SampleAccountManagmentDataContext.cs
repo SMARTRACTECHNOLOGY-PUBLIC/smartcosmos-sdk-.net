@@ -25,7 +25,7 @@ using Smartrac.SmartCosmos.Objects.DataContext;
 
 namespace Smartrac.SmartCosmos.Objects.DataContext.Sample
 {
-    public class SampleAccountManagmentDataContext : BaseAccountManagmentDataContext
+    public class SampleAccountManagementDataContext : BaseAccountManagementDataContext
     {
         public override ViewType GetViewType()
         {

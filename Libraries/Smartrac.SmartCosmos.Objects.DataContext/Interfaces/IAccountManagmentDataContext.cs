@@ -24,7 +24,7 @@ using Smartrac.SmartCosmos.Objects.Base;
 
 namespace Smartrac.SmartCosmos.Objects.DataContext
 {
-    public interface IAccountManagmentDataContext
+    public interface IAccountManagementDataContext
     {
         ViewType GetViewType();
         string GetOldPassword();

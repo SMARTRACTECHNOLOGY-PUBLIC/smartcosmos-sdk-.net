@@ -23,21 +23,30 @@ using Smartrac.SmartCosmos.Objects.Base;
 
 namespace Smartrac.SmartCosmos.Objects.DataContext
 {
-    public class BaseObjectManagementDataContext : IObjectManagementDataContext
+    public class BaseObjectInteractionDataContext : IObjectInteractionDataContext
     {
         public virtual Urn GetObjectUrn()
         {
             return null;
         }
 
-        public virtual string GetType()
+        public virtual Urn GetReferenceUrn()
+        {
+            return null;
+        }
+
+        /// <summary>
+        /// The type field is available to create an ontology or high level categories that can be used to group related interactions. The platform makes no inferences about this case-sensitive field.
+        /// </summary>
+        /// <returns>interaction type</returns>
+        public virtual string GetInteractionType()
         {
             return "";
         }
 
-        public virtual string GetName()
+        public virtual long GetRecordedTimestamp()
         {
-            return "";
+            return 0;
         }
 
         public virtual string GetDescription()
@@ -48,6 +57,15 @@ namespace Smartrac.SmartCosmos.Objects.DataContext
         public virtual bool GetActiveFlag()
         {
             return true;
+        }
+
+        /// <summary>
+        /// entityReferenceType is required and constrained to a valid EntityReferenceType value
+        /// </summary>
+        /// <returns>EntityReferenceType</returns>
+        public virtual EntityReferenceType GetEntityReferenceType()
+        {
+            return EntityReferenceType.Object;
         }
 
         public virtual ViewType GetViewType()

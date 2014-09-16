@@ -38,6 +38,7 @@ using Smartrac.SmartCosmos.Objects.Registration;
 using Smartrac.SmartCosmos.Objects.AccountManagement;
 using Smartrac.SmartCosmos.Objects.UserManagement;
 using Smartrac.SmartCosmos.Objects.ObjectManagement;
+using Smartrac.SmartCosmos.Objects.ObjectInteraction;
 
 namespace Smartrac.SmartCosmos.TestSuite.Sample
 {
@@ -89,6 +90,12 @@ namespace Smartrac.SmartCosmos.TestSuite.Sample
 
             // SAMPLE 10 - Objects: UserManagement endpoint
             result = TestCase_UserManagementEndpoint() && result;
+
+            // SAMPLE 11 - Objects: UserManagement endpoint
+            result = TestCase_ObjectManagementEndpoint() && result;
+
+            // SAMPLE 12 - Objects: ObjectInteraction endpoint
+            result = TestCase_ObjectInteractionEndpoint() && result;
 
             Logger.AddLog("");
             Logger.AddLog("Total result: " + result);
@@ -510,7 +517,7 @@ namespace Smartrac.SmartCosmos.TestSuite.Sample
             OnBeforeTest("Objects", "AccountManagementEndpoint", "Account Details");
             // call endpoint          
             AccountDetailsResponse responseDetailsData;
-            actionResult = tester.GetAccountDetails(AccountManagmentDataContext.GetViewType(), out responseDetailsData);
+            actionResult = tester.GetAccountDetails(AccountManagementDataContext.GetViewType(), out responseDetailsData);
             result = result && (actionResult == AccountManagementActionResult.Successful);
             // log response 
             Logger.AddLog("Result: " + actionResult);
@@ -520,8 +527,8 @@ namespace Smartrac.SmartCosmos.TestSuite.Sample
             OnBeforeTest("Objects", "AccountManagementEndpoint", "Change Your Password");
             // call endpoint          
             ChangeYourPasswordRequest requestPwdData = new ChangeYourPasswordRequest{ 
-                newPassword = AccountManagmentDataContext.GetNewPassword(), 
-                oldPassword = AccountManagmentDataContext.GetOldPassword()
+                newPassword = AccountManagementDataContext.GetNewPassword(), 
+                oldPassword = AccountManagementDataContext.GetOldPassword()
             };
             ChangeYourPasswordResponse responsePwdData;
             actionResult = tester.ChangeYourPassword(requestPwdData, out responsePwdData);
@@ -533,7 +540,7 @@ namespace Smartrac.SmartCosmos.TestSuite.Sample
 
             OnBeforeTest("Objects", "AccountManagementEndpoint", "Reset Lost Password");
             // call endpoint          
-            ResetLostPasswordRequest requestPwdResetData = new ResetLostPasswordRequest{ emailAddress = AccountManagmentDataContext.GeteMailAddress() };
+            ResetLostPasswordRequest requestPwdResetData = new ResetLostPasswordRequest{ emailAddress = AccountManagementDataContext.GeteMailAddress() };
             ResetLostPasswordResponse responsePwdResetData;
             actionResult = tester.ResetLostPassword(requestPwdResetData, out responsePwdResetData);
             result = result && (actionResult == AccountManagementActionResult.Successful);
@@ -557,10 +564,10 @@ namespace Smartrac.SmartCosmos.TestSuite.Sample
             // create request         
             UserManagementRequest requestNewUserData = new UserManagementRequest
             {
-                emailAddress = UserManagmentDataContext.GeteMailAddress(),
-                givenName = UserManagmentDataContext.GetGivenName(),
-                surname = UserManagmentDataContext.GetSurname(),
-                roleType = UserManagmentDataContext.GetRoleType()
+                emailAddress = UserManagementDataContext.GeteMailAddress(),
+                givenName = UserManagementDataContext.GetGivenName(),
+                surname = UserManagementDataContext.GetSurname(),
+                roleType = UserManagementDataContext.GetRoleType()
             };
             UserManagementResponse responseNewUserData;
             // call endpoint  
@@ -575,9 +582,9 @@ namespace Smartrac.SmartCosmos.TestSuite.Sample
             // create request
             UserManagementRequest requestUpdateUserData = new UserManagementRequest
             {
-                emailAddress = UserManagmentDataContext.GeteMailAddress(),
-                givenName = UserManagmentDataContext.GetGivenName(),
-                surname = UserManagmentDataContext.GetSurname() + "_updated",
+                emailAddress = UserManagementDataContext.GeteMailAddress(),
+                givenName = UserManagementDataContext.GetGivenName(),
+                surname = UserManagementDataContext.GetSurname() + "_updated",
             };
             UserManagementResponse responseUpdateUserData;
             // call endpoint  
@@ -591,7 +598,7 @@ namespace Smartrac.SmartCosmos.TestSuite.Sample
             OnBeforeTest("Objects", "UserManagementEndpoint", "Lookup Specific User by URN");
             UserDataResponse responseUserData;
             // call endpoint  
-            actionResult = tester.LookupSpecificUser(responseNewUserData.userUrn, UserManagmentDataContext.GetViewType(), out responseUserData);
+            actionResult = tester.LookupSpecificUser(responseNewUserData.userUrn, UserManagementDataContext.GetViewType(), out responseUserData);
             result = result && (actionResult == UserManagementActionResult.Successful);
             // log response 
             Logger.AddLog("Result: " + actionResult);
@@ -601,7 +608,7 @@ namespace Smartrac.SmartCosmos.TestSuite.Sample
             OnBeforeTest("Objects", "UserManagementEndpoint", "Lookup Specific User by Email Address");
             UserDataResponse responseUserEMailData;
             // call endpoint  
-            actionResult = tester.LookupSpecificUser(UserManagmentDataContext.GeteMailAddress(), UserManagmentDataContext.GetViewType(), out responseUserEMailData);
+            actionResult = tester.LookupSpecificUser(UserManagementDataContext.GeteMailAddress(), UserManagementDataContext.GetViewType(), out responseUserEMailData);
             result = result && (actionResult == UserManagementActionResult.Successful);
             // log response 
             Logger.AddLog("Result: " + actionResult);
@@ -610,8 +617,8 @@ namespace Smartrac.SmartCosmos.TestSuite.Sample
 
             OnBeforeTest("Objects", "UserManagementEndpoint", "Change or Reset User Password");
             ChangeOrResetUserPasswordRequest requestPasswordResetData = new ChangeOrResetUserPasswordRequest {
-                emailAddress = UserManagmentDataContext.GeteMailAddress(),
-                newPassword = UserManagmentDataContext.GetNewPassword()
+                emailAddress = UserManagementDataContext.GeteMailAddress(),
+                newPassword = UserManagementDataContext.GetNewPassword()
             };
             ChangeOrResetUserPasswordResponse responsePasswordResetData;
             // call endpoint  
@@ -637,11 +644,11 @@ namespace Smartrac.SmartCosmos.TestSuite.Sample
             // create request         
             ObjectManagementNewRequest requestNewObjectData = new ObjectManagementNewRequest
             {
-                urn = ObjectManagmentDataContext.GetObjectUrn(),
-                type = ObjectManagmentDataContext.GetType(),
-                name = ObjectManagmentDataContext.GetName(),
-                description = ObjectManagmentDataContext.GetDescription(),
-                activeFlag = ObjectManagmentDataContext.GetActiveFlag()
+                urn = ObjectManagementDataContext.GetObjectUrn(),
+                type = ObjectManagementDataContext.GetType(),
+                name = ObjectManagementDataContext.GetName(),
+                description = ObjectManagementDataContext.GetDescription(),
+                activeFlag = ObjectManagementDataContext.GetActiveFlag()
             };
             ObjectManagementResponse responseNewObjectData;
             // call endpoint  
@@ -656,8 +663,8 @@ namespace Smartrac.SmartCosmos.TestSuite.Sample
             // create request
             ObjectManagementRequest requestUpdateObjectData = new ObjectManagementRequest
             {
-                urn = ObjectManagmentDataContext.GetObjectUrn(),
-                description = ObjectManagmentDataContext.GetDescription() + "_updated"
+                urn = ObjectManagementDataContext.GetObjectUrn(),
+                description = ObjectManagementDataContext.GetDescription() + "_updated"
             };
             ObjectManagementResponse responseUpdateObjectData;
             // call endpoint  
@@ -671,7 +678,7 @@ namespace Smartrac.SmartCosmos.TestSuite.Sample
             OnBeforeTest("Objects", "ObjectManagementEndpoint", "Lookup Specific Object by URN");
             ObjectDataResponse responseObjectData;
             // call endpoint  
-            actionResult = tester.LookupSpecificObjectByUrn(ObjectManagmentDataContext.GetObjectUrn(), out responseObjectData, ObjectManagmentDataContext.GetViewType() );
+            actionResult = tester.LookupSpecificObjectByUrn(ObjectManagementDataContext.GetObjectUrn(), out responseObjectData, ObjectManagementDataContext.GetViewType() );
             result = result && (actionResult == ObjectManagementActionResult.Successful);
             // log response 
             Logger.AddLog("Result: " + actionResult);
@@ -680,7 +687,7 @@ namespace Smartrac.SmartCosmos.TestSuite.Sample
 
             OnBeforeTest("Objects", "ObjectManagementEndpoint", "Lookup Object by Object URN");
             // call endpoint  
-            actionResult = tester.LookupSpecificObjectByObjectUrn(responseNewObjectData.objectUrn, out responseObjectData, ObjectManagmentDataContext.GetViewType());
+            actionResult = tester.LookupSpecificObjectByObjectUrn(responseNewObjectData.objectUrn, out responseObjectData, ObjectManagementDataContext.GetViewType());
             result = result && (actionResult == ObjectManagementActionResult.Successful);
             // log response 
             Logger.AddLog("Result: " + actionResult);
@@ -691,7 +698,7 @@ namespace Smartrac.SmartCosmos.TestSuite.Sample
             // create request
             QueryObjectsRequest requestQueryObjectData = new QueryObjectsRequest
             {
-                type = ObjectManagmentDataContext.GetType()
+                type = ObjectManagementDataContext.GetType()
             };
             // call endpoint 
             QueryObjectsResponse responseQueryObjectsData;
@@ -705,6 +712,59 @@ namespace Smartrac.SmartCosmos.TestSuite.Sample
             return result;
         }
 
+        public bool TestCase_ObjectInteractionEndpoint()
+        {
+            bool result = true;
+            ObjectInteractionActionResult actionResult;
+
+            // create client for endpoint
+            IObjectInteractionEndpoint tester = Factory.CreateObjectInteractionEndpoint();
+
+            OnBeforeTest("Objects", "ObjectInteractionEndpoint", "Capture a specific interaction");
+            // create request         
+            CaptureObjectInteractionRequest requestNewInteractionData = new CaptureObjectInteractionRequest
+            {
+                objectUrnObj = ObjectInteractionDataContext.GetObjectUrn(),
+                entityReferenceType = ObjectInteractionDataContext.GetEntityReferenceType(),
+                referenceUrnObj = ObjectInteractionDataContext.GetReferenceUrn(),
+                type = ObjectInteractionDataContext.GetInteractionType(),
+                recordedTimestamp = ObjectInteractionDataContext.GetRecordedTimestamp(),
+            };
+            CaptureObjectInteractionResponse responseNewInteractionData;
+            // call endpoint  
+            actionResult = tester.CaptureObjectInteraction(requestNewInteractionData, out responseNewInteractionData);
+            result = result && (actionResult == ObjectInteractionActionResult.Successful);
+            // log response 
+            Logger.AddLog("Result: " + actionResult);
+            Logger.AddLog("Result Data: " + responseNewInteractionData.ToJSON());
+            OnAfterTest();
+
+            OnBeforeTest("Objects", "ObjectInteractionEndpoint", "Lookup Matching Interactions");
+            QueryObjectInteractionsResponse responseLookupData;
+            // call endpoint  
+            actionResult = tester.LookupMatchingInteractions( ObjectInteractionDataContext.GetObjectUrn(), 
+                                                              out responseLookupData,
+                                                              ObjectInteractionDataContext.GetViewType());
+            result = result && (actionResult == ObjectInteractionActionResult.Successful);
+            // log response 
+            Logger.AddLog("Result: " + actionResult);
+            Logger.AddLog("Result Data: " + responseLookupData.ToJSON());
+            OnAfterTest();
+
+            OnBeforeTest("Objects", "ObjectInteractionEndpoint", "Lookup Specific Object Interaction by URN");
+            ObjectDataResponse responseObjectData;
+            // call endpoint  
+            actionResult = tester.LookupSpecificObjectInteractionbyURN(responseNewInteractionData.interactionUrn, 
+                                                                        out responseLookupData,
+                                                                        ObjectInteractionDataContext.GetViewType());
+            result = result && (actionResult == ObjectInteractionActionResult.Successful);
+            // log response 
+            Logger.AddLog("Result: " + actionResult);
+            Logger.AddLog("Result Data: " + responseLookupData.ToJSON());
+            OnAfterTest();
+
+            return result;
+        }
 
         #endregion
 

@@ -24,7 +24,7 @@ using Smartrac.SmartCosmos.Objects.Base;
 
 namespace Smartrac.SmartCosmos.Objects.DataContext
 {
-    public interface IObjectManagmentDataContext
+    public interface IObjectManagementDataContext
     {
         Urn GetObjectUrn();
         string GetType();

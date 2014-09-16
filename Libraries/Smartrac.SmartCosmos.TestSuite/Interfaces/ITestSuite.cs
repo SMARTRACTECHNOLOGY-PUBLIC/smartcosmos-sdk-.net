@@ -34,10 +34,11 @@ namespace Smartrac.SmartCosmos.TestSuite
         ITagDataContext TagDataContext { get; set; }
         IFileDataContext FileDataContext { get; set; }
         IRegistrationDataContext RegistrationDataContext { get; set; }
-        IAccountManagmentDataContext AccountManagmentDataContext { get; set; }
-        IUserManagmentDataContext UserManagmentDataContext { get; set; }
-        IObjectManagmentDataContext ObjectManagmentDataContext { get; set; }
-        
+        IAccountManagementDataContext AccountManagementDataContext { get; set; }
+        IUserManagementDataContext UserManagementDataContext { get; set; }
+        IObjectManagementDataContext ObjectManagementDataContext { get; set; }
+        IObjectInteractionDataContext ObjectInteractionDataContext { get; set; }
+
         bool Run();
     }
 }
