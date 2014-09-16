@@ -89,7 +89,13 @@ namespace Smartrac.SmartCosmos.TestSuite
         {
             instance.ObjectInteractionDataContext = dataContext;
             return this as E;
-        }             
+        }
+
+        public E setRelationshipManagementDataContext(IRelationshipManagementDataContext dataContext)
+        {
+            instance.RelationshipManagementDataContext = dataContext;
+            return this as E;
+        }                    
 
         public E setFactory(IEndpointFactory factory)
         {

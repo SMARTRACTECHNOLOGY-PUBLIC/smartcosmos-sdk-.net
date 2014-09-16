@@ -17,35 +17,23 @@
 
 using System;
 using System.Collections.Generic;
+using System.Net;
 using System.Net.Mime;
 using System.Runtime.Serialization;
 using System.Text;
 using Smartrac.SmartCosmos.Objects.Base;
 
-namespace Smartrac.SmartCosmos.Objects.UserManagement
+namespace Smartrac.SmartCosmos.Objects.RelationshipManagement
 {
     [DataContract]
-    public class UserManagementRequest : BaseRequest
+    public class QueryObjectRelationshipsResponse : List<RelationshipDataResponse>
     {
-        [DataMember]
-        public string emailAddress { get; set; }
-        [DataMember]
-        public RoleType roleType { get; set; }
-        [DataMember]
-        public string givenName { get; set; }
-        [DataMember]
-        public string surname { get; set; }
-        [DataMember]
-        public string moniker { get; set; }
+        public HttpStatusCode HTTPStatusCode { get; set; }
 
-        public override bool IsValid()
+        public QueryObjectRelationshipsResponse()
+            : base()
         {
-            return base.IsValid() &&
-                !String.IsNullOrEmpty(emailAddress) &&
-                emailAddress.Length <= 128 &&
-                (String.IsNullOrEmpty(givenName) || givenName.Length <= 50) &&
-                (String.IsNullOrEmpty(surname) || surname.Length <= 50) &&
-                (String.IsNullOrEmpty(moniker) || moniker.Length <= 2048);
+            this.HTTPStatusCode = HttpStatusCode.NotImplemented;
         }
     }
 }

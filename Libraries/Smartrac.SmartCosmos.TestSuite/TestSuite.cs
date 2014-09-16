@@ -41,6 +41,7 @@ namespace Smartrac.SmartCosmos.TestSuite
         public IUserManagementDataContext UserManagementDataContext { get; set; }
         public IObjectManagementDataContext ObjectManagementDataContext { get; set; }
         public IObjectInteractionDataContext ObjectInteractionDataContext { get; set; }
+        public IRelationshipManagementDataContext RelationshipManagementDataContext { get; set; }
 
         /// <summary>
         /// Start testing

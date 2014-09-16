@@ -39,6 +39,7 @@ using Smartrac.SmartCosmos.Objects.AccountManagement;
 using Smartrac.SmartCosmos.Objects.UserManagement;
 using Smartrac.SmartCosmos.Objects.ObjectManagement;
 using Smartrac.SmartCosmos.Objects.ObjectInteraction;
+using Smartrac.SmartCosmos.Objects.RelationshipManagement;
 
 namespace Smartrac.SmartCosmos.TestSuite.Sample
 {
@@ -97,11 +98,16 @@ namespace Smartrac.SmartCosmos.TestSuite.Sample
             // SAMPLE 12 - Objects: ObjectInteraction endpoint
             result = TestCase_ObjectInteractionEndpoint() && result;
 
+            // SAMPLE 13 - Objects: Relationship management endpoint
+            result = TestCase_RelationshipManagementEndpoint() && result;
+           
+
             Logger.AddLog("");
             Logger.AddLog("Total result: " + result);
             return result;
         }
 
+        #region TESTLOGGER
         private void OnBeforeTest(string component, string endpoint, string function)
         {
             Logger.AddLog("-----------------------");
@@ -119,8 +125,9 @@ namespace Smartrac.SmartCosmos.TestSuite.Sample
             Logger.AddLog("");
             Logger.AddLog("");
         }
+        #endregion
 
-        #region PROFILES
+        #region Testcases for Profiles
         /// <summary>
         /// Test cases for verification endpoint
         /// </summary>
@@ -368,7 +375,7 @@ namespace Smartrac.SmartCosmos.TestSuite.Sample
         }
         #endregion
 
-        #region OBJECTS        
+        #region Testcases for Objects
         public bool TestCase_FileEndpoint()
         {
             bool result = true;
@@ -752,7 +759,6 @@ namespace Smartrac.SmartCosmos.TestSuite.Sample
             OnAfterTest();
 
             OnBeforeTest("Objects", "ObjectInteractionEndpoint", "Lookup Specific Object Interaction by URN");
-            ObjectDataResponse responseObjectData;
             // call endpoint  
             actionResult = tester.LookupSpecificObjectInteractionbyURN(responseNewInteractionData.interactionUrn, 
                                                                         out responseLookupData,
@@ -761,6 +767,117 @@ namespace Smartrac.SmartCosmos.TestSuite.Sample
             // log response 
             Logger.AddLog("Result: " + actionResult);
             Logger.AddLog("Result Data: " + responseLookupData.ToJSON());
+            OnAfterTest();
+
+            return result;
+        }
+
+        public bool TestCase_RelationshipManagementEndpoint()
+        {
+            bool result = true;
+            RelationshipManagementActionResult actionResult;
+
+            // create client for endpoint
+            IRelationshipManagementEndpoint tester = Factory.CreateRelationshipManagementEndpoint();
+
+
+            OnBeforeTest("Objects", "RelationshipManagementEndpoint", "Create a new relationship");
+            // create request         
+            RelationshipManagementRequest requestNewRelationshipData = new RelationshipManagementRequest
+            {
+                entityReferenceType = RelationshipManagementDataContext.GetEntityReferenceType(),
+                referenceUrnObj = RelationshipManagementDataContext.GetReferenceUrn(),
+                relatedEntityReferenceType = RelationshipManagementDataContext.GetRelatedEntityReferenceType(),
+                relatedReferenceUrnObj = RelationshipManagementDataContext.GetRelatedReferenceUrn(),
+                type = RelationshipManagementDataContext.GetRelationshipType(),
+            };
+            RelationshipManagementResponse responseNewRelationshipData;
+            // call endpoint  
+            actionResult = tester.CreateNewRelationship(requestNewRelationshipData, out responseNewRelationshipData);
+            result = result && (actionResult == RelationshipManagementActionResult.Successful);
+            // log response 
+            Logger.AddLog("Result: " + actionResult);
+            Logger.AddLog("Result Data: " + responseNewRelationshipData.ToJSON());
+            OnAfterTest();
+
+
+            OnBeforeTest("Objects", "RelationshipManagementEndpoint", "Relationship Management by URN");
+            RelationshipDataResponse responseLookupData;
+            // call endpoint  
+            actionResult = tester.LookupSpecificRelationshipByUrn(responseNewRelationshipData.relationshipUrn,
+                                                              out responseLookupData,
+                                                              RelationshipManagementDataContext.GetViewType());
+            result = result && (actionResult == RelationshipManagementActionResult.Successful);
+            // log response 
+            Logger.AddLog("Result: " + actionResult);
+            Logger.AddLog("Result Data: " + responseLookupData.ToJSON());
+            OnAfterTest();
+
+
+            OnBeforeTest("Objects", "RelationshipManagementEndpoint", "Lookup All Relationships Between Entities");
+            // create request         
+            QueryQueryRelationshipsRequest requestQueryData = new QueryQueryRelationshipsRequest
+            {
+                entityReferenceType = RelationshipManagementDataContext.GetEntityReferenceType(),
+                referenceUrnObj = RelationshipManagementDataContext.GetReferenceUrn(),
+                relatedEntityReferenceType = RelationshipManagementDataContext.GetRelatedEntityReferenceType(),
+                relatedReferenceUrnObj = RelationshipManagementDataContext.GetRelatedReferenceUrn(),
+            };
+            QueryObjectRelationshipsResponse responseQueryData;
+            // call endpoint  
+            actionResult = tester.LookupAllRelationshipsBetweenEntities(requestQueryData, out responseQueryData, RelationshipManagementDataContext.GetViewType());
+            result = result && (actionResult == RelationshipManagementActionResult.Successful);
+            // log response 
+            Logger.AddLog("Result: " + actionResult);
+            Logger.AddLog("Result Data: " + responseQueryData.ToJSON());
+            OnAfterTest();
+
+
+            OnBeforeTest("Objects", "RelationshipManagementEndpoint", "Lookup Specific Relationship Between Entities");
+            // create request         
+            QueryQueryRelationshipByTypeRequest requestQuerySpecificData = new QueryQueryRelationshipByTypeRequest
+            {
+                entityReferenceType = RelationshipManagementDataContext.GetEntityReferenceType(),
+                referenceUrnObj = RelationshipManagementDataContext.GetReferenceUrn(),
+                relatedEntityReferenceType = RelationshipManagementDataContext.GetRelatedEntityReferenceType(),
+                relatedReferenceUrnObj = RelationshipManagementDataContext.GetRelatedReferenceUrn(),
+                type = RelationshipManagementDataContext.GetRelationshipType()
+            };
+            RelationshipDataResponse responseQuerySpecificData;
+            // call endpoint  
+            actionResult = tester.LookupSpecificRelationshipBetweenEntities(requestQuerySpecificData, out responseQuerySpecificData, RelationshipManagementDataContext.GetViewType());
+            result = result && (actionResult == RelationshipManagementActionResult.Successful);
+            // log response 
+            Logger.AddLog("Result: " + actionResult);
+            Logger.AddLog("Result Data: " + responseQuerySpecificData.ToJSON());
+            OnAfterTest();
+
+
+            OnBeforeTest("Objects", "RelationshipManagementEndpoint", "Lookup Specific Relationship Between Entities");
+            // create request         
+            QueryQueryRelationshipsByTypeRequest requestQueryTypeListData = new QueryQueryRelationshipsByTypeRequest
+            {
+                entityReferenceType = RelationshipManagementDataContext.GetEntityReferenceType(),
+                referenceUrnObj = RelationshipManagementDataContext.GetReferenceUrn(),
+                type = RelationshipManagementDataContext.GetRelationshipType()
+            };
+            QueryObjectRelationshipsResponse responseQueryTypeListData;
+            // call endpoint  
+            actionResult = tester.LookupAllRelationshipsByType(requestQueryTypeListData, out responseQueryTypeListData, RelationshipManagementDataContext.GetViewType());
+            result = result && (actionResult == RelationshipManagementActionResult.Successful);
+            // log response 
+            Logger.AddLog("Result: " + actionResult);
+            Logger.AddLog("Result Data: " + responseQueryTypeListData.ToJSON());
+            OnAfterTest();
+
+
+            OnBeforeTest("Objects", "RelationshipManagementEndpoint", "Deletes an existing relationship");
+            // call endpoint  
+            actionResult = tester.RelationshipDeletion(responseNewRelationshipData.relationshipUrn);
+            result = result && (actionResult == RelationshipManagementActionResult.Successful);
+            // log response 
+            Logger.AddLog("Result: " + actionResult);
+            //Logger.AddLog("Result Data: " + responseLookupData.ToJSON());
             OnAfterTest();
 
             return result;

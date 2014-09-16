@@ -57,6 +57,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Smartrac.SmartCosmos.Object
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Smartrac.SmartCosmos.Objects.ObjectInteraction", "..\..\Libraries\Smartrac.SmartCosmos.Objects.ObjectInteraction\Smartrac.SmartCosmos.Objects.ObjectInteraction.csproj", "{308A0D3B-64B2-42B8-B3E0-6308DC07E945}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Smartrac.SmartCosmos.Objects.RelationshipManagement", "..\..\Libraries\Smartrac.SmartCosmos.Objects.RelationshipManagement\Smartrac.SmartCosmos.Objects.RelationshipManagement.csproj", "{F273DE29-FCFB-4A29-8E56-AF65107D4D84}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -375,6 +377,14 @@ Global
 		{308A0D3B-64B2-42B8-B3E0-6308DC07E945}.Release|Any CPU.Build.0 = Release|Any CPU
 		{308A0D3B-64B2-42B8-B3E0-6308DC07E945}.Release|x64.ActiveCfg = Release|Any CPU
 		{308A0D3B-64B2-42B8-B3E0-6308DC07E945}.Release|x86.ActiveCfg = Release|Any CPU
+		{F273DE29-FCFB-4A29-8E56-AF65107D4D84}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F273DE29-FCFB-4A29-8E56-AF65107D4D84}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F273DE29-FCFB-4A29-8E56-AF65107D4D84}.Debug|x64.ActiveCfg = Debug|Any CPU
+		{F273DE29-FCFB-4A29-8E56-AF65107D4D84}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{F273DE29-FCFB-4A29-8E56-AF65107D4D84}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F273DE29-FCFB-4A29-8E56-AF65107D4D84}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F273DE29-FCFB-4A29-8E56-AF65107D4D84}.Release|x64.ActiveCfg = Release|Any CPU
+		{F273DE29-FCFB-4A29-8E56-AF65107D4D84}.Release|x86.ActiveCfg = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

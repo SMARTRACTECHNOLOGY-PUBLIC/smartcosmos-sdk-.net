@@ -75,6 +75,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="SampleRelationshipManagementDataContext.cs" />
     <Compile Include="SampleObjectInteractionDataContext.cs" />
     <Compile Include="SampleObjectManagmentDataContext.cs" />
     <Compile Include="SampleUserManagmentDataContext.cs" />

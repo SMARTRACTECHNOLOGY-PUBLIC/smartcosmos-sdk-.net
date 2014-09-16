@@ -39,6 +39,8 @@ namespace Smartrac.SmartCosmos.Objects.ObjectManagement
                 urn = new Urn(value);
             }
         }
+        public Urn urn { get; set; }
+
         [DataMember]
         public string type { get; set; }
         [DataMember]
@@ -48,9 +50,7 @@ namespace Smartrac.SmartCosmos.Objects.ObjectManagement
         [DataMember]
         public bool? activeFlag { get; set; }
         [DataMember]
-        public string moniker { get; set; }
-
-        public Urn urn { get; set; }
+        public string moniker { get; set; }        
 
         public override bool IsValid()
         {

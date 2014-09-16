@@ -25,6 +25,7 @@ using Smartrac.SmartCosmos.Objects.File;
 using Smartrac.SmartCosmos.Objects.ObjectInteraction;
 using Smartrac.SmartCosmos.Objects.ObjectManagement;
 using Smartrac.SmartCosmos.Objects.Registration;
+using Smartrac.SmartCosmos.Objects.RelationshipManagement;
 using Smartrac.SmartCosmos.Objects.UserManagement;
 using Smartrac.SmartCosmos.Profiles.DataImport;
 using Smartrac.SmartCosmos.Profiles.PlatformAvailability;
@@ -159,6 +160,17 @@ namespace Smartrac.SmartCosmos.ClientEndpoint.Factory
         public IObjectInteractionEndpoint CreateObjectInteractionEndpoint()
         {
             return new ObjectInteractionEndpointBuilder()
+            .setLogger(Logger)
+            .setKeepAlive(KeepAlive)
+            .setServerURL(ObjectsServerURL)
+            .setAllowInvalidServerCertificates(AllowInvalidServerCertificates)
+            .setUserAccount(UserName, UserPassword)
+            .build();
+        }
+
+        public IRelationshipManagementEndpoint CreateRelationshipManagementEndpoint()
+        {
+            return new RelationshipManagementEndpointBuilder()
             .setLogger(Logger)
             .setKeepAlive(KeepAlive)
             .setServerURL(ObjectsServerURL)

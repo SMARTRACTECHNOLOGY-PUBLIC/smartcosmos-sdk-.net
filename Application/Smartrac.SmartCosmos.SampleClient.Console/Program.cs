@@ -58,6 +58,7 @@ namespace Smartrac.SmartCosmos.SampleClient.Console
                                             .setUserManagementDataContext(new SampleUserManagementDataContext()) // create data context with sample data for user management (Objects)
                                             .setObjectManagementDataContext(new SampleObjectManagementDataContext()) // create data context with sample data for object management (Objects)
                                             .setObjectInteractionDataContext(new SampleObjectInteractionDataContext()) // create data context with sample data for object interaction (Objects)
+                                            .setRelationshipManagementDataContext(new SampleRelationshipManagementDataContext()) // create data context with sample data for relationship  management (Objects)
                                             .setFactory(new EndpointFactory(logger)) // Create default factory for endpoints
                                             .setRunPerformanceTests(true) // define if performance test should be executed
                                             .build();
