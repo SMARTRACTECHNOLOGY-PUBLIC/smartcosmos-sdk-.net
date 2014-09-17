@@ -20,17 +20,22 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using Smartrac.Logging;
-using Smartrac.SmartCosmos.ClientEndpoint.Factory;
-using Smartrac.SmartCosmos.DataContextFactory;
+using Smartrac.SmartCosmos.Objects.DataContext;
+using Smartrac.SmartCosmos.Profiles.DataContext;
 
-namespace Smartrac.SmartCosmos.TestSuite
+
+namespace Smartrac.SmartCosmos.DataContextFactory
 {
-    public interface ITestSuite
+    public interface IDataContextFactory
     {
-        IMessageLogger Logger { get; set; }
-        IEndpointFactory EndpointFactory { get; set; }
-        IDataContextFactory DataContextFactory { get; set; }
-
-        bool Run(TestCaseType testCaseTypes);
+        ITagDataContext CreateTagDataContext();
+        IFileDataContext CreateFileDataContext();
+        IRegistrationDataContext CreateRegistrationDataContext();
+        IAccountManagementDataContext CreateAccountManagementDataContext();
+        IUserManagementDataContext CreateUserManagementDataContext();
+        IObjectManagementDataContext CreateObjectManagementDataContext();
+        IObjectInteractionDataContext CreateObjectInteractionDataContext();
+        IRelationshipManagementDataContext CreateRelationshipManagementDataContext();
+        IGeospatialManagementDataContext CreateGeospatialManagementDataContext();
     }
 }

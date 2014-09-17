@@ -17,20 +17,23 @@
 
 using System;
 using System.Collections.Generic;
-using System.Linq;
+using System.Net;
+using System.Net.Mime;
+using System.Runtime.Serialization;
 using System.Text;
-using Smartrac.Logging;
-using Smartrac.SmartCosmos.ClientEndpoint.Factory;
-using Smartrac.SmartCosmos.DataContextFactory;
+using Smartrac.SmartCosmos.Objects.Base;
 
-namespace Smartrac.SmartCosmos.TestSuite
+namespace Smartrac.SmartCosmos.Objects.GeospatialManagement
 {
-    public interface ITestSuite
+    [DataContract]
+    public class QueryGeospatialEntriesResponse : List<GeospatialEntryDataResponse>
     {
-        IMessageLogger Logger { get; set; }
-        IEndpointFactory EndpointFactory { get; set; }
-        IDataContextFactory DataContextFactory { get; set; }
+        public HttpStatusCode HTTPStatusCode { get; set; }
 
-        bool Run(TestCaseType testCaseTypes);
+        public QueryGeospatialEntriesResponse()
+            : base()
+        {
+            this.HTTPStatusCode = HttpStatusCode.NotImplemented;
+        }
     }
 }

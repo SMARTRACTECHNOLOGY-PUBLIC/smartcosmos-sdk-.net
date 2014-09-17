@@ -77,8 +77,9 @@
   <ItemGroup>
     <Compile Include="Builder\TestSuiteBuilder.cs" />
     <Compile Include="Interfaces\ITestSuite.cs" />
-    <Compile Include="TestSuite.cs" />
+    <Compile Include="BaseTestSuite.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="TestSuiteAttribute.cs" />
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>
@@ -93,6 +94,10 @@
     <ProjectReference Include="..\Smartrac.SmartCosmos.ClientEndpoint.Factory\Smartrac.SmartCosmos.ClientEndpoint.Factory.csproj">
       <Project>{692630bd-502b-4a8a-bb36-84b322d0276f}</Project>
       <Name>Smartrac.SmartCosmos.ClientEndpoint.Factory</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Smartrac.SmartCosmos.DataContextFactory\Smartrac.SmartCosmos.DataContextFactory.csproj">
+      <Project>{3cc1bfca-f7ac-4ff2-b8bf-fea215f32529}</Project>
+      <Name>Smartrac.SmartCosmos.DataContextFactory</Name>
     </ProjectReference>
     <ProjectReference Include="..\Smartrac.SmartCosmos.Objects.DataContext\Smartrac.SmartCosmos.Objects.DataContext.csproj">
       <Project>{955046d9-aa9a-462c-9057-8046c61ed701}</Project>

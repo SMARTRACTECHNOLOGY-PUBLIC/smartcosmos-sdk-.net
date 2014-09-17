@@ -17,20 +17,27 @@
 
 using System;
 using System.Collections.Generic;
-using System.Linq;
+using System.Net.Mime;
+using System.Runtime.Serialization;
 using System.Text;
-using Smartrac.Logging;
-using Smartrac.SmartCosmos.ClientEndpoint.Factory;
-using Smartrac.SmartCosmos.DataContextFactory;
+using GeoJSON.Net;
+using Smartrac.SmartCosmos.Objects.Base;
 
-namespace Smartrac.SmartCosmos.TestSuite
+namespace Smartrac.SmartCosmos.Objects.GeospatialManagement
 {
-    public interface ITestSuite
+    [DataContract]
+    public class GeospatialManagementNewRequest : GeospatialEntryDataRequest
     {
-        IMessageLogger Logger { get; set; }
-        IEndpointFactory EndpointFactory { get; set; }
-        IDataContextFactory DataContextFactory { get; set; }
-
-        bool Run(TestCaseType testCaseTypes);
+        public override bool IsValid()
+        {
+            return base.IsValid() &&
+                (geometricShape != null) &&
+                !String.IsNullOrEmpty(type) &&
+                (type.Length <= 255) &&
+                !String.IsNullOrEmpty(name) &&
+                (name.Length <= 255) &&
+                (String.IsNullOrEmpty(moniker) || moniker.Length <= 2048) &&
+                (String.IsNullOrEmpty(description) || description.Length <= 1024);
+        }
     }
 }

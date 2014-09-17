@@ -17,20 +17,22 @@
 
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Text;
-using Smartrac.Logging;
-using Smartrac.SmartCosmos.ClientEndpoint.Factory;
-using Smartrac.SmartCosmos.DataContextFactory;
+using GeoJSON.Net;
+using Smartrac.SmartCosmos.Objects.Base;
 
-namespace Smartrac.SmartCosmos.TestSuite
+namespace Smartrac.SmartCosmos.Objects.DataContext
 {
-    public interface ITestSuite
+    public interface IGeospatialManagementDataContext
     {
-        IMessageLogger Logger { get; set; }
-        IEndpointFactory EndpointFactory { get; set; }
-        IDataContextFactory DataContextFactory { get; set; }
-
-        bool Run(TestCaseType testCaseTypes);
+        Urn GetGeospatialUrn();
+        string GetName();
+        string GetType();
+        string GetDescription();
+        bool GetActiveFlag();
+        GeoJSONObject GetDescription();
+        ViewType GetViewType();
     }
 }

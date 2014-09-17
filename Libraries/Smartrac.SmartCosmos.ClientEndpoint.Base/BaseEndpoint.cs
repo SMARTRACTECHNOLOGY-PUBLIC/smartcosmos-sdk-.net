@@ -170,7 +170,7 @@ namespace Smartrac.SmartCosmos.ClientEndpoint.Base
         }
 
 
-        private HttpStatusCode ExecuteWebRequestJSON(WebRequest request, Type requestType, object requestData, Type responseType, out object responseData, out HttpWebResponse webResponse, string sendMethod = WebRequestMethods.Http.Post)
+        protected HttpStatusCode ExecuteWebRequestJSON(WebRequest request, Type requestType, object requestData, Type responseType, out object responseData, out HttpWebResponse webResponse, string sendMethod = WebRequestMethods.Http.Post)
         {
             responseData = null;
             webResponse = null;

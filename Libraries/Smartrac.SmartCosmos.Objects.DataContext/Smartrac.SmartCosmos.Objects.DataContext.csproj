@@ -66,6 +66,9 @@
     <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="GeoJSON.Net">
+      <HintPath>..\..\External\GeoJSON.Net.0.0.14\lib\GeoJSON.Net.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Xml.Linq" />
@@ -89,6 +92,8 @@
     <Compile Include="Interfaces\IObjectInteractionDataContext.cs" />
     <Compile Include="BaseRelationshipManagementDataContext.cs" />
     <Compile Include="Interfaces\IRelationshipManagementDataContext.cs" />
+    <Compile Include="Interfaces\IGeospatialManagementDataContext.cs" />
+    <Compile Include="BaseGeospatialManagmentDataContext.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

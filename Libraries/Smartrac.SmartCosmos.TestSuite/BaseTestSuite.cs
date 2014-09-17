@@ -21,8 +21,7 @@ using System.Linq;
 using System.Text;
 using Smartrac.Logging;
 using Smartrac.SmartCosmos.ClientEndpoint.Factory;
-using Smartrac.SmartCosmos.Objects.DataContext;
-using Smartrac.SmartCosmos.Profiles.DataContext;
+using Smartrac.SmartCosmos.DataContextFactory;
 
 namespace Smartrac.SmartCosmos.TestSuite
 {
@@ -32,22 +31,14 @@ namespace Smartrac.SmartCosmos.TestSuite
     public class BaseTestSuite : ITestSuite
     {
         public IMessageLogger Logger { get; set; }
-        public IEndpointFactory Factory { get; set; }
-
-        public ITagDataContext TagDataContext { get; set; }
-        public IFileDataContext FileDataContext { get; set; }
-        public IRegistrationDataContext RegistrationDataContext { get; set; }
-        public IAccountManagementDataContext AccountManagementDataContext { get; set; }
-        public IUserManagementDataContext UserManagementDataContext { get; set; }
-        public IObjectManagementDataContext ObjectManagementDataContext { get; set; }
-        public IObjectInteractionDataContext ObjectInteractionDataContext { get; set; }
-        public IRelationshipManagementDataContext RelationshipManagementDataContext { get; set; }
+        public IEndpointFactory EndpointFactory { get; set; }
+        public IDataContextFactory DataContextFactory { get; set; }
 
         /// <summary>
         /// Start testing
         /// </summary>
         /// <returns>test result</returns>
-        public virtual bool Run()
+        public virtual bool Run(TestCaseType testCaseTypes)
         {
             return true;
         }

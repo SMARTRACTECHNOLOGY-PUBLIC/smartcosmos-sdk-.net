@@ -17,20 +17,31 @@
 
 using System;
 using System.Collections.Generic;
+using System.ComponentModel;
+using System.IO;
 using System.Linq;
+using System.Net;
 using System.Text;
-using Smartrac.Logging;
-using Smartrac.SmartCosmos.ClientEndpoint.Factory;
-using Smartrac.SmartCosmos.DataContextFactory;
+using Smartrac.SmartCosmos.ClientEndpoint.Base;
+using Smartrac.SmartCosmos.Objects.Base;
 
-namespace Smartrac.SmartCosmos.TestSuite
+namespace Smartrac.SmartCosmos.Objects.GeospatialManagement
 {
-    public interface ITestSuite
+    public enum GeospatialManagementActionResult
     {
-        IMessageLogger Logger { get; set; }
-        IEndpointFactory EndpointFactory { get; set; }
-        IDataContextFactory DataContextFactory { get; set; }
+        /// <summary>
+        /// action was successful
+        /// </summary>
+        Successful,
 
-        bool Run(TestCaseType testCaseTypes);
+        /// <summary>
+        /// problem occurred, check message parameter for detailed information
+        /// </summary>
+        Failed
+    }
+
+    public interface IGeospatialManagementEndpoint : IBaseEndpoint
+    {
+
     }
 }

@@ -96,9 +96,17 @@
       <Project>{2c79fc96-b023-465d-9374-77235df068f4}</Project>
       <Name>Smartrac.SmartCosmos.Objects.AccountManagement</Name>
     </ProjectReference>
+    <ProjectReference Include="..\Smartrac.SmartCosmos.Objects.DataContext\Smartrac.SmartCosmos.Objects.DataContext.csproj">
+      <Project>{955046d9-aa9a-462c-9057-8046c61ed701}</Project>
+      <Name>Smartrac.SmartCosmos.Objects.DataContext</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Smartrac.SmartCosmos.Objects.File\Smartrac.SmartCosmos.Objects.File.csproj">
       <Project>{7aa95048-8346-4dab-94f5-90f898b41824}</Project>
       <Name>Smartrac.SmartCosmos.Objects.File</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Smartrac.SmartCosmos.Objects.GeospatialManagement\Smartrac.SmartCosmos.Objects.GeospatialManagement.csproj">
+      <Project>{9b5244a9-a358-4aee-b92a-fa7b2a2a6694}</Project>
+      <Name>Smartrac.SmartCosmos.Objects.GeospatialManagement</Name>
     </ProjectReference>
     <ProjectReference Include="..\Smartrac.SmartCosmos.Objects.ObjectInteraction\Smartrac.SmartCosmos.Objects.ObjectInteraction.csproj">
       <Project>{308a0d3b-64b2-42b8-b3e0-6308dc07e945}</Project>
@@ -119,6 +127,10 @@
     <ProjectReference Include="..\Smartrac.SmartCosmos.Objects.UserManagement\Smartrac.SmartCosmos.Objects.UserManagement.csproj">
       <Project>{401ea240-52ed-4a3f-b475-c7edbda211fe}</Project>
       <Name>Smartrac.SmartCosmos.Objects.UserManagement</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Smartrac.SmartCosmos.Profiles.DataContext\Smartrac.SmartCosmos.Profiles.DataContext.csproj">
+      <Project>{d3a5db54-fd8f-4c15-8e1d-e0a10c55465c}</Project>
+      <Name>Smartrac.SmartCosmos.Profiles.DataContext</Name>
     </ProjectReference>
     <ProjectReference Include="..\Smartrac.SmartCosmos.Profiles.DataImport\Smartrac.SmartCosmos.Profiles.DataImport.csproj">
       <Project>{0a933dfb-c8e8-403c-9a6d-d152871e366c}</Project>

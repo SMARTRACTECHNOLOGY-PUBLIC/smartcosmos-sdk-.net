@@ -17,20 +17,33 @@
 
 using System;
 using System.Collections.Generic;
-using System.Linq;
+using System.Net.Mime;
+using System.Runtime.Serialization;
 using System.Text;
-using Smartrac.Logging;
-using Smartrac.SmartCosmos.ClientEndpoint.Factory;
-using Smartrac.SmartCosmos.DataContextFactory;
+using GeoJSON.Net;
+using Smartrac.SmartCosmos.Objects.Base;
 
-namespace Smartrac.SmartCosmos.TestSuite
+namespace Smartrac.SmartCosmos.Objects.GeospatialManagement
 {
-    public interface ITestSuite
+    [DataContract]
+    public class QueryGeospatialEntriesRequest : BaseRequest
     {
-        IMessageLogger Logger { get; set; }
-        IEndpointFactory EndpointFactory { get; set; }
-        IDataContextFactory DataContextFactory { get; set; }
+        /// <summary>
+        /// Optional: A case-sensitive starts with string pattern to match against. If omitted,
+        /// </summary>
+        [DataMember]
+        public string nameLike { get; set; }
 
-        bool Run(TestCaseType testCaseTypes);
+        /// <summary>
+        /// Optional: A valid JSON Serialization View name (case-sensitive)
+        /// </summary>
+        [DataMember]
+        public ViewType viewType { get; set; }
+
+        public QueryGeospatialEntriesRequest()
+            : base()
+        {
+            nameLike = null;
+        }
     }
 }

@@ -79,6 +79,21 @@
     <Compile Include="Interfaces\ISampleTestSuite.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="SampleTestSuite.cs" />
+    <Compile Include="Testcases\Objects\TestCaseGeospatialManagementEndpoint.cs" />
+    <Compile Include="Testcases\Objects\TestCaseRelationshipManagementEndpoint.cs" />
+    <Compile Include="Testcases\Objects\TestCaseObjectInteractionEndpoint.cs" />
+    <Compile Include="Testcases\Objects\TestCaseObjectManagementEndpoint.cs" />
+    <Compile Include="Testcases\Objects\TestCaseUserManagementEndpoint.cs" />
+    <Compile Include="Testcases\Objects\TestCaseAccountManagementEndpoint.cs" />
+    <Compile Include="Testcases\Objects\TestCaseRegistrationEndpoint.cs" />
+    <Compile Include="Testcases\Objects\TestCaseFileEndpoint.cs" />
+    <Compile Include="Testcases\Profiles\PerformanceTestCaseTagMetadataEndpointParallel.cs" />
+    <Compile Include="Testcases\Profiles\PerformanceTestCaseTagMetadataEndpoint.cs" />
+    <Compile Include="Testcases\Profiles\TestCaseDataImportEndpoint.cs" />
+    <Compile Include="Testcases\Profiles\TestCaseTagVerificationEndpoint.cs" />
+    <Compile Include="Testcases\Profiles\TestCaseTagMetadataEndpoint.cs" />
+    <Compile Include="Testcases\Profiles\TestCasePlatformAvailabilityEndpoint.cs" />
+    <Compile Include="Testcases\BaseTestCase.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Smartrac.Base\Smartrac.Base.csproj">
@@ -100,6 +115,10 @@
     <ProjectReference Include="..\Smartrac.SmartCosmos.ClientEndpoint.Factory\Smartrac.SmartCosmos.ClientEndpoint.Factory.csproj">
       <Project>{692630bd-502b-4a8a-bb36-84b322d0276f}</Project>
       <Name>Smartrac.SmartCosmos.ClientEndpoint.Factory</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Smartrac.SmartCosmos.DataContextFactory\Smartrac.SmartCosmos.DataContextFactory.csproj">
+      <Project>{3cc1bfca-f7ac-4ff2-b8bf-fea215f32529}</Project>
+      <Name>Smartrac.SmartCosmos.DataContextFactory</Name>
     </ProjectReference>
     <ProjectReference Include="..\Smartrac.SmartCosmos.Objects.AccountManagement\Smartrac.SmartCosmos.Objects.AccountManagement.csproj">
       <Project>{2c79fc96-b023-465d-9374-77235df068f4}</Project>
@@ -162,6 +181,7 @@
       <Name>Smartrac.SmartCosmos.TestSuite</Name>
     </ProjectReference>
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

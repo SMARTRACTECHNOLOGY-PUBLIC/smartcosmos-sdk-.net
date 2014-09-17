@@ -22,6 +22,7 @@ using System.Text;
 using Smartrac.Logging;
 using Smartrac.SmartCosmos.Objects.AccountManagement;
 using Smartrac.SmartCosmos.Objects.File;
+using Smartrac.SmartCosmos.Objects.GeospatialManagement;
 using Smartrac.SmartCosmos.Objects.ObjectInteraction;
 using Smartrac.SmartCosmos.Objects.ObjectManagement;
 using Smartrac.SmartCosmos.Objects.Registration;
@@ -57,7 +58,7 @@ namespace Smartrac.SmartCosmos.ClientEndpoint.Factory
         }
 
         #region PROFILES
-        public IPlatformAvailabilityEndpoint CreatePlatformAvailabilityEndpoint()
+        public virtual IPlatformAvailabilityEndpoint CreatePlatformAvailabilityEndpoint()
         {
             return new PlatformAvailabilityEndpointBuilder()
                 .setLogger(Logger)
@@ -67,7 +68,7 @@ namespace Smartrac.SmartCosmos.ClientEndpoint.Factory
                 .build();
         }
 
-        public IDataImportEndpoint CreateDataImportEndpoint()
+        public virtual IDataImportEndpoint CreateDataImportEndpoint()
         {
             return new DataImportEndpointBuilder()
                 .setLogger(Logger)
@@ -78,7 +79,7 @@ namespace Smartrac.SmartCosmos.ClientEndpoint.Factory
                 .build();
         }
 
-        public ITagVerificationEndpoint CreateTagVerificationEndpoint()
+        public virtual ITagVerificationEndpoint CreateTagVerificationEndpoint()
         {
             return new TagVerificationEndpointBuilder()
                 .setLogger(Logger)
@@ -89,7 +90,7 @@ namespace Smartrac.SmartCosmos.ClientEndpoint.Factory
                 .build();
         }
 
-        public ITagMetadataEndpoint CreateTagMetadataEndpoint()
+        public virtual ITagMetadataEndpoint CreateTagMetadataEndpoint()
         {
             return new TagMetadataEndpointBuilder()
                 .setLogger(Logger)
@@ -102,7 +103,7 @@ namespace Smartrac.SmartCosmos.ClientEndpoint.Factory
         #endregion
 
         #region OBJECTS
-        public IFileEndpoint CreateFileEndpoint()
+        public virtual IFileEndpoint CreateFileEndpoint()
         {
             return new FileEndpointBuilder()
             .setLogger(Logger)
@@ -113,7 +114,7 @@ namespace Smartrac.SmartCosmos.ClientEndpoint.Factory
             .build();
         }
 
-        public IRegistrationEndpoint CreateRegistrationEndpoint()
+        public virtual IRegistrationEndpoint CreateRegistrationEndpoint()
         {
             return new RegistrationEndpointBuilder()
             .setLogger(Logger)
@@ -124,7 +125,7 @@ namespace Smartrac.SmartCosmos.ClientEndpoint.Factory
             .build();
         }
 
-        public IAccountManagementEndpoint CreateAccountManagementEndpoint()
+        public virtual IAccountManagementEndpoint CreateAccountManagementEndpoint()
         {
             return new AccountManagementEndpointBuilder()
             .setLogger(Logger)
@@ -135,7 +136,7 @@ namespace Smartrac.SmartCosmos.ClientEndpoint.Factory
             .build();
         }
 
-        public IUserManagementEndpoint CreateUserManagementEndpoint()
+        public virtual IUserManagementEndpoint CreateUserManagementEndpoint()
         {
             return new UserManagementEndpointBuilder()
             .setLogger(Logger)
@@ -146,7 +147,7 @@ namespace Smartrac.SmartCosmos.ClientEndpoint.Factory
             .build();
         }
 
-        public IObjectManagementEndpoint CreateObjectManagementEndpoint()
+        public virtual IObjectManagementEndpoint CreateObjectManagementEndpoint()
         {
             return new ObjectManagementEndpointBuilder()
             .setLogger(Logger)
@@ -157,7 +158,7 @@ namespace Smartrac.SmartCosmos.ClientEndpoint.Factory
             .build();
         }
 
-        public IObjectInteractionEndpoint CreateObjectInteractionEndpoint()
+        public virtual IObjectInteractionEndpoint CreateObjectInteractionEndpoint()
         {
             return new ObjectInteractionEndpointBuilder()
             .setLogger(Logger)
@@ -168,7 +169,7 @@ namespace Smartrac.SmartCosmos.ClientEndpoint.Factory
             .build();
         }
 
-        public IRelationshipManagementEndpoint CreateRelationshipManagementEndpoint()
+        public virtual IRelationshipManagementEndpoint CreateRelationshipManagementEndpoint()
         {
             return new RelationshipManagementEndpointBuilder()
             .setLogger(Logger)
@@ -179,6 +180,18 @@ namespace Smartrac.SmartCosmos.ClientEndpoint.Factory
             .build();
         }
 
+        public virtual IGeospatialManagementEndpoint CreateGeospatialManagementEndpoint()
+        {
+            return new GeospatialManagementEndpointBuilder()
+            .setLogger(Logger)
+            .setKeepAlive(KeepAlive)
+            .setServerURL(ObjectsServerURL)
+            .setAllowInvalidServerCertificates(AllowInvalidServerCertificates)
+            .setUserAccount(UserName, UserPassword)
+            .build();
+        }
+
         #endregion
     }
+
 }

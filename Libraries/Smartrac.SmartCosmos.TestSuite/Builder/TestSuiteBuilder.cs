@@ -23,8 +23,7 @@ using System.Text;
 using Smartrac.Base;
 using Smartrac.Logging;
 using Smartrac.SmartCosmos.ClientEndpoint.Factory;
-using Smartrac.SmartCosmos.Objects.DataContext;
-using Smartrac.SmartCosmos.Profiles.DataContext;
+using Smartrac.SmartCosmos.DataContextFactory;
 
 namespace Smartrac.SmartCosmos.TestSuite
 {
@@ -49,64 +48,22 @@ namespace Smartrac.SmartCosmos.TestSuite
         }
 
 
-        public E setTagDataContext(ITagDataContext dataContext)
+        public E setDataContextFactory(IDataContextFactory dataContextFactory)
         {
-            instance.TagDataContext = dataContext;
+            instance.DataContextFactory = dataContextFactory;
             return this as E;
         }
 
-        public E setFileDataContext(IFileDataContext dataContext)
+        public E setEndpointFactory(IEndpointFactory endpointFactory)
         {
-            instance.FileDataContext = dataContext;
-            return this as E;
-        }
-
-        public E setRegistrationDataContext(IRegistrationDataContext dataContext)
-        {
-            instance.RegistrationDataContext = dataContext;
-            return this as E;
-        }
-
-        public E setAccountManagementDataContext(IAccountManagementDataContext dataContext)
-        {
-            instance.AccountManagementDataContext = dataContext;
-            return this as E;
-        }
-
-        public E setUserManagementDataContext(IUserManagementDataContext dataContext)
-        {
-            instance.UserManagementDataContext = dataContext;
-            return this as E;
-        }
-
-        public E setObjectManagementDataContext(IObjectManagementDataContext dataContext)
-        {
-            instance.ObjectManagementDataContext = dataContext;
-            return this as E;
-        }
-
-        public E setObjectInteractionDataContext(IObjectInteractionDataContext dataContext)
-        {
-            instance.ObjectInteractionDataContext = dataContext;
-            return this as E;
-        }
-
-        public E setRelationshipManagementDataContext(IRelationshipManagementDataContext dataContext)
-        {
-            instance.RelationshipManagementDataContext = dataContext;
-            return this as E;
-        }                    
-
-        public E setFactory(IEndpointFactory factory)
-        {
-            instance.Factory = factory;
+            instance.EndpointFactory = endpointFactory;
             return this as E;
         }
 
         protected override void onValidate()
         {
-            Contract.Requires(instance.TagDataContext != null);
-            Contract.Requires(instance.Factory != null);
+            Contract.Requires(instance.DataContextFactory != null);
+            Contract.Requires(instance.EndpointFactory != null);
         }
     }
 }
