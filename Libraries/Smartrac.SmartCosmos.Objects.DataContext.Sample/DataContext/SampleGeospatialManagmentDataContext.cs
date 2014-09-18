@@ -17,39 +17,50 @@
 
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Text;
 using GeoJSON.Net;
 using Smartrac.SmartCosmos.Objects.Base;
+using Smartrac.SmartCosmos.Objects.DataContext;
 
-namespace Smartrac.SmartCosmos.Objects.DataContext
+namespace Smartrac.SmartCosmos.Objects.DataContext.Sample
 {
-    public class BaseGeospatialManagementDataContext : IGeospatialManagementDataContext
+    public class SampleGeospatialManagementDataContext : BaseGeospatialManagementDataContext
     {
         public virtual Urn GetGeospatialUrn()
         {
             return null;
         }
+
         public virtual string GetName()
         {
-            return null;
+            return "Campus at 5th Street";
         }
+
         public virtual string GetType()
         {
-            return null;
+            return "Building";
         }
+
         public virtual string GetDescription()
         {
-            return null;
+            return "Campus at 5th Street descr";
         }
+
         public virtual bool GetActiveFlag()
         {
             return true;
         }
+
         public virtual GeoJSONObject GetGeometricShape()
         {
-            return null;
+            var point = new GeoJSON.Net.Geometry.Point(new GeoJSON.Net.Geometry.GeographicPosition(45.79012, 15.94107));
+            var featureProperties = new Dictionary<string, object> { { "Name", "Foo" } };
+            var model = new GeoJSON.Net.Feature.Feature(point, featureProperties);
+            return model;
         }
+
         public virtual ViewType GetViewType()
         {
             return ViewType.Standard;

@@ -190,7 +190,6 @@ namespace Smartrac.SmartCosmos.ClientEndpoint.Factory
             .setUserAccount(UserName, UserPassword)
             .build();
         }
-
         #endregion
     }
 

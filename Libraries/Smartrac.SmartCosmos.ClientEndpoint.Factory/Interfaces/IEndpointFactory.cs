@@ -22,6 +22,7 @@ using System.Text;
 using Smartrac.Logging;
 using Smartrac.SmartCosmos.Objects.AccountManagement;
 using Smartrac.SmartCosmos.Objects.File;
+using Smartrac.SmartCosmos.Objects.GeospatialManagement;
 using Smartrac.SmartCosmos.Objects.ObjectInteraction;
 using Smartrac.SmartCosmos.Objects.ObjectManagement;
 using Smartrac.SmartCosmos.Objects.Registration;
@@ -59,7 +60,7 @@ namespace Smartrac.SmartCosmos.ClientEndpoint.Factory
         IObjectManagementEndpoint CreateObjectManagementEndpoint();
         IObjectInteractionEndpoint CreateObjectInteractionEndpoint();
         IRelationshipManagementEndpoint CreateRelationshipManagementEndpoint();
-        
+        IGeospatialManagementEndpoint CreateGeospatialManagementEndpoint();
         #endregion
     }
 }

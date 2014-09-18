@@ -24,13 +24,10 @@ using System.Threading.Tasks;
 using Smartrac.Logging;
 using Smartrac.Logging.Console;
 using Smartrac.SmartCosmos.ClientEndpoint.Factory;
-using Smartrac.SmartCosmos.TestSuite;
-using Smartrac.SmartCosmos.TestSuite.Sample;
 using System.Configuration;
-using Smartrac.SmartCosmos.Profiles.DataContext;
-using Smartrac.SmartCosmos.Objects.DataContext;
-using Smartrac.SmartCosmos.Profiles.DataContext.Sample;
-using Smartrac.SmartCosmos.Objects.DataContext.Sample;
+using Smartrac.SmartCosmos.DataContextFactory.Sample;
+using Smartrac.SmartCosmos.TestCase.Runner;
+using Smartrac.SmartCosmos.TestCase.Base;
 
 namespace Smartrac.SmartCosmos.SampleClient.Console
 {
@@ -40,7 +37,8 @@ namespace Smartrac.SmartCosmos.SampleClient.Console
         {
             // define output for logging
             IMessageLogger logger = new ConsoleLoggerService();
-            
+
+            // factory for endpoints
             IEndpointFactory factory = new EndpointFactory(logger);
 
             // user settings
@@ -48,24 +46,19 @@ namespace Smartrac.SmartCosmos.SampleClient.Console
             factory.UserName = ConfigurationManager.AppSettings["UserName"]; 
             factory.UserPassword = ConfigurationManager.AppSettings["UserPassword"];
 
-            // initate tester suite
-            ISampleTestSuite testSuite = new SampleTestSuiteBuilder()
+            // initate tester case runner
+            ITestCaseRunner testCaseRunner = new TestCaseRunnerBuilder()
                                             .setLogger(logger)
-                                            .setTagDataContext(new SampleTagDataContext()) // create data context with sample data for tags (Profiles)
-                                            .setFileDataContext(new SampleFileDataContext()) // create data context with sample data for files (Objects)
-                                            .setRegistrationDataContext(new SampleRegistrationDataContext()) // create data context with sample data for registration (Objects)
-                                            .setAccountManagementDataContext(new SampleAccountManagementDataContext()) // create data context with sample data for account management (Objects)
-                                            .setUserManagementDataContext(new SampleUserManagementDataContext()) // create data context with sample data for user management (Objects)
-                                            .setObjectManagementDataContext(new SampleObjectManagementDataContext()) // create data context with sample data for object management (Objects)
-                                            .setObjectInteractionDataContext(new SampleObjectInteractionDataContext()) // create data context with sample data for object interaction (Objects)
-                                            .setRelationshipManagementDataContext(new SampleRelationshipManagementDataContext()) // create data context with sample data for relationship  management (Objects)
-                                            .setFactory(new EndpointFactory(logger)) // Create default factory for endpoints
-                                            .setRunPerformanceTests(true) // define if performance test should be executed
+                                            .setDataContextFactory(new SampleDataContextFactory()) // data context factory for sample data
+                                            .setEndpointFactory(factory) // Create default factory for endpoints
                                             .build();
 
             // START TESTING ----
-            testSuite.Run();
-
+            bool bTestResult = testCaseRunner.Run(TestCaseType.Functional);
+            
+            // output
+            System.Console.WriteLine("");
+            System.Console.WriteLine("Test result: " + bTestResult);
             System.Console.WriteLine("Press a key for exit...");
             System.Console.ReadLine();
         }

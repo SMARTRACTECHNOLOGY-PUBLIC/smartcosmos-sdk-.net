@@ -42,6 +42,37 @@ namespace Smartrac.SmartCosmos.Objects.GeospatialManagement
 
     public interface IGeospatialManagementEndpoint : IBaseEndpoint
     {
+        /// <summary>
+        /// Create a new geospatial entry
+        /// </summary>
+        /// <param name="requestData">Geospatial data</param>
+        /// <param name="responseData">result</param>
+        /// <returns>GeospatialManagementActionResult</returns>
+        GeospatialManagementActionResult CreateNewGeospatial(GeospatialManagementNewRequest requestData, out GeospatialManagementNewResponse responseData);
 
+        /// <summary>
+        /// Update an existing geospatial entry
+        /// </summary>
+        /// <param name="requestData">Geospatial data</param>
+        /// <param name="responseData">result</param>
+        /// <returns>GeospatialManagementActionResult</returns>
+        GeospatialManagementActionResult UpdateGeospatial(GeospatialManagementUpdateRequest requestData, out GeospatialManagementUpdateResponse responseData);
+
+        /// <summary>
+        /// Lookup an array of matching geospatial entries. If no nameLike query parameter is included, then all interactions are returned.
+        /// </summary>
+        /// <param name="requestData">Geospatial data</param>
+        /// <param name="responseData">result</param>
+        /// <returns>GeospatialManagementActionResult</returns>
+        GeospatialManagementActionResult LookupMatchingGeospatialEntries(QueryGeospatialEntriesRequest requestData, out QueryGeospatialEntriesResponse responseData);
+
+        /// <summary>
+        /// Lookup a specific geospatial entity by its system-assigned URN key
+        /// </summary>
+        /// <param name="geospatialUrn">System-assigned URN assigned at creation</param>
+        /// <param name="viewType">A valid JSON Serialization View name (case-sensitive)</param>
+        /// <param name="responseData">result</param>
+        /// <returns>GeospatialManagementActionResult</returns>
+        GeospatialManagementActionResult LookupSpecificGeospatialEntitybyURN(Urn geospatialUrn, out GeospatialEntryDataResponse responseData, ViewType viewType = ViewType.Standard);
     }
 }

@@ -78,20 +78,52 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="SampleGeospatialManagmentDataContext.cs" />
-    <Compile Include="SampleRelationshipManagementDataContext.cs" />
-    <Compile Include="SampleObjectInteractionDataContext.cs" />
-    <Compile Include="SampleObjectManagmentDataContext.cs" />
-    <Compile Include="SampleUserManagmentDataContext.cs" />
-    <Compile Include="SampleAccountManagmentDataContext.cs" />
-    <Compile Include="SampleRegistrationDataContext.cs" />
-    <Compile Include="SampleFileDataContext.cs" />
+    <Compile Include="TestCases\TestCaseAccountManagementEndpoint.cs" />
+    <Compile Include="TestCases\TestCaseFileEndpoint.cs" />
+    <Compile Include="TestCases\TestCaseGeospatialManagementEndpoint.cs" />
+    <Compile Include="TestCases\TestCaseObjectInteractionEndpoint.cs" />
+    <Compile Include="TestCases\TestCaseObjectManagementEndpoint.cs" />
+    <Compile Include="TestCases\TestCaseRegistrationEndpoint.cs" />
+    <Compile Include="TestCases\TestCaseRelationshipManagementEndpoint.cs" />
+    <Compile Include="TestCases\TestCaseUserManagementEndpoint.cs" />
+    <Compile Include="DataContext\SampleGeospatialManagmentDataContext.cs" />
+    <Compile Include="DataContext\SampleRelationshipManagementDataContext.cs" />
+    <Compile Include="DataContext\SampleObjectInteractionDataContext.cs" />
+    <Compile Include="DataContext\SampleObjectManagmentDataContext.cs" />
+    <Compile Include="DataContext\SampleUserManagmentDataContext.cs" />
+    <Compile Include="DataContext\SampleAccountManagmentDataContext.cs" />
+    <Compile Include="DataContext\SampleRegistrationDataContext.cs" />
+    <Compile Include="DataContext\SampleFileDataContext.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\Smartrac.Base\Smartrac.Base.csproj">
+      <Project>{fc09830c-0f35-4fc3-85bf-0b43fcb91f06}</Project>
+      <Name>Smartrac.Base</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Smartrac.Logging\Smartrac.Logging.csproj">
+      <Project>{73ba0972-769b-4b84-9a21-9cf545a14a03}</Project>
+      <Name>Smartrac.Logging</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Smartrac.SmartCosmos.ClientEndpoint.BaseObject\Smartrac.SmartCosmos.ClientEndpoint.BaseObject.csproj">
+      <Project>{28e0fa25-18da-4c11-83cd-92a36ddd060b}</Project>
+      <Name>Smartrac.SmartCosmos.ClientEndpoint.BaseObject</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Smartrac.SmartCosmos.ClientEndpoint.Base\Smartrac.SmartCosmos.ClientEndpoint.Base.csproj">
+      <Project>{f0e26f53-5847-42d0-b16f-2dbd1952e452}</Project>
+      <Name>Smartrac.SmartCosmos.ClientEndpoint.Base</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Smartrac.SmartCosmos.ClientEndpoint.Factory\Smartrac.SmartCosmos.ClientEndpoint.Factory.csproj">
       <Project>{692630bd-502b-4a8a-bb36-84b322d0276f}</Project>
       <Name>Smartrac.SmartCosmos.ClientEndpoint.Factory</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Smartrac.SmartCosmos.DataContextFactory\Smartrac.SmartCosmos.DataContextFactory.csproj">
+      <Project>{3cc1bfca-f7ac-4ff2-b8bf-fea215f32529}</Project>
+      <Name>Smartrac.SmartCosmos.DataContextFactory</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Smartrac.SmartCosmos.Objects.AccountManagement\Smartrac.SmartCosmos.Objects.AccountManagement.csproj">
+      <Project>{2c79fc96-b023-465d-9374-77235df068f4}</Project>
+      <Name>Smartrac.SmartCosmos.Objects.AccountManagement</Name>
     </ProjectReference>
     <ProjectReference Include="..\Smartrac.SmartCosmos.Objects.Base\Smartrac.SmartCosmos.Objects.Base.csproj">
       <Project>{96f35cdc-1fe4-4d39-afad-907466426a72}</Project>
@@ -100,6 +132,38 @@
     <ProjectReference Include="..\Smartrac.SmartCosmos.Objects.DataContext\Smartrac.SmartCosmos.Objects.DataContext.csproj">
       <Project>{955046d9-aa9a-462c-9057-8046c61ed701}</Project>
       <Name>Smartrac.SmartCosmos.Objects.DataContext</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Smartrac.SmartCosmos.Objects.File\Smartrac.SmartCosmos.Objects.File.csproj">
+      <Project>{7aa95048-8346-4dab-94f5-90f898b41824}</Project>
+      <Name>Smartrac.SmartCosmos.Objects.File</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Smartrac.SmartCosmos.Objects.GeospatialManagement\Smartrac.SmartCosmos.Objects.GeospatialManagement.csproj">
+      <Project>{9b5244a9-a358-4aee-b92a-fa7b2a2a6694}</Project>
+      <Name>Smartrac.SmartCosmos.Objects.GeospatialManagement</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Smartrac.SmartCosmos.Objects.ObjectInteraction\Smartrac.SmartCosmos.Objects.ObjectInteraction.csproj">
+      <Project>{308a0d3b-64b2-42b8-b3e0-6308dc07e945}</Project>
+      <Name>Smartrac.SmartCosmos.Objects.ObjectInteraction</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Smartrac.SmartCosmos.Objects.ObjectManagement\Smartrac.SmartCosmos.Objects.ObjectManagement.csproj">
+      <Project>{e1c1b7b7-5437-4d43-a598-5c4b00fae58d}</Project>
+      <Name>Smartrac.SmartCosmos.Objects.ObjectManagement</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Smartrac.SmartCosmos.Objects.Registration\Smartrac.SmartCosmos.Objects.Registration.csproj">
+      <Project>{c0345647-e3b3-42f2-8136-f8ac8a03cb08}</Project>
+      <Name>Smartrac.SmartCosmos.Objects.Registration</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Smartrac.SmartCosmos.Objects.RelationshipManagement\Smartrac.SmartCosmos.Objects.RelationshipManagement.csproj">
+      <Project>{f273de29-fcfb-4a29-8e56-af65107d4d84}</Project>
+      <Name>Smartrac.SmartCosmos.Objects.RelationshipManagement</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Smartrac.SmartCosmos.Objects.UserManagement\Smartrac.SmartCosmos.Objects.UserManagement.csproj">
+      <Project>{401ea240-52ed-4a3f-b475-c7edbda211fe}</Project>
+      <Name>Smartrac.SmartCosmos.Objects.UserManagement</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Smartrac.SmartCosmos.TestCase.Base\Smartrac.SmartCosmos.TestCase.Base.csproj">
+      <Project>{27fd25e4-0e9e-45a1-a568-fba5f0f8742f}</Project>
+      <Name>Smartrac.SmartCosmos.TestCase.Base</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

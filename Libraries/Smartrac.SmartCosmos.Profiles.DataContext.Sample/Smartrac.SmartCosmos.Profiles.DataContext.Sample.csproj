@@ -75,10 +75,44 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="SampleTagDataContext.cs" />
+    <Compile Include="TestCases\PerformanceTestCaseTagMetadataEndpoint.cs" />
+    <Compile Include="TestCases\PerformanceTestCaseTagMetadataEndpointParallel.cs" />
+    <Compile Include="TestCases\TestCaseDataImportEndpoint.cs" />
+    <Compile Include="TestCases\TestCasePlatformAvailabilityEndpoint.cs" />
+    <Compile Include="TestCases\TestCaseTagMetadataEndpoint.cs" />
+    <Compile Include="TestCases\TestCaseTagVerificationEndpoint.cs" />
+    <Compile Include="DataContext\SampleTagDataContext.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\Smartrac.Base\Smartrac.Base.csproj">
+      <Project>{fc09830c-0f35-4fc3-85bf-0b43fcb91f06}</Project>
+      <Name>Smartrac.Base</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Smartrac.Logging\Smartrac.Logging.csproj">
+      <Project>{73ba0972-769b-4b84-9a21-9cf545a14a03}</Project>
+      <Name>Smartrac.Logging</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Smartrac.SmartCosmos.ClientEndpoint.BaseObject\Smartrac.SmartCosmos.ClientEndpoint.BaseObject.csproj">
+      <Project>{28e0fa25-18da-4c11-83cd-92a36ddd060b}</Project>
+      <Name>Smartrac.SmartCosmos.ClientEndpoint.BaseObject</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Smartrac.SmartCosmos.ClientEndpoint.Base\Smartrac.SmartCosmos.ClientEndpoint.Base.csproj">
+      <Project>{f0e26f53-5847-42d0-b16f-2dbd1952e452}</Project>
+      <Name>Smartrac.SmartCosmos.ClientEndpoint.Base</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Smartrac.SmartCosmos.ClientEndpoint.Factory\Smartrac.SmartCosmos.ClientEndpoint.Factory.csproj">
+      <Project>{692630bd-502b-4a8a-bb36-84b322d0276f}</Project>
+      <Name>Smartrac.SmartCosmos.ClientEndpoint.Factory</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Smartrac.SmartCosmos.DataContextFactory\Smartrac.SmartCosmos.DataContextFactory.csproj">
+      <Project>{3cc1bfca-f7ac-4ff2-b8bf-fea215f32529}</Project>
+      <Name>Smartrac.SmartCosmos.DataContextFactory</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Smartrac.SmartCosmos.Profiles.Base\Smartrac.SmartCosmos.Profiles.Base.csproj">
+      <Project>{e7c0b1ed-7957-4d97-bf2c-65381a436e7c}</Project>
+      <Name>Smartrac.SmartCosmos.Profiles.Base</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Smartrac.SmartCosmos.Profiles.DataContext\Smartrac.SmartCosmos.Profiles.DataContext.csproj">
       <Project>{d3a5db54-fd8f-4c15-8e1d-e0a10c55465c}</Project>
       <Name>Smartrac.SmartCosmos.Profiles.DataContext</Name>
@@ -86,6 +120,26 @@
     <ProjectReference Include="..\Smartrac.SmartCosmos.Objects.Base\Smartrac.SmartCosmos.Objects.Base.csproj">
       <Project>{96f35cdc-1fe4-4d39-afad-907466426a72}</Project>
       <Name>Smartrac.SmartCosmos.Objects.Base</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Smartrac.SmartCosmos.Profiles.DataImport\Smartrac.SmartCosmos.Profiles.DataImport.csproj">
+      <Project>{0a933dfb-c8e8-403c-9a6d-d152871e366c}</Project>
+      <Name>Smartrac.SmartCosmos.Profiles.DataImport</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Smartrac.SmartCosmos.Profiles.PlatformAvailability\Smartrac.SmartCosmos.Profiles.PlatformAvailability.csproj">
+      <Project>{5617dfbd-0ccb-4fe8-9871-40c680eaae26}</Project>
+      <Name>Smartrac.SmartCosmos.Profiles.PlatformAvailability</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Smartrac.SmartCosmos.Profiles.TagMetadata\Smartrac.SmartCosmos.Profiles.TagMetadata.csproj">
+      <Project>{ef7a70ac-3269-430f-9966-f00c08263aeb}</Project>
+      <Name>Smartrac.SmartCosmos.Profiles.TagMetadata</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Smartrac.SmartCosmos.Profiles.TagVerification\Smartrac.SmartCosmos.Profiles.TagVerification.csproj">
+      <Project>{83e86795-1eb5-4135-bf50-6573b1780542}</Project>
+      <Name>Smartrac.SmartCosmos.Profiles.TagVerification</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Smartrac.SmartCosmos.TestCase.Base\Smartrac.SmartCosmos.TestCase.Base.csproj">
+      <Project>{27fd25e4-0e9e-45a1-a568-fba5f0f8742f}</Project>
+      <Name>Smartrac.SmartCosmos.TestCase.Base</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

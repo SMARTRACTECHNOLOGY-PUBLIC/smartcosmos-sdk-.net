@@ -1,0 +1,77 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{C4693A6F-9B1F-4AA1-944D-18429695555D}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>Smartrac.SmartCosmos.TestCase.Runner</RootNamespace>
+    <AssemblyName>Smartrac.SmartCosmos.TestCase.Runner</AssemblyName>
+    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Builder\TestCaseRunnerBuilder.cs" />
+    <Compile Include="Interfaces\ITestCaseRunner.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="TestCaseRunner.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Smartrac.Base\Smartrac.Base.csproj">
+      <Project>{fc09830c-0f35-4fc3-85bf-0b43fcb91f06}</Project>
+      <Name>Smartrac.Base</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Smartrac.Logging\Smartrac.Logging.csproj">
+      <Project>{73ba0972-769b-4b84-9a21-9cf545a14a03}</Project>
+      <Name>Smartrac.Logging</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Smartrac.SmartCosmos.ClientEndpoint.Factory\Smartrac.SmartCosmos.ClientEndpoint.Factory.csproj">
+      <Project>{692630bd-502b-4a8a-bb36-84b322d0276f}</Project>
+      <Name>Smartrac.SmartCosmos.ClientEndpoint.Factory</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Smartrac.SmartCosmos.DataContextFactory\Smartrac.SmartCosmos.DataContextFactory.csproj">
+      <Project>{3cc1bfca-f7ac-4ff2-b8bf-fea215f32529}</Project>
+      <Name>Smartrac.SmartCosmos.DataContextFactory</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Smartrac.SmartCosmos.TestCase.Base\Smartrac.SmartCosmos.TestCase.Base.csproj">
+      <Project>{27fd25e4-0e9e-45a1-a568-fba5f0f8742f}</Project>
+      <Name>Smartrac.SmartCosmos.TestCase.Base</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>
