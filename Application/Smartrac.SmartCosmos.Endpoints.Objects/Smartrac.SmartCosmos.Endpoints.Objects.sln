@@ -33,6 +33,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Smartrac.SmartCosmos.Object
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Smartrac.SmartCosmos.Objects.GeospatialManagement", "..\..\Libraries\Smartrac.SmartCosmos.Objects.GeospatialManagement\Smartrac.SmartCosmos.Objects.GeospatialManagement.csproj", "{9B5244A9-A358-4AEE-B92A-FA7B2A2A6694}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Smartrac.SmartCosmos.Objects.Metadata", "..\..\Libraries\Smartrac.SmartCosmos.Objects.Metadata\Smartrac.SmartCosmos.Objects.Metadata.csproj", "{3F715F22-7D75-4645-9CE6-E8A20CCDACC8}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -289,6 +291,18 @@ Global
 		{9B5244A9-A358-4AEE-B92A-FA7B2A2A6694}.Release|Mixed Platforms.Build.0 = Release|Any CPU
 		{9B5244A9-A358-4AEE-B92A-FA7B2A2A6694}.Release|x64.ActiveCfg = Release|Any CPU
 		{9B5244A9-A358-4AEE-B92A-FA7B2A2A6694}.Release|x86.ActiveCfg = Release|Any CPU
+		{3F715F22-7D75-4645-9CE6-E8A20CCDACC8}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3F715F22-7D75-4645-9CE6-E8A20CCDACC8}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3F715F22-7D75-4645-9CE6-E8A20CCDACC8}.Debug|Mixed Platforms.ActiveCfg = Debug|Any CPU
+		{3F715F22-7D75-4645-9CE6-E8A20CCDACC8}.Debug|Mixed Platforms.Build.0 = Debug|Any CPU
+		{3F715F22-7D75-4645-9CE6-E8A20CCDACC8}.Debug|x64.ActiveCfg = Debug|Any CPU
+		{3F715F22-7D75-4645-9CE6-E8A20CCDACC8}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{3F715F22-7D75-4645-9CE6-E8A20CCDACC8}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3F715F22-7D75-4645-9CE6-E8A20CCDACC8}.Release|Any CPU.Build.0 = Release|Any CPU
+		{3F715F22-7D75-4645-9CE6-E8A20CCDACC8}.Release|Mixed Platforms.ActiveCfg = Release|Any CPU
+		{3F715F22-7D75-4645-9CE6-E8A20CCDACC8}.Release|Mixed Platforms.Build.0 = Release|Any CPU
+		{3F715F22-7D75-4645-9CE6-E8A20CCDACC8}.Release|x64.ActiveCfg = Release|Any CPU
+		{3F715F22-7D75-4645-9CE6-E8A20CCDACC8}.Release|x86.ActiveCfg = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

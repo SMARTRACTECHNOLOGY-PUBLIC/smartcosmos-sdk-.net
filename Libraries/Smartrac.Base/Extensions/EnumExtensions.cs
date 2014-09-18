@@ -110,5 +110,22 @@ namespace System
             }
             return null;
         }
+
+        public static T GetFlagByDescription<T>(this T value, string description) where T : struct
+        {
+            Type enumType = typeof(T);
+            foreach (T val in Enum.GetValues(enumType))
+            {
+                FieldInfo fi = enumType.GetField(val.ToString());
+                DescriptionAttribute[] attributes = (DescriptionAttribute[])fi.GetCustomAttributes(
+                    typeof(DescriptionAttribute), false);
+                DescriptionAttribute attr = attributes[0];
+                if (attr.Description == description)
+                {
+                    return (T)val;
+                }
+            }
+            throw new ArgumentException("The value '" + value + "' is not supported.");
+        }
     }
 }
