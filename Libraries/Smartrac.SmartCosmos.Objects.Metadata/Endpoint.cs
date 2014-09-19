@@ -445,7 +445,6 @@ namespace Smartrac.SmartCosmos.Objects.Metadata
         /// </summary>
         /// <param name="requestData">request data</paramMetadata>
         /// <param name="responseData">response data</paramMetadata>
-        /// <param name="metaDataType">Valid MetadataDataType enum value</paramMetadata>
         /// <returns>MetadataActionResult</returns>
         protected MetadataActionResult TypeSafeDecoding(TypeSafeDecodingRequest requestData, out TypeSafeDecodingResponse responseData)
         {
@@ -476,5 +475,46 @@ namespace Smartrac.SmartCosmos.Objects.Metadata
         }
 
         #endregion
+
+        /// <summary>
+        /// Inserts a new key-value or updates an existing key value related to the specified entity
+        /// </summary>
+        /// <param name="requestData">request data</paramMetadata>
+        /// <param name="responseData">response data</paramMetadata>
+        /// <returns>MetadataActionResult</returns>
+        protected MetadataActionResult MetadataUpsertion(TypeSafeDecodingRequest requestData, out TypeSafeDecodingResponse responseData)
+        {
+            // continue here
+            responseData = null;
+            return MetadataActionResult.Failed; 
+            /*
+            responseData = null;
+            if ((null == requestData) || !requestData.IsValid())
+            {
+                if (null != Logger)
+                    Logger.AddLog("request data is invalid", LogType.Error);
+                return MetadataActionResult.Failed;
+            }
+
+            var request = CreateWebRequest("/metadata/mapper/encode/" + requestData.dataTypeObj.GetDescription(), WebRequestOption.Authorization);
+            object responseDataObj = null;
+            ExecuteWebRequestJSON(request, typeof(TypeSafeDecodingRequest), requestData, typeof(TypeSafeDecodingResponse), out responseDataObj);
+            if (null != responseDataObj)
+            {
+                responseData = responseDataObj as TypeSafeDecodingResponse;
+                if (responseData != null)
+                {
+                    switch (responseData.HTTPStatusCode)
+                    {
+                        case HttpStatusCode.OK: return MetadataActionResult.Successful;
+                        default: return MetadataActionResult.Failed;
+                    }
+                }
+            }
+            return MetadataActionResult.Failed;
+             */ 
+        }
+    
+    
     }
 }
