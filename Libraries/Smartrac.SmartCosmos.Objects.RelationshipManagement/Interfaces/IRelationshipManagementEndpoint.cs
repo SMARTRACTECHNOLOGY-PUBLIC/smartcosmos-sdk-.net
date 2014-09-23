@@ -27,7 +27,7 @@ using Smartrac.SmartCosmos.Objects.Base;
 
 namespace Smartrac.SmartCosmos.Objects.RelationshipManagement
 {
-    public enum RelationshipManagementActionResult
+    public enum RelationshipActionResult
     {
         /// <summary>
         /// action was successful
@@ -48,7 +48,7 @@ namespace Smartrac.SmartCosmos.Objects.RelationshipManagement
         /// <param name="requestData">Relationship data</param>
         /// <param name="responseData">result</param>
         /// <returns>RelationshipManagementActionResult</returns>
-        RelationshipManagementActionResult CreateNewRelationship(RelationshipManagementRequest requestData, out RelationshipManagementResponse responseData);
+        RelationshipActionResult Create(RelationshipManagementRequest requestData, out RelationshipManagementResponse responseData);
 
         /// <summary>
         /// Lookup a specific relationship by its system-assigned URN key
@@ -57,7 +57,7 @@ namespace Smartrac.SmartCosmos.Objects.RelationshipManagement
         /// <param name="viewType">A valid JSON Serialization View name (case-sensitive)</param>
         /// <param name="responseData">Relationship data</param>
         /// <returns>RelationshipManagementActionResult</returns>
-        RelationshipManagementActionResult LookupSpecificRelationshipByUrn(Urn relationshipUrn, out RelationshipDataResponse responseData, ViewType viewType = ViewType.Standard);
+        RelationshipActionResult Lookup(Urn relationshipUrn, out RelationshipDataResponse responseData, ViewType viewType = ViewType.Standard);
             
         /// <summary>
         /// Lookup an array of all defined relationships between any two entities
@@ -65,7 +65,7 @@ namespace Smartrac.SmartCosmos.Objects.RelationshipManagement
         /// <param name="requestData">filter data</param>
         /// <param name="responseData">list of relationships</param>
         /// <returns>RelationshipManagementActionResult</returns>
-        RelationshipManagementActionResult LookupAllRelationshipsBetweenEntities(QueryQueryRelationshipsRequest requestData, out QueryObjectRelationshipsResponse responseData, ViewType viewType = ViewType.Standard);
+        RelationshipActionResult Lookup(QueryQueryRelationshipsRequest requestData, out QueryObjectRelationshipsResponse responseData, ViewType viewType = ViewType.Standard);
 
         /// <summary>
         /// Lookup a specific relationships between any two entities
@@ -74,7 +74,7 @@ namespace Smartrac.SmartCosmos.Objects.RelationshipManagement
         /// <param name="viewType">A valid JSON Serialization View name (case-sensitive)</param>
         /// <param name="responseData">Relationship data</param>
         /// <returns>RelationshipManagementActionResult</returns>
-        RelationshipManagementActionResult LookupSpecificRelationshipBetweenEntities(QueryQueryRelationshipByTypeRequest requestData, out RelationshipDataResponse responseData, ViewType viewType = ViewType.Standard);
+        RelationshipActionResult Lookup(QueryQueryRelationshipByTypeRequest requestData, out RelationshipDataResponse responseData, ViewType viewType = ViewType.Standard);
 
         /// <summary>
         /// Lookup an array of all defined relationships of the specific type
@@ -82,13 +82,13 @@ namespace Smartrac.SmartCosmos.Objects.RelationshipManagement
         /// <param name="requestData">filter data</param>
         /// <param name="responseData">list of relationships</param>
         /// <returns>RelationshipManagementActionResult</returns>
-        RelationshipManagementActionResult LookupAllRelationshipsByType(QueryQueryRelationshipsByTypeRequest requestData, out QueryObjectRelationshipsResponse responseData, ViewType viewType = ViewType.Standard);
+        RelationshipActionResult Lookup(QueryQueryRelationshipsByTypeRequest requestData, out QueryObjectRelationshipsResponse responseData, ViewType viewType = ViewType.Standard);
 
         /// <summary>
         /// Deletes an existing relationship by its system-assigned URN key
         /// </summary>
         /// <param name="relationshipUrn">relationshipUrn of the relationship record</param>
         /// <returns>RelationshipManagementActionResult</returns>
-        RelationshipManagementActionResult RelationshipDeletion(Urn relationshipUrn);
+        RelationshipActionResult Delete(Urn relationshipUrn);
     }
 }

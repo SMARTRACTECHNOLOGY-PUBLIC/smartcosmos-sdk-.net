@@ -52,7 +52,7 @@ namespace Smartrac.SmartCosmos.Objects.ObjectInteraction
           "type": "Transaction",
           "urn": "urn:uuid:ac912b9e-fa52-48e4-a477-aa99f0a2bf92"
        },
-       "objectInteractionSession": null,
+       ">Session": null,
        "recordedTimestamp": 1390779082039,
        "referenceUrn": "urn:instagram:FooQux:47c23bc6-2a58-4e37-93b0-848776b42404",
        "urn": "urn:uuid:95b995e2-dde5-4dd0-b50c-e804999411d8"

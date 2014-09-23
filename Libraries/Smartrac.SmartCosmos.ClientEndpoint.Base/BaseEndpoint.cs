@@ -204,8 +204,15 @@ namespace Smartrac.SmartCosmos.ClientEndpoint.Base
 
                 if (webResponse != null)
                 {
-                    DataContractJsonSerializer serializer = new DataContractJsonSerializer(responseType);
-                    responseData = serializer.ReadObject(webResponse.GetResponseStream());
+                    if (webResponse.StatusCode == HttpStatusCode.NoContent)
+                    {
+                        responseData = Activator.CreateInstance(responseType);
+                    }
+                    else
+                    {
+                        DataContractJsonSerializer serializer = new DataContractJsonSerializer(responseType);
+                        responseData = serializer.ReadObject(webResponse.GetResponseStream());
+                    }
 
                     if(responseData is BaseResponse)
                     {

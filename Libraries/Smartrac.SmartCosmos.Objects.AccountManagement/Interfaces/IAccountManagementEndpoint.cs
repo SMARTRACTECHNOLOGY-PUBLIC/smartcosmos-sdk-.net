@@ -26,7 +26,7 @@ using Smartrac.SmartCosmos.Objects.Base;
 
 namespace Smartrac.SmartCosmos.Objects.AccountManagement
 {
-    public enum AccountManagementActionResult
+    public enum AccountActionResult
     {
         /// <summary>
         /// action was successful
@@ -47,7 +47,7 @@ namespace Smartrac.SmartCosmos.Objects.AccountManagement
         /// <param name="viewType">A valid JSON Serialization View name (case-sensitive)</param>
         /// <param name="responseData">out: Account details</param>
         /// <returns>AccountManagementActionResult</returns>
-        AccountManagementActionResult GetAccountDetails(ViewType? viewType, out AccountDetailsResponse responseData);
+        AccountActionResult GetAccountDetails(ViewType? viewType, out AccountDetailsResponse responseData);
 
         /// <summary>
         /// Change the authenticated user's password, presuming they know their existing password to change to a new password.
@@ -55,7 +55,7 @@ namespace Smartrac.SmartCosmos.Objects.AccountManagement
         /// <param name="requestData">old and new password</param>
         /// <param name="responseData">out: Account details</param>
         /// <returns>AccountManagementActionResult</returns>
-        AccountManagementActionResult ChangeYourPassword(ChangeYourPasswordRequest requestData, out ChangeYourPasswordResponse responseData);
+        AccountActionResult ChangeYourPassword(ChangeYourPasswordRequest requestData, out ChangeYourPasswordResponse responseData);
 
         /// <summary>
         /// Trigger a password reset workflow via email for the specified Account associated with the indicated email address.
@@ -63,6 +63,6 @@ namespace Smartrac.SmartCosmos.Objects.AccountManagement
         /// <param name="requestData">contains your emailAddress</param>
         /// <param name="responseData">out: Account details</param>
         /// <returns>AccountManagementActionResult</returns>
-        AccountManagementActionResult ResetLostPassword(ResetLostPasswordRequest requestData, out ResetLostPasswordResponse responseData);
+        AccountActionResult ResetLostPassword(ResetLostPasswordRequest requestData, out ResetLostPasswordResponse responseData);
     }
 }

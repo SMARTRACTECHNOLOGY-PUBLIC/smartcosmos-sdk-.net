@@ -39,7 +39,7 @@ namespace Smartrac.SmartCosmos.Objects.GeospatialManagement
         /// <param name="requestData">Geospatial data</param>
         /// <param name="responseData">result</param>
         /// <returns>GeospatialManagementActionResult</returns>
-        public GeospatialManagementActionResult CreateNewGeospatial(GeospatialManagementNewRequest requestData, out GeospatialManagementNewResponse responseData)
+        public GeoActionResult Create(GeospatialManagementNewRequest requestData, out GeospatialManagementNewResponse responseData)
         {
             responseData = null;
             try
@@ -48,7 +48,7 @@ namespace Smartrac.SmartCosmos.Objects.GeospatialManagement
                 {
                     if (null != Logger)
                         Logger.AddLog("Request data is invalid!", LogType.Error);
-                    return GeospatialManagementActionResult.Failed;
+                    return GeoActionResult.Failed;
                 }
 
                 var request = CreateWebRequest("/geospatial", WebRequestOption.Authorization);
@@ -64,19 +64,19 @@ namespace Smartrac.SmartCosmos.Objects.GeospatialManagement
                             case HttpStatusCode.Created:
                             case HttpStatusCode.OK:
                                 responseData.geospatialUrn = new Urn(responseData.message);
-                                return GeospatialManagementActionResult.Successful;
-                            default: return GeospatialManagementActionResult.Failed;
+                                return GeoActionResult.Successful;
+                            default: return GeoActionResult.Failed;
                         }
                     }
                 }
 
-                return GeospatialManagementActionResult.Failed;
+                return GeoActionResult.Failed;
             }
             catch (Exception e)
             {
                 if (null != Logger)
                     Logger.AddLog(e.Message, LogType.Error);
-                return GeospatialManagementActionResult.Failed;
+                return GeoActionResult.Failed;
             }
         }
 
@@ -86,7 +86,7 @@ namespace Smartrac.SmartCosmos.Objects.GeospatialManagement
         /// <param name="requestData">Geospatial data</param>
         /// <param name="responseData">result</param>
         /// <returns>GeospatialManagementActionResult</returns>
-        public GeospatialManagementActionResult UpdateGeospatial(GeospatialManagementUpdateRequest requestData, out GeospatialManagementUpdateResponse responseData)
+        public GeoActionResult Update(GeospatialManagementUpdateRequest requestData, out GeospatialManagementUpdateResponse responseData)
         {
             responseData = null;
             try
@@ -95,7 +95,7 @@ namespace Smartrac.SmartCosmos.Objects.GeospatialManagement
                 {
                     if (null != Logger)
                         Logger.AddLog("Request data is invalid!", LogType.Error);
-                    return GeospatialManagementActionResult.Failed;
+                    return GeoActionResult.Failed;
                 }
 
                 var request = CreateWebRequest("/geospatial", WebRequestOption.Authorization);
@@ -110,22 +110,22 @@ namespace Smartrac.SmartCosmos.Objects.GeospatialManagement
                         if ((responseData.HTTPStatusCode == HttpStatusCode.NoContent) &&
                            (webResponse.Headers.Get("SmartCosmos-Event") == "GeospatialEntryUpdated"))
                         {
-                            return GeospatialManagementActionResult.Successful;
+                            return GeoActionResult.Successful;
                         }
                         else
                         {
-                            return GeospatialManagementActionResult.Failed;
+                            return GeoActionResult.Failed;
                         }
                     }
                 }
 
-                return GeospatialManagementActionResult.Failed;
+                return GeoActionResult.Failed;
             }
             catch (Exception e)
             {
                 if (null != Logger)
                     Logger.AddLog(e.Message, LogType.Error);
-                return GeospatialManagementActionResult.Failed;
+                return GeoActionResult.Failed;
             }
         }
 
@@ -135,7 +135,7 @@ namespace Smartrac.SmartCosmos.Objects.GeospatialManagement
         /// <param name="requestData">Geospatial data</param>
         /// <param name="responseData">result</param>
         /// <returns>GeospatialManagementActionResult</returns>
-        public GeospatialManagementActionResult LookupMatchingGeospatialEntries(QueryGeospatialEntriesRequest requestData, out QueryGeospatialEntriesResponse responseData)
+        public GeoActionResult Lookup(QueryGeospatialEntriesRequest requestData, out QueryGeospatialEntriesResponse responseData)
         {
             responseData = null;
             try
@@ -144,7 +144,7 @@ namespace Smartrac.SmartCosmos.Objects.GeospatialManagement
                 {
                     if (null != Logger)
                         Logger.AddLog("Request data is invalid!", LogType.Error);
-                    return GeospatialManagementActionResult.Failed;
+                    return GeoActionResult.Failed;
                 }
 
                 string nameLikeParam = (requestData.nameLike != null) ? "&nameLike=" + requestData.nameLike : "";
@@ -160,19 +160,19 @@ namespace Smartrac.SmartCosmos.Objects.GeospatialManagement
                         responseData.HTTPStatusCode = HTTPStatusCodeResult;
                         switch (responseData.HTTPStatusCode)
                         {
-                            case HttpStatusCode.OK: return GeospatialManagementActionResult.Successful;
-                            default: return GeospatialManagementActionResult.Failed;
+                            case HttpStatusCode.OK: return GeoActionResult.Successful;
+                            default: return GeoActionResult.Failed;
                         }
                     }
                 }
 
-                return GeospatialManagementActionResult.Failed;
+                return GeoActionResult.Failed;
             }
             catch (Exception e)
             {
                 if (null != Logger)
                     Logger.AddLog(e.Message, LogType.Error);
-                return GeospatialManagementActionResult.Failed;
+                return GeoActionResult.Failed;
             }
         }
 
@@ -183,7 +183,7 @@ namespace Smartrac.SmartCosmos.Objects.GeospatialManagement
         /// <param name="viewType">A valid JSON Serialization View name (case-sensitive)</param>
         /// <param name="responseData">result</param>
         /// <returns>GeospatialManagementActionResult</returns>
-        public GeospatialManagementActionResult LookupSpecificGeospatialEntitybyURN(Urn geospatialUrn, out GeospatialEntryDataResponse responseData, ViewType viewType = ViewType.Standard)
+        public GeoActionResult Lookup(Urn geospatialUrn, out GeospatialEntryDataResponse responseData, ViewType viewType = ViewType.Standard)
         {
             responseData = null;
             try
@@ -192,7 +192,7 @@ namespace Smartrac.SmartCosmos.Objects.GeospatialManagement
                 {
                     if (null != Logger)
                         Logger.AddLog("Request data is invalid!", LogType.Error);
-                    return GeospatialManagementActionResult.Failed;
+                    return GeoActionResult.Failed;
                 }
 
                 var request = CreateWebRequest("/geospatial/" + geospatialUrn.UUID + "?view=" + viewType.GetDescription(), WebRequestOption.Authorization);
@@ -205,19 +205,19 @@ namespace Smartrac.SmartCosmos.Objects.GeospatialManagement
                     {
                         switch (responseData.HTTPStatusCode)
                         {
-                            case HttpStatusCode.OK: return GeospatialManagementActionResult.Successful;
-                            default: return GeospatialManagementActionResult.Failed;
+                            case HttpStatusCode.OK: return GeoActionResult.Successful;
+                            default: return GeoActionResult.Failed;
                         }
                     }
                 }
 
-                return GeospatialManagementActionResult.Failed;
+                return GeoActionResult.Failed;
             }
             catch (Exception e)
             {
                 if (null != Logger)
                     Logger.AddLog(e.Message, LogType.Error);
-                return GeospatialManagementActionResult.Failed;
+                return GeoActionResult.Failed;
             }
         }
     }

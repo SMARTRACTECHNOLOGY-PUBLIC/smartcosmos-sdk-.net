@@ -27,7 +27,7 @@ using Smartrac.SmartCosmos.Objects.Base;
 
 namespace Smartrac.SmartCosmos.Objects.GeospatialManagement
 {
-    public enum GeospatialManagementActionResult
+    public enum GeoActionResult
     {
         /// <summary>
         /// action was successful
@@ -48,7 +48,7 @@ namespace Smartrac.SmartCosmos.Objects.GeospatialManagement
         /// <param name="requestData">Geospatial data</param>
         /// <param name="responseData">result</param>
         /// <returns>GeospatialManagementActionResult</returns>
-        GeospatialManagementActionResult CreateNewGeospatial(GeospatialManagementNewRequest requestData, out GeospatialManagementNewResponse responseData);
+        GeoActionResult Create(GeospatialManagementNewRequest requestData, out GeospatialManagementNewResponse responseData);
 
         /// <summary>
         /// Update an existing geospatial entry
@@ -56,7 +56,7 @@ namespace Smartrac.SmartCosmos.Objects.GeospatialManagement
         /// <param name="requestData">Geospatial data</param>
         /// <param name="responseData">result</param>
         /// <returns>GeospatialManagementActionResult</returns>
-        GeospatialManagementActionResult UpdateGeospatial(GeospatialManagementUpdateRequest requestData, out GeospatialManagementUpdateResponse responseData);
+        GeoActionResult Update(GeospatialManagementUpdateRequest requestData, out GeospatialManagementUpdateResponse responseData);
 
         /// <summary>
         /// Lookup an array of matching geospatial entries. If no nameLike query parameter is included, then all interactions are returned.
@@ -64,7 +64,7 @@ namespace Smartrac.SmartCosmos.Objects.GeospatialManagement
         /// <param name="requestData">Geospatial data</param>
         /// <param name="responseData">result</param>
         /// <returns>GeospatialManagementActionResult</returns>
-        GeospatialManagementActionResult LookupMatchingGeospatialEntries(QueryGeospatialEntriesRequest requestData, out QueryGeospatialEntriesResponse responseData);
+        GeoActionResult Lookup(QueryGeospatialEntriesRequest requestData, out QueryGeospatialEntriesResponse responseData);
 
         /// <summary>
         /// Lookup a specific geospatial entity by its system-assigned URN key
@@ -73,6 +73,6 @@ namespace Smartrac.SmartCosmos.Objects.GeospatialManagement
         /// <param name="viewType">A valid JSON Serialization View name (case-sensitive)</param>
         /// <param name="responseData">result</param>
         /// <returns>GeospatialManagementActionResult</returns>
-        GeospatialManagementActionResult LookupSpecificGeospatialEntitybyURN(Urn geospatialUrn, out GeospatialEntryDataResponse responseData, ViewType viewType = ViewType.Standard);
+        GeoActionResult Lookup(Urn geospatialUrn, out GeospatialEntryDataResponse responseData, ViewType viewType = ViewType.Standard);
     }
 }

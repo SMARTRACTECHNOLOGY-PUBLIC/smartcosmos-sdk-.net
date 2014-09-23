@@ -26,7 +26,7 @@ using Smartrac.SmartCosmos.Objects.Base;
 
 namespace Smartrac.SmartCosmos.Objects.ObjectManagement
 {
-    public enum ObjectManagementActionResult
+    public enum ObjectActionResult
     {
         /// <summary>
         /// action was successful
@@ -47,7 +47,7 @@ namespace Smartrac.SmartCosmos.Objects.ObjectManagement
         /// <param name="requestData">Object data</param>
         /// <param name="responseData">result</param>
         /// <returns>ObjectManagementActionResult</returns>
-        ObjectManagementActionResult CreateNewObject(ObjectManagementNewRequest requestData, out ObjectManagementResponse responseData);
+        ObjectActionResult Create(ObjectManagementNewRequest requestData, out ObjectManagementResponse responseData);
 
         /// <summary>
         /// Update an existing Object
@@ -55,7 +55,7 @@ namespace Smartrac.SmartCosmos.Objects.ObjectManagement
         /// <param name="requestData">Object data</param>
         /// <param name="responseData">result, empty if successful</param>
         /// <returns>ObjectManagementActionResult</returns>
-        ObjectManagementActionResult UpdateObject(ObjectManagementRequest requestData, out ObjectManagementResponse responseData);
+        ObjectActionResult Update(ObjectManagementRequest requestData, out ObjectManagementResponse responseData);
 
         /// <summary>
         /// Lookup a specific object by its system-assigned URN key
@@ -64,7 +64,7 @@ namespace Smartrac.SmartCosmos.Objects.ObjectManagement
         /// <param name="viewType">A valid JSON Serialization View name (case-sensitive)</param>
         /// <param name="responseData">Object data</param>
         /// <returns>ObjectManagementActionResult</returns>
-        ObjectManagementActionResult LookupSpecificObjectByUrn(Urn urn, out ObjectDataResponse responseData, ViewType viewType = ViewType.Standard);
+        ObjectActionResult Lookup(Urn urn, out ObjectDataResponse responseData, ViewType viewType = ViewType.Standard);
 
         /// <summary>
         /// Lookup a specific object by their arbitrary developer assigned object URN
@@ -74,7 +74,7 @@ namespace Smartrac.SmartCosmos.Objects.ObjectManagement
         /// <param name="exact">Defaults to true; when false, a starts-with search is performed</param>
         /// <param name="responseData">Object data</param>
         /// <returns>ObjectManagementActionResult</returns>
-        ObjectManagementActionResult LookupSpecificObjectByObjectUrn(Urn objectUrn, out ObjectDataResponse responseData, ViewType viewType = ViewType.Standard, bool exact = true);
+        ObjectActionResult LookupByObjectUrn(Urn objectUrn, out ObjectDataResponse responseData, ViewType viewType = ViewType.Standard, bool exact = true);
 
         /// <summary>
         /// Lookup an array of matching objects
@@ -82,6 +82,6 @@ namespace Smartrac.SmartCosmos.Objects.ObjectManagement
         /// <param name="requestData">Object query request (e.g. filters like name, objectURN, ...)</param>
         /// <param name="responseData">List of objects</param>
         /// <returns>ObjectManagementActionResult</returns>
-        ObjectManagementActionResult QueryObjects(QueryObjectsRequest requestData, out QueryObjectsResponse responseData);
+        ObjectActionResult QueryObjects(QueryObjectsRequest requestData, out QueryObjectsResponse responseData);
     }
 }

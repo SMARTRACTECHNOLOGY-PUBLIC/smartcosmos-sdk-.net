@@ -273,7 +273,7 @@ namespace Smartrac.SmartCosmos.Objects.File
         /// <param name="view">A valid JSON Serialization View name (case-sensitive)</param> 
         /// <param name="responseData">File properties</param>
         /// <returns>FileActionResult</returns>
-        public FileActionResult SpecificFileDefinitionRetrieval(Urn fileUrn, out FileDefinitionRetrievalResponse responseData, ViewType viewType = ViewType.Standard)
+        public FileActionResult LookupDefinition(Urn fileUrn, out FileDefinitionRetrievalResponse responseData, ViewType viewType = ViewType.Standard)
         {
             responseData = null;
             try
@@ -326,7 +326,7 @@ namespace Smartrac.SmartCosmos.Objects.File
         /// <param name="fileUrn">System-assigned URN assigned at creation of file definition</param>
         /// <param name="responseData">FileContentRetrievalResponse</param>
         /// <returns>FileActionResult</returns>
-        public FileActionResult FileContentRetrieval(Urn fileUrn, out FileContentRetrievalResponse responseData)
+        public FileActionResult LookupContent(Urn fileUrn, out FileContentRetrievalResponse responseData)
         {
             responseData = null;
             try
@@ -400,7 +400,7 @@ namespace Smartrac.SmartCosmos.Objects.File
         /// <param name="view">A valid JSON Serialization View name (case-sensitive)</param> 
         /// <param name="responseData">File properties</param>
         /// <returns>FileActionResult</returns>
-        public FileActionResult RelatedFileDefinitionsRetrieval(EntityReferenceType entityReferenceType, Urn referenceUrn, out FileDefinitionRetrievalListResponse responseData, ViewType viewType = ViewType.Standard)
+        public FileActionResult LookupDefinitions(EntityReferenceType entityReferenceType, Urn referenceUrn, out FileDefinitionRetrievalListResponse responseData, ViewType viewType = ViewType.Standard)
         {
             responseData = null;
             try
@@ -453,7 +453,7 @@ namespace Smartrac.SmartCosmos.Objects.File
         /// </summary>
         /// <param name="fileUrn">fileUrn of the file record</param>
         /// <returns>FileActionResult</returns>
-        public FileActionResult FileDeletion(Urn fileUrn)
+        public FileActionResult Delete(Urn fileUrn)
         {
             try
             {

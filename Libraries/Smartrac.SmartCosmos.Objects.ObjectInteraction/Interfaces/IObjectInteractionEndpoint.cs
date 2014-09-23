@@ -26,7 +26,7 @@ using Smartrac.SmartCosmos.Objects.Base;
 
 namespace Smartrac.SmartCosmos.Objects.ObjectInteraction
 {
-    public enum ObjectInteractionActionResult
+    public enum ObjInteractActionResult
     {
         /// <summary>
         /// action was successful
@@ -41,13 +41,13 @@ namespace Smartrac.SmartCosmos.Objects.ObjectInteraction
 
     public interface IObjectInteractionEndpoint : IBaseEndpoint
     {
-        /// <summaryObjectInteraction
+        /// <summary>
         /// Capture a specific interaction
-        /// </summaryObjectInteraction
-        /// <param name="requestData"ObjectInteractionObject data</paramObjectInteraction
-        /// <param name="responseData"ObjectInteraction result</paramObjectInteraction
+        /// </summary>
+        /// <param name="requestData"> data</param>
+        /// <param name="responseData"> result</param>
         /// <returnsObjectInteractionObjectInteractionActionResult</returnsObjectInteraction
-        ObjectInteractionActionResult CaptureObjectInteraction(CaptureObjectInteractionRequest requestData, out CaptureObjectInteractionResponse responseData);
+        ObjInteractActionResult Create(CaptureObjectInteractionRequest requestData, out CaptureObjectInteractionResponse responseData);
 
         /// <summary>
         /// Lookup an array of matching interactions, If no objectUrn query parameter is included, then all interactions are returned.
@@ -56,7 +56,7 @@ namespace Smartrac.SmartCosmos.Objects.ObjectInteraction
         /// <param name="viewType">A valid JSON Serialization View name (case-sensitive)</param>
         /// <param name="responseData">Object data</param>
         /// <returns>ObjectManagementActionResult</returns>
-        ObjectInteractionActionResult LookupMatchingInteractions(Urn objectUrn, out QueryObjectInteractionsResponse responseData, ViewType viewType = ViewType.Standard);
+        ObjInteractActionResult Lookup(Urn objectUrn, out QueryObjectInteractionsResponse responseData, ViewType viewType = ViewType.Standard);
 
         /// <summary>
         /// Lookup a specific interaction by its system-assigned URN key
@@ -65,6 +65,6 @@ namespace Smartrac.SmartCosmos.Objects.ObjectInteraction
         /// <param name="viewType">A valid JSON Serialization View name (case-sensitive)</param>
         /// <param name="responseData">Object data</param>
         /// <returns>ObjectManagementActionResult</returns>
-        ObjectInteractionActionResult LookupSpecificObjectInteractionbyURN(Urn interactionUrn, out QueryObjectInteractionsResponse responseData, ViewType viewType = ViewType.Standard);
+        ObjInteractActionResult LookupByUrn(Urn interactionUrn, out QueryObjectInteractionsResponse responseData, ViewType viewType = ViewType.Standard);
     }
 }

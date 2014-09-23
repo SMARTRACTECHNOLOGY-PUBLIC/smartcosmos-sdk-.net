@@ -39,7 +39,7 @@ namespace Smartrac.SmartCosmos.Objects.UserManagement
         /// <param name="requestData">user data</param>
         /// <param name="responseData">result</param>
         /// <returns>UserManagementActionResult</returns>
-        public UserManagementActionResult CreateNewUser(UserManagementRequest requestData, out UserManagementResponse responseData)
+        public UserActionResult CreateNewUser(UserManagementRequest requestData, out UserManagementResponse responseData)
         {
             responseData = null;
             try
@@ -48,7 +48,7 @@ namespace Smartrac.SmartCosmos.Objects.UserManagement
                 {
                     if (null != Logger)
                         Logger.AddLog("Request data is invalid!", LogType.Error);
-                    return UserManagementActionResult.Failed;
+                    return UserActionResult.Failed;
                 }
 
                 var request = CreateWebRequest("/users", WebRequestOption.Authorization);
@@ -63,22 +63,22 @@ namespace Smartrac.SmartCosmos.Objects.UserManagement
                         {
                             case HttpStatusCode.Created:
                                 responseData.userUrn = new Urn(responseData.message);
-                                return UserManagementActionResult.Successful;
+                                return UserActionResult.Successful;
                             case HttpStatusCode.Conflict:
                                 responseData.userUrn = new Urn(responseData.message);
-                                return UserManagementActionResult.Conflict;
-                            default: return UserManagementActionResult.Failed;
+                                return UserActionResult.Conflict;
+                            default: return UserActionResult.Failed;
                         }
                     }
                 }
 
-                return UserManagementActionResult.Failed;
+                return UserActionResult.Failed;
             }
             catch (Exception e)
             {
                 if (null != Logger)
                     Logger.AddLog(e.Message, LogType.Error);
-                return UserManagementActionResult.Failed;
+                return UserActionResult.Failed;
             }
         }
 
@@ -88,7 +88,7 @@ namespace Smartrac.SmartCosmos.Objects.UserManagement
         /// <param name="requestData">user data</param>
         /// <param name="responseData">result, empty if successful</param>
         /// <returns>UserManagementActionResult</returns>
-        public UserManagementActionResult UpdateUser(UserManagementRequest requestData, out UserManagementResponse responseData)
+        public UserActionResult UpdateUser(UserManagementRequest requestData, out UserManagementResponse responseData)
         {
             responseData = null;
             try
@@ -97,7 +97,7 @@ namespace Smartrac.SmartCosmos.Objects.UserManagement
                 {
                     if (null != Logger)
                         Logger.AddLog("Request data is invalid!", LogType.Error);
-                    return UserManagementActionResult.Failed;
+                    return UserActionResult.Failed;
                 }
 
                 var request = CreateWebRequest("/users", WebRequestOption.Authorization);
@@ -110,20 +110,20 @@ namespace Smartrac.SmartCosmos.Objects.UserManagement
                     {
                         switch (responseData.HTTPStatusCode)
                         {
-                            case HttpStatusCode.NoContent: return UserManagementActionResult.Successful;
-                            case HttpStatusCode.BadRequest: return UserManagementActionResult.Failed;
-                            default: return UserManagementActionResult.Failed;
+                            case HttpStatusCode.NoContent: return UserActionResult.Successful;
+                            case HttpStatusCode.BadRequest: return UserActionResult.Failed;
+                            default: return UserActionResult.Failed;
                         }
                     }
                 }
 
-                return UserManagementActionResult.Failed;
+                return UserActionResult.Failed;
             }
             catch (Exception e)
             {
                 if (null != Logger)
                     Logger.AddLog(e.Message, LogType.Error);
-                return UserManagementActionResult.Failed;
+                return UserActionResult.Failed;
             }
         }
 
@@ -134,7 +134,7 @@ namespace Smartrac.SmartCosmos.Objects.UserManagement
         /// <param name="viewType">A valid JSON Serialization View name (case-sensitive)</param>
         /// <param name="responseData">user data</param>
         /// <returns>UserManagementActionResult</returns>
-        public UserManagementActionResult LookupSpecificUser(Urn userUrn, ViewType? viewType, out UserDataResponse responseData)
+        public UserActionResult LookupSpecificUser(Urn userUrn, ViewType? viewType, out UserDataResponse responseData)
         {
             responseData = null;
             try
@@ -143,7 +143,7 @@ namespace Smartrac.SmartCosmos.Objects.UserManagement
                 {
                     if (null != Logger)
                         Logger.AddLog("urn is not valid", LogType.Error);
-                    return UserManagementActionResult.Failed;
+                    return UserActionResult.Failed;
                 }
 
                 string viewTypeParam = ((null != viewType) && viewType.HasValue) ? "?view=" + viewType.Value.GetDescription() : "";
@@ -154,15 +154,15 @@ namespace Smartrac.SmartCosmos.Objects.UserManagement
                 {
                     responseData = responseDataObj as UserDataResponse;
                     if ((responseData != null) && (responseData.HTTPStatusCode == HttpStatusCode.OK))
-                        return UserManagementActionResult.Successful;
+                        return UserActionResult.Successful;
                 }
-                return UserManagementActionResult.Failed;
+                return UserActionResult.Failed;
             }
             catch (Exception e)
             {
                 if (null != Logger)
                     Logger.AddLog(e.Message, LogType.Error);
-                return UserManagementActionResult.Failed;
+                return UserActionResult.Failed;
             }
         }
 
@@ -173,7 +173,7 @@ namespace Smartrac.SmartCosmos.Objects.UserManagement
         /// <param name="viewType">A valid JSON Serialization View name (case-sensitive)</param>
         /// <param name="responseData">user data</param>
         /// <returns>UserManagementActionResult</returns>
-        public UserManagementActionResult LookupSpecificUser(string eMailAddress, ViewType? viewType, out UserDataResponse responseData)
+        public UserActionResult LookupSpecificUser(string eMailAddress, ViewType? viewType, out UserDataResponse responseData)
         {
             responseData = null;
             try
@@ -182,7 +182,7 @@ namespace Smartrac.SmartCosmos.Objects.UserManagement
                 {
                     if (null != Logger)
                         Logger.AddLog("eMail address is not valid", LogType.Error);
-                    return UserManagementActionResult.Failed;
+                    return UserActionResult.Failed;
                 }
 
                 string viewTypeParam = ((null != viewType) && viewType.HasValue) ? "?view=" + viewType.Value.GetDescription() : "";
@@ -193,15 +193,15 @@ namespace Smartrac.SmartCosmos.Objects.UserManagement
                 {
                     responseData = responseDataObj as UserDataResponse;
                     if ((responseData != null) && (responseData.HTTPStatusCode == HttpStatusCode.OK))
-                        return UserManagementActionResult.Successful;
+                        return UserActionResult.Successful;
                 }
-                return UserManagementActionResult.Failed;
+                return UserActionResult.Failed;
             }
             catch (Exception e)
             {
                 if (null != Logger)
                     Logger.AddLog(e.Message, LogType.Error);
-                return UserManagementActionResult.Failed;
+                return UserActionResult.Failed;
             }
         }
 
@@ -212,7 +212,7 @@ namespace Smartrac.SmartCosmos.Objects.UserManagement
         /// /// <param name="eMailAddress">optional: newPassword</param>
         /// <param name="responseData">result, empty if successful</param>
         /// <returns>UserManagementActionResult</returns>
-        public UserManagementActionResult ChangeOrResetUserPassword(ChangeOrResetUserPasswordRequest requestData, out ChangeOrResetUserPasswordResponse responseData)
+        public UserActionResult ChangeOrResetUserPassword(ChangeOrResetUserPasswordRequest requestData, out ChangeOrResetUserPasswordResponse responseData)
         {
             responseData = null;
             try
@@ -221,7 +221,7 @@ namespace Smartrac.SmartCosmos.Objects.UserManagement
                 {
                     if (null != Logger)
                         Logger.AddLog("Request data is invalid!", LogType.Error);
-                    return UserManagementActionResult.Failed;
+                    return UserActionResult.Failed;
                 }
 
                 var request = CreateWebRequest("/users/user", WebRequestOption.Authorization);
@@ -232,19 +232,19 @@ namespace Smartrac.SmartCosmos.Objects.UserManagement
                     responseData = responseDataObj as ChangeOrResetUserPasswordResponse;
                     switch (returnHTTPStatusCode)
                     {
-                        case HttpStatusCode.NoContent: return UserManagementActionResult.Successful;
-                        case HttpStatusCode.BadRequest: return UserManagementActionResult.Failed;
-                        default: return UserManagementActionResult.Failed;
+                        case HttpStatusCode.NoContent: return UserActionResult.Successful;
+                        case HttpStatusCode.BadRequest: return UserActionResult.Failed;
+                        default: return UserActionResult.Failed;
                     }
                 }
 
-                return UserManagementActionResult.Failed;
+                return UserActionResult.Failed;
             }
             catch (Exception e)
             {
                 if (null != Logger)
                     Logger.AddLog(e.Message, LogType.Error);
-                return UserManagementActionResult.Failed;
+                return UserActionResult.Failed;
             }
         }
 

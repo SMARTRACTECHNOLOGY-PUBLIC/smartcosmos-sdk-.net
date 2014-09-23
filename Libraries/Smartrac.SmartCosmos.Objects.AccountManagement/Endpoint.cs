@@ -39,7 +39,7 @@ namespace Smartrac.SmartCosmos.Objects.AccountManagement
         /// <param name="viewType">A valid JSON Serialization View name (case-sensitive)</param>
         /// <param name="responseData">out: Account details</param>
         /// <returns>AccountManagementActionResult</returns>
-        public AccountManagementActionResult GetAccountDetails(ViewType? viewType, out AccountDetailsResponse responseData)
+        public AccountActionResult GetAccountDetails(ViewType? viewType, out AccountDetailsResponse responseData)
         {
             responseData = null;
             try
@@ -53,15 +53,15 @@ namespace Smartrac.SmartCosmos.Objects.AccountManagement
                 {
                     responseData = responseDataObj as AccountDetailsResponse;
                     if ((responseData != null) && (responseData.HTTPStatusCode == HttpStatusCode.OK))
-                        return AccountManagementActionResult.Successful;
+                        return AccountActionResult.Successful;
                 }
-                return AccountManagementActionResult.Failed;
+                return AccountActionResult.Failed;
             }
             catch (Exception e)
             {
                 if (null != Logger)
                     Logger.AddLog(e.Message, LogType.Error);
-                return AccountManagementActionResult.Failed;
+                return AccountActionResult.Failed;
             }
         }
 
@@ -71,7 +71,7 @@ namespace Smartrac.SmartCosmos.Objects.AccountManagement
         /// <param name="requestData">old and new password</param>
         /// <param name="responseData">out: Account details</param>
         /// <returns>AccountManagementActionResult</returns>
-        public AccountManagementActionResult ChangeYourPassword(ChangeYourPasswordRequest requestData, out ChangeYourPasswordResponse responseData)
+        public AccountActionResult ChangeYourPassword(ChangeYourPasswordRequest requestData, out ChangeYourPasswordResponse responseData)
         {
             responseData = null;
             try
@@ -80,7 +80,7 @@ namespace Smartrac.SmartCosmos.Objects.AccountManagement
                 {
                     if (null != Logger)
                         Logger.AddLog("Change Your Password: required data is missing!", LogType.Error);
-                    return AccountManagementActionResult.Failed;
+                    return AccountActionResult.Failed;
                 }
 
                 var request = CreateWebRequest("/account/password/change");
@@ -90,16 +90,16 @@ namespace Smartrac.SmartCosmos.Objects.AccountManagement
                 {
                     responseData = responseDataObj as ChangeYourPasswordResponse;
                     if ((responseData != null) && (responseData.HTTPStatusCode == HttpStatusCode.OK))
-                        return AccountManagementActionResult.Successful;
+                        return AccountActionResult.Successful;
                 }
 
-                return AccountManagementActionResult.Failed;
+                return AccountActionResult.Failed;
             }
             catch (Exception e)
             {
                 if (null != Logger)
                     Logger.AddLog(e.Message, LogType.Error);
-                return AccountManagementActionResult.Failed;
+                return AccountActionResult.Failed;
             }
         }
 
@@ -110,7 +110,7 @@ namespace Smartrac.SmartCosmos.Objects.AccountManagement
         /// <param name="requestData">contains your emailAddress</param>
         /// <param name="responseData">out: Account details</param>
         /// <returns>AccountManagementActionResult</returns>
-        public AccountManagementActionResult ResetLostPassword(ResetLostPasswordRequest requestData, out ResetLostPasswordResponse responseData)
+        public AccountActionResult ResetLostPassword(ResetLostPasswordRequest requestData, out ResetLostPasswordResponse responseData)
         {
             responseData = null;
             try
@@ -119,7 +119,7 @@ namespace Smartrac.SmartCosmos.Objects.AccountManagement
                 {
                     if (null != Logger)
                         Logger.AddLog("Reset Lost Password: required data is missing!", LogType.Error);
-                    return AccountManagementActionResult.Failed;
+                    return AccountActionResult.Failed;
                 }
 
                 var request = CreateWebRequest("/account/password/change");
@@ -129,16 +129,16 @@ namespace Smartrac.SmartCosmos.Objects.AccountManagement
                 {
                     responseData = responseDataObj as ResetLostPasswordResponse;
                     if ((responseData != null) && (responseData.HTTPStatusCode == HttpStatusCode.OK))
-                        return AccountManagementActionResult.Successful;
+                        return AccountActionResult.Successful;
                 }
 
-                return AccountManagementActionResult.Failed;
+                return AccountActionResult.Failed;
             }
             catch (Exception e)
             {
                 if (null != Logger)
                     Logger.AddLog(e.Message, LogType.Error);
-                return AccountManagementActionResult.Failed;
+                return AccountActionResult.Failed;
             }
         }
     }

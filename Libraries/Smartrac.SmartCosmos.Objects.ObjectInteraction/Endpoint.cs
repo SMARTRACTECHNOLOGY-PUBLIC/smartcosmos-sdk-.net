@@ -28,18 +28,18 @@ using Smartrac.SmartCosmos.Objects.Base;
 
 namespace Smartrac.SmartCosmos.Objects.ObjectInteraction
 {
-    /// <summaryObjectInteraction
+    /// <summary>
     /// Client for ObjectInteraction Endpoints
-    /// </summaryObjectInteraction
+    /// </summary>
     class ObjectInteractionEndpoint : BaseObjectsEndpoint, IObjectInteractionEndpoint
     {
-        /// <summaryObjectInteraction
+        /// <summary>
         /// Capture a specific interaction
-        /// </summaryObjectInteraction
-        /// <param name="requestData"ObjectInteractionObject data</paramObjectInteraction
-        /// <param name="responseData"ObjectInteraction result</paramObjectInteraction
-        /// <returnsObjectInteractionObjectInteractionActionResult</returnsObjectInteraction
-        public ObjectInteractionActionResult CaptureObjectInteraction(CaptureObjectInteractionRequest requestData, out CaptureObjectInteractionResponse responseData)
+        /// </summary>
+        /// <param name="requestData"> data</param>
+        /// <param name="responseData"> result</param>
+        /// <returns>ObjectManagementActionResult</returns>
+        public ObjInteractActionResult Create(CaptureObjectInteractionRequest requestData, out CaptureObjectInteractionResponse responseData)
         {
             responseData = null;
             try
@@ -48,7 +48,7 @@ namespace Smartrac.SmartCosmos.Objects.ObjectInteraction
                 {
                     if (null != Logger)
                         Logger.AddLog("Request data is invalid!", LogType.Error);
-                    return ObjectInteractionActionResult.Failed;
+                    return ObjInteractActionResult.Failed;
                 }
 
                 var request = CreateWebRequest("/interactions", WebRequestOption.Authorization);
@@ -63,19 +63,19 @@ namespace Smartrac.SmartCosmos.Objects.ObjectInteraction
                         {
                             case HttpStatusCode.OK:
                                 responseData.interactionUrn = new Urn(responseData.message);
-                                return ObjectInteractionActionResult.Successful;
-                            default: return ObjectInteractionActionResult.Failed;
+                                return ObjInteractActionResult.Successful;
+                            default: return ObjInteractActionResult.Failed;
                         }
                     }
                 }
 
-                return ObjectInteractionActionResult.Failed;
+                return ObjInteractActionResult.Failed;
             }
             catch (Exception e)
             {
                 if (null != Logger)
                     Logger.AddLog(e.Message, LogType.Error);
-                return ObjectInteractionActionResult.Failed;
+                return ObjInteractActionResult.Failed;
             }
         }
 
@@ -86,7 +86,7 @@ namespace Smartrac.SmartCosmos.Objects.ObjectInteraction
         /// <param name="viewType">A valid JSON Serialization View name (case-sensitive)</param>
         /// <param name="responseData">Object data</param>
         /// <returns>ObjectManagementActionResult</returns>
-        public ObjectInteractionActionResult LookupMatchingInteractions(Urn objectUrn, out QueryObjectInteractionsResponse responseData, ViewType viewType = ViewType.Standard)
+        public ObjInteractActionResult Lookup(Urn objectUrn, out QueryObjectInteractionsResponse responseData, ViewType viewType = ViewType.Standard)
         {
             responseData = null;
             try
@@ -96,7 +96,7 @@ namespace Smartrac.SmartCosmos.Objects.ObjectInteraction
                 {
                     if (null != Logger)
                         Logger.AddLog("urn is not valid", LogType.Error);
-                    return ObjectInteractionActionResult.Failed;
+                    return ObjInteractActionResult.Failed;
                 }
 
                 var urnParam = (null != objectUrn) ? "&objectUrn=" + objectUrn.UUID : "";
@@ -111,16 +111,16 @@ namespace Smartrac.SmartCosmos.Objects.ObjectInteraction
                     {
                         responseData.HTTPStatusCode = returnHTTPCode;
                         if (responseData.HTTPStatusCode == HttpStatusCode.OK)
-                            return ObjectInteractionActionResult.Successful;
+                            return ObjInteractActionResult.Successful;
                     }
                 }
-                return ObjectInteractionActionResult.Failed;
+                return ObjInteractActionResult.Failed;
             }
             catch (Exception e)
             {
                 if (null != Logger)
                     Logger.AddLog(e.Message, LogType.Error);
-                return ObjectInteractionActionResult.Failed;
+                return ObjInteractActionResult.Failed;
             }
         }
 
@@ -131,7 +131,7 @@ namespace Smartrac.SmartCosmos.Objects.ObjectInteraction
         /// <param name="viewType">A valid JSON Serialization View name (case-sensitive)</param>
         /// <param name="responseData">Object data</param>
         /// <returns>ObjectManagementActionResult</returns>
-        public ObjectInteractionActionResult LookupSpecificObjectInteractionbyURN(Urn interactionUrn, out QueryObjectInteractionsResponse responseData, ViewType viewType = ViewType.Standard)
+        public ObjInteractActionResult LookupByUrn(Urn interactionUrn, out QueryObjectInteractionsResponse responseData, ViewType viewType = ViewType.Standard)
         {
             responseData = null;
             try
@@ -140,7 +140,7 @@ namespace Smartrac.SmartCosmos.Objects.ObjectInteraction
                 {
                     if (null != Logger)
                         Logger.AddLog("urn is not valid", LogType.Error);
-                    return ObjectInteractionActionResult.Failed;
+                    return ObjInteractActionResult.Failed;
                 }
 
                 var request = CreateWebRequest("/interactions/" + interactionUrn.UUID + "?view=" + viewType.GetDescription(), WebRequestOption.Authorization);
@@ -153,16 +153,16 @@ namespace Smartrac.SmartCosmos.Objects.ObjectInteraction
                     {
                         responseData.HTTPStatusCode = returnHTTPCode;
                         if (responseData.HTTPStatusCode == HttpStatusCode.OK)
-                            return ObjectInteractionActionResult.Successful;
+                            return ObjInteractActionResult.Successful;
                     }
                 }
-                return ObjectInteractionActionResult.Failed;
+                return ObjInteractActionResult.Failed;
             }
             catch (Exception e)
             {
                 if (null != Logger)
                     Logger.AddLog(e.Message, LogType.Error);
-                return ObjectInteractionActionResult.Failed;
+                return ObjInteractActionResult.Failed;
             }
         }
     

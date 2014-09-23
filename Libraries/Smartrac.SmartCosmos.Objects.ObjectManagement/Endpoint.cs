@@ -39,7 +39,7 @@ namespace Smartrac.SmartCosmos.Objects.ObjectManagement
         /// <param name="requestData">Object data</param>
         /// <param name="responseData">result</param>
         /// <returns>ObjectManagementActionResult</returns>
-        public ObjectManagementActionResult CreateNewObject(ObjectManagementNewRequest requestData, out ObjectManagementResponse responseData)
+        public ObjectActionResult Create(ObjectManagementNewRequest requestData, out ObjectManagementResponse responseData)
         {
             responseData = null;
             try
@@ -48,7 +48,7 @@ namespace Smartrac.SmartCosmos.Objects.ObjectManagement
                 {
                     if (null != Logger)
                         Logger.AddLog("Request data is invalid!", LogType.Error);
-                    return ObjectManagementActionResult.Failed;
+                    return ObjectActionResult.Failed;
                 }
 
                 var request = CreateWebRequest("/objects", WebRequestOption.Authorization);
@@ -64,19 +64,19 @@ namespace Smartrac.SmartCosmos.Objects.ObjectManagement
                             case HttpStatusCode.Created:
                             case HttpStatusCode.OK:
                                 responseData.objectUrn = new Urn(responseData.message);
-                                return ObjectManagementActionResult.Successful;
-                            default: return ObjectManagementActionResult.Failed;
+                                return ObjectActionResult.Successful;
+                            default: return ObjectActionResult.Failed;
                         }
                     }
                 }
 
-                return ObjectManagementActionResult.Failed;
+                return ObjectActionResult.Failed;
             }
             catch (Exception e)
             {
                 if (null != Logger)
                     Logger.AddLog(e.Message, LogType.Error);
-                return ObjectManagementActionResult.Failed;
+                return ObjectActionResult.Failed;
             }
         }
 
@@ -86,7 +86,7 @@ namespace Smartrac.SmartCosmos.Objects.ObjectManagement
         /// <param name="requestData">Object data</param>
         /// <param name="responseData">result, empty if successful</param>
         /// <returns>ObjectManagementActionResult</returns>
-        public ObjectManagementActionResult UpdateObject(ObjectManagementRequest requestData, out ObjectManagementResponse responseData)
+        public ObjectActionResult Update(ObjectManagementRequest requestData, out ObjectManagementResponse responseData)
         {
             responseData = null;
             try
@@ -95,7 +95,7 @@ namespace Smartrac.SmartCosmos.Objects.ObjectManagement
                 {
                     if (null != Logger)
                         Logger.AddLog("Request data is invalid!", LogType.Error);
-                    return ObjectManagementActionResult.Failed;
+                    return ObjectActionResult.Failed;
                 }
 
                 var request = CreateWebRequest("/objects", WebRequestOption.Authorization);
@@ -108,20 +108,20 @@ namespace Smartrac.SmartCosmos.Objects.ObjectManagement
                     {
                         switch (responseData.HTTPStatusCode)
                         {
-                            case HttpStatusCode.NoContent: return ObjectManagementActionResult.Successful;
-                            case HttpStatusCode.BadRequest: return ObjectManagementActionResult.Failed;
-                            default: return ObjectManagementActionResult.Failed;
+                            case HttpStatusCode.NoContent: return ObjectActionResult.Successful;
+                            case HttpStatusCode.BadRequest: return ObjectActionResult.Failed;
+                            default: return ObjectActionResult.Failed;
                         }
                     }
                 }
 
-                return ObjectManagementActionResult.Failed;
+                return ObjectActionResult.Failed;
             }
             catch (Exception e)
             {
                 if (null != Logger)
                     Logger.AddLog(e.Message, LogType.Error);
-                return ObjectManagementActionResult.Failed;
+                return ObjectActionResult.Failed;
             }
         }
 
@@ -132,7 +132,7 @@ namespace Smartrac.SmartCosmos.Objects.ObjectManagement
         /// <param name="viewType">A valid JSON Serialization View name (case-sensitive)</param>
         /// <param name="responseData">Object data</param>
         /// <returns>ObjectManagementActionResult</returns>
-        public ObjectManagementActionResult LookupSpecificObjectByUrn(Urn urn, out ObjectDataResponse responseData, ViewType viewType = ViewType.Standard)
+        public ObjectActionResult Lookup(Urn urn, out ObjectDataResponse responseData, ViewType viewType = ViewType.Standard)
         {
             responseData = null;
             try
@@ -141,7 +141,7 @@ namespace Smartrac.SmartCosmos.Objects.ObjectManagement
                 {
                     if (null != Logger)
                         Logger.AddLog("urn is not valid", LogType.Error);
-                    return ObjectManagementActionResult.Failed;
+                    return ObjectActionResult.Failed;
                 }
 
                 var request = CreateWebRequest("/objects/" + urn.UUID + "?view=" + viewType.GetDescription(), WebRequestOption.Authorization);
@@ -151,15 +151,15 @@ namespace Smartrac.SmartCosmos.Objects.ObjectManagement
                 {
                     responseData = responseDataObj as ObjectDataResponse;
                     if ((responseData != null) && (responseData.HTTPStatusCode == HttpStatusCode.OK))
-                        return ObjectManagementActionResult.Successful;
+                        return ObjectActionResult.Successful;
                 }
-                return ObjectManagementActionResult.Failed;
+                return ObjectActionResult.Failed;
             }
             catch (Exception e)
             {
                 if (null != Logger)
                     Logger.AddLog(e.Message, LogType.Error);
-                return ObjectManagementActionResult.Failed;
+                return ObjectActionResult.Failed;
             }
         }
 
@@ -171,7 +171,7 @@ namespace Smartrac.SmartCosmos.Objects.ObjectManagement
         /// <param name="exact">Defaults to true; when false, a starts-with search is performed</param>
         /// <param name="responseData">Object data</param>
         /// <returns>ObjectManagementActionResult</returns>
-        public ObjectManagementActionResult LookupSpecificObjectByObjectUrn(Urn objectUrn, out ObjectDataResponse responseData, ViewType viewType = ViewType.Standard, bool exact = true)
+        public ObjectActionResult LookupByObjectUrn(Urn objectUrn, out ObjectDataResponse responseData, ViewType viewType = ViewType.Standard, bool exact = true)
         {
             responseData = null;
             try
@@ -180,7 +180,7 @@ namespace Smartrac.SmartCosmos.Objects.ObjectManagement
                 {
                     if (null != Logger)
                         Logger.AddLog("urn is not valid", LogType.Error);
-                    return ObjectManagementActionResult.Failed;
+                    return ObjectActionResult.Failed;
                 }
 
                 var request = CreateWebRequest("/objects/" + objectUrn.UUID + "?view=" + viewType.GetDescription() + "&exact=" + exact.ToString(), WebRequestOption.Authorization);
@@ -190,15 +190,15 @@ namespace Smartrac.SmartCosmos.Objects.ObjectManagement
                 {
                     responseData = responseDataObj as ObjectDataResponse;
                     if ((responseData != null) && (responseData.HTTPStatusCode == HttpStatusCode.OK))
-                        return ObjectManagementActionResult.Successful;
+                        return ObjectActionResult.Successful;
                 }
-                return ObjectManagementActionResult.Failed;
+                return ObjectActionResult.Failed;
             }
             catch (Exception e)
             {
                 if (null != Logger)
                     Logger.AddLog(e.Message, LogType.Error);
-                return ObjectManagementActionResult.Failed;
+                return ObjectActionResult.Failed;
             }
         }
 
@@ -208,7 +208,7 @@ namespace Smartrac.SmartCosmos.Objects.ObjectManagement
         /// <param name="requestData">Object query request (e.g. filters like name, objectURN, ...)</param>
         /// <param name="responseData">List of objects</param>
         /// <returns>ObjectManagementActionResult</returns>
-        public ObjectManagementActionResult QueryObjects(QueryObjectsRequest requestData, out QueryObjectsResponse responseData)
+        public ObjectActionResult QueryObjects(QueryObjectsRequest requestData, out QueryObjectsResponse responseData)
         {
             responseData = null;
             try
@@ -217,7 +217,7 @@ namespace Smartrac.SmartCosmos.Objects.ObjectManagement
                 {
                     if (null != Logger)
                         Logger.AddLog("Request data is invalid!", LogType.Error);
-                    return ObjectManagementActionResult.Failed;
+                    return ObjectActionResult.Failed;
                 }
 
                 Uri url = new Uri("/objects").
@@ -243,20 +243,20 @@ namespace Smartrac.SmartCosmos.Objects.ObjectManagement
 
                         switch (HTTPStatusCode)
                         {
-                            case HttpStatusCode.NoContent: return ObjectManagementActionResult.Successful;
-                            case HttpStatusCode.BadRequest: return ObjectManagementActionResult.Failed;
-                            default: return ObjectManagementActionResult.Failed;
+                            case HttpStatusCode.NoContent: return ObjectActionResult.Successful;
+                            case HttpStatusCode.BadRequest: return ObjectActionResult.Failed;
+                            default: return ObjectActionResult.Failed;
                         }
                     }
                 }
 
-                return ObjectManagementActionResult.Failed;
+                return ObjectActionResult.Failed;
             }
             catch (Exception e)
             {
                 if (null != Logger)
                     Logger.AddLog(e.Message, LogType.Error);
-                return ObjectManagementActionResult.Failed;
+                return ObjectActionResult.Failed;
             }
         }
     }

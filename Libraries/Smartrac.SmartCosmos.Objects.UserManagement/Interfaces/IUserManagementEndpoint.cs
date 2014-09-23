@@ -27,7 +27,7 @@ using Smartrac.SmartCosmos.Objects.Base;
 
 namespace Smartrac.SmartCosmos.Objects.UserManagement
 {
-    public enum UserManagementActionResult
+    public enum UserActionResult
     {
         /// <summary>
         /// action was successful
@@ -53,7 +53,7 @@ namespace Smartrac.SmartCosmos.Objects.UserManagement
         /// <param name="requestData">user data</param>
         /// <param name="responseData">result</param>
         /// <returns>UserManagementActionResult</returns>
-        UserManagementActionResult CreateNewUser(UserManagementRequest requestData, out UserManagementResponse responseData);
+        UserActionResult CreateNewUser(UserManagementRequest requestData, out UserManagementResponse responseData);
 
         /// <summary>
         /// Update an existing user
@@ -61,7 +61,7 @@ namespace Smartrac.SmartCosmos.Objects.UserManagement
         /// <param name="requestData">user data</param>
         /// <param name="responseData">result, empty if successful</param>
         /// <returns>UserManagementActionResult</returns>
-        UserManagementActionResult UpdateUser(UserManagementRequest requestData, out UserManagementResponse responseData);
+        UserActionResult UpdateUser(UserManagementRequest requestData, out UserManagementResponse responseData);
 
         /// <summary>
         /// Lookup a specific user by its system-assigned URN key
@@ -70,7 +70,7 @@ namespace Smartrac.SmartCosmos.Objects.UserManagement
         /// <param name="viewType">A valid JSON Serialization View name (case-sensitive)</param>
         /// <param name="responseData">user data</param>
         /// <returns>UserManagementActionResult</returns>
-        UserManagementActionResult LookupSpecificUser(Urn userUrn, ViewType? viewType, out UserDataResponse responseData);
+        UserActionResult LookupSpecificUser(Urn userUrn, ViewType? viewType, out UserDataResponse responseData);
 
         /// <summary>
         /// Lookup a specific user by their email address
@@ -79,7 +79,7 @@ namespace Smartrac.SmartCosmos.Objects.UserManagement
         /// <param name="viewType">A valid JSON Serialization View name (case-sensitive)</param>
         /// <param name="responseData">user data</param>
         /// <returns>UserManagementActionResult</returns>
-        UserManagementActionResult LookupSpecificUser(string eMailAddress, ViewType? viewType, out UserDataResponse responseData);
+        UserActionResult LookupSpecificUser(string eMailAddress, ViewType? viewType, out UserDataResponse responseData);
 
         /// <summary>
         /// Initiate a reset password workflow or specifically define the user's password
@@ -88,6 +88,6 @@ namespace Smartrac.SmartCosmos.Objects.UserManagement
         /// /// <param name="eMailAddress">optional: newPassword</param>
         /// <param name="responseData">result, empty if successful</param>
         /// <returns>UserManagementActionResult</returns>
-        UserManagementActionResult ChangeOrResetUserPassword(ChangeOrResetUserPasswordRequest requestData, out ChangeOrResetUserPasswordResponse responseData);
+        UserActionResult ChangeOrResetUserPassword(ChangeOrResetUserPasswordRequest requestData, out ChangeOrResetUserPasswordResponse responseData);
     }
 }

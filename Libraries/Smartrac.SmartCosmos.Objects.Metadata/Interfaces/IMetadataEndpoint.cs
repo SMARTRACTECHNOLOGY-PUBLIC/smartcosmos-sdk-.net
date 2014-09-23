@@ -66,6 +66,236 @@ namespace Smartrac.SmartCosmos.Objects.Metadata
 
     public interface IMetadataEndpoint : IBaseEndpoint
     {
+        // Functions for type safe decoding
+        #region TypeSafeEncoding
 
+        /// <summary>
+        /// Encodes a strongly typed value using the platform's built-in encoder
+        /// </summary>
+        /// <param name="value">value</paramMetadata>
+        /// <param name="encodedValue">encodedValue</paramMetadata>
+        /// <returns>MetadataActionResult</returns>
+        MetadataActionResult Encode(bool value, out string encodedValue);
+
+        /// <summary>
+        /// Encodes a strongly typed value using the platform's built-in encoder
+        /// </summary>
+        /// <param name="Value">value</param>
+        /// <param name="responseData">response data</param>
+        /// <returns>MetadataActionResult</returns>
+        MetadataActionResult Encode(bool value, out TypeSafeEncodingResponse responseData);
+
+        /// <summary>
+        /// Encodes a strongly typed value using the platform's built-in encoder
+        /// </summary>
+        /// <param name="value">value</paramMetadata>
+        /// <param name="encodedValue">encodedValue</paramMetadata>
+        /// <returns>MetadataActionResult</returns>
+        MetadataActionResult Encode(int value, out string encodedValue);
+
+        /// <summary>
+        /// Encodes a strongly typed value using the platform's built-in encoder
+        /// </summary>
+        /// <param name="Value">value</param>
+        /// <param name="responseData">response data</param>
+        /// <returns>MetadataActionResult</returns>
+        MetadataActionResult Encode(int value, out TypeSafeEncodingResponse responseData);
+
+        /// <summary>
+        /// Encodes a strongly typed value using the platform's built-in encoder
+        /// </summary>
+        /// <param name="value">value</paramMetadata>
+        /// <param name="encodedValue">encodedValue</paramMetadata>
+        /// <returns>MetadataActionResult</returns>
+        MetadataActionResult Encode(DateTime value, out string encodedValue);
+
+        /// <summary>
+        /// Encodes a strongly typed value using the platform's built-in encoder
+        /// </summary>
+        /// <param name="Value">value</param>
+        /// <param name="responseData">response data</param>
+        /// <returns>MetadataActionResult</returns>
+        MetadataActionResult Encode(DateTime value, out TypeSafeEncodingResponse responseData);
+
+        /// <summary>
+        /// Encodes a strongly typed value using the platform's built-in encoder
+        /// </summary>
+        /// <param name="value">value</paramMetadata>
+        /// <param name="encodedValue">encodedValue</paramMetadata>
+        /// <returns>MetadataActionResult</returns>
+        MetadataActionResult Encode(long value, out string encodedValue);
+
+        /// <summary>
+        /// Encodes a strongly typed value using the platform's built-in encoder
+        /// </summary>
+        /// <param name="Value">value</param>
+        /// <param name="responseData">response data</param>
+        /// <returns>MetadataActionResult</returns>
+        MetadataActionResult Encode(long value, out TypeSafeEncodingResponse responseData);
+
+        /// <summary>
+        /// Encodes a strongly typed value using the platform's built-in encoder
+        /// </summary>
+        /// <param name="value">value</paramMetadata>
+        /// <param name="encodedValue">encodedValue</paramMetadata>
+        /// <returns>MetadataActionResult</returns>
+        MetadataActionResult Encode(double value, out string encodedValue);
+
+        /// <summary>
+        /// Encodes a strongly typed value using the platform's built-in encoder
+        /// </summary>
+        /// <param name="Value">value</param>
+        /// <param name="responseData">response data</param>
+        /// <returns>MetadataActionResult</returns>
+        MetadataActionResult Encode(double value, out TypeSafeEncodingResponse responseData);
+
+        /// <summary>
+        /// Encodes a strongly typed value using the platform's built-in encoder
+        /// </summary>
+        /// <param name="value">value</paramMetadata>
+        /// <param name="encodedValue">encodedValue</paramMetadata>
+        /// <returns>MetadataActionResult</returns>
+        MetadataActionResult Encode(float value, out string encodedValue);
+
+        /// <summary>
+        /// Encodes a strongly typed value using the platform's built-in encoder
+        /// </summary>
+        /// <param name="Value">value</param>
+        /// <param name="responseData">response data</param>
+        /// <returns>MetadataActionResult</returns>
+        MetadataActionResult Encode(float value, out TypeSafeEncodingResponse responseData);
+
+        /// <summary>
+        /// Encodes a strongly typed value using the platform's built-in encoder
+        /// </summary>
+        /// <param name="value">value</paramMetadata>
+        /// <param name="encodedValue">encodedValue</paramMetadata>
+        /// <param name="metaDataType">Valid MetadataDataType enum value</paramMetadata>
+        /// <returns>MetadataActionResult</returns>
+        MetadataActionResult Encode(string value, out string encodedValue,
+            MetadataDataType metaDataType = MetadataDataType.String);
+
+        /// <summary>
+        /// Encodes a strongly typed value using the platform's built-in encoder
+        /// </summary>
+        /// <param name="value">value</paramMetadata>
+        /// <param name="encodedValue">encodedValue</paramMetadata>
+        /// <param name="metaDataType">Valid MetadataDataType enum value</paramMetadata>
+        /// <returns>MetadataActionResult</returns>
+        MetadataActionResult Encode(string Value,
+            out TypeSafeEncodingResponse responseData, MetadataDataType metaDataType = MetadataDataType.String);
+
+        #endregion
+
+        // Functions for type safe encoding
+        #region TypeSafeDecoding
+
+        /// <summary>
+        /// Decodes a strongly typed value previously encoded using the platform's built-in encoder
+        /// </summary>
+        /// <param name="requestData">request data</paramMetadata>
+        /// <param name="responseData">response data</paramMetadata>
+        /// <param name="metaDataType">Valid MetadataDataType enum value</paramMetadata>
+        /// <returns>MetadataActionResult</returns>
+        MetadataActionResult Decode(string value, 
+            out TypeSafeDecodingResponse responseData, 
+            MetadataDataType metaDataType = MetadataDataType.String);
+
+        /// <summary>
+        /// Decodes a strongly typed value previously encoded using the platform's built-in encoder
+        /// </summary>
+        /// <param name="requestData">request data</paramMetadata>
+        /// <param name="responseData">response data</paramMetadata>
+        /// <param name="metaDataType">Valid MetadataDataType enum value</paramMetadata>
+        /// <returns>MetadataActionResult</returns>
+        MetadataActionResult Decode(string value, out string decodedValue, MetadataDataType metaDataType = MetadataDataType.String);
+
+        /// <summary>
+        /// Decodes a strongly typed value previously encoded using the platform's built-in encoder
+        /// </summary>
+        /// <param name="requestData">request data</paramMetadata>
+        /// <param name="responseData">response data</paramMetadata>
+        /// <param name="metaDataType">Valid MetadataDataType enum value</paramMetadata>
+        /// <returns>MetadataActionResult</returns>
+        MetadataActionResult Decode(string value, out DateTime decodedValue);
+
+        /// <summary>
+        /// Decodes a strongly typed value previously encoded using the platform's built-in encoder
+        /// </summary>
+        /// <param name="requestData">request data</paramMetadata>
+        /// <param name="responseData">response data</paramMetadata>
+        /// <param name="metaDataType">Valid MetadataDataType enum value</paramMetadata>
+        /// <returns>MetadataActionResult</returns>
+        MetadataActionResult Decode(string value, out long decodedValue);
+
+        /// <summary>
+        /// Decodes a strongly typed value previously encoded using the platform's built-in encoder
+        /// </summary>
+        /// <param name="requestData">request data</paramMetadata>
+        /// <param name="responseData">response data</paramMetadata>
+        /// <param name="metaDataType">Valid MetadataDataType enum value</paramMetadata>
+        /// <returns>MetadataActionResult</returns>
+        MetadataActionResult Decode(string value, out int decodedValue);
+
+        /// <summary>
+        /// Decodes a strongly typed value previously encoded using the platform's built-in encoder
+        /// </summary>
+        /// <param name="requestData">request data</paramMetadata>
+        /// <param name="responseData">response data</paramMetadata>
+        /// <param name="metaDataType">Valid MetadataDataType enum value</paramMetadata>
+        /// <returns>MetadataActionResult</returns>
+        MetadataActionResult Decode(string value, out bool decodedValue);
+
+        /// <summary>
+        /// Decodes a strongly typed value previously encoded using the platform's built-in encoder
+        /// </summary>
+        /// <param name="requestData">request data</paramMetadata>
+        /// <param name="responseData">response data</paramMetadata>
+        /// <param name="metaDataType">Valid MetadataDataType enum value</paramMetadata>
+        /// <returns>MetadataActionResult</returns>
+        MetadataActionResult Decode(string value, out float decodedValue);
+
+        /// <summary>
+        /// Decodes a strongly typed value previously encoded using the platform's built-in encoder
+        /// </summary>
+        /// <param name="requestData">request data</paramMetadata>
+        /// <param name="responseData">response data</paramMetadata>
+        /// <param name="metaDataType">Valid MetadataDataType enum value</paramMetadata>
+        /// <returns>MetadataActionResult</returns>
+        MetadataActionResult Decode(string value, out double decodedValue);
+
+        /// <summary>
+        /// Decodes a strongly typed value previously encoded using the platform's built-in encoder
+        /// </summary>
+        /// <param name="requestData">request data</paramMetadata>
+        /// <param name="responseData">response data</paramMetadata>
+        /// <returns>MetadataActionResult</returns>
+        MetadataActionResult Decode(TypeSafeDecodingRequest requestData, out TypeSafeDecodingResponse responseData);
+
+        #endregion
+
+        /// <summary>
+        /// Inserts a new key-value or updates an existing key value related to the specified entity
+        /// </summary>
+        /// <param name="requestData">request data</paramMetadata>
+        /// <param name="responseData">response data</paramMetadata>
+        /// <returns>MetadataActionResult</returns>
+        MetadataActionResult Upsertion(AddOrUpdateMetadataRequest requestData, out AddOrUpdateMetadataResponse responseData);
+
+        /// <summary>
+        /// Deletes an existing metadata key by its system-assigned URN key
+        /// </summary>
+        /// <param name="requestData">request data</paramMetadata>
+        /// <param name="responseData">response data, is null in case of success</paramMetadata>
+        /// <returns>MetadataActionResult</returns>
+        MetadataActionResult Delete(DeleteMetadataRequest requestData, out DeleteMetadataResponse responseData);
+
+        /// <summary>
+        /// Lookup all metadata that matches the specified key pattern
+        /// </summary>
+        /// <param name="requestData">request data</paramMetadata>
+        /// <param name="responseData">response data</paramMetadata>
+        /// <returns>MetadataActionResult</returns>
+        MetadataActionResult Lookup(LookupMetadataRequest requestData, out LookupMetadataResponse responseData);
     }
 }

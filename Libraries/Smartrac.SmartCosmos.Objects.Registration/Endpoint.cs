@@ -75,7 +75,7 @@ namespace Smartrac.SmartCosmos.Objects.Registration
         /// <param name="requestData">Account data (realm and email address)</param>
         /// <param name="responseData">Registration result</param>
         /// <returns>RegistrationActionResult</returns>
-        public RegistrationActionResult AccountRegistration(AccountRegistrationRequest requestData, out AccountRegistrationResponse responseData)
+        public RegistrationActionResult RegisterAccount(AccountRegistrationRequest requestData, out AccountRegistrationResponse responseData)
         {
             responseData = null;
             try

@@ -80,7 +80,7 @@ namespace Smartrac.SmartCosmos.Objects.File
         /// <param name="view">A valid JSON Serialization View name (case-sensitive)</param> 
         /// <param name="responseData">File properties</param>
         /// <returns>FileActionResult</returns>
-        FileActionResult SpecificFileDefinitionRetrieval(Urn fileUrn, out FileDefinitionRetrievalResponse responseData, ViewType viewType = ViewType.Standard );
+        FileActionResult LookupDefinition(Urn fileUrn, out FileDefinitionRetrievalResponse responseData, ViewType viewType = ViewType.Standard );
 
         /// <summary>
         /// Retrieves the actual file content from the cloud
@@ -88,7 +88,7 @@ namespace Smartrac.SmartCosmos.Objects.File
         /// <param name="fileUrn">System-assigned URN assigned at creation of file definition</param>
         /// <param name="responseData">FileContentRetrievalResponse</param>
         /// <returns>FileActionResult</returns>
-        FileActionResult FileContentRetrieval(Urn fileUrn, out FileContentRetrievalResponse responseData);
+        FileActionResult LookupContent(Urn fileUrn, out FileContentRetrievalResponse responseData);
 
         /// <summary>
         /// Retrieves the complete collection of file definitions associated with the specified entity
@@ -98,13 +98,13 @@ namespace Smartrac.SmartCosmos.Objects.File
         /// <param name="view">A valid JSON Serialization View name (case-sensitive)</param> 
         /// <param name="responseData">File properties</param>
         /// <returns>FileActionResult</returns>
-        FileActionResult RelatedFileDefinitionsRetrieval(EntityReferenceType entityReferenceType, Urn referenceUrn, out FileDefinitionRetrievalListResponse responseData, ViewType viewType = ViewType.Standard);
+        FileActionResult LookupDefinitions(EntityReferenceType entityReferenceType, Urn referenceUrn, out FileDefinitionRetrievalListResponse responseData, ViewType viewType = ViewType.Standard);
 
         /// <summary>
         /// Deletes an existing relationship by its system-assigned URN key
         /// </summary>
         /// <param name="fileUrn">System-assigned URN assigned at creation of file definition</param>
         /// <returns>FileActionResult</returns>
-        FileActionResult FileDeletion(Urn fileUrn);
+        FileActionResult Delete(Urn fileUrn);
     }
 }

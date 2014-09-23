@@ -39,7 +39,7 @@ namespace Smartrac.SmartCosmos.Objects.RelationshipManagement
         /// <param name="requestData">Relationship data</param>
         /// <param name="responseData">result</param>
         /// <returns>RelationshipManagementActionResult</returns>
-        public RelationshipManagementActionResult CreateNewRelationship(RelationshipManagementRequest requestData, out RelationshipManagementResponse responseData)
+        public RelationshipActionResult Create(RelationshipManagementRequest requestData, out RelationshipManagementResponse responseData)
         {
             responseData = null;
             try
@@ -48,7 +48,7 @@ namespace Smartrac.SmartCosmos.Objects.RelationshipManagement
                 {
                     if (null != Logger)
                         Logger.AddLog("Request data is invalid!", LogType.Error);
-                    return RelationshipManagementActionResult.Failed;
+                    return RelationshipActionResult.Failed;
                 }
 
                 var request = CreateWebRequest("/relationships/" + requestData.entityReferenceType + "/" + requestData.referenceUrn, WebRequestOption.Authorization);
@@ -64,19 +64,19 @@ namespace Smartrac.SmartCosmos.Objects.RelationshipManagement
                             case HttpStatusCode.Created:
                             case HttpStatusCode.OK:
                                 responseData.relationshipUrn = new Urn(responseData.message);
-                                return RelationshipManagementActionResult.Successful;
-                            default: return RelationshipManagementActionResult.Failed;
+                                return RelationshipActionResult.Successful;
+                            default: return RelationshipActionResult.Failed;
                         }
                     }
                 }
 
-                return RelationshipManagementActionResult.Failed;
+                return RelationshipActionResult.Failed;
             }
             catch (Exception e)
             {
                 if (null != Logger)
                     Logger.AddLog(e.Message, LogType.Error);
-                return RelationshipManagementActionResult.Failed;
+                return RelationshipActionResult.Failed;
             }
         }
 
@@ -87,7 +87,7 @@ namespace Smartrac.SmartCosmos.Objects.RelationshipManagement
         /// <param name="viewType">A valid JSON Serialization View name (case-sensitive)</param>
         /// <param name="responseData">Relationship data</param>
         /// <returns>RelationshipManagementActionResult</returns>
-        public RelationshipManagementActionResult LookupSpecificRelationshipByUrn(Urn relationshipUrn, out RelationshipDataResponse responseData, ViewType viewType = ViewType.Standard)
+        public RelationshipActionResult Lookup(Urn relationshipUrn, out RelationshipDataResponse responseData, ViewType viewType = ViewType.Standard)
         {
             responseData = null;
             try
@@ -96,7 +96,7 @@ namespace Smartrac.SmartCosmos.Objects.RelationshipManagement
                 {
                     if (null != Logger)
                         Logger.AddLog("urn is not valid", LogType.Error);
-                    return RelationshipManagementActionResult.Failed;
+                    return RelationshipActionResult.Failed;
                 }
 
                 var request = CreateWebRequest("/relationships/" + relationshipUrn.UUID + "?view=" + viewType.GetDescription(), WebRequestOption.Authorization);
@@ -106,15 +106,15 @@ namespace Smartrac.SmartCosmos.Objects.RelationshipManagement
                 {
                     responseData = responseDataObj as RelationshipDataResponse;
                     if ((responseData != null) && (responseData.HTTPStatusCode == HttpStatusCode.OK))
-                        return RelationshipManagementActionResult.Successful;
+                        return RelationshipActionResult.Successful;
                 }
-                return RelationshipManagementActionResult.Failed;
+                return RelationshipActionResult.Failed;
             }
             catch (Exception e)
             {
                 if (null != Logger)
                     Logger.AddLog(e.Message, LogType.Error);
-                return RelationshipManagementActionResult.Failed;
+                return RelationshipActionResult.Failed;
             }
         }
 
@@ -124,7 +124,7 @@ namespace Smartrac.SmartCosmos.Objects.RelationshipManagement
         /// <param name="requestData">filter data</param>
         /// <param name="responseData">list of relationships</param>
         /// <returns>RelationshipManagementActionResult</returns>
-        public RelationshipManagementActionResult LookupAllRelationshipsBetweenEntities(QueryQueryRelationshipsRequest requestData, out QueryObjectRelationshipsResponse responseData, ViewType viewType = ViewType.Standard)
+        public RelationshipActionResult Lookup(QueryQueryRelationshipsRequest requestData, out QueryObjectRelationshipsResponse responseData, ViewType viewType = ViewType.Standard)
         {
             responseData = null;
             try
@@ -133,7 +133,7 @@ namespace Smartrac.SmartCosmos.Objects.RelationshipManagement
                 {
                     if (null != Logger)
                         Logger.AddLog("Request is not valid", LogType.Error);
-                    return RelationshipManagementActionResult.Failed;
+                    return RelationshipActionResult.Failed;
                 }
 
                 var request = CreateWebRequest("/relationships/" + requestData.entityReferenceType + "/" +
@@ -150,16 +150,16 @@ namespace Smartrac.SmartCosmos.Objects.RelationshipManagement
                     {
                         responseData.HTTPStatusCode = HTTPStatusCodeResult;
                         if (responseData.HTTPStatusCode == HttpStatusCode.OK)
-                          return RelationshipManagementActionResult.Successful;
+                          return RelationshipActionResult.Successful;
                     }
                 }
-                return RelationshipManagementActionResult.Failed;
+                return RelationshipActionResult.Failed;
             }
             catch (Exception e)
             {
                 if (null != Logger)
                     Logger.AddLog(e.Message, LogType.Error);
-                return RelationshipManagementActionResult.Failed;
+                return RelationshipActionResult.Failed;
             }
         }
 
@@ -170,7 +170,7 @@ namespace Smartrac.SmartCosmos.Objects.RelationshipManagement
         /// <param name="viewType">A valid JSON Serialization View name (case-sensitive)</param>
         /// <param name="responseData">Relationship data</param>
         /// <returns>RelationshipManagementActionResult</returns>
-        public RelationshipManagementActionResult LookupSpecificRelationshipBetweenEntities(QueryQueryRelationshipByTypeRequest requestData, out RelationshipDataResponse responseData, ViewType viewType = ViewType.Standard)
+        public RelationshipActionResult Lookup(QueryQueryRelationshipByTypeRequest requestData, out RelationshipDataResponse responseData, ViewType viewType = ViewType.Standard)
         {
             responseData = null;
             try
@@ -179,7 +179,7 @@ namespace Smartrac.SmartCosmos.Objects.RelationshipManagement
                 {
                     if (null != Logger)
                         Logger.AddLog("Request is not valid", LogType.Error);
-                    return RelationshipManagementActionResult.Failed;
+                    return RelationshipActionResult.Failed;
                 }
 
                 var request = CreateWebRequest("/relationships/" + requestData.entityReferenceType + "/" +
@@ -194,15 +194,15 @@ namespace Smartrac.SmartCosmos.Objects.RelationshipManagement
                 {
                     responseData = responseDataObj as RelationshipDataResponse;
                     if ((responseData != null) && (responseData.HTTPStatusCode == HttpStatusCode.OK))
-                        return RelationshipManagementActionResult.Successful;
+                        return RelationshipActionResult.Successful;
                 }
-                return RelationshipManagementActionResult.Failed;
+                return RelationshipActionResult.Failed;
             }
             catch (Exception e)
             {
                 if (null != Logger)
                     Logger.AddLog(e.Message, LogType.Error);
-                return RelationshipManagementActionResult.Failed;
+                return RelationshipActionResult.Failed;
             }
         }
 
@@ -212,7 +212,7 @@ namespace Smartrac.SmartCosmos.Objects.RelationshipManagement
         /// <param name="requestData">filter data</param>
         /// <param name="responseData">list of relationships</param>
         /// <returns>RelationshipManagementActionResult</returns>
-        public RelationshipManagementActionResult LookupAllRelationshipsByType(QueryQueryRelationshipsByTypeRequest requestData, out QueryObjectRelationshipsResponse responseData, ViewType viewType = ViewType.Standard)
+        public RelationshipActionResult Lookup(QueryQueryRelationshipsByTypeRequest requestData, out QueryObjectRelationshipsResponse responseData, ViewType viewType = ViewType.Standard)
         {
             responseData = null;
             try
@@ -221,7 +221,7 @@ namespace Smartrac.SmartCosmos.Objects.RelationshipManagement
                 {
                     if (null != Logger)
                         Logger.AddLog("Request is not valid", LogType.Error);
-                    return RelationshipManagementActionResult.Failed;
+                    return RelationshipActionResult.Failed;
                 }
 
                 var request = CreateWebRequest("/relationships/" + requestData.entityReferenceType + "/" +
@@ -239,16 +239,16 @@ namespace Smartrac.SmartCosmos.Objects.RelationshipManagement
                     {
                         responseData.HTTPStatusCode = HTTPStatusCodeResult;
                         if (responseData.HTTPStatusCode == HttpStatusCode.OK)
-                            return RelationshipManagementActionResult.Successful;
+                            return RelationshipActionResult.Successful;
                     }
                 }
-                return RelationshipManagementActionResult.Failed;
+                return RelationshipActionResult.Failed;
             }
             catch (Exception e)
             {
                 if (null != Logger)
                     Logger.AddLog(e.Message, LogType.Error);
-                return RelationshipManagementActionResult.Failed;
+                return RelationshipActionResult.Failed;
             }
         }
 
@@ -258,7 +258,7 @@ namespace Smartrac.SmartCosmos.Objects.RelationshipManagement
         /// </summary>
         /// <param name="relationshipUrn">relationshipUrn of the relationship record</param>
         /// <returns>RelationshipManagementActionResult</returns>
-        public RelationshipManagementActionResult RelationshipDeletion(Urn relationshipUrn)
+        public RelationshipActionResult Delete(Urn relationshipUrn)
         {
             try
             {
@@ -266,7 +266,7 @@ namespace Smartrac.SmartCosmos.Objects.RelationshipManagement
                 {
                     if (null != Logger)
                         Logger.AddLog("urn is not valid", LogType.Error);
-                    return RelationshipManagementActionResult.Failed;
+                    return RelationshipActionResult.Failed;
                 }
 
                 var request = CreateWebRequest("/relationships/" + relationshipUrn.UUID);
@@ -277,11 +277,11 @@ namespace Smartrac.SmartCosmos.Objects.RelationshipManagement
                     if ((response.StatusCode == HttpStatusCode.NoContent) &&
                        (response.Headers.Get("SmartCosmos-Event") == "RelationshipDeleted"))
                     {
-                        return RelationshipManagementActionResult.Successful;
+                        return RelationshipActionResult.Successful;
                     }
                     else
                     {
-                        return RelationshipManagementActionResult.Failed;
+                        return RelationshipActionResult.Failed;
                     }
                 }
             }
@@ -289,7 +289,7 @@ namespace Smartrac.SmartCosmos.Objects.RelationshipManagement
             {
                 if (null != Logger)
                     Logger.AddLog(e.Message, LogType.Error);
-                return RelationshipManagementActionResult.Failed;
+                return RelationshipActionResult.Failed;
             }
         }
 
