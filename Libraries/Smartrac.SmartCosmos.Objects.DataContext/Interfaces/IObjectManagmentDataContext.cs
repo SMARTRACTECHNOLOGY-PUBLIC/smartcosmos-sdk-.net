@@ -27,7 +27,7 @@ namespace Smartrac.SmartCosmos.Objects.DataContext
     public interface IObjectManagementDataContext
     {
         Urn GetObjectUrn();
-        string GetType();
+        string GetCategory();
         string GetName();
         string GetDescription();
         bool GetActiveFlag();

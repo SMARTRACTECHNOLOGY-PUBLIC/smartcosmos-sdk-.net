@@ -34,7 +34,7 @@ namespace Smartrac.SmartCosmos.Objects.DataContext
         {
             return null;
         }
-        public virtual string GetType()
+        public virtual string GetCategory()
         {
             return null;
         }

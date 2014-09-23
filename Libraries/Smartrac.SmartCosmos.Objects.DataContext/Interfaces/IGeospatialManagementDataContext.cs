@@ -29,7 +29,7 @@ namespace Smartrac.SmartCosmos.Objects.DataContext
     {
         Urn GetGeospatialUrn();
         string GetName();
-        string GetType();
+        string GetCategory();
         string GetDescription();
         bool GetActiveFlag();
         GeoJSONObject GetGeometricShape();

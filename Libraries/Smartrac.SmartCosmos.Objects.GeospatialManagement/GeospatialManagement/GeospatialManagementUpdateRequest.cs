@@ -28,20 +28,6 @@ namespace Smartrac.SmartCosmos.Objects.GeospatialManagement
     [DataContract]
     public class GeospatialManagementUpdateRequest : GeospatialEntryDataRequest
     {
-        [DataMember(IsRequired = true)]
-        public string urn
-        {
-            get
-            {
-                return (geospatialUrn != null) ? geospatialUrn.UUID : "";
-            }
-            set
-            {
-                geospatialUrn = new Urn(value);
-            }
-        }
-        public Urn geospatialUrn { get; set; }
-
         public override bool IsValid()
         {
             return base.IsValid() &&

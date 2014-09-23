@@ -34,6 +34,7 @@ namespace Smartrac.SmartCosmos.Objects.Metadata
     /// </summary>
     class MetadataEndpoint : BaseObjectsEndpoint, IMetadataEndpoint
     {
+        // Functions for type safe decoding
         #region TypeSafeEncoding
 
         /// <summary>
@@ -264,8 +265,9 @@ namespace Smartrac.SmartCosmos.Objects.Metadata
 
         #endregion
 
+        // Functions for type safe encoding
         #region TypeSafeDecoding
-        
+
         /// <summary>
         /// Decodes a strongly typed value previously encoded using the platform's built-in encoder
         /// </summary>
@@ -275,11 +277,11 @@ namespace Smartrac.SmartCosmos.Objects.Metadata
         /// <returns>MetadataActionResult</returns>
         protected MetadataActionResult TypeSafeDecoding(string value, out TypeSafeDecodingResponse responseData, MetadataDataType metaDataType = MetadataDataType.String)
         {
-            return TypeSafeDecoding(new TypeSafeDecodingRequest 
-                                        { 
+            return TypeSafeDecoding(new TypeSafeDecodingRequest
+                                        {
                                             dataTypeObj = metaDataType,
                                             rawValue = value
-                                        }, 
+                                        },
                                     out responseData);
         }
 
@@ -482,12 +484,8 @@ namespace Smartrac.SmartCosmos.Objects.Metadata
         /// <param name="requestData">request data</paramMetadata>
         /// <param name="responseData">response data</paramMetadata>
         /// <returns>MetadataActionResult</returns>
-        protected MetadataActionResult MetadataUpsertion(TypeSafeDecodingRequest requestData, out TypeSafeDecodingResponse responseData)
+        protected MetadataActionResult MetadataUpsertion(AddOrUpdateMetadataRequest requestData, out AddOrUpdateMetadataResponse responseData)
         {
-            // continue here
-            responseData = null;
-            return MetadataActionResult.Failed; 
-            /*
             responseData = null;
             if ((null == requestData) || !requestData.IsValid())
             {
@@ -496,12 +494,12 @@ namespace Smartrac.SmartCosmos.Objects.Metadata
                 return MetadataActionResult.Failed;
             }
 
-            var request = CreateWebRequest("/metadata/mapper/encode/" + requestData.dataTypeObj.GetDescription(), WebRequestOption.Authorization);
+            var request = CreateWebRequest("/metadata/" + requestData.entityReferenceType.GetDescription() + "/" + requestData.entityUrn.UUID, WebRequestOption.Authorization);
             object responseDataObj = null;
-            ExecuteWebRequestJSON(request, typeof(TypeSafeDecodingRequest), requestData, typeof(TypeSafeDecodingResponse), out responseDataObj);
+            ExecuteWebRequestJSON(request, typeof(AddOrUpdateMetadataRequest), requestData.MetaDataList, typeof(AddOrUpdateMetadataResponse), out responseDataObj);
             if (null != responseDataObj)
             {
-                responseData = responseDataObj as TypeSafeDecodingResponse;
+                responseData = responseDataObj as AddOrUpdateMetadataResponse;
                 if (responseData != null)
                 {
                     switch (responseData.HTTPStatusCode)
@@ -512,9 +510,86 @@ namespace Smartrac.SmartCosmos.Objects.Metadata
                 }
             }
             return MetadataActionResult.Failed;
-             */ 
         }
-    
-    
+
+        /// <summary>
+        /// Deletes an existing metadata key by its system-assigned URN key
+        /// </summary>
+        /// <param name="requestData">request data</paramMetadata>
+        /// <param name="responseData">response data, is null in case of success</paramMetadata>
+        /// <returns>MetadataActionResult</returns>
+        protected MetadataActionResult MetadataDeletion(DeleteMetadataRequest requestData, out DeleteMetadataResponse responseData)
+        {
+            responseData = null;
+            if ((null == requestData) || !requestData.IsValid())
+            {
+                if (null != Logger)
+                    Logger.AddLog("request data is invalid", LogType.Error);
+                return MetadataActionResult.Failed;
+            }
+
+            var request = CreateWebRequest("/metadata/" + requestData.entityReferenceType.GetDescription() + "/" + requestData.entityUrn.UUID + "/" + requestData.key);
+            request.Method = "DELETE";
+
+            using (var response = request.GetResponse() as System.Net.HttpWebResponse)
+            {
+                if ((response.StatusCode == HttpStatusCode.NoContent) &&
+                   (response.Headers.Get("SmartCosmos-Event") == "MetadataDeleted"))
+                {
+                    return MetadataActionResult.Successful;
+                }
+                else
+                {
+                    DataContractJsonSerializer serializer = new DataContractJsonSerializer( typeof(DeleteMetadataResponse));
+                    responseData = (DeleteMetadataResponse)serializer.ReadObject(response.GetResponseStream());
+
+                    if (responseData is BaseResponse)
+                    {
+                        ((BaseResponse)responseData).HTTPStatusCode = response.StatusCode;
+                    }
+                    return MetadataActionResult.Failed;
+                }
+            }
+        }
+
+        /// <summary>
+        /// Lookup all metadata that matches the specified key pattern
+        /// </summary>
+        /// <param name="requestData">request data</paramMetadata>
+        /// <param name="responseData">response data</paramMetadata>
+        /// <returns>MetadataActionResult</returns>
+        protected MetadataActionResult LookupMetadata(LookupMetadataRequest requestData, out LookupMetadataResponse responseData)
+        {
+            responseData = null;
+            if ((null == requestData) || !requestData.IsValid())
+            {
+                if (null != Logger)
+                    Logger.AddLog("request data is invalid", LogType.Error);
+                return MetadataActionResult.Failed;
+            }
+
+            //metadata/{entityReferenceType}/{referenceUrn}{?view,key}
+            var request = CreateWebRequest("/metadata/" + 
+                                        requestData.entityReferenceType.GetDescription() + "/" + 
+                                        requestData.referenceUrn.UUID +
+                                        "?view=" + requestData.viewType.GetDescription() +
+                                        requestData.key ?? "&key" + requestData.key
+                                        , WebRequestOption.Authorization);
+            object responseDataObj = null;
+            ExecuteWebRequestJSON(request, typeof(LookupMetadataResponse), out responseDataObj);
+            if (null != responseDataObj)
+            {
+                responseData = responseDataObj as LookupMetadataResponse;
+                if (responseData != null)
+                {
+                    switch (responseData.HTTPStatusCode)
+                    {
+                        case HttpStatusCode.OK: return MetadataActionResult.Successful;
+                        default: return MetadataActionResult.Failed;
+                    }
+                }
+            }
+            return MetadataActionResult.Failed;
+        }
     }
 }
