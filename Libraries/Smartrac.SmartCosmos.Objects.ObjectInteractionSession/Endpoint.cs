@@ -40,7 +40,7 @@ namespace Smartrac.SmartCosmos.Objects.ObjectInteractionSession
         /// <param name="requestData">Object data</param>
         /// <param name="responseData">result</param>
         /// <returns>ObjectInteractionSessionActionResult</returns>
-        public ObjInteractSessionActionResult Start(StartObjectInteractionSessionRequest requestData, 
+        public ObjInteractSessionActionResult Start(StartObjectInteractionSessionRequest requestData,
                                                           out StartObjectInteractionSessionResponse responseData)
         {
             responseData = null;
@@ -102,7 +102,7 @@ namespace Smartrac.SmartCosmos.Objects.ObjectInteractionSession
                 var request = CreateWebRequest("/sessions", WebRequestOption.Authorization);
                 object responseDataObj = null;
                 HttpWebResponse webResponse;
-                HttpStatusCode HttpCode = ExecuteWebRequestJSON(request, 
+                HttpStatusCode HttpCode = ExecuteWebRequestJSON(request,
                                                typeof(StopObjectInteractionSessionRequest), requestData,
                                                typeof(StopObjectInteractionSessionResponse), out responseDataObj,
                                                out webResponse);
@@ -112,7 +112,7 @@ namespace Smartrac.SmartCosmos.Objects.ObjectInteractionSession
                     if ((responseData != null) &&
                         (webResponse != null) &&
                        (responseData.HTTPStatusCode == HttpStatusCode.NoContent) &&
-                       (webResponse.Headers.Get("SmartCosmos-Event")  == "InteractionSessionStop"))
+                       (webResponse.Headers.Get("SmartCosmos-Event") == "InteractionSessionStop"))
                     {
                         responseData.startTime = Rfc3339DateTime.Parse(webResponse.Headers.Get("SmartCosmos-Session-Start"));
                         return ObjInteractSessionActionResult.Successful;
@@ -137,8 +137,8 @@ namespace Smartrac.SmartCosmos.Objects.ObjectInteractionSession
         /// <param name="responseData">Object data</param>
         /// <returns>ObjectManagementActionResult</returns>
         public ObjInteractSessionActionResult Lookup(Urn sessionUrn,
-                                                           out ObjectInteractionSessionDataResponse responseData,
-                                                           ViewType viewType = ViewType.Standard)
+                                                        out ObjectInteractionSessionDataResponse responseData,
+                                                        ViewType viewType = ViewType.Standard)
         {
             responseData = null;
             try
@@ -181,8 +181,8 @@ namespace Smartrac.SmartCosmos.Objects.ObjectInteractionSession
         /// <param name="responseData">Object data</param>
         /// <returns>ObjectManagementActionResult</returns>
         public ObjInteractSessionActionResult Lookup(string nameLike,
-                                                           out ObjectInteractionSessionDataResponse responseData,
-                                                           ViewType viewType = ViewType.Standard)
+                                                     out ObjectInteractionSessionDataResponse responseData,
+                                                     ViewType viewType = ViewType.Standard)
         {
             responseData = null;
             try

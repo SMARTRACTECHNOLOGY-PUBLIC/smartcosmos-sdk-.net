@@ -209,7 +209,7 @@ namespace Smartrac.SmartCosmos.Objects.Metadata
         /// <param name="encodedValue">encodedValue</paramMetadata>
         /// <param name="metaDataType">Valid MetadataDataType enum value</paramMetadata>
         /// <returns>MetadataActionResult</returns>
-        protected MetadataActionResult Encode(string Value, out TypeSafeEncodingResponse responseData, MetadataDataType metaDataType = MetadataDataType.String)
+        public MetadataActionResult Encode(string Value, out TypeSafeEncodingResponse responseData, MetadataDataType metaDataType = MetadataDataType.String)
         {
             responseData = null;
             try
@@ -275,7 +275,7 @@ namespace Smartrac.SmartCosmos.Objects.Metadata
         /// <param name="responseData">response data</paramMetadata>
         /// <param name="metaDataType">Valid MetadataDataType enum value</paramMetadata>
         /// <returns>MetadataActionResult</returns>
-        protected MetadataActionResult Decode(string value, out TypeSafeDecodingResponse responseData, MetadataDataType metaDataType = MetadataDataType.String)
+        public MetadataActionResult Decode(string value, out TypeSafeDecodingResponse responseData, MetadataDataType metaDataType = MetadataDataType.String)
         {
             return Decode(new TypeSafeDecodingRequest
                                         {
@@ -292,7 +292,7 @@ namespace Smartrac.SmartCosmos.Objects.Metadata
         /// <param name="responseData">response data</paramMetadata>
         /// <param name="metaDataType">Valid MetadataDataType enum value</paramMetadata>
         /// <returns>MetadataActionResult</returns>
-        protected MetadataActionResult Decode(string value, out string decodedValue, MetadataDataType metaDataType = MetadataDataType.String)
+        public MetadataActionResult Decode(string value, out string decodedValue, MetadataDataType metaDataType = MetadataDataType.String)
         {
             TypeSafeDecodingResponse responseData;
             MetadataActionResult result = Decode(value, out responseData, metaDataType);
@@ -307,7 +307,7 @@ namespace Smartrac.SmartCosmos.Objects.Metadata
         /// <param name="responseData">response data</paramMetadata>
         /// <param name="metaDataType">Valid MetadataDataType enum value</paramMetadata>
         /// <returns>MetadataActionResult</returns>
-        protected MetadataActionResult Decode(string value, out DateTime decodedValue)
+        public MetadataActionResult Decode(string value, out DateTime decodedValue)
         {
             TypeSafeDecodingResponse responseData;
             MetadataActionResult result = Decode(value, out responseData, MetadataDataType.Date);
@@ -329,7 +329,7 @@ namespace Smartrac.SmartCosmos.Objects.Metadata
         /// <param name="responseData">response data</paramMetadata>
         /// <param name="metaDataType">Valid MetadataDataType enum value</paramMetadata>
         /// <returns>MetadataActionResult</returns>
-        protected MetadataActionResult Decode(string value, out long decodedValue)
+        public MetadataActionResult Decode(string value, out long decodedValue)
         {
             TypeSafeDecodingResponse responseData;
             MetadataActionResult result = Decode(value, out responseData, MetadataDataType.Long);
@@ -353,7 +353,7 @@ namespace Smartrac.SmartCosmos.Objects.Metadata
         /// <param name="responseData">response data</paramMetadata>
         /// <param name="metaDataType">Valid MetadataDataType enum value</paramMetadata>
         /// <returns>MetadataActionResult</returns>
-        protected MetadataActionResult Decode(string value, out int decodedValue)
+        public MetadataActionResult Decode(string value, out int decodedValue)
         {
             TypeSafeDecodingResponse responseData;
             MetadataActionResult result = Decode(value, out responseData, MetadataDataType.Integer);
@@ -377,7 +377,7 @@ namespace Smartrac.SmartCosmos.Objects.Metadata
         /// <param name="responseData">response data</paramMetadata>
         /// <param name="metaDataType">Valid MetadataDataType enum value</paramMetadata>
         /// <returns>MetadataActionResult</returns>
-        protected MetadataActionResult Decode(string value, out bool decodedValue)
+        public MetadataActionResult Decode(string value, out bool decodedValue)
         {
             TypeSafeDecodingResponse responseData;
             MetadataActionResult result = Decode(value, out responseData, MetadataDataType.Boolean);
@@ -401,7 +401,7 @@ namespace Smartrac.SmartCosmos.Objects.Metadata
         /// <param name="responseData">response data</paramMetadata>
         /// <param name="metaDataType">Valid MetadataDataType enum value</paramMetadata>
         /// <returns>MetadataActionResult</returns>
-        protected MetadataActionResult Decode(string value, out float decodedValue)
+        public MetadataActionResult Decode(string value, out float decodedValue)
         {
             TypeSafeDecodingResponse responseData;
             MetadataActionResult result = Decode(value, out responseData, MetadataDataType.Float);
@@ -425,7 +425,7 @@ namespace Smartrac.SmartCosmos.Objects.Metadata
         /// <param name="responseData">response data</paramMetadata>
         /// <param name="metaDataType">Valid MetadataDataType enum value</paramMetadata>
         /// <returns>MetadataActionResult</returns>
-        protected MetadataActionResult Decode(string value, out double decodedValue)
+        public MetadataActionResult Decode(string value, out double decodedValue)
         {
             TypeSafeDecodingResponse responseData;
             MetadataActionResult result = Decode(value, out responseData, MetadataDataType.Double);
@@ -448,7 +448,7 @@ namespace Smartrac.SmartCosmos.Objects.Metadata
         /// <param name="requestData">request data</paramMetadata>
         /// <param name="responseData">response data</paramMetadata>
         /// <returns>MetadataActionResult</returns>
-        protected MetadataActionResult Decode(TypeSafeDecodingRequest requestData, out TypeSafeDecodingResponse responseData)
+        public MetadataActionResult Decode(TypeSafeDecodingRequest requestData, out TypeSafeDecodingResponse responseData)
         {
             responseData = null;
             if ((null == requestData) || !requestData.IsValid())
@@ -484,7 +484,7 @@ namespace Smartrac.SmartCosmos.Objects.Metadata
         /// <param name="requestData">request data</paramMetadata>
         /// <param name="responseData">response data</paramMetadata>
         /// <returns>MetadataActionResult</returns>
-        protected MetadataActionResult Upsertion(AddOrUpdateMetadataRequest requestData, out AddOrUpdateMetadataResponse responseData)
+        public MetadataActionResult Upsertion(AddOrUpdateMetadataRequest requestData, out AddOrUpdateMetadataResponse responseData)
         {
             responseData = null;
             if ((null == requestData) || !requestData.IsValid())
@@ -518,7 +518,7 @@ namespace Smartrac.SmartCosmos.Objects.Metadata
         /// <param name="requestData">request data</paramMetadata>
         /// <param name="responseData">response data, is null in case of success</paramMetadata>
         /// <returns>MetadataActionResult</returns>
-        protected MetadataActionResult Delete(DeleteMetadataRequest requestData, out DeleteMetadataResponse responseData)
+        public MetadataActionResult Delete(DeleteMetadataRequest requestData, out DeleteMetadataResponse responseData)
         {
             responseData = null;
             if ((null == requestData) || !requestData.IsValid())
@@ -558,7 +558,7 @@ namespace Smartrac.SmartCosmos.Objects.Metadata
         /// <param name="requestData">request data</paramMetadata>
         /// <param name="responseData">response data</paramMetadata>
         /// <returns>MetadataActionResult</returns>
-        protected MetadataActionResult Lookup(LookupMetadataRequest requestData, out LookupMetadataResponse responseData)
+        public MetadataActionResult Lookup(LookupMetadataRequest requestData, out LookupMetadataResponse responseData)
         {
             responseData = null;
             if ((null == requestData) || !requestData.IsValid())
