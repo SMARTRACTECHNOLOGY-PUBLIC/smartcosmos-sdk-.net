@@ -50,7 +50,7 @@ namespace Smartrac.SmartCosmos.Objects.DataContext.Sample
             }
 
             bool result = true;
-            ObjectInteractionActionResult actionResult;
+            ObjInteractActionResult actionResult;
 
             OnBeforeTest("Objects", "ObjectInteractionEndpoint", "Capture a specific interaction");
             // create request         
@@ -64,8 +64,8 @@ namespace Smartrac.SmartCosmos.Objects.DataContext.Sample
             };
             CaptureObjectInteractionResponse responseNewInteractionData;
             // call endpoint  
-            actionResult = tester.CaptureObjectInteraction(requestNewInteractionData, out responseNewInteractionData);
-            result = result && (actionResult == ObjectInteractionActionResult.Successful);
+            actionResult = tester.Create(requestNewInteractionData, out responseNewInteractionData);
+            result = result && (actionResult == ObjInteractActionResult.Successful);
             // log response 
             Logger.AddLog("Result: " + actionResult);
             Logger.AddLog("Result Data: " + responseNewInteractionData.ToJSON());
@@ -74,10 +74,10 @@ namespace Smartrac.SmartCosmos.Objects.DataContext.Sample
             OnBeforeTest("Objects", "ObjectInteractionEndpoint", "Lookup Matching Interactions");
             QueryObjectInteractionsResponse responseLookupData;
             // call endpoint  
-            actionResult = tester.LookupMatchingInteractions(dataContext.GetObjectUrn(),
-                                                              out responseLookupData,
-                                                              dataContext.GetViewType());
-            result = result && (actionResult == ObjectInteractionActionResult.Successful);
+            actionResult = tester.Lookup(dataContext.GetObjectUrn(),
+                                        out responseLookupData,
+                                        dataContext.GetViewType());
+            result = result && (actionResult == ObjInteractActionResult.Successful);
             // log response 
             Logger.AddLog("Result: " + actionResult);
             Logger.AddLog("Result Data: " + responseLookupData.ToJSON());
@@ -85,10 +85,10 @@ namespace Smartrac.SmartCosmos.Objects.DataContext.Sample
 
             OnBeforeTest("Objects", "ObjectInteractionEndpoint", "Lookup Specific Object Interaction by URN");
             // call endpoint  
-            actionResult = tester.LookupSpecificObjectInteractionbyURN(responseNewInteractionData.interactionUrn,
-                                                                        out responseLookupData,
-                                                                        dataContext.GetViewType());
-            result = result && (actionResult == ObjectInteractionActionResult.Successful);
+            actionResult = tester.LookupByUrn(responseNewInteractionData.interactionUrn,
+                                            out responseLookupData,
+                                            dataContext.GetViewType());
+            result = result && (actionResult == ObjInteractActionResult.Successful);
             // log response 
             Logger.AddLog("Result: " + actionResult);
             Logger.AddLog("Result Data: " + responseLookupData.ToJSON());

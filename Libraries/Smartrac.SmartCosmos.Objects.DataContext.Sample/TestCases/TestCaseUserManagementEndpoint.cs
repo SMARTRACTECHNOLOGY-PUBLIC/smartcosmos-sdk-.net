@@ -50,7 +50,7 @@ namespace Smartrac.SmartCosmos.Objects.DataContext.Sample
             }
 
             bool result = true;
-            UserManagementActionResult actionResult;
+            UserActionResult actionResult;
 
             OnBeforeTest("Objects", "UserManagementEndpoint", "Create new user");
             // create request         
@@ -64,7 +64,7 @@ namespace Smartrac.SmartCosmos.Objects.DataContext.Sample
             UserManagementResponse responseNewUserData;
             // call endpoint  
             actionResult = tester.CreateNewUser(requestNewUserData, out responseNewUserData);
-            result = result && (actionResult == UserManagementActionResult.Successful);
+            result = result && (actionResult == UserActionResult.Successful);
             // log response 
             Logger.AddLog("Result: " + actionResult);
             Logger.AddLog("Result Data: " + responseNewUserData.ToJSON());
@@ -81,7 +81,7 @@ namespace Smartrac.SmartCosmos.Objects.DataContext.Sample
             UserManagementResponse responseUpdateUserData;
             // call endpoint  
             actionResult = tester.UpdateUser(requestUpdateUserData, out responseUpdateUserData);
-            result = result && (actionResult == UserManagementActionResult.Successful);
+            result = result && (actionResult == UserActionResult.Successful);
             // log response 
             Logger.AddLog("Result: " + actionResult);
             Logger.AddLog("Result Data: " + responseUpdateUserData.ToJSON());
@@ -91,7 +91,7 @@ namespace Smartrac.SmartCosmos.Objects.DataContext.Sample
             UserDataResponse responseUserData;
             // call endpoint  
             actionResult = tester.LookupSpecificUser(responseNewUserData.userUrn, dataContext.GetViewType(), out responseUserData);
-            result = result && (actionResult == UserManagementActionResult.Successful);
+            result = result && (actionResult == UserActionResult.Successful);
             // log response 
             Logger.AddLog("Result: " + actionResult);
             Logger.AddLog("Result Data: " + responseUserData.ToJSON());
@@ -101,7 +101,7 @@ namespace Smartrac.SmartCosmos.Objects.DataContext.Sample
             UserDataResponse responseUserEMailData;
             // call endpoint  
             actionResult = tester.LookupSpecificUser(dataContext.GeteMailAddress(), dataContext.GetViewType(), out responseUserEMailData);
-            result = result && (actionResult == UserManagementActionResult.Successful);
+            result = result && (actionResult == UserActionResult.Successful);
             // log response 
             Logger.AddLog("Result: " + actionResult);
             Logger.AddLog("Result Data: " + responseUserEMailData.ToJSON());
@@ -116,7 +116,7 @@ namespace Smartrac.SmartCosmos.Objects.DataContext.Sample
             ChangeOrResetUserPasswordResponse responsePasswordResetData;
             // call endpoint  
             actionResult = tester.ChangeOrResetUserPassword(requestPasswordResetData, out responsePasswordResetData);
-            result = result && (actionResult == UserManagementActionResult.Successful);
+            result = result && (actionResult == UserActionResult.Successful);
             // log response 
             Logger.AddLog("Result: " + actionResult);
             Logger.AddLog("Result Data: " + responsePasswordResetData.ToJSON());

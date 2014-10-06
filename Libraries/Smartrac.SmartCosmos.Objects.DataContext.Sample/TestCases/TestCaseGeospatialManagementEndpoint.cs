@@ -50,14 +50,14 @@ namespace Smartrac.SmartCosmos.Objects.DataContext.Sample
             }
 
             bool result = true;
-            GeospatialManagementActionResult actionResult;
+            GeoActionResult actionResult;
 
             OnBeforeTest("Objects", "GeospatialManagementEndpoint", "Define a geospatial entry");
             // create request         
             GeospatialManagementNewRequest requestNewData = new GeospatialManagementNewRequest
             {
                 geospatialUrn = dataContext.GetGeospatialUrn(),
-                type = dataContext.GetType(),
+                type = dataContext.GetCategory(),
                 name = dataContext.GetName(),
                 description = dataContext.GetDescription(),
                 activeFlag = dataContext.GetActiveFlag(),
@@ -65,8 +65,8 @@ namespace Smartrac.SmartCosmos.Objects.DataContext.Sample
             };
             GeospatialManagementNewResponse responseNewData;
             // call endpoint  
-            actionResult = tester.CreateNewGeospatial(requestNewData, out responseNewData);
-            result = result && (actionResult == GeospatialManagementActionResult.Successful);
+            actionResult = tester.Create(requestNewData, out responseNewData);
+            result = result && (actionResult == GeoActionResult.Successful);
             // log response 
             Logger.AddLog("Result: " + actionResult);
             Logger.AddLog("Result Data: " + responseNewData.ToJSON());
@@ -87,8 +87,8 @@ namespace Smartrac.SmartCosmos.Objects.DataContext.Sample
             };
             GeospatialManagementUpdateResponse responseUpdateData;
             // call endpoint  
-            actionResult = tester.UpdateGeospatial(requestUpdateData, out responseUpdateData);
-            result = result && (actionResult == GeospatialManagementActionResult.Successful);
+            actionResult = tester.Update(requestUpdateData, out responseUpdateData);
+            result = result && (actionResult == GeoActionResult.Successful);
             // log response 
             Logger.AddLog("Result: " + actionResult);
             Logger.AddLog("Result Data: " + responseUpdateData.ToJSON());
@@ -103,8 +103,8 @@ namespace Smartrac.SmartCosmos.Objects.DataContext.Sample
             };
             QueryGeospatialEntriesResponse responseQueryData;
             // call endpoint  
-            actionResult = tester.LookupMatchingGeospatialEntries(requestQueryData, out responseQueryData);
-            result = result && (actionResult == GeospatialManagementActionResult.Successful);
+            actionResult = tester.Lookup(requestQueryData, out responseQueryData);
+            result = result && (actionResult == GeoActionResult.Successful);
             // log response 
             Logger.AddLog("Result: " + actionResult);
             Logger.AddLog("Result Data: " + responseQueryData.ToJSON());
@@ -113,8 +113,8 @@ namespace Smartrac.SmartCosmos.Objects.DataContext.Sample
             OnBeforeTest("Objects", "GeospatialManagementEndpoint", "Lookup Specific Geospatial Entity by URN");
             GeospatialEntryDataResponse responseSpecificQueryData;
             // call endpoint  
-            actionResult = tester.LookupSpecificGeospatialEntitybyURN(responseNewData.geospatialUrn, out responseSpecificQueryData, dataContext.GetViewType());
-            result = result && (actionResult == GeospatialManagementActionResult.Successful);
+            actionResult = tester.Lookup(responseNewData.geospatialUrn, out responseSpecificQueryData, dataContext.GetViewType());
+            result = result && (actionResult == GeoActionResult.Successful);
             // log response 
             Logger.AddLog("Result: " + actionResult);
             Logger.AddLog("Result Data: " + responseSpecificQueryData.ToJSON());

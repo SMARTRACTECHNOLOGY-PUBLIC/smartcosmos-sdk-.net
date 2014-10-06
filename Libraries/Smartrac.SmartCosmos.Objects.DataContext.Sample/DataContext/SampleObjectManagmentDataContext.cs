@@ -32,7 +32,7 @@ namespace Smartrac.SmartCosmos.Objects.DataContext.Sample
             return new Urn("urn:building:mall:ParadiseValley");
         }
 
-        public override string GetType()
+        public override string GetCategory()
         {
             return "Building";
         }

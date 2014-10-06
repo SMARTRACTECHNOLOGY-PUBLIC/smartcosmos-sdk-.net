@@ -71,7 +71,7 @@ namespace Smartrac.SmartCosmos.Objects.DataContext.Sample
             };
             AccountRegistrationResponse responseRegisterData;
             // call endpoint            
-            actionResult = tester.AccountRegistration(requestRegisterData, out responseRegisterData);
+            actionResult = tester.RegisterAccount(requestRegisterData, out responseRegisterData);
             result = result && (actionResult == RegistrationActionResult.Successful);
             // log response 
             Logger.AddLog("Result: " + actionResult);

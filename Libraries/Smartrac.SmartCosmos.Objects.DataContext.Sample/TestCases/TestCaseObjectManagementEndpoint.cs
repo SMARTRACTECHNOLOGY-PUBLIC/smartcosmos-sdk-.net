@@ -50,22 +50,22 @@ namespace Smartrac.SmartCosmos.Objects.DataContext.Sample
             }
 
             bool result = true;
-            ObjectManagementActionResult actionResult;
+            ObjectActionResult actionResult;
 
             OnBeforeTest("Objects", "ObjectManagementEndpoint", "Create new object");
             // create request         
             ObjectManagementNewRequest requestNewObjectData = new ObjectManagementNewRequest
             {
                 urn = dataContext.GetObjectUrn(),
-                type = dataContext.GetType(),
+                type = dataContext.GetCategory(),
                 name = dataContext.GetName(),
                 description = dataContext.GetDescription(),
                 activeFlag = dataContext.GetActiveFlag()
             };
             ObjectManagementResponse responseNewObjectData;
             // call endpoint  
-            actionResult = tester.CreateNewObject(requestNewObjectData, out responseNewObjectData);
-            result = result && (actionResult == ObjectManagementActionResult.Successful);
+            actionResult = tester.Create(requestNewObjectData, out responseNewObjectData);
+            result = result && (actionResult == ObjectActionResult.Successful);
             // log response 
             Logger.AddLog("Result: " + actionResult);
             Logger.AddLog("Result Data: " + responseNewObjectData.ToJSON());
@@ -80,8 +80,8 @@ namespace Smartrac.SmartCosmos.Objects.DataContext.Sample
             };
             ObjectManagementResponse responseUpdateObjectData;
             // call endpoint  
-            actionResult = tester.UpdateObject(requestUpdateObjectData, out responseUpdateObjectData);
-            result = result && (actionResult == ObjectManagementActionResult.Successful);
+            actionResult = tester.Update(requestUpdateObjectData, out responseUpdateObjectData);
+            result = result && (actionResult == ObjectActionResult.Successful);
             // log response 
             Logger.AddLog("Result: " + actionResult);
             Logger.AddLog("Result Data: " + responseUpdateObjectData.ToJSON());
@@ -90,8 +90,8 @@ namespace Smartrac.SmartCosmos.Objects.DataContext.Sample
             OnBeforeTest("Objects", "ObjectManagementEndpoint", "Lookup Specific Object by URN");
             ObjectDataResponse responseObjectData;
             // call endpoint  
-            actionResult = tester.LookupSpecificObjectByUrn(dataContext.GetObjectUrn(), out responseObjectData, dataContext.GetViewType());
-            result = result && (actionResult == ObjectManagementActionResult.Successful);
+            actionResult = tester.Lookup(dataContext.GetObjectUrn(), out responseObjectData, dataContext.GetViewType());
+            result = result && (actionResult == ObjectActionResult.Successful);
             // log response 
             Logger.AddLog("Result: " + actionResult);
             Logger.AddLog("Result Data: " + responseObjectData.ToJSON());
@@ -99,8 +99,8 @@ namespace Smartrac.SmartCosmos.Objects.DataContext.Sample
 
             OnBeforeTest("Objects", "ObjectManagementEndpoint", "Lookup Object by Object URN");
             // call endpoint  
-            actionResult = tester.LookupSpecificObjectByObjectUrn(responseNewObjectData.objectUrn, out responseObjectData, dataContext.GetViewType());
-            result = result && (actionResult == ObjectManagementActionResult.Successful);
+            actionResult = tester.Lookup(responseNewObjectData.objectUrn, out responseObjectData, dataContext.GetViewType());
+            result = result && (actionResult == ObjectActionResult.Successful);
             // log response 
             Logger.AddLog("Result: " + actionResult);
             Logger.AddLog("Result Data: " + responseObjectData.ToJSON());
@@ -110,12 +110,12 @@ namespace Smartrac.SmartCosmos.Objects.DataContext.Sample
             // create request
             QueryObjectsRequest requestQueryObjectData = new QueryObjectsRequest
             {
-                type = dataContext.GetType()
+                type = dataContext.GetCategory()
             };
             // call endpoint 
             QueryObjectsResponse responseQueryObjectsData;
             actionResult = tester.QueryObjects(requestQueryObjectData, out responseQueryObjectsData);
-            result = result && (actionResult == ObjectManagementActionResult.Successful);
+            result = result && (actionResult == ObjectActionResult.Successful);
             // log response 
             Logger.AddLog("Result: " + actionResult);
             Logger.AddLog("Result Data: " + responseQueryObjectsData.ToJSON());

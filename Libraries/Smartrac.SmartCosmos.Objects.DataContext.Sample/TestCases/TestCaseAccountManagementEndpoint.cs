@@ -50,13 +50,13 @@ namespace Smartrac.SmartCosmos.Objects.DataContext.Sample
             }
 
             bool result = true;
-            AccountManagementActionResult actionResult;
+            AccountActionResult actionResult;
 
             OnBeforeTest("Objects", "AccountManagementEndpoint", "Account Details");
             // call endpoint          
             AccountDetailsResponse responseDetailsData;
             actionResult = tester.GetAccountDetails(dataContext.GetViewType(), out responseDetailsData);
-            result = result && (actionResult == AccountManagementActionResult.Successful);
+            result = result && (actionResult == AccountActionResult.Successful);
             // log response 
             Logger.AddLog("Result: " + actionResult);
             Logger.AddLog("Result Data: " + responseDetailsData.ToJSON());
@@ -71,7 +71,7 @@ namespace Smartrac.SmartCosmos.Objects.DataContext.Sample
             };
             ChangeYourPasswordResponse responsePwdData;
             actionResult = tester.ChangeYourPassword(requestPwdData, out responsePwdData);
-            result = result && (actionResult == AccountManagementActionResult.Successful);
+            result = result && (actionResult == AccountActionResult.Successful);
             // log response 
             Logger.AddLog("Result: " + actionResult);
             Logger.AddLog("Result Data: " + responsePwdData.ToJSON());
@@ -82,7 +82,7 @@ namespace Smartrac.SmartCosmos.Objects.DataContext.Sample
             ResetLostPasswordRequest requestPwdResetData = new ResetLostPasswordRequest { emailAddress = dataContext.GeteMailAddress() };
             ResetLostPasswordResponse responsePwdResetData;
             actionResult = tester.ResetLostPassword(requestPwdResetData, out responsePwdResetData);
-            result = result && (actionResult == AccountManagementActionResult.Successful);
+            result = result && (actionResult == AccountActionResult.Successful);
             // log response 
             Logger.AddLog("Result: " + actionResult);
             Logger.AddLog("Result Data: " + responsePwdResetData.ToJSON());

@@ -116,6 +116,7 @@
   <ItemGroup>
     <Compile Include="BaseResponse.cs" />
     <Compile Include="BaseRequest.cs" />
+    <Compile Include="Json\JsonDictionaryConverter.cs" />
     <Compile Include="ObjectExtensions.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

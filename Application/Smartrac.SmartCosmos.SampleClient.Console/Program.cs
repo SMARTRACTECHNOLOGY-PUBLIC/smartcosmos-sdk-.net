@@ -40,7 +40,6 @@ namespace Smartrac.SmartCosmos.SampleClient.Console
 
             // factory for endpoints
             IEndpointFactory factory = new EndpointFactory(logger);
-
             // user settings
             // NOTE: please enter your SmartCosmos user name and password in the app.config
             factory.UserName = ConfigurationManager.AppSettings["UserName"]; 
@@ -48,10 +47,10 @@ namespace Smartrac.SmartCosmos.SampleClient.Console
 
             // initate tester case runner
             ITestCaseRunner testCaseRunner = new TestCaseRunnerBuilder()
-                                            .setLogger(logger)
+                                            .setLogger(logger) // set logger
                                             .setDataContextFactory(new SampleDataContextFactory()) // data context factory for sample data
-                                            .setEndpointFactory(factory) // Create default factory for endpoints
-                                            .build();
+                                            .setEndpointFactory(factory) // set factory for endpoints
+                                            .build(); 
 
             // START TESTING ----
             bool bTestResult = testCaseRunner.Run(TestCaseType.Functional);

@@ -47,7 +47,11 @@ namespace Smartrac.SmartCosmos.ClientEndpoint.Factory
         public string UserName { get; set; }
         public string UserPassword { get; set; }
 
-        public EndpointFactory(IMessageLogger logger)
+        public EndpointFactory(IMessageLogger logger) : this(logger, "", "")
+        {
+        }
+
+        public EndpointFactory(IMessageLogger logger, string userName, string userPassword) : base()
         {
             this.Logger = logger;
             this.KeepAlive = true;
@@ -55,6 +59,8 @@ namespace Smartrac.SmartCosmos.ClientEndpoint.Factory
             this.ProfilesServerURL = "https://www.smart-cosmos.com/service/rest";
             this.ObjectsServerURL = ""; // TODO
             this.AllowInvalidServerCertificates = false;
+            this.UserName = userName;
+            this.UserPassword = userPassword;
         }
 
         #region PROFILES

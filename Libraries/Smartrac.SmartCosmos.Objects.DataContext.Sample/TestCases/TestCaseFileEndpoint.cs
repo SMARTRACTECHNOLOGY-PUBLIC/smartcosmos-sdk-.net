@@ -54,7 +54,7 @@ namespace Smartrac.SmartCosmos.Objects.DataContext.Sample
             OnBeforeTest("Objects", "FileEndpoint", "Related File Definitions Retrieval");
             FileDefinitionRetrievalListResponse responseListData;
             // create request & call endpoint
-            actionResult = tester.RelatedFileDefinitionsRetrieval(dataContext.GetEntityReferenceType(),
+            actionResult = tester.LookupDefinitions(dataContext.GetEntityReferenceType(),
                                                                   dataContext.GetUrnReference(),
                                                                   out responseListData,
                                                                   dataContext.GetViewType()
@@ -71,7 +71,7 @@ namespace Smartrac.SmartCosmos.Objects.DataContext.Sample
                 {
                     OnBeforeTest("Objects", "FileEndpoint", "File Delete");
                     // create request & call endpoint
-                    actionResult = tester.FileDeletion(item.Urn);
+                    actionResult = tester.Delete(item.Urn);
                     result = result && (actionResult == FileActionResult.Successful);
                     // log response 
                     Logger.AddLog("Result: " + actionResult);
@@ -112,7 +112,7 @@ namespace Smartrac.SmartCosmos.Objects.DataContext.Sample
                 OnBeforeTest("Objects", "FileEndpoint", "Specific File Definition Retrieval");
                 // create request & call endpoint
                 FileDefinitionRetrievalResponse responseRetrievalData;
-                actionResult = tester.SpecificFileDefinitionRetrieval(responseDefData.fileUrn, out responseRetrievalData, dataContext.GetViewType());
+                actionResult = tester.LookupDefinition(responseDefData.fileUrn, out responseRetrievalData, dataContext.GetViewType());
                 result = result && (actionResult == FileActionResult.Successful);
                 // log response 
                 Logger.AddLog("Result: " + actionResult);
@@ -122,7 +122,7 @@ namespace Smartrac.SmartCosmos.Objects.DataContext.Sample
                 OnBeforeTest("Objects", "FileEndpoint", "File Content Retrieval");
                 // create request & call endpoint
                 FileContentRetrievalResponse responseContentData;
-                actionResult = tester.FileContentRetrieval(responseDefData.fileUrn, out responseContentData);
+                actionResult = tester.LookupContent(responseDefData.fileUrn, out responseContentData);
                 result = result && (actionResult == FileActionResult.Successful);
                 // log response 
                 Logger.AddLog("Result: " + actionResult);
@@ -133,7 +133,7 @@ namespace Smartrac.SmartCosmos.Objects.DataContext.Sample
             OnBeforeTest("Objects", "FileEndpoint", "Related File Definitions Retrieval");
             // create request & call endpoint
             FileDefinitionRetrievalListResponse responseListResultData;
-            actionResult = tester.RelatedFileDefinitionsRetrieval(dataContext.GetEntityReferenceType(),
+            actionResult = tester.LookupDefinitions(dataContext.GetEntityReferenceType(),
                                                                    dataContext.GetUrnReference(),
                                                                    out responseListResultData,
                                                                    dataContext.GetViewType());
