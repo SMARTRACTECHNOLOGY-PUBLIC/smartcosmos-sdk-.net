@@ -25,31 +25,26 @@ using Smartrac.SmartCosmos.Objects.DataContext;
 
 namespace Smartrac.SmartCosmos.Objects.DataContext.Sample
 {
-    public class SampleObjectInteractionDataContext : BaseObjectInteractionDataContext
+    public class SampleHashTagDataContext : BaseHashTagDataContext
     {
-        public override Urn GetObjectUrn()
+        public override Urn GetUrn()
         {
-            return new Urn("urn:building:mall:ParadiseValley");
-        }
-
-        public override Urn GetReferenceUrn()
-        {
-            return new Urn("urn:instagram:FooQux:47c23bc6-2a58-4e37-93b0-848776b42404");
-        }
-
-        public override string GetInteractionType()
-        {
-            return "Building";
-        }
-
-        public override long GetRecordedTimestamp()
-        {
-            return 0;
+            return null;
         }
 
         public override string GetDescription()
         {
-            return "test";
+            return "test descr";
+        }
+
+        public override string GetMoniker()
+        {
+            return "test moniker";
+        }
+        
+        public override string GetName()
+        {
+            return "test name";
         }
 
         public override bool GetActiveFlag()
@@ -57,14 +52,19 @@ namespace Smartrac.SmartCosmos.Objects.DataContext.Sample
             return true;
         }
 
-        public override EntityReferenceType GetEntityReferenceType()
-        {
-            return EntityReferenceType.Object;
-        }
-
         public override ViewType GetViewType()
         {
             return ViewType.Standard;
+        }
+
+        public override Urn GetReferenceUrn()
+        {
+            return new Urn("urn:instagram:FooQux:47c23bc6-2a58-4e37-93b0-848776b42404");
+        }
+
+        public override EntityReferenceType GetEntityReferenceType()
+        {
+            return EntityReferenceType.Object;
         }
     }
 }

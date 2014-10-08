@@ -29,7 +29,7 @@ namespace Smartrac.Logging.Console
             switch (aLogType)
             {
                 case LogType.Debug:
-                    System.Console.WriteLine(aMessage);
+                    System.Console.WriteLine("DBG:" + aMessage);
                     break;
                 case LogType.Error:
                     System.Console.WriteLine("ERR:" + aMessage);
@@ -38,13 +38,13 @@ namespace Smartrac.Logging.Console
                     System.Console.WriteLine("FATAL:" + aMessage);
                     break;
                 case LogType.Info:
-                    System.Console.WriteLine(aMessage);
+                    System.Console.WriteLine("INF:" + aMessage);
                     break;
                 case LogType.Warning:
                     System.Console.WriteLine("WRN:" + aMessage);
                     break;
                 default:
-                    System.Console.WriteLine(aMessage);
+                    System.Console.WriteLine("???:" + aMessage);
                     break;
             }   
         }

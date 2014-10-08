@@ -23,7 +23,10 @@ using Smartrac.Logging;
 using Smartrac.SmartCosmos.Objects.AccountManagement;
 using Smartrac.SmartCosmos.Objects.File;
 using Smartrac.SmartCosmos.Objects.GeospatialManagement;
+using Smartrac.SmartCosmos.Objects.HashTag;
+using Smartrac.SmartCosmos.Objects.Metadata;
 using Smartrac.SmartCosmos.Objects.ObjectInteraction;
+using Smartrac.SmartCosmos.Objects.ObjectInteractionSession;
 using Smartrac.SmartCosmos.Objects.ObjectManagement;
 using Smartrac.SmartCosmos.Objects.Registration;
 using Smartrac.SmartCosmos.Objects.RelationshipManagement;
@@ -53,14 +56,17 @@ namespace Smartrac.SmartCosmos.ClientEndpoint.Factory
         #endregion
 
         #region Objects
-        IFileEndpoint CreateFileEndpoint();
-        IRegistrationEndpoint CreateRegistrationEndpoint();
         IAccountManagementEndpoint CreateAccountManagementEndpoint();
-        IUserManagementEndpoint CreateUserManagementEndpoint();
-        IObjectManagementEndpoint CreateObjectManagementEndpoint();
-        IObjectInteractionEndpoint CreateObjectInteractionEndpoint();
-        IRelationshipManagementEndpoint CreateRelationshipManagementEndpoint();
+        IFileEndpoint CreateFileEndpoint();
         IGeospatialManagementEndpoint CreateGeospatialManagementEndpoint();
+        IHashTagEndpoint CreateHashTagEndpoint();
+        IMetadataEndpoint CreateMetadataEndpoint();
+        IObjectInteractionEndpoint CreateObjectInteractionEndpoint();
+        IObjectInteractionSessionEndpoint CreateObjectInteractionSessionEndpoint();
+        IObjectManagementEndpoint CreateObjectManagementEndpoint();
+        IRegistrationEndpoint CreateRegistrationEndpoint();
+        IRelationshipManagementEndpoint CreateRelationshipManagementEndpoint();
+        IUserManagementEndpoint CreateUserManagementEndpoint();
         #endregion
     }
 }

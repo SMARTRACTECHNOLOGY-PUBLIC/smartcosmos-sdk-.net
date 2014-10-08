@@ -48,16 +48,25 @@ namespace Smartrac.SmartCosmos.Objects.ObjectInteractionSession
         /// <param name="responseData">result</param>
         /// <returns>ObjectInteractionSessionActionResult</returns>
         ObjInteractSessionActionResult Start(StartObjectInteractionSessionRequest requestData,
-                                                   out StartObjectInteractionSessionResponse responseData);
+                                             out StartObjectInteractionSessionResponse responseData);
 
         /// <summary>
         /// Stop an existing object interaction session
         /// </summary>
-        /// <param name="urn">Object interaction session urn</param>
+        /// <param name="requestData">request data</param>
         /// <param name="responseData">result</param>
         /// <returns>ObjectInteractionSessionActionResult</returns>
         ObjInteractSessionActionResult Stop(StopObjectInteractionSessionRequest requestData,
-                                                  out StopObjectInteractionSessionResponse responseData);
+                                            out StopObjectInteractionSessionResponse responseData);
+
+        /// <summary>
+        /// Stop an existing object interaction session
+        /// </summary>
+        /// <param name="sessionUrn">Object interaction session urn</param>
+        /// <param name="responseData">result</param>
+        /// <returns>ObjectInteractionSessionActionResult</returns>
+        ObjInteractSessionActionResult Stop(Urn sessionUrn,
+                                            out StopObjectInteractionSessionResponse responseData);
 
         /// <summary>
         /// Lookup a specific session by its system-assigned URN key

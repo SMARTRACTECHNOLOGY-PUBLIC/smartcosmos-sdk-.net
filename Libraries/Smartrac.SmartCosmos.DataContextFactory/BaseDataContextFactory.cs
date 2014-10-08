@@ -76,5 +76,20 @@ namespace Smartrac.SmartCosmos.DataContextFactory
         {
             return new BaseGeospatialManagementDataContext();
         }
+
+        public virtual IHashTagDataContext CreateHashTagDataContext()
+        {
+            return new BaseHashTagDataContext();
+        }
+
+        public virtual IObjectInteractionSessionDataContext CreateObjectInteractionSessionDataContext()
+        {
+            return new BaseObjectInteractionSessionDataContext();
+        }
+
+        public virtual IMetadataDataContext CreateMetadataDataContext()
+        {
+            return new BaseMetadataDataContext();
+        }
     }
 }

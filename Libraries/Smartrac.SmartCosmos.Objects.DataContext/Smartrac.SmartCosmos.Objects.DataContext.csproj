@@ -94,6 +94,12 @@
     <Compile Include="Interfaces\IRelationshipManagementDataContext.cs" />
     <Compile Include="Interfaces\IGeospatialManagementDataContext.cs" />
     <Compile Include="BaseGeospatialManagmentDataContext.cs" />
+    <Compile Include="Interfaces\IHashTagDataContext.cs" />
+    <Compile Include="Interfaces\IMetadataDataContext.cs" />
+    <Compile Include="Interfaces\IObjectInteractionSessionDataContext.cs" />
+    <Compile Include="BaseObjectInteractionSessionDataContext.cs" />
+    <Compile Include="BaseMetadataDataContext.cs" />
+    <Compile Include="BaseHashTagDataContext.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

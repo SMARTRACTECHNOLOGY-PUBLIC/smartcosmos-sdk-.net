@@ -195,7 +195,6 @@ namespace Smartrac.SmartCosmos.ClientEndpoint.Base
                 try
                 {
                     webResponse = request.GetResponse() as System.Net.HttpWebResponse;
-
                 }
                 catch (WebException e)
                 {

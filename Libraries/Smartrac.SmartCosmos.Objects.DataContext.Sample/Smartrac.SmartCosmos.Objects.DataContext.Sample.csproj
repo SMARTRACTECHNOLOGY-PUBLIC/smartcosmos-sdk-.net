@@ -78,6 +78,12 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="DataContext\SampleObjectInteractionSessionDataContext.cs" />
+    <Compile Include="DataContext\SampleMetadataDataContext.cs" />
+    <Compile Include="DataContext\SampleHashTagDataContext.cs" />
+    <Compile Include="TestCases\TestCaseMetadataEndpoint.cs" />
+    <Compile Include="TestCases\TestCaseObjectInteractionSessionEndpoint.cs" />
+    <Compile Include="TestCases\TestCaseHashTagEndpoint.cs" />
     <Compile Include="TestCases\TestCaseAccountManagementEndpoint.cs" />
     <Compile Include="TestCases\TestCaseFileEndpoint.cs" />
     <Compile Include="TestCases\TestCaseGeospatialManagementEndpoint.cs" />
@@ -140,6 +146,18 @@
     <ProjectReference Include="..\Smartrac.SmartCosmos.Objects.GeospatialManagement\Smartrac.SmartCosmos.Objects.GeospatialManagement.csproj">
       <Project>{9b5244a9-a358-4aee-b92a-fa7b2a2a6694}</Project>
       <Name>Smartrac.SmartCosmos.Objects.GeospatialManagement</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Smartrac.SmartCosmos.Objects.HashTag\Smartrac.SmartCosmos.Objects.HashTag.csproj">
+      <Project>{ce76c35f-f25c-419d-ba66-48a22d5a021f}</Project>
+      <Name>Smartrac.SmartCosmos.Objects.HashTag</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Smartrac.SmartCosmos.Objects.Metadata\Smartrac.SmartCosmos.Objects.Metadata.csproj">
+      <Project>{3f715f22-7d75-4645-9ce6-e8a20ccdacc8}</Project>
+      <Name>Smartrac.SmartCosmos.Objects.Metadata</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Smartrac.SmartCosmos.Objects.ObjectInteractionSession\Smartrac.SmartCosmos.Objects.ObjectInteractionSession.csproj">
+      <Project>{ed080dde-a813-4d6f-b66e-e554e9b69d35}</Project>
+      <Name>Smartrac.SmartCosmos.Objects.ObjectInteractionSession</Name>
     </ProjectReference>
     <ProjectReference Include="..\Smartrac.SmartCosmos.Objects.ObjectInteraction\Smartrac.SmartCosmos.Objects.ObjectInteraction.csproj">
       <Project>{308a0d3b-64b2-42b8-b3e0-6308dc07e945}</Project>

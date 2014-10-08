@@ -48,7 +48,68 @@ namespace Smartrac.SmartCosmos.Profiles.TagMetadata
     [JsonConverter(typeof(DictionaryConverter))]
     public class TagProperties : Dictionary<string, object>
     {
+        public void SetValue(string key, string value)
+        {
+            if (this.ContainsKey(key))
+                this[key] = value;
+            else
+                this.Add(key, value);
+        }
+        public void SetValue(string key, long value)
+        {
+            if (this.ContainsKey(key))
+                this[key] = value;
+            else
+                this.Add(key, value);
+        }
+        public void SetValue(string key, float value)
+        {
+            if (this.ContainsKey(key))
+                this[key] = value;
+            else
+                this.Add(key, value);
+        }
 
+        public bool GetValue(string key, out string value)
+        {
+            if (this.ContainsKey(key))
+            {
+                value = (string)this[key];
+                return true;
+            }
+            else
+            {
+                value = "";
+                return false;
+            }
+        }
+        public bool GetValue(string key, out long value)
+        {
+            if (this.ContainsKey(key))
+            {
+                value = (long)this[key];
+                return true;
+            }
+            else
+            {
+                value = 0;
+                return false;
+            }
+        }
+        public bool GetValue(string key, out float value)
+        {
+            if (this.ContainsKey(key))
+            {
+                value = (float)this[key];
+                return true;
+            }
+            else
+            {
+                value = 0;
+                return false;
+            }
+        }
+ 
     }
 
     /*

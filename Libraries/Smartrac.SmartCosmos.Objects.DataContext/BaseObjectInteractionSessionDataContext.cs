@@ -17,52 +17,49 @@
 
 using System;
 using System.Collections.Generic;
-using System.IO;
 using System.Linq;
 using System.Text;
 using Smartrac.SmartCosmos.Objects.Base;
-using Smartrac.SmartCosmos.Objects.DataContext;
 
-namespace Smartrac.SmartCosmos.Objects.DataContext.Sample
+namespace Smartrac.SmartCosmos.Objects.DataContext
 {
-    public class SampleObjectInteractionDataContext : BaseObjectInteractionDataContext
+    public class BaseObjectInteractionSessionDataContext : IObjectInteractionSessionDataContext
     {
-        public override Urn GetObjectUrn()
+        public virtual Urn GetSessionUrn()
         {
-            return new Urn("urn:building:mall:ParadiseValley");
+            return null;
         }
 
-        public override Urn GetReferenceUrn()
+        /// <summary>
+        /// The type field is available to create an ontology or high level categories that can be used to group related interactions. The platform makes no inferences about this case-sensitive field.
+        /// </summary>
+        /// <returns>interaction type</returns>
+        public virtual string GetInteractionType()
         {
-            return new Urn("urn:instagram:FooQux:47c23bc6-2a58-4e37-93b0-848776b42404");
+            return "";
         }
 
-        public override string GetInteractionType()
+        public virtual string GetDescription()
         {
-            return "Building";
+            return "";
         }
 
-        public override long GetRecordedTimestamp()
+        public virtual string GetName()
         {
-            return 0;
+            return "";
         }
 
-        public override string GetDescription()
+        public virtual string GetMoniker()
         {
-            return "test";
+            return "";
         }
 
-        public override bool GetActiveFlag()
+        public virtual bool GetActiveFlag()
         {
             return true;
         }
 
-        public override EntityReferenceType GetEntityReferenceType()
-        {
-            return EntityReferenceType.Object;
-        }
-
-        public override ViewType GetViewType()
+        public virtual ViewType GetViewType()
         {
             return ViewType.Standard;
         }

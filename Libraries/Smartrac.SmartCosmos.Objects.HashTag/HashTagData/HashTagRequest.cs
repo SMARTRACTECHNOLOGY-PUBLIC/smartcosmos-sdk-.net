@@ -17,30 +17,39 @@
 
 using System;
 using System.Collections.Generic;
-using System.IO;
+using System.Net.Mime;
 using System.Runtime.Serialization;
 using System.Text;
-using Smartrac.SmartCosmos.ClientEndpoint.BaseObject;
 using Smartrac.SmartCosmos.Objects.Base;
 
-namespace Smartrac.SmartCosmos.Objects.TagManagement
+namespace Smartrac.SmartCosmos.Objects.HashTag
 {
     [DataContract]
-    public class TagDataList : List<TagData>
-    {
-    
-       public void Add(string tagName)
-       {
-           Add(new TagData { name = tagName });
-       }
-    }
-
-
-    [DataContract]
-    public class TagData
+    public class HashTagRequest : BaseRequest
     {
         [DataMember]
+        public string description { get; set; }
+        [DataMember]
         public string name { get; set; }
-    }
+        [DataMember]
+        public string moniker { get; set; }
+        [DataMember]
+        public bool activeFlag { get; set; }       
 
+        public HashTagRequest()
+            : base()
+        {
+            description = null;
+            activeFlag = true;
+        }
+
+        public override bool IsValid()
+        {
+            return base.IsValid() &&
+                (String.IsNullOrEmpty(description) || description.Length <= 1024) &&
+                !String.IsNullOrEmpty(name) &&
+                (name.Length <= 1024) &&
+                (String.IsNullOrEmpty(moniker) || moniker.Length <= 2048);
+        }
+    }
 }

@@ -17,16 +17,31 @@
 
 using System;
 using System.Collections.Generic;
-using System.Net.Mime;
+using System.IO;
 using System.Runtime.Serialization;
 using System.Text;
+using Smartrac.SmartCosmos.ClientEndpoint.BaseObject;
 using Smartrac.SmartCosmos.Objects.Base;
 
-namespace Smartrac.SmartCosmos.Objects.TagManagement
+namespace Smartrac.SmartCosmos.Objects.HashTag
 {
     [DataContract]
-    public class TagManagementRequest : BaseRequest
+    public class HashTagDataResponse : BaseResponse
     {
+        [DataMember]
+        public string urn
+        {
+            get
+            {
+                return (urnObj != null) ? urnObj.UUID : "";
+            }
+            set
+            {
+                urnObj = new Urn(value);
+            }
+        }
+        public Urn urnObj { get; set; }
+
         [DataMember]
         public string description { get; set; }
         [DataMember]
@@ -34,22 +49,13 @@ namespace Smartrac.SmartCosmos.Objects.TagManagement
         [DataMember]
         public string moniker { get; set; }
         [DataMember]
-        public bool activeFlag { get; set; }       
+        public bool activeFlag { get; set; }
 
-        public TagManagementRequest()
+        public HashTagDataResponse()
             : base()
         {
             description = null;
             activeFlag = true;
-        }
-
-        public override bool IsValid()
-        {
-            return base.IsValid() &&
-                (String.IsNullOrEmpty(description) || description.Length <= 1024) &&
-                !String.IsNullOrEmpty(name) &&
-                (name.Length <= 1024) &&
-                (String.IsNullOrEmpty(moniker) || moniker.Length <= 2048);
         }
     }
 }

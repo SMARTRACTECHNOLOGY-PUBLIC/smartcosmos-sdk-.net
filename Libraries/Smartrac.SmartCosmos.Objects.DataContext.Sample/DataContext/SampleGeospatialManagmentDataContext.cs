@@ -28,32 +28,32 @@ namespace Smartrac.SmartCosmos.Objects.DataContext.Sample
 {
     public class SampleGeospatialManagementDataContext : BaseGeospatialManagementDataContext
     {
-        public virtual Urn GetGeospatialUrn()
+        public override Urn GetGeospatialUrn()
         {
             return null;
         }
 
-        public virtual string GetName()
+        public override string GetName()
         {
             return "Campus at 5th Street";
         }
 
-        public virtual string GetType()
+        public override string GetCategory()
         {
             return "Building";
         }
 
-        public virtual string GetDescription()
+        public override string GetDescription()
         {
             return "Campus at 5th Street descr";
         }
 
-        public virtual bool GetActiveFlag()
+        public override bool GetActiveFlag()
         {
             return true;
         }
 
-        public virtual GeoJSONObject GetGeometricShape()
+        public override GeoJSONObject GetGeometricShape()
         {
             var point = new GeoJSON.Net.Geometry.Point(new GeoJSON.Net.Geometry.GeographicPosition(45.79012, 15.94107));
             var featureProperties = new Dictionary<string, object> { { "Name", "Foo" } };
@@ -61,7 +61,7 @@ namespace Smartrac.SmartCosmos.Objects.DataContext.Sample
             return model;
         }
 
-        public virtual ViewType GetViewType()
+        public override ViewType GetViewType()
         {
             return ViewType.Standard;
         }

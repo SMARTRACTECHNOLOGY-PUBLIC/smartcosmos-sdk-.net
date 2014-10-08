@@ -23,7 +23,10 @@ using Smartrac.Logging;
 using Smartrac.SmartCosmos.Objects.AccountManagement;
 using Smartrac.SmartCosmos.Objects.File;
 using Smartrac.SmartCosmos.Objects.GeospatialManagement;
+using Smartrac.SmartCosmos.Objects.HashTag;
+using Smartrac.SmartCosmos.Objects.Metadata;
 using Smartrac.SmartCosmos.Objects.ObjectInteraction;
+using Smartrac.SmartCosmos.Objects.ObjectInteractionSession;
 using Smartrac.SmartCosmos.Objects.ObjectManagement;
 using Smartrac.SmartCosmos.Objects.Registration;
 using Smartrac.SmartCosmos.Objects.RelationshipManagement;
@@ -47,11 +50,13 @@ namespace Smartrac.SmartCosmos.ClientEndpoint.Factory
         public string UserName { get; set; }
         public string UserPassword { get; set; }
 
-        public EndpointFactory(IMessageLogger logger) : this(logger, "", "")
+        public EndpointFactory(IMessageLogger logger)
+            : this(logger, "", "")
         {
         }
 
-        public EndpointFactory(IMessageLogger logger, string userName, string userPassword) : base()
+        public EndpointFactory(IMessageLogger logger, string userName, string userPassword)
+            : base()
         {
             this.Logger = logger;
             this.KeepAlive = true;
@@ -189,6 +194,39 @@ namespace Smartrac.SmartCosmos.ClientEndpoint.Factory
         public virtual IGeospatialManagementEndpoint CreateGeospatialManagementEndpoint()
         {
             return new GeospatialManagementEndpointBuilder()
+            .setLogger(Logger)
+            .setKeepAlive(KeepAlive)
+            .setServerURL(ObjectsServerURL)
+            .setAllowInvalidServerCertificates(AllowInvalidServerCertificates)
+            .setUserAccount(UserName, UserPassword)
+            .build();
+        }
+
+        public virtual IHashTagEndpoint CreateHashTagEndpoint()
+        {
+            return new HashTagEndpointBuilder()
+            .setLogger(Logger)
+            .setKeepAlive(KeepAlive)
+            .setServerURL(ObjectsServerURL)
+            .setAllowInvalidServerCertificates(AllowInvalidServerCertificates)
+            .setUserAccount(UserName, UserPassword)
+            .build();
+        }
+
+        public virtual IMetadataEndpoint CreateMetadataEndpoint()
+        {
+            return new MetadataEndpointBuilder()
+            .setLogger(Logger)
+            .setKeepAlive(KeepAlive)
+            .setServerURL(ObjectsServerURL)
+            .setAllowInvalidServerCertificates(AllowInvalidServerCertificates)
+            .setUserAccount(UserName, UserPassword)
+            .build();
+        }
+
+        public virtual IObjectInteractionSessionEndpoint CreateObjectInteractionSessionEndpoint()
+        {
+            return new ObjectInteractionSessionEndpointBuilder()
             .setLogger(Logger)
             .setKeepAlive(KeepAlive)
             .setServerURL(ObjectsServerURL)

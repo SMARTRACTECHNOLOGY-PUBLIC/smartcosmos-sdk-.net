@@ -23,39 +23,11 @@ using System.Text;
 using Smartrac.SmartCosmos.ClientEndpoint.BaseObject;
 using Smartrac.SmartCosmos.Objects.Base;
 
-namespace Smartrac.SmartCosmos.Objects.TagManagement
+namespace Smartrac.SmartCosmos.Objects.HashTag
 {
     [DataContract]
-    public class TagDataResponse : BaseResponse
+    public class HashTagResponse : DefaultResponse
     {
-        [DataMember]
-        public string urn
-        {
-            get
-            {
-                return (urnObj != null) ? urnObj.UUID : "";
-            }
-            set
-            {
-                urnObj = new Urn(value);
-            }
-        }
-        public Urn urnObj { get; set; }
-
-        [DataMember]
-        public string description { get; set; }
-        [DataMember]
-        public string name { get; set; }
-        [DataMember]
-        public string moniker { get; set; }
-        [DataMember]
-        public bool activeFlag { get; set; }
-
-        public TagDataResponse()
-            : base()
-        {
-            description = null;
-            activeFlag = true;
-        }
+        public Urn tagUrn {get; set;}
     }
 }

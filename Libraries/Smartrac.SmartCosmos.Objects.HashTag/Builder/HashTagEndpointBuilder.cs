@@ -17,17 +17,17 @@
 
 using System;
 using System.Collections.Generic;
-using System.IO;
-using System.Runtime.Serialization;
+using System.Linq;
 using System.Text;
-using Smartrac.SmartCosmos.ClientEndpoint.BaseObject;
-using Smartrac.SmartCosmos.Objects.Base;
+using Smartrac.SmartCosmos.ClientEndpoint.Base;
 
-namespace Smartrac.SmartCosmos.Objects.TagManagement
+namespace Smartrac.SmartCosmos.Objects.HashTag
 {
-    [DataContract]
-    public class TagManagementResponse : DefaultResponse
+    public class HashTagEndpointBuilder : BaseEndpointBuilder<IHashTagEndpoint, HashTagEndpointBuilder>
     {
-        public Urn tagUrn {get; set;}
+        public HashTagEndpointBuilder() :
+            base(new HashTagEndpoint())
+        {
+        }
     }
 }

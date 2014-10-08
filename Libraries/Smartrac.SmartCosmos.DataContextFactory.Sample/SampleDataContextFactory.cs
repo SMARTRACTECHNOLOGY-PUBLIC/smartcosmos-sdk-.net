@@ -26,7 +26,7 @@ using Smartrac.SmartCosmos.Profiles.DataContext.Sample;
 
 namespace Smartrac.SmartCosmos.DataContextFactory.Sample
 {
-    public class SampleDataContextFactory : BaseDataContextFactory
+    public class SampleDataContextFactory : SampleDataContextFactory
     {
         public SampleDataContextFactory()
             : base()
@@ -76,6 +76,26 @@ namespace Smartrac.SmartCosmos.DataContextFactory.Sample
         public override IGeospatialManagementDataContext CreateGeospatialManagementDataContext()
         {
             return new SampleGeospatialManagementDataContext();
+        }
+
+        public override IHashTagDataContext CreateHashTagDataContext()
+        {
+            return new SampleHashTagDataContext();
+        }
+
+        public override IObjectInteractionSessionDataContext CreateObjectInteractionSessionDataContext()
+        {
+            return new SampleObjectInteractionSessionDataContext();
+        }
+
+        public override IObjectInteractionSessionDataContext CreateObjectInteractionSessionDataContext()
+        {
+            return new SampleObjectInteractionSessionDataContext();
+        }
+
+        public override IMetadataDataContext CreateMetadataDataContext()
+        {
+            return new SampleMetadataDataContext();
         }
     }
 }

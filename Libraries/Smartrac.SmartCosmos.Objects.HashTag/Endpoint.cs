@@ -26,20 +26,22 @@ using Smartrac.SmartCosmos.ClientEndpoint.Base;
 using Smartrac.SmartCosmos.ClientEndpoint.BaseObject;
 using Smartrac.SmartCosmos.Objects.Base;
 
-namespace Smartrac.SmartCosmos.Objects.TagManagement
+namespace Smartrac.SmartCosmos.Objects.HashTag
 {
     /// <summary>
-    /// Client for TagManagement Endpoints
+    /// Client for HashTag Endpoints
+    /// Hash Tags have grown in popularity across the Web for assigning quick search terms to everything from blog postings 
+    /// to Twitter posts. The platform provides a hash tag object for this purpose as well. 
     /// </summary>
-    class TagManagementEndpoint : BaseObjectsEndpoint, ITagManagementEndpoint
+    class HashTagEndpoint : BaseObjectsEndpoint, IHashTagEndpoint
     {
         /// <summary>
-        /// Create a new Tag associated with the specified name
+        /// Create a new hash hash tag associated with the specified name
         /// </summary>
-        /// <param name="requestData">Tag data</param>
+        /// <param name="requestData">Hash hash tag data</param>
         /// <param name="responseData">result</param>
-        /// <returns>TagManagementActionResult</returns>
-        public TagActionResult Create(TagManagementRequest requestData, out TagManagementResponse responseData)
+        /// <returns>HashTagActionResult</returns>
+        public HashTagActionResult Create(HashTagRequest requestData, out HashTagResponse responseData)
         {
             responseData = null;
             try
@@ -48,15 +50,15 @@ namespace Smartrac.SmartCosmos.Objects.TagManagement
                 {
                     if (null != Logger)
                         Logger.AddLog("Request data is invalid!", LogType.Error);
-                    return TagActionResult.Failed;
+                    return HashTagActionResult.Failed;
                 }
 
                 var request = CreateWebRequest("/tags", WebRequestOption.Authorization);
                 object responseDataObj = null;
-                ExecuteWebRequestJSON(request, typeof(TagManagementRequest), requestData, typeof(TagManagementResponse), out responseDataObj, WebRequestMethods.Http.Put);
+                ExecuteWebRequestJSON(request, typeof(HashTagRequest), requestData, typeof(HashTagResponse), out responseDataObj, WebRequestMethods.Http.Put);
                 if (null != responseDataObj)
                 {
-                    responseData = responseDataObj as TagManagementResponse;
+                    responseData = responseDataObj as HashTagResponse;
                     if (responseData != null)
                     {
                         switch (responseData.HTTPStatusCode)
@@ -64,30 +66,30 @@ namespace Smartrac.SmartCosmos.Objects.TagManagement
                             case HttpStatusCode.Created:
                             case HttpStatusCode.OK:
                                 responseData.tagUrn = new Urn(responseData.message);
-                                return TagActionResult.Successful;
-                            default: return TagActionResult.Failed;
+                                return HashTagActionResult.Successful;
+                            default: return HashTagActionResult.Failed;
                         }
                     }
                 }
 
-                return TagActionResult.Failed;
+                return HashTagActionResult.Failed;
             }
             catch (Exception e)
             {
                 if (null != Logger)
                     Logger.AddLog(e.Message, LogType.Error);
-                return TagActionResult.Failed;
+                return HashTagActionResult.Failed;
             }
         }
 
         /// <summary>
-        /// Lookup a specific Tag by its system-assigned URN key
+        /// Lookup a specific hash tag by its system-assigned URN key
         /// </summary>
         /// <param name="tagUrn">System-assigned URN assigned at creation</param>
         /// <param name="viewType">A valid JSON Serialization View name (case-sensitive)</param>
         /// <param name="responseData">Tag data</param>
-        /// <returns>TagManagementActionResult</returns>
-        public TagActionResult Lookup(Urn tagUrn, out TagDataResponse responseData, ViewType viewType = ViewType.Standard)
+        /// <returns>HashTagActionResult</returns>
+        public HashTagActionResult Lookup(Urn tagUrn, out HashTagDataResponse responseData, ViewType viewType = ViewType.Standard)
         {
             responseData = null;
             try
@@ -96,36 +98,36 @@ namespace Smartrac.SmartCosmos.Objects.TagManagement
                 {
                     if (null != Logger)
                         Logger.AddLog("urn is not valid", LogType.Error);
-                    return TagActionResult.Failed;
+                    return HashTagActionResult.Failed;
                 }
 
                 var request = CreateWebRequest("/tags/" + tagUrn.UUID + "?view=" + viewType.GetDescription(), WebRequestOption.Authorization);
                 object responseDataObj;
-                var returnHTTPCode = ExecuteWebRequestJSON(request, typeof(TagDataResponse), out responseDataObj);
+                var returnHTTPCode = ExecuteWebRequestJSON(request, typeof(HashTagDataResponse), out responseDataObj);
                 if (null != responseDataObj)
                 {
-                    responseData = responseDataObj as TagDataResponse;
+                    responseData = responseDataObj as HashTagDataResponse;
                     if ((responseData != null) && (responseData.HTTPStatusCode == HttpStatusCode.OK))
-                        return TagActionResult.Successful;
+                        return HashTagActionResult.Successful;
                 }
-                return TagActionResult.Failed;
+                return HashTagActionResult.Failed;
             }
             catch (Exception e)
             {
                 if (null != Logger)
                     Logger.AddLog(e.Message, LogType.Error);
-                return TagActionResult.Failed;
+                return HashTagActionResult.Failed;
             }
         }
 
         /// <summary>
-        /// Lookup a specific Tag by their name
+        /// Lookup a specific hash tag by their name
         /// </summary>
         /// <param name="tagName">Exact case-sensitive name to locate</param>
         /// <param name="viewType">A valid JSON Serialization View name (case-sensitive)</param>
         /// <param name="responseData">Tag data</param>
-        /// <returns>TagManagementActionResult</returns>
-        public TagActionResult Lookup(string tagName, out TagDataResponse responseData, ViewType viewType = ViewType.Standard)
+        /// <returns>HashTagActionResult</returns>
+        public HashTagActionResult Lookup(string tagName, out HashTagDataResponse responseData, ViewType viewType = ViewType.Standard)
         {
             responseData = null;
             try
@@ -134,25 +136,25 @@ namespace Smartrac.SmartCosmos.Objects.TagManagement
                 {
                     if (null != Logger)
                         Logger.AddLog("eMail address is not valid", LogType.Error);
-                    return TagActionResult.Failed;
+                    return HashTagActionResult.Failed;
                 }
 
                 var request = CreateWebRequest("/tags/tag/" + tagName + "?view=" + viewType.GetDescription(), WebRequestOption.Authorization);
                 object responseDataObj;
-                var returnHTTPCode = ExecuteWebRequestJSON(request, typeof(TagDataResponse), out responseDataObj);
+                var returnHTTPCode = ExecuteWebRequestJSON(request, typeof(HashTagDataResponse), out responseDataObj);
                 if (null != responseDataObj)
                 {
-                    responseData = responseDataObj as TagDataResponse;
+                    responseData = responseDataObj as HashTagDataResponse;
                     if ((responseData != null) && (responseData.HTTPStatusCode == HttpStatusCode.OK))
-                        return TagActionResult.Successful;
+                        return HashTagActionResult.Successful;
                 }
-                return TagActionResult.Failed;
+                return HashTagActionResult.Failed;
             }
             catch (Exception e)
             {
                 if (null != Logger)
                     Logger.AddLog(e.Message, LogType.Error);
-                return TagActionResult.Failed;
+                return HashTagActionResult.Failed;
             }
         }
 
@@ -162,8 +164,8 @@ namespace Smartrac.SmartCosmos.Objects.TagManagement
         /// <param name="tagName">Exact case-sensitive name to locate</param>
         /// <param name="viewType">A valid JSON Serialization View name (case-sensitive)</param>
         /// <param name="responseData">Tag data</param>
-        /// <returns>TagManagementActionResult</returns>
-        public TagActionResult Lookup(EntityReferenceType entityReferenceType, Urn referenceUrn, out TagDataListResponse responseData, ViewType viewType = ViewType.Standard)
+        /// <returns>HashTagActionResult</returns>
+        public HashTagActionResult Lookup(EntityReferenceType entityReferenceType, Urn referenceUrn, out HashTagListResponse responseData, ViewType viewType = ViewType.Standard)
         {
             responseData = null;
             try
@@ -172,7 +174,7 @@ namespace Smartrac.SmartCosmos.Objects.TagManagement
                 {
                     if (null != Logger)
                         Logger.AddLog("referenceUrn is not valid", LogType.Error);
-                    return TagActionResult.Failed;
+                    return HashTagActionResult.Failed;
                 }
 
                 var request = CreateWebRequest("/tags?view=" + viewType.GetDescription() +
@@ -180,32 +182,32 @@ namespace Smartrac.SmartCosmos.Objects.TagManagement
                     "&referenceUrn=" + referenceUrn.UUID
                     , WebRequestOption.Authorization);
                 object responseDataObj;
-                var returnHTTPCode = ExecuteWebRequestJSON(request, typeof(TagDataListResponse), out responseDataObj);
+                var returnHTTPCode = ExecuteWebRequestJSON(request, typeof(HashTagListResponse), out responseDataObj);
                 if (null != responseDataObj)
                 {
-                    responseData = responseDataObj as TagDataListResponse;
+                    responseData = responseDataObj as HashTagListResponse;
                     if ((responseData != null) && (responseData.HTTPStatusCode == HttpStatusCode.OK))
-                        return TagActionResult.Successful;
+                        return HashTagActionResult.Successful;
                 }
-                return TagActionResult.Failed;
+                return HashTagActionResult.Failed;
             }
             catch (Exception e)
             {
                 if (null != Logger)
                     Logger.AddLog(e.Message, LogType.Error);
-                return TagActionResult.Failed;
+                return HashTagActionResult.Failed;
             }
         }
 
-
         /// <summary>
-        /// Assign tags to objects
+        ///  Assign hash tags to objects
         /// </summary>
-        /// <param name="tagName">Exact case-sensitive email address to locate</param>
-        /// <param name="viewType">A valid JSON Serialization View name (case-sensitive)</param>
-        /// <param name="responseData">Tag data</param>
-        /// <returns>TagManagementActionResult</returns>
-        public TagActionResult Assign(EntityReferenceType entityReferenceType, Urn referenceUrn, out DefaultResponse responseData)
+        /// <param name="entityReferenceType">object reference type</param>
+        /// <param name="referenceUrn">object reference</param>
+        /// <param name="requestData">Hash tag list</param>
+        /// <param name="responseData">result</param>
+        /// <returns>HashTagActionResult</returns>
+        public HashTagActionResult Assign(EntityReferenceType entityReferenceType, Urn referenceUrn, HashTagListRequest requestData, out DefaultResponse responseData)
         {
             responseData = null;
             try
@@ -214,36 +216,36 @@ namespace Smartrac.SmartCosmos.Objects.TagManagement
                 {
                     if (null != Logger)
                         Logger.AddLog("referenceUrn is not valid", LogType.Error);
-                    return TagActionResult.Failed;
+                    return HashTagActionResult.Failed;
                 }
 
                 var request = CreateWebRequest("/tags/" + entityReferenceType.GetDescription() + 
                                                "/" + referenceUrn.UUID, WebRequestOption.Authorization);
                 object responseDataObj;
-                var returnHTTPCode = ExecuteWebRequestJSON(request, typeof(DefaultResponse), out responseDataObj);
+                var returnHTTPCode = ExecuteWebRequestJSON(request, typeof(HashTagRequest), requestData, typeof(DefaultResponse), out responseDataObj);
                 if (null != responseDataObj)
                 {
                     responseData = responseDataObj as DefaultResponse;
                     if ((responseData != null) && (responseData.HTTPStatusCode == HttpStatusCode.OK))
-                        return TagActionResult.Successful;
+                        return HashTagActionResult.Successful;
                 }
-                return TagActionResult.Failed;
+                return HashTagActionResult.Failed;
             }
             catch (Exception e)
             {
                 if (null != Logger)
                     Logger.AddLog(e.Message, LogType.Error);
-                return TagActionResult.Failed;
+                return HashTagActionResult.Failed;
             }
         }
 
 
         /// <summary>
-        /// Deletes an existing tag by its system-assigned URN key
+        /// Deletes an existing hash tag by its system-assigned URN key
         /// </summary>
         /// <param name="fileUrn">fileUrn of the file record</param>
         /// <returns>FileActionResult</returns>
-        public TagActionResult Delete(Urn tagUrn)
+        public HashTagActionResult Delete(Urn tagUrn)
         {
             try
             {
@@ -251,14 +253,14 @@ namespace Smartrac.SmartCosmos.Objects.TagManagement
                 {
                     if (null != Logger)
                         Logger.AddLog("tagUrn is null", LogType.Error);
-                    return TagActionResult.Failed;
+                    return HashTagActionResult.Failed;
                 }
 
                 if (!tagUrn.IsValid())
                 {
                     if (null != Logger)
                         Logger.AddLog("Invalid fileUrn: " + tagUrn.UUID, LogType.Error);
-                    return TagActionResult.Failed;
+                    return HashTagActionResult.Failed;
                 }
 
                 var request = CreateWebRequest("/tags/tag/" + tagUrn.UUID);
@@ -269,11 +271,11 @@ namespace Smartrac.SmartCosmos.Objects.TagManagement
                     if ((response.StatusCode == HttpStatusCode.NoContent) &&
                        (response.Headers.Get("SmartCosmos-Event") == "FileDeleted"))
                     {
-                        return TagActionResult.Successful;
+                        return HashTagActionResult.Successful;
                     }
                     else
                     {
-                        return TagActionResult.Failed;
+                        return HashTagActionResult.Failed;
                     }
                 }
             }
@@ -281,7 +283,7 @@ namespace Smartrac.SmartCosmos.Objects.TagManagement
             {
                 if (null != Logger)
                     Logger.AddLog(e.Message, LogType.Error);
-                return TagActionResult.Failed;
+                return HashTagActionResult.Failed;
             }
         }
 

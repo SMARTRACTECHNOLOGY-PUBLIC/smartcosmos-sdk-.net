@@ -17,54 +17,52 @@
 
 using System;
 using System.Collections.Generic;
-using System.IO;
 using System.Linq;
 using System.Text;
 using Smartrac.SmartCosmos.Objects.Base;
-using Smartrac.SmartCosmos.Objects.DataContext;
 
-namespace Smartrac.SmartCosmos.Objects.DataContext.Sample
+namespace Smartrac.SmartCosmos.Objects.DataContext
 {
-    public class SampleObjectInteractionDataContext : BaseObjectInteractionDataContext
+    public class BaseHashTagDataContext : IHashTagDataContext
     {
-        public override Urn GetObjectUrn()
+        public virtual Urn GetUrn()
         {
-            return new Urn("urn:building:mall:ParadiseValley");
+            return null;
         }
 
-        public override Urn GetReferenceUrn()
+        public virtual string GetDescription()
         {
-            return new Urn("urn:instagram:FooQux:47c23bc6-2a58-4e37-93b0-848776b42404");
+            return "";
+        }
+        
+        public virtual string GetName()
+        {
+            return "";
         }
 
-        public override string GetInteractionType()
+        public virtual string GetMoniker()
         {
-            return "Building";
+            return "";
         }
 
-        public override long GetRecordedTimestamp()
-        {
-            return 0;
-        }
-
-        public override string GetDescription()
-        {
-            return "test";
-        }
-
-        public override bool GetActiveFlag()
+        public virtual bool GetActiveFlag()
         {
             return true;
         }
 
-        public override EntityReferenceType GetEntityReferenceType()
-        {
-            return EntityReferenceType.Object;
-        }
-
-        public override ViewType GetViewType()
+        public virtual ViewType GetViewType()
         {
             return ViewType.Standard;
+        }
+
+        public virtual Urn GetReferenceUrn()
+        {
+            return null;
+        }
+
+        public virtual EntityReferenceType GetEntityReferenceType()
+        {
+            return EntityReferenceType.Object;
         }
     }
 }

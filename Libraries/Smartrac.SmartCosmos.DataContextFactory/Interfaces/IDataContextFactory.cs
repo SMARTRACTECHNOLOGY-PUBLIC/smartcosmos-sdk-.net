@@ -28,14 +28,17 @@ namespace Smartrac.SmartCosmos.DataContextFactory
 {
     public interface IDataContextFactory
     {
-        ITagDataContext CreateTagDataContext();
-        IFileDataContext CreateFileDataContext();
-        IRegistrationDataContext CreateRegistrationDataContext();
         IAccountManagementDataContext CreateAccountManagementDataContext();
-        IUserManagementDataContext CreateUserManagementDataContext();
-        IObjectManagementDataContext CreateObjectManagementDataContext();
-        IObjectInteractionDataContext CreateObjectInteractionDataContext();
-        IRelationshipManagementDataContext CreateRelationshipManagementDataContext();
+        IFileDataContext CreateFileDataContext();
         IGeospatialManagementDataContext CreateGeospatialManagementDataContext();
+        IHashTagDataContext CreateHashTagDataContext();
+        IMetadataDataContext CreateMetadataDataContext();
+        IObjectInteractionDataContext CreateObjectInteractionDataContext();
+        IObjectInteractionSessionDataContext CreateObjectInteractionSessionDataContext();
+        IObjectManagementDataContext CreateObjectManagementDataContext();
+        IRegistrationDataContext CreateRegistrationDataContext();
+        IRelationshipManagementDataContext CreateRelationshipManagementDataContext();
+        ITagDataContext CreateTagDataContext();
+        IUserManagementDataContext CreateUserManagementDataContext();
     }
 }

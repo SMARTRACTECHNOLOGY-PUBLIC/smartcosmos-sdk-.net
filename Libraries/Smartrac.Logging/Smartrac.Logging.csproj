@@ -93,6 +93,33 @@
     <ErrorReport>prompt</ErrorReport>
     <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
   </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'DebugLocal|x86'">
+    <DebugSymbols>true</DebugSymbols>
+    <OutputPath>bin\x86\DebugLocal\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <DebugType>full</DebugType>
+    <PlatformTarget>x86</PlatformTarget>
+    <ErrorReport>prompt</ErrorReport>
+    <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'DebugLocal|x64'">
+    <DebugSymbols>true</DebugSymbols>
+    <OutputPath>bin\x64\DebugLocal\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <DebugType>full</DebugType>
+    <PlatformTarget>x64</PlatformTarget>
+    <ErrorReport>prompt</ErrorReport>
+    <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'DebugLocal|AnyCPU'">
+    <DebugSymbols>true</DebugSymbols>
+    <OutputPath>bin\DebugLocal\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <DebugType>full</DebugType>
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <ErrorReport>prompt</ErrorReport>
+    <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
+  </PropertyGroup>
   <ItemGroup>
     <Reference Include="System" />
     <Reference Include="System.Core" />
@@ -107,21 +134,10 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
-  <Import Project="$(MSBuildExtensionsPath)\MSBuildCommunityTasks\MSBuild.Community.Tasks.Targets" Condition="'$(SetAssemblyInfo)' != ''"/>
+  <Import Project="$(MSBuildExtensionsPath)\MSBuildCommunityTasks\MSBuild.Community.Tasks.Targets" Condition="'$(SetAssemblyInfo)' != ''" />
   <Target Name="BeforeBuild">
-    <AssemblyInfo
-    Condition="'$(SetAssemblyInfo)' != ''" 
-	CodeLanguage="CS"
-    OutputFile="Properties\AssemblyInfo.cs"
-    AssemblyTitle="$(ProjectName)"
-    AssemblyCompany="SMARTRAC TECHNOLOGY GROUP"
-    AssemblyProduct="$(ProjectName)"
-    AssemblyDescription="$(ProjectName)"
-    AssemblyCopyright="© 2014 SMARTRAC TECHNOLOGY GROUP"
-    ComVisible="false" 
-    AssemblyVersion="$(VersionMajor).$(VersionMinor).$(VersionBuild).$(VersionRevision)"
-    AssemblyFileVersion="$(VersionMajor).$(VersionMinor).$(VersionBuild).$(VersionRevision)" /> 
-  </Target> 
+    <AssemblyInfo Condition="'$(SetAssemblyInfo)' != ''" CodeLanguage="CS" OutputFile="Properties\AssemblyInfo.cs" AssemblyTitle="$(ProjectName)" AssemblyCompany="SMARTRAC TECHNOLOGY GROUP" AssemblyProduct="$(ProjectName)" AssemblyDescription="$(ProjectName)" AssemblyCopyright="© 2014 SMARTRAC TECHNOLOGY GROUP" ComVisible="false" AssemblyVersion="$(VersionMajor).$(VersionMinor).$(VersionBuild).$(VersionRevision)" AssemblyFileVersion="$(VersionMajor).$(VersionMinor).$(VersionBuild).$(VersionRevision)" />
+  </Target>
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
   <Target Name="BeforeBuild">

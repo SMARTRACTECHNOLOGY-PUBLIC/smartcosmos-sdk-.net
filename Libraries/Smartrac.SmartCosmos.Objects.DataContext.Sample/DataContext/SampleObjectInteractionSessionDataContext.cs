@@ -25,41 +25,36 @@ using Smartrac.SmartCosmos.Objects.DataContext;
 
 namespace Smartrac.SmartCosmos.Objects.DataContext.Sample
 {
-    public class SampleObjectInteractionDataContext : BaseObjectInteractionDataContext
+    public class SampleObjectInteractionSessionDataContext : BaseObjectInteractionSessionDataContext
     {
-        public override Urn GetObjectUrn()
+        public override Urn GetSessionUrn()
         {
             return new Urn("urn:building:mall:ParadiseValley");
         }
 
-        public override Urn GetReferenceUrn()
-        {
-            return new Urn("urn:instagram:FooQux:47c23bc6-2a58-4e37-93b0-848776b42404");
-        }
-
         public override string GetInteractionType()
         {
-            return "Building";
-        }
-
-        public override long GetRecordedTimestamp()
-        {
-            return 0;
+            return "test type";
         }
 
         public override string GetDescription()
         {
-            return "test";
+            return "test Description";
+        }
+
+        public virtual string GetName()
+        {
+            return "test name";
+        }
+
+        public override string GetMoniker()
+        {
+            return "monikertest";
         }
 
         public override bool GetActiveFlag()
         {
             return true;
-        }
-
-        public override EntityReferenceType GetEntityReferenceType()
-        {
-            return EntityReferenceType.Object;
         }
 
         public override ViewType GetViewType()

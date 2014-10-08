@@ -24,14 +24,14 @@ using Smartrac.SmartCosmos.ClientEndpoint.BaseObject;
 using Smartrac.SmartCosmos.Objects.Base;
 using System.Net;
 
-namespace Smartrac.SmartCosmos.Objects.TagManagement
+namespace Smartrac.SmartCosmos.Objects.HashTag
 {
     [DataContract]
-    public class TagDataListResponse : List<TagDataResponse>
+    public class HashTagListResponse : List<HashTagDataResponse>
     {
         public HttpStatusCode HTTPStatusCode { get; set; }
 
-        public TagDataListResponse()
+        public HashTagListResponse()
             : base()
         {
             this.HTTPStatusCode = HttpStatusCode.NotImplemented;
