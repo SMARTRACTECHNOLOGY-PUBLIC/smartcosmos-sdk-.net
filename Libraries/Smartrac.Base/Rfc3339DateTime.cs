@@ -1,4 +1,5 @@
 ﻿#region License
+
 // SMART COSMOS .Net SDK
 // (C) Copyright 2014 SMARTRAC TECHNOLOGY GmbH, (http://www.smartrac-group.com)
 //
@@ -13,19 +14,17 @@
 // WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 // See the License for the specific language governing permissions and
 // limitations under the License.
-#endregion
+
+#endregion License
 
 using System;
-using System.Collections.Generic;
 using System.Globalization;
-using System.Linq;
-using System.Text;
 
 namespace Smartrac.Base
 {
     // Source
     // http://stackoverflow.com/questions/17017/how-do-i-parse-and-convert-datetimes-to-the-rfc-3339-date-time-format
-    
+
     /// <summary>
     /// Provides methods for converting <see cref="DateTime"/> structures to and from the equivalent RFC 3339 string representation.
     /// </summary>
@@ -34,30 +33,36 @@ namespace Smartrac.Base
         //============================================================
         //  Private members
         //============================================================
+
         #region Private Members
+
         /// <summary>
         /// Private member to hold array of formats that RFC 3339 date-time representations conform to.
         /// </summary>
         private static string[] formats = new string[0];
+
         /// <summary>
         /// Private member to hold the DateTime format string for representing a DateTime in the RFC 3339 format.
         /// </summary>
         private const string format = "yyyy-MM-dd'T'HH:mm:ss.fffK";
-        #endregion
+
+        #endregion Private Members
 
         //============================================================
         //  Public Properties
         //============================================================
+
         #region Rfc3339DateTimeFormat
+
         /// <summary>
         /// Gets the custom format specifier that may be used to represent a <see cref="DateTime"/> in the RFC 3339 format.
         /// </summary>
         /// <value>A <i>DateTime format string</i> that may be used to represent a <see cref="DateTime"/> in the RFC 3339 format.</value>
         /// <remarks>
         /// <para>
-        /// This method returns a string representation of a <see cref="DateTime"/> that 
-        /// is precise to the three most significant digits of the seconds fraction; that is, it represents 
-        /// the milliseconds in a date and time value. The <see cref="Rfc3339DateTimeFormat"/> is a valid 
+        /// This method returns a string representation of a <see cref="DateTime"/> that
+        /// is precise to the three most significant digits of the seconds fraction; that is, it represents
+        /// the milliseconds in a date and time value. The <see cref="Rfc3339DateTimeFormat"/> is a valid
         /// date-time format string for use in the <see cref="DateTime.ToString(String, IFormatProvider)"/> method.
         /// </para>
         /// </remarks>
@@ -68,14 +73,16 @@ namespace Smartrac.Base
                 return format;
             }
         }
-        #endregion
+
+        #endregion Rfc3339DateTimeFormat
 
         #region Rfc3339DateTimePatterns
+
         /// <summary>
         /// Gets an array of the expected formats for RFC 3339 date-time string representations.
         /// </summary>
         /// <value>
-        /// An array of the expected formats for RFC 3339 date-time string representations 
+        /// An array of the expected formats for RFC 3339 date-time string representations
         /// that may used in the <see cref="DateTime.TryParseExact(String, string[], IFormatProvider, DateTimeStyles, out DateTime)"/> method.
         /// </value>
         public static string[] Rfc3339DateTimePatterns
@@ -109,12 +116,15 @@ namespace Smartrac.Base
                 }
             }
         }
-        #endregion
+
+        #endregion Rfc3339DateTimePatterns
 
         //============================================================
         //  Public Methods
         //============================================================
+
         #region Parse(string s)
+
         /// <summary>
         /// Converts the specified string representation of a date and time to its <see cref="DateTime"/> equivalent.
         /// </summary>
@@ -145,9 +155,11 @@ namespace Smartrac.Base
                 throw new FormatException(String.Format(null, "{0} is not a valid RFC 3339 string representation of a date and time.", s));
             }
         }
-        #endregion
+
+        #endregion Parse(string s)
 
         #region ToString(DateTime utcDateTime)
+
         /// <summary>
         /// Converts the value of the specified <see cref="DateTime"/> object to its equivalent string representation.
         /// </summary>
@@ -155,14 +167,14 @@ namespace Smartrac.Base
         /// <returns>A RFC 3339 string representation of the value of the <paramref name="utcDateTime"/>.</returns>
         /// <remarks>
         /// <para>
-        /// This method returns a string representation of the <paramref name="utcDateTime"/> that 
-        /// is precise to the three most significant digits of the seconds fraction; that is, it represents 
+        /// This method returns a string representation of the <paramref name="utcDateTime"/> that
+        /// is precise to the three most significant digits of the seconds fraction; that is, it represents
         /// the milliseconds in a date and time value.
         /// </para>
         /// <para>
-        /// While it is possible to display higher precision fractions of a second component of a time value, 
-        /// that value may not be meaningful. The precision of date and time values depends on the resolution 
-        /// of the system clock. On Windows NT 3.5 and later, and Windows Vista operating systems, the clock's 
+        /// While it is possible to display higher precision fractions of a second component of a time value,
+        /// that value may not be meaningful. The precision of date and time values depends on the resolution
+        /// of the system clock. On Windows NT 3.5 and later, and Windows Vista operating systems, the clock's
         /// resolution is approximately 10-15 milliseconds.
         /// </para>
         /// </remarks>
@@ -176,19 +188,21 @@ namespace Smartrac.Base
 
             return utcDateTime.ToString(Rfc3339DateTime.Rfc3339DateTimeFormat, DateTimeFormatInfo.InvariantInfo);
         }
-        #endregion
+
+        #endregion ToString(DateTime utcDateTime)
 
         #region TryParse(string s, out DateTime result)
+
         /// <summary>
         /// Converts the specified string representation of a date and time to its <see cref="DateTime"/> equivalent.
         /// </summary>
         /// <param name="s">A string containing a date and time to convert.</param>
         /// <param name="result">
-        /// When this method returns, contains the <see cref="DateTime"/> value equivalent to the date and time 
-        /// contained in <paramref name="s"/>, if the conversion succeeded, 
-        /// or <see cref="DateTime.MinValue">MinValue</see> if the conversion failed. 
-        /// The conversion fails if the s parameter is a <b>null</b> reference (Nothing in Visual Basic), 
-        /// or does not contain a valid string representation of a date and time. 
+        /// When this method returns, contains the <see cref="DateTime"/> value equivalent to the date and time
+        /// contained in <paramref name="s"/>, if the conversion succeeded,
+        /// or <see cref="DateTime.MinValue">MinValue</see> if the conversion failed.
+        /// The conversion fails if the s parameter is a <b>null</b> reference (Nothing in Visual Basic),
+        /// or does not contain a valid string representation of a date and time.
         /// This parameter is passed uninitialized.
         /// </param>
         /// <returns><b>true</b> if the <paramref name="s"/> parameter was converted successfully; otherwise, <b>false</b>.</returns>
@@ -215,6 +229,7 @@ namespace Smartrac.Base
 
             return wasConverted;
         }
-        #endregion
+
+        #endregion TryParse(string s, out DateTime result)
     }
 }

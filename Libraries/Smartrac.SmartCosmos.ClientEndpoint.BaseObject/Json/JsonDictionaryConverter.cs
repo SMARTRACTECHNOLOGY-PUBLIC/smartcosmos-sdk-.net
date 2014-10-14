@@ -1,10 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Globalization;
-using System.Linq;
-using System.Text;
 using Newtonsoft.Json;
-using Newtonsoft.Json.Linq;
 
 namespace Smartrac.SmartCosmos.Objects.Base
 {
@@ -80,8 +77,10 @@ namespace Smartrac.SmartCosmos.Objects.Base
             {
                 case JsonToken.StartObject:
                     return ReadObject(reader);
+
                 case JsonToken.StartArray:
                     return ReadList(reader);
+
                 default:
                     if (IsPrimitiveToken(reader.TokenType))
                         return reader.Value;
@@ -100,11 +99,13 @@ namespace Smartrac.SmartCosmos.Objects.Base
                 {
                     case JsonToken.Comment:
                         break;
+
                     default:
                         object v = ReadValue(reader);
 
                         list.Add(v);
                         break;
+
                     case JsonToken.EndArray:
                         return list;
                 }
@@ -130,8 +131,10 @@ namespace Smartrac.SmartCosmos.Objects.Base
 
                         dictionary[propertyName] = v;
                         break;
+
                     case JsonToken.Comment:
                         break;
+
                     case JsonToken.EndObject:
                         return dictionary;
                 }
@@ -154,6 +157,7 @@ namespace Smartrac.SmartCosmos.Objects.Base
                 case JsonToken.Date:
                 case JsonToken.Bytes:
                     return true;
+
                 default:
                     return false;
             }

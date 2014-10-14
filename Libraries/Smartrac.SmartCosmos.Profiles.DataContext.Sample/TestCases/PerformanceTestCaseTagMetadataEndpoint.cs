@@ -1,4 +1,5 @@
 ﻿#region License
+
 // SMART COSMOS .Net SDK
 // (C) Copyright 2014 SMARTRAC TECHNOLOGY GmbH, (http://www.smartrac-group.com)
 //
@@ -13,19 +14,15 @@
 // WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 // See the License for the specific language governing permissions and
 // limitations under the License.
-#endregion
+
+#endregion License
 
 using System;
-using System.Collections.Generic;
 using System.Diagnostics;
 using System.IO;
-using System.Linq;
-using System.Text;
 using System.Xml.Linq;
 using Smartrac.Logging;
-using Smartrac.SmartCosmos.Profiles.DataContext;
 using Smartrac.SmartCosmos.Profiles.TagMetadata;
-using Smartrac.SmartCosmos.ClientEndpoint.BaseObject;
 using Smartrac.SmartCosmos.TestCase.Base;
 
 namespace Smartrac.SmartCosmos.Profiles.DataContext.Sample
@@ -70,7 +67,6 @@ namespace Smartrac.SmartCosmos.Profiles.DataContext.Sample
                     doc = XDocument.Load(dataContext.GetTagDataFile());
                     foreach (var tag in doc.Descendants("tag"))
                     {
-
                         var tagId = tag.Attribute("id");
                         if (null == tagId)
                             continue;
@@ -114,7 +110,7 @@ namespace Smartrac.SmartCosmos.Profiles.DataContext.Sample
                 OnAfterTest();
             }
 
-            return result; 
+            return result;
         }
     }
 }

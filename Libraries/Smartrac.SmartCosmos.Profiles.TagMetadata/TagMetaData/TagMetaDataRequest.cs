@@ -1,4 +1,5 @@
 ﻿#region License
+
 // SMART COSMOS .Net SDK
 // (C) Copyright 2014 SMARTRAC TECHNOLOGY GmbH, (http://www.smartrac-group.com)
 //
@@ -13,12 +14,11 @@
 // WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 // See the License for the specific language governing permissions and
 // limitations under the License.
-#endregion
 
-using System;
+#endregion License
+
 using System.Collections.Generic;
 using System.Runtime.Serialization;
-using System.Text;
 using Smartrac.SmartCosmos.Profiles.DataContext;
 
 namespace Smartrac.SmartCosmos.Profiles.TagMetadata
@@ -28,8 +28,10 @@ namespace Smartrac.SmartCosmos.Profiles.TagMetadata
     {
         [DataMember]
         public List<string> tagIds { get; set; }
+
         [DataMember]
         public List<string> verificationTypes { get; set; }
+
         [DataMember]
         public List<string> properties { get; set; }
 

@@ -1,4 +1,5 @@
 ﻿#region License
+
 // SMART COSMOS .Net SDK
 // (C) Copyright 2014 SMARTRAC TECHNOLOGY GmbH, (http://www.smartrac-group.com)
 //
@@ -13,13 +14,11 @@
 // WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 // See the License for the specific language governing permissions and
 // limitations under the License.
-#endregion
+
+#endregion License
 
 using System;
-using System.Collections.Generic;
 using System.Diagnostics.Contracts;
-using System.Linq;
-using System.Text;
 using Smartrac.Base;
 using Smartrac.Logging;
 
@@ -67,8 +66,8 @@ namespace Smartrac.SmartCosmos.ClientEndpoint.Base
         {
             instance.Logger = logger;
             return this as E;
-        }        
-        
+        }
+
         public E setUserAccount(string userName, string userPassword)
         {
             instance.setUserAccount(userName, userPassword);
@@ -77,7 +76,7 @@ namespace Smartrac.SmartCosmos.ClientEndpoint.Base
 
         protected override void onValidate()
         {
-            Contract.Requires(! String.IsNullOrEmpty(instance.ServerURL));
+            Contract.Requires(!String.IsNullOrEmpty(instance.ServerURL));
         }
     }
 }

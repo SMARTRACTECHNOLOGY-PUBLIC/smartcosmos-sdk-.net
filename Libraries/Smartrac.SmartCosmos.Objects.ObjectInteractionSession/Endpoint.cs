@@ -1,4 +1,5 @@
 ﻿#region License
+
 // SMART COSMOS .Net SDK
 // (C) Copyright 2014 SMARTRAC TECHNOLOGY GmbH, (http://www.smartrac-group.com)
 //
@@ -13,26 +14,22 @@
 // WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 // See the License for the specific language governing permissions and
 // limitations under the License.
-#endregion
+
+#endregion License
 
 using System;
-using System.Collections.Generic;
-using System.IO;
 using System.Net;
-using System.Runtime.Serialization.Json;
-using System.Text;
+using Smartrac.Base;
 using Smartrac.Logging;
 using Smartrac.SmartCosmos.ClientEndpoint.Base;
-using Smartrac.SmartCosmos.ClientEndpoint.BaseObject;
 using Smartrac.SmartCosmos.Objects.Base;
-using Smartrac.Base;
 
 namespace Smartrac.SmartCosmos.Objects.ObjectInteractionSession
 {
     /// <summary>
     /// Client for ObjectInteractionSession Endpoints
     /// </summary>
-    class ObjectInteractionSessionEndpoint : BaseObjectsEndpoint, IObjectInteractionSessionEndpoint
+    internal class ObjectInteractionSessionEndpoint : BaseObjectsEndpoint, IObjectInteractionSessionEndpoint
     {
         /// <summary>
         /// Start a new object interaction session
@@ -66,6 +63,7 @@ namespace Smartrac.SmartCosmos.Objects.ObjectInteractionSession
                             case HttpStatusCode.OK:
                                 responseData.sessionUrn = new Urn(responseData.message);
                                 return ObjInteractSessionActionResult.Successful;
+
                             default: return ObjInteractSessionActionResult.Failed;
                         }
                     }
@@ -80,6 +78,7 @@ namespace Smartrac.SmartCosmos.Objects.ObjectInteractionSession
                 return ObjInteractSessionActionResult.Failed;
             }
         }
+
         /// <summary>
         /// Stop an existing object interaction session
         /// </summary>
@@ -228,6 +227,5 @@ namespace Smartrac.SmartCosmos.Objects.ObjectInteractionSession
                 return ObjInteractSessionActionResult.Failed;
             }
         }
-
     }
 }

@@ -1,4 +1,5 @@
 ﻿#region License
+
 // SMART COSMOS .Net SDK
 // (C) Copyright 2014 SMARTRAC TECHNOLOGY GmbH, (http://www.smartrac-group.com)
 //
@@ -13,14 +14,10 @@
 // WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 // See the License for the specific language governing permissions and
 // limitations under the License.
-#endregion
 
-using System;
-using System.Collections.Generic;
+#endregion License
+
 using System.IO;
-using System.Linq;
-using System.Net;
-using System.Text;
 using Smartrac.SmartCosmos.ClientEndpoint.Base;
 using Smartrac.SmartCosmos.Objects.Base;
 
@@ -62,6 +59,7 @@ namespace Smartrac.SmartCosmos.Objects.File
         /// <param name="responseData">Output data</param>
         /// <returns>FileActionResult</returns>
         FileActionResult UploadFileAsOctetStream(Urn fileUrn, Stream data, out FileUploadResponse responseData);
+
         FileActionResult UploadFileAsOctetStream(Urn fileUrn, string file, out FileUploadResponse responseData);
 
         /// <summary>
@@ -77,10 +75,10 @@ namespace Smartrac.SmartCosmos.Objects.File
         /// Retrieves the file definition
         /// </summary>
         /// <param name="fileUrn">System-assigned URN assigned at creation of file definition</param>
-        /// <param name="view">A valid JSON Serialization View name (case-sensitive)</param> 
+        /// <param name="view">A valid JSON Serialization View name (case-sensitive)</param>
         /// <param name="responseData">File properties</param>
         /// <returns>FileActionResult</returns>
-        FileActionResult LookupDefinition(Urn fileUrn, out FileDefinitionRetrievalResponse responseData, ViewType viewType = ViewType.Standard );
+        FileActionResult LookupDefinition(Urn fileUrn, out FileDefinitionRetrievalResponse responseData, ViewType viewType = ViewType.Standard);
 
         /// <summary>
         /// Retrieves the actual file content from the cloud
@@ -95,7 +93,7 @@ namespace Smartrac.SmartCosmos.Objects.File
         /// </summary>
         /// <param name="entityReferenceType">Valid EntityReferenceType enum value</param>
         /// <param name="urn">Case-sensitive urn of an existing entity of type entityReferenceType</param>
-        /// <param name="view">A valid JSON Serialization View name (case-sensitive)</param> 
+        /// <param name="view">A valid JSON Serialization View name (case-sensitive)</param>
         /// <param name="responseData">File properties</param>
         /// <returns>FileActionResult</returns>
         FileActionResult LookupDefinitions(EntityReferenceType entityReferenceType, Urn referenceUrn, out FileDefinitionRetrievalListResponse responseData, ViewType viewType = ViewType.Standard);

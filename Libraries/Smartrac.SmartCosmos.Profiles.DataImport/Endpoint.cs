@@ -1,4 +1,5 @@
 ﻿#region License
+
 // SMART COSMOS .Net SDK
 // (C) Copyright 2014 SMARTRAC TECHNOLOGY GmbH, (http://www.smartrac-group.com)
 //
@@ -13,18 +14,15 @@
 // WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 // See the License for the specific language governing permissions and
 // limitations under the License.
-#endregion
+
+#endregion License
 
 using System;
-using System.Collections.Generic;
 using System.IO;
-using System.Linq;
 using System.Net;
 using System.Runtime.Serialization.Json;
-using System.Text;
 using Smartrac.Logging;
 using Smartrac.SmartCosmos.ClientEndpoint.Base;
-using Smartrac.SmartCosmos.ClientEndpoint.BaseObject;
 using Smartrac.SmartCosmos.Profiles.Base;
 
 namespace Smartrac.SmartCosmos.Profiles.DataImport
@@ -32,7 +30,7 @@ namespace Smartrac.SmartCosmos.Profiles.DataImport
     /// <summary>
     /// Client for data import endpoint
     /// </summary>
-    class DataImportEndpoint : BaseProfileEndpoint, IDataImportEndpoint
+    internal class DataImportEndpoint : BaseProfileEndpoint, IDataImportEndpoint
     {
         /// <summary>
         /// Upload a file stream as octet stream
@@ -90,7 +88,7 @@ namespace Smartrac.SmartCosmos.Profiles.DataImport
             responseData = null;
 
             if (!File.Exists(file))
-            {                
+            {
                 if (null != Logger)
                     Logger.AddLog("Import file does´t exists: " + file, LogType.Error);
                 return DataActionResult.Failed;
@@ -128,7 +126,6 @@ namespace Smartrac.SmartCosmos.Profiles.DataImport
                 Logger.AddLog("UploadFileAsMultiPartForm is not yet implemented", LogType.Error);
             throw new NotImplementedException();
         }
-
 
         /// <summary>
         /// Request the current import state for a given importId

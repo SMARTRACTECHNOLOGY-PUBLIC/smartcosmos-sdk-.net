@@ -4,7 +4,7 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{D3A5DB54-FD8F-4C15-8E1D-E0A10C55465C}</ProjectGuid>
+    <ProjectGuid>{955046D9-AA9A-462C-9057-8046C61ED701}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>Smartrac.SmartCosmos.Objects.DataContext</RootNamespace>
@@ -67,7 +67,7 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="GeoJSON.Net">
-      <HintPath>..\..\External\GeoJSON.Net.0.0.14\lib\GeoJSON.Net.dll</HintPath>
+      <HintPath>..\..\External\GeoJSON.Net.0.0.16\lib\GeoJSON.Net.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
@@ -111,9 +111,21 @@
       <Project>{73ba0972-769b-4b84-9a21-9cf545a14a03}</Project>
       <Name>Smartrac.Logging</Name>
     </ProjectReference>
+    <ProjectReference Include="..\Smartrac.SmartCosmos.ClientEndpoint.BaseObject\Smartrac.SmartCosmos.ClientEndpoint.BaseObject.csproj">
+      <Project>{28e0fa25-18da-4c11-83cd-92a36ddd060b}</Project>
+      <Name>Smartrac.SmartCosmos.ClientEndpoint.BaseObject</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Smartrac.SmartCosmos.ClientEndpoint.Base\Smartrac.SmartCosmos.ClientEndpoint.Base.csproj">
+      <Project>{f0e26f53-5847-42d0-b16f-2dbd1952e452}</Project>
+      <Name>Smartrac.SmartCosmos.ClientEndpoint.Base</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Smartrac.SmartCosmos.Objects.Base\Smartrac.SmartCosmos.Objects.Base.csproj">
       <Project>{96f35cdc-1fe4-4d39-afad-907466426a72}</Project>
       <Name>Smartrac.SmartCosmos.Objects.Base</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Smartrac.SmartCosmos.Objects.Metadata\Smartrac.SmartCosmos.Objects.Metadata.csproj">
+      <Project>{3f715f22-7d75-4645-9ce6-e8a20ccdacc8}</Project>
+      <Name>Smartrac.SmartCosmos.Objects.Metadata</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

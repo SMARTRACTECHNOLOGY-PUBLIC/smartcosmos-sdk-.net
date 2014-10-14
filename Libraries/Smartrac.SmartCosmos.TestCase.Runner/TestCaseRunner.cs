@@ -1,4 +1,5 @@
 ﻿#region License
+
 // SMART COSMOS .Net SDK
 // (C) Copyright 2014 SMARTRAC TECHNOLOGY GmbH, (http://www.smartrac-group.com)
 //
@@ -13,19 +14,14 @@
 // WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 // See the License for the specific language governing permissions and
 // limitations under the License.
-#endregion
+
+#endregion License
 
 using System;
-using System.Collections.Generic;
-using System.Diagnostics;
 using System.IO;
 using System.Linq;
-using System.Net;
-using System.Text;
-using System.Threading.Tasks;
-using System.Xml.Linq;
-using Smartrac.Logging;
 using System.Reflection;
+using Smartrac.Logging;
 using Smartrac.SmartCosmos.ClientEndpoint.Factory;
 using Smartrac.SmartCosmos.DataContextFactory;
 using Smartrac.SmartCosmos.TestCase.Base;
@@ -35,13 +31,16 @@ namespace Smartrac.SmartCosmos.TestCase.Runner
     /// <summary>
     /// Test Case for SmartCosmos
     /// </summary>
-    class TestCaseRunner : ITestCaseRunner
+    internal class TestCaseRunner : ITestCaseRunner
     {
         public IMessageLogger Logger { get; set; }
+
         public IEndpointFactory EndpointFactory { get; set; }
+
         public IDataContextFactory DataContextFactory { get; set; }
 
-        public TestCaseRunner(): base()
+        public TestCaseRunner()
+            : base()
         {
         }
 
@@ -80,10 +79,10 @@ namespace Smartrac.SmartCosmos.TestCase.Runner
                     }
                 }
             }
-            
+
             Logger.AddLog("");
             Logger.AddLog("Total result: " + result);
             return result;
         }
-   }
+    }
 }

@@ -1,4 +1,5 @@
 ﻿#region License
+
 // SMART COSMOS .Net SDK
 // (C) Copyright 2014 SMARTRAC TECHNOLOGY GmbH, (http://www.smartrac-group.com)
 //
@@ -13,23 +14,21 @@
 // WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 // See the License for the specific language governing permissions and
 // limitations under the License.
-#endregion
+
+#endregion License
 
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 
 namespace Smartrac.SmartCosmos.Objects.Base
 {
     public class Urn
     {
         private string UUID_;
-        
+
         /// <summary>
         /// Any API call that requires a {referenceUrn} parameter must provide a full URN UUID reference, e.g. urn:uuid:66b7d3e9-69e1-499e-a867-9c4a939c6f7d
         /// </summary>
-        public string UUID 
+        public string UUID
         {
             get
             {
@@ -37,7 +36,8 @@ namespace Smartrac.SmartCosmos.Objects.Base
             }
         }
 
-        public Urn(string uuid) : base()
+        public Urn(string uuid)
+            : base()
         {
             this.UUID_ = uuid;
         }

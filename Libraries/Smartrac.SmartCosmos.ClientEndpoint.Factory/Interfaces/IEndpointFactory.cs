@@ -1,4 +1,5 @@
 ﻿#region License
+
 // SMART COSMOS .Net SDK
 // (C) Copyright 2014 SMARTRAC TECHNOLOGY GmbH, (http://www.smartrac-group.com)
 //
@@ -13,12 +14,9 @@
 // WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 // See the License for the specific language governing permissions and
 // limitations under the License.
-#endregion
 
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
+#endregion License
+
 using Smartrac.Logging;
 using Smartrac.SmartCosmos.Objects.AccountManagement;
 using Smartrac.SmartCosmos.Objects.File;
@@ -41,32 +39,55 @@ namespace Smartrac.SmartCosmos.ClientEndpoint.Factory
     public interface IEndpointFactory
     {
         string ProfilesServerURL { get; set; }
+
         bool KeepAlive { get; set; }
+
         bool AllowInvalidServerCertificates { get; set; }
+
         string AcceptLanguage { get; set; }
+
         IMessageLogger Logger { get; set; }
+
         string UserName { get; set; }
+
         string UserPassword { get; set; }
 
         #region Profiles
+
         IPlatformAvailabilityEndpoint CreatePlatformAvailabilityEndpoint();
+
         IDataImportEndpoint CreateDataImportEndpoint();
+
         ITagVerificationEndpoint CreateTagVerificationEndpoint();
+
         ITagMetadataEndpoint CreateTagMetadataEndpoint();
-        #endregion
+
+        #endregion Profiles
 
         #region Objects
+
         IAccountManagementEndpoint CreateAccountManagementEndpoint();
+
         IFileEndpoint CreateFileEndpoint();
+
         IGeospatialManagementEndpoint CreateGeospatialManagementEndpoint();
+
         IHashTagEndpoint CreateHashTagEndpoint();
+
         IMetadataEndpoint CreateMetadataEndpoint();
+
         IObjectInteractionEndpoint CreateObjectInteractionEndpoint();
+
         IObjectInteractionSessionEndpoint CreateObjectInteractionSessionEndpoint();
+
         IObjectManagementEndpoint CreateObjectManagementEndpoint();
+
         IRegistrationEndpoint CreateRegistrationEndpoint();
+
         IRelationshipManagementEndpoint CreateRelationshipManagementEndpoint();
+
         IUserManagementEndpoint CreateUserManagementEndpoint();
-        #endregion
+
+        #endregion Objects
     }
 }

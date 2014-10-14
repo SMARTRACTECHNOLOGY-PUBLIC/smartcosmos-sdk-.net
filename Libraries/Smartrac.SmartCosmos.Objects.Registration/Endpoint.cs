@@ -1,4 +1,5 @@
 ﻿#region License
+
 // SMART COSMOS .Net SDK
 // (C) Copyright 2014 SMARTRAC TECHNOLOGY GmbH, (http://www.smartrac-group.com)
 //
@@ -13,17 +14,12 @@
 // WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 // See the License for the specific language governing permissions and
 // limitations under the License.
-#endregion
+
+#endregion License
 
 using System;
-using System.Collections.Generic;
-using System.IO;
 using System.Net;
-using System.Runtime.Serialization.Json;
-using System.Text;
 using Smartrac.Logging;
-using Smartrac.SmartCosmos.ClientEndpoint.Base;
-using Smartrac.SmartCosmos.ClientEndpoint.BaseObject;
 using Smartrac.SmartCosmos.Objects.Base;
 
 namespace Smartrac.SmartCosmos.Objects.Registration
@@ -31,7 +27,7 @@ namespace Smartrac.SmartCosmos.Objects.Registration
     /// <summary>
     /// Client for Registration Endpoints
     /// </summary>
-    class RegistrationEndpoint : BaseObjectsEndpoint, IRegistrationEndpoint
+    internal class RegistrationEndpoint : BaseObjectsEndpoint, IRegistrationEndpoint
     {
         /// <summary>
         /// Check to see if the named realm is available for registration
@@ -80,7 +76,7 @@ namespace Smartrac.SmartCosmos.Objects.Registration
             responseData = null;
             try
             {
-                if ((requestData == null) || String.IsNullOrEmpty(requestData.emailAddress) ||  String.IsNullOrEmpty(requestData.realm))
+                if ((requestData == null) || String.IsNullOrEmpty(requestData.emailAddress) || String.IsNullOrEmpty(requestData.realm))
                 {
                     if (null != Logger)
                         Logger.AddLog("Account registration is incorrect or required data is missing!", LogType.Error);

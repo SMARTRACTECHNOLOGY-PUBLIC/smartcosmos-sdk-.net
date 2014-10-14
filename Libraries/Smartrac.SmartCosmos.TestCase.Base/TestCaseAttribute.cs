@@ -1,4 +1,5 @@
 ﻿#region License
+
 // SMART COSMOS .Net SDK
 // (C) Copyright 2014 SMARTRAC TECHNOLOGY GmbH, (http://www.smartrac-group.com)
 //
@@ -13,12 +14,10 @@
 // WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 // See the License for the specific language governing permissions and
 // limitations under the License.
-#endregion
+
+#endregion License
 
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 
 namespace Smartrac.SmartCosmos.TestCase.Base
 {
@@ -33,7 +32,7 @@ namespace Smartrac.SmartCosmos.TestCase.Base
     {
         public readonly TestCaseType testCaseType;
 
-        public TestCaseAttribute(TestCaseType aTestCaseType = TestCaseType.Functional)  
+        public TestCaseAttribute(TestCaseType aTestCaseType = TestCaseType.Functional)
         {
             this.testCaseType = aTestCaseType;
         }

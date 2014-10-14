@@ -1,4 +1,5 @@
 ﻿#region License
+
 // SMART COSMOS .Net SDK
 // (C) Copyright 2014 SMARTRAC TECHNOLOGY GmbH, (http://www.smartrac-group.com)
 //
@@ -13,35 +14,33 @@
 // WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 // See the License for the specific language governing permissions and
 // limitations under the License.
-#endregion
 
-using System;
+#endregion License
+
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
-using System.Text;
-using Smartrac.SmartCosmos.Profiles.DataContext;
 
 namespace Smartrac.SmartCosmos.Profiles.DataContext.Sample
 {
     public class SampleTagDataContext : BaseTagDataContext
     {
-        List<string> TagIds;
-        List<string> TagProperties;
-        List<string> VerificationTypes;
+        private List<string> TagIds;
+        private List<string> TagProperties;
+        private List<string> VerificationTypes;
 
-        string SampleDataFile;
+        private string SampleDataFile;
 
         public SampleTagDataContext()
         {
-           TagIds = new List<string>();
-           TagIds.Add("0EEEE100000001");     // existing dummy TID 
-           TagIds.Add("0EEEE200000002");     // existing dummy TID 
-        //   TagIds.Add("E280110C20005042D5B602B1999");
-        //   TagIds.Add("E280110C2000505110850282");
-        //   TagIds.Add("E280110C20005103115E0282");
-           TagIds.Add("0EEEE100000781");
-        //   TagIds.Add("E12345678912345777");
+            TagIds = new List<string>();
+            TagIds.Add("0EEEE100000001");     // existing dummy TID
+            TagIds.Add("0EEEE200000002");     // existing dummy TID
+            //   TagIds.Add("E280110C20005042D5B602B1999");
+            //   TagIds.Add("E280110C2000505110850282");
+            //   TagIds.Add("E280110C20005103115E0282");
+            TagIds.Add("0EEEE100000781");
+            //   TagIds.Add("E12345678912345777");
 
             TagProperties = new List<string>();
             TagProperties.Add("plantId");     // Manufacturer production side ID
@@ -53,7 +52,7 @@ namespace Smartrac.SmartCosmos.Profiles.DataContext.Sample
             VerificationTypes.Add("RR");
 
             SampleDataFile = Path.Combine(Path.GetDirectoryName(System.Reflection.Assembly.GetExecutingAssembly().Location), @"..\..\..\..\..\Documentation\SampleData\SampleData30k.xml");
-            if (! File.Exists(SampleDataFile))
+            if (!File.Exists(SampleDataFile))
                 SampleDataFile = "";
         }
 

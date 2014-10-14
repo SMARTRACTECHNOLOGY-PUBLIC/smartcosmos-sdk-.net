@@ -1,4 +1,5 @@
 ﻿#region License
+
 // SMART COSMOS .Net SDK
 // (C) Copyright 2014 SMARTRAC TECHNOLOGY GmbH, (http://www.smartrac-group.com)
 //
@@ -13,12 +14,8 @@
 // WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 // See the License for the specific language governing permissions and
 // limitations under the License.
-#endregion
 
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
+#endregion License
 
 namespace Smartrac.Logging.Console
 {
@@ -31,22 +28,27 @@ namespace Smartrac.Logging.Console
                 case LogType.Debug:
                     System.Console.WriteLine("DBG:" + aMessage);
                     break;
+
                 case LogType.Error:
                     System.Console.WriteLine("ERR:" + aMessage);
                     break;
+
                 case LogType.Fatal:
                     System.Console.WriteLine("FATAL:" + aMessage);
                     break;
+
                 case LogType.Info:
                     System.Console.WriteLine("INF:" + aMessage);
                     break;
+
                 case LogType.Warning:
                     System.Console.WriteLine("WRN:" + aMessage);
                     break;
+
                 default:
                     System.Console.WriteLine("???:" + aMessage);
                     break;
-            }   
+            }
         }
     }
 }

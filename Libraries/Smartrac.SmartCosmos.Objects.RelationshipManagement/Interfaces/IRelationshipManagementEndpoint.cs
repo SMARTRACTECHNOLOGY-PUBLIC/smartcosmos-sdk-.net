@@ -1,4 +1,5 @@
 ﻿#region License
+
 // SMART COSMOS .Net SDK
 // (C) Copyright 2014 SMARTRAC TECHNOLOGY GmbH, (http://www.smartrac-group.com)
 //
@@ -13,15 +14,9 @@
 // WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 // See the License for the specific language governing permissions and
 // limitations under the License.
-#endregion
 
-using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.IO;
-using System.Linq;
-using System.Net;
-using System.Text;
+#endregion License
+
 using Smartrac.SmartCosmos.ClientEndpoint.Base;
 using Smartrac.SmartCosmos.Objects.Base;
 
@@ -58,7 +53,7 @@ namespace Smartrac.SmartCosmos.Objects.RelationshipManagement
         /// <param name="responseData">Relationship data</param>
         /// <returns>RelationshipManagementActionResult</returns>
         RelationshipActionResult Lookup(Urn relationshipUrn, out RelationshipDataResponse responseData, ViewType viewType = ViewType.Standard);
-            
+
         /// <summary>
         /// Lookup an array of all defined relationships between any two entities
         /// </summary>

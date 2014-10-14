@@ -1,4 +1,5 @@
 ﻿#region License
+
 // SMART COSMOS .Net SDK
 // (C) Copyright 2014 SMARTRAC TECHNOLOGY GmbH, (http://www.smartrac-group.com)
 //
@@ -13,16 +14,12 @@
 // WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 // See the License for the specific language governing permissions and
 // limitations under the License.
-#endregion
 
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
+#endregion License
+
 using Smartrac.Logging;
-using Smartrac.SmartCosmos.Objects.DataContext;
-using Smartrac.SmartCosmos.Objects.RelationshipManagement;
 using Smartrac.SmartCosmos.ClientEndpoint.BaseObject;
+using Smartrac.SmartCosmos.Objects.RelationshipManagement;
 using Smartrac.SmartCosmos.TestCase.Base;
 
 namespace Smartrac.SmartCosmos.Objects.DataContext.Sample
@@ -52,9 +49,8 @@ namespace Smartrac.SmartCosmos.Objects.DataContext.Sample
             bool result = true;
             RelationshipActionResult actionResult;
 
-
             OnBeforeTest("Objects", "RelationshipManagementEndpoint", "Create a new relationship");
-            // create request         
+            // create request
             RelationshipManagementRequest requestNewRelationshipData = new RelationshipManagementRequest
             {
                 entityReferenceType = RelationshipManagementDataContext.GetEntityReferenceType(),
@@ -64,30 +60,28 @@ namespace Smartrac.SmartCosmos.Objects.DataContext.Sample
                 type = RelationshipManagementDataContext.GetRelationshipType(),
             };
             RelationshipManagementResponse responseNewRelationshipData;
-            // call endpoint  
+            // call endpoint
             actionResult = tester.Create(requestNewRelationshipData, out responseNewRelationshipData);
             result = result && (actionResult == RelationshipActionResult.Successful);
-            // log response 
+            // log response
             Logger.AddLog("Result: " + actionResult);
             Logger.AddLog("Result Data: " + responseNewRelationshipData.ToJSON());
             OnAfterTest();
 
-
             OnBeforeTest("Objects", "RelationshipManagementEndpoint", "Relationship Management by URN");
             RelationshipDataResponse responseLookupData;
-            // call endpoint  
+            // call endpoint
             actionResult = tester.Lookup(responseNewRelationshipData.relationshipUrn,
                                                               out responseLookupData,
                                                               RelationshipManagementDataContext.GetViewType());
             result = result && (actionResult == RelationshipActionResult.Successful);
-            // log response 
+            // log response
             Logger.AddLog("Result: " + actionResult);
             Logger.AddLog("Result Data: " + responseLookupData.ToJSON());
             OnAfterTest();
 
-
             OnBeforeTest("Objects", "RelationshipManagementEndpoint", "Lookup All Relationships Between Entities");
-            // create request         
+            // create request
             QueryQueryRelationshipsRequest requestQueryData = new QueryQueryRelationshipsRequest
             {
                 entityReferenceType = RelationshipManagementDataContext.GetEntityReferenceType(),
@@ -96,17 +90,16 @@ namespace Smartrac.SmartCosmos.Objects.DataContext.Sample
                 relatedReferenceUrnObj = RelationshipManagementDataContext.GetRelatedReferenceUrn(),
             };
             QueryObjectRelationshipsResponse responseQueryData;
-            // call endpoint  
+            // call endpoint
             actionResult = tester.Lookup(requestQueryData, out responseQueryData, RelationshipManagementDataContext.GetViewType());
             result = result && (actionResult == RelationshipActionResult.Successful);
-            // log response 
+            // log response
             Logger.AddLog("Result: " + actionResult);
             Logger.AddLog("Result Data: " + responseQueryData.ToJSON());
             OnAfterTest();
 
-
             OnBeforeTest("Objects", "RelationshipManagementEndpoint", "Lookup Specific Relationship Between Entities");
-            // create request         
+            // create request
             QueryQueryRelationshipByTypeRequest requestQuerySpecificData = new QueryQueryRelationshipByTypeRequest
             {
                 entityReferenceType = RelationshipManagementDataContext.GetEntityReferenceType(),
@@ -116,17 +109,16 @@ namespace Smartrac.SmartCosmos.Objects.DataContext.Sample
                 type = RelationshipManagementDataContext.GetRelationshipType()
             };
             RelationshipDataResponse responseQuerySpecificData;
-            // call endpoint  
+            // call endpoint
             actionResult = tester.Lookup(requestQuerySpecificData, out responseQuerySpecificData, RelationshipManagementDataContext.GetViewType());
             result = result && (actionResult == RelationshipActionResult.Successful);
-            // log response 
+            // log response
             Logger.AddLog("Result: " + actionResult);
             Logger.AddLog("Result Data: " + responseQuerySpecificData.ToJSON());
             OnAfterTest();
 
-
             OnBeforeTest("Objects", "RelationshipManagementEndpoint", "Lookup Specific Relationship Between Entities");
-            // create request         
+            // create request
             QueryQueryRelationshipsByTypeRequest requestQueryTypeListData = new QueryQueryRelationshipsByTypeRequest
             {
                 entityReferenceType = RelationshipManagementDataContext.GetEntityReferenceType(),
@@ -134,20 +126,19 @@ namespace Smartrac.SmartCosmos.Objects.DataContext.Sample
                 type = RelationshipManagementDataContext.GetRelationshipType()
             };
             QueryObjectRelationshipsResponse responseQueryTypeListData;
-            // call endpoint  
+            // call endpoint
             actionResult = tester.Lookup(requestQueryTypeListData, out responseQueryTypeListData, RelationshipManagementDataContext.GetViewType());
             result = result && (actionResult == RelationshipActionResult.Successful);
-            // log response 
+            // log response
             Logger.AddLog("Result: " + actionResult);
             Logger.AddLog("Result Data: " + responseQueryTypeListData.ToJSON());
             OnAfterTest();
 
-
             OnBeforeTest("Objects", "RelationshipManagementEndpoint", "Deletes an existing relationship");
-            // call endpoint  
+            // call endpoint
             actionResult = tester.Delete(responseNewRelationshipData.relationshipUrn);
             result = result && (actionResult == RelationshipActionResult.Successful);
-            // log response 
+            // log response
             Logger.AddLog("Result: " + actionResult);
             //Logger.AddLog("Result Data: " + responseLookupData.ToJSON());
             OnAfterTest();

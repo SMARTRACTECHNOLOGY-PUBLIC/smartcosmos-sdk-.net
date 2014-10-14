@@ -1,4 +1,5 @@
 ﻿#region License
+
 // SMART COSMOS .Net SDK
 // (C) Copyright 2014 SMARTRAC TECHNOLOGY GmbH, (http://www.smartrac-group.com)
 //
@@ -13,14 +14,10 @@
 // WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 // See the License for the specific language governing permissions and
 // limitations under the License.
-#endregion
 
-using System;
-using System.Collections.Generic;
-using System.IO;
+#endregion License
+
 using System.Runtime.Serialization;
-using System.Text;
-using Smartrac.SmartCosmos.ClientEndpoint.BaseObject;
 using Smartrac.SmartCosmos.Objects.Base;
 
 namespace Smartrac.SmartCosmos.Objects.RelationshipManagement
@@ -40,6 +37,7 @@ namespace Smartrac.SmartCosmos.Objects.RelationshipManagement
                 relationshipUrn = new Urn(value);
             }
         }
+
         public Urn relationshipUrn { get; set; }
 
         [DataMember]
@@ -57,12 +55,15 @@ namespace Smartrac.SmartCosmos.Objects.RelationshipManagement
                 referenceUrnObj = new Urn(value);
             }
         }
+
         public Urn referenceUrnObj { get; set; }
 
         [DataMember]
         public string type { get; set; }
+
         [DataMember]
         public EntityReferenceType relatedEntityReferenceType { get; set; }
+
         [DataMember]
         public string relatedReferenceUrn
         {
@@ -75,7 +76,9 @@ namespace Smartrac.SmartCosmos.Objects.RelationshipManagement
                 relatedReferenceUrnObj = new Urn(value);
             }
         }
+
         public Urn relatedReferenceUrnObj { get; set; }
+
         [DataMember]
         public long lastModifiedTimestamp { get; set; }
     }

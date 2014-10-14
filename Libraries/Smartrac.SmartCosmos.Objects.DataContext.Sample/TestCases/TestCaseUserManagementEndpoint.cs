@@ -1,4 +1,5 @@
 ﻿#region License
+
 // SMART COSMOS .Net SDK
 // (C) Copyright 2014 SMARTRAC TECHNOLOGY GmbH, (http://www.smartrac-group.com)
 //
@@ -13,16 +14,12 @@
 // WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 // See the License for the specific language governing permissions and
 // limitations under the License.
-#endregion
 
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
+#endregion License
+
 using Smartrac.Logging;
-using Smartrac.SmartCosmos.Objects.DataContext;
-using Smartrac.SmartCosmos.Objects.UserManagement;
 using Smartrac.SmartCosmos.ClientEndpoint.BaseObject;
+using Smartrac.SmartCosmos.Objects.UserManagement;
 using Smartrac.SmartCosmos.TestCase.Base;
 
 namespace Smartrac.SmartCosmos.Objects.DataContext.Sample
@@ -53,7 +50,7 @@ namespace Smartrac.SmartCosmos.Objects.DataContext.Sample
             UserActionResult actionResult;
 
             OnBeforeTest("Objects", "UserManagementEndpoint", "Create new user");
-            // create request         
+            // create request
             UserManagementRequest requestNewUserData = new UserManagementRequest
             {
                 emailAddress = dataContext.GeteMailAddress(),
@@ -62,10 +59,10 @@ namespace Smartrac.SmartCosmos.Objects.DataContext.Sample
                 roleType = dataContext.GetRoleType()
             };
             UserManagementResponse responseNewUserData;
-            // call endpoint  
+            // call endpoint
             actionResult = tester.CreateNewUser(requestNewUserData, out responseNewUserData);
             result = result && (actionResult == UserActionResult.Successful);
-            // log response 
+            // log response
             Logger.AddLog("Result: " + actionResult);
             Logger.AddLog("Result Data: " + responseNewUserData.ToJSON());
             OnAfterTest();
@@ -79,30 +76,30 @@ namespace Smartrac.SmartCosmos.Objects.DataContext.Sample
                 surname = dataContext.GetSurname() + "_updated",
             };
             UserManagementResponse responseUpdateUserData;
-            // call endpoint  
+            // call endpoint
             actionResult = tester.UpdateUser(requestUpdateUserData, out responseUpdateUserData);
             result = result && (actionResult == UserActionResult.Successful);
-            // log response 
+            // log response
             Logger.AddLog("Result: " + actionResult);
             Logger.AddLog("Result Data: " + responseUpdateUserData.ToJSON());
             OnAfterTest();
 
             OnBeforeTest("Objects", "UserManagementEndpoint", "Lookup Specific User by URN");
             UserDataResponse responseUserData;
-            // call endpoint  
+            // call endpoint
             actionResult = tester.LookupSpecificUser(responseNewUserData.userUrn, dataContext.GetViewType(), out responseUserData);
             result = result && (actionResult == UserActionResult.Successful);
-            // log response 
+            // log response
             Logger.AddLog("Result: " + actionResult);
             Logger.AddLog("Result Data: " + responseUserData.ToJSON());
             OnAfterTest();
 
             OnBeforeTest("Objects", "UserManagementEndpoint", "Lookup Specific User by Email Address");
             UserDataResponse responseUserEMailData;
-            // call endpoint  
+            // call endpoint
             actionResult = tester.LookupSpecificUser(dataContext.GeteMailAddress(), dataContext.GetViewType(), out responseUserEMailData);
             result = result && (actionResult == UserActionResult.Successful);
-            // log response 
+            // log response
             Logger.AddLog("Result: " + actionResult);
             Logger.AddLog("Result Data: " + responseUserEMailData.ToJSON());
             OnAfterTest();
@@ -114,10 +111,10 @@ namespace Smartrac.SmartCosmos.Objects.DataContext.Sample
                 newPassword = dataContext.GetNewPassword()
             };
             ChangeOrResetUserPasswordResponse responsePasswordResetData;
-            // call endpoint  
+            // call endpoint
             actionResult = tester.ChangeOrResetUserPassword(requestPasswordResetData, out responsePasswordResetData);
             result = result && (actionResult == UserActionResult.Successful);
-            // log response 
+            // log response
             Logger.AddLog("Result: " + actionResult);
             Logger.AddLog("Result Data: " + responsePasswordResetData.ToJSON());
             OnAfterTest();

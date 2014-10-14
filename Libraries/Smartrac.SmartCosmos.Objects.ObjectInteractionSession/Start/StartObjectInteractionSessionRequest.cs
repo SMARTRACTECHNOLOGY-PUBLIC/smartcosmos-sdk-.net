@@ -1,4 +1,5 @@
 ﻿#region License
+
 // SMART COSMOS .Net SDK
 // (C) Copyright 2014 SMARTRAC TECHNOLOGY GmbH, (http://www.smartrac-group.com)
 //
@@ -13,13 +14,11 @@
 // WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 // See the License for the specific language governing permissions and
 // limitations under the License.
-#endregion
+
+#endregion License
 
 using System;
-using System.Collections.Generic;
-using System.Net.Mime;
 using System.Runtime.Serialization;
-using System.Text;
 using Smartrac.SmartCosmos.Objects.Base;
 
 namespace Smartrac.SmartCosmos.Objects.ObjectInteractionSession
@@ -32,21 +31,25 @@ namespace Smartrac.SmartCosmos.Objects.ObjectInteractionSession
         /// </summary>
         [DataMember]
         public string type { get; set; }
+
         /// <summary>
         /// name is required and constrained to 255 characters
         /// </summary>
         [DataMember]
         public string name { get; set; }
+
         /// <summary>
         /// description is optional and constrained to 1024 characters and may be omitted; defaults to null
         /// </summary>
         [DataMember]
         public string description { get; set; }
+
         /// <summary>
         /// activeFlag is optional and may be omitted; defaults to true
         /// </summary>
         [DataMember]
         public bool activeFlag { get; set; }
+
         /// <summary>
         /// moniker is optional and constrained to 2048 characters may be omitted; defaults to null
         /// </summary>

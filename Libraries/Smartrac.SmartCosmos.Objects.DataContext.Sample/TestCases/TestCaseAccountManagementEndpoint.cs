@@ -1,4 +1,5 @@
 ﻿#region License
+
 // SMART COSMOS .Net SDK
 // (C) Copyright 2014 SMARTRAC TECHNOLOGY GmbH, (http://www.smartrac-group.com)
 //
@@ -13,16 +14,12 @@
 // WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 // See the License for the specific language governing permissions and
 // limitations under the License.
-#endregion
 
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
+#endregion License
+
 using Smartrac.Logging;
-using Smartrac.SmartCosmos.Objects.DataContext;
-using Smartrac.SmartCosmos.Objects.AccountManagement;
 using Smartrac.SmartCosmos.ClientEndpoint.BaseObject;
+using Smartrac.SmartCosmos.Objects.AccountManagement;
 using Smartrac.SmartCosmos.TestCase.Base;
 
 namespace Smartrac.SmartCosmos.Objects.DataContext.Sample
@@ -53,17 +50,17 @@ namespace Smartrac.SmartCosmos.Objects.DataContext.Sample
             AccountActionResult actionResult;
 
             OnBeforeTest("Objects", "AccountManagementEndpoint", "Account Details");
-            // call endpoint          
+            // call endpoint
             AccountDetailsResponse responseDetailsData;
             actionResult = tester.GetAccountDetails(dataContext.GetViewType(), out responseDetailsData);
             result = result && (actionResult == AccountActionResult.Successful);
-            // log response 
+            // log response
             Logger.AddLog("Result: " + actionResult);
             Logger.AddLog("Result Data: " + responseDetailsData.ToJSON());
             OnAfterTest();
 
             OnBeforeTest("Objects", "AccountManagementEndpoint", "Change Your Password");
-            // call endpoint          
+            // call endpoint
             ChangeYourPasswordRequest requestPwdData = new ChangeYourPasswordRequest
             {
                 newPassword = dataContext.GetNewPassword(),
@@ -72,23 +69,23 @@ namespace Smartrac.SmartCosmos.Objects.DataContext.Sample
             ChangeYourPasswordResponse responsePwdData;
             actionResult = tester.ChangeYourPassword(requestPwdData, out responsePwdData);
             result = result && (actionResult == AccountActionResult.Successful);
-            // log response 
+            // log response
             Logger.AddLog("Result: " + actionResult);
             Logger.AddLog("Result Data: " + responsePwdData.ToJSON());
             OnAfterTest();
 
             OnBeforeTest("Objects", "AccountManagementEndpoint", "Reset Lost Password");
-            // call endpoint          
+            // call endpoint
             ResetLostPasswordRequest requestPwdResetData = new ResetLostPasswordRequest { emailAddress = dataContext.GeteMailAddress() };
             ResetLostPasswordResponse responsePwdResetData;
             actionResult = tester.ResetLostPassword(requestPwdResetData, out responsePwdResetData);
             result = result && (actionResult == AccountActionResult.Successful);
-            // log response 
+            // log response
             Logger.AddLog("Result: " + actionResult);
             Logger.AddLog("Result Data: " + responsePwdResetData.ToJSON());
             OnAfterTest();
 
-            return result;          
+            return result;
         }
     }
 }

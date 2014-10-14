@@ -1,4 +1,5 @@
 ﻿#region License
+
 // SMART COSMOS .Net SDK
 // (C) Copyright 2014 SMARTRAC TECHNOLOGY GmbH, (http://www.smartrac-group.com)
 //
@@ -13,14 +14,11 @@
 // WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 // See the License for the specific language governing permissions and
 // limitations under the License.
-#endregion
 
-using System;
-using System.Collections.Generic;
+#endregion License
+
 using System.Net;
-using System.Net.Mime;
 using System.Runtime.Serialization;
-using System.Text;
 
 namespace Smartrac.SmartCosmos.Objects.Base
 {
@@ -41,10 +39,12 @@ namespace Smartrac.SmartCosmos.Objects.Base
     {
         [DataMember]
         public int code { get; set; }
+
         [DataMember]
         public string message { get; set; }
 
-        public DefaultResponse() : base()
+        public DefaultResponse()
+            : base()
         {
             this.code = 0;
         }

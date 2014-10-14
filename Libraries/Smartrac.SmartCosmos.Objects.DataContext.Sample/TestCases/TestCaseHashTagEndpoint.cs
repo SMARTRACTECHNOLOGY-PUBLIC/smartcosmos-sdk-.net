@@ -1,4 +1,5 @@
 ﻿#region License
+
 // SMART COSMOS .Net SDK
 // (C) Copyright 2014 SMARTRAC TECHNOLOGY GmbH, (http://www.smartrac-group.com)
 //
@@ -13,18 +14,14 @@
 // WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 // See the License for the specific language governing permissions and
 // limitations under the License.
-#endregion
 
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
+#endregion License
+
 using Smartrac.Logging;
-using Smartrac.SmartCosmos.Objects.DataContext;
-using Smartrac.SmartCosmos.Objects.HashTag;
 using Smartrac.SmartCosmos.ClientEndpoint.BaseObject;
-using Smartrac.SmartCosmos.TestCase.Base;
 using Smartrac.SmartCosmos.Objects.Base;
+using Smartrac.SmartCosmos.Objects.HashTag;
+using Smartrac.SmartCosmos.TestCase.Base;
 
 namespace Smartrac.SmartCosmos.Objects.DataContext.Sample
 {
@@ -63,66 +60,66 @@ namespace Smartrac.SmartCosmos.Objects.DataContext.Sample
                 name = dataContext.GetName()
             };
             HashTagResponse responseNewData;
-            // call endpoint  
+            // call endpoint
             actionResult = tester.Create(requestNewData, out responseNewData);
             result = result && (actionResult == HashTagActionResult.Successful);
-            // log response 
+            // log response
             Logger.AddLog("Result: " + actionResult);
             Logger.AddLog("Result Data: " + responseNewData.ToJSON());
             OnAfterTest();
 
             OnBeforeTest("Objects", "HashTagEndpoint", "Lookup specific hash tag by URN");
             HashTagDataResponse responseLookupData;
-            // call endpoint  
+            // call endpoint
             actionResult = tester.Lookup(responseNewData.tagUrn, out responseLookupData, dataContext.GetViewType());
             result = result && (actionResult == HashTagActionResult.Successful);
-            // log response 
+            // log response
             Logger.AddLog("Result: " + actionResult);
             Logger.AddLog("Result Data: " + responseLookupData.ToJSON());
             OnAfterTest();
 
             OnBeforeTest("Objects", "HashTagEndpoint", "Lookup specific hash tag by name");
-            // call endpoint  
+            // call endpoint
             actionResult = tester.Lookup(dataContext.GetName(), out responseLookupData, dataContext.GetViewType());
             result = result && (actionResult == HashTagActionResult.Successful);
-            // log response 
+            // log response
             Logger.AddLog("Result: " + actionResult);
             Logger.AddLog("Result Data: " + responseLookupData.ToJSON());
             OnAfterTest();
 
             OnBeforeTest("Objects", "HashTagEndpoint", "Lookup specific hash tag by object reference");
             HashTagListResponse responseLookupListData;
-            // call endpoint  
+            // call endpoint
             actionResult = tester.Lookup(dataContext.GetEntityReferenceType(),
                                          dataContext.GetReferenceUrn(),
-                                         out responseLookupListData, 
+                                         out responseLookupListData,
                                          dataContext.GetViewType());
             result = result && (actionResult == HashTagActionResult.Successful);
-            // log response 
+            // log response
             Logger.AddLog("Result: " + actionResult);
             Logger.AddLog("Result Data: " + responseLookupListData.ToJSON());
             OnAfterTest();
 
             OnBeforeTest("Objects", "HashTagEndpoint", "Assign hash tags to an object reference");
             HashTagListRequest requestAssignData = new HashTagListRequest();
-            requestAssignData.Add( dataContext.GetName() );
+            requestAssignData.Add(dataContext.GetName());
             DefaultResponse responseAssignData;
-            // call endpoint  
+            // call endpoint
             actionResult = tester.Assign(dataContext.GetEntityReferenceType(),
                                          dataContext.GetReferenceUrn(),
                                          requestAssignData,
                                          out responseAssignData);
             result = result && (actionResult == HashTagActionResult.Successful);
-            // log response 
+            // log response
             Logger.AddLog("Result: " + actionResult);
             Logger.AddLog("Result Data: " + responseAssignData.ToJSON());
             OnAfterTest();
 
             OnBeforeTest("Objects", "HashTagEndpoint", "Delete hash tag");
-            // call endpoint  
+            // call endpoint
             actionResult = tester.Delete(responseNewData.tagUrn);
             result = result && (actionResult == HashTagActionResult.Successful);
-            // log response 
+            // log response
             Logger.AddLog("Result: " + actionResult);
             OnAfterTest();
 

@@ -1,4 +1,5 @@
 ﻿#region License
+
 // SMART COSMOS .Net SDK
 // (C) Copyright 2014 SMARTRAC TECHNOLOGY GmbH, (http://www.smartrac-group.com)
 //
@@ -13,21 +14,21 @@
 // WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 // See the License for the specific language governing permissions and
 // limitations under the License.
-#endregion
 
-using System;
+#endregion License
+
 using System.Collections.Generic;
-using System.IO;
-using System.Linq;
-using System.Text;
 using Smartrac.SmartCosmos.Objects.Base;
-using Smartrac.SmartCosmos.Objects.DataContext;
+using Smartrac.SmartCosmos.Objects.Metadata;
 
 namespace Smartrac.SmartCosmos.Objects.DataContext.Sample
 {
     public class SampleMetadataDataContext : BaseMetadataDataContext
     {
-        public override Urn GetUserUrn()
+        /// <summary>
+        /// Case-sensitive urn of an existing entity of type entityReferenceType
+        /// </summary>
+        public override Urn GetEntityUrn()
         {
             return null;
         }
@@ -37,29 +38,30 @@ namespace Smartrac.SmartCosmos.Objects.DataContext.Sample
             return ViewType.Standard;
         }
 
-        public override string GetNewPassword()
+        /// <summary>
+        /// Valid EntityReferenceType enum value
+        /// </summary>
+        public override EntityReferenceType GetEntityReferenceType()
         {
-            return "";
+            return EntityReferenceType.Object;
         }
 
-        public override string GeteMailAddress()
+        public override List<MetadataItem> GetMetadata()
         {
-            return "me@foo.com";
-        }
-
-        public override RoleType GetRoleType()
-        {
-            return RoleType.User;
-        }
-
-        public override string GetGivenName()
-        {
-            return "me";
-        }
-
-        public override string GetSurname()
-        {
-            return "too";
+            List<MetadataItem> list = new List<MetadataItem>();
+            list.Add(new MetadataItem
+            {
+                dataTypeObj = MetadataDataType.Boolean,
+                key = "bar",
+                rawValue = "AQ=="
+            });
+            list.Add(new MetadataItem
+            {
+                dataTypeObj = MetadataDataType.String,
+                key = "foo",
+                rawValue = "KioqKioqKioqKioqKg=="
+            });
+            return list;
         }
     }
 }

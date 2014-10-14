@@ -1,4 +1,5 @@
 ﻿#region License
+
 // SMART COSMOS .Net SDK
 // (C) Copyright 2014 SMARTRAC TECHNOLOGY GmbH, (http://www.smartrac-group.com)
 //
@@ -13,26 +14,38 @@
 // WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 // See the License for the specific language governing permissions and
 // limitations under the License.
-#endregion
 
-using System;
+#endregion License
+
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 using Smartrac.SmartCosmos.Objects.Base;
+using Smartrac.SmartCosmos.Objects.Metadata;
 
 namespace Smartrac.SmartCosmos.Objects.DataContext
 {
     public class BaseMetadataDataContext : IMetadataDataContext
     {
-        public virtual string GetRealm()
+        public virtual Urn GetEntityUrn()
         {
-            return "";
+            return null;
         }
 
-        public virtual string GeteMailAddress()
+        public virtual ViewType GetViewType()
         {
-            return "";
+            return ViewType.Standard;
+        }
+
+        /// <summary>
+        /// Valid EntityReferenceType enum value
+        /// </summary>
+        public virtual EntityReferenceType GetEntityReferenceType()
+        {
+            return EntityReferenceType.Object;
+        }
+
+        public virtual List<MetadataItem> GetMetadata()
+        {
+            return null;
         }
     }
 }

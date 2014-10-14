@@ -1,4 +1,5 @@
 ﻿#region License
+
 // SMART COSMOS .Net SDK
 // (C) Copyright 2014 SMARTRAC TECHNOLOGY GmbH, (http://www.smartrac-group.com)
 //
@@ -13,12 +14,9 @@
 // WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 // See the License for the specific language governing permissions and
 // limitations under the License.
-#endregion
 
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
+#endregion License
+
 using Smartrac.Logging;
 using Smartrac.SmartCosmos.Objects.AccountManagement;
 using Smartrac.SmartCosmos.Objects.File;
@@ -41,13 +39,19 @@ namespace Smartrac.SmartCosmos.ClientEndpoint.Factory
     public class EndpointFactory : IEndpointFactory
     {
         public string ProfilesServerURL { get; set; }
+
         public string ObjectsServerURL { get; set; }
 
         public bool KeepAlive { get; set; }
+
         public bool AllowInvalidServerCertificates { get; set; }
+
         public string AcceptLanguage { get; set; }
+
         public IMessageLogger Logger { get; set; }
+
         public string UserName { get; set; }
+
         public string UserPassword { get; set; }
 
         public EndpointFactory(IMessageLogger logger)
@@ -69,6 +73,7 @@ namespace Smartrac.SmartCosmos.ClientEndpoint.Factory
         }
 
         #region PROFILES
+
         public virtual IPlatformAvailabilityEndpoint CreatePlatformAvailabilityEndpoint()
         {
             return new PlatformAvailabilityEndpointBuilder()
@@ -111,9 +116,11 @@ namespace Smartrac.SmartCosmos.ClientEndpoint.Factory
                 .setUserAccount(UserName, UserPassword)
                 .build();
         }
-        #endregion
+
+        #endregion PROFILES
 
         #region OBJECTS
+
         public virtual IFileEndpoint CreateFileEndpoint()
         {
             return new FileEndpointBuilder()
@@ -234,7 +241,7 @@ namespace Smartrac.SmartCosmos.ClientEndpoint.Factory
             .setUserAccount(UserName, UserPassword)
             .build();
         }
-        #endregion
-    }
 
+        #endregion OBJECTS
+    }
 }

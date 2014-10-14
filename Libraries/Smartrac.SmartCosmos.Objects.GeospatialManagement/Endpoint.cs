@@ -1,4 +1,5 @@
 ﻿#region License
+
 // SMART COSMOS .Net SDK
 // (C) Copyright 2014 SMARTRAC TECHNOLOGY GmbH, (http://www.smartrac-group.com)
 //
@@ -13,17 +14,13 @@
 // WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 // See the License for the specific language governing permissions and
 // limitations under the License.
-#endregion
+
+#endregion License
 
 using System;
-using System.Collections.Generic;
-using System.IO;
 using System.Net;
-using System.Runtime.Serialization.Json;
-using System.Text;
 using Smartrac.Logging;
 using Smartrac.SmartCosmos.ClientEndpoint.Base;
-using Smartrac.SmartCosmos.ClientEndpoint.BaseObject;
 using Smartrac.SmartCosmos.Objects.Base;
 
 namespace Smartrac.SmartCosmos.Objects.GeospatialManagement
@@ -31,7 +28,7 @@ namespace Smartrac.SmartCosmos.Objects.GeospatialManagement
     /// <summary>
     /// Client for GeospatialManagement Endpoints
     /// </summary>
-    class GeospatialManagementEndpoint : BaseObjectsEndpoint, IGeospatialManagementEndpoint
+    internal class GeospatialManagementEndpoint : BaseObjectsEndpoint, IGeospatialManagementEndpoint
     {
         /// <summary>
         /// Create a new geospatial entry
@@ -65,6 +62,7 @@ namespace Smartrac.SmartCosmos.Objects.GeospatialManagement
                             case HttpStatusCode.OK:
                                 responseData.geospatialUrn = new Urn(responseData.message);
                                 return GeoActionResult.Successful;
+
                             default: return GeoActionResult.Failed;
                         }
                     }

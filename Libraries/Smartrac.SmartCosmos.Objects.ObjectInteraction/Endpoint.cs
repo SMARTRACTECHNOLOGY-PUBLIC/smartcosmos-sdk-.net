@@ -1,4 +1,5 @@
 ﻿#region License
+
 // SMART COSMOS .Net SDK
 // (C) Copyright 2014 SMARTRAC TECHNOLOGY GmbH, (http://www.smartrac-group.com)
 //
@@ -13,17 +14,13 @@
 // WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 // See the License for the specific language governing permissions and
 // limitations under the License.
-#endregion
+
+#endregion License
 
 using System;
-using System.Collections.Generic;
-using System.IO;
 using System.Net;
-using System.Runtime.Serialization.Json;
-using System.Text;
 using Smartrac.Logging;
 using Smartrac.SmartCosmos.ClientEndpoint.Base;
-using Smartrac.SmartCosmos.ClientEndpoint.BaseObject;
 using Smartrac.SmartCosmos.Objects.Base;
 
 namespace Smartrac.SmartCosmos.Objects.ObjectInteraction
@@ -31,7 +28,7 @@ namespace Smartrac.SmartCosmos.Objects.ObjectInteraction
     /// <summary>
     /// Client for ObjectInteraction Endpoints
     /// </summary>
-    class ObjectInteractionEndpoint : BaseObjectsEndpoint, IObjectInteractionEndpoint
+    internal class ObjectInteractionEndpoint : BaseObjectsEndpoint, IObjectInteractionEndpoint
     {
         /// <summary>
         /// Capture a specific interaction
@@ -64,6 +61,7 @@ namespace Smartrac.SmartCosmos.Objects.ObjectInteraction
                             case HttpStatusCode.OK:
                                 responseData.interactionUrn = new Urn(responseData.message);
                                 return ObjInteractActionResult.Successful;
+
                             default: return ObjInteractActionResult.Failed;
                         }
                     }
@@ -91,7 +89,7 @@ namespace Smartrac.SmartCosmos.Objects.ObjectInteraction
             responseData = null;
             try
             {
-                if ((null != objectUrn) && 
+                if ((null != objectUrn) &&
                     (!objectUrn.IsValid()))
                 {
                     if (null != Logger)
@@ -165,6 +163,5 @@ namespace Smartrac.SmartCosmos.Objects.ObjectInteraction
                 return ObjInteractActionResult.Failed;
             }
         }
-    
     }
 }

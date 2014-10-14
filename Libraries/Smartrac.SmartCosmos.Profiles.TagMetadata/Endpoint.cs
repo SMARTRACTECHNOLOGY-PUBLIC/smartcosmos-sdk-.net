@@ -1,4 +1,5 @@
 ﻿#region License
+
 // SMART COSMOS .Net SDK
 // (C) Copyright 2014 SMARTRAC TECHNOLOGY GmbH, (http://www.smartrac-group.com)
 //
@@ -13,17 +14,13 @@
 // WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 // See the License for the specific language governing permissions and
 // limitations under the License.
-#endregion
+
+#endregion License
 
 using System;
-using System.Collections.Generic;
-using System.IO;
 using System.Net;
-using System.Runtime.Serialization.Json;
-using System.Text;
 using Smartrac.Logging;
 using Smartrac.SmartCosmos.ClientEndpoint.Base;
-using Smartrac.SmartCosmos.ClientEndpoint.BaseObject;
 using Smartrac.SmartCosmos.Profiles.Base;
 
 namespace Smartrac.SmartCosmos.Profiles.TagMetadata
@@ -31,7 +28,7 @@ namespace Smartrac.SmartCosmos.Profiles.TagMetadata
     /// <summary>
     /// Client for tag metadata endpoint
     /// </summary>
-    class TagMetadataEndpoint : BaseProfileEndpoint, ITagMetadataEndpoint
+    internal class TagMetadataEndpoint : BaseProfileEndpoint, ITagMetadataEndpoint
     {
         /// <summary>
         /// Get tag related data
@@ -98,6 +95,5 @@ namespace Smartrac.SmartCosmos.Profiles.TagMetadata
                 return TagMetaDataActionResult.Failed;
             }
         }
-    
     }
 }

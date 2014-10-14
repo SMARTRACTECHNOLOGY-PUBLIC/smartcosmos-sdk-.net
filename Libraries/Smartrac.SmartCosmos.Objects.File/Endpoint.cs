@@ -1,4 +1,5 @@
 ﻿#region License
+
 // SMART COSMOS .Net SDK
 // (C) Copyright 2014 SMARTRAC TECHNOLOGY GmbH, (http://www.smartrac-group.com)
 //
@@ -13,18 +14,16 @@
 // WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 // See the License for the specific language governing permissions and
 // limitations under the License.
-#endregion
+
+#endregion License
 
 using System;
-using System.Collections.Generic;
 using System.IO;
 using System.Net;
 using System.Net.Http;
 using System.Runtime.Serialization.Json;
-using System.Text;
 using Smartrac.Logging;
 using Smartrac.SmartCosmos.ClientEndpoint.Base;
-using Smartrac.SmartCosmos.ClientEndpoint.BaseObject;
 using Smartrac.SmartCosmos.Objects.Base;
 
 namespace Smartrac.SmartCosmos.Objects.File
@@ -32,7 +31,7 @@ namespace Smartrac.SmartCosmos.Objects.File
     /// <summary>
     /// Client for file endpoint
     /// </summary>
-    class FileEndpoint : BaseObjectsEndpoint, IFileEndpoint
+    internal class FileEndpoint : BaseObjectsEndpoint, IFileEndpoint
     {
         /// <summary>
         /// Define the metadata of a file in preparation of an actual file upload
@@ -270,7 +269,7 @@ namespace Smartrac.SmartCosmos.Objects.File
         /// Retrieves the file definition
         /// </summary>
         /// <param name="fileUrn">System-assigned URN assigned at creation of file definition</param>
-        /// <param name="view">A valid JSON Serialization View name (case-sensitive)</param> 
+        /// <param name="view">A valid JSON Serialization View name (case-sensitive)</param>
         /// <param name="responseData">File properties</param>
         /// <returns>FileActionResult</returns>
         public FileActionResult LookupDefinition(Urn fileUrn, out FileDefinitionRetrievalResponse responseData, ViewType viewType = ViewType.Standard)
@@ -397,7 +396,7 @@ namespace Smartrac.SmartCosmos.Objects.File
         /// </summary>
         /// <param name="entityReferenceType">Valid EntityReferenceType enum value</param>
         /// <param name="fileUrn">Case-sensitive fileUrn of an existing entity of type entityReferenceType</param>
-        /// <param name="view">A valid JSON Serialization View name (case-sensitive)</param> 
+        /// <param name="view">A valid JSON Serialization View name (case-sensitive)</param>
         /// <param name="responseData">File properties</param>
         /// <returns>FileActionResult</returns>
         public FileActionResult LookupDefinitions(EntityReferenceType entityReferenceType, Urn referenceUrn, out FileDefinitionRetrievalListResponse responseData, ViewType viewType = ViewType.Standard)
@@ -494,6 +493,5 @@ namespace Smartrac.SmartCosmos.Objects.File
                 return FileActionResult.Failed;
             }
         }
-
     }
 }

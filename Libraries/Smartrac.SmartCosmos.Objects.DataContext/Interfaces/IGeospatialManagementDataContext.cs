@@ -1,4 +1,5 @@
 ﻿#region License
+
 // SMART COSMOS .Net SDK
 // (C) Copyright 2014 SMARTRAC TECHNOLOGY GmbH, (http://www.smartrac-group.com)
 //
@@ -13,13 +14,9 @@
 // WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 // See the License for the specific language governing permissions and
 // limitations under the License.
-#endregion
 
-using System;
-using System.Collections.Generic;
-using System.IO;
-using System.Linq;
-using System.Text;
+#endregion License
+
 using GeoJSON.Net;
 using Smartrac.SmartCosmos.Objects.Base;
 
@@ -28,11 +25,17 @@ namespace Smartrac.SmartCosmos.Objects.DataContext
     public interface IGeospatialManagementDataContext
     {
         Urn GetGeospatialUrn();
+
         string GetName();
+
         string GetCategory();
+
         string GetDescription();
+
         bool GetActiveFlag();
+
         GeoJSONObject GetGeometricShape();
+
         ViewType GetViewType();
     }
 }

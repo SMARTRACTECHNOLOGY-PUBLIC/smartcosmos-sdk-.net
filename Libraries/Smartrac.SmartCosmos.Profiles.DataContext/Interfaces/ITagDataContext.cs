@@ -1,4 +1,5 @@
 ﻿#region License
+
 // SMART COSMOS .Net SDK
 // (C) Copyright 2014 SMARTRAC TECHNOLOGY GmbH, (http://www.smartrac-group.com)
 //
@@ -13,24 +14,23 @@
 // WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 // See the License for the specific language governing permissions and
 // limitations under the License.
-#endregion
 
-using System;
+#endregion License
+
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 
 namespace Smartrac.SmartCosmos.Profiles.DataContext
 {
     public interface ITagDataContext
     {
         IEnumerable<string> GetTagIds();
+
         IEnumerable<string> GetTagProperties();
+
         IEnumerable<string> GetVerificationTypes();
 
         string GetImportId();
+
         string GetTagDataFile();
-
-
     }
 }

@@ -1,4 +1,5 @@
 ﻿#region License
+
 // SMART COSMOS .Net SDK
 // (C) Copyright 2014 SMARTRAC TECHNOLOGY GmbH, (http://www.smartrac-group.com)
 //
@@ -13,17 +14,13 @@
 // WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 // See the License for the specific language governing permissions and
 // limitations under the License.
-#endregion
+
+#endregion License
 
 using System;
-using System.Collections.Generic;
-using System.IO;
 using System.Net;
-using System.Runtime.Serialization.Json;
-using System.Text;
 using Smartrac.Logging;
 using Smartrac.SmartCosmos.ClientEndpoint.Base;
-using Smartrac.SmartCosmos.ClientEndpoint.BaseObject;
 using Smartrac.SmartCosmos.Objects.Base;
 
 namespace Smartrac.SmartCosmos.Objects.UserManagement
@@ -31,7 +28,7 @@ namespace Smartrac.SmartCosmos.Objects.UserManagement
     /// <summary>
     /// Client for UserManagement Endpoints
     /// </summary>
-    class UserManagementEndpoint : BaseObjectsEndpoint, IUserManagementEndpoint
+    internal class UserManagementEndpoint : BaseObjectsEndpoint, IUserManagementEndpoint
     {
         /// <summary>
         /// Create a new user associated with the specified email address
@@ -64,9 +61,11 @@ namespace Smartrac.SmartCosmos.Objects.UserManagement
                             case HttpStatusCode.Created:
                                 responseData.userUrn = new Urn(responseData.message);
                                 return UserActionResult.Successful;
+
                             case HttpStatusCode.Conflict:
                                 responseData.userUrn = new Urn(responseData.message);
                                 return UserActionResult.Conflict;
+
                             default: return UserActionResult.Failed;
                         }
                     }
@@ -247,6 +246,5 @@ namespace Smartrac.SmartCosmos.Objects.UserManagement
                 return UserActionResult.Failed;
             }
         }
-
     }
 }

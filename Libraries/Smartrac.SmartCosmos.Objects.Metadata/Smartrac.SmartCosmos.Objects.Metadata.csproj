@@ -59,8 +59,8 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Builder\MetadataEndpointBuilder.cs" />
-    <Compile Include="DataManagment\AddOrUpdateMetadataRequest.cs" />
-    <Compile Include="DataManagment\AddOrUpdateMetadataResponse.cs" />
+    <Compile Include="DataManagment\CreateMetadataRequest.cs" />
+    <Compile Include="DataManagment\CreateMetadataResponse.cs" />
     <Compile Include="DataManagment\DeleteMetadataRequest.cs" />
     <Compile Include="DataManagment\DeleteMetadataResponse.cs" />
     <Compile Include="DataManagment\LookupMetadataRequest.cs" />

@@ -1,4 +1,5 @@
 ﻿#region License
+
 // SMART COSMOS .Net SDK
 // (C) Copyright 2014 SMARTRAC TECHNOLOGY GmbH, (http://www.smartrac-group.com)
 //
@@ -13,14 +14,10 @@
 // WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 // See the License for the specific language governing permissions and
 // limitations under the License.
-#endregion
 
-using System;
-using System.Collections.Generic;
-using System.IO;
+#endregion License
+
 using System.Runtime.Serialization;
-using System.Text;
-using Smartrac.SmartCosmos.ClientEndpoint.BaseObject;
 using Smartrac.SmartCosmos.Objects.Base;
 
 namespace Smartrac.SmartCosmos.Objects.Registration
@@ -29,10 +26,10 @@ namespace Smartrac.SmartCosmos.Objects.Registration
     public class AccountRegistrationResponse : BaseResponse
     {
         private Urn urn_;
-        
+
         [DataMember]
-        public string urn 
-        { 
+        public string urn
+        {
             get
             {
                 return (urn_ != null) ? urn_.UUID : "";
@@ -45,14 +42,16 @@ namespace Smartrac.SmartCosmos.Objects.Registration
 
         [DataMember]
         public long lastModifiedTimestamp { get; set; }
+
         [DataMember]
         public string emailAddress { get; set; }
+
         [DataMember]
         public string realm { get; set; }
 
-        public Urn Urn 
-        { 
-            get 
+        public Urn Urn
+        {
+            get
             {
                 return urn_;
             }

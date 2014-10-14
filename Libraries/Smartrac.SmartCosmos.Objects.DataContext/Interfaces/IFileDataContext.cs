@@ -1,4 +1,5 @@
 ﻿#region License
+
 // SMART COSMOS .Net SDK
 // (C) Copyright 2014 SMARTRAC TECHNOLOGY GmbH, (http://www.smartrac-group.com)
 //
@@ -13,13 +14,11 @@
 // WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 // See the License for the specific language governing permissions and
 // limitations under the License.
-#endregion
 
-using System;
+#endregion License
+
 using System.Collections.Generic;
 using System.IO;
-using System.Linq;
-using System.Text;
 using Smartrac.SmartCosmos.Objects.Base;
 
 namespace Smartrac.SmartCosmos.Objects.DataContext
@@ -27,15 +26,20 @@ namespace Smartrac.SmartCosmos.Objects.DataContext
     public interface IFileDataContext
     {
         EntityReferenceType GetEntityReferenceType();
+
         ViewType GetViewType();
+
         Urn GetUrnReference();
+
         IEnumerable<FileDefinition> GetFileDefinitions();
     }
 
     public class FileDefinition
     {
-        public Stream file {get;set;}
-        public string mimeType {get;set;}
-        public string fileName {get;set;}
+        public Stream file { get; set; }
+
+        public string mimeType { get; set; }
+
+        public string fileName { get; set; }
     }
 }

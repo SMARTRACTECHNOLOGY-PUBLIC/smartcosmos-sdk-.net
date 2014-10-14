@@ -1,4 +1,5 @@
 ﻿#region License
+
 // SMART COSMOS .Net SDK
 // (C) Copyright 2014 SMARTRAC TECHNOLOGY GmbH, (http://www.smartrac-group.com)
 //
@@ -13,15 +14,12 @@
 // WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 // See the License for the specific language governing permissions and
 // limitations under the License.
-#endregion
 
-using System;
+#endregion License
+
 using System.Collections.Generic;
-using System.IO;
 using System.Runtime.Serialization;
-using System.Text;
 using Newtonsoft.Json;
-using Smartrac.SmartCosmos.ClientEndpoint.BaseObject;
 using Smartrac.SmartCosmos.Objects.Base;
 
 namespace Smartrac.SmartCosmos.Profiles.TagMetadata
@@ -31,6 +29,7 @@ namespace Smartrac.SmartCosmos.Profiles.TagMetadata
     {
         [DataMember]
         public int code { get; set; }
+
         [DataMember]
         public List<TagRecord> result { get; set; }
     }
@@ -40,6 +39,7 @@ namespace Smartrac.SmartCosmos.Profiles.TagMetadata
     {
         [DataMember]
         public int RR { get; set; }
+
         [DataMember]
         public int TestLicense { get; set; }
     }
@@ -55,6 +55,7 @@ namespace Smartrac.SmartCosmos.Profiles.TagMetadata
             else
                 this.Add(key, value);
         }
+
         public void SetValue(string key, long value)
         {
             if (this.ContainsKey(key))
@@ -62,6 +63,7 @@ namespace Smartrac.SmartCosmos.Profiles.TagMetadata
             else
                 this.Add(key, value);
         }
+
         public void SetValue(string key, float value)
         {
             if (this.ContainsKey(key))
@@ -83,6 +85,7 @@ namespace Smartrac.SmartCosmos.Profiles.TagMetadata
                 return false;
             }
         }
+
         public bool GetValue(string key, out long value)
         {
             if (this.ContainsKey(key))
@@ -96,6 +99,7 @@ namespace Smartrac.SmartCosmos.Profiles.TagMetadata
                 return false;
             }
         }
+
         public bool GetValue(string key, out float value)
         {
             if (this.ContainsKey(key))
@@ -109,7 +113,6 @@ namespace Smartrac.SmartCosmos.Profiles.TagMetadata
                 return false;
             }
         }
- 
     }
 
     /*
@@ -182,10 +185,13 @@ namespace Smartrac.SmartCosmos.Profiles.TagMetadata
     {
         [DataMember]
         public string tagId { get; set; }
+
         [DataMember]
         public int tagCode { get; set; }
+
         [DataMember]
         public VerificationState verificationState { get; set; }
+
         [DataMember]
         public TagProperties props { get; set; }
 

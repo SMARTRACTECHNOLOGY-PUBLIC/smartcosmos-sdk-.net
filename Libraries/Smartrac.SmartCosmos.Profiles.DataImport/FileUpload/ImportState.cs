@@ -1,4 +1,5 @@
 ﻿#region License
+
 // SMART COSMOS .Net SDK
 // (C) Copyright 2014 SMARTRAC TECHNOLOGY GmbH, (http://www.smartrac-group.com)
 //
@@ -13,13 +14,10 @@
 // WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 // See the License for the specific language governing permissions and
 // limitations under the License.
-#endregion
 
-using System;
-using System.Collections.Generic;
-using System.Linq;
+#endregion License
+
 using System.Runtime.Serialization;
-using System.Text;
 
 namespace Smartrac.SmartCosmos.Profiles.DataImport
 {
@@ -28,10 +26,13 @@ namespace Smartrac.SmartCosmos.Profiles.DataImport
     {
         [DataMember]
         public int code { get; set; }
+
         [DataMember]
         public int state { get; set; }
+
         [DataMember]
         public int progress { get; set; }
+
         [DataMember]
         public string message { get; set; }
     }

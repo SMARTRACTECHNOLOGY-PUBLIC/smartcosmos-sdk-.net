@@ -1,4 +1,5 @@
 ﻿#region License
+
 // SMART COSMOS .Net SDK
 // (C) Copyright 2014 SMARTRAC TECHNOLOGY GmbH, (http://www.smartrac-group.com)
 //
@@ -13,16 +14,14 @@
 // WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 // See the License for the specific language governing permissions and
 // limitations under the License.
-#endregion
+
+#endregion License
 
 using System;
-using System.Collections.Generic;
-using System.Diagnostics;
 using System.Net;
 using System.Runtime.Serialization.Json;
 using System.Security.Cryptography;
 using System.Text;
-using Newtonsoft.Json;
 using Smartrac.Logging;
 using Smartrac.SmartCosmos.ClientEndpoint.BaseObject;
 using Smartrac.SmartCosmos.Objects.Base;
@@ -38,7 +37,6 @@ namespace Smartrac.SmartCosmos.ClientEndpoint.Base
         AcceptLanguage // HTTP Header "Accept-Language" is required
     }
 
-
     /// <summary>
     /// Base class for all endpoints
     /// </summary>
@@ -47,7 +45,6 @@ namespace Smartrac.SmartCosmos.ClientEndpoint.Base
         protected string AuthorizationToken = "";
         private string ServerURL_;
         private bool AllowInvalidServerCertificates_;
-
 
         public BaseEndpoint()
         {
@@ -58,7 +55,7 @@ namespace Smartrac.SmartCosmos.ClientEndpoint.Base
         }
 
         /// <summary>
-        /// For a couple of functions the client can use the HTTP Accept-Language to define the lanugage of the respond content. 
+        /// For a couple of functions the client can use the HTTP Accept-Language to define the lanugage of the respond content.
         /// If the header attribute is missing or the server does not support the client language, English will be used.
         /// </summary>
         public string AcceptLanguage { get; set; }
@@ -80,7 +77,7 @@ namespace Smartrac.SmartCosmos.ClientEndpoint.Base
             set
             {
                 AllowInvalidServerCertificates_ = value;
-                if(AllowInvalidServerCertificates)
+                if (AllowInvalidServerCertificates)
                 {
                     System.Net.ServicePointManager.ServerCertificateValidationCallback += delegate { return AllowInvalidServerCertificates_; };
                     if (null != Logger)
@@ -111,7 +108,7 @@ namespace Smartrac.SmartCosmos.ClientEndpoint.Base
                     ServerURL_ = value;
             }
         }
-        
+
         /// <summary>
         /// Set the user account which should be used for the authorization
         /// </summary>
@@ -122,14 +119,14 @@ namespace Smartrac.SmartCosmos.ClientEndpoint.Base
             if ((userName == "") || (userPassword == ""))
             {
                 if (null != Logger)
-                    Logger.AddLog("Clear authorization token");    
-             
+                    Logger.AddLog("Clear authorization token");
+
                 AuthorizationToken = "";
                 return;
             }
 
             if (null != Logger)
-                Logger.AddLog("Login with user " + userName);           
+                Logger.AddLog("Login with user " + userName);
 
             // UserName and hased password are combined into a string "UserName:hashedpassword"
             // For example, if the user agent uses 'Aladdin' as the UserName and 'open sesame' as the password then the header is formed as follows:.
@@ -140,7 +137,6 @@ namespace Smartrac.SmartCosmos.ClientEndpoint.Base
                 Convert.ToBase64String(Encoding.UTF8.GetBytes(userName + ":" + BitConverter.ToString(SHA512.Create().ComputeHash(Encoding.UTF8.GetBytes(userPassword))).Replace("-", "").ToLower()));
         }
 
-
         /// <summary>
         /// Create and setup a web request for a URL endpoint without options
         /// </summary>
@@ -150,7 +146,6 @@ namespace Smartrac.SmartCosmos.ClientEndpoint.Base
         {
             return CreateWebRequest(subUrl, 0);
         }
-
 
         /// <summary>
         /// Create and setup a web request for a URL endpoint with options
@@ -168,7 +163,6 @@ namespace Smartrac.SmartCosmos.ClientEndpoint.Base
                 request.Headers.Add("Accept-Language", AcceptLanguage);
             return request;
         }
-
 
         protected HttpStatusCode ExecuteWebRequestJSON(WebRequest request, Type requestType, object requestData, Type responseType, out object responseData, out HttpWebResponse webResponse, string sendMethod = WebRequestMethods.Http.Post)
         {
@@ -213,7 +207,7 @@ namespace Smartrac.SmartCosmos.ClientEndpoint.Base
                         responseData = serializer.ReadObject(webResponse.GetResponseStream());
                     }
 
-                    if(responseData is BaseResponse)
+                    if (responseData is BaseResponse)
                     {
                         ((BaseResponse)responseData).HTTPStatusCode = webResponse.StatusCode;
                     }
@@ -272,7 +266,7 @@ namespace Smartrac.SmartCosmos.ClientEndpoint.Base
         {
             responseData = null;
             HttpWebResponse webResponse;
-            return ExecuteWebRequestJSON(request, requestType, requestData, responseType, out responseData, out webResponse, sendMethod);       
+            return ExecuteWebRequestJSON(request, requestType, requestData, responseType, out responseData, out webResponse, sendMethod);
         }
     }
 }

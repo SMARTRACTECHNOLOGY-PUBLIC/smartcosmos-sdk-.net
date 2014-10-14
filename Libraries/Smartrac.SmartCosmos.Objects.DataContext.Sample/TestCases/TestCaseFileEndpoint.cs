@@ -1,4 +1,5 @@
 ﻿#region License
+
 // SMART COSMOS .Net SDK
 // (C) Copyright 2014 SMARTRAC TECHNOLOGY GmbH, (http://www.smartrac-group.com)
 //
@@ -13,16 +14,13 @@
 // WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 // See the License for the specific language governing permissions and
 // limitations under the License.
-#endregion
 
-using System;
+#endregion License
+
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 using Smartrac.Logging;
-using Smartrac.SmartCosmos.Objects.DataContext;
-using Smartrac.SmartCosmos.Objects.File;
 using Smartrac.SmartCosmos.ClientEndpoint.BaseObject;
+using Smartrac.SmartCosmos.Objects.File;
 using Smartrac.SmartCosmos.TestCase.Base;
 
 namespace Smartrac.SmartCosmos.Objects.DataContext.Sample
@@ -60,7 +58,7 @@ namespace Smartrac.SmartCosmos.Objects.DataContext.Sample
                                                                   dataContext.GetViewType()
                                                                   );
             result = result && (actionResult == FileActionResult.Successful);
-            // log response 
+            // log response
             Logger.AddLog("Result: " + actionResult);
             Logger.AddLog("Result Data: " + responseListData.ToJSON());
             OnAfterTest();
@@ -73,7 +71,7 @@ namespace Smartrac.SmartCosmos.Objects.DataContext.Sample
                     // create request & call endpoint
                     actionResult = tester.Delete(item.Urn);
                     result = result && (actionResult == FileActionResult.Successful);
-                    // log response 
+                    // log response
                     Logger.AddLog("Result: " + actionResult);
                     Logger.AddLog("Result Data: " + responseListData.ToJSON());
                     OnAfterTest();
@@ -94,7 +92,7 @@ namespace Smartrac.SmartCosmos.Objects.DataContext.Sample
                 FileDefinitionResponse responseDefData;
                 actionResult = tester.GetFileDefinition(requestDefData, out responseDefData);
                 result = result && (actionResult == FileActionResult.Successful);
-                // log response 
+                // log response
                 Logger.AddLog("Result: " + actionResult);
                 Logger.AddLog("Result Data: " + responseDefData.ToJSON());
                 OnAfterTest();
@@ -104,7 +102,7 @@ namespace Smartrac.SmartCosmos.Objects.DataContext.Sample
                 // create request & call endpoint
                 actionResult = tester.UploadFileAsOctetStream(responseDefData.fileUrn, file.file, out responseUploadData);
                 result = result && (actionResult == FileActionResult.Successful);
-                // log response 
+                // log response
                 Logger.AddLog("Result: " + actionResult);
                 Logger.AddLog("Result Data: " + responseUploadData.ToJSON());
                 OnAfterTest();
@@ -114,7 +112,7 @@ namespace Smartrac.SmartCosmos.Objects.DataContext.Sample
                 FileDefinitionRetrievalResponse responseRetrievalData;
                 actionResult = tester.LookupDefinition(responseDefData.fileUrn, out responseRetrievalData, dataContext.GetViewType());
                 result = result && (actionResult == FileActionResult.Successful);
-                // log response 
+                // log response
                 Logger.AddLog("Result: " + actionResult);
                 Logger.AddLog("Result Data: " + responseRetrievalData.ToJSON());
                 OnAfterTest();
@@ -124,7 +122,7 @@ namespace Smartrac.SmartCosmos.Objects.DataContext.Sample
                 FileContentRetrievalResponse responseContentData;
                 actionResult = tester.LookupContent(responseDefData.fileUrn, out responseContentData);
                 result = result && (actionResult == FileActionResult.Successful);
-                // log response 
+                // log response
                 Logger.AddLog("Result: " + actionResult);
                 Logger.AddLog("Result Data: " + responseContentData.ToJSON());
                 OnAfterTest();
@@ -138,7 +136,7 @@ namespace Smartrac.SmartCosmos.Objects.DataContext.Sample
                                                                    out responseListResultData,
                                                                    dataContext.GetViewType());
             result = result && (actionResult == FileActionResult.Successful);
-            // log response 
+            // log response
             Logger.AddLog("Result: " + actionResult);
             Logger.AddLog("Result Data: " + responseListResultData.ToJSON());
             OnAfterTest();

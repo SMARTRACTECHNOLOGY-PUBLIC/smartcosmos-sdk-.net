@@ -1,4 +1,5 @@
 ﻿#region License
+
 // SMART COSMOS .Net SDK
 // (C) Copyright 2014 SMARTRAC TECHNOLOGY GmbH, (http://www.smartrac-group.com)
 //
@@ -13,15 +14,9 @@
 // WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 // See the License for the specific language governing permissions and
 // limitations under the License.
-#endregion
 
-using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.IO;
-using System.Linq;
-using System.Net;
-using System.Text;
+#endregion License
+
 using Smartrac.SmartCosmos.ClientEndpoint.Base;
 using Smartrac.SmartCosmos.Objects.Base;
 
@@ -83,7 +78,6 @@ namespace Smartrac.SmartCosmos.Objects.HashTag
         HashTagActionResult Lookup(EntityReferenceType entityReferenceType, Urn referenceUrn,
             out HashTagListResponse responseData, ViewType viewType = ViewType.Standard);
 
-
         /// <summary>
         /// Assign tags to objects
         /// </summary>
@@ -93,7 +87,6 @@ namespace Smartrac.SmartCosmos.Objects.HashTag
         /// <returns>HashTagActionResult</returns>
         HashTagActionResult Assign(EntityReferenceType entityReferenceType, Urn referenceUrn, HashTagListRequest requestData,
             out DefaultResponse responseData);
-
 
         /// <summary>
         /// Deletes an existing tag by its system-assigned URN key

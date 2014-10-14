@@ -1,4 +1,5 @@
 ﻿#region License
+
 // SMART COSMOS .Net SDK
 // (C) Copyright 2014 SMARTRAC TECHNOLOGY GmbH, (http://www.smartrac-group.com)
 //
@@ -13,18 +14,13 @@
 // WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 // See the License for the specific language governing permissions and
 // limitations under the License.
-#endregion
 
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
+#endregion License
+
 using Smartrac.Logging;
-using Smartrac.SmartCosmos.Objects.DataContext;
-using Smartrac.SmartCosmos.Objects.ObjectInteractionSession;
 using Smartrac.SmartCosmos.ClientEndpoint.BaseObject;
+using Smartrac.SmartCosmos.Objects.ObjectInteractionSession;
 using Smartrac.SmartCosmos.TestCase.Base;
-using Smartrac.SmartCosmos.Objects.ObjectInteraction;
 
 namespace Smartrac.SmartCosmos.Objects.DataContext.Sample
 {
@@ -54,7 +50,7 @@ namespace Smartrac.SmartCosmos.Objects.DataContext.Sample
             ObjInteractSessionActionResult actionResult;
 
             OnBeforeTest("Objects", "ObjectInteractionSessionEndpoint", "Start a new object interaction session");
-            // create request         
+            // create request
             StartObjectInteractionSessionRequest requestStartData = new StartObjectInteractionSessionRequest
             {
                 name = dataContext.GetName(),
@@ -64,44 +60,44 @@ namespace Smartrac.SmartCosmos.Objects.DataContext.Sample
                 moniker = dataContext.GetMoniker(),
             };
             StartObjectInteractionSessionResponse responseStartData;
-            // call endpoint  
+            // call endpoint
             actionResult = tester.Start(requestStartData, out responseStartData);
             result = result && (actionResult == ObjInteractSessionActionResult.Successful);
-            // log response 
+            // log response
             Logger.AddLog("Result: " + actionResult);
             Logger.AddLog("Result Data: " + responseStartData.ToJSON());
             OnAfterTest();
 
             OnBeforeTest("Objects", "ObjectInteractionSessionEndpoint", "Stop an existing object interaction session");
             StopObjectInteractionSessionResponse responseStopData;
-            // call endpoint  
-            actionResult = tester.Stop( responseStartData.sessionUrn,
+            // call endpoint
+            actionResult = tester.Stop(responseStartData.sessionUrn,
                                         out responseStopData);
             result = result && (actionResult == ObjInteractSessionActionResult.Successful);
-            // log response 
+            // log response
             Logger.AddLog("Result: " + actionResult);
             Logger.AddLog("Result Data: " + responseStopData.ToJSON());
             OnAfterTest();
 
             OnBeforeTest("Objects", "ObjectInteractionSessionEndpoint", "Lookup Specific Object Interaction Session by URN");
             ObjectInteractionSessionDataResponse responseLookupData;
-            // call endpoint  
+            // call endpoint
             actionResult = tester.Lookup(responseStartData.sessionUrn,
                                             out responseLookupData,
                                             dataContext.GetViewType());
             result = result && (actionResult == ObjInteractSessionActionResult.Successful);
-            // log response 
+            // log response
             Logger.AddLog("Result: " + actionResult);
             Logger.AddLog("Result Data: " + responseLookupData.ToJSON());
             OnAfterTest();
 
             OnBeforeTest("Objects", "ObjectInteractionSessionEndpoint", "Lookup Object Interaction Sessions by Name");
-            // call endpoint  
+            // call endpoint
             actionResult = tester.Lookup(requestStartData.name,
                                          out responseLookupData,
                                          dataContext.GetViewType());
             result = result && (actionResult == ObjInteractSessionActionResult.Successful);
-            // log response 
+            // log response
             Logger.AddLog("Result: " + actionResult);
             Logger.AddLog("Result Data: " + responseLookupData.ToJSON());
             OnAfterTest();

@@ -1,4 +1,5 @@
 ﻿#region License
+
 // SMART COSMOS .Net SDK
 // (C) Copyright 2014 SMARTRAC TECHNOLOGY GmbH, (http://www.smartrac-group.com)
 //
@@ -13,17 +14,13 @@
 // WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 // See the License for the specific language governing permissions and
 // limitations under the License.
-#endregion
+
+#endregion License
 
 using System;
-using System.Collections.Generic;
-using System.IO;
 using System.Net;
-using System.Runtime.Serialization.Json;
-using System.Text;
 using Smartrac.Logging;
 using Smartrac.SmartCosmos.ClientEndpoint.Base;
-using Smartrac.SmartCosmos.ClientEndpoint.BaseObject;
 using Smartrac.SmartCosmos.Objects.Base;
 
 namespace Smartrac.SmartCosmos.Objects.RelationshipManagement
@@ -31,7 +28,7 @@ namespace Smartrac.SmartCosmos.Objects.RelationshipManagement
     /// <summary>
     /// Client for RelationshipManagement Endpoints
     /// </summary>
-    class RelationshipManagementEndpoint : BaseObjectsEndpoint, IRelationshipManagementEndpoint
+    internal class RelationshipManagementEndpoint : BaseObjectsEndpoint, IRelationshipManagementEndpoint
     {
         /// <summary>
         /// Create a new relationship
@@ -65,6 +62,7 @@ namespace Smartrac.SmartCosmos.Objects.RelationshipManagement
                             case HttpStatusCode.OK:
                                 responseData.relationshipUrn = new Urn(responseData.message);
                                 return RelationshipActionResult.Successful;
+
                             default: return RelationshipActionResult.Failed;
                         }
                     }
@@ -139,18 +137,18 @@ namespace Smartrac.SmartCosmos.Objects.RelationshipManagement
                 var request = CreateWebRequest("/relationships/" + requestData.entityReferenceType + "/" +
                                                                    requestData.referenceUrn + "/" +
                                                                    requestData.relatedEntityReferenceType + "/" +
-                                                                   requestData.relatedReferenceUrn + 
+                                                                   requestData.relatedReferenceUrn +
                                                                    "?view=" + viewType.GetDescription(), WebRequestOption.Authorization);
                 object responseDataObj;
                 var HTTPStatusCodeResult = ExecuteWebRequestJSON(request, typeof(QueryObjectRelationshipsResponse), out responseDataObj);
                 if (null != responseDataObj)
                 {
                     responseData = responseDataObj as QueryObjectRelationshipsResponse;
-                    if (responseData != null) 
+                    if (responseData != null)
                     {
                         responseData.HTTPStatusCode = HTTPStatusCodeResult;
                         if (responseData.HTTPStatusCode == HttpStatusCode.OK)
-                          return RelationshipActionResult.Successful;
+                            return RelationshipActionResult.Successful;
                     }
                 }
                 return RelationshipActionResult.Failed;
@@ -186,7 +184,7 @@ namespace Smartrac.SmartCosmos.Objects.RelationshipManagement
                                                                    requestData.referenceUrn + "/" +
                                                                    requestData.relatedEntityReferenceType + "/" +
                                                                    requestData.relatedReferenceUrn + "/" +
-                                                                   requestData.type + "/" + 
+                                                                   requestData.type + "/" +
                                                                    "?view=" + viewType.GetDescription(), WebRequestOption.Authorization);
                 object responseDataObj;
                 ExecuteWebRequestJSON(request, typeof(RelationshipDataResponse), out responseDataObj);
@@ -252,7 +250,6 @@ namespace Smartrac.SmartCosmos.Objects.RelationshipManagement
             }
         }
 
-
         /// <summary>
         /// Deletes an existing relationship by its system-assigned URN key
         /// </summary>
@@ -292,6 +289,5 @@ namespace Smartrac.SmartCosmos.Objects.RelationshipManagement
                 return RelationshipActionResult.Failed;
             }
         }
-
     }
 }

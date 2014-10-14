@@ -1,4 +1,5 @@
 ﻿#region License
+
 // SMART COSMOS .Net SDK
 // (C) Copyright 2014 SMARTRAC TECHNOLOGY GmbH, (http://www.smartrac-group.com)
 //
@@ -13,12 +14,9 @@
 // WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 // See the License for the specific language governing permissions and
 // limitations under the License.
-#endregion
 
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
+#endregion License
+
 using Smartrac.SmartCosmos.Objects.DataContext;
 using Smartrac.SmartCosmos.Objects.DataContext.Sample;
 using Smartrac.SmartCosmos.Profiles.DataContext;
@@ -26,7 +24,7 @@ using Smartrac.SmartCosmos.Profiles.DataContext.Sample;
 
 namespace Smartrac.SmartCosmos.DataContextFactory.Sample
 {
-    public class SampleDataContextFactory : SampleDataContextFactory
+    public class SampleDataContextFactory : BaseDataContextFactory
     {
         public SampleDataContextFactory()
             : base()
@@ -81,11 +79,6 @@ namespace Smartrac.SmartCosmos.DataContextFactory.Sample
         public override IHashTagDataContext CreateHashTagDataContext()
         {
             return new SampleHashTagDataContext();
-        }
-
-        public override IObjectInteractionSessionDataContext CreateObjectInteractionSessionDataContext()
-        {
-            return new SampleObjectInteractionSessionDataContext();
         }
 
         public override IObjectInteractionSessionDataContext CreateObjectInteractionSessionDataContext()

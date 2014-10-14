@@ -1,4 +1,5 @@
 ﻿#region License
+
 // SMART COSMOS .Net SDK
 // (C) Copyright 2014 SMARTRAC TECHNOLOGY GmbH, (http://www.smartrac-group.com)
 //
@@ -13,12 +14,9 @@
 // WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 // See the License for the specific language governing permissions and
 // limitations under the License.
-#endregion
 
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
+#endregion License
+
 using NLog;
 using NLog.Targets;
 
@@ -41,22 +39,27 @@ namespace Smartrac.Logging.File
                 case LogType.Debug:
                     logger.Debug(aMessage);
                     break;
+
                 case LogType.Error:
                     logger.Error(aMessage);
                     break;
+
                 case LogType.Fatal:
                     logger.Fatal(aMessage);
                     break;
+
                 case LogType.Info:
                     logger.Info(aMessage);
                     break;
+
                 case LogType.Warning:
                     logger.Warn(aMessage);
                     break;
+
                 default:
                     logger.Error(aMessage);
                     break;
-            }            
+            }
         }
 
         /// <summary>
@@ -74,5 +77,5 @@ namespace Smartrac.Logging.File
                 LogManager.ReconfigExistingLoggers();
             }
         }
-    }   
+    }
 }

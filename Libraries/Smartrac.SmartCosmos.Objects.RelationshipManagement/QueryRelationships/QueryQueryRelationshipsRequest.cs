@@ -1,4 +1,5 @@
 ﻿#region License
+
 // SMART COSMOS .Net SDK
 // (C) Copyright 2014 SMARTRAC TECHNOLOGY GmbH, (http://www.smartrac-group.com)
 //
@@ -13,13 +14,11 @@
 // WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 // See the License for the specific language governing permissions and
 // limitations under the License.
-#endregion
+
+#endregion License
 
 using System;
-using System.Collections.Generic;
-using System.Net.Mime;
 using System.Runtime.Serialization;
-using System.Text;
 using Smartrac.SmartCosmos.Objects.Base;
 
 namespace Smartrac.SmartCosmos.Objects.RelationshipManagement
@@ -46,6 +45,7 @@ namespace Smartrac.SmartCosmos.Objects.RelationshipManagement
                 referenceUrnObj = new Urn(value);
             }
         }
+
         /// <summary>
         /// referenceUrn must point to a pre-existing record of the given entityReferenceType
         /// </summary>
@@ -72,6 +72,7 @@ namespace Smartrac.SmartCosmos.Objects.RelationshipManagement
                 relatedReferenceUrnObj = new Urn(value);
             }
         }
+
         public Urn relatedReferenceUrnObj { get; set; }
 
         public override bool IsValid()
@@ -122,6 +123,7 @@ namespace Smartrac.SmartCosmos.Objects.RelationshipManagement
                 referenceUrnObj = new Urn(value);
             }
         }
+
         /// <summary>
         /// referenceUrn must point to a pre-existing record of the given entityReferenceType
         /// </summary>
@@ -137,7 +139,8 @@ namespace Smartrac.SmartCosmos.Objects.RelationshipManagement
         /// </summary>
         public bool reverse { get; set; }
 
-        public QueryQueryRelationshipsByTypeRequest() : base()
+        public QueryQueryRelationshipsByTypeRequest()
+            : base()
         {
             reverse = false;
         }
@@ -150,5 +153,4 @@ namespace Smartrac.SmartCosmos.Objects.RelationshipManagement
                 type.Length <= 255;
         }
     }
-
 }

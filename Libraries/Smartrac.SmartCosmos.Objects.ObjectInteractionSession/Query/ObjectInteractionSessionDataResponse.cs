@@ -1,4 +1,5 @@
 ﻿#region License
+
 // SMART COSMOS .Net SDK
 // (C) Copyright 2014 SMARTRAC TECHNOLOGY GmbH, (http://www.smartrac-group.com)
 //
@@ -13,14 +14,10 @@
 // WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 // See the License for the specific language governing permissions and
 // limitations under the License.
-#endregion
 
-using System;
-using System.Collections.Generic;
-using System.Net;
-using System.Net.Mime;
+#endregion License
+
 using System.Runtime.Serialization;
-using System.Text;
 using Smartrac.SmartCosmos.Objects.Base;
 
 namespace Smartrac.SmartCosmos.Objects.ObjectInteractionSession
@@ -30,18 +27,25 @@ namespace Smartrac.SmartCosmos.Objects.ObjectInteractionSession
     {
         [DataMember]
         public bool activeFlag { get; set; }
+
         [DataMember]
         public string description { get; set; }
+
         [DataMember]
         public string name { get; set; }
+
         [DataMember]
         public string type { get; set; }
+
         [DataMember]
         public long startTimestamp { get; set; }
+
         [DataMember]
         public long stopTimestamp { get; set; }
+
         [DataMember]
         public long lastModifiedTimestamp { get; set; }
+
         [DataMember]
         public string urn
         {
@@ -54,6 +58,7 @@ namespace Smartrac.SmartCosmos.Objects.ObjectInteractionSession
                 urnObj = new Urn(value);
             }
         }
+
         public Urn urnObj { get; set; }
     }
 }

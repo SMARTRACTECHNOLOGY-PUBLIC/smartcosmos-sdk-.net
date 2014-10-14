@@ -1,4 +1,5 @@
 ﻿#region License
+
 // SMART COSMOS .Net SDK
 // (C) Copyright 2014 SMARTRAC TECHNOLOGY GmbH, (http://www.smartrac-group.com)
 //
@@ -13,14 +14,10 @@
 // WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 // See the License for the specific language governing permissions and
 // limitations under the License.
-#endregion
 
-using System;
-using System.Collections.Generic;
-using System.IO;
+#endregion License
+
 using System.Runtime.Serialization;
-using System.Text;
-using Smartrac.SmartCosmos.ClientEndpoint.BaseObject;
 using Smartrac.SmartCosmos.Objects.Base;
 
 namespace Smartrac.SmartCosmos.Objects.Metadata
@@ -35,21 +32,22 @@ namespace Smartrac.SmartCosmos.Objects.Metadata
         /// <summary>
         /// Case-sensitive urn of an existing entity of type entityReferenceType
         /// </summary>
-        public Urn referenceUrn { get; set; }
+        public Urn entityUrn { get; set; }
 
         /// <summary>
         /// Optional: A valid, case-sensitive startsWith key name pattern. If omitted, then all key-values are returned.
         /// </summary>
-        [DataMember(IsRequired=false)]
+        [DataMember(IsRequired = false)]
         public string key { get; set; }
-        
+
         /// <summary>
         /// Optional: A valid, case-sensitive startsWith key name pattern. If omitted, then all key-values are returned.
         /// </summary>
         [DataMember]
         public ViewType viewType { get; set; }
 
-        public LookupMetadataRequest() : base()
+        public LookupMetadataRequest()
+            : base()
         {
             this.key = null;
             this.viewType = ViewType.Standard;
@@ -58,8 +56,8 @@ namespace Smartrac.SmartCosmos.Objects.Metadata
         public override bool IsValid()
         {
             return base.IsValid() &&
-                (referenceUrn != null) &&
-                referenceUrn.IsValid();
+                (entityUrn != null) &&
+                entityUrn.IsValid();
         }
     }
 }

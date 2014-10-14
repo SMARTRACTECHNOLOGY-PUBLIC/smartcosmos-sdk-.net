@@ -1,4 +1,5 @@
 ﻿#region License
+
 // SMART COSMOS .Net SDK
 // (C) Copyright 2014 SMARTRAC TECHNOLOGY GmbH, (http://www.smartrac-group.com)
 //
@@ -13,16 +14,12 @@
 // WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 // See the License for the specific language governing permissions and
 // limitations under the License.
-#endregion
 
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
+#endregion License
+
 using Smartrac.Logging;
-using Smartrac.SmartCosmos.Objects.DataContext;
-using Smartrac.SmartCosmos.Objects.Registration;
 using Smartrac.SmartCosmos.ClientEndpoint.BaseObject;
+using Smartrac.SmartCosmos.Objects.Registration;
 using Smartrac.SmartCosmos.TestCase.Base;
 
 namespace Smartrac.SmartCosmos.Objects.DataContext.Sample
@@ -54,10 +51,10 @@ namespace Smartrac.SmartCosmos.Objects.DataContext.Sample
 
             OnBeforeTest("Objects", "RegistrationEndpoint", "Realm Availability");
             RealmAvailabilityResponse responseRealmData;
-            // call endpoint            
+            // call endpoint
             actionResult = tester.GetRealmAvailability(dataContext.GetRealm(), out responseRealmData);
             result = result && (actionResult == RegistrationActionResult.Successful);
-            // log response 
+            // log response
             Logger.AddLog("Result: " + actionResult);
             Logger.AddLog("Result Data: " + responseRealmData.ToJSON());
             OnAfterTest();
@@ -70,15 +67,15 @@ namespace Smartrac.SmartCosmos.Objects.DataContext.Sample
                 emailAddress = dataContext.GeteMailAddress()
             };
             AccountRegistrationResponse responseRegisterData;
-            // call endpoint            
+            // call endpoint
             actionResult = tester.RegisterAccount(requestRegisterData, out responseRegisterData);
             result = result && (actionResult == RegistrationActionResult.Successful);
-            // log response 
+            // log response
             Logger.AddLog("Result: " + actionResult);
             Logger.AddLog("Result Data: " + responseRegisterData.ToJSON());
             OnAfterTest();
 
-            return result;            
+            return result;
         }
     }
 }

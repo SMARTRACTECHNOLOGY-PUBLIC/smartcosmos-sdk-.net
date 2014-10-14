@@ -1,4 +1,5 @@
 ﻿#region License
+
 // SMART COSMOS .Net SDK
 // (C) Copyright 2014 SMARTRAC TECHNOLOGY GmbH, (http://www.smartrac-group.com)
 //
@@ -13,14 +14,10 @@
 // WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 // See the License for the specific language governing permissions and
 // limitations under the License.
-#endregion
 
-using System;
-using System.Collections.Generic;
+#endregion License
+
 using System.IO;
-using System.Linq;
-using System.Net;
-using System.Text;
 using Smartrac.SmartCosmos.ClientEndpoint.Base;
 
 namespace Smartrac.SmartCosmos.Profiles.DataImport
@@ -46,6 +43,7 @@ namespace Smartrac.SmartCosmos.Profiles.DataImport
     public interface IDataImportEndpoint : IBaseEndpoint
     {
         DataActionResult UploadFileAsOctetStream(Stream data, out FileUploadResponse responseData);
+
         DataActionResult UploadFileAsOctetStream(string file, out FileUploadResponse responseData);
 
         //public DataActionResult UploadFileAsMultiPartForm(Stream data, out FileUploadResponse responseData)

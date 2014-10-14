@@ -1,4 +1,5 @@
 ﻿#region License
+
 // SMART COSMOS .Net SDK
 // (C) Copyright 2014 SMARTRAC TECHNOLOGY GmbH, (http://www.smartrac-group.com)
 //
@@ -13,15 +14,12 @@
 // WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 // See the License for the specific language governing permissions and
 // limitations under the License.
-#endregion
 
-using System;
+#endregion License
+
 using System.Collections.Generic;
-using System.IO;
 using System.Net;
 using System.Runtime.Serialization;
-using System.Text;
-using Smartrac.SmartCosmos.ClientEndpoint.BaseObject;
 using Smartrac.SmartCosmos.Objects.Base;
 
 namespace Smartrac.SmartCosmos.Objects.File
@@ -30,10 +28,10 @@ namespace Smartrac.SmartCosmos.Objects.File
     public class FileDefinitionRetrievalResponse : DefaultResponse
     {
         private Urn urn_;
-        
+
         [DataMember]
-        public string urn 
-        { 
+        public string urn
+        {
             get
             {
                 return (urn_ != null) ? urn_.UUID : "";
@@ -46,18 +44,22 @@ namespace Smartrac.SmartCosmos.Objects.File
 
         [DataMember]
         public long timestamp { get; set; }
+
         [DataMember]
         public long lastModifiedTimestamp { get; set; }
+
         [DataMember]
         public string fileName { get; set; }
+
         [DataMember]
         public EntityReferenceType entityReferenceType { get; set; }
+
         [DataMember]
         public string mimeType { get; set; }
 
-        public Urn Urn 
-        { 
-            get 
+        public Urn Urn
+        {
+            get
             {
                 return urn_;
             }
@@ -65,7 +67,6 @@ namespace Smartrac.SmartCosmos.Objects.File
 
         public string SmartCosmosEvent { get; set; }
     }
-
 
     [DataContract]
     public class FileDefinitionRetrievalListResponse : List<FileDefinitionRetrievalResponse>
@@ -76,6 +77,6 @@ namespace Smartrac.SmartCosmos.Objects.File
             : base()
         {
             this.HTTPStatusCode = HttpStatusCode.NotImplemented;
-        }        
+        }
     }
 }

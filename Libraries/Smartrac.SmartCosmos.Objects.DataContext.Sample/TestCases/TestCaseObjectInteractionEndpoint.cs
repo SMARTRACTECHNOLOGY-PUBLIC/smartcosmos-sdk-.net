@@ -1,4 +1,5 @@
 ﻿#region License
+
 // SMART COSMOS .Net SDK
 // (C) Copyright 2014 SMARTRAC TECHNOLOGY GmbH, (http://www.smartrac-group.com)
 //
@@ -13,16 +14,12 @@
 // WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 // See the License for the specific language governing permissions and
 // limitations under the License.
-#endregion
 
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
+#endregion License
+
 using Smartrac.Logging;
-using Smartrac.SmartCosmos.Objects.DataContext;
-using Smartrac.SmartCosmos.Objects.ObjectInteraction;
 using Smartrac.SmartCosmos.ClientEndpoint.BaseObject;
+using Smartrac.SmartCosmos.Objects.ObjectInteraction;
 using Smartrac.SmartCosmos.TestCase.Base;
 
 namespace Smartrac.SmartCosmos.Objects.DataContext.Sample
@@ -53,7 +50,7 @@ namespace Smartrac.SmartCosmos.Objects.DataContext.Sample
             ObjInteractActionResult actionResult;
 
             OnBeforeTest("Objects", "ObjectInteractionEndpoint", "Capture a specific interaction");
-            // create request         
+            // create request
             CaptureObjectInteractionRequest requestNewInteractionData = new CaptureObjectInteractionRequest
             {
                 objectUrnObj = dataContext.GetObjectUrn(),
@@ -63,33 +60,33 @@ namespace Smartrac.SmartCosmos.Objects.DataContext.Sample
                 recordedTimestamp = dataContext.GetRecordedTimestamp(),
             };
             CaptureObjectInteractionResponse responseNewInteractionData;
-            // call endpoint  
+            // call endpoint
             actionResult = tester.Create(requestNewInteractionData, out responseNewInteractionData);
             result = result && (actionResult == ObjInteractActionResult.Successful);
-            // log response 
+            // log response
             Logger.AddLog("Result: " + actionResult);
             Logger.AddLog("Result Data: " + responseNewInteractionData.ToJSON());
             OnAfterTest();
 
             OnBeforeTest("Objects", "ObjectInteractionEndpoint", "Lookup Matching Interactions");
             QueryObjectInteractionsResponse responseLookupData;
-            // call endpoint  
+            // call endpoint
             actionResult = tester.Lookup(dataContext.GetObjectUrn(),
                                         out responseLookupData,
                                         dataContext.GetViewType());
             result = result && (actionResult == ObjInteractActionResult.Successful);
-            // log response 
+            // log response
             Logger.AddLog("Result: " + actionResult);
             Logger.AddLog("Result Data: " + responseLookupData.ToJSON());
             OnAfterTest();
 
             OnBeforeTest("Objects", "ObjectInteractionEndpoint", "Lookup Specific Object Interaction by URN");
-            // call endpoint  
+            // call endpoint
             actionResult = tester.LookupByUrn(responseNewInteractionData.interactionUrn,
                                             out responseLookupData,
                                             dataContext.GetViewType());
             result = result && (actionResult == ObjInteractActionResult.Successful);
-            // log response 
+            // log response
             Logger.AddLog("Result: " + actionResult);
             Logger.AddLog("Result Data: " + responseLookupData.ToJSON());
             OnAfterTest();

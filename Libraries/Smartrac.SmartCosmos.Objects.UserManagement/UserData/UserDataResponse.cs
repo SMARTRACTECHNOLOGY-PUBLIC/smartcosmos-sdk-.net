@@ -1,4 +1,5 @@
 ﻿#region License
+
 // SMART COSMOS .Net SDK
 // (C) Copyright 2014 SMARTRAC TECHNOLOGY GmbH, (http://www.smartrac-group.com)
 //
@@ -13,14 +14,10 @@
 // WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 // See the License for the specific language governing permissions and
 // limitations under the License.
-#endregion
 
-using System;
-using System.Collections.Generic;
-using System.IO;
+#endregion License
+
 using System.Runtime.Serialization;
-using System.Text;
-using Smartrac.SmartCosmos.ClientEndpoint.BaseObject;
 using Smartrac.SmartCosmos.Objects.Base;
 
 namespace Smartrac.SmartCosmos.Objects.UserManagement
@@ -45,12 +42,16 @@ namespace Smartrac.SmartCosmos.Objects.UserManagement
 
         [DataMember]
         public RoleType roleType { get; set; }
+
         [DataMember]
         public long lastModifiedTimestamp { get; set; }
+
         [DataMember]
         public string emailAddress { get; set; }
+
         [DataMember]
         public string givenName { get; set; }
+
         [DataMember]
         public string surname { get; set; }
 

@@ -1,4 +1,5 @@
 ﻿#region License
+
 // SMART COSMOS .Net SDK
 // (C) Copyright 2014 SMARTRAC TECHNOLOGY GmbH, (http://www.smartrac-group.com)
 //
@@ -13,15 +14,12 @@
 // WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 // See the License for the specific language governing permissions and
 // limitations under the License.
-#endregion
+
+#endregion License
 
 using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Net;
-using System.Text;
 using Smartrac.Logging;
-using Smartrac.SmartCosmos.ClientEndpoint.Base;
 using Smartrac.SmartCosmos.Profiles.Base;
 
 namespace Smartrac.SmartCosmos.Profiles.PlatformAvailability
@@ -29,7 +27,7 @@ namespace Smartrac.SmartCosmos.Profiles.PlatformAvailability
     /// <summary>
     /// Client for platfom availability endpoint
     /// </summary>
-    class PlatformAvailabilityEndpoint : BaseProfileEndpoint, IPlatformAvailabilityEndpoint
+    internal class PlatformAvailabilityEndpoint : BaseProfileEndpoint, IPlatformAvailabilityEndpoint
     {
         /// <summary>
         /// Resource for checking the Platform availability
@@ -44,7 +42,7 @@ namespace Smartrac.SmartCosmos.Profiles.PlatformAvailability
                 request.ContentLength = 0;
                 using (var response = request.GetResponse() as System.Net.HttpWebResponse)
                 {
-                    switch(response.StatusCode)
+                    switch (response.StatusCode)
                     {
                         case HttpStatusCode.NoContent: return PlatformAvailabilityActionResult.Successful;
                         case HttpStatusCode.ServiceUnavailable: return PlatformAvailabilityActionResult.Unavailable;
@@ -52,7 +50,7 @@ namespace Smartrac.SmartCosmos.Profiles.PlatformAvailability
                     }
                 }
             }
-            catch(Exception e)
+            catch (Exception e)
             {
                 if (null != Logger)
                     Logger.AddLog(e.Message, LogType.Error);

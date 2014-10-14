@@ -1,4 +1,5 @@
 ﻿#region License
+
 // SMART COSMOS .Net SDK
 // (C) Copyright 2014 SMARTRAC TECHNOLOGY GmbH, (http://www.smartrac-group.com)
 //
@@ -13,27 +14,23 @@
 // WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 // See the License for the specific language governing permissions and
 // limitations under the License.
-#endregion
+
+#endregion License
 
 using System;
-using System.Collections.Generic;
-using System.IO;
 using System.Net;
-using System.Runtime.Serialization.Json;
-using System.Text;
 using Smartrac.Logging;
 using Smartrac.SmartCosmos.ClientEndpoint.Base;
-using Smartrac.SmartCosmos.ClientEndpoint.BaseObject;
 using Smartrac.SmartCosmos.Objects.Base;
 
 namespace Smartrac.SmartCosmos.Objects.HashTag
 {
     /// <summary>
     /// Client for HashTag Endpoints
-    /// Hash Tags have grown in popularity across the Web for assigning quick search terms to everything from blog postings 
-    /// to Twitter posts. The platform provides a hash tag object for this purpose as well. 
+    /// Hash Tags have grown in popularity across the Web for assigning quick search terms to everything from blog postings
+    /// to Twitter posts. The platform provides a hash tag object for this purpose as well.
     /// </summary>
-    class HashTagEndpoint : BaseObjectsEndpoint, IHashTagEndpoint
+    internal class HashTagEndpoint : BaseObjectsEndpoint, IHashTagEndpoint
     {
         /// <summary>
         /// Create a new hash hash tag associated with the specified name
@@ -67,6 +64,7 @@ namespace Smartrac.SmartCosmos.Objects.HashTag
                             case HttpStatusCode.OK:
                                 responseData.tagUrn = new Urn(responseData.message);
                                 return HashTagActionResult.Successful;
+
                             default: return HashTagActionResult.Failed;
                         }
                     }
@@ -219,7 +217,7 @@ namespace Smartrac.SmartCosmos.Objects.HashTag
                     return HashTagActionResult.Failed;
                 }
 
-                var request = CreateWebRequest("/tags/" + entityReferenceType.GetDescription() + 
+                var request = CreateWebRequest("/tags/" + entityReferenceType.GetDescription() +
                                                "/" + referenceUrn.UUID, WebRequestOption.Authorization);
                 object responseDataObj;
                 var returnHTTPCode = ExecuteWebRequestJSON(request, typeof(HashTagRequest), requestData, typeof(DefaultResponse), out responseDataObj);
@@ -238,7 +236,6 @@ namespace Smartrac.SmartCosmos.Objects.HashTag
                 return HashTagActionResult.Failed;
             }
         }
-
 
         /// <summary>
         /// Deletes an existing hash tag by its system-assigned URN key
@@ -286,6 +283,5 @@ namespace Smartrac.SmartCosmos.Objects.HashTag
                 return HashTagActionResult.Failed;
             }
         }
-
     }
 }
