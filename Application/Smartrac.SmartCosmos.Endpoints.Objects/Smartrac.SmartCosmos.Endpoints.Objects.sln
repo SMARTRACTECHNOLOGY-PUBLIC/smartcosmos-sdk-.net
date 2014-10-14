@@ -37,7 +37,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Smartrac.SmartCosmos.Object
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Smartrac.SmartCosmos.Objects.ObjectInteractionSession", "..\..\Libraries\Smartrac.SmartCosmos.Objects.ObjectInteractionSession\Smartrac.SmartCosmos.Objects.ObjectInteractionSession.csproj", "{ED080DDE-A813-4D6F-B66E-E554E9B69D35}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Smartrac.SmartCosmos.Objects.TagManagement", "..\..\Libraries\Smartrac.SmartCosmos.Objects.TagManagement\Smartrac.SmartCosmos.Objects.TagManagement.csproj", "{CE76C35F-F25C-419D-BA66-48A22D5A021F}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Smartrac.SmartCosmos.Objects.HashTag", "..\..\Libraries\Smartrac.SmartCosmos.Objects.HashTag\Smartrac.SmartCosmos.Objects.HashTag.csproj", "{CE76C35F-F25C-419D-BA66-48A22D5A021F}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

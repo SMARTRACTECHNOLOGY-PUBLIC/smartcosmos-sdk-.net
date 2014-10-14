@@ -7,8 +7,8 @@
     <ProjectGuid>{401EA240-52ED-4A3F-B475-C7EDBDA211FE}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>Smartrac.SmartCosmos.Objects.UserUserManagement</RootNamespace>
-    <AssemblyName>Smartrac.SmartCosmos.Objects.UserUserManagement</AssemblyName>
+    <RootNamespace>Smartrac.SmartCosmos.Objects.UserManagement</RootNamespace>
+    <AssemblyName>Smartrac.SmartCosmos.Objects.UserManagement</AssemblyName>
     <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
   </PropertyGroup>
