@@ -19,7 +19,7 @@
 
 using System.Runtime.Serialization;
 
-namespace Smartrac.SmartCosmos.Objects.Base
+namespace Smartrac.SmartCosmos.ClientEndpoint.BaseObject
 {
     [DataContract]
     public class BaseRequest

@@ -18,22 +18,23 @@
 #endregion License
 
 using System;
+using System.IO;
 using System.Net;
 using System.Security.Cryptography;
 using System.Text;
 using Smartrac.Logging;
 using Smartrac.SmartCosmos.ClientEndpoint.BaseObject;
-using Smartrac.SmartCosmos.Objects.Base;
 
 namespace Smartrac.SmartCosmos.ClientEndpoint.Base
 {
     /// <summary>
     /// Options for the Web request
     /// </summary>
+    [Flags]
     public enum WebRequestOption
     {
-        Authorization, // HTTP Header "Authorization" is required
-        AcceptLanguage // HTTP Header "Accept-Language" is required
+        Authorization = 1, // HTTP Header "Authorization" is required
+        AcceptLanguage = 2 // HTTP Header "Accept-Language" is required
     }
 
     /// <summary>
@@ -124,8 +125,8 @@ namespace Smartrac.SmartCosmos.ClientEndpoint.Base
                 return;
             }
 
-            if (null != Logger)
-                Logger.AddLog("Login with user " + userName);
+            //if (null != Logger)
+            //    Logger.AddLog("Login with user " + userName);
 
             // UserName and hased password are combined into a string "UserName:hashedpassword"
             // For example, if the user agent uses 'Aladdin' as the UserName and 'open sesame' as the password then the header is formed as follows:.
@@ -205,33 +206,28 @@ namespace Smartrac.SmartCosmos.ClientEndpoint.Base
                 {
                     if (webResponse.StatusCode == HttpStatusCode.NoContent)
                     {
-                        //responseData = Activator.CreateInstance( responseType);
-                        responseData = new responseType(); //Activator.CreateInstance(responseType);
+                        responseData = new responseType();
                     }
                     else
                     {
                         // convert stream to string
-                        /*
-                        StreamReader reader = new StreamReader(webResponse.GetResponseStream());
-                        string text = reader.ReadToEnd();
-
-                        responseData.FromJSON(text);
-
-                        //DataContractJsonSerializer serializer = new DataContractJsonSerializer(responseType);
-                        //responseData = serializer.ReadObject(responseData.FromJSON(webResponse.GetResponseStream()));
-
-                        var test = Activator.CreateInstance(responseType);
-
-                        responseData = test.FromJSON(webResponse.GetResponseStream());
-                         */
-                        //responseData = new responseType();
-                        responseData = responseData.FromJSON(webResponse.GetResponseStream());
+                        if (webResponse.ContentType == "application/json")
+                            responseData = responseData.FromJSON(webResponse.GetResponseStream());
+                        else
+                        {
+                            responseData = new responseType();
+                            if ((webResponse.ContentType == "text/plain") &&
+                             (responseData is IResponseMessage))
+                            {
+                                StreamReader reader = new StreamReader(webResponse.GetResponseStream());
+                                (responseData as IResponseMessage).message = reader.ReadToEnd();
+                            }
+                        }
                     }
 
-                    if (responseData is BaseResponse)
+                    if (responseData is IHTTPStatusCode)
                     {
-                        (responseData as BaseResponse).HTTPStatusCode = webResponse.StatusCode;
-                        //((BaseResponse)responseData).HTTPStatusCode = webResponse.StatusCode;
+                        (responseData as IHTTPStatusCode).HTTPStatusCode = webResponse.StatusCode;
                     }
                     return webResponse.StatusCode;
                 }

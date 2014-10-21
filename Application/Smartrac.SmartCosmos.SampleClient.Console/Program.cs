@@ -41,8 +41,12 @@ namespace Smartrac.SmartCosmos.SampleClient.Console
             factory.UserName = ConfigurationManager.AppSettings["UserName"];
             factory.UserPassword = ConfigurationManager.AppSettings["UserPassword"];
 
-            // Configure server of SMART COSMOS Objects server
-            factory.ObjectsServerURL = "";
+            // Configure server of SMART COSMOS Objects
+            factory.ObjectsServerURL = "http://54.171.86.156:8080";
+            factory.UserName = "foo";
+            factory.UserPassword = "bar";
+
+            factory.ProfilesServerURL = "";
 
             // initate tester case runner
             ITestCaseRunner testCaseRunner = new TestCaseRunnerBuilder()
@@ -56,7 +60,6 @@ namespace Smartrac.SmartCosmos.SampleClient.Console
 
             // output
             System.Console.WriteLine("");
-            System.Console.WriteLine("Test result: " + bTestResult);
             System.Console.WriteLine("Press a key for exit...");
             System.Console.ReadLine();
         }

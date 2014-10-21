@@ -31,7 +31,7 @@ namespace Smartrac.SmartCosmos.Profiles.DataImport
         public int state { get; set; }
 
         [DataMember]
-        public int progress { get; set; }
+        public double progress { get; set; }
 
         [DataMember]
         public string message { get; set; }

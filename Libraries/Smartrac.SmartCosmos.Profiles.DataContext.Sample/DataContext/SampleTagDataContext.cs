@@ -19,7 +19,6 @@
 
 using System.Collections.Generic;
 using System.IO;
-using System.Linq;
 
 namespace Smartrac.SmartCosmos.Profiles.DataContext.Sample
 {
@@ -58,17 +57,18 @@ namespace Smartrac.SmartCosmos.Profiles.DataContext.Sample
 
         public override IEnumerable<string> GetTagIds()
         {
-            return TagIds.AsEnumerable<string>();
+            return TagIds; //.AsEnumerable<string>();
         }
 
         public override IEnumerable<string> GetTagProperties()
         {
-            return TagProperties.AsEnumerable<string>();
+            return TagProperties; //.AsEnumerable<string>();
         }
 
         public override IEnumerable<string> GetVerificationTypes()
         {
-            return VerificationTypes.AsEnumerable<string>();
+            return VerificationTypes;
+            //return VerificationTypes.AsEnumerable<string>();
         }
 
         public override string GetImportId()

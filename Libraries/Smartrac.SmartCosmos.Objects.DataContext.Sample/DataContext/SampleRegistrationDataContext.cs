@@ -23,12 +23,12 @@ namespace Smartrac.SmartCosmos.Objects.DataContext.Sample
     {
         public override string GetRealm()
         {
-            return "foobar.com";
+            return "smartrac-group.com";
         }
 
         public override string GeteMailAddress()
         {
-            return "you@foo.com";
+            return "jens.koehler@smartrac-group.com";
         }
     }
 }

@@ -41,7 +41,12 @@ namespace Smartrac.SmartCosmos.Profiles.TagVerification
             : this()
         {
             this.tagIds.AddRange(dataContext.GetTagIds());
-            this.verificationType = dataContext.GetVerificationTypes().GetEnumerator().Current;
+            using (var enumer = dataContext.GetVerificationTypes().GetEnumerator())
+            {
+                if (enumer.MoveNext())
+                    this.verificationType = enumer.Current;
+            }
+            //this.verificationType = dataContext.GetVerificationTypes().GetEnumerator().Current;
         }
     }
 }

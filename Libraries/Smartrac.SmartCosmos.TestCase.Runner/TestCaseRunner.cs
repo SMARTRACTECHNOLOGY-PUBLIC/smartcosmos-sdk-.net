@@ -89,7 +89,7 @@ namespace Smartrac.SmartCosmos.TestCase.Runner
             }
 
             Logger.AddLog("");
-            Logger.AddLog("Total result: " + result);
+            Logger.AddLog("Test result: " + result);
             return result;
         }
     }

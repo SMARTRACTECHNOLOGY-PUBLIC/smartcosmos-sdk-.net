@@ -56,7 +56,8 @@ namespace Smartrac.SmartCosmos.Objects.DataContext.Sample
             result = result && (actionResult == RegistrationActionResult.Successful);
             // log response
             Logger.AddLog("Result: " + actionResult);
-            Logger.AddLog("Result Data: " + responseRealmData.ToJSON());
+            if (responseRealmData != null)
+                Logger.AddLog("Result Data: " + responseRealmData.ToJSON());
             OnAfterTest();
 
             OnBeforeTest("Objects", "RegistrationEndpoint", "Account Registration");
@@ -72,7 +73,8 @@ namespace Smartrac.SmartCosmos.Objects.DataContext.Sample
             result = result && (actionResult == RegistrationActionResult.Successful);
             // log response
             Logger.AddLog("Result: " + actionResult);
-            Logger.AddLog("Result Data: " + responseRegisterData.ToJSON());
+            if (responseRealmData != null)
+                Logger.AddLog("Result Data: " + responseRegisterData.ToJSON());
             OnAfterTest();
 
             return result;

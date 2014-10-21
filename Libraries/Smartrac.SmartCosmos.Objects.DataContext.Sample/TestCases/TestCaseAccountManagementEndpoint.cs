@@ -56,7 +56,8 @@ namespace Smartrac.SmartCosmos.Objects.DataContext.Sample
             result = result && (actionResult == AccountActionResult.Successful);
             // log response
             Logger.AddLog("Result: " + actionResult);
-            Logger.AddLog("Result Data: " + responseDetailsData.ToJSON());
+            if (responseDetailsData != null)
+                Logger.AddLog("Result Data: " + responseDetailsData.ToJSON());
             OnAfterTest();
 
             OnBeforeTest("Objects", "AccountManagementEndpoint", "Change Your Password");
@@ -71,7 +72,8 @@ namespace Smartrac.SmartCosmos.Objects.DataContext.Sample
             result = result && (actionResult == AccountActionResult.Successful);
             // log response
             Logger.AddLog("Result: " + actionResult);
-            Logger.AddLog("Result Data: " + responsePwdData.ToJSON());
+            if (responsePwdData != null)
+                Logger.AddLog("Result Data: " + responsePwdData.ToJSON());
             OnAfterTest();
 
             OnBeforeTest("Objects", "AccountManagementEndpoint", "Reset Lost Password");
@@ -82,7 +84,8 @@ namespace Smartrac.SmartCosmos.Objects.DataContext.Sample
             result = result && (actionResult == AccountActionResult.Successful);
             // log response
             Logger.AddLog("Result: " + actionResult);
-            Logger.AddLog("Result Data: " + responsePwdResetData.ToJSON());
+            if (responsePwdResetData != null)
+                Logger.AddLog("Result Data: " + responsePwdResetData.ToJSON());
             OnAfterTest();
 
             return result;

@@ -21,12 +21,13 @@ using System;
 using System.Diagnostics;
 using System.IO;
 using Smartrac.Logging;
+using Smartrac.SmartCosmos.ClientEndpoint.BaseObject;
 using Smartrac.SmartCosmos.Profiles.TagMetadata;
 using Smartrac.SmartCosmos.TestCase.Base;
 
 namespace Smartrac.SmartCosmos.Profiles.DataContext.Sample
 {
-    [TestCaseAttribute(-20)]
+    [TestCaseAttribute(20)]
     public class TestCaseTagMetadataEndpoint : BaseProfilesTestCase
     {
         protected override bool DoRun()
@@ -51,40 +52,41 @@ namespace Smartrac.SmartCosmos.Profiles.DataContext.Sample
             if (File.Exists(dataContext.GetTagDataFile()))
             {
                 OnBeforeTest("Profiles", "TagMetadataEndpoint", "GetTagMetadata - PerformanceTest");
+
                 try
                 {
                     TagMetaDataRequest requestTagMetaData = new TagMetaDataRequest(dataContext);
                     TagMetaDataResponse responseTagMetaData;
+                    TagMetaDataActionResult actionResult = TagMetaDataActionResult.Failed;
                     Stopwatch watch = new Stopwatch();
                     int tagCount = requestTagMetaData.tagIds.Count;
-                    TagMetaDataActionResult actionResult;
 
                     // validate
                     watch.Start();
                     actionResult = tester.GetTagMetadata(requestTagMetaData, out responseTagMetaData);
                     result = result && (actionResult == TagMetaDataActionResult.Successful);
                     watch.Stop();
-                    Logger.AddLog(requestTagMetaData.tagIds.Count + " tags checked. Result:" + actionResult + "  Required time:" + watch.Elapsed);
                     requestTagMetaData.tagIds.Clear();
                     watch.Reset();
-                    Logger.AddLog("Test count: " + tagCount);
+
+                    Logger.AddLog("Result: " + actionResult.ToString());
 
                     if (responseTagMetaData != null)
                     {
+                        Logger.AddLog("Result Data: " + responseTagMetaData.ToJSON());
                         string batchId;
                         foreach (var tag in responseTagMetaData.result)
                         {
                             if (tag.props != null)
-                              tag.props.GetValue(TagPropertyString.batchId, out batchId);
+                                tag.props.GetValue(TagPropertyString.batchId, out batchId);
                         }
                     }
+                    OnAfterTest();
                 }
                 catch (Exception e)
                 {
                     Logger.AddLog(e.Message, LogType.Error);
                 }
-
-                OnAfterTest();
             }
 
             return result;

@@ -31,6 +31,8 @@ namespace Smartrac.SmartCosmos.ClientEndpoint.BaseObject
     {
         public static string ToJSON<T>(this T obj) where T : class
         {
+            if (obj == null)
+                return "";
             return JsonConvert.SerializeObject(obj);
         }
 

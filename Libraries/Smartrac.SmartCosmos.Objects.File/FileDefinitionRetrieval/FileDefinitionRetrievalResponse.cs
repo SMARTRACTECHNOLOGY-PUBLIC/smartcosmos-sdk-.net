@@ -20,6 +20,7 @@
 using System.Collections.Generic;
 using System.Net;
 using System.Runtime.Serialization;
+using Smartrac.SmartCosmos.ClientEndpoint.BaseObject;
 using Smartrac.SmartCosmos.Objects.Base;
 
 namespace Smartrac.SmartCosmos.Objects.File

@@ -20,10 +20,10 @@
 using System.Net;
 using System.Runtime.Serialization;
 
-namespace Smartrac.SmartCosmos.Objects.Base
+namespace Smartrac.SmartCosmos.ClientEndpoint.BaseObject
 {
     [DataContract]
-    public class BaseResponse
+    public class BaseResponse : IHTTPStatusCode
     {
         public HttpStatusCode HTTPStatusCode { get; set; }
 
@@ -35,7 +35,7 @@ namespace Smartrac.SmartCosmos.Objects.Base
     }
 
     [DataContract]
-    public class DefaultResponse : BaseResponse
+    public class DefaultResponse : BaseResponse, IResponseMessage
     {
         [DataMember]
         public int code { get; set; }

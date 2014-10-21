@@ -60,21 +60,26 @@ namespace Smartrac.SmartCosmos.Objects.DataContext.Sample
             result = result && (actionResult == FileActionResult.Successful);
             // log response
             Logger.AddLog("Result: " + actionResult);
-            Logger.AddLog("Result Data: " + responseListData.ToJSON());
+            if (responseListData != null)
+              Logger.AddLog("Result Data: " + responseListData.ToJSON());
             OnAfterTest();
 
             if ((null != responseListData) && (responseListData.Count > 0))
             {
                 foreach (var item in responseListData)
                 {
-                    OnBeforeTest("Objects", "FileEndpoint", "File Delete");
-                    // create request & call endpoint
-                    actionResult = tester.Delete(item.Urn);
-                    result = result && (actionResult == FileActionResult.Successful);
-                    // log response
-                    Logger.AddLog("Result: " + actionResult);
-                    Logger.AddLog("Result Data: " + responseListData.ToJSON());
-                    OnAfterTest();
+                    if (item.Urn.IsValid())
+                    {
+                        OnBeforeTest("Objects", "FileEndpoint", "File Delete");
+                        // create request & call endpoint
+                        actionResult = tester.Delete(item.Urn);
+                        result = result && (actionResult == FileActionResult.Successful);
+                        // log response
+                        Logger.AddLog("Result: " + actionResult);
+                        if (responseListData != null)
+                            Logger.AddLog("Result Data: " + responseListData.ToJSON());
+                        OnAfterTest();
+                    }
                 }
             }
 
@@ -94,6 +99,7 @@ namespace Smartrac.SmartCosmos.Objects.DataContext.Sample
                 result = result && (actionResult == FileActionResult.Successful);
                 // log response
                 Logger.AddLog("Result: " + actionResult);
+
                 Logger.AddLog("Result Data: " + responseDefData.ToJSON());
                 OnAfterTest();
 

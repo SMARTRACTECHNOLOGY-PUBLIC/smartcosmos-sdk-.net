@@ -40,7 +40,7 @@ namespace Smartrac.SmartCosmos.TestCase.Base
             EndpointFactory = endpointFactory;
             DataContextFactory = dataContextFactory;
             if (!OnBeforeRun())
-                return false;
+                return true; // maybe deactivated or not all parameters available
             try
             {
                 return DoRun();

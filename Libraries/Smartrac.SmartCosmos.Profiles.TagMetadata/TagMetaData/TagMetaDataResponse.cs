@@ -18,11 +18,9 @@
 #endregion License
 
 using System;
-using System.ComponentModel;
 using System.Collections.Generic;
 using System.Runtime.Serialization;
-using Newtonsoft.Json;
-using Smartrac.SmartCosmos.Objects.Base;
+using Smartrac.SmartCosmos.ClientEndpoint.BaseObject;
 
 namespace Smartrac.SmartCosmos.Profiles.TagMetadata
 {
@@ -45,8 +43,6 @@ namespace Smartrac.SmartCosmos.Profiles.TagMetadata
         [DataMember]
         public int TestLicense { get; set; }
     }
-
-
 
     [DataContract]
     public class TagProperties : Dictionary<string, object>
@@ -81,7 +77,7 @@ namespace Smartrac.SmartCosmos.Profiles.TagMetadata
         {
             this.SetValue(key.GetDescription(), value);
         }
-        
+
         public void SetValue(string key, double value)
         {
             if (this.ContainsKey(key))
@@ -227,6 +223,7 @@ namespace Smartrac.SmartCosmos.Profiles.TagMetadata
 
         [DataMember]
         public TagProperties props { get; set; }
+
         //public Dictionary<string, object> props { get; set; }
 
         /*

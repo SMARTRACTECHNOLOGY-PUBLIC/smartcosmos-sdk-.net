@@ -19,7 +19,7 @@
 
 using System.IO;
 using System.Runtime.Serialization;
-using Smartrac.SmartCosmos.Objects.Base;
+using Smartrac.SmartCosmos.ClientEndpoint.BaseObject;
 
 namespace Smartrac.SmartCosmos.Objects.File
 {
