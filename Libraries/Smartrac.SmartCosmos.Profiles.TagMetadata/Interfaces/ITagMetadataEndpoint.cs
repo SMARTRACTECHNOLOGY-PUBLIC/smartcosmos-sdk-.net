@@ -17,6 +17,7 @@
 
 #endregion License
 
+using System.ComponentModel;
 using Smartrac.SmartCosmos.ClientEndpoint.Base;
 
 namespace Smartrac.SmartCosmos.Profiles.TagMetadata
@@ -37,6 +38,135 @@ namespace Smartrac.SmartCosmos.Profiles.TagMetadata
         /// user not authorized
         /// </summary>
         Unauthorized
+    }
+
+    public enum TagPropertyString
+    {
+       /// <summary>
+       /// Customer ID
+       /// </summary>
+       [DescriptionAttribute("custId")]
+       customerId,
+
+       /// <summary>
+       /// Order ID
+       /// </summary>
+       [DescriptionAttribute("orderId")]
+       orderId,
+
+       /// <summary>
+       /// Order quantity unit
+       /// </summary>
+       [DescriptionAttribute("orderQtyU")]
+       orderQuantityUnit,
+
+       /// <summary>
+       /// Customer purchase order number
+       /// </summary>
+       [DescriptionAttribute("customerPO")]
+       customerPurchaseOrder,
+
+       /// <summary>
+       /// Supplier purchase order number
+       /// </summary>
+       [DescriptionAttribute("supplPO")]
+       supplierPurchaseOrder,
+
+       /// <summary>
+       /// Delivery ID
+       /// </summary>
+       [DescriptionAttribute("delivId")]
+       deliveryId,
+
+       /// <summary>
+       /// Roll number / batch ID
+       /// </summary>
+       [DescriptionAttribute("batchId")]
+       batchId,
+
+       /// <summary>
+       /// Chip manufacturer
+       /// </summary>
+       //[DescriptionAttribute("custId")]
+       //chipManufacturer = "chipManuf",
+
+       /// <summary>
+       /// Sub roll number / sub batch ID
+       /// </summary>
+       [DescriptionAttribute("subRoll")]
+       subRoll,
+
+       /// <summary>
+       /// Manufacturer production side ID
+       /// </summary>
+       [DescriptionAttribute("plantId")]
+       plantId,
+
+       /// <summary>
+       /// Inlay type
+       /// </summary>
+       [DescriptionAttribute("inlayType")]
+       inlayType,
+
+       /// <summary>
+       /// Delivery quantity unit
+       /// </summary>
+       [DescriptionAttribute("delivQtyU")]
+       deliveryQuantityUnit
+    }
+
+    public enum TagPropertyLong
+    {
+       /// <summary>
+       /// Order date
+       /// </summary>
+        [DescriptionAttribute("orderDate")]
+        orderDate,
+
+       /// <summary>
+       /// Delivery date
+       /// </summary>
+        [DescriptionAttribute("delivDate")]
+        delivDate,
+
+       /// <summary>
+       /// Inlay manufacturer date
+       /// </summary>
+        [DescriptionAttribute("inlayManufDate")]
+        inlayManufacturerDate
+    }
+
+    public enum TagPropertyNumber
+    {
+       /// <summary>
+       /// Order quantity
+       /// </summary>
+        [DescriptionAttribute("orderQty")]
+        orderQuantity,
+
+       /// <summary>
+       /// Delivery quantity
+       /// </summary>
+        [DescriptionAttribute("delivQty")]
+        deliveryQuantity,
+
+       /// <summary>
+       /// Batch/Roll yield [%]
+       /// </summary>
+        [DescriptionAttribute("yield")]
+        yield,
+
+       /// <summary>
+       /// Attenuation in dB
+       /// </summary>
+        [DescriptionAttribute("attenuation")]
+        attenuation,
+
+       /// <summary>
+       /// Check state of tag 0=failed; 1=passed
+       /// </summary>
+        [DescriptionAttribute("checkState")]
+        checkState
     }
 
     public interface ITagMetadataEndpoint : IBaseEndpoint

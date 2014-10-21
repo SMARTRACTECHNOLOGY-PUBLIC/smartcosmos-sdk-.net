@@ -18,6 +18,7 @@
 #endregion License
 
 using System;
+using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Reflection;
@@ -49,16 +50,17 @@ namespace Smartrac.SmartCosmos.TestCase.Runner
         /// </summary>
         /// <param name="testCaseTypes">Or linked TestCaseTypes</param>
         /// <returns></returns>
-        public bool Run(TestCaseType testCaseTypes)
+        public bool Run(TestCaseType testCaseTypes, string assemblySearchPattern = "*.dll")
         {
+            Dictionary<int, ITestCase> testList = new Dictionary<int, ITestCase>();
             bool result = true;
 
             // Search all test cases
-            foreach (string file in Directory.GetFiles(AppDomain.CurrentDomain.BaseDirectory, "*.dll"))
+            foreach (string file in Directory.GetFiles(AppDomain.CurrentDomain.BaseDirectory, assemblySearchPattern))
             {
                 var typesWithMyAttribute =
                 from t in Assembly.LoadFile(file).GetTypes()
-                where t.Namespace.Contains("TestCase")
+                //where (t.Namespace != null) && t.Namespace.Contains("TestCase")
                 let attributes = t.GetCustomAttributes(typeof(TestCaseAttribute), true)
                 where attributes != null && attributes.Length > 0
                 select new { Type = t, Attributes = attributes.Cast<TestCaseAttribute>() };
@@ -68,16 +70,22 @@ namespace Smartrac.SmartCosmos.TestCase.Runner
                     foreach (var attr in item.Attributes)
                     {
                         TestCaseAttribute testCase = (TestCaseAttribute)attr;
-                        if ((testCase != null) && (testCaseTypes.HasFlag(testCase.testCaseType)))
+                        if ((testCase != null) && (testCaseTypes.HasFlag(testCase.TestCaseType)))
                         {
                             ITestCase MyTestCase = (ITestCase)Activator.CreateInstance(item.Type);
                             if (MyTestCase != null)
                             {
-                                result = MyTestCase.Run(Logger, EndpointFactory, DataContextFactory) && result;
+                                testList.Add(testCase.TestPriority, MyTestCase);
                             }
                         }
                     }
                 }
+
+                foreach (var testItem in testList.OrderBy(i => i.Key))
+                {
+                    result = testItem.Value.Run(Logger, EndpointFactory, DataContextFactory) && result;
+                }
+                testList.Clear();
             }
 
             Logger.AddLog("");

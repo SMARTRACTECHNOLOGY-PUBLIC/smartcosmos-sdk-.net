@@ -21,9 +21,9 @@ using System;
 using System.IO;
 using System.Net;
 using System.Net.Http;
-using System.Runtime.Serialization.Json;
 using Smartrac.Logging;
 using Smartrac.SmartCosmos.ClientEndpoint.Base;
+using Smartrac.SmartCosmos.ClientEndpoint.BaseObject;
 using Smartrac.SmartCosmos.Objects.Base;
 
 namespace Smartrac.SmartCosmos.Objects.File
@@ -52,21 +52,16 @@ namespace Smartrac.SmartCosmos.Objects.File
                 }
 
                 var request = CreateWebRequest("/files", WebRequestOption.Authorization);
-                object responseDataObj = null;
-                var returnHTTPCode = ExecuteWebRequestJSON(request, typeof(FileDefinitionRequest), requestData, typeof(FileDefinitionResponse), out responseDataObj, WebRequestMethods.Http.Put);
+                var returnHTTPCode = ExecuteWebRequestJSON<FileDefinitionRequest, FileDefinitionResponse>(request, requestData, out responseData, WebRequestMethods.Http.Put);
 
-                if (null != responseDataObj)
+                if (responseData != null)
                 {
-                    responseData = responseDataObj as FileDefinitionResponse;
-                    if (responseData != null)
+                    responseData.HTTPStatusCode = returnHTTPCode;
+                    if (returnHTTPCode == HttpStatusCode.Created)
                     {
-                        responseData.HTTPStatusCode = returnHTTPCode;
-                        if (returnHTTPCode == HttpStatusCode.Created)
-                        {
-                            if (responseData != null)
-                                responseData.fileUrn = new Urn(responseData.message);
-                            return FileActionResult.Successful;
-                        }
+                        if (responseData != null)
+                            responseData.fileUrn = new Urn(responseData.message);
+                        return FileActionResult.Successful;
                     }
                 }
 
@@ -123,8 +118,11 @@ namespace Smartrac.SmartCosmos.Objects.File
                         return FileActionResult.Failed;
                     }
 
-                    DataContractJsonSerializer serializer = new DataContractJsonSerializer(typeof(FileUploadResponse));
-                    responseData = serializer.ReadObject(response.GetResponseStream()) as FileUploadResponse;
+                    responseData = responseData.FromJSON(response.GetResponseStream());
+
+                    //DataContractJsonSerializer serializer = new DataContractJsonSerializer(typeof(FileUploadResponse));
+                    //responseData = serializer.ReadObject(response.GetResponseStream()) as FileUploadResponse;
+
                     if (responseData == null)
                     {
                         return FileActionResult.Failed;
@@ -238,8 +236,9 @@ namespace Smartrac.SmartCosmos.Objects.File
                         return FileActionResult.Failed;
                     }
 
-                    DataContractJsonSerializer serializer = new DataContractJsonSerializer(typeof(FileUploadResponse));
-                    responseData = serializer.ReadObject(response.GetResponseStream()) as FileUploadResponse;
+                    responseData = responseData.FromJSON(response.GetResponseStream());
+                    //DataContractJsonSerializer serializer = new DataContractJsonSerializer(typeof(FileUploadResponse));
+                    //responseData = serializer.ReadObject(response.GetResponseStream()) as FileUploadResponse;
                     if (responseData == null)
                     {
                         return FileActionResult.Failed;
@@ -292,21 +291,16 @@ namespace Smartrac.SmartCosmos.Objects.File
                 }
 
                 var request = CreateWebRequest("/files/" + fileUrn.UUID + "?view=" + viewType.GetDescription());
-                object responseDataObj;
                 HttpWebResponse webResponse;
-                var returnHTTPCode = ExecuteWebRequestJSON(request, typeof(FileDefinitionRetrievalResponse), out responseDataObj, out webResponse);
-                if (null != responseDataObj)
+                var returnHTTPCode = ExecuteWebRequestJSON<FileDefinitionRetrievalResponse>(request, out responseData, out webResponse);
+                if ((responseData != null) && (webResponse != null))
                 {
-                    responseData = responseDataObj as FileDefinitionRetrievalResponse;
-                    if ((responseData != null) && (webResponse != null))
+                    responseData.SmartCosmosEvent = webResponse.Headers.Get("SmartCosmos-Event");
+                    switch (responseData.HTTPStatusCode)
                     {
-                        responseData.SmartCosmosEvent = webResponse.Headers.Get("SmartCosmos-Event");
-                        switch (responseData.HTTPStatusCode)
-                        {
-                            case HttpStatusCode.OK: return FileActionResult.Successful;
-                            case HttpStatusCode.BadRequest: return FileActionResult.Failed;
-                            default: return FileActionResult.Failed;
-                        }
+                        case HttpStatusCode.OK: return FileActionResult.Successful;
+                        case HttpStatusCode.BadRequest: return FileActionResult.Failed;
+                        default: return FileActionResult.Failed;
                     }
                 }
                 return FileActionResult.Failed;
@@ -373,8 +367,9 @@ namespace Smartrac.SmartCosmos.Objects.File
                     }
                     else
                     {
-                        DataContractJsonSerializer serializer = new DataContractJsonSerializer(typeof(FileContentRetrievalResponse));
-                        responseData = serializer.ReadObject(response.GetResponseStream()) as FileContentRetrievalResponse;
+                        responseData = responseData.FromJSON(response.GetResponseStream());
+                        //DataContractJsonSerializer serializer = new DataContractJsonSerializer(typeof(FileContentRetrievalResponse));
+                        //responseData = serializer.ReadObject(response.GetResponseStream()) as FileContentRetrievalResponse;
                         if (responseData != null)
                         {
                             responseData.HTTPStatusCode = response.StatusCode;
@@ -419,21 +414,16 @@ namespace Smartrac.SmartCosmos.Objects.File
                 }
 
                 var request = CreateWebRequest("/files/" + entityReferenceType.GetDescription() + "/" + referenceUrn.UUID + "?view=" + viewType.GetDescription());
-                object responseDataObj;
-                var returnHTTPCode = ExecuteWebRequestJSON(request, typeof(FileDefinitionRetrievalListResponse), out responseDataObj);
-                if (null != responseDataObj)
+                var returnHTTPCode = ExecuteWebRequestJSON<FileDefinitionRetrievalListResponse>(request, out responseData);
+                if (responseData != null)
                 {
-                    responseData = responseDataObj as FileDefinitionRetrievalListResponse;
-                    if (responseData != null)
+                    // responseData.HTTPStatusCode = response.StatusCode;
+                    //responseData.SmartCosmosEvent = response.Headers.Get("SmartCosmos-Event");
+                    switch (responseData.HTTPStatusCode)
                     {
-                        // responseData.HTTPStatusCode = response.StatusCode;
-                        //responseData.SmartCosmosEvent = response.Headers.Get("SmartCosmos-Event");
-                        switch (responseData.HTTPStatusCode)
-                        {
-                            case HttpStatusCode.OK: return FileActionResult.Successful;
-                            case HttpStatusCode.BadRequest: return FileActionResult.Failed;
-                            default: return FileActionResult.Failed;
-                        }
+                        case HttpStatusCode.OK: return FileActionResult.Successful;
+                        case HttpStatusCode.BadRequest: return FileActionResult.Failed;
+                        default: return FileActionResult.Failed;
                     }
                 }
 

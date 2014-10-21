@@ -43,7 +43,7 @@ namespace Smartrac.SmartCosmos.Profiles.TagMetadata
         }
 
         public TagMetaDataRequest(ITagDataContext dataContext)
-            : base()
+            : this()
         {
             this.tagIds.AddRange(dataContext.GetTagIds());
             this.verificationTypes.AddRange(dataContext.GetVerificationTypes());

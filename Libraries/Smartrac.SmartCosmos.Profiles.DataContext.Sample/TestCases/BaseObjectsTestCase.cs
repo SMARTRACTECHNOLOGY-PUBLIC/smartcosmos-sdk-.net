@@ -17,30 +17,15 @@
 
 #endregion License
 
-using Smartrac.SmartCosmos.Profiles.PlatformAvailability;
 using Smartrac.SmartCosmos.TestCase.Base;
 
 namespace Smartrac.SmartCosmos.Profiles.DataContext.Sample
 {
-    [TestCaseAttribute(0)]
-    public class TestCasePlatformAvailabilityEndpoint : BaseProfilesTestCase
+    public class BaseProfilesTestCase : BaseTestCase
     {
-        protected override bool DoRun()
+        protected override bool OnBeforeRun()
         {
-            bool result = true;
-            PlatformAvailabilityActionResult actionResult;
-
-            OnBeforeTest("Profiles", "PlatformAvailabilityEndpoint", "Ping");
-            // create client for endpoint
-            IPlatformAvailabilityEndpoint tester = EndpointFactory.CreatePlatformAvailabilityEndpoint();
-            // call endpoint & send response to console
-            actionResult = tester.Ping();
-            result = result && (actionResult == PlatformAvailabilityActionResult.Successful);
-
-            Logger.AddLog("Result: " + actionResult);
-            OnAfterTest();
-
-            return result;
+            return base.OnBeforeRun() && !string.IsNullOrEmpty(EndpointFactory.ProfilesServerURL);
         }
     }
 }

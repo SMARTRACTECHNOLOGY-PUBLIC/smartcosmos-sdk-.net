@@ -49,22 +49,17 @@ namespace Smartrac.SmartCosmos.Objects.GeospatialManagement
                 }
 
                 var request = CreateWebRequest("/geospatial", WebRequestOption.Authorization);
-                object responseDataObj = null;
-                ExecuteWebRequestJSON(request, typeof(GeospatialManagementNewRequest), requestData, typeof(GeospatialManagementNewResponse), out responseDataObj, WebRequestMethods.Http.Put);
-                if (null != responseDataObj)
+                ExecuteWebRequestJSON<GeospatialManagementNewRequest, GeospatialManagementNewResponse>(request, requestData, out responseData, WebRequestMethods.Http.Put);
+                if (responseData != null)
                 {
-                    responseData = responseDataObj as GeospatialManagementNewResponse;
-                    if (responseData != null)
+                    switch (responseData.HTTPStatusCode)
                     {
-                        switch (responseData.HTTPStatusCode)
-                        {
-                            case HttpStatusCode.Created:
-                            case HttpStatusCode.OK:
-                                responseData.geospatialUrn = new Urn(responseData.message);
-                                return GeoActionResult.Successful;
+                        case HttpStatusCode.Created:
+                        case HttpStatusCode.OK:
+                            responseData.geospatialUrn = new Urn(responseData.message);
+                            return GeoActionResult.Successful;
 
-                            default: return GeoActionResult.Failed;
-                        }
+                        default: return GeoActionResult.Failed;
                     }
                 }
 
@@ -97,23 +92,18 @@ namespace Smartrac.SmartCosmos.Objects.GeospatialManagement
                 }
 
                 var request = CreateWebRequest("/geospatial", WebRequestOption.Authorization);
-                object responseDataObj = null;
                 HttpWebResponse webResponse = null;
-                ExecuteWebRequestJSON(request, typeof(GeospatialManagementNewRequest), requestData, typeof(GeospatialManagementUpdateResponse), out responseDataObj, out webResponse, WebRequestMethods.Http.Put);
-                if (null != responseDataObj)
+                ExecuteWebRequestJSON<GeospatialManagementUpdateRequest, GeospatialManagementUpdateResponse>(request, requestData, out responseData, out webResponse, WebRequestMethods.Http.Put);
+                if (responseData != null)
                 {
-                    responseData = responseDataObj as GeospatialManagementUpdateResponse;
-                    if (responseData != null)
+                    if ((responseData.HTTPStatusCode == HttpStatusCode.NoContent) &&
+                       (webResponse.Headers.Get("SmartCosmos-Event") == "GeospatialEntryUpdated"))
                     {
-                        if ((responseData.HTTPStatusCode == HttpStatusCode.NoContent) &&
-                           (webResponse.Headers.Get("SmartCosmos-Event") == "GeospatialEntryUpdated"))
-                        {
-                            return GeoActionResult.Successful;
-                        }
-                        else
-                        {
-                            return GeoActionResult.Failed;
-                        }
+                        return GeoActionResult.Successful;
+                    }
+                    else
+                    {
+                        return GeoActionResult.Failed;
                     }
                 }
 
@@ -148,19 +138,14 @@ namespace Smartrac.SmartCosmos.Objects.GeospatialManagement
                 string nameLikeParam = (requestData.nameLike != null) ? "&nameLike=" + requestData.nameLike : "";
 
                 var request = CreateWebRequest("/geospatial?view=" + requestData.viewType.GetDescription() + nameLikeParam, WebRequestOption.Authorization);
-                object responseDataObj = null;
-                var HTTPStatusCodeResult = ExecuteWebRequestJSON(request, typeof(QueryGeospatialEntriesResponse), out responseDataObj);
-                if (null != responseDataObj)
+                var HTTPStatusCodeResult = ExecuteWebRequestJSON<QueryGeospatialEntriesResponse>(request, out responseData);
+                if (responseData != null)
                 {
-                    responseData = responseDataObj as QueryGeospatialEntriesResponse;
-                    if (responseData != null)
+                    responseData.HTTPStatusCode = HTTPStatusCodeResult;
+                    switch (responseData.HTTPStatusCode)
                     {
-                        responseData.HTTPStatusCode = HTTPStatusCodeResult;
-                        switch (responseData.HTTPStatusCode)
-                        {
-                            case HttpStatusCode.OK: return GeoActionResult.Successful;
-                            default: return GeoActionResult.Failed;
-                        }
+                        case HttpStatusCode.OK: return GeoActionResult.Successful;
+                        default: return GeoActionResult.Failed;
                     }
                 }
 
@@ -194,18 +179,13 @@ namespace Smartrac.SmartCosmos.Objects.GeospatialManagement
                 }
 
                 var request = CreateWebRequest("/geospatial/" + geospatialUrn.UUID + "?view=" + viewType.GetDescription(), WebRequestOption.Authorization);
-                object responseDataObj = null;
-                ExecuteWebRequestJSON(request, typeof(GeospatialEntryDataResponse), out responseDataObj);
-                if (null != responseDataObj)
+                ExecuteWebRequestJSON<GeospatialEntryDataResponse>(request, out responseData);
+                if (responseData != null)
                 {
-                    responseData = responseDataObj as GeospatialEntryDataResponse;
-                    if (responseData != null)
+                    switch (responseData.HTTPStatusCode)
                     {
-                        switch (responseData.HTTPStatusCode)
-                        {
-                            case HttpStatusCode.OK: return GeoActionResult.Successful;
-                            default: return GeoActionResult.Failed;
-                        }
+                        case HttpStatusCode.OK: return GeoActionResult.Successful;
+                        default: return GeoActionResult.Failed;
                     }
                 }
 

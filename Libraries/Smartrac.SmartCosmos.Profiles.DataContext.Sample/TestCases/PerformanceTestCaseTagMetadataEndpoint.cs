@@ -27,8 +27,8 @@ using Smartrac.SmartCosmos.TestCase.Base;
 
 namespace Smartrac.SmartCosmos.Profiles.DataContext.Sample
 {
-    [TestCaseAttribute(TestCaseType.Performance)]
-    public class PerformanceTestCaseTagMetadataEndpoint : BaseTestCase
+    [TestCaseAttribute(TestCaseType.Performance, 101)]
+    public class PerformanceTestCaseTagMetadataEndpoint : BaseProfilesTestCase
     {
         protected override bool DoRun()
         {

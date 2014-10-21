@@ -49,21 +49,16 @@ namespace Smartrac.SmartCosmos.Objects.ObjectInteraction
                 }
 
                 var request = CreateWebRequest("/interactions", WebRequestOption.Authorization);
-                object responseDataObj = null;
-                ExecuteWebRequestJSON(request, typeof(CaptureObjectInteractionRequest), requestData, typeof(CaptureObjectInteractionResponse), out responseDataObj, WebRequestMethods.Http.Put);
-                if (null != responseDataObj)
+                ExecuteWebRequestJSON<CaptureObjectInteractionRequest, CaptureObjectInteractionResponse>(request, requestData, out responseData, WebRequestMethods.Http.Put);
+                if (responseData != null)
                 {
-                    responseData = responseDataObj as CaptureObjectInteractionResponse;
-                    if (responseData != null)
+                    switch (responseData.HTTPStatusCode)
                     {
-                        switch (responseData.HTTPStatusCode)
-                        {
-                            case HttpStatusCode.OK:
-                                responseData.interactionUrn = new Urn(responseData.message);
-                                return ObjInteractActionResult.Successful;
+                        case HttpStatusCode.OK:
+                            responseData.interactionUrn = new Urn(responseData.message);
+                            return ObjInteractActionResult.Successful;
 
-                            default: return ObjInteractActionResult.Failed;
-                        }
+                        default: return ObjInteractActionResult.Failed;
                     }
                 }
 
@@ -100,18 +95,14 @@ namespace Smartrac.SmartCosmos.Objects.ObjectInteraction
                 var urnParam = (null != objectUrn) ? "&objectUrn=" + objectUrn.UUID : "";
 
                 var request = CreateWebRequest("/interactions?view=" + viewType.GetDescription() + urnParam, WebRequestOption.Authorization);
-                object responseDataObj;
-                var returnHTTPCode = ExecuteWebRequestJSON(request, typeof(QueryObjectInteractionsResponse), out responseDataObj);
-                if (null != responseDataObj)
+                var returnHTTPCode = ExecuteWebRequestJSON<QueryObjectInteractionsResponse>(request, out responseData);
+                if (responseData != null)
                 {
-                    responseData = responseDataObj as QueryObjectInteractionsResponse;
-                    if (responseData != null)
-                    {
-                        responseData.HTTPStatusCode = returnHTTPCode;
-                        if (responseData.HTTPStatusCode == HttpStatusCode.OK)
-                            return ObjInteractActionResult.Successful;
-                    }
+                    responseData.HTTPStatusCode = returnHTTPCode;
+                    if (responseData.HTTPStatusCode == HttpStatusCode.OK)
+                        return ObjInteractActionResult.Successful;
                 }
+
                 return ObjInteractActionResult.Failed;
             }
             catch (Exception e)
@@ -142,18 +133,15 @@ namespace Smartrac.SmartCosmos.Objects.ObjectInteraction
                 }
 
                 var request = CreateWebRequest("/interactions/" + interactionUrn.UUID + "?view=" + viewType.GetDescription(), WebRequestOption.Authorization);
-                object responseDataObj;
-                var returnHTTPCode = ExecuteWebRequestJSON(request, typeof(QueryObjectInteractionsResponse), out responseDataObj);
-                if (null != responseDataObj)
+                var returnHTTPCode = ExecuteWebRequestJSON<QueryObjectInteractionsResponse>(request, out responseData);
+
+                if (responseData != null)
                 {
-                    responseData = responseDataObj as QueryObjectInteractionsResponse;
-                    if (responseData != null)
-                    {
-                        responseData.HTTPStatusCode = returnHTTPCode;
-                        if (responseData.HTTPStatusCode == HttpStatusCode.OK)
-                            return ObjInteractActionResult.Successful;
-                    }
+                    responseData.HTTPStatusCode = returnHTTPCode;
+                    if (responseData.HTTPStatusCode == HttpStatusCode.OK)
+                        return ObjInteractActionResult.Successful;
                 }
+
                 return ObjInteractActionResult.Failed;
             }
             catch (Exception e)

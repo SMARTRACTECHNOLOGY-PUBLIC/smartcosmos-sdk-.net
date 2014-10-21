@@ -20,14 +20,14 @@
 using System;
 using System.Net;
 using Smartrac.Logging;
-using Smartrac.SmartCosmos.Profiles.Base;
+using Smartrac.SmartCosmos.ClientEndpoint.Base;
 
 namespace Smartrac.SmartCosmos.Profiles.PlatformAvailability
 {
     /// <summary>
     /// Client for platfom availability endpoint
     /// </summary>
-    internal class PlatformAvailabilityEndpoint : BaseProfileEndpoint, IPlatformAvailabilityEndpoint
+    internal class PlatformAvailabilityEndpoint : BaseEndpoint, IPlatformAvailabilityEndpoint
     {
         /// <summary>
         /// Resource for checking the Platform availability

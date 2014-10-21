@@ -24,8 +24,8 @@ using Smartrac.SmartCosmos.TestCase.Base;
 
 namespace Smartrac.SmartCosmos.Profiles.DataContext.Sample
 {
-    [TestCaseAttribute]
-    public class TestCaseDataImportEndpoint : BaseTestCase
+    [TestCaseAttribute(30)]
+    public class TestCaseDataImportEndpoint : BaseProfilesTestCase
     {
         protected override bool DoRun()
         {

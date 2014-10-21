@@ -21,14 +21,13 @@ using System;
 using System.Net;
 using Smartrac.Logging;
 using Smartrac.SmartCosmos.ClientEndpoint.Base;
-using Smartrac.SmartCosmos.Profiles.Base;
 
 namespace Smartrac.SmartCosmos.Profiles.TagMetadata
 {
     /// <summary>
     /// Client for tag metadata endpoint
     /// </summary>
-    internal class TagMetadataEndpoint : BaseProfileEndpoint, ITagMetadataEndpoint
+    internal class TagMetadataEndpoint : BaseEndpoint, ITagMetadataEndpoint
     {
         /// <summary>
         /// Get tag related data
@@ -42,13 +41,7 @@ namespace Smartrac.SmartCosmos.Profiles.TagMetadata
             try
             {
                 var request = CreateWebRequest("/tag/properties", WebRequestOption.Authorization);
-                object responseDataObj = null;
-                var returnHTTPCode = ExecuteWebRequestJSON(request, typeof(TagMetaDataRequest), requestData, typeof(TagMetaDataResponse), out responseDataObj);
-
-                if (null != responseDataObj)
-                {
-                    responseData = responseDataObj as TagMetaDataResponse;
-                }
+                var returnHTTPCode = ExecuteWebRequestJSON<TagMetaDataRequest, TagMetaDataResponse>(request, requestData, out responseData);
 
                 if (returnHTTPCode == HttpStatusCode.OK)
                     return TagMetaDataActionResult.Successful;
@@ -75,13 +68,7 @@ namespace Smartrac.SmartCosmos.Profiles.TagMetadata
             try
             {
                 var request = CreateWebRequest("/tag/message", WebRequestOption.Authorization | WebRequestOption.AcceptLanguage);
-                object responseDataObj = null;
-                var returnHTTPCode = ExecuteWebRequestJSON(request, typeof(TagMessageRequest), requestData, typeof(TagMessageResponse), out responseDataObj);
-
-                if (null != responseDataObj)
-                {
-                    responseData = responseDataObj as TagMessageResponse;
-                }
+                var returnHTTPCode = ExecuteWebRequestJSON<TagMessageRequest, TagMessageResponse>(request, requestData, out responseData);
 
                 if (returnHTTPCode == HttpStatusCode.OK)
                     return TagMetaDataActionResult.Successful;

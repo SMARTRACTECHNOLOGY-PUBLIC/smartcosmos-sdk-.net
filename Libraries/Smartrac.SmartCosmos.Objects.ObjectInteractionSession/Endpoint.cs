@@ -51,21 +51,17 @@ namespace Smartrac.SmartCosmos.Objects.ObjectInteractionSession
                 }
 
                 var request = CreateWebRequest("/sessions", WebRequestOption.Authorization);
-                object responseDataObj = null;
-                ExecuteWebRequestJSON(request, typeof(StartObjectInteractionSessionRequest), requestData, typeof(StartObjectInteractionSessionResponse), out responseDataObj, WebRequestMethods.Http.Put);
-                if (null != responseDataObj)
-                {
-                    responseData = responseDataObj as StartObjectInteractionSessionResponse;
-                    if (responseData != null)
-                    {
-                        switch (responseData.HTTPStatusCode)
-                        {
-                            case HttpStatusCode.OK:
-                                responseData.sessionUrn = new Urn(responseData.message);
-                                return ObjInteractSessionActionResult.Successful;
+                ExecuteWebRequestJSON<StartObjectInteractionSessionRequest, StartObjectInteractionSessionResponse>(request, requestData, out responseData, WebRequestMethods.Http.Put);
 
-                            default: return ObjInteractSessionActionResult.Failed;
-                        }
+                if (responseData != null)
+                {
+                    switch (responseData.HTTPStatusCode)
+                    {
+                        case HttpStatusCode.OK:
+                            responseData.sessionUrn = new Urn(responseData.message);
+                            return ObjInteractSessionActionResult.Successful;
+
+                        default: return ObjInteractSessionActionResult.Failed;
                     }
                 }
 
@@ -99,23 +95,19 @@ namespace Smartrac.SmartCosmos.Objects.ObjectInteractionSession
                 }
 
                 var request = CreateWebRequest("/sessions", WebRequestOption.Authorization);
-                object responseDataObj = null;
                 HttpWebResponse webResponse;
-                HttpStatusCode HttpCode = ExecuteWebRequestJSON(request,
-                                               typeof(StopObjectInteractionSessionRequest), requestData,
-                                               typeof(StopObjectInteractionSessionResponse), out responseDataObj,
+                HttpStatusCode HttpCode = ExecuteWebRequestJSON<StopObjectInteractionSessionRequest, StopObjectInteractionSessionResponse>(request,
+                                               requestData,
+                                               out responseData,
                                                out webResponse);
-                if (null != responseDataObj)
+
+                if ((responseData != null) &&
+                    (webResponse != null) &&
+                   (responseData.HTTPStatusCode == HttpStatusCode.NoContent) &&
+                   (webResponse.Headers.Get("SmartCosmos-Event") == "InteractionSessionStop"))
                 {
-                    responseData = responseDataObj as StopObjectInteractionSessionResponse;
-                    if ((responseData != null) &&
-                        (webResponse != null) &&
-                       (responseData.HTTPStatusCode == HttpStatusCode.NoContent) &&
-                       (webResponse.Headers.Get("SmartCosmos-Event") == "InteractionSessionStop"))
-                    {
-                        responseData.startTime = Rfc3339DateTime.Parse(webResponse.Headers.Get("SmartCosmos-Session-Start"));
-                        return ObjInteractSessionActionResult.Successful;
-                    }
+                    responseData.startTime = Rfc3339DateTime.Parse(webResponse.Headers.Get("SmartCosmos-Session-Start"));
+                    return ObjInteractSessionActionResult.Successful;
                 }
 
                 return ObjInteractSessionActionResult.Failed;
@@ -162,18 +154,15 @@ namespace Smartrac.SmartCosmos.Objects.ObjectInteractionSession
                 }
 
                 var request = CreateWebRequest("/sessions/" + sessionUrn.UUID + "?view=" + viewType.GetDescription(), WebRequestOption.Authorization);
-                object responseDataObj;
-                var returnHTTPCode = ExecuteWebRequestJSON(request, typeof(ObjectInteractionSessionDataResponse), out responseDataObj);
-                if (null != responseDataObj)
+                var returnHTTPCode = ExecuteWebRequestJSON<ObjectInteractionSessionDataResponse>(request, out responseData);
+
+                if (responseData != null)
                 {
-                    responseData = responseDataObj as ObjectInteractionSessionDataResponse;
-                    if (responseData != null)
-                    {
-                        responseData.HTTPStatusCode = returnHTTPCode;
-                        if (responseData.HTTPStatusCode == HttpStatusCode.OK)
-                            return ObjInteractSessionActionResult.Successful;
-                    }
+                    responseData.HTTPStatusCode = returnHTTPCode;
+                    if (responseData.HTTPStatusCode == HttpStatusCode.OK)
+                        return ObjInteractSessionActionResult.Successful;
                 }
+
                 return ObjInteractSessionActionResult.Failed;
             }
             catch (Exception e)
@@ -206,18 +195,15 @@ namespace Smartrac.SmartCosmos.Objects.ObjectInteractionSession
                 }
 
                 var request = CreateWebRequest("/sessions?nameLike=" + nameLike + "&view=" + viewType.GetDescription(), WebRequestOption.Authorization);
-                object responseDataObj;
-                var returnHTTPCode = ExecuteWebRequestJSON(request, typeof(ObjectInteractionSessionDataResponse), out responseDataObj);
-                if (null != responseDataObj)
+                var returnHTTPCode = ExecuteWebRequestJSON<ObjectInteractionSessionDataResponse>(request, out responseData);
+
+                if (responseData != null)
                 {
-                    responseData = responseDataObj as ObjectInteractionSessionDataResponse;
-                    if (responseData != null)
-                    {
-                        responseData.HTTPStatusCode = returnHTTPCode;
-                        if (responseData.HTTPStatusCode == HttpStatusCode.OK)
-                            return ObjInteractSessionActionResult.Successful;
-                    }
+                    responseData.HTTPStatusCode = returnHTTPCode;
+                    if (responseData.HTTPStatusCode == HttpStatusCode.OK)
+                        return ObjInteractSessionActionResult.Successful;
                 }
+
                 return ObjInteractSessionActionResult.Failed;
             }
             catch (Exception e)

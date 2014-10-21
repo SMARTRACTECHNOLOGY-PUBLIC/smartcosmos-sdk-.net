@@ -17,6 +17,8 @@
 
 #endregion License
 
+using System;
+using System.ComponentModel;
 using System.Collections.Generic;
 using System.Runtime.Serialization;
 using Newtonsoft.Json;
@@ -25,7 +27,7 @@ using Smartrac.SmartCosmos.Objects.Base;
 namespace Smartrac.SmartCosmos.Profiles.TagMetadata
 {
     [DataContract]
-    public class TagMetaDataResponse
+    public class TagMetaDataResponse : BaseResponse
     {
         [DataMember]
         public int code { get; set; }
@@ -44,16 +46,27 @@ namespace Smartrac.SmartCosmos.Profiles.TagMetadata
         public int TestLicense { get; set; }
     }
 
+
+
     [DataContract]
-    [JsonConverter(typeof(DictionaryConverter))]
     public class TagProperties : Dictionary<string, object>
     {
+        public void SetValue(TagPropertyString key, string value)
+        {
+            this.SetValue(key.GetDescription(), value);
+        }
+
         public void SetValue(string key, string value)
         {
             if (this.ContainsKey(key))
                 this[key] = value;
             else
                 this.Add(key, value);
+        }
+
+        public void SetValue(TagPropertyLong key, long value)
+        {
+            this.SetValue(key.GetDescription(), value);
         }
 
         public void SetValue(string key, long value)
@@ -64,12 +77,22 @@ namespace Smartrac.SmartCosmos.Profiles.TagMetadata
                 this.Add(key, value);
         }
 
-        public void SetValue(string key, float value)
+        public void SetValue(TagPropertyNumber key, double value)
+        {
+            this.SetValue(key.GetDescription(), value);
+        }
+        
+        public void SetValue(string key, double value)
         {
             if (this.ContainsKey(key))
                 this[key] = value;
             else
                 this.Add(key, value);
+        }
+
+        public bool GetValue(TagPropertyString key, out string value)
+        {
+            return GetValue(key.GetDescription(), out value);
         }
 
         public bool GetValue(string key, out string value)
@@ -86,6 +109,11 @@ namespace Smartrac.SmartCosmos.Profiles.TagMetadata
             }
         }
 
+        public bool GetValue(TagPropertyLong key, out long value)
+        {
+            return GetValue(key.GetDescription(), out value);
+        }
+
         public bool GetValue(string key, out long value)
         {
             if (this.ContainsKey(key))
@@ -100,7 +128,12 @@ namespace Smartrac.SmartCosmos.Profiles.TagMetadata
             }
         }
 
-        public bool GetValue(string key, out float value)
+        public bool GetValue(TagPropertyNumber key, out double value)
+        {
+            return GetValue(key.GetDescription(), out value);
+        }
+
+        public bool GetValue(string key, out double value)
         {
             if (this.ContainsKey(key))
             {
@@ -194,11 +227,14 @@ namespace Smartrac.SmartCosmos.Profiles.TagMetadata
 
         [DataMember]
         public TagProperties props { get; set; }
+        //public Dictionary<string, object> props { get; set; }
 
+        /*
         public TagRecord()
             : base()
         {
             this.props = new TagProperties();
         }
+        */
     }
 }

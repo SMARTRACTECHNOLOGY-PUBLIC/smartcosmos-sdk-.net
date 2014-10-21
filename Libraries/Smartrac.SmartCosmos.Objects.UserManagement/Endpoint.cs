@@ -49,25 +49,20 @@ namespace Smartrac.SmartCosmos.Objects.UserManagement
                 }
 
                 var request = CreateWebRequest("/users", WebRequestOption.Authorization);
-                object responseDataObj = null;
-                ExecuteWebRequestJSON(request, typeof(UserManagementRequest), requestData, typeof(UserManagementResponse), out responseDataObj, WebRequestMethods.Http.Put);
-                if (null != responseDataObj)
+                ExecuteWebRequestJSON<UserManagementRequest, UserManagementResponse>(request, requestData, out responseData, WebRequestMethods.Http.Put);
+                if (responseData != null)
                 {
-                    responseData = responseDataObj as UserManagementResponse;
-                    if (responseData != null)
+                    switch (responseData.HTTPStatusCode)
                     {
-                        switch (responseData.HTTPStatusCode)
-                        {
-                            case HttpStatusCode.Created:
-                                responseData.userUrn = new Urn(responseData.message);
-                                return UserActionResult.Successful;
+                        case HttpStatusCode.Created:
+                            responseData.userUrn = new Urn(responseData.message);
+                            return UserActionResult.Successful;
 
-                            case HttpStatusCode.Conflict:
-                                responseData.userUrn = new Urn(responseData.message);
-                                return UserActionResult.Conflict;
+                        case HttpStatusCode.Conflict:
+                            responseData.userUrn = new Urn(responseData.message);
+                            return UserActionResult.Conflict;
 
-                            default: return UserActionResult.Failed;
-                        }
+                        default: return UserActionResult.Failed;
                     }
                 }
 
@@ -100,19 +95,14 @@ namespace Smartrac.SmartCosmos.Objects.UserManagement
                 }
 
                 var request = CreateWebRequest("/users", WebRequestOption.Authorization);
-                object responseDataObj = null;
-                ExecuteWebRequestJSON(request, typeof(UserManagementRequest), requestData, typeof(UserManagementResponse), out responseDataObj, WebRequestMethods.Http.Post);
-                if (null != responseDataObj)
+                ExecuteWebRequestJSON<UserManagementRequest, UserManagementResponse>(request, requestData, out responseData);
+                if (responseData != null)
                 {
-                    responseData = responseDataObj as UserManagementResponse;
-                    if (responseData != null)
+                    switch (responseData.HTTPStatusCode)
                     {
-                        switch (responseData.HTTPStatusCode)
-                        {
-                            case HttpStatusCode.NoContent: return UserActionResult.Successful;
-                            case HttpStatusCode.BadRequest: return UserActionResult.Failed;
-                            default: return UserActionResult.Failed;
-                        }
+                        case HttpStatusCode.NoContent: return UserActionResult.Successful;
+                        case HttpStatusCode.BadRequest: return UserActionResult.Failed;
+                        default: return UserActionResult.Failed;
                     }
                 }
 
@@ -147,14 +137,9 @@ namespace Smartrac.SmartCosmos.Objects.UserManagement
 
                 string viewTypeParam = ((null != viewType) && viewType.HasValue) ? "?view=" + viewType.Value.GetDescription() : "";
                 var request = CreateWebRequest("/users/" + userUrn.UUID + viewTypeParam, WebRequestOption.Authorization);
-                object responseDataObj;
-                var returnHTTPCode = ExecuteWebRequestJSON(request, typeof(UserDataResponse), out responseDataObj);
-                if (null != responseDataObj)
-                {
-                    responseData = responseDataObj as UserDataResponse;
-                    if ((responseData != null) && (responseData.HTTPStatusCode == HttpStatusCode.OK))
-                        return UserActionResult.Successful;
-                }
+                var returnHTTPCode = ExecuteWebRequestJSON<UserDataResponse>(request, out responseData);
+                if ((responseData != null) && (responseData.HTTPStatusCode == HttpStatusCode.OK))
+                    return UserActionResult.Successful;
                 return UserActionResult.Failed;
             }
             catch (Exception e)
@@ -186,14 +171,10 @@ namespace Smartrac.SmartCosmos.Objects.UserManagement
 
                 string viewTypeParam = ((null != viewType) && viewType.HasValue) ? "?view=" + viewType.Value.GetDescription() : "";
                 var request = CreateWebRequest("/users/user/" + eMailAddress + viewTypeParam, WebRequestOption.Authorization);
-                object responseDataObj;
-                var returnHTTPCode = ExecuteWebRequestJSON(request, typeof(UserDataResponse), out responseDataObj);
-                if (null != responseDataObj)
-                {
-                    responseData = responseDataObj as UserDataResponse;
-                    if ((responseData != null) && (responseData.HTTPStatusCode == HttpStatusCode.OK))
-                        return UserActionResult.Successful;
-                }
+                var returnHTTPCode = ExecuteWebRequestJSON<UserDataResponse>(request, out responseData);
+                if ((responseData != null) && (responseData.HTTPStatusCode == HttpStatusCode.OK))
+                    return UserActionResult.Successful;
+
                 return UserActionResult.Failed;
             }
             catch (Exception e)
@@ -224,20 +205,15 @@ namespace Smartrac.SmartCosmos.Objects.UserManagement
                 }
 
                 var request = CreateWebRequest("/users/user", WebRequestOption.Authorization);
-                object responseDataObj = null;
-                var returnHTTPStatusCode = ExecuteWebRequestJSON(request, typeof(ChangeOrResetUserPasswordRequest), requestData, typeof(ChangeOrResetUserPasswordResponse), out responseDataObj, WebRequestMethods.Http.Post);
-                if (null != responseDataObj)
-                {
-                    responseData = responseDataObj as ChangeOrResetUserPasswordResponse;
-                    switch (returnHTTPStatusCode)
-                    {
-                        case HttpStatusCode.NoContent: return UserActionResult.Successful;
-                        case HttpStatusCode.BadRequest: return UserActionResult.Failed;
-                        default: return UserActionResult.Failed;
-                    }
-                }
+                var returnHTTPStatusCode = ExecuteWebRequestJSON<ChangeOrResetUserPasswordRequest, ChangeOrResetUserPasswordResponse>(
+                    request, requestData, out responseData);
 
-                return UserActionResult.Failed;
+                switch (returnHTTPStatusCode)
+                {
+                    case HttpStatusCode.NoContent: return UserActionResult.Successful;
+                    case HttpStatusCode.BadRequest: return UserActionResult.Failed;
+                    default: return UserActionResult.Failed;
+                }
             }
             catch (Exception e)
             {

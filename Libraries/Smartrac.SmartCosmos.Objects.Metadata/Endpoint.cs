@@ -18,12 +18,13 @@
 #endregion License
 
 using System;
+using System.Collections.Generic;
 using System.Net;
-using System.Runtime.Serialization.Json;
 using System.Text;
 using Smartrac.Base;
 using Smartrac.Logging;
 using Smartrac.SmartCosmos.ClientEndpoint.Base;
+using Smartrac.SmartCosmos.ClientEndpoint.BaseObject;
 using Smartrac.SmartCosmos.Objects.Base;
 
 namespace Smartrac.SmartCosmos.Objects.Metadata
@@ -237,8 +238,10 @@ namespace Smartrac.SmartCosmos.Objects.Metadata
                         return MetadataActionResult.Failed;
                     }
 
-                    DataContractJsonSerializer serializer = new DataContractJsonSerializer(typeof(TypeSafeEncodingResponse));
-                    responseData = serializer.ReadObject(response.GetResponseStream()) as TypeSafeEncodingResponse;
+                    responseData = responseData.FromJSON(response.GetResponseStream());
+
+                    //DataContractJsonSerializer serializer = new DataContractJsonSerializer(typeof(TypeSafeEncodingResponse));
+                    //responseData = serializer.ReadObject(response.GetResponseStream()) as TypeSafeEncodingResponse;
                     if (responseData == null)
                     {
                         return MetadataActionResult.Failed;
@@ -460,18 +463,13 @@ namespace Smartrac.SmartCosmos.Objects.Metadata
             }
 
             var request = CreateWebRequest("/metadata/mapper/encode/" + requestData.dataTypeObj.GetDescription(), WebRequestOption.Authorization);
-            object responseDataObj = null;
-            ExecuteWebRequestJSON(request, typeof(TypeSafeDecodingRequest), requestData, typeof(TypeSafeDecodingResponse), out responseDataObj);
-            if (null != responseDataObj)
+            ExecuteWebRequestJSON<TypeSafeDecodingRequest, TypeSafeDecodingResponse>(request, requestData, out responseData);
+            if (responseData != null)
             {
-                responseData = responseDataObj as TypeSafeDecodingResponse;
-                if (responseData != null)
+                switch (responseData.HTTPStatusCode)
                 {
-                    switch (responseData.HTTPStatusCode)
-                    {
-                        case HttpStatusCode.OK: return MetadataActionResult.Successful;
-                        default: return MetadataActionResult.Failed;
-                    }
+                    case HttpStatusCode.OK: return MetadataActionResult.Successful;
+                    default: return MetadataActionResult.Failed;
                 }
             }
             return MetadataActionResult.Failed;
@@ -496,20 +494,16 @@ namespace Smartrac.SmartCosmos.Objects.Metadata
             }
 
             var request = CreateWebRequest("/metadata/" + requestData.entityReferenceType.GetDescription() + "/" + requestData.entityUrn.UUID, WebRequestOption.Authorization);
-            object responseDataObj = null;
-            ExecuteWebRequestJSON(request, typeof(CreateMetadataRequest), requestData.MetaDataList, typeof(CreateMetadataResponse), out responseDataObj);
-            if (null != responseDataObj)
+            ExecuteWebRequestJSON<List<MetadataItem>, CreateMetadataResponse>(request, requestData.MetaDataList, out responseData);
+            if (responseData != null)
             {
-                responseData = responseDataObj as CreateMetadataResponse;
-                if (responseData != null)
+                switch (responseData.HTTPStatusCode)
                 {
-                    switch (responseData.HTTPStatusCode)
-                    {
-                        case HttpStatusCode.OK: return MetadataActionResult.Successful;
-                        default: return MetadataActionResult.Failed;
-                    }
+                    case HttpStatusCode.OK: return MetadataActionResult.Successful;
+                    default: return MetadataActionResult.Failed;
                 }
             }
+
             return MetadataActionResult.Failed;
         }
 
@@ -541,8 +535,9 @@ namespace Smartrac.SmartCosmos.Objects.Metadata
                 }
                 else
                 {
-                    DataContractJsonSerializer serializer = new DataContractJsonSerializer(typeof(DeleteMetadataResponse));
-                    responseData = (DeleteMetadataResponse)serializer.ReadObject(response.GetResponseStream());
+                    responseData = responseData.FromJSON(response.GetResponseStream());
+                    //DataContractJsonSerializer serializer = new DataContractJsonSerializer(typeof(DeleteMetadataResponse));
+                    //responseData = (DeleteMetadataResponse)serializer.ReadObject(response.GetResponseStream());
 
                     if (responseData is BaseResponse)
                     {
@@ -576,20 +571,16 @@ namespace Smartrac.SmartCosmos.Objects.Metadata
                                         "?view=" + requestData.viewType.GetDescription() +
                                         requestData.key ?? "&key" + requestData.key
                                         , WebRequestOption.Authorization);
-            object responseDataObj = null;
-            ExecuteWebRequestJSON(request, typeof(LookupMetadataResponse), out responseDataObj);
-            if (null != responseDataObj)
+            ExecuteWebRequestJSON<LookupMetadataResponse>(request, out responseData);
+            if (responseData != null)
             {
-                responseData = responseDataObj as LookupMetadataResponse;
-                if (responseData != null)
+                switch (responseData.HTTPStatusCode)
                 {
-                    switch (responseData.HTTPStatusCode)
-                    {
-                        case HttpStatusCode.OK: return MetadataActionResult.Successful;
-                        default: return MetadataActionResult.Failed;
-                    }
+                    case HttpStatusCode.OK: return MetadataActionResult.Successful;
+                    default: return MetadataActionResult.Failed;
                 }
             }
+
             return MetadataActionResult.Failed;
         }
     }

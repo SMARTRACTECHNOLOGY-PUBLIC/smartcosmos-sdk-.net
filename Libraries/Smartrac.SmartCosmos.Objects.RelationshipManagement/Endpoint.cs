@@ -49,22 +49,17 @@ namespace Smartrac.SmartCosmos.Objects.RelationshipManagement
                 }
 
                 var request = CreateWebRequest("/relationships/" + requestData.entityReferenceType + "/" + requestData.referenceUrn, WebRequestOption.Authorization);
-                object responseDataObj = null;
-                ExecuteWebRequestJSON(request, typeof(RelationshipManagementRequest), requestData, typeof(RelationshipManagementResponse), out responseDataObj, WebRequestMethods.Http.Put);
-                if (null != responseDataObj)
+                ExecuteWebRequestJSON<RelationshipManagementRequest, RelationshipManagementResponse>(request, requestData, out responseData, WebRequestMethods.Http.Put);
+                if (responseData != null)
                 {
-                    responseData = responseDataObj as RelationshipManagementResponse;
-                    if (responseData != null)
+                    switch (responseData.HTTPStatusCode)
                     {
-                        switch (responseData.HTTPStatusCode)
-                        {
-                            case HttpStatusCode.Created:
-                            case HttpStatusCode.OK:
-                                responseData.relationshipUrn = new Urn(responseData.message);
-                                return RelationshipActionResult.Successful;
+                        case HttpStatusCode.Created:
+                        case HttpStatusCode.OK:
+                            responseData.relationshipUrn = new Urn(responseData.message);
+                            return RelationshipActionResult.Successful;
 
-                            default: return RelationshipActionResult.Failed;
-                        }
+                        default: return RelationshipActionResult.Failed;
                     }
                 }
 
@@ -98,14 +93,10 @@ namespace Smartrac.SmartCosmos.Objects.RelationshipManagement
                 }
 
                 var request = CreateWebRequest("/relationships/" + relationshipUrn.UUID + "?view=" + viewType.GetDescription(), WebRequestOption.Authorization);
-                object responseDataObj;
-                ExecuteWebRequestJSON(request, typeof(RelationshipDataResponse), out responseDataObj);
-                if (null != responseDataObj)
-                {
-                    responseData = responseDataObj as RelationshipDataResponse;
-                    if ((responseData != null) && (responseData.HTTPStatusCode == HttpStatusCode.OK))
-                        return RelationshipActionResult.Successful;
-                }
+                ExecuteWebRequestJSON<RelationshipDataResponse>(request, out responseData);
+                if ((responseData != null) && (responseData.HTTPStatusCode == HttpStatusCode.OK))
+                    return RelationshipActionResult.Successful;
+
                 return RelationshipActionResult.Failed;
             }
             catch (Exception e)
@@ -139,18 +130,14 @@ namespace Smartrac.SmartCosmos.Objects.RelationshipManagement
                                                                    requestData.relatedEntityReferenceType + "/" +
                                                                    requestData.relatedReferenceUrn +
                                                                    "?view=" + viewType.GetDescription(), WebRequestOption.Authorization);
-                object responseDataObj;
-                var HTTPStatusCodeResult = ExecuteWebRequestJSON(request, typeof(QueryObjectRelationshipsResponse), out responseDataObj);
-                if (null != responseDataObj)
+                var HTTPStatusCodeResult = ExecuteWebRequestJSON<QueryObjectRelationshipsResponse>(request, out responseData);
+                if (responseData != null)
                 {
-                    responseData = responseDataObj as QueryObjectRelationshipsResponse;
-                    if (responseData != null)
-                    {
-                        responseData.HTTPStatusCode = HTTPStatusCodeResult;
-                        if (responseData.HTTPStatusCode == HttpStatusCode.OK)
-                            return RelationshipActionResult.Successful;
-                    }
+                    responseData.HTTPStatusCode = HTTPStatusCodeResult;
+                    if (responseData.HTTPStatusCode == HttpStatusCode.OK)
+                        return RelationshipActionResult.Successful;
                 }
+
                 return RelationshipActionResult.Failed;
             }
             catch (Exception e)
@@ -186,14 +173,10 @@ namespace Smartrac.SmartCosmos.Objects.RelationshipManagement
                                                                    requestData.relatedReferenceUrn + "/" +
                                                                    requestData.type + "/" +
                                                                    "?view=" + viewType.GetDescription(), WebRequestOption.Authorization);
-                object responseDataObj;
-                ExecuteWebRequestJSON(request, typeof(RelationshipDataResponse), out responseDataObj);
-                if (null != responseDataObj)
-                {
-                    responseData = responseDataObj as RelationshipDataResponse;
-                    if ((responseData != null) && (responseData.HTTPStatusCode == HttpStatusCode.OK))
-                        return RelationshipActionResult.Successful;
-                }
+                ExecuteWebRequestJSON<RelationshipDataResponse>(request, out responseData);
+                if ((responseData != null) && (responseData.HTTPStatusCode == HttpStatusCode.OK))
+                    return RelationshipActionResult.Successful;
+
                 return RelationshipActionResult.Failed;
             }
             catch (Exception e)
@@ -228,18 +211,14 @@ namespace Smartrac.SmartCosmos.Objects.RelationshipManagement
                                                                    "?view=" + viewType.GetDescription() +
                                                                    "&reverse=" + requestData.reverse
                                                                    , WebRequestOption.Authorization);
-                object responseDataObj;
-                var HTTPStatusCodeResult = ExecuteWebRequestJSON(request, typeof(QueryObjectRelationshipsResponse), out responseDataObj);
-                if (null != responseDataObj)
+                var HTTPStatusCodeResult = ExecuteWebRequestJSON<QueryObjectRelationshipsResponse>(request, out responseData);
+                if (responseData != null)
                 {
-                    responseData = responseDataObj as QueryObjectRelationshipsResponse;
-                    if (responseData != null)
-                    {
-                        responseData.HTTPStatusCode = HTTPStatusCodeResult;
-                        if (responseData.HTTPStatusCode == HttpStatusCode.OK)
-                            return RelationshipActionResult.Successful;
-                    }
+                    responseData.HTTPStatusCode = HTTPStatusCodeResult;
+                    if (responseData.HTTPStatusCode == HttpStatusCode.OK)
+                        return RelationshipActionResult.Successful;
                 }
+
                 return RelationshipActionResult.Failed;
             }
             catch (Exception e)

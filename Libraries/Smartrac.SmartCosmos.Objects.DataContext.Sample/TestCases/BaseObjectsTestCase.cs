@@ -17,21 +17,15 @@
 
 #endregion License
 
-using Smartrac.Logging;
-using Smartrac.SmartCosmos.ClientEndpoint.Factory;
-using Smartrac.SmartCosmos.DataContextFactory;
 using Smartrac.SmartCosmos.TestCase.Base;
 
-namespace Smartrac.SmartCosmos.TestCase.Runner
+namespace Smartrac.SmartCosmos.Objects.DataContext.Sample
 {
-    public interface ITestCaseRunner
+    public class BaseObjectsTestCase : BaseTestCase
     {
-        IMessageLogger Logger { get; set; }
-
-        IEndpointFactory EndpointFactory { get; set; }
-
-        IDataContextFactory DataContextFactory { get; set; }
-
-        bool Run(TestCaseType testCaseTypes, string assemblySearchPattern = "*.dll");
+        protected override bool OnBeforeRun()
+        {
+            return base.OnBeforeRun() && !string.IsNullOrEmpty(EndpointFactory.ObjectsServerURL);
+        }
     }
 }

@@ -40,6 +40,8 @@ namespace Smartrac.SmartCosmos.ClientEndpoint.Factory
     {
         string ProfilesServerURL { get; set; }
 
+        string ObjectsServerURL { get; set; }
+
         bool KeepAlive { get; set; }
 
         bool AllowInvalidServerCertificates { get; set; }

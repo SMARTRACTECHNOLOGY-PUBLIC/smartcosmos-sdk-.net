@@ -20,15 +20,14 @@
 using System;
 using System.Diagnostics;
 using System.IO;
-using System.Xml.Linq;
 using Smartrac.Logging;
 using Smartrac.SmartCosmos.Profiles.TagMetadata;
 using Smartrac.SmartCosmos.TestCase.Base;
 
 namespace Smartrac.SmartCosmos.Profiles.DataContext.Sample
 {
-    [TestCaseAttribute]
-    public class TestCaseTagMetadataEndpoint : BaseTestCase
+    [TestCaseAttribute(-20)]
+    public class TestCaseTagMetadataEndpoint : BaseProfilesTestCase
     {
         protected override bool DoRun()
         {
@@ -55,51 +54,30 @@ namespace Smartrac.SmartCosmos.Profiles.DataContext.Sample
                 try
                 {
                     TagMetaDataRequest requestTagMetaData = new TagMetaDataRequest(dataContext);
-                    requestTagMetaData.tagIds.Clear();
                     TagMetaDataResponse responseTagMetaData;
                     Stopwatch watch = new Stopwatch();
-                    int tagCount = 0;
+                    int tagCount = requestTagMetaData.tagIds.Count;
                     TagMetaDataActionResult actionResult;
 
-                    // load data
-                    XDocument doc;
-                    doc = XDocument.Load(dataContext.GetTagDataFile());
-                    foreach (var tag in doc.Descendants("tag"))
+                    // validate
+                    watch.Start();
+                    actionResult = tester.GetTagMetadata(requestTagMetaData, out responseTagMetaData);
+                    result = result && (actionResult == TagMetaDataActionResult.Successful);
+                    watch.Stop();
+                    Logger.AddLog(requestTagMetaData.tagIds.Count + " tags checked. Result:" + actionResult + "  Required time:" + watch.Elapsed);
+                    requestTagMetaData.tagIds.Clear();
+                    watch.Reset();
+                    Logger.AddLog("Test count: " + tagCount);
+
+                    if (responseTagMetaData != null)
                     {
-                        var tagId = tag.Attribute("id");
-                        if (null == tagId)
-                            continue;
-
-                        requestTagMetaData.tagIds.Add(tagId.Value);
-
-                        // validate
-                        if (requestTagMetaData.tagIds.Count == 1000)
+                        string batchId;
+                        foreach (var tag in responseTagMetaData.result)
                         {
-                            tagCount += requestTagMetaData.tagIds.Count;
-                            watch.Start();
-                            actionResult = tester.GetTagMetadata(requestTagMetaData, out responseTagMetaData);
-                            result = result && (actionResult == TagMetaDataActionResult.Successful);
-                            watch.Stop();
-                            Logger.AddLog(requestTagMetaData.tagIds.Count + " tags checked. Result:" + actionResult + "  Required time:" + watch.Elapsed);
-                            requestTagMetaData.tagIds.Clear();
-                            watch.Reset();
+                            if (tag.props != null)
+                              tag.props.GetValue(TagPropertyString.batchId, out batchId);
                         }
                     }
-
-                    // validate rest
-                    if (requestTagMetaData.tagIds.Count > 0)
-                    {
-                        tagCount += requestTagMetaData.tagIds.Count;
-                        watch.Start();
-                        actionResult = tester.GetTagMetadata(requestTagMetaData, out responseTagMetaData);
-                        result = result && (actionResult == TagMetaDataActionResult.Successful);
-                        watch.Stop();
-                        Logger.AddLog(requestTagMetaData.tagIds.Count + " tags checked. Result:" + result + "  Required time:" + watch.Elapsed);
-                        requestTagMetaData.tagIds.Clear();
-                        watch.Reset();
-                    }
-
-                    Logger.AddLog("Test count: " + tagCount);
                 }
                 catch (Exception e)
                 {

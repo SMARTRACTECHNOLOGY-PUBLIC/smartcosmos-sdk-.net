@@ -30,11 +30,19 @@ namespace Smartrac.SmartCosmos.TestCase.Base
     [AttributeUsage(AttributeTargets.Class)]
     public class TestCaseAttribute : System.Attribute
     {
-        public readonly TestCaseType testCaseType;
+        public readonly TestCaseType TestCaseType;
+        public readonly int TestPriority;
 
-        public TestCaseAttribute(TestCaseType aTestCaseType = TestCaseType.Functional)
+        public TestCaseAttribute(TestCaseType testCaseType = TestCaseType.Functional, int testPriority = 0)
+            : base()
         {
-            this.testCaseType = aTestCaseType;
+            this.TestCaseType = testCaseType;
+            this.TestPriority = testPriority;
+        }
+
+        public TestCaseAttribute(int testPriority = 0)
+            : this(TestCaseType.Functional, testPriority)
+        {
         }
     }
 }

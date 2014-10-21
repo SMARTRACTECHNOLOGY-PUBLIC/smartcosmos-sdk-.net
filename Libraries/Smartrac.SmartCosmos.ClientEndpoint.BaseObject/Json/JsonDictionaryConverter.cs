@@ -62,7 +62,7 @@ namespace Smartrac.SmartCosmos.Objects.Base
 
         public override bool CanWrite
         {
-            get { return false; }
+            get { return true; }
         }
 
         private object ReadValue(JsonReader reader)

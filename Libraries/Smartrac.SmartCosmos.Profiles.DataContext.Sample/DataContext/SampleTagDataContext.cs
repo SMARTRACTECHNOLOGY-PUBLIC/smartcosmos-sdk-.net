@@ -73,7 +73,7 @@ namespace Smartrac.SmartCosmos.Profiles.DataContext.Sample
 
         public override string GetImportId()
         {
-            return "20140624_104505-720";
+            return "20140702_022852-85";
         }
 
         public override string GetTagDataFile()

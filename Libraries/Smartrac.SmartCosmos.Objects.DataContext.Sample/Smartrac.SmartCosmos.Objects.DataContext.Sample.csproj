@@ -102,6 +102,7 @@
     <Compile Include="DataContext\SampleObjectInteractionSessionDataContext.cs" />
     <Compile Include="DataContext\SampleMetadataDataContext.cs" />
     <Compile Include="DataContext\SampleHashTagDataContext.cs" />
+    <Compile Include="TestCases\BaseObjectsTestCase.cs" />
     <Compile Include="TestCases\TestCaseMetadataEndpoint.cs" />
     <Compile Include="TestCases\TestCaseObjectInteractionSessionEndpoint.cs" />
     <Compile Include="TestCases\TestCaseHashTagEndpoint.cs" />

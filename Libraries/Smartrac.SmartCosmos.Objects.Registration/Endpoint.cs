@@ -47,14 +47,10 @@ namespace Smartrac.SmartCosmos.Objects.Registration
                 }
 
                 var request = CreateWebRequest("/registration/realm/" + realm);
-                object responseDataObj;
-                var returnHTTPCode = ExecuteWebRequestJSON(request, typeof(RealmAvailabilityResponse), out responseDataObj);
-                if (null != responseDataObj)
-                {
-                    responseData = responseDataObj as RealmAvailabilityResponse;
-                    if ((responseData != null) && (responseData.HTTPStatusCode == HttpStatusCode.OK))
-                        return RegistrationActionResult.Successful;
-                }
+                var returnHTTPCode = ExecuteWebRequestJSON<RealmAvailabilityResponse>(request, out responseData);
+                if ((responseData != null) && (responseData.HTTPStatusCode == HttpStatusCode.OK))
+                    return RegistrationActionResult.Successful;
+
                 return RegistrationActionResult.Failed;
             }
             catch (Exception e)
@@ -84,14 +80,9 @@ namespace Smartrac.SmartCosmos.Objects.Registration
                 }
 
                 var request = CreateWebRequest("/registration/register");
-                object responseDataObj = null;
-                ExecuteWebRequestJSON(request, typeof(AccountRegistrationRequest), requestData, typeof(AccountRegistrationResponse), out responseDataObj, WebRequestMethods.Http.Post);
-                if (null != responseDataObj)
-                {
-                    responseData = responseDataObj as AccountRegistrationResponse;
-                    if ((responseData != null) && (responseData.HTTPStatusCode == HttpStatusCode.OK))
-                        return RegistrationActionResult.Successful;
-                }
+                ExecuteWebRequestJSON<AccountRegistrationRequest, AccountRegistrationResponse>(request, requestData, out responseData);
+                if ((responseData != null) && (responseData.HTTPStatusCode == HttpStatusCode.OK))
+                    return RegistrationActionResult.Successful;
 
                 return RegistrationActionResult.Failed;
             }

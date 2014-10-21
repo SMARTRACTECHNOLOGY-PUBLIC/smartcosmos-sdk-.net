@@ -51,22 +51,17 @@ namespace Smartrac.SmartCosmos.Objects.HashTag
                 }
 
                 var request = CreateWebRequest("/tags", WebRequestOption.Authorization);
-                object responseDataObj = null;
-                ExecuteWebRequestJSON(request, typeof(HashTagRequest), requestData, typeof(HashTagResponse), out responseDataObj, WebRequestMethods.Http.Put);
-                if (null != responseDataObj)
+                ExecuteWebRequestJSON<HashTagRequest, HashTagResponse>(request, requestData, out responseData, WebRequestMethods.Http.Put);
+                if (responseData != null)
                 {
-                    responseData = responseDataObj as HashTagResponse;
-                    if (responseData != null)
+                    switch (responseData.HTTPStatusCode)
                     {
-                        switch (responseData.HTTPStatusCode)
-                        {
-                            case HttpStatusCode.Created:
-                            case HttpStatusCode.OK:
-                                responseData.tagUrn = new Urn(responseData.message);
-                                return HashTagActionResult.Successful;
+                        case HttpStatusCode.Created:
+                        case HttpStatusCode.OK:
+                            responseData.tagUrn = new Urn(responseData.message);
+                            return HashTagActionResult.Successful;
 
-                            default: return HashTagActionResult.Failed;
-                        }
+                        default: return HashTagActionResult.Failed;
                     }
                 }
 
@@ -100,14 +95,9 @@ namespace Smartrac.SmartCosmos.Objects.HashTag
                 }
 
                 var request = CreateWebRequest("/tags/" + tagUrn.UUID + "?view=" + viewType.GetDescription(), WebRequestOption.Authorization);
-                object responseDataObj;
-                var returnHTTPCode = ExecuteWebRequestJSON(request, typeof(HashTagDataResponse), out responseDataObj);
-                if (null != responseDataObj)
-                {
-                    responseData = responseDataObj as HashTagDataResponse;
-                    if ((responseData != null) && (responseData.HTTPStatusCode == HttpStatusCode.OK))
-                        return HashTagActionResult.Successful;
-                }
+                var returnHTTPCode = ExecuteWebRequestJSON<HashTagDataResponse>(request, out responseData);
+                if ((responseData != null) && (responseData.HTTPStatusCode == HttpStatusCode.OK))
+                    return HashTagActionResult.Successful;
                 return HashTagActionResult.Failed;
             }
             catch (Exception e)
@@ -138,14 +128,9 @@ namespace Smartrac.SmartCosmos.Objects.HashTag
                 }
 
                 var request = CreateWebRequest("/tags/tag/" + tagName + "?view=" + viewType.GetDescription(), WebRequestOption.Authorization);
-                object responseDataObj;
-                var returnHTTPCode = ExecuteWebRequestJSON(request, typeof(HashTagDataResponse), out responseDataObj);
-                if (null != responseDataObj)
-                {
-                    responseData = responseDataObj as HashTagDataResponse;
-                    if ((responseData != null) && (responseData.HTTPStatusCode == HttpStatusCode.OK))
-                        return HashTagActionResult.Successful;
-                }
+                var returnHTTPCode = ExecuteWebRequestJSON<HashTagDataResponse>(request, out responseData);
+                if ((responseData != null) && (responseData.HTTPStatusCode == HttpStatusCode.OK))
+                    return HashTagActionResult.Successful;
                 return HashTagActionResult.Failed;
             }
             catch (Exception e)
@@ -179,14 +164,10 @@ namespace Smartrac.SmartCosmos.Objects.HashTag
                     "&entityReferenceType=" + entityReferenceType.GetDescription() +
                     "&referenceUrn=" + referenceUrn.UUID
                     , WebRequestOption.Authorization);
-                object responseDataObj;
-                var returnHTTPCode = ExecuteWebRequestJSON(request, typeof(HashTagListResponse), out responseDataObj);
-                if (null != responseDataObj)
-                {
-                    responseData = responseDataObj as HashTagListResponse;
-                    if ((responseData != null) && (responseData.HTTPStatusCode == HttpStatusCode.OK))
-                        return HashTagActionResult.Successful;
-                }
+
+                var returnHTTPCode = ExecuteWebRequestJSON<HashTagListResponse>(request, out responseData);
+                if ((responseData != null) && (responseData.HTTPStatusCode == HttpStatusCode.OK))
+                    return HashTagActionResult.Successful;
                 return HashTagActionResult.Failed;
             }
             catch (Exception e)
@@ -219,14 +200,9 @@ namespace Smartrac.SmartCosmos.Objects.HashTag
 
                 var request = CreateWebRequest("/tags/" + entityReferenceType.GetDescription() +
                                                "/" + referenceUrn.UUID, WebRequestOption.Authorization);
-                object responseDataObj;
-                var returnHTTPCode = ExecuteWebRequestJSON(request, typeof(HashTagRequest), requestData, typeof(DefaultResponse), out responseDataObj);
-                if (null != responseDataObj)
-                {
-                    responseData = responseDataObj as DefaultResponse;
-                    if ((responseData != null) && (responseData.HTTPStatusCode == HttpStatusCode.OK))
-                        return HashTagActionResult.Successful;
-                }
+                var returnHTTPCode = ExecuteWebRequestJSON<HashTagListRequest, DefaultResponse>(request, requestData, out responseData);
+                if ((responseData != null) && (responseData.HTTPStatusCode == HttpStatusCode.OK))
+                    return HashTagActionResult.Successful;
                 return HashTagActionResult.Failed;
             }
             catch (Exception e)

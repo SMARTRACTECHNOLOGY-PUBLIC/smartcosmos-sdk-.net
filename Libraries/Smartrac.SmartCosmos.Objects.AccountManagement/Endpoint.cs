@@ -44,14 +44,11 @@ namespace Smartrac.SmartCosmos.Objects.AccountManagement
                 string viewTypeParam = ((null != viewType) && viewType.HasValue) ? "?view=" + viewType.Value.GetDescription() : "";
 
                 var request = CreateWebRequest("/account" + viewTypeParam, WebRequestOption.Authorization);
-                object responseDataObj;
-                var returnHTTPCode = ExecuteWebRequestJSON(request, typeof(AccountDetailsResponse), out responseDataObj);
-                if (null != responseDataObj)
-                {
-                    responseData = responseDataObj as AccountDetailsResponse;
-                    if ((responseData != null) && (responseData.HTTPStatusCode == HttpStatusCode.OK))
-                        return AccountActionResult.Successful;
-                }
+                var returnHTTPCode = ExecuteWebRequestJSON<AccountDetailsResponse>(request, out responseData);
+
+                if ((responseData != null) && (responseData.HTTPStatusCode == HttpStatusCode.OK))
+                    return AccountActionResult.Successful;
+
                 return AccountActionResult.Failed;
             }
             catch (Exception e)
@@ -81,14 +78,10 @@ namespace Smartrac.SmartCosmos.Objects.AccountManagement
                 }
 
                 var request = CreateWebRequest("/account/password/change");
-                object responseDataObj = null;
-                ExecuteWebRequestJSON(request, typeof(ChangeYourPasswordRequest), requestData, typeof(ChangeYourPasswordResponse), out responseDataObj, WebRequestMethods.Http.Post);
-                if (null != responseDataObj)
-                {
-                    responseData = responseDataObj as ChangeYourPasswordResponse;
-                    if ((responseData != null) && (responseData.HTTPStatusCode == HttpStatusCode.OK))
-                        return AccountActionResult.Successful;
-                }
+                ExecuteWebRequestJSON<ChangeYourPasswordRequest, ChangeYourPasswordResponse>(request, requestData, out responseData);
+
+                if ((responseData != null) && (responseData.HTTPStatusCode == HttpStatusCode.OK))
+                    return AccountActionResult.Successful;
 
                 return AccountActionResult.Failed;
             }
@@ -119,14 +112,9 @@ namespace Smartrac.SmartCosmos.Objects.AccountManagement
                 }
 
                 var request = CreateWebRequest("/account/password/change");
-                object responseDataObj = null;
-                ExecuteWebRequestJSON(request, typeof(ResetLostPasswordRequest), requestData, typeof(ResetLostPasswordResponse), out responseDataObj, WebRequestMethods.Http.Post);
-                if (null != responseDataObj)
-                {
-                    responseData = responseDataObj as ResetLostPasswordResponse;
-                    if ((responseData != null) && (responseData.HTTPStatusCode == HttpStatusCode.OK))
-                        return AccountActionResult.Successful;
-                }
+                ExecuteWebRequestJSON<ResetLostPasswordRequest, ResetLostPasswordResponse>(request, requestData, out responseData);
+                if ((responseData != null) && (responseData.HTTPStatusCode == HttpStatusCode.OK))
+                    return AccountActionResult.Successful;
 
                 return AccountActionResult.Failed;
             }

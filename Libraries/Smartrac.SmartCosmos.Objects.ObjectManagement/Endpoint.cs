@@ -49,22 +49,17 @@ namespace Smartrac.SmartCosmos.Objects.ObjectManagement
                 }
 
                 var request = CreateWebRequest("/objects", WebRequestOption.Authorization);
-                object responseDataObj = null;
-                ExecuteWebRequestJSON(request, typeof(ObjectManagementRequest), requestData, typeof(ObjectManagementResponse), out responseDataObj, WebRequestMethods.Http.Put);
-                if (null != responseDataObj)
+                ExecuteWebRequestJSON<ObjectManagementRequest, ObjectManagementResponse>(request, requestData, out responseData, WebRequestMethods.Http.Put);
+                if (responseData != null)
                 {
-                    responseData = responseDataObj as ObjectManagementResponse;
-                    if (responseData != null)
+                    switch (responseData.HTTPStatusCode)
                     {
-                        switch (responseData.HTTPStatusCode)
-                        {
-                            case HttpStatusCode.Created:
-                            case HttpStatusCode.OK:
-                                responseData.objectUrn = new Urn(responseData.message);
-                                return ObjectActionResult.Successful;
+                        case HttpStatusCode.Created:
+                        case HttpStatusCode.OK:
+                            responseData.objectUrn = new Urn(responseData.message);
+                            return ObjectActionResult.Successful;
 
-                            default: return ObjectActionResult.Failed;
-                        }
+                        default: return ObjectActionResult.Failed;
                     }
                 }
 
@@ -97,19 +92,14 @@ namespace Smartrac.SmartCosmos.Objects.ObjectManagement
                 }
 
                 var request = CreateWebRequest("/objects", WebRequestOption.Authorization);
-                object responseDataObj = null;
-                ExecuteWebRequestJSON(request, typeof(ObjectManagementRequest), requestData, typeof(ObjectManagementResponse), out responseDataObj, WebRequestMethods.Http.Post);
-                if (null != responseDataObj)
+                ExecuteWebRequestJSON<ObjectManagementRequest, ObjectManagementResponse>(request, requestData, out responseData, WebRequestMethods.Http.Post);
+                if (responseData != null)
                 {
-                    responseData = responseDataObj as ObjectManagementResponse;
-                    if (responseData != null)
+                    switch (responseData.HTTPStatusCode)
                     {
-                        switch (responseData.HTTPStatusCode)
-                        {
-                            case HttpStatusCode.NoContent: return ObjectActionResult.Successful;
-                            case HttpStatusCode.BadRequest: return ObjectActionResult.Failed;
-                            default: return ObjectActionResult.Failed;
-                        }
+                        case HttpStatusCode.NoContent: return ObjectActionResult.Successful;
+                        case HttpStatusCode.BadRequest: return ObjectActionResult.Failed;
+                        default: return ObjectActionResult.Failed;
                     }
                 }
 
@@ -143,14 +133,9 @@ namespace Smartrac.SmartCosmos.Objects.ObjectManagement
                 }
 
                 var request = CreateWebRequest("/objects/" + urn.UUID + "?view=" + viewType.GetDescription(), WebRequestOption.Authorization);
-                object responseDataObj;
-                var returnHTTPCode = ExecuteWebRequestJSON(request, typeof(ObjectDataResponse), out responseDataObj);
-                if (null != responseDataObj)
-                {
-                    responseData = responseDataObj as ObjectDataResponse;
-                    if ((responseData != null) && (responseData.HTTPStatusCode == HttpStatusCode.OK))
-                        return ObjectActionResult.Successful;
-                }
+                var returnHTTPCode = ExecuteWebRequestJSON<ObjectDataResponse>(request, out responseData);
+                if ((responseData != null) && (responseData.HTTPStatusCode == HttpStatusCode.OK))
+                    return ObjectActionResult.Successful;
                 return ObjectActionResult.Failed;
             }
             catch (Exception e)
@@ -182,14 +167,10 @@ namespace Smartrac.SmartCosmos.Objects.ObjectManagement
                 }
 
                 var request = CreateWebRequest("/objects/" + objectUrn.UUID + "?view=" + viewType.GetDescription() + "&exact=" + exact.ToString(), WebRequestOption.Authorization);
-                object responseDataObj;
-                var returnHTTPCode = ExecuteWebRequestJSON(request, typeof(ObjectDataResponse), out responseDataObj);
-                if (null != responseDataObj)
-                {
-                    responseData = responseDataObj as ObjectDataResponse;
-                    if ((responseData != null) && (responseData.HTTPStatusCode == HttpStatusCode.OK))
-                        return ObjectActionResult.Successful;
-                }
+                var returnHTTPCode = ExecuteWebRequestJSON<ObjectDataResponse>(request, out responseData);
+                if ((responseData != null) && (responseData.HTTPStatusCode == HttpStatusCode.OK))
+                    return ObjectActionResult.Successful;
+
                 return ObjectActionResult.Failed;
             }
             catch (Exception e)
@@ -227,24 +208,20 @@ namespace Smartrac.SmartCosmos.Objects.ObjectManagement
                     AddQuery("view", requestData.viewType.GetDescription());
 
                 var request = CreateWebRequest(url.AbsoluteUri, WebRequestOption.Authorization);
-                object responseDataObj = null;
-                var HTTPStatusCode = ExecuteWebRequestJSON(request, typeof(QueryObjectsResponse), out responseDataObj);
-                if (null != responseDataObj)
-                {
-                    responseData = responseDataObj as QueryObjectsResponse;
-                    if (responseData != null)
-                    {
-                        foreach (var elm in responseData)
-                        {
-                            elm.HTTPStatusCode = HTTPStatusCode;
-                        }
+                var HTTPStatusCode = ExecuteWebRequestJSON<QueryObjectsResponse>(request, out responseData);
 
-                        switch (HTTPStatusCode)
-                        {
-                            case HttpStatusCode.NoContent: return ObjectActionResult.Successful;
-                            case HttpStatusCode.BadRequest: return ObjectActionResult.Failed;
-                            default: return ObjectActionResult.Failed;
-                        }
+                if (responseData != null)
+                {
+                    foreach (var elm in responseData)
+                    {
+                        elm.HTTPStatusCode = HTTPStatusCode;
+                    }
+
+                    switch (HTTPStatusCode)
+                    {
+                        case HttpStatusCode.NoContent: return ObjectActionResult.Successful;
+                        case HttpStatusCode.BadRequest: return ObjectActionResult.Failed;
+                        default: return ObjectActionResult.Failed;
                     }
                 }
 

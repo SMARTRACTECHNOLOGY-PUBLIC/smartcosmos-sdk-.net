@@ -19,7 +19,6 @@
 
 using System;
 using System.Net;
-using System.Runtime.Serialization.Json;
 using System.Security.Cryptography;
 using System.Text;
 using Smartrac.Logging;
@@ -164,10 +163,16 @@ namespace Smartrac.SmartCosmos.ClientEndpoint.Base
             return request;
         }
 
-        protected HttpStatusCode ExecuteWebRequestJSON(WebRequest request, Type requestType, object requestData, Type responseType, out object responseData, out HttpWebResponse webResponse, string sendMethod = WebRequestMethods.Http.Post)
+        protected HttpStatusCode ExecuteWebRequestJSON<requestType, responseType>(WebRequest request,
+            requestType requestData,
+            out responseType responseData,
+            out HttpWebResponse webResponse,
+            string sendMethod = WebRequestMethods.Http.Post)
+            where requestType : class
+            where responseType : class, new()
         {
-            responseData = null;
             webResponse = null;
+            responseData = null;
             try
             {
                 request.Method = sendMethod;
@@ -176,7 +181,8 @@ namespace Smartrac.SmartCosmos.ClientEndpoint.Base
                 // Copy object to a JSON byte array
                 if (requestData != null)
                 {
-                    byte[] byteArray = System.Text.Encoding.UTF8.GetBytes(requestData.ToJSON(requestType));
+                    //byte[] byteArray = System.Text.Encoding.UTF8.GetBytes(requestData.ToJSON(requestType));
+                    byte[] byteArray = System.Text.Encoding.UTF8.GetBytes(requestData.ToJSON());
                     request.ContentLength = byteArray.Length;
                     using (var writer = request.GetRequestStream())
                     {
@@ -199,17 +205,33 @@ namespace Smartrac.SmartCosmos.ClientEndpoint.Base
                 {
                     if (webResponse.StatusCode == HttpStatusCode.NoContent)
                     {
-                        responseData = Activator.CreateInstance(responseType);
+                        //responseData = Activator.CreateInstance( responseType);
+                        responseData = new responseType(); //Activator.CreateInstance(responseType);
                     }
                     else
                     {
-                        DataContractJsonSerializer serializer = new DataContractJsonSerializer(responseType);
-                        responseData = serializer.ReadObject(webResponse.GetResponseStream());
+                        // convert stream to string
+                        /*
+                        StreamReader reader = new StreamReader(webResponse.GetResponseStream());
+                        string text = reader.ReadToEnd();
+
+                        responseData.FromJSON(text);
+
+                        //DataContractJsonSerializer serializer = new DataContractJsonSerializer(responseType);
+                        //responseData = serializer.ReadObject(responseData.FromJSON(webResponse.GetResponseStream()));
+
+                        var test = Activator.CreateInstance(responseType);
+
+                        responseData = test.FromJSON(webResponse.GetResponseStream());
+                         */
+                        //responseData = new responseType();
+                        responseData = responseData.FromJSON(webResponse.GetResponseStream());
                     }
 
                     if (responseData is BaseResponse)
                     {
-                        ((BaseResponse)responseData).HTTPStatusCode = webResponse.StatusCode;
+                        (responseData as BaseResponse).HTTPStatusCode = webResponse.StatusCode;
+                        //((BaseResponse)responseData).HTTPStatusCode = webResponse.StatusCode;
                     }
                     return webResponse.StatusCode;
                 }
@@ -233,10 +255,10 @@ namespace Smartrac.SmartCosmos.ClientEndpoint.Base
         /// <param name="responseType">Type of the responseData parameter</param>
         /// <param name="responseData">Response data</param>
         /// <returns>HttpStatusCode</returns>
-        protected HttpStatusCode ExecuteWebRequestJSON(WebRequest request, Type responseType, out object responseData)
+        protected HttpStatusCode ExecuteWebRequestJSON<responseType>(WebRequest request, out responseType responseData)
+            where responseType : class, new()
         {
-            responseData = null;
-            return ExecuteWebRequestJSON(request, null, null, responseType, out responseData, WebRequestMethods.Http.Get);
+            return ExecuteWebRequestJSON<object, responseType>(request, null, out responseData, WebRequestMethods.Http.Get);
         }
 
         /// <summary>
@@ -246,11 +268,12 @@ namespace Smartrac.SmartCosmos.ClientEndpoint.Base
         /// <param name="responseType">Type of the responseData parameter</param>
         /// <param name="responseData">Response data</param>
         /// <returns>HttpStatusCode</returns>
-        protected HttpStatusCode ExecuteWebRequestJSON(WebRequest request, Type responseType, out object responseData, out HttpWebResponse webResponse)
+        protected HttpStatusCode ExecuteWebRequestJSON<responseType>(WebRequest request, out responseType responseData, out HttpWebResponse webResponse)
+            where responseType : class, new()
         {
             responseData = null;
             webResponse = null;
-            return ExecuteWebRequestJSON(request, null, null, responseType, out responseData, out webResponse, WebRequestMethods.Http.Get);
+            return ExecuteWebRequestJSON<object, responseType>(request, null, out responseData, out webResponse, WebRequestMethods.Http.Get);
         }
 
         /// <summary>
@@ -262,11 +285,12 @@ namespace Smartrac.SmartCosmos.ClientEndpoint.Base
         /// <param name="responseType">Type of the responseData parameter</param>
         /// <param name="responseData">Response data</param>
         /// <returns>HttpStatusCode</returns>
-        protected HttpStatusCode ExecuteWebRequestJSON(WebRequest request, Type requestType, object requestData, Type responseType, out object responseData, string sendMethod = WebRequestMethods.Http.Post)
+        protected HttpStatusCode ExecuteWebRequestJSON<requestType, responseType>(WebRequest request, requestType requestData, out responseType responseData, string sendMethod = WebRequestMethods.Http.Post)
+            where requestType : class
+            where responseType : class, new()
         {
-            responseData = null;
             HttpWebResponse webResponse;
-            return ExecuteWebRequestJSON(request, requestType, requestData, responseType, out responseData, out webResponse, sendMethod);
+            return ExecuteWebRequestJSON<requestType, responseType>(request, requestData, out responseData, out webResponse, sendMethod);
         }
     }
 }

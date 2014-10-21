@@ -23,14 +23,13 @@ using System.Net;
 using System.Runtime.Serialization.Json;
 using Smartrac.Logging;
 using Smartrac.SmartCosmos.ClientEndpoint.Base;
-using Smartrac.SmartCosmos.Profiles.Base;
 
 namespace Smartrac.SmartCosmos.Profiles.DataImport
 {
     /// <summary>
     /// Client for data import endpoint
     /// </summary>
-    internal class DataImportEndpoint : BaseProfileEndpoint, IDataImportEndpoint
+    internal class DataImportEndpoint : BaseEndpoint, IDataImportEndpoint
     {
         /// <summary>
         /// Upload a file stream as octet stream
@@ -139,13 +138,7 @@ namespace Smartrac.SmartCosmos.Profiles.DataImport
             try
             {
                 WebRequest request = CreateWebRequest("/data/files/importstate", WebRequestOption.Authorization | WebRequestOption.AcceptLanguage);
-                object responseDataObj = null;
-                var returnHTTPCode = ExecuteWebRequestJSON(request, typeof(ImportStateRequest), requestData, typeof(ImportStateResponse), out responseDataObj);
-
-                if (null != responseDataObj)
-                {
-                    responseData = responseDataObj as ImportStateResponse;
-                }
+                var returnHTTPCode = ExecuteWebRequestJSON<ImportStateRequest, ImportStateResponse>(request, requestData, out responseData);
 
                 if (returnHTTPCode == HttpStatusCode.OK)
                     return DataActionResult.Successful;

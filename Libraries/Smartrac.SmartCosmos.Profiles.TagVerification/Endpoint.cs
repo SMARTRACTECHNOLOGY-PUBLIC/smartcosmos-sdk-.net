@@ -21,14 +21,13 @@ using System;
 using System.Net;
 using Smartrac.Logging;
 using Smartrac.SmartCosmos.ClientEndpoint.Base;
-using Smartrac.SmartCosmos.Profiles.Base;
 
 namespace Smartrac.SmartCosmos.Profiles.TagVerification
 {
     /// <summary>
     /// Client for tag verification endpoint
     /// </summary>
-    internal class TagVerificationEndpoint : BaseProfileEndpoint, ITagVerificationEndpoint
+    internal class TagVerificationEndpoint : BaseEndpoint, ITagVerificationEndpoint
     {
         /// <summary>
         /// Verify tags for a verification type
@@ -42,13 +41,8 @@ namespace Smartrac.SmartCosmos.Profiles.TagVerification
             try
             {
                 var request = CreateWebRequest("/verification/tags", WebRequestOption.Authorization);
-                object responseDataObj = null;
-                var returnHTTPCode = ExecuteWebRequestJSON(request, typeof(VerifyTagsRequest), requestData, typeof(VerifyTagsResponse), out responseDataObj);
+                var returnHTTPCode = ExecuteWebRequestJSON<VerifyTagsRequest, VerifyTagsResponse>(request, requestData, out responseData);
 
-                if (null != responseDataObj)
-                {
-                    responseData = responseDataObj as VerifyTagsResponse;
-                }
                 if (returnHTTPCode == HttpStatusCode.OK)
                     return TagVerificationActionResult.Successful;
                 else
@@ -74,13 +68,8 @@ namespace Smartrac.SmartCosmos.Profiles.TagVerification
             try
             {
                 var request = CreateWebRequest("/verification/message", WebRequestOption.Authorization | WebRequestOption.AcceptLanguage);
-                object responseDataObj = null;
-                var returnHTTPCode = ExecuteWebRequestJSON(request, typeof(VerificationMessageRequest), requestData, typeof(VerificationMessageResponse), out responseDataObj);
+                var returnHTTPCode = ExecuteWebRequestJSON<VerificationMessageRequest, VerificationMessageResponse>(request, requestData, out responseData);
 
-                if (null != responseDataObj)
-                {
-                    responseData = responseDataObj as VerificationMessageResponse;
-                }
                 if (returnHTTPCode == HttpStatusCode.OK)
                     return TagVerificationActionResult.Successful;
                 else

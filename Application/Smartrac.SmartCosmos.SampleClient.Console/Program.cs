@@ -41,6 +41,9 @@ namespace Smartrac.SmartCosmos.SampleClient.Console
             factory.UserName = ConfigurationManager.AppSettings["UserName"];
             factory.UserPassword = ConfigurationManager.AppSettings["UserPassword"];
 
+            // Configure server of SMART COSMOS Objects server
+            factory.ObjectsServerURL = "";
+
             // initate tester case runner
             ITestCaseRunner testCaseRunner = new TestCaseRunnerBuilder()
                                             .setLogger(logger) // set logger
