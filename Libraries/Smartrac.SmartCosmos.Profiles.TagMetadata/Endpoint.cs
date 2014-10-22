@@ -21,13 +21,14 @@ using System;
 using System.Net;
 using Smartrac.Logging;
 using Smartrac.SmartCosmos.ClientEndpoint.Base;
+using Smartrac.SmartCosmos.Profiles.Base;
 
 namespace Smartrac.SmartCosmos.Profiles.TagMetadata
 {
     /// <summary>
     /// Client for tag metadata endpoint
     /// </summary>
-    internal class TagMetadataEndpoint : BaseEndpoint, ITagMetadataEndpoint
+    internal class TagMetadataEndpoint : BaseProfileEndpoint, ITagMetadataEndpoint
     {
         /// <summary>
         /// Get tag related data

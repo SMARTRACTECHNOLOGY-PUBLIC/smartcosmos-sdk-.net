@@ -23,13 +23,14 @@ using System.Net;
 using System.Runtime.Serialization.Json;
 using Smartrac.Logging;
 using Smartrac.SmartCosmos.ClientEndpoint.Base;
+using Smartrac.SmartCosmos.Profiles.Base;
 
 namespace Smartrac.SmartCosmos.Profiles.DataImport
 {
     /// <summary>
     /// Client for data import endpoint
     /// </summary>
-    internal class DataImportEndpoint : BaseEndpoint, IDataImportEndpoint
+    internal class DataImportEndpoint : BaseProfileEndpoint, IDataImportEndpoint
     {
         /// <summary>
         /// Upload a file stream as octet stream
