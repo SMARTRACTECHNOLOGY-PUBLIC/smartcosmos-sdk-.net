@@ -24,7 +24,6 @@ using Smartrac.Logging;
 using Smartrac.SmartCosmos.ClientEndpoint.BaseObject;
 using Smartrac.SmartCosmos.Profiles.TagMetadata;
 using Smartrac.SmartCosmos.TestCase.Base;
-using Smartrac.Base;
 
 namespace Smartrac.SmartCosmos.Profiles.DataContext.Sample
 {
@@ -81,11 +80,11 @@ namespace Smartrac.SmartCosmos.Profiles.DataContext.Sample
                         {
                             if (tag.props != null)
                             {
-                               tag.props.GetValue(TagPropertyString.batchId, out batchId);
-                               tag.props.GetValue(TagPropertyString.plantId, out plantId);
-                               tag.props.GetValue(TagPropertyLong.deliveryDate, out delivDate);
+                                tag.props.GetValue(TagPropertyString.batchId, out batchId);
+                                tag.props.GetValue(TagPropertyString.plantId, out plantId);
+                                tag.props.GetValue(TagPropertyLong.deliveryDate, out delivDate);
 
-                               Logger.AddLog("Sample data for tag: batch=" + batchId + ", plantId=" + plantId + ", deliveryDate=" + String.Format("{0:dd/MM/yyyy}", DateTimeExtensions.FromUnixTimestamp(delivDate)));                                
+                                Logger.AddLog("Sample data for tag: batch=" + batchId + ", plantId=" + plantId + ", deliveryDate=" + String.Format("{0:dd/MM/yyyy}", DateTimeExtensions.FromUnixTimestamp(delivDate)));
                             }
                         }
                     }

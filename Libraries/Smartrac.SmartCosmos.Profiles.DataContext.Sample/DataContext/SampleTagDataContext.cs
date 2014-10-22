@@ -17,12 +17,10 @@
 
 #endregion License
 
+using System;
 using System.Collections.Generic;
 using System.IO;
 using Smartrac.SmartCosmos.Profiles.TagMetadata;
-using Smartrac.SmartCosmos.ClientEndpoint.BaseObject;
-using Smartrac.Base;
-using System;
 
 namespace Smartrac.SmartCosmos.Profiles.DataContext.Sample
 {
@@ -46,24 +44,24 @@ namespace Smartrac.SmartCosmos.Profiles.DataContext.Sample
             //   TagIds.Add("E12345678912345777");
 
             TagProperties = new List<string>();
-            TagProperties.Add(TagPropertyString.customerId.GetDescription());     
-            TagProperties.Add(TagPropertyString.orderId.GetDescription());     
-            TagProperties.Add(TagPropertyLong.orderDate.GetDescription());   
+            TagProperties.Add(TagPropertyString.customerId.GetDescription());
+            TagProperties.Add(TagPropertyString.orderId.GetDescription());
+            TagProperties.Add(TagPropertyLong.orderDate.GetDescription());
             TagProperties.Add(TagPropertyNumber.orderQuantity.GetDescription());
             TagProperties.Add(TagPropertyString.orderQuantityUnit.GetDescription());
             TagProperties.Add(TagPropertyString.customerPurchaseOrder.GetDescription());
             TagProperties.Add(TagPropertyString.supplierPurchaseOrder.GetDescription());
             TagProperties.Add(TagPropertyString.deliveryId.GetDescription());
-            TagProperties.Add(TagPropertyLong.deliveryDate.GetDescription());   
+            TagProperties.Add(TagPropertyLong.deliveryDate.GetDescription());
             TagProperties.Add(TagPropertyNumber.deliveryQuantity.GetDescription());
-            TagProperties.Add(TagPropertyString.deliveryQuantityUnit.GetDescription());   
+            TagProperties.Add(TagPropertyString.deliveryQuantityUnit.GetDescription());
             TagProperties.Add(TagPropertyNumber.yield.GetDescription());
             TagProperties.Add(TagPropertyString.batchId.GetDescription());
             TagProperties.Add(TagPropertyString.subRoll.GetDescription());
             TagProperties.Add(TagPropertyString.plantId.GetDescription());
             TagProperties.Add(TagPropertyLong.inlayManufacturerDate.GetDescription());
-            TagProperties.Add(TagPropertyString.inlayType.GetDescription());   
-            TagProperties.Add(TagPropertyNumber.attenuation.GetDescription());   
+            TagProperties.Add(TagPropertyString.inlayType.GetDescription());
+            TagProperties.Add(TagPropertyNumber.attenuation.GetDescription());
             TagProperties.Add(TagPropertyNumber.checkState.GetDescription());
 
             VerificationTypes = new List<string>();

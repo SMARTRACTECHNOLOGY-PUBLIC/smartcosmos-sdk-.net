@@ -61,7 +61,7 @@ namespace Smartrac.SmartCosmos.Objects.DataContext.Sample
             // log response
             Logger.AddLog("Result: " + actionResult);
             if (responseListData != null)
-              Logger.AddLog("Result Data: " + responseListData.ToJSON());
+                Logger.AddLog("Result Data: " + responseListData.ToJSON());
             OnAfterTest();
 
             if ((null != responseListData) && (responseListData.Count > 0))

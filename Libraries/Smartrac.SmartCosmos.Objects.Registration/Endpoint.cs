@@ -81,7 +81,7 @@ namespace Smartrac.SmartCosmos.Objects.Registration
 
                 var request = CreateWebRequest("/registration/register");
                 ExecuteWebRequestJSON<AccountRegistrationRequest, AccountRegistrationResponse>(request, requestData, out responseData);
-                if ((responseData != null) 
+                if ((responseData != null)
                     && (responseData.HTTPStatusCode == HttpStatusCode.Created)
                     && (responseData.HTTPStatusCode == HttpStatusCode.OK)
                     )

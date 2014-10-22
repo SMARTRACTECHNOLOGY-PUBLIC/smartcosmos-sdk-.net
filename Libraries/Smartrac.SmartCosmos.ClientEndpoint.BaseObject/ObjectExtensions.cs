@@ -17,7 +17,6 @@
 
 #endregion License
 
-using System;
 using System.IO;
 using System.Text;
 using Newtonsoft.Json;
@@ -40,7 +39,7 @@ namespace Smartrac.SmartCosmos.ClientEndpoint.BaseObject
         {
             if (obj == null)
                 return "";
-            return JsonConvert.SerializeObject(obj, (formatIndented) ? Formatting.Indented : Formatting.None );
+            return JsonConvert.SerializeObject(obj, (formatIndented) ? Formatting.Indented : Formatting.None);
         }
 
         /*
@@ -49,6 +48,7 @@ namespace Smartrac.SmartCosmos.ClientEndpoint.BaseObject
             return JsonConvert.SerializeObject(obj);
         }
         */
+
         public static T FromJSON<T>(this T obj, string json) where T : class
         {
             return JsonConvert.DeserializeObject<T>(json);
