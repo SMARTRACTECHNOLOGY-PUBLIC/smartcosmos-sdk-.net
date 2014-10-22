@@ -36,11 +36,19 @@ namespace Smartrac.SmartCosmos.ClientEndpoint.BaseObject
             return JsonConvert.SerializeObject(obj);
         }
 
+        public static string ToJSON<T>(this T obj, bool formatIndented) where T : class
+        {
+            if (obj == null)
+                return "";
+            return JsonConvert.SerializeObject(obj, (formatIndented) ? Formatting.Indented : Formatting.None );
+        }
+
+        /*
         public static string ToJSON<T>(this T obj, Type aType) where T : class
         {
             return JsonConvert.SerializeObject(obj);
         }
-
+        */
         public static T FromJSON<T>(this T obj, string json) where T : class
         {
             return JsonConvert.DeserializeObject<T>(json);

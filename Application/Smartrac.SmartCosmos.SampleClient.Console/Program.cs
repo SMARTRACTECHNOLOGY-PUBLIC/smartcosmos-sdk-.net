@@ -42,11 +42,8 @@ namespace Smartrac.SmartCosmos.SampleClient.Console
             factory.UserPassword = ConfigurationManager.AppSettings["UserPassword"];
 
             // Configure server of SMART COSMOS Objects
-            factory.ObjectsServerURL = "http://54.171.86.156:8080";
-            factory.UserName = "foo";
-            factory.UserPassword = "bar";
-
-            factory.ProfilesServerURL = "";
+            // factory.ObjectsServerURL = "http://54.171.86.156:8080";
+            // factory.ProfilesServerURL = "";
 
             // initate tester case runner
             ITestCaseRunner testCaseRunner = new TestCaseRunnerBuilder()

@@ -57,7 +57,7 @@ namespace Smartrac.SmartCosmos.Profiles.DataContext.Sample
             result = (actionResult == TagVerificationActionResult.Successful);
             // log response
             Logger.AddLog("Result: " + actionResult.ToString());
-            Logger.AddLog("Result Data: " + responseVerifyTags.ToJSON());
+            Logger.AddLog("Result Data: " + responseVerifyTags.ToJSON(true));
             OnAfterTest();
 
             OnBeforeTest("Profiles", "TagVerificationEndpoint", "GetVerificationMessage");

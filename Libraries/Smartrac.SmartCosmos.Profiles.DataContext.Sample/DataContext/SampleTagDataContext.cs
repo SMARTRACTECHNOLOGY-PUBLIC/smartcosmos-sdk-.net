@@ -19,6 +19,10 @@
 
 using System.Collections.Generic;
 using System.IO;
+using Smartrac.SmartCosmos.Profiles.TagMetadata;
+using Smartrac.SmartCosmos.ClientEndpoint.BaseObject;
+using Smartrac.Base;
+using System;
 
 namespace Smartrac.SmartCosmos.Profiles.DataContext.Sample
 {
@@ -38,14 +42,29 @@ namespace Smartrac.SmartCosmos.Profiles.DataContext.Sample
             //   TagIds.Add("E280110C20005042D5B602B1999");
             //   TagIds.Add("E280110C2000505110850282");
             //   TagIds.Add("E280110C20005103115E0282");
-            TagIds.Add("0EEEE100000781");
+            TagIds.Add("E280113020003054990802EB");
             //   TagIds.Add("E12345678912345777");
 
             TagProperties = new List<string>();
-            TagProperties.Add("plantId");     // Manufacturer production side ID
-            TagProperties.Add("batchId");     // Roll number / batch ID
-            TagProperties.Add("delivDate");   // Delivery date
-            TagProperties.Add("delivQty");    // Delivery quantity
+            TagProperties.Add(TagPropertyString.customerId.GetDescription());     
+            TagProperties.Add(TagPropertyString.orderId.GetDescription());     
+            TagProperties.Add(TagPropertyLong.orderDate.GetDescription());   
+            TagProperties.Add(TagPropertyNumber.orderQuantity.GetDescription());
+            TagProperties.Add(TagPropertyString.orderQuantityUnit.GetDescription());
+            TagProperties.Add(TagPropertyString.customerPurchaseOrder.GetDescription());
+            TagProperties.Add(TagPropertyString.supplierPurchaseOrder.GetDescription());
+            TagProperties.Add(TagPropertyString.deliveryId.GetDescription());
+            TagProperties.Add(TagPropertyLong.deliveryDate.GetDescription());   
+            TagProperties.Add(TagPropertyNumber.deliveryQuantity.GetDescription());
+            TagProperties.Add(TagPropertyString.deliveryQuantityUnit.GetDescription());   
+            TagProperties.Add(TagPropertyNumber.yield.GetDescription());
+            TagProperties.Add(TagPropertyString.batchId.GetDescription());
+            TagProperties.Add(TagPropertyString.subRoll.GetDescription());
+            TagProperties.Add(TagPropertyString.plantId.GetDescription());
+            TagProperties.Add(TagPropertyLong.inlayManufacturerDate.GetDescription());
+            TagProperties.Add(TagPropertyString.inlayType.GetDescription());   
+            TagProperties.Add(TagPropertyNumber.attenuation.GetDescription());   
+            TagProperties.Add(TagPropertyNumber.checkState.GetDescription());
 
             VerificationTypes = new List<string>();
             VerificationTypes.Add("RR");

@@ -26,7 +26,7 @@ namespace Smartrac.Logging.Console
             switch (aLogType)
             {
                 case LogType.Debug:
-                    System.Console.WriteLine("DBG:" + aMessage);
+                    System.Console.WriteLine(aMessage);
                     break;
 
                 case LogType.Error:
@@ -38,7 +38,7 @@ namespace Smartrac.Logging.Console
                     break;
 
                 case LogType.Info:
-                    System.Console.WriteLine("INF:" + aMessage);
+                    System.Console.WriteLine(aMessage);
                     break;
 
                 case LogType.Warning:

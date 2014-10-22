@@ -54,7 +54,7 @@ namespace Smartrac.SmartCosmos.Profiles.TagMetadata
 
         public void SetValue(string key, string value)
         {
-            if (this.ContainsKey(key))
+            if (this.ContainsKey(key) && (this[key] != null))
                 this[key] = value;
             else
                 this.Add(key, value);
@@ -67,7 +67,7 @@ namespace Smartrac.SmartCosmos.Profiles.TagMetadata
 
         public void SetValue(string key, long value)
         {
-            if (this.ContainsKey(key))
+            if (this.ContainsKey(key) && (this[key] != null))
                 this[key] = value;
             else
                 this.Add(key, value);
@@ -80,7 +80,7 @@ namespace Smartrac.SmartCosmos.Profiles.TagMetadata
 
         public void SetValue(string key, double value)
         {
-            if (this.ContainsKey(key))
+            if (this.ContainsKey(key) && (this[key] != null))
                 this[key] = value;
             else
                 this.Add(key, value);
@@ -93,7 +93,7 @@ namespace Smartrac.SmartCosmos.Profiles.TagMetadata
 
         public bool GetValue(string key, out string value)
         {
-            if (this.ContainsKey(key))
+            if (this.ContainsKey(key) && (this[key] != null))
             {
                 value = (string)this[key];
                 return true;
@@ -112,9 +112,12 @@ namespace Smartrac.SmartCosmos.Profiles.TagMetadata
 
         public bool GetValue(string key, out long value)
         {
-            if (this.ContainsKey(key))
+            if (this.ContainsKey(key) && (this[key] != null))
             {
-                value = (long)this[key];
+                if (this[key] is string)
+                    return long.TryParse((string)this[key], out value);
+                else
+                    value = (long)this[key];
                 return true;
             }
             else
@@ -131,9 +134,12 @@ namespace Smartrac.SmartCosmos.Profiles.TagMetadata
 
         public bool GetValue(string key, out double value)
         {
-            if (this.ContainsKey(key))
+            if (this.ContainsKey(key) && (this[key] != null))
             {
-                value = (float)this[key];
+                if (this[key] is string)
+                    return double.TryParse((string)this[key], out value);
+                else
+                    value = (double)this[key];
                 return true;
             }
             else
@@ -143,71 +149,6 @@ namespace Smartrac.SmartCosmos.Profiles.TagMetadata
             }
         }
     }
-
-    /*
-    [DataContract]
-    public class TagProperties
-    {
-        /*
-        /// <summary>
-        /// Customer ID
-        /// </summary>
-        [DataMember]
-        public string custId { get; set; }
-        /// <summary>
-        /// Order  ID
-        /// </summary>
-        [DataMember]
-        public string orderId { get; set; }
-        /// <summary>
-        /// Order date
-        /// </summary>
-        [DataMember]
-        public long? orderDate { get; set; }
-        /// <summary>
-        /// Order quantity
-        /// </summary>
-        [DataMember]
-        public int? orderQty { get; set; }
-        /// <summary>
-        /// Order quantity unit
-        /// </summary>
-        [DataMember]
-        public string orderQtyU { get; set; }
-        /// <summary>
-        /// Customer purchase order number
-        /// </summary>
-        [DataMember]
-        public string customerPO { get; set; }
-        /// <summary>
-        /// Customer purchase order number
-        /// </summary>
-        [DataMember]
-        public string customerPO { get; set; }
-
-        [DataMember]
-        public string plantId { get; set; }
-
-        [DataMember]
-        public string batchId { get; set; }
-        [DataMember]
-        public long? delivDate { get; set; }
-
-        public TagProperties() : base()
-        {
-            this.custId = null;
-            this.orderId = null;
-            this.orderDate = null;
-            this.orderQty = null;
-            this.orderQtyU = null;
-            this.customerPO = null;
-            this.custId = null;
-            this.custId = null;
-            this.custId = null;
-        }
-    }
-
-         */
 
     [DataContract]
     public class TagRecord

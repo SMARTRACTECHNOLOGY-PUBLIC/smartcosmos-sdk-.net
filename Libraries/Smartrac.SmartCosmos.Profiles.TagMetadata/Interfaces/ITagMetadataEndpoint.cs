@@ -127,7 +127,7 @@ namespace Smartrac.SmartCosmos.Profiles.TagMetadata
         /// Delivery date
         /// </summary>
         [DescriptionAttribute("delivDate")]
-        delivDate,
+        deliveryDate,
 
         /// <summary>
         /// Inlay manufacturer date
