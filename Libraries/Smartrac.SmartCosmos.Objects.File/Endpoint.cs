@@ -111,34 +111,32 @@ namespace Smartrac.SmartCosmos.Objects.File
                     data.CopyTo(writer);
                 }
 
-                using (var response = request.GetResponse() as System.Net.HttpWebResponse)
+                using (var response = request.GetResponseSafe() as System.Net.HttpWebResponse)
                 {
-                    if (response == null)
+                    if (response != null)
                     {
-                        return FileActionResult.Failed;
-                    }
-
-                    responseData = responseData.FromJSON(response.GetResponseStream());
-
-                    //DataContractJsonSerializer serializer = new DataContractJsonSerializer(typeof(FileUploadResponse));
-                    //responseData = serializer.ReadObject(response.GetResponseStream()) as FileUploadResponse;
-
-                    if (responseData == null)
-                    {
-                        return FileActionResult.Failed;
-                    }
-                    else
-                    {
-                        responseData.HTTPStatusCode = response.StatusCode;
-                        switch (response.StatusCode)
+                        try
                         {
-                            case HttpStatusCode.OK: return FileActionResult.Successful;
-                            case HttpStatusCode.BadRequest: return FileActionResult.Failed;
-                            case HttpStatusCode.Conflict: return FileActionResult.Conflict;
-                            default: return FileActionResult.Failed;
+                            responseData = responseData.FromJSON(response.GetResponseStream());
+                            if (responseData != null)
+                            {
+                                responseData.HTTPStatusCode = response.StatusCode;
+                                switch (response.StatusCode)
+                                {
+                                    case HttpStatusCode.OK: return FileActionResult.Successful;
+                                    case HttpStatusCode.BadRequest: return FileActionResult.Failed;
+                                    case HttpStatusCode.Conflict: return FileActionResult.Conflict;
+                                }
+                            }
+                        }
+                        finally
+                        {
+                            response.Close();
                         }
                     }
                 }
+
+                return FileActionResult.Failed;
             }
             catch (Exception e)
             {
@@ -229,32 +227,31 @@ namespace Smartrac.SmartCosmos.Objects.File
                     oPostStream.CopyTo(writer);
                 }
 
-                using (var response = request.GetResponse() as System.Net.HttpWebResponse)
+                using (var response = request.GetResponseSafe() as System.Net.HttpWebResponse)
                 {
-                    if (response == null)
+                    if (response != null)
                     {
-                        return FileActionResult.Failed;
-                    }
-
-                    responseData = responseData.FromJSON(response.GetResponseStream());
-                    //DataContractJsonSerializer serializer = new DataContractJsonSerializer(typeof(FileUploadResponse));
-                    //responseData = serializer.ReadObject(response.GetResponseStream()) as FileUploadResponse;
-                    if (responseData == null)
-                    {
-                        return FileActionResult.Failed;
-                    }
-                    else
-                    {
-                        responseData.HTTPStatusCode = response.StatusCode;
-                        switch (response.StatusCode)
+                        try
                         {
-                            case HttpStatusCode.OK: return FileActionResult.Successful;
-                            case HttpStatusCode.BadRequest: return FileActionResult.Failed;
-                            case HttpStatusCode.Conflict: return FileActionResult.Conflict;
-                            default: return FileActionResult.Failed;
+                            responseData = responseData.FromJSON(response.GetResponseStream());
+                            if (responseData != null)
+                            {
+                                responseData.HTTPStatusCode = response.StatusCode;
+                                switch (response.StatusCode)
+                                {
+                                    case HttpStatusCode.OK: return FileActionResult.Successful;
+                                    case HttpStatusCode.BadRequest: return FileActionResult.Failed;
+                                    case HttpStatusCode.Conflict: return FileActionResult.Conflict;
+                                }
+                            }
+                        }
+                        finally
+                        {
+                            response.Close();
                         }
                     }
                 }
+                return FileActionResult.Failed;
             }
             catch (Exception e)
             {
@@ -341,42 +338,45 @@ namespace Smartrac.SmartCosmos.Objects.File
                 var request = CreateWebRequest("/files/" + fileUrn.UUID + "/contents");
                 request.Method = WebRequestMethods.Http.Get;
 
-                using (var response = request.GetResponse() as System.Net.HttpWebResponse)
+                using (var response = request.GetResponseSafe() as System.Net.HttpWebResponse)
                 {
-                    if (response == null)
+                    if (response != null)
                     {
-                        return FileActionResult.Failed;
-                    }
-
-                    if (response.StatusCode == HttpStatusCode.OK)
-                    {
-                        responseData = new FileContentRetrievalResponse(response.GetResponseStream());
-                        responseData.HTTPStatusCode = response.StatusCode;
-                        string fileName = response.Headers.Get("Content-Disposition");
-                        if (fileName.Contains("filename="))
+                        try
                         {
-                            foreach (var element in fileName.Split(';'))
+                            if (response.StatusCode == HttpStatusCode.OK)
                             {
-                                if (element.Contains("filename="))
+                                responseData = new FileContentRetrievalResponse(response.GetResponseStream());
+                                responseData.HTTPStatusCode = response.StatusCode;
+                                string fileName = response.Headers.Get("Content-Disposition");
+                                if (fileName.Contains("filename="))
                                 {
-                                    responseData.filename = fileName.Split('=')[1].Trim('"');
+                                    foreach (var element in fileName.Split(';'))
+                                    {
+                                        if (element.Contains("filename="))
+                                        {
+                                            responseData.filename = fileName.Split('=')[1].Trim('"');
+                                        }
+                                    }
+                                }
+                                return FileActionResult.Successful;
+                            }
+                            else
+                            {
+                                responseData = responseData.FromJSON(response.GetResponseStream());
+                                if (responseData != null)
+                                {
+                                    responseData.HTTPStatusCode = response.StatusCode;
                                 }
                             }
                         }
-                        return FileActionResult.Successful;
-                    }
-                    else
-                    {
-                        responseData = responseData.FromJSON(response.GetResponseStream());
-                        //DataContractJsonSerializer serializer = new DataContractJsonSerializer(typeof(FileContentRetrievalResponse));
-                        //responseData = serializer.ReadObject(response.GetResponseStream()) as FileContentRetrievalResponse;
-                        if (responseData != null)
+                        finally
                         {
-                            responseData.HTTPStatusCode = response.StatusCode;
+                            response.Close();
                         }
-                        return FileActionResult.Failed;
                     }
                 }
+                return FileActionResult.Failed;
             }
             catch (Exception e)
             {
@@ -463,17 +463,25 @@ namespace Smartrac.SmartCosmos.Objects.File
                 var request = CreateWebRequest("/files/" + fileUrn.UUID);
                 request.Method = "DELETE";
 
-                using (var response = request.GetResponse() as System.Net.HttpWebResponse)
+                using (var response = request.GetResponseSafe() as System.Net.HttpWebResponse)
                 {
-                    if ((response.StatusCode == HttpStatusCode.NoContent) &&
-                       (response.Headers.Get("SmartCosmos-Event") == "FileDeleted"))
+                    if (response != null)
                     {
-                        return FileActionResult.Successful;
+                        try
+                        {
+                            if ((response.StatusCode == HttpStatusCode.NoContent) &&
+                                (response.Headers.Get("SmartCosmos-Event") == "FileDeleted"))
+                            {
+                                return FileActionResult.Successful;
+                            }
+                        }
+                        finally
+                        {
+                            response.Close();
+                        }
                     }
-                    else
-                    {
-                        return FileActionResult.Failed;
-                    }
+
+                    return FileActionResult.Failed;
                 }
             }
             catch (Exception e)

@@ -17,7 +17,6 @@
 
 #endregion License
 
-using System.Configuration;
 using Smartrac.Logging;
 using Smartrac.Logging.Console;
 using Smartrac.SmartCosmos.ClientEndpoint.Factory;
@@ -38,12 +37,12 @@ namespace Smartrac.SmartCosmos.SampleClient.Console
             IEndpointFactory factory = new EndpointFactory(logger);
             // user settings
             // NOTE: please enter your SmartCosmos user name and password in the app.config
-            factory.UserName = ConfigurationManager.AppSettings["UserName"];
-            factory.UserPassword = ConfigurationManager.AppSettings["UserPassword"];
+            //factory.UserName = ConfigurationManager.AppSettings["UserName"];
+            //factory.UserPassword = ConfigurationManager.AppSettings["UserPassword"];
 
             // Configure server of SMART COSMOS Objects
-            // factory.ObjectsServerURL = "http://54.171.86.156:8080";
-            // factory.ProfilesServerURL = "";
+            factory.ObjectsServerURL = "http://54.171.86.156:8080";
+            factory.ProfilesServerURL = "";
 
             // initate tester case runner
             ITestCaseRunner testCaseRunner = new TestCaseRunnerBuilder()

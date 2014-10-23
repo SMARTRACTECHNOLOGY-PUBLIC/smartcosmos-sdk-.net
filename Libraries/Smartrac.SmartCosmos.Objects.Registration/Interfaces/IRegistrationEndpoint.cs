@@ -49,5 +49,13 @@ namespace Smartrac.SmartCosmos.Objects.Registration
         /// <param name="realm">Check to see if the named realm is available for registration</param>
         /// <returns>RegistrationActionResult</returns>
         RegistrationActionResult RegisterAccount(AccountRegistrationRequest requestData, out AccountRegistrationResponse responseData);
+
+        /// <summary>
+        /// Confirm you register for a new SMART COSMOS account
+        /// </summary>
+        /// <param name="requestData">Confirm account data (token and email address)</param>
+        /// <param name="responseData">Confirm registration result</param>
+        /// <returns>RegistrationActionResult</returns>
+        RegistrationActionResult ConfirmAccountRegistration(ConfirmRegistrationRequest requestData, out ConfirmRegistrationResponse responseData);
     }
 }

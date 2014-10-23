@@ -17,14 +17,10 @@
 
 #endregion License
 
-using System.Runtime.Serialization;
-
 namespace Smartrac.SmartCosmos.Profiles.TagMetadata
 {
-    [DataContract]
     public class TagMessageRequest
     {
-        [DataMember]
         public int tagCode { get; set; }
     }
 }

@@ -17,16 +17,15 @@
 
 #endregion License
 
-using System.Runtime.Serialization;
+using Newtonsoft.Json;
+using Newtonsoft.Json.Converters;
 using Smartrac.SmartCosmos.ClientEndpoint.BaseObject;
 using Smartrac.SmartCosmos.Objects.Base;
 
 namespace Smartrac.SmartCosmos.Objects.RelationshipManagement
 {
-    [DataContract]
     public class RelationshipDataResponse : BaseResponse
     {
-        [DataMember]
         public string urn
         {
             get
@@ -39,12 +38,12 @@ namespace Smartrac.SmartCosmos.Objects.RelationshipManagement
             }
         }
 
+        [JsonIgnore]
         public Urn relationshipUrn { get; set; }
 
-        [DataMember]
+        [JsonConverter(typeof(StringEnumConverter))]
         public EntityReferenceType entityReferenceType { get; set; }
 
-        [DataMember]
         public string referenceUrn
         {
             get
@@ -57,15 +56,14 @@ namespace Smartrac.SmartCosmos.Objects.RelationshipManagement
             }
         }
 
+        [JsonIgnore]
         public Urn referenceUrnObj { get; set; }
 
-        [DataMember]
         public string type { get; set; }
 
-        [DataMember]
+        [JsonConverter(typeof(StringEnumConverter))]
         public EntityReferenceType relatedEntityReferenceType { get; set; }
 
-        [DataMember]
         public string relatedReferenceUrn
         {
             get
@@ -78,9 +76,9 @@ namespace Smartrac.SmartCosmos.Objects.RelationshipManagement
             }
         }
 
+        [JsonIgnore]
         public Urn relatedReferenceUrnObj { get; set; }
 
-        [DataMember]
         public long lastModifiedTimestamp { get; set; }
     }
 }

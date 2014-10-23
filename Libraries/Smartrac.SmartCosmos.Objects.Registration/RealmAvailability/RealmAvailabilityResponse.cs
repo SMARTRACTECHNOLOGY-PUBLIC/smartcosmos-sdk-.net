@@ -17,12 +17,10 @@
 
 #endregion License
 
-using System.Runtime.Serialization;
 using Smartrac.SmartCosmos.ClientEndpoint.BaseObject;
 
 namespace Smartrac.SmartCosmos.Objects.Registration
 {
-    [DataContract]
     public class RealmAvailabilityResponse : DefaultResponse
     {
     }

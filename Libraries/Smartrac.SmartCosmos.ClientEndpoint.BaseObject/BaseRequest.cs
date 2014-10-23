@@ -17,11 +17,8 @@
 
 #endregion License
 
-using System.Runtime.Serialization;
-
 namespace Smartrac.SmartCosmos.ClientEndpoint.BaseObject
 {
-    [DataContract]
     public class BaseRequest
     {
         public virtual bool IsValid()

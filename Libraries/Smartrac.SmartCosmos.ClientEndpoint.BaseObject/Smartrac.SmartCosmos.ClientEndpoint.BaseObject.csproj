@@ -119,7 +119,7 @@
     <Compile Include="Interfaces\IHTTPStatusCode.cs" />
     <Compile Include="Interfaces\IResponseMessage.cs" />
     <Compile Include="Json\JsonDictionaryConverter.cs" />
-    <Compile Include="ObjectExtensions.cs" />
+    <Compile Include="Extensions\ObjectExtensions.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

@@ -17,15 +17,12 @@
 
 #endregion License
 
-using System.Runtime.Serialization;
 using Smartrac.SmartCosmos.ClientEndpoint.BaseObject;
 
 namespace Smartrac.SmartCosmos.Objects.Metadata
 {
-    [DataContract]
     public class TypeSafeDecodingResponse : DefaultResponse
     {
-        [DataMember]
         public string decodedValue { get; set; }
     }
 }

@@ -17,30 +17,21 @@
 
 #endregion License
 
-using System.Runtime.Serialization;
-
 namespace Smartrac.SmartCosmos.Profiles.DataImport
 {
-    [DataContract]
     public class ImportStateResponse
     {
-        [DataMember]
         public int code { get; set; }
 
-        [DataMember]
         public int state { get; set; }
 
-        [DataMember]
         public double progress { get; set; }
 
-        [DataMember]
         public string message { get; set; }
     }
 
-    [DataContract]
     public class ImportStateRequest
     {
-        [DataMember]
         public string importId { get; set; }
 
         public ImportStateRequest(string aImportId)

@@ -35,12 +35,12 @@ namespace Smartrac.SmartCosmos.Objects.DataContext.Sample
 
         public override string GetNewPassword()
         {
-            return "";
+            return "1234";
         }
 
         public override string GeteMailAddress()
         {
-            return "me@foo.com";
+            return "testuser2@yourarea.com";
         }
 
         public override RoleType GetRoleType()

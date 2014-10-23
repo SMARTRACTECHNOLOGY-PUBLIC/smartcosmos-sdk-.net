@@ -18,13 +18,33 @@
 #endregion License
 
 using System;
-using System.Runtime.Serialization;
+using GeoJSON.Net;
+using Smartrac.SmartCosmos.ClientEndpoint.BaseObject;
 
 namespace Smartrac.SmartCosmos.Objects.GeospatialManagement
 {
-    [DataContract]
-    public class GeospatialManagementNewRequest : GeospatialEntryDataRequest
+    public class GeospatialManagementNewRequest : BaseRequest
     {
+        public bool activeFlag { get; set; }
+
+        public string description { get; set; }
+
+        public string name { get; set; }
+
+        public string type { get; set; }
+
+        public string moniker { get; set; }
+
+        public GeoJSONObject geometricShape { get; set; }
+
+        public GeospatialManagementNewRequest()
+            : base()
+        {
+            description = null;
+            activeFlag = true;
+            moniker = null;
+        }
+
         public override bool IsValid()
         {
             return base.IsValid() &&

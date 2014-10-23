@@ -17,37 +17,27 @@
 
 #endregion License
 
-using System.Runtime.Serialization;
 using Smartrac.SmartCosmos.ClientEndpoint.BaseObject;
 using Smartrac.SmartCosmos.Objects.Base;
 
 namespace Smartrac.SmartCosmos.Objects.ObjectInteractionSession
 {
-    [DataContract]
-    public class ObjectInteractionSessionDataResponse : DefaultResponse
+    public class ObjectInteractionSessionDataResponse : BaseResponse
     {
-        [DataMember]
         public bool activeFlag { get; set; }
 
-        [DataMember]
         public string description { get; set; }
 
-        [DataMember]
         public string name { get; set; }
 
-        [DataMember]
         public string type { get; set; }
 
-        [DataMember]
         public long startTimestamp { get; set; }
 
-        [DataMember]
         public long stopTimestamp { get; set; }
 
-        [DataMember]
         public long lastModifiedTimestamp { get; set; }
 
-        [DataMember]
         public string urn
         {
             get

@@ -17,16 +17,14 @@
 
 #endregion License
 
-using System.Runtime.Serialization;
+using Newtonsoft.Json;
 using Smartrac.SmartCosmos.ClientEndpoint.BaseObject;
 using Smartrac.SmartCosmos.Objects.Base;
 
 namespace Smartrac.SmartCosmos.Objects.HashTag
 {
-    [DataContract]
     public class HashTagDataResponse : BaseResponse
     {
-        [DataMember]
         public string urn
         {
             get
@@ -39,18 +37,15 @@ namespace Smartrac.SmartCosmos.Objects.HashTag
             }
         }
 
+        [JsonIgnore]
         public Urn urnObj { get; set; }
 
-        [DataMember]
         public string description { get; set; }
 
-        [DataMember]
         public string name { get; set; }
 
-        [DataMember]
         public string moniker { get; set; }
 
-        [DataMember]
         public bool activeFlag { get; set; }
 
         public HashTagDataResponse()

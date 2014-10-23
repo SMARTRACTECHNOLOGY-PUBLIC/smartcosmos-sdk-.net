@@ -18,12 +18,19 @@
 #endregion License
 
 using System.Collections.Generic;
-using System.Runtime.Serialization;
+using System.Net;
+using Smartrac.SmartCosmos.ClientEndpoint.BaseObject;
 
 namespace Smartrac.SmartCosmos.Objects.ObjectManagement
 {
-    [DataContract]
-    public class QueryObjectsResponse : List<ObjectDataResponse>
+    public class QueryObjectsResponse : List<ObjectDataResponse>, IHttpStatusCode
     {
+        public HttpStatusCode HTTPStatusCode { get; set; }
+
+        public QueryObjectsResponse()
+            : base()
+        {
+            this.HTTPStatusCode = HttpStatusCode.NotImplemented;
+        }
     }
 }

@@ -19,32 +19,24 @@
 
 using System;
 using System.Collections.Generic;
-using System.Runtime.Serialization;
 using Smartrac.SmartCosmos.ClientEndpoint.BaseObject;
 
 namespace Smartrac.SmartCosmos.Profiles.TagMetadata
 {
-    [DataContract]
     public class TagMetaDataResponse : BaseResponse
     {
-        [DataMember]
         public int code { get; set; }
 
-        [DataMember]
         public List<TagRecord> result { get; set; }
     }
 
-    [DataContract]
     public class VerificationState
     {
-        [DataMember]
         public int RR { get; set; }
 
-        [DataMember]
         public int TestLicense { get; set; }
     }
 
-    [DataContract]
     public class TagProperties : Dictionary<string, object>
     {
         public void SetValue(TagPropertyString key, string value)
@@ -150,19 +142,14 @@ namespace Smartrac.SmartCosmos.Profiles.TagMetadata
         }
     }
 
-    [DataContract]
     public class TagRecord
     {
-        [DataMember]
         public string tagId { get; set; }
 
-        [DataMember]
         public int tagCode { get; set; }
 
-        [DataMember]
         public VerificationState verificationState { get; set; }
 
-        [DataMember]
         public TagProperties props { get; set; }
 
         //public Dictionary<string, object> props { get; set; }

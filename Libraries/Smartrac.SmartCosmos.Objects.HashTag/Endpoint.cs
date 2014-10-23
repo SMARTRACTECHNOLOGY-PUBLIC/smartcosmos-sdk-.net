@@ -223,35 +223,36 @@ namespace Smartrac.SmartCosmos.Objects.HashTag
         {
             try
             {
-                if (null == tagUrn)
+                if ((null == tagUrn) || (!tagUrn.IsValid()))
                 {
                     if (null != Logger)
-                        Logger.AddLog("tagUrn is null", LogType.Error);
-                    return HashTagActionResult.Failed;
-                }
-
-                if (!tagUrn.IsValid())
-                {
-                    if (null != Logger)
-                        Logger.AddLog("Invalid fileUrn: " + tagUrn.UUID, LogType.Error);
+                        Logger.AddLog("Invalid tagUrn: " + tagUrn.UUID, LogType.Error);
                     return HashTagActionResult.Failed;
                 }
 
                 var request = CreateWebRequest("/tags/tag/" + tagUrn.UUID);
                 request.Method = "DELETE";
 
-                using (var response = request.GetResponse() as System.Net.HttpWebResponse)
+                using (var response = request.GetResponseSafe() as System.Net.HttpWebResponse)
                 {
-                    if ((response.StatusCode == HttpStatusCode.NoContent) &&
-                       (response.Headers.Get("SmartCosmos-Event") == "FileDeleted"))
+                    if (response != null)
                     {
-                        return HashTagActionResult.Successful;
-                    }
-                    else
-                    {
-                        return HashTagActionResult.Failed;
+                        try
+                        {
+                            if ((response.StatusCode == HttpStatusCode.NoContent) &&
+                                (response.Headers.Get("SmartCosmos-Event") == "FileDeleted")
+                               )
+                            {
+                                return HashTagActionResult.Successful;
+                            }
+                        }
+                        finally
+                        {
+                            response.Close();
+                        }
                     }
                 }
+                return HashTagActionResult.Failed;
             }
             catch (Exception e)
             {

@@ -17,17 +17,12 @@
 
 #endregion License
 
-using System.Runtime.Serialization;
-
 namespace Smartrac.SmartCosmos.Profiles.TagVerification
 {
-    [DataContract]
     public class VerificationMessageResponse
     {
-        [DataMember]
         public int code { get; set; }
 
-        [DataMember]
         public string message { get; set; }
     }
 }

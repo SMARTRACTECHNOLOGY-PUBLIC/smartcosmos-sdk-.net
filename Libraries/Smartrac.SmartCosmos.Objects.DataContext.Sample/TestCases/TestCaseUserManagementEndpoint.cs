@@ -81,18 +81,23 @@ namespace Smartrac.SmartCosmos.Objects.DataContext.Sample
             result = result && (actionResult == UserActionResult.Successful);
             // log response
             Logger.AddLog("Result: " + actionResult);
-            Logger.AddLog("Result Data: " + responseUpdateUserData.ToJSON());
+            if (responseUpdateUserData != null)
+                Logger.AddLog("Result Data: " + responseUpdateUserData.ToJSON());
             OnAfterTest();
 
-            OnBeforeTest("Objects", "UserManagementEndpoint", "Lookup Specific User by URN");
-            UserDataResponse responseUserData;
-            // call endpoint
-            actionResult = tester.LookupSpecificUser(responseNewUserData.userUrn, dataContext.GetViewType(), out responseUserData);
-            result = result && (actionResult == UserActionResult.Successful);
-            // log response
-            Logger.AddLog("Result: " + actionResult);
-            Logger.AddLog("Result Data: " + responseUserData.ToJSON());
-            OnAfterTest();
+            if ((responseNewUserData != null) && (responseNewUserData.userUrn != null) && responseNewUserData.userUrn.IsValid())
+            {
+                OnBeforeTest("Objects", "UserManagementEndpoint", "Lookup Specific User by URN");
+                UserDataResponse responseUserData;
+                // call endpoint
+                actionResult = tester.LookupSpecificUser(responseNewUserData.userUrn, dataContext.GetViewType(), out responseUserData);
+                result = result && (actionResult == UserActionResult.Successful);
+                // log response
+                Logger.AddLog("Result: " + actionResult);
+                if (responseUserData != null)
+                    Logger.AddLog("Result Data: " + responseUserData.ToJSON());
+                OnAfterTest();
+            }
 
             OnBeforeTest("Objects", "UserManagementEndpoint", "Lookup Specific User by Email Address");
             UserDataResponse responseUserEMailData;

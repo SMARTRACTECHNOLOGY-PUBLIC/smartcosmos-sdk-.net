@@ -19,7 +19,8 @@
 
 using System;
 using System.Collections.Generic;
-using System.Runtime.Serialization;
+using Newtonsoft.Json;
+using Newtonsoft.Json.Converters;
 using Smartrac.SmartCosmos.ClientEndpoint.BaseObject;
 using Smartrac.SmartCosmos.Objects.Base;
 
@@ -30,11 +31,13 @@ namespace Smartrac.SmartCosmos.Objects.Metadata
         /// <summary>
         /// Valid EntityReferenceType enum value
         /// </summary>
+        [JsonConverter(typeof(StringEnumConverter))]
         public EntityReferenceType entityReferenceType { get; set; }
 
         /// <summary>
         /// Case-sensitive urn of an existing entity of type entityReferenceType
         /// </summary>
+        [JsonIgnore]
         public Urn entityUrn { get; set; }
 
         private List<MetadataItem> MetaDataList_ = new List<MetadataItem>();
@@ -58,10 +61,8 @@ namespace Smartrac.SmartCosmos.Objects.Metadata
         }
     }
 
-    [DataContract]
     public class MetadataItem : BaseRequest
     {
-        [DataMember]
         public string dataType
         {
             get
@@ -80,10 +81,9 @@ namespace Smartrac.SmartCosmos.Objects.Metadata
         /// <summary>
         /// Case-sensitive key used to index the metadata raw value
         /// </summary>
-        [DataMember]
+
         public string key { get; set; }
 
-        [DataMember]
         public string rawValue { get; set; }
 
         public override bool IsValid()

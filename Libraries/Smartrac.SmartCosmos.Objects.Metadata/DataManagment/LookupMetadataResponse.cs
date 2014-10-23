@@ -18,16 +18,15 @@
 #endregion License
 
 using System;
-using System.Runtime.Serialization;
+using Newtonsoft.Json;
+using Newtonsoft.Json.Converters;
 using Smartrac.SmartCosmos.ClientEndpoint.BaseObject;
 using Smartrac.SmartCosmos.Objects.Base;
 
 namespace Smartrac.SmartCosmos.Objects.Metadata
 {
-    [DataContract]
     public class LookupMetadataResponse : DefaultResponse
     {
-        [DataMember]
         public string dataType
         {
             get
@@ -41,10 +40,9 @@ namespace Smartrac.SmartCosmos.Objects.Metadata
             }
         }
 
-        [DataMember]
+        [JsonConverter(typeof(StringEnumConverter))]
         public MetadataDataType dataTypeObj { get; set; }
 
-        [DataMember]
         public string entityReferenceType
         {
             get
@@ -58,7 +56,6 @@ namespace Smartrac.SmartCosmos.Objects.Metadata
             }
         }
 
-        [DataMember]
         public string urn
         {
             get
@@ -71,9 +68,9 @@ namespace Smartrac.SmartCosmos.Objects.Metadata
             }
         }
 
+        [JsonIgnore]
         public Urn urnObj { get; set; }
 
-        [DataMember]
         public string referenceUrn
         {
             get
@@ -86,15 +83,16 @@ namespace Smartrac.SmartCosmos.Objects.Metadata
             }
         }
 
+        [JsonIgnore]
         public Urn referenceUrnObj { get; set; }
 
-        [DataMember]
+        [JsonConverter(typeof(StringEnumConverter))]
         public EntityReferenceType entityReferenceTypeObj { get; set; }
 
         /// <summary>
         /// Opaque Base64 encoded value when using built-in encoding
         /// </summary>
-        [DataMember]
+
         public string rawValue { get; set; }
     }
 }

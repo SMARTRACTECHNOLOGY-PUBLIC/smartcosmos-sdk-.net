@@ -18,18 +18,19 @@
 #endregion License
 
 using System;
-using System.Runtime.Serialization;
+using Newtonsoft.Json;
+using Newtonsoft.Json.Converters;
 using Smartrac.SmartCosmos.ClientEndpoint.BaseObject;
 using Smartrac.SmartCosmos.Objects.Base;
 
 namespace Smartrac.SmartCosmos.Objects.RelationshipManagement
 {
-    [DataContract]
     public class RelationshipManagementRequest : BaseRequest
     {
         /// <summary>
         /// entityReferenceType is required and constrained to a valid EntityReferenceType value
         /// </summary>
+        [JsonConverter(typeof(StringEnumConverter))]
         public EntityReferenceType entityReferenceType { get; set; }
 
         /// <summary>
@@ -50,24 +51,25 @@ namespace Smartrac.SmartCosmos.Objects.RelationshipManagement
         /// <summary>
         /// referenceUrn must point to a pre-existing record of the given entityReferenceType
         /// </summary>
+        [JsonIgnore]
         public Urn referenceUrnObj { get; set; }
 
         /// <summary>
         /// type is required and constrained to 255 characters
         /// </summary>
-        [DataMember]
+
         public string type { get; set; }
 
         /// <summary>
         /// relatedEntityReferenceType is required and constrained to a valid EntityReferenceType value defined
         /// </summary>
-        [DataMember]
+        [JsonConverter(typeof(StringEnumConverter))]
         public EntityReferenceType relatedEntityReferenceType { get; set; }
 
         /// <summary>
         /// relatedReferenceUrn must point to a pre-existing record of the given relatedEntityReferenceType
         /// </summary>
-        [DataMember]
+
         public string relatedReferenceUrn
         {
             get
@@ -80,12 +82,13 @@ namespace Smartrac.SmartCosmos.Objects.RelationshipManagement
             }
         }
 
+        [JsonIgnore]
         public Urn relatedReferenceUrnObj { get; set; }
 
         /// <summary>
         /// moniker is optional and constrained to 2048 characters may be omitted; defaults to null
         /// </summary>
-        [DataMember]
+
         public string moniker { get; set; }
 
         public override bool IsValid()

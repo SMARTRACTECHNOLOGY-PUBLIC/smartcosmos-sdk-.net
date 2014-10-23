@@ -19,12 +19,11 @@
 
 using System.Collections.Generic;
 using System.Net;
-using System.Runtime.Serialization;
+using Smartrac.SmartCosmos.ClientEndpoint.BaseObject;
 
 namespace Smartrac.SmartCosmos.Objects.GeospatialManagement
 {
-    [DataContract]
-    public class QueryGeospatialEntriesResponse : List<GeospatialEntryDataResponse>
+    public class QueryGeospatialEntriesResponse : List<GeospatialEntryDataResponse>, IHttpStatusCode
     {
         public HttpStatusCode HTTPStatusCode { get; set; }
 

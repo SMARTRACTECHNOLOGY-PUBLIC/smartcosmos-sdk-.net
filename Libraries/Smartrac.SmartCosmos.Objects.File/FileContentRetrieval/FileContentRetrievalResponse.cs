@@ -18,12 +18,10 @@
 #endregion License
 
 using System.IO;
-using System.Runtime.Serialization;
 using Smartrac.SmartCosmos.ClientEndpoint.BaseObject;
 
 namespace Smartrac.SmartCosmos.Objects.File
 {
-    [DataContract]
     public class FileContentRetrievalResponse : DefaultResponse
     {
         private Stream content_;

@@ -20,10 +20,9 @@
 using System;
 using System.IO;
 using System.Net;
-using System.Runtime.Serialization.Json;
 using Smartrac.Logging;
 using Smartrac.SmartCosmos.ClientEndpoint.Base;
-using Smartrac.SmartCosmos.Profiles.Base;
+using Smartrac.SmartCosmos.ClientEndpoint.BaseObject;
 
 namespace Smartrac.SmartCosmos.Profiles.DataImport
 {
@@ -53,21 +52,23 @@ namespace Smartrac.SmartCosmos.Profiles.DataImport
                     data.CopyTo(writer);
                 }
 
-                using (var response = request.GetResponse() as System.Net.HttpWebResponse)
+                using (var response = request.GetResponseSafe() as System.Net.HttpWebResponse)
                 {
-                    if (response == null)
+                    if (response != null)
                     {
-                        return DataActionResult.Failed;
+                        try
+                        {
+                            responseData = responseData.FromJSON(response.GetResponseStream());
+                            if (response.StatusCode == HttpStatusCode.OK)
+                                return DataActionResult.Successful;
+                        }
+                        finally
+                        {
+                            response.Close();
+                        }
                     }
-
-                    DataContractJsonSerializer serializer = new DataContractJsonSerializer(typeof(FileUploadResponse));
-                    responseData = serializer.ReadObject(response.GetResponseStream()) as FileUploadResponse;
-
-                    if (response.StatusCode == HttpStatusCode.OK)
-                        return DataActionResult.Successful;
-                    else
-                        return DataActionResult.Failed;
                 }
+                return DataActionResult.Failed;
             }
             catch (Exception e)
             {

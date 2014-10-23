@@ -245,20 +245,27 @@ namespace Smartrac.SmartCosmos.Objects.RelationshipManagement
                     return RelationshipActionResult.Failed;
                 }
 
-                var request = CreateWebRequest("/relationships/" + relationshipUrn.UUID);
+                var request = CreateWebRequest("/relationships/" + relationshipUrn.UUID, WebRequestOption.Authorization);
                 request.Method = "DELETE";
 
-                using (var response = request.GetResponse() as System.Net.HttpWebResponse)
+                using (var response = request.GetResponseSafe() as System.Net.HttpWebResponse)
                 {
-                    if ((response.StatusCode == HttpStatusCode.NoContent) &&
-                       (response.Headers.Get("SmartCosmos-Event") == "RelationshipDeleted"))
+                    if (response != null)
                     {
-                        return RelationshipActionResult.Successful;
+                        try
+                        {
+                            if ((response.StatusCode == HttpStatusCode.NoContent) &&
+                                (response.Headers.Get("SmartCosmos-Event") == "RelationshipDeleted"))
+                            {
+                                return RelationshipActionResult.Successful;
+                            }
+                        }
+                        finally
+                        {
+                            response.Close();
+                        }
                     }
-                    else
-                    {
-                        return RelationshipActionResult.Failed;
-                    }
+                    return RelationshipActionResult.Failed;
                 }
             }
             catch (Exception e)

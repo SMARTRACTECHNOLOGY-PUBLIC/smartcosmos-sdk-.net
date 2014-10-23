@@ -17,17 +17,15 @@
 
 #endregion License
 
-using System.Runtime.Serialization;
 using GeoJSON.Net;
+using Newtonsoft.Json;
 using Smartrac.SmartCosmos.ClientEndpoint.BaseObject;
 using Smartrac.SmartCosmos.Objects.Base;
 
 namespace Smartrac.SmartCosmos.Objects.GeospatialManagement
 {
-    [DataContract]
     public class GeospatialEntryDataResponse : BaseResponse
     {
-        [DataMember(IsRequired = true)]
         public string urn
         {
             get
@@ -40,27 +38,21 @@ namespace Smartrac.SmartCosmos.Objects.GeospatialManagement
             }
         }
 
+        [JsonIgnore]
         public Urn geospatialUrn { get; set; }
 
-        [DataMember]
         public string name { get; set; }
 
-        [DataMember]
         public string type { get; set; }
 
-        [DataMember]
         public string description { get; set; }
 
-        [DataMember]
         public bool activeFlag { get; set; }
 
-        [DataMember]
         public long lastModifiedTimestamp { get; set; }
 
-        [DataMember]
         public string moniker { get; set; }
 
-        [DataMember]
         public GeoJSONObject geometricShape { get; set; }
 
         public GeospatialEntryDataResponse()

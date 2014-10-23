@@ -26,7 +26,7 @@ using Smartrac.SmartCosmos.Objects.Base;
 namespace Smartrac.SmartCosmos.Objects.ObjectInteraction
 {
     /// <summary>
-    /// Client for ObjectInteraction Endpoints
+    /// Client for ObjectInteractionItem Endpoints
     /// </summary>
     internal class ObjectInteractionEndpoint : BaseObjectsEndpoint, IObjectInteractionEndpoint
     {
@@ -55,6 +55,7 @@ namespace Smartrac.SmartCosmos.Objects.ObjectInteraction
                     switch (responseData.HTTPStatusCode)
                     {
                         case HttpStatusCode.OK:
+                        case HttpStatusCode.Created:
                             responseData.interactionUrn = new Urn(responseData.message);
                             return ObjInteractActionResult.Successful;
 
@@ -120,7 +121,7 @@ namespace Smartrac.SmartCosmos.Objects.ObjectInteraction
         /// <param name="viewType">A valid JSON Serialization View name (case-sensitive)</param>
         /// <param name="responseData">Object data</param>
         /// <returns>ObjectManagementActionResult</returns>
-        public ObjInteractActionResult LookupByUrn(Urn interactionUrn, out QueryObjectInteractionsResponse responseData, ViewType viewType = ViewType.Standard)
+        public ObjInteractActionResult LookupByUrn(Urn interactionUrn, out QueryObjectInteractionResponse responseData, ViewType viewType = ViewType.Standard)
         {
             responseData = null;
             try
@@ -133,7 +134,7 @@ namespace Smartrac.SmartCosmos.Objects.ObjectInteraction
                 }
 
                 var request = CreateWebRequest("/interactions/" + interactionUrn.UUID + "?view=" + viewType.GetDescription(), WebRequestOption.Authorization);
-                var returnHTTPCode = ExecuteWebRequestJSON<QueryObjectInteractionsResponse>(request, out responseData);
+                var returnHTTPCode = ExecuteWebRequestJSON<QueryObjectInteractionResponse>(request, out responseData);
 
                 if (responseData != null)
                 {

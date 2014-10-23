@@ -21,7 +21,6 @@ using System;
 using System.Net;
 using Smartrac.Logging;
 using Smartrac.SmartCosmos.ClientEndpoint.Base;
-using Smartrac.SmartCosmos.Profiles.Base;
 
 namespace Smartrac.SmartCosmos.Profiles.PlatformAvailability
 {
@@ -41,8 +40,9 @@ namespace Smartrac.SmartCosmos.Profiles.PlatformAvailability
                 WebRequest request = CreateWebRequest("/test/ping");
                 request.Method = WebRequestMethods.Http.Get;
                 request.ContentLength = 0;
-                using (var response = request.GetResponse() as System.Net.HttpWebResponse)
+                using (var response = request.GetResponseSafe() as System.Net.HttpWebResponse)
                 {
+                    response.Close();
                     switch (response.StatusCode)
                     {
                         case HttpStatusCode.NoContent: return PlatformAvailabilityActionResult.Successful;

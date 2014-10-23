@@ -18,15 +18,12 @@
 #endregion License
 
 using System;
-using System.Runtime.Serialization;
 using Smartrac.SmartCosmos.ClientEndpoint.BaseObject;
 
 namespace Smartrac.SmartCosmos.Objects.Metadata
 {
-    [DataContract]
     public class TypeSafeDecodingRequest : BaseRequest
     {
-        [DataMember]
         public string dataType
         {
             get
@@ -40,10 +37,8 @@ namespace Smartrac.SmartCosmos.Objects.Metadata
             }
         }
 
-        [DataMember]
         public MetadataDataType dataTypeObj { get; set; }
 
-        [DataMember]
         public string rawValue { get; set; }
     }
 }

@@ -19,12 +19,11 @@
 
 using System.Collections.Generic;
 using System.Net;
-using System.Runtime.Serialization;
+using Smartrac.SmartCosmos.ClientEndpoint.BaseObject;
 
 namespace Smartrac.SmartCosmos.Objects.HashTag
 {
-    [DataContract]
-    public class HashTagListResponse : List<HashTagDataResponse>
+    public class HashTagListResponse : List<HashTagDataResponse>, IHttpStatusCode
     {
         public HttpStatusCode HTTPStatusCode { get; set; }
 

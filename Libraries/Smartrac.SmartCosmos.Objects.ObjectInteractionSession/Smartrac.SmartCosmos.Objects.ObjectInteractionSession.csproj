@@ -79,6 +79,7 @@
   <ItemGroup>
     <Compile Include="Builder\ObjectInteractionEndpointBuilder.cs" />
     <Compile Include="Endpoint.cs" />
+    <Compile Include="Query\ObjectInteractionSessionDataListResponse.cs" />
     <Compile Include="Stop\StopObjectInteractionSessionRequest.cs" />
     <Compile Include="Stop\StopObjectInteractionSessionResponse.cs" />
     <Compile Include="Start\StartObjectInteractionSessionRequest.cs" />

@@ -54,7 +54,7 @@ namespace Smartrac.SmartCosmos.Objects.DataContext.Sample
         {
             var point = new GeoJSON.Net.Geometry.Point(new GeoJSON.Net.Geometry.GeographicPosition(45.79012, 15.94107));
             var featureProperties = new Dictionary<string, object> { { "Name", "Foo" } };
-            var model = new GeoJSON.Net.Feature.Feature(point, featureProperties);
+            var model = new GeoJSON.Net.Feature.Feature(point, featureProperties, "FeatureCollection");
             return model;
         }
 

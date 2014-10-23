@@ -21,15 +21,36 @@ using System.ComponentModel;
 
 namespace Smartrac.SmartCosmos.Objects.Base
 {
+    /// <summary>
+    /// Every GET endpoint allows the developer to control the verbosity of the JSON response.
+    /// Generally, this fact is encapsulated and of little concern to most developers.
+    /// However, it is possible in rare situations to observe the same identical object, as indicated by its URN key,
+    /// serialized with more (or less) fields. The serialization levels supported by the platform include:
+    /// </summary>
     public enum ViewType
     {
+        /// <summary>
+        /// All Published fields, plus highly pertinent fields
+        /// </summary>
         [DescriptionAttribute("Minimum")]
         Minimum = 0,
 
+        /// <summary>
+        ///  [**default**] All Minimum fields, plus additional contextual fields
+        /// </summary>
         [DescriptionAttribute("Standard")]
         Standard = 1,
 
+        /// <summary>
+        /// All Standard fields, plus fields rarely referenced
+        /// </summary>
         [DescriptionAttribute("Full")]
-        Full = 2
+        Full = 2,
+
+        /// <summary>
+        /// Publicly accessible fields (specific to the Extension Framework)
+        /// </summary>
+        [DescriptionAttribute("Published")]
+        Published = 3
     }
 }

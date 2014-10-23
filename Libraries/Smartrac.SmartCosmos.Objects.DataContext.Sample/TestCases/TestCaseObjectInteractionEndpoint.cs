@@ -69,27 +69,33 @@ namespace Smartrac.SmartCosmos.Objects.DataContext.Sample
             OnAfterTest();
 
             OnBeforeTest("Objects", "ObjectInteractionEndpoint", "Lookup Matching Interactions");
-            QueryObjectInteractionsResponse responseLookupData;
+            QueryObjectInteractionsResponse responseLookupListData;
             // call endpoint
             actionResult = tester.Lookup(dataContext.GetObjectUrn(),
-                                        out responseLookupData,
+                                        out responseLookupListData,
                                         dataContext.GetViewType());
             result = result && (actionResult == ObjInteractActionResult.Successful);
             // log response
             Logger.AddLog("Result: " + actionResult);
-            Logger.AddLog("Result Data: " + responseLookupData.ToJSON());
+            Logger.AddLog("Result Data: " + responseLookupListData.ToJSON());
             OnAfterTest();
 
-            OnBeforeTest("Objects", "ObjectInteractionEndpoint", "Lookup Specific Object Interaction by URN");
-            // call endpoint
-            actionResult = tester.LookupByUrn(responseNewInteractionData.interactionUrn,
-                                            out responseLookupData,
-                                            dataContext.GetViewType());
-            result = result && (actionResult == ObjInteractActionResult.Successful);
-            // log response
-            Logger.AddLog("Result: " + actionResult);
-            Logger.AddLog("Result Data: " + responseLookupData.ToJSON());
-            OnAfterTest();
+            if ((responseNewInteractionData != null) &&
+                (responseNewInteractionData.interactionUrn != null) &&
+                (responseNewInteractionData.interactionUrn.IsValid()))
+            {
+                OnBeforeTest("Objects", "ObjectInteractionEndpoint", "Lookup Specific Object Interaction by URN");
+                QueryObjectInteractionResponse responseLookupData;
+                // call endpoint
+                actionResult = tester.LookupByUrn(responseNewInteractionData.interactionUrn,
+                                                out responseLookupData,
+                                                dataContext.GetViewType());
+                result = result && (actionResult == ObjInteractActionResult.Successful);
+                // log response
+                Logger.AddLog("Result: " + actionResult);
+                Logger.AddLog("Result Data: " + responseLookupData.ToJSON());
+                OnAfterTest();
+            }
 
             return result;
         }

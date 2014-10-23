@@ -17,7 +17,6 @@
 
 #endregion License
 
-using System.Text;
 using System.Web;
 
 namespace System
@@ -40,6 +39,21 @@ namespace System
                 return uri;
             }
 
+            string query = uri.OriginalString;
+            query += query.Contains("?") ? "&" : "?";
+            query += name + "=" + HttpUtility.UrlEncode(value);
+
+            return new Uri(query, uri.IsAbsoluteUri ? UriKind.Absolute : UriKind.Relative);
+            /*
+            var ub = new UriBuilder();
+            ub.Host = uri.Host;
+            ub.Query += String.IsNullOrEmpty(uri.Query) ? "?" : "&";
+            ub.Query += name + "=" + HttpUtility.UrlEncode(value);
+            */
+            //uri.Query += String.IsNullOrEmpty(uri.Query) ? "?" : "&";
+            //uri.Query += name + "=" + HttpUtility.UrlEncode(value);
+
+            /*
             var ub = new UriBuilder(uri);
 
             // decodes urlencoded pairs from uri.Query to HttpValueCollection
@@ -94,6 +108,7 @@ namespace System
             }
 
             return ub.Uri;
+              */
         }
     }
 }

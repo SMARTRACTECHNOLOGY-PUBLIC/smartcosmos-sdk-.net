@@ -21,6 +21,9 @@ using Smartrac.SmartCosmos.ClientEndpoint.Base;
 
 namespace Smartrac.SmartCosmos.Objects.Base
 {
+    /// <summary>
+    /// Base class for all SMART COSMOS Objects endpoints
+    /// </summary>
     public class BaseObjectsEndpoint : BaseEndpoint
     {
     }

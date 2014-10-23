@@ -81,6 +81,8 @@
     <Compile Include="Builder\RegistrationEndpointBuilder.cs" />
     <Compile Include="Interfaces\IRegistrationEndpoint.cs" />
     <Compile Include="Endpoint.cs" />
+    <Compile Include="ConfirmRegistration\ConfirmRegistrationRequest.cs" />
+    <Compile Include="ConfirmRegistration\ConfirmRegistrationResponse.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="RealmAvailability\RealmAvailabilityResponse.cs" />
   </ItemGroup>

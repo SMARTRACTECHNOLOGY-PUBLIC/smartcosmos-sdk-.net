@@ -18,24 +18,18 @@
 #endregion License
 
 using System;
-using System.Runtime.Serialization;
 using Smartrac.SmartCosmos.ClientEndpoint.BaseObject;
 
 namespace Smartrac.SmartCosmos.Objects.HashTag
 {
-    [DataContract]
     public class HashTagRequest : BaseRequest
     {
-        [DataMember]
         public string description { get; set; }
 
-        [DataMember]
         public string name { get; set; }
 
-        [DataMember]
         public string moniker { get; set; }
 
-        [DataMember]
         public bool activeFlag { get; set; }
 
         public HashTagRequest()

@@ -18,16 +18,13 @@
 #endregion License
 
 using System;
-using System.Runtime.Serialization;
 using Smartrac.SmartCosmos.ClientEndpoint.BaseObject;
 using Smartrac.SmartCosmos.Objects.Base;
 
 namespace Smartrac.SmartCosmos.Objects.ObjectManagement
 {
-    [DataContract]
     public class ObjectManagementRequest : BaseRequest
     {
-        [DataMember(IsRequired = true)]
         public string objectUrn
         {
             get
@@ -42,19 +39,14 @@ namespace Smartrac.SmartCosmos.Objects.ObjectManagement
 
         public Urn urn { get; set; }
 
-        [DataMember]
         public string type { get; set; }
 
-        [DataMember]
         public string name { get; set; }
 
-        [DataMember]
         public string description { get; set; }
 
-        [DataMember]
         public bool? activeFlag { get; set; }
 
-        [DataMember]
         public string moniker { get; set; }
 
         public override bool IsValid()
@@ -68,7 +60,6 @@ namespace Smartrac.SmartCosmos.Objects.ObjectManagement
         }
     }
 
-    [DataContract]
     public class ObjectManagementNewRequest : ObjectManagementRequest
     {
         public override bool IsValid()

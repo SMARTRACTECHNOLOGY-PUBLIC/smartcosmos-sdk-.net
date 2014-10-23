@@ -17,13 +17,47 @@
 
 #endregion License
 
-using System.Runtime.Serialization;
+using GeoJSON.Net;
+using Newtonsoft.Json;
+using Smartrac.SmartCosmos.ClientEndpoint.BaseObject;
+using Smartrac.SmartCosmos.Objects.Base;
 
 namespace Smartrac.SmartCosmos.Objects.GeospatialManagement
 {
-    [DataContract]
-    public class GeospatialManagementUpdateRequest : GeospatialEntryDataRequest
+    public class GeospatialManagementUpdateRequest : BaseRequest
     {
+        public string urn
+        {
+            get
+            {
+                return (geospatialUrn != null) ? geospatialUrn.UUID : "";
+            }
+            set
+            {
+                geospatialUrn = new Urn(value);
+            }
+        }
+
+        [JsonIgnore]
+        public Urn geospatialUrn { get; set; }
+
+        public string description { get; set; }
+
+        public string name { get; set; }
+
+        public string type { get; set; }
+
+        public string moniker { get; set; }
+
+        public GeoJSONObject geometricShape { get; set; }
+
+        public GeospatialManagementUpdateRequest()
+            : base()
+        {
+            description = null;
+            moniker = null;
+        }
+
         public override bool IsValid()
         {
             return base.IsValid() &&

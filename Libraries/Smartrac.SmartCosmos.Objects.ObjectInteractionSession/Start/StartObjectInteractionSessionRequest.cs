@@ -18,42 +18,40 @@
 #endregion License
 
 using System;
-using System.Runtime.Serialization;
 using Smartrac.SmartCosmos.ClientEndpoint.BaseObject;
 
 namespace Smartrac.SmartCosmos.Objects.ObjectInteractionSession
 {
-    [DataContract]
     public class StartObjectInteractionSessionRequest : BaseRequest
     {
         /// <summary>
         /// type is required and constrained to 255 characters
         /// </summary>
-        [DataMember]
+
         public string type { get; set; }
 
         /// <summary>
         /// name is required and constrained to 255 characters
         /// </summary>
-        [DataMember]
+
         public string name { get; set; }
 
         /// <summary>
         /// description is optional and constrained to 1024 characters and may be omitted; defaults to null
         /// </summary>
-        [DataMember]
+
         public string description { get; set; }
 
         /// <summary>
         /// activeFlag is optional and may be omitted; defaults to true
         /// </summary>
-        [DataMember]
+
         public bool activeFlag { get; set; }
 
         /// <summary>
         /// moniker is optional and constrained to 2048 characters may be omitted; defaults to null
         /// </summary>
-        [DataMember]
+
         public string moniker { get; set; }
 
         public StartObjectInteractionSessionRequest()

@@ -19,12 +19,11 @@
 
 using System.Collections.Generic;
 using System.Net;
-using System.Runtime.Serialization;
+using Smartrac.SmartCosmos.ClientEndpoint.BaseObject;
 
 namespace Smartrac.SmartCosmos.Objects.RelationshipManagement
 {
-    [DataContract]
-    public class QueryObjectRelationshipsResponse : List<RelationshipDataResponse>
+    public class QueryObjectRelationshipsResponse : List<RelationshipDataResponse>, IHttpStatusCode
     {
         public HttpStatusCode HTTPStatusCode { get; set; }
 

@@ -18,11 +18,9 @@
 #endregion License
 
 using System.Collections.Generic;
-using System.Runtime.Serialization;
 
 namespace Smartrac.SmartCosmos.Objects.HashTag
 {
-    [DataContract]
     public class HashTagListRequest : List<HashTagRequest>
     {
         public void Add(string tagName)

@@ -18,12 +18,10 @@
 #endregion License
 
 using System;
-using System.Runtime.Serialization;
 using Smartrac.SmartCosmos.ClientEndpoint.BaseObject;
 
 namespace Smartrac.SmartCosmos.Objects.ObjectInteractionSession
 {
-    [DataContract]
     public class StopObjectInteractionSessionResponse : DefaultResponse
     {
         public DateTime startTime { get; set; }

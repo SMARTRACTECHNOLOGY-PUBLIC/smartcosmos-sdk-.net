@@ -17,28 +17,25 @@
 
 #endregion License
 
-using System.Runtime.Serialization;
+using Newtonsoft.Json;
+using Newtonsoft.Json.Converters;
 using Smartrac.SmartCosmos.ClientEndpoint.BaseObject;
 using Smartrac.SmartCosmos.Objects.Base;
 
 namespace Smartrac.SmartCosmos.Objects.File
 {
-    [DataContract]
     public class FileDefinitionRequest : BaseRequest
     {
-        [DataMember(IsRequired = true)]
+        [JsonConverter(typeof(StringEnumConverter))]
         public EntityReferenceType entityReferenceType { get; set; }
 
-        [DataMember(IsRequired = true)]
+        [JsonIgnore]
         public Urn referenceUrn { get; set; }
 
-        [DataMember(IsRequired = true)]
         public string mimeType { get; set; }
 
-        [DataMember]
         public string contentUrl { get; set; }
 
-        [DataMember]
         public string moniker { get; set; }
 
         public override bool IsValid()

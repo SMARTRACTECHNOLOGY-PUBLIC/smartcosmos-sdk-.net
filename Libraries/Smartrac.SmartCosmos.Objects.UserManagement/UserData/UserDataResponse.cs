@@ -17,18 +17,18 @@
 
 #endregion License
 
-using System.Runtime.Serialization;
+using Newtonsoft.Json;
+using Newtonsoft.Json.Converters;
 using Smartrac.SmartCosmos.ClientEndpoint.BaseObject;
 using Smartrac.SmartCosmos.Objects.Base;
 
 namespace Smartrac.SmartCosmos.Objects.UserManagement
 {
-    [DataContract]
     public class UserDataResponse : BaseResponse
     {
+        [JsonIgnore]
         private Urn userUrn_;
 
-        [DataMember]
         public string urn
         {
             get
@@ -41,21 +41,18 @@ namespace Smartrac.SmartCosmos.Objects.UserManagement
             }
         }
 
-        [DataMember]
+        [JsonConverter(typeof(StringEnumConverter))]
         public RoleType roleType { get; set; }
 
-        [DataMember]
         public long lastModifiedTimestamp { get; set; }
 
-        [DataMember]
         public string emailAddress { get; set; }
 
-        [DataMember]
         public string givenName { get; set; }
 
-        [DataMember]
         public string surname { get; set; }
 
+        [JsonIgnore]
         public Urn userUrn
         {
             get

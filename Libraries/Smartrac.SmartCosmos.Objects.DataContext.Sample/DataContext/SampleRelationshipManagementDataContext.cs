@@ -25,12 +25,12 @@ namespace Smartrac.SmartCosmos.Objects.DataContext.Sample
     {
         public override Urn GetRelatedReferenceUrn()
         {
-            return new Urn("urn:uuid:54321");
+            return new Urn("urn:building:mall:ParadiseValley");
         }
 
         public override Urn GetReferenceUrn()
         {
-            return new Urn("urn:uuid:12345");
+            return new Urn("urn:building:mall:ParadiseValley");
         }
 
         public override string GetRelationshipType()

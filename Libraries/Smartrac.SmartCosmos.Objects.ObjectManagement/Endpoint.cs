@@ -199,7 +199,7 @@ namespace Smartrac.SmartCosmos.Objects.ObjectManagement
                     return ObjectActionResult.Failed;
                 }
 
-                Uri url = new Uri("/objects").
+                Uri url = new Uri("/objects", UriKind.Relative).
                     AddQuery("objectUrnLike", requestData.objectUrnLike).
                     AddQuery("type", requestData.type).
                     AddQuery("nameLike", requestData.nameLike).
@@ -207,21 +207,15 @@ namespace Smartrac.SmartCosmos.Objects.ObjectManagement
                     AddQuery("modifiedAfter", requestData.modifiedAfter).
                     AddQuery("view", requestData.viewType.GetDescription());
 
-                var request = CreateWebRequest(url.AbsoluteUri, WebRequestOption.Authorization);
+                var request = CreateWebRequest(url.OriginalString, WebRequestOption.Authorization);
                 var HTTPStatusCode = ExecuteWebRequestJSON<QueryObjectsResponse>(request, out responseData);
 
                 if (responseData != null)
                 {
-                    foreach (var elm in responseData)
-                    {
-                        elm.HTTPStatusCode = HTTPStatusCode;
-                    }
-
-                    switch (HTTPStatusCode)
+                    switch (responseData.HTTPStatusCode)
                     {
                         case HttpStatusCode.NoContent: return ObjectActionResult.Successful;
                         case HttpStatusCode.BadRequest: return ObjectActionResult.Failed;
-                        default: return ObjectActionResult.Failed;
                     }
                 }
 

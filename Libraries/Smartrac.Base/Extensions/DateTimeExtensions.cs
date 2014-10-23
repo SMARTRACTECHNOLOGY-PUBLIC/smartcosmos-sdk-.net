@@ -17,14 +17,6 @@
 
 #endregion License
 
-using System;
-using System.Collections.Generic;
-using System.IO;
-using System.Linq;
-using System.Reflection;
-using System.ArrayExtensions;
-using System.Text;
-
 namespace System
 {
     /// <summary>
@@ -48,7 +40,7 @@ namespace System
 
             // Java timestamp is millisecods past epoch
             System.DateTime dtDateTime = new DateTime(1970, 1, 1, 0, 0, 0, 0);
-            dtDateTime = dtDateTime.AddSeconds(Math.Round( (double)(unixTimestamp / 1000) ));
+            dtDateTime = dtDateTime.AddSeconds(Math.Round((double)(unixTimestamp / 1000)));
             return dtDateTime;
         }
 
@@ -69,7 +61,7 @@ namespace System
 
         public static long ToUnixTimestamp(DateTime date)
         {
-            return Convert.ToInt64( (date - new DateTime(1970, 1, 1).ToLocalTime()).TotalSeconds);
+            return Convert.ToInt64((date - new DateTime(1970, 1, 1).ToLocalTime()).TotalSeconds);
             /*
             long unixTimestamp = date.Ticks - new DateTime(1970, 1, 1).Ticks;
             unixTimestamp /= TimeSpan.TicksPerSecond;

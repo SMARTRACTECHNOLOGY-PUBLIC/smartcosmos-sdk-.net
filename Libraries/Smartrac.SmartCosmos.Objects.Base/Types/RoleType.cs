@@ -24,9 +24,12 @@ namespace Smartrac.SmartCosmos.Objects.Base
     public enum RoleType
     {
         [Description("Administrator")]
-        Administrator,
+        Administrator = 1,
 
         [Description("User")]
-        User
+        User = 2,
+
+        [Description("Developer")]
+        Developer = 3
     }
 }

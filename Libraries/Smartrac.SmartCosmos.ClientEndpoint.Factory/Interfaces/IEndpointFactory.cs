@@ -38,36 +38,83 @@ namespace Smartrac.SmartCosmos.ClientEndpoint.Factory
 {
     public interface IEndpointFactory
     {
+        /// <summary>
+        /// URL of SMART COSMOS Profiles server
+        /// default value: https://www.smart-cosmos.com/service/rest
+        /// </summary>
         string ProfilesServerURL { get; set; }
 
+        /// <summary>
+        /// URL of SMART COSMOS Objects server
+        /// </summary>
         string ObjectsServerURL { get; set; }
 
+        /// <summary>
+        /// Defines if the connection should be keep alive
+        /// </summary>
         bool KeepAlive { get; set; }
 
+        /// <summary>
+        /// Defines if invalid server certificates are allowed
+        /// </summary>
         bool AllowInvalidServerCertificates { get; set; }
 
+        /// <summary>
+        /// Client language
+        /// For a couple of functions the client can use the HTTP Accept-Language to define the language of the respond content.
+        /// </summary>
         string AcceptLanguage { get; set; }
 
+        /// <summary>
+        /// Used logger object
+        /// e.g. console, file, ...
+        /// </summary>
         IMessageLogger Logger { get; set; }
 
+        /// <summary>
+        /// User name for SMART COSMOS
+        /// </summary>
         string UserName { get; set; }
 
+        /// <summary>
+        /// User password for SMART COSMOS
+        /// </summary>
         string UserPassword { get; set; }
 
         #region Profiles
 
+        /// <summary>
+        /// Create platform availability endpoint
+        /// </summary>
+        /// <returns>IPlatformAvailabilityEndpoint</returns>
         IPlatformAvailabilityEndpoint CreatePlatformAvailabilityEndpoint();
 
+        /// <summary>
+        /// Create data import endpoint
+        /// </summary>
+        /// <returns>IDataImportEndpoint</returns>
         IDataImportEndpoint CreateDataImportEndpoint();
 
+        /// <summary>
+        /// Create tag verification endpoint
+        /// </summary>
+        /// <returns>ITagVerificationEndpoint</returns>
         ITagVerificationEndpoint CreateTagVerificationEndpoint();
 
+        /// <summary>
+        /// Create tag metadata endpoint
+        /// </summary>
+        /// <returns>ITagMetadataEndpoint</returns>
         ITagMetadataEndpoint CreateTagMetadataEndpoint();
 
         #endregion Profiles
 
         #region Objects
 
+        /// <summary>
+        /// Create account management endpoint
+        /// </summary>
+        /// <returns>IAccountManagementEndpoint</returns>
         IAccountManagementEndpoint CreateAccountManagementEndpoint();
 
         IFileEndpoint CreateFileEndpoint();

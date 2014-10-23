@@ -17,17 +17,22 @@
 
 #endregion License
 
-using System.Runtime.Serialization;
+using System;
+using Smartrac.SmartCosmos.ClientEndpoint.BaseObject;
 
 namespace Smartrac.SmartCosmos.Objects.Registration
 {
-    [DataContract]
-    public class AccountRegistrationRequest
+    public class AccountRegistrationRequest : BaseRequest
     {
-        [DataMember]
         public string emailAddress { get; set; }
 
-        [DataMember]
         public string realm { get; set; }
+
+        public override bool IsValid()
+        {
+            return base.IsValid() &&
+                !String.IsNullOrEmpty(emailAddress) &&
+                !String.IsNullOrEmpty(realm);
+        }
     }
 }

@@ -21,6 +21,9 @@ using System;
 
 namespace Smartrac.SmartCosmos.Objects.Base
 {
+    /// <summary>
+    /// Base class for all SMART COSMOS urn´s
+    /// </summary>
     public class Urn
     {
         private string UUID_;

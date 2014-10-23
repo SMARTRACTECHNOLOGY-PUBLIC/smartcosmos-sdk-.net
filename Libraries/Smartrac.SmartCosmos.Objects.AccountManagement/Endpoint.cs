@@ -77,7 +77,7 @@ namespace Smartrac.SmartCosmos.Objects.AccountManagement
                     return AccountActionResult.Failed;
                 }
 
-                var request = CreateWebRequest("/account/password/change");
+                var request = CreateWebRequest("/account/password/change", WebRequestOption.Authorization);
                 ExecuteWebRequestJSON<ChangeYourPasswordRequest, ChangeYourPasswordResponse>(request, requestData, out responseData);
 
                 if ((responseData != null) && (responseData.HTTPStatusCode == HttpStatusCode.OK))
@@ -111,7 +111,7 @@ namespace Smartrac.SmartCosmos.Objects.AccountManagement
                     return AccountActionResult.Failed;
                 }
 
-                var request = CreateWebRequest("/account/password/change");
+                var request = CreateWebRequest("/account/password/reset");
                 ExecuteWebRequestJSON<ResetLostPasswordRequest, ResetLostPasswordResponse>(request, requestData, out responseData);
                 if ((responseData != null) && (responseData.HTTPStatusCode == HttpStatusCode.OK))
                     return AccountActionResult.Successful;

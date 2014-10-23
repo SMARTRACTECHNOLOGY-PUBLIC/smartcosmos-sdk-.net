@@ -18,18 +18,14 @@
 #endregion License
 
 using System.Collections.Generic;
-using System.Runtime.Serialization;
 using Smartrac.SmartCosmos.Profiles.DataContext;
 
 namespace Smartrac.SmartCosmos.Profiles.TagVerification
 {
-    [DataContract]
     public class VerifyTagsRequest
     {
-        [DataMember]
         public List<string> tagIds { get; set; }
 
-        [DataMember]
         public string verificationType { get; set; }
 
         public VerifyTagsRequest()

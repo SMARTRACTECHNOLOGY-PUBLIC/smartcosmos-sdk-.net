@@ -21,6 +21,9 @@ using Smartrac.SmartCosmos.ClientEndpoint.Base;
 
 namespace Smartrac.SmartCosmos.Profiles.Base
 {
+    /// <summary>
+    /// Base class for all SMART COSMOS Profile endpoints
+    /// </summary>
     public class BaseProfileEndpoint : BaseEndpoint
     {
         public BaseProfileEndpoint()

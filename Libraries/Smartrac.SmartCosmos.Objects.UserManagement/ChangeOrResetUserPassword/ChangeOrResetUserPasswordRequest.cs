@@ -18,18 +18,14 @@
 #endregion License
 
 using System;
-using System.Runtime.Serialization;
 using Smartrac.SmartCosmos.ClientEndpoint.BaseObject;
 
 namespace Smartrac.SmartCosmos.Objects.UserManagement
 {
-    [DataContract]
     public class ChangeOrResetUserPasswordRequest : BaseRequest
     {
-        [DataMember]
         public string emailAddress { get; set; }
 
-        [DataMember]
         public string newPassword { get; set; }
 
         public override bool IsValid()

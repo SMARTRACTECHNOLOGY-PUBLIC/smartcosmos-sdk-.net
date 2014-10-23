@@ -38,7 +38,7 @@ namespace Smartrac.SmartCosmos.Objects.ObjectInteractionSession
         /// <param name="responseData">result</param>
         /// <returns>ObjectInteractionSessionActionResult</returns>
         public ObjInteractSessionActionResult Start(StartObjectInteractionSessionRequest requestData,
-                                                          out StartObjectInteractionSessionResponse responseData)
+                                                    out StartObjectInteractionSessionResponse responseData)
         {
             responseData = null;
             try
@@ -58,6 +58,7 @@ namespace Smartrac.SmartCosmos.Objects.ObjectInteractionSession
                     switch (responseData.HTTPStatusCode)
                     {
                         case HttpStatusCode.OK:
+                        case HttpStatusCode.Created:
                             responseData.sessionUrn = new Urn(responseData.message);
                             return ObjInteractSessionActionResult.Successful;
 
@@ -82,7 +83,7 @@ namespace Smartrac.SmartCosmos.Objects.ObjectInteractionSession
         /// <param name="responseData">result</param>
         /// <returns>ObjectInteractionSessionActionResult</returns>
         public ObjInteractSessionActionResult Stop(StopObjectInteractionSessionRequest requestData,
-                                                         out StopObjectInteractionSessionResponse responseData)
+                                                   out StopObjectInteractionSessionResponse responseData)
         {
             responseData = null;
             try
@@ -106,7 +107,7 @@ namespace Smartrac.SmartCosmos.Objects.ObjectInteractionSession
                    (responseData.HTTPStatusCode == HttpStatusCode.NoContent) &&
                    (webResponse.Headers.Get("SmartCosmos-Event") == "InteractionSessionStop"))
                 {
-                    responseData.startTime = Rfc3339DateTime.Parse(webResponse.Headers.Get("SmartCosmos-Session-Start"));
+                    responseData.startTime = Rfc3339DateTime.Parse(webResponse.Headers.Get("SmartCosmos-Session-Stop"));
                     return ObjInteractSessionActionResult.Successful;
                 }
 
@@ -140,8 +141,8 @@ namespace Smartrac.SmartCosmos.Objects.ObjectInteractionSession
         /// <param name="responseData">Object data</param>
         /// <returns>ObjectManagementActionResult</returns>
         public ObjInteractSessionActionResult Lookup(Urn sessionUrn,
-                                                        out ObjectInteractionSessionDataResponse responseData,
-                                                        ViewType viewType = ViewType.Standard)
+                                                     out ObjectInteractionSessionDataResponse responseData,
+                                                     ViewType viewType = ViewType.Standard)
         {
             responseData = null;
             try
@@ -181,7 +182,7 @@ namespace Smartrac.SmartCosmos.Objects.ObjectInteractionSession
         /// <param name="responseData">Object data</param>
         /// <returns>ObjectManagementActionResult</returns>
         public ObjInteractSessionActionResult Lookup(string nameLike,
-                                                     out ObjectInteractionSessionDataResponse responseData,
+                                                     out ObjectInteractionSessionDataListResponse responseData,
                                                      ViewType viewType = ViewType.Standard)
         {
             responseData = null;
@@ -195,7 +196,7 @@ namespace Smartrac.SmartCosmos.Objects.ObjectInteractionSession
                 }
 
                 var request = CreateWebRequest("/sessions?nameLike=" + nameLike + "&view=" + viewType.GetDescription(), WebRequestOption.Authorization);
-                var returnHTTPCode = ExecuteWebRequestJSON<ObjectInteractionSessionDataResponse>(request, out responseData);
+                var returnHTTPCode = ExecuteWebRequestJSON<ObjectInteractionSessionDataListResponse>(request, out responseData);
 
                 if (responseData != null)
                 {

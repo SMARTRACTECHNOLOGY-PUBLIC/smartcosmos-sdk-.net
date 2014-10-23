@@ -17,25 +17,23 @@
 
 #endregion License
 
-using System.Runtime.Serialization;
 using Smartrac.SmartCosmos.ClientEndpoint.BaseObject;
 using Smartrac.SmartCosmos.Objects.Base;
 
 namespace Smartrac.SmartCosmos.Objects.GeospatialManagement
 {
-    [DataContract]
     public class QueryGeospatialEntriesRequest : BaseRequest
     {
         /// <summary>
         /// Optional: A case-sensitive starts with string pattern to match against. If omitted,
         /// </summary>
-        [DataMember]
+
         public string nameLike { get; set; }
 
         /// <summary>
         /// Optional: A valid JSON Serialization View name (case-sensitive)
         /// </summary>
-        [DataMember]
+
         public ViewType viewType { get; set; }
 
         public QueryGeospatialEntriesRequest()

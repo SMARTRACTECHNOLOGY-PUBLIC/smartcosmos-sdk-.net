@@ -19,18 +19,17 @@
 
 using System.Collections.Generic;
 using System.Net;
-using System.Runtime.Serialization;
+using Newtonsoft.Json;
+using Newtonsoft.Json.Converters;
 using Smartrac.SmartCosmos.ClientEndpoint.BaseObject;
 using Smartrac.SmartCosmos.Objects.Base;
 
 namespace Smartrac.SmartCosmos.Objects.File
 {
-    [DataContract]
     public class FileDefinitionRetrievalResponse : DefaultResponse
     {
         private Urn urn_;
 
-        [DataMember]
         public string urn
         {
             get
@@ -43,21 +42,18 @@ namespace Smartrac.SmartCosmos.Objects.File
             }
         }
 
-        [DataMember]
         public long timestamp { get; set; }
 
-        [DataMember]
         public long lastModifiedTimestamp { get; set; }
 
-        [DataMember]
         public string fileName { get; set; }
 
-        [DataMember]
+        [JsonConverter(typeof(StringEnumConverter))]
         public EntityReferenceType entityReferenceType { get; set; }
 
-        [DataMember]
         public string mimeType { get; set; }
 
+        [JsonIgnore]
         public Urn Urn
         {
             get
@@ -69,8 +65,7 @@ namespace Smartrac.SmartCosmos.Objects.File
         public string SmartCosmosEvent { get; set; }
     }
 
-    [DataContract]
-    public class FileDefinitionRetrievalListResponse : List<FileDefinitionRetrievalResponse>
+    public class FileDefinitionRetrievalListResponse : List<FileDefinitionRetrievalResponse>, IHttpStatusCode
     {
         public HttpStatusCode HTTPStatusCode { get; set; }
 

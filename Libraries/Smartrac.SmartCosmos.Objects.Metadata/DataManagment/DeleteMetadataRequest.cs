@@ -18,7 +18,8 @@
 #endregion License
 
 using System;
-using System.Runtime.Serialization;
+using Newtonsoft.Json;
+using Newtonsoft.Json.Converters;
 using Smartrac.SmartCosmos.ClientEndpoint.BaseObject;
 using Smartrac.SmartCosmos.Objects.Base;
 
@@ -29,17 +30,19 @@ namespace Smartrac.SmartCosmos.Objects.Metadata
         /// <summary>
         /// Valid EntityReferenceType enum value
         /// </summary>
+        [JsonConverter(typeof(StringEnumConverter))]
         public EntityReferenceType entityReferenceType { get; set; }
 
         /// <summary>
         /// Case-sensitive urn of an existing entity of type entityReferenceType
         /// </summary>
+        [JsonIgnore]
         public Urn entityUrn { get; set; }
 
         /// <summary>
         /// Case-sensitive key used to index the metadata raw value
         /// </summary>
-        [DataMember]
+
         public string key { get; set; }
 
         public override bool IsValid()

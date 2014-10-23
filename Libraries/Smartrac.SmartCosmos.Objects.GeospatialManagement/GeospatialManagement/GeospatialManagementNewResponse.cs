@@ -17,13 +17,11 @@
 
 #endregion License
 
-using System.Runtime.Serialization;
 using Smartrac.SmartCosmos.ClientEndpoint.BaseObject;
 using Smartrac.SmartCosmos.Objects.Base;
 
 namespace Smartrac.SmartCosmos.Objects.GeospatialManagement
 {
-    [DataContract]
     public class GeospatialManagementNewResponse : DefaultResponse
     {
         public Urn geospatialUrn { get; set; }

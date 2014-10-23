@@ -61,6 +61,6 @@ namespace Smartrac.SmartCosmos.Objects.ObjectInteraction
         /// <param name="viewType">A valid JSON Serialization View name (case-sensitive)</param>
         /// <param name="responseData">Object data</param>
         /// <returns>ObjectManagementActionResult</returns>
-        ObjInteractActionResult LookupByUrn(Urn interactionUrn, out QueryObjectInteractionsResponse responseData, ViewType viewType = ViewType.Standard);
+        ObjInteractActionResult LookupByUrn(Urn interactionUrn, out QueryObjectInteractionResponse responseData, ViewType viewType = ViewType.Standard);
     }
 }

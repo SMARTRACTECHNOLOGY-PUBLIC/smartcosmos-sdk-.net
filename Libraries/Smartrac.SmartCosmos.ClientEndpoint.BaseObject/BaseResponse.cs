@@ -18,12 +18,10 @@
 #endregion License
 
 using System.Net;
-using System.Runtime.Serialization;
 
 namespace Smartrac.SmartCosmos.ClientEndpoint.BaseObject
 {
-    [DataContract]
-    public class BaseResponse : IHTTPStatusCode
+    public class BaseResponse : IHttpStatusCode
     {
         public HttpStatusCode HTTPStatusCode { get; set; }
 
@@ -34,13 +32,10 @@ namespace Smartrac.SmartCosmos.ClientEndpoint.BaseObject
         }
     }
 
-    [DataContract]
     public class DefaultResponse : BaseResponse, IResponseMessage
     {
-        [DataMember]
         public int code { get; set; }
 
-        [DataMember]
         public string message { get; set; }
 
         public DefaultResponse()

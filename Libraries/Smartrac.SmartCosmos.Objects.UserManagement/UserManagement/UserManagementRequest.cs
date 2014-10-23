@@ -18,28 +18,21 @@
 #endregion License
 
 using System;
-using System.Runtime.Serialization;
 using Smartrac.SmartCosmos.ClientEndpoint.BaseObject;
 using Smartrac.SmartCosmos.Objects.Base;
 
 namespace Smartrac.SmartCosmos.Objects.UserManagement
 {
-    [DataContract]
     public class UserManagementRequest : BaseRequest
     {
-        [DataMember]
         public string emailAddress { get; set; }
 
-        [DataMember]
         public RoleType roleType { get; set; }
 
-        [DataMember]
         public string givenName { get; set; }
 
-        [DataMember]
         public string surname { get; set; }
 
-        [DataMember]
         public string moniker { get; set; }
 
         public override bool IsValid()

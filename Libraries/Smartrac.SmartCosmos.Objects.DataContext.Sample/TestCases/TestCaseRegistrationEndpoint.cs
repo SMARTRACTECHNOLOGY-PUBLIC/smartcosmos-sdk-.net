@@ -48,6 +48,7 @@ namespace Smartrac.SmartCosmos.Objects.DataContext.Sample
 
             bool result = true;
             RegistrationActionResult actionResult;
+            string emailVerificationToken = "";
 
             OnBeforeTest("Objects", "RegistrationEndpoint", "Realm Availability");
             RealmAvailabilityResponse responseRealmData;
@@ -74,8 +75,38 @@ namespace Smartrac.SmartCosmos.Objects.DataContext.Sample
             // log response
             Logger.AddLog("Result: " + actionResult);
             if (responseRealmData != null)
+            {
                 Logger.AddLog("Result Data: " + responseRegisterData.ToJSON());
+                emailVerificationToken = responseRegisterData.emailVerificationToken;
+            }
             OnAfterTest();
+
+            if (!string.IsNullOrEmpty(emailVerificationToken))
+            {
+                OnBeforeTest("Objects", "RegistrationEndpoint", "Confirm Registration");
+                // create client for endpoint
+                ConfirmRegistrationRequest requestRegConfirmData = new ConfirmRegistrationRequest
+                {
+                    emailAddress = dataContext.GeteMailAddress(),
+                    emailVerificationToken = emailVerificationToken
+                };
+                ConfirmRegistrationResponse responseRegConfirmData;
+                // call endpoint
+                actionResult = tester.ConfirmAccountRegistration(requestRegConfirmData, out responseRegConfirmData);
+                result = result && (actionResult == RegistrationActionResult.Successful);
+                // log response
+                Logger.AddLog("Result: " + actionResult);
+                if (responseRegConfirmData != null)
+                {
+                    Logger.AddLog("Result Data: " + responseRegConfirmData.ToJSON());
+                    if (EndpointFactory.UserName == "")
+                    {
+                        EndpointFactory.UserName = dataContext.GeteMailAddress();
+                        EndpointFactory.UserPassword = responseRegConfirmData.userPassword;
+                    }
+                }
+                OnAfterTest();
+            }
 
             return result;
         }

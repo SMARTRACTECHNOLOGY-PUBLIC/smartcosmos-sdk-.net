@@ -17,18 +17,15 @@
 
 #endregion License
 
-using System.Runtime.Serialization;
 using Smartrac.SmartCosmos.ClientEndpoint.BaseObject;
 using Smartrac.SmartCosmos.Objects.Base;
 
 namespace Smartrac.SmartCosmos.Objects.Registration
 {
-    [DataContract]
     public class AccountRegistrationResponse : BaseResponse
     {
         private Urn urn_;
 
-        [DataMember]
         public string urn
         {
             get
@@ -41,13 +38,12 @@ namespace Smartrac.SmartCosmos.Objects.Registration
             }
         }
 
-        [DataMember]
         public long lastModifiedTimestamp { get; set; }
 
-        [DataMember]
         public string emailAddress { get; set; }
 
-        [DataMember]
+        public string emailVerificationToken { get; set; }
+
         public string realm { get; set; }
 
         public Urn Urn

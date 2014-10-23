@@ -65,43 +65,47 @@ namespace Smartrac.SmartCosmos.Objects.DataContext.Sample
             result = result && (actionResult == ObjInteractSessionActionResult.Successful);
             // log response
             Logger.AddLog("Result: " + actionResult);
-            Logger.AddLog("Result Data: " + responseStartData.ToJSON());
+            if (responseStartData != null)
+                Logger.AddLog("Result Data: " + responseStartData.ToJSON());
             OnAfterTest();
 
-            OnBeforeTest("Objects", "ObjectInteractionSessionEndpoint", "Stop an existing object interaction session");
-            StopObjectInteractionSessionResponse responseStopData;
-            // call endpoint
-            actionResult = tester.Stop(responseStartData.sessionUrn,
-                                        out responseStopData);
-            result = result && (actionResult == ObjInteractSessionActionResult.Successful);
-            // log response
-            Logger.AddLog("Result: " + actionResult);
-            Logger.AddLog("Result Data: " + responseStopData.ToJSON());
-            OnAfterTest();
+            if ((responseStartData != null) && (responseStartData.sessionUrn != null) && (responseStartData.sessionUrn.IsValid()))
+            {
+                OnBeforeTest("Objects", "ObjectInteractionSessionEndpoint", "Stop an existing object interaction session");
+                StopObjectInteractionSessionResponse responseStopData;
+                // call endpoint
+                actionResult = tester.Stop(responseStartData.sessionUrn,
+                                            out responseStopData);
+                result = result && (actionResult == ObjInteractSessionActionResult.Successful);
+                // log response
+                Logger.AddLog("Result: " + actionResult);
+                Logger.AddLog("Result Data: " + responseStopData.ToJSON());
+                OnAfterTest();
 
-            OnBeforeTest("Objects", "ObjectInteractionSessionEndpoint", "Lookup Specific Object Interaction Session by URN");
-            ObjectInteractionSessionDataResponse responseLookupData;
-            // call endpoint
-            actionResult = tester.Lookup(responseStartData.sessionUrn,
-                                            out responseLookupData,
-                                            dataContext.GetViewType());
-            result = result && (actionResult == ObjInteractSessionActionResult.Successful);
-            // log response
-            Logger.AddLog("Result: " + actionResult);
-            Logger.AddLog("Result Data: " + responseLookupData.ToJSON());
-            OnAfterTest();
+                OnBeforeTest("Objects", "ObjectInteractionSessionEndpoint", "Lookup Specific Object Interaction Session by URN");
+                ObjectInteractionSessionDataResponse responseLookupData;
+                // call endpoint
+                actionResult = tester.Lookup(responseStartData.sessionUrn,
+                                                out responseLookupData,
+                                                dataContext.GetViewType());
+                result = result && (actionResult == ObjInteractSessionActionResult.Successful);
+                // log response
+                Logger.AddLog("Result: " + actionResult);
+                Logger.AddLog("Result Data: " + responseLookupData.ToJSON());
+                OnAfterTest();
 
-            OnBeforeTest("Objects", "ObjectInteractionSessionEndpoint", "Lookup Object Interaction Sessions by Name");
-            // call endpoint
-            actionResult = tester.Lookup(requestStartData.name,
-                                         out responseLookupData,
-                                         dataContext.GetViewType());
-            result = result && (actionResult == ObjInteractSessionActionResult.Successful);
-            // log response
-            Logger.AddLog("Result: " + actionResult);
-            Logger.AddLog("Result Data: " + responseLookupData.ToJSON());
-            OnAfterTest();
-
+                OnBeforeTest("Objects", "ObjectInteractionSessionEndpoint", "Lookup Object Interaction Sessions by Name");
+                ObjectInteractionSessionDataListResponse responseLookupListData;
+                // call endpoint
+                actionResult = tester.Lookup(requestStartData.name,
+                                             out responseLookupListData,
+                                             dataContext.GetViewType());
+                result = result && (actionResult == ObjInteractSessionActionResult.Successful);
+                // log response
+                Logger.AddLog("Result: " + actionResult);
+                Logger.AddLog("Result Data: " + responseLookupData.ToJSON());
+                OnAfterTest();
+            }
             return result;
         }
     }

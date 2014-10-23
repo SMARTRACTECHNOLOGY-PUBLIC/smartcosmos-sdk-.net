@@ -83,7 +83,7 @@ namespace Smartrac.SmartCosmos.Objects.ObjectInteractionSession
         /// <param name="responseData">Object data</param>
         /// <returns>ObjectManagementActionResult</returns>
         ObjInteractSessionActionResult Lookup(string nameLike,
-                                                    out ObjectInteractionSessionDataResponse responseData,
+                                                    out ObjectInteractionSessionDataListResponse responseData,
                                                     ViewType viewType = ViewType.Standard);
     }
 }

@@ -18,31 +18,23 @@
 #endregion License
 
 using System;
-using System.Runtime.Serialization;
 using Smartrac.SmartCosmos.ClientEndpoint.BaseObject;
 using Smartrac.SmartCosmos.Objects.Base;
 
 namespace Smartrac.SmartCosmos.Objects.ObjectManagement
 {
-    [DataContract]
     public class QueryObjectsRequest : BaseRequest
     {
-        [DataMember]
         public string objectUrnLike { get; set; }
 
-        [DataMember]
         public string type { get; set; }
 
-        [DataMember]
         public string nameLike { get; set; }
 
-        [DataMember]
         public string monikerLike { get; set; }
 
-        [DataMember]
         public long? modifiedAfter { get; set; }
 
-        [DataMember]
         public ViewType viewType { get; set; }
 
         public QueryObjectsRequest()

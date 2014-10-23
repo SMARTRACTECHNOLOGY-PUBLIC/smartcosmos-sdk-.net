@@ -21,7 +21,7 @@ using System.Net;
 
 namespace Smartrac.SmartCosmos.ClientEndpoint.BaseObject
 {
-    public interface IHTTPStatusCode
+    public interface IHttpStatusCode
     {
         HttpStatusCode HTTPStatusCode { get; set; }
     }

@@ -72,7 +72,7 @@ namespace Smartrac.SmartCosmos.Objects.Registration
             responseData = null;
             try
             {
-                if ((requestData == null) || String.IsNullOrEmpty(requestData.emailAddress) || String.IsNullOrEmpty(requestData.realm))
+                if ((requestData == null) || !requestData.IsValid())
                 {
                     if (null != Logger)
                         Logger.AddLog("Account registration is incorrect or required data is missing!", LogType.Error);
@@ -81,12 +81,45 @@ namespace Smartrac.SmartCosmos.Objects.Registration
 
                 var request = CreateWebRequest("/registration/register");
                 ExecuteWebRequestJSON<AccountRegistrationRequest, AccountRegistrationResponse>(request, requestData, out responseData);
-                if ((responseData != null)
-                    && (responseData.HTTPStatusCode == HttpStatusCode.Created)
-                    && (responseData.HTTPStatusCode == HttpStatusCode.OK)
+                if ((responseData != null) &&
+                    ((responseData.HTTPStatusCode == HttpStatusCode.Created)
+                      || (responseData.HTTPStatusCode == HttpStatusCode.OK)
+                      )
                     )
                     return RegistrationActionResult.Successful;
 
+                return RegistrationActionResult.Failed;
+            }
+            catch (Exception e)
+            {
+                if (null != Logger)
+                    Logger.AddLog(e.Message, LogType.Error);
+                return RegistrationActionResult.Failed;
+            }
+        }
+
+        /// <summary>
+        /// Confirm you register for a new SMART COSMOS account
+        /// </summary>
+        /// <param name="requestData">Confirm account data (token and email address)</param>
+        /// <param name="responseData">Confirm registration result</param>
+        /// <returns>RegistrationActionResult</returns>
+        public RegistrationActionResult ConfirmAccountRegistration(ConfirmRegistrationRequest requestData, out ConfirmRegistrationResponse responseData)
+        {
+            responseData = null;
+            try
+            {
+                if ((requestData == null) || !requestData.IsValid())
+                {
+                    if (null != Logger)
+                        Logger.AddLog("Request is incorrect or required data is missing!", LogType.Error);
+                    return RegistrationActionResult.Failed;
+                }
+
+                var request = CreateWebRequest("/registration/confirm/" + requestData.emailVerificationToken + "/" + requestData.emailAddress);
+                ExecuteWebRequestJSON<ConfirmRegistrationResponse>(request, out responseData);
+                if ((responseData != null) && (responseData.HTTPStatusCode == HttpStatusCode.OK))
+                    return RegistrationActionResult.Successful;
                 return RegistrationActionResult.Failed;
             }
             catch (Exception e)

@@ -17,18 +17,29 @@
 
 #endregion License
 
+using System;
+
 namespace Smartrac.SmartCosmos.Objects.DataContext.Sample
 {
     public class SampleRegistrationDataContext : BaseRegistrationDataContext
     {
+        private int randomId;
+
+        public SampleRegistrationDataContext()
+            : base()
+        {
+            Random rdm = new Random();
+            randomId = rdm.Next(0, 100000000);
+        }
+
         public override string GetRealm()
         {
-            return "smartrac-group.com";
+            return "yourarea" + randomId + ".com";
         }
 
         public override string GeteMailAddress()
         {
-            return "jens.koehler@smartrac-group.com";
+            return "testuser@yourarea" + randomId + ".com";
         }
     }
 }

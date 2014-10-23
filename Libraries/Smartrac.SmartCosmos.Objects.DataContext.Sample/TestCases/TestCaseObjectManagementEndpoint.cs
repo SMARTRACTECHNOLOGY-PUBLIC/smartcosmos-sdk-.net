@@ -65,7 +65,8 @@ namespace Smartrac.SmartCosmos.Objects.DataContext.Sample
             result = result && (actionResult == ObjectActionResult.Successful);
             // log response
             Logger.AddLog("Result: " + actionResult);
-            Logger.AddLog("Result Data: " + responseNewObjectData.ToJSON());
+            if (responseNewObjectData != null)
+                Logger.AddLog("Result Data: " + responseNewObjectData.ToJSON());
             OnAfterTest();
 
             OnBeforeTest("Objects", "ObjectManagementEndpoint", "Update an existing Object");
@@ -81,26 +82,31 @@ namespace Smartrac.SmartCosmos.Objects.DataContext.Sample
             result = result && (actionResult == ObjectActionResult.Successful);
             // log response
             Logger.AddLog("Result: " + actionResult);
-            Logger.AddLog("Result Data: " + responseUpdateObjectData.ToJSON());
+            if (responseUpdateObjectData != null)
+                Logger.AddLog("Result Data: " + responseUpdateObjectData.ToJSON());
             OnAfterTest();
 
-            OnBeforeTest("Objects", "ObjectManagementEndpoint", "Lookup Specific Object by URN");
             ObjectDataResponse responseObjectData;
-            // call endpoint
-            actionResult = tester.Lookup(dataContext.GetObjectUrn(), out responseObjectData, dataContext.GetViewType());
-            result = result && (actionResult == ObjectActionResult.Successful);
-            // log response
-            Logger.AddLog("Result: " + actionResult);
-            Logger.AddLog("Result Data: " + responseObjectData.ToJSON());
-            OnAfterTest();
+            if ((responseNewObjectData != null) && (responseNewObjectData.objectUrn.IsValid()))
+            {
+                OnBeforeTest("Objects", "ObjectManagementEndpoint", "Lookup Specific Object by URN");
+                // call endpoint
+                actionResult = tester.Lookup(responseNewObjectData.objectUrn, out responseObjectData, dataContext.GetViewType());
+                result = result && (actionResult == ObjectActionResult.Successful);
+                // log response
+                Logger.AddLog("Result: " + actionResult);
+                Logger.AddLog("Result Data: " + responseObjectData.ToJSON());
+                OnAfterTest();
+            }
 
             OnBeforeTest("Objects", "ObjectManagementEndpoint", "Lookup Object by Object URN");
             // call endpoint
-            actionResult = tester.Lookup(responseNewObjectData.objectUrn, out responseObjectData, dataContext.GetViewType());
+            actionResult = tester.LookupByObjectUrn(dataContext.GetObjectUrn(), out responseObjectData, dataContext.GetViewType());
             result = result && (actionResult == ObjectActionResult.Successful);
             // log response
             Logger.AddLog("Result: " + actionResult);
-            Logger.AddLog("Result Data: " + responseObjectData.ToJSON());
+            if (responseObjectData != null)
+                Logger.AddLog("Result Data: " + responseObjectData.ToJSON());
             OnAfterTest();
 
             OnBeforeTest("Objects", "ObjectManagementEndpoint", "Query Objects");

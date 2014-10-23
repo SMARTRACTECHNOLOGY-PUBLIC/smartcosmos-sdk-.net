@@ -18,16 +18,15 @@
 #endregion License
 
 using System;
-using System.Runtime.Serialization;
+using Newtonsoft.Json;
+using Newtonsoft.Json.Converters;
 using Smartrac.SmartCosmos.ClientEndpoint.BaseObject;
 using Smartrac.SmartCosmos.Objects.Base;
 
 namespace Smartrac.SmartCosmos.Objects.ObjectInteraction
 {
-    [DataContract]
     public class CaptureObjectInteractionRequest : BaseRequest
     {
-        [DataMember(IsRequired = true)]
         public string objectUrn
         {
             get
@@ -40,9 +39,9 @@ namespace Smartrac.SmartCosmos.Objects.ObjectInteraction
             }
         }
 
+        [JsonIgnore]
         public Urn objectUrnObj { get; set; }
 
-        [DataMember(IsRequired = true)]
         public string referenceUrn
         {
             get
@@ -55,21 +54,18 @@ namespace Smartrac.SmartCosmos.Objects.ObjectInteraction
             }
         }
 
+        [JsonIgnore]
         public Urn referenceUrnObj { get; set; }
 
-        [DataMember]
+        [JsonConverter(typeof(StringEnumConverter))]
         public EntityReferenceType entityReferenceType { get; set; }
 
-        [DataMember]
         public string type { get; set; }
 
-        [DataMember]
         public long recordedTimestamp { get; set; }
 
-        [DataMember]
         public string objectInteractionSession { get; set; }
 
-        [DataMember]
         public string moniker { get; set; }
 
         public override bool IsValid()

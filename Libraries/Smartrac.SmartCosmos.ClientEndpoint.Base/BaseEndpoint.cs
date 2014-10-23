@@ -192,42 +192,40 @@ namespace Smartrac.SmartCosmos.ClientEndpoint.Base
                 }
 
                 // call the server
-                webResponse = null;
-                try
-                {
-                    webResponse = request.GetResponse() as System.Net.HttpWebResponse;
-                }
-                catch (WebException e)
-                {
-                    webResponse = e.Response as System.Net.HttpWebResponse;
-                }
-
+                webResponse = request.GetResponseSafe() as System.Net.HttpWebResponse;
                 if (webResponse != null)
                 {
-                    if (webResponse.StatusCode == HttpStatusCode.NoContent)
+                    try
                     {
-                        responseData = new responseType();
-                    }
-                    else
-                    {
-                        // convert stream to string
-                        if (webResponse.ContentType == "application/json")
-                            responseData = responseData.FromJSON(webResponse.GetResponseStream());
-                        else
+                        if (webResponse.StatusCode == HttpStatusCode.NoContent)
                         {
                             responseData = new responseType();
-                            if ((webResponse.ContentType == "text/plain") &&
-                             (responseData is IResponseMessage))
+                        }
+                        else
+                        {
+                            // convert stream to string
+                            if (webResponse.ContentType == "application/json")
+                                responseData = responseData.FromJSON(webResponse.GetResponseStream());
+                            else
                             {
-                                StreamReader reader = new StreamReader(webResponse.GetResponseStream());
-                                (responseData as IResponseMessage).message = reader.ReadToEnd();
+                                responseData = new responseType();
+                                if ((webResponse.ContentType == "text/plain") &&
+                                 (responseData is IResponseMessage))
+                                {
+                                    StreamReader reader = new StreamReader(webResponse.GetResponseStream());
+                                    (responseData as IResponseMessage).message = reader.ReadToEnd();
+                                }
                             }
                         }
-                    }
 
-                    if (responseData is IHTTPStatusCode)
+                        if (responseData is IHttpStatusCode)
+                        {
+                            (responseData as IHttpStatusCode).HTTPStatusCode = webResponse.StatusCode;
+                        }
+                    }
+                    finally
                     {
-                        (responseData as IHTTPStatusCode).HTTPStatusCode = webResponse.StatusCode;
+                        webResponse.Close();
                     }
                     return webResponse.StatusCode;
                 }

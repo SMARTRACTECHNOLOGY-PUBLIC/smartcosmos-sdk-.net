@@ -21,15 +21,51 @@ using System.ComponentModel;
 
 namespace Smartrac.SmartCosmos.Objects.Base
 {
+    /// <summary>
+    /// An Entity Reference Type is used to provide context to a type-agnositc call, such as a search operation.
+    /// </summary>
     public enum EntityReferenceType
     {
+        [DescriptionAttribute("Account")]
+        Account = 1,
+
+        [DescriptionAttribute("Extension")]
+        Extension = 2,
+
+        [DescriptionAttribute("NotificationEndpoint")]
+        NotificationEndpoint = 3,
+
         [DescriptionAttribute("Object")]
-        Object = 0,
+        Object = 4,
 
         [DescriptionAttribute("Relationship")]
-        Relationship = 1,
+        Relationship = 5,
 
-        [DescriptionAttribute("Object Interaction")]
-        ObjectInteraction = 2
+        [DescriptionAttribute("ObjectInteraction")]
+        ObjectInteraction = 6,
+
+        [DescriptionAttribute("ObjectInteractionSession")]
+        ObjectInteractionSession = 7,
+
+        [DescriptionAttribute("Device")]
+        Device = 8,
+
+        [DescriptionAttribute("ObjectAddress")]
+        ObjectAddress = 9,
+
+        [DescriptionAttribute("File")]
+        File = 10,
+
+        [DescriptionAttribute("Metadata")]
+        Metadata = 11,
+
+        [DescriptionAttribute("Tag")]
+        Tag = 12,
+
+        [DescriptionAttribute("Timeline")]
+        Timeline = 13,
+
+        [DescriptionAttribute("Georectification")]
+        Georectification = 14
     }
 }

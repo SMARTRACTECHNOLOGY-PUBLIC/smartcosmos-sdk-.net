@@ -231,32 +231,30 @@ namespace Smartrac.SmartCosmos.Objects.Metadata
                     writer.Write(Encoding.UTF8.GetBytes(Value), 0, Value.Length);
                 }
 
-                using (var response = request.GetResponse() as System.Net.HttpWebResponse)
+                HttpWebResponse response = request.GetResponseSafe() as System.Net.HttpWebResponse;
+                if (response != null)
                 {
-                    if (response == null)
+                    try
                     {
-                        return MetadataActionResult.Failed;
-                    }
-
-                    responseData = responseData.FromJSON(response.GetResponseStream());
-
-                    //DataContractJsonSerializer serializer = new DataContractJsonSerializer(typeof(TypeSafeEncodingResponse));
-                    //responseData = serializer.ReadObject(response.GetResponseStream()) as TypeSafeEncodingResponse;
-                    if (responseData == null)
-                    {
-                        return MetadataActionResult.Failed;
-                    }
-                    else
-                    {
-                        responseData.HTTPStatusCode = response.StatusCode;
-                        switch (response.StatusCode)
+                        responseData = responseData.FromJSON(response.GetResponseStream());
+                        if (responseData != null)
                         {
-                            case HttpStatusCode.OK: return MetadataActionResult.Successful;
-                            case HttpStatusCode.BadRequest: return MetadataActionResult.Failed;
-                            default: return MetadataActionResult.Failed;
+                            responseData.HTTPStatusCode = response.StatusCode;
+                            switch (response.StatusCode)
+                            {
+                                case HttpStatusCode.OK: return MetadataActionResult.Successful;
+                                case HttpStatusCode.BadRequest: return MetadataActionResult.Failed;
+                                default: return MetadataActionResult.Failed;
+                            }
                         }
                     }
+                    finally
+                    {
+                        response.Close();
+                    }
                 }
+
+                return MetadataActionResult.Failed;
             }
             catch (Exception e)
             {
@@ -526,26 +524,32 @@ namespace Smartrac.SmartCosmos.Objects.Metadata
             var request = CreateWebRequest("/metadata/" + requestData.entityReferenceType.GetDescription() + "/" + requestData.entityUrn.UUID + "/" + requestData.key);
             request.Method = "DELETE";
 
-            using (var response = request.GetResponse() as System.Net.HttpWebResponse)
+            HttpWebResponse response = request.GetResponseSafe() as System.Net.HttpWebResponse;
+            if (response != null)
             {
-                if ((response.StatusCode == HttpStatusCode.NoContent) &&
-                   (response.Headers.Get("SmartCosmos-Event") == "MetadataDeleted"))
+                try
                 {
-                    return MetadataActionResult.Successful;
-                }
-                else
-                {
-                    responseData = responseData.FromJSON(response.GetResponseStream());
-                    //DataContractJsonSerializer serializer = new DataContractJsonSerializer(typeof(DeleteMetadataResponse));
-                    //responseData = (DeleteMetadataResponse)serializer.ReadObject(response.GetResponseStream());
-
-                    if (responseData is BaseResponse)
+                    if ((response.StatusCode == HttpStatusCode.NoContent) &&
+                        (response.Headers.Get("SmartCosmos-Event") == "MetadataDeleted"))
                     {
-                        ((BaseResponse)responseData).HTTPStatusCode = response.StatusCode;
+                        return MetadataActionResult.Successful;
                     }
-                    return MetadataActionResult.Failed;
+                    else
+                    {
+                        responseData = responseData.FromJSON(response.GetResponseStream());
+                        if (responseData is IHttpStatusCode)
+                        {
+                            (responseData as IHttpStatusCode).HTTPStatusCode = response.StatusCode;
+                        }
+                    }
+                }
+                finally
+                {
+                    response.Close();
                 }
             }
+
+            return MetadataActionResult.Failed;
         }
 
         /// <summary>
