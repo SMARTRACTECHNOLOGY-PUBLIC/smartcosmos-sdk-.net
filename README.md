@@ -1,7 +1,6 @@
-smartcosmos-sdk-.net
-====================
+<img src="http://smartractechnology.github.io/smartcosmos-client-java/images/smartcosmos.png"/>
 
-#SMART COSMOS .Net SDK
+# SMART COSMOS .Net SDK
 
 ### What is SMART COSMOS?
 
