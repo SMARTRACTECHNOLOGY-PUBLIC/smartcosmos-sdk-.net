@@ -17,6 +17,7 @@
 
 #endregion License
 
+using Newtonsoft.Json;
 using Smartrac.SmartCosmos.ClientEndpoint.BaseObject;
 using Smartrac.SmartCosmos.Objects.Base;
 
@@ -24,6 +25,7 @@ namespace Smartrac.SmartCosmos.Objects.ObjectManagement
 {
     public class ObjectManagementResponse : DefaultResponse
     {
+        [JsonIgnore]
         public Urn objectUrn { get; set; }
     }
 }

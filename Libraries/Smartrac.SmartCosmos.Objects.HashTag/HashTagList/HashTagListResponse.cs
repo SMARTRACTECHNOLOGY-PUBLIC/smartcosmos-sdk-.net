@@ -17,13 +17,16 @@
 
 #endregion License
 
+using System;
 using System.Collections.Generic;
 using System.Net;
+using Newtonsoft.Json;
 using Smartrac.SmartCosmos.ClientEndpoint.BaseObject;
+using Smartrac.SmartCosmos.Objects.Base;
 
 namespace Smartrac.SmartCosmos.Objects.HashTag
 {
-    public class HashTagListResponse : List<HashTagDataResponse>, IHttpStatusCode
+    public class HashTagListResponse : List<HashTagListItem>, IHttpStatusCode
     {
         public HttpStatusCode HTTPStatusCode { get; set; }
 
@@ -31,6 +34,32 @@ namespace Smartrac.SmartCosmos.Objects.HashTag
             : base()
         {
             this.HTTPStatusCode = HttpStatusCode.NotImplemented;
+        }
+    }
+
+    public class HashTagListItem : IResponseMessage
+    {
+        [JsonIgnore]
+        public Urn tagUrn
+        {
+            get
+            {
+                if (String.IsNullOrEmpty(message) || 
+                    (!message.Contains("urn:uuid:")))
+                    return null;
+                else
+                    return new Urn(message);
+            }
+        }
+
+        public int code { get; set; }
+
+        public string message { get; set; }
+
+        public HashTagListItem()
+            : base()
+        {
+            this.code = 0;
         }
     }
 }

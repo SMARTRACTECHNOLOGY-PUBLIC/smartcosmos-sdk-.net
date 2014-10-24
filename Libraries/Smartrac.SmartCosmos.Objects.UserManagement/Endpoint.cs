@@ -210,9 +210,13 @@ namespace Smartrac.SmartCosmos.Objects.UserManagement
 
                 switch (returnHTTPStatusCode)
                 {
-                    case HttpStatusCode.NoContent: return UserActionResult.Successful;
-                    case HttpStatusCode.BadRequest: return UserActionResult.Failed;
-                    default: return UserActionResult.Failed;
+                    case HttpStatusCode.OK:
+                    case HttpStatusCode.NoContent: 
+                      return UserActionResult.Successful;
+                    case HttpStatusCode.BadRequest: 
+                        return UserActionResult.Failed;
+                    default: 
+                        return UserActionResult.Failed;
                 }
             }
             catch (Exception e)

@@ -17,11 +17,26 @@
 
 #endregion License
 
+using System.Collections.Generic;
+using System.Net;
 using Smartrac.SmartCosmos.ClientEndpoint.BaseObject;
 
 namespace Smartrac.SmartCosmos.Objects.Metadata
 {
-    public class CreateMetadataResponse : DefaultResponse
+    public class CreateMetadataResponse : List<DefaultResponse>, IResponseMessage, IHttpStatusCode
     {
+        //IResponseMessage
+        public int code { get; set; }
+        public string message { get; set; }
+
+        //IHttpStatusCode
+        public HttpStatusCode HTTPStatusCode { get; set; }
+
+        public CreateMetadataResponse()
+            : base()
+        {
+            this.code = 0;
+        this.HTTPStatusCode = HttpStatusCode.NotImplemented;
+        }
     }
 }

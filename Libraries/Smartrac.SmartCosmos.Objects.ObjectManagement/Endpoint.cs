@@ -214,8 +214,11 @@ namespace Smartrac.SmartCosmos.Objects.ObjectManagement
                 {
                     switch (responseData.HTTPStatusCode)
                     {
-                        case HttpStatusCode.NoContent: return ObjectActionResult.Successful;
-                        case HttpStatusCode.BadRequest: return ObjectActionResult.Failed;
+                        case HttpStatusCode.OK:
+                        case HttpStatusCode.NoContent: 
+                            return ObjectActionResult.Successful;
+                        case HttpStatusCode.BadRequest: 
+                            return ObjectActionResult.Failed;
                     }
                 }
 

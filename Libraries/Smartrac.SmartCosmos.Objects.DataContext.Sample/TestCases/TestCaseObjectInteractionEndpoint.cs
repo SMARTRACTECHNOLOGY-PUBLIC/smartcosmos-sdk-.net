@@ -64,9 +64,7 @@ namespace Smartrac.SmartCosmos.Objects.DataContext.Sample
             actionResult = tester.Create(requestNewInteractionData, out responseNewInteractionData);
             result = result && (actionResult == ObjInteractActionResult.Successful);
             // log response
-            Logger.AddLog("Result: " + actionResult);
-            Logger.AddLog("Result Data: " + responseNewInteractionData.ToJSON());
-            OnAfterTest();
+            OnAfterTest(actionResult, responseNewInteractionData);
 
             OnBeforeTest("Objects", "ObjectInteractionEndpoint", "Lookup Matching Interactions");
             QueryObjectInteractionsResponse responseLookupListData;
@@ -76,9 +74,7 @@ namespace Smartrac.SmartCosmos.Objects.DataContext.Sample
                                         dataContext.GetViewType());
             result = result && (actionResult == ObjInteractActionResult.Successful);
             // log response
-            Logger.AddLog("Result: " + actionResult);
-            Logger.AddLog("Result Data: " + responseLookupListData.ToJSON());
-            OnAfterTest();
+            OnAfterTest(actionResult, responseLookupListData);
 
             if ((responseNewInteractionData != null) &&
                 (responseNewInteractionData.interactionUrn != null) &&
@@ -92,9 +88,7 @@ namespace Smartrac.SmartCosmos.Objects.DataContext.Sample
                                                 dataContext.GetViewType());
                 result = result && (actionResult == ObjInteractActionResult.Successful);
                 // log response
-                Logger.AddLog("Result: " + actionResult);
-                Logger.AddLog("Result Data: " + responseLookupData.ToJSON());
-                OnAfterTest();
+                OnAfterTest(actionResult, responseLookupData);
             }
 
             return result;

@@ -83,6 +83,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Converter\JsonConverter.cs" />
     <Compile Include="Endpoint.cs" />
     <Compile Include="Builder\GeospatialManagementEndpointBuilder.cs" />
     <Compile Include="GeospatialManagement\GeospatialManagementNewRequest.cs" />

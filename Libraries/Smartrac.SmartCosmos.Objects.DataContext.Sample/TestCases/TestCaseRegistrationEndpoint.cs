@@ -56,10 +56,7 @@ namespace Smartrac.SmartCosmos.Objects.DataContext.Sample
             actionResult = tester.GetRealmAvailability(dataContext.GetRealm(), out responseRealmData);
             result = result && (actionResult == RegistrationActionResult.Successful);
             // log response
-            Logger.AddLog("Result: " + actionResult);
-            if (responseRealmData != null)
-                Logger.AddLog("Result Data: " + responseRealmData.ToJSON());
-            OnAfterTest();
+            OnAfterTest(actionResult, responseRealmData);
 
             OnBeforeTest("Objects", "RegistrationEndpoint", "Account Registration");
             // create client for endpoint
@@ -72,14 +69,13 @@ namespace Smartrac.SmartCosmos.Objects.DataContext.Sample
             // call endpoint
             actionResult = tester.RegisterAccount(requestRegisterData, out responseRegisterData);
             result = result && (actionResult == RegistrationActionResult.Successful);
-            // log response
-            Logger.AddLog("Result: " + actionResult);
-            if (responseRealmData != null)
+            // emailVerificationToken
+            if (responseRegisterData != null)
             {
-                Logger.AddLog("Result Data: " + responseRegisterData.ToJSON());
                 emailVerificationToken = responseRegisterData.emailVerificationToken;
             }
-            OnAfterTest();
+            // log response
+            OnAfterTest(actionResult, responseRegisterData);
 
             if (!string.IsNullOrEmpty(emailVerificationToken))
             {
@@ -94,18 +90,17 @@ namespace Smartrac.SmartCosmos.Objects.DataContext.Sample
                 // call endpoint
                 actionResult = tester.ConfirmAccountRegistration(requestRegConfirmData, out responseRegConfirmData);
                 result = result && (actionResult == RegistrationActionResult.Successful);
-                // log response
-                Logger.AddLog("Result: " + actionResult);
+                // user + pwd
                 if (responseRegConfirmData != null)
                 {
-                    Logger.AddLog("Result Data: " + responseRegConfirmData.ToJSON());
                     if (EndpointFactory.UserName == "")
                     {
                         EndpointFactory.UserName = dataContext.GeteMailAddress();
                         EndpointFactory.UserPassword = responseRegConfirmData.userPassword;
                     }
                 }
-                OnAfterTest();
+                // log response
+                OnAfterTest(actionResult, responseRegConfirmData);
             }
 
             return result;

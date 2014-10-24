@@ -55,6 +55,7 @@ namespace Smartrac.SmartCosmos.Profiles.DataContext.Sample
             if (File.Exists(dataContext.GetTagDataFile()))
             {
                 OnBeforeTest("Profiles", "TagMetadataEndpoint", "GetTagMetadata - PerformanceTest Parallel");
+                TagMetaDataActionResult actionResult = TagMetaDataActionResult.Failed;
                 try
                 {
                     List<TagMetaDataRequest> requestList = new List<TagMetaDataRequest>();
@@ -87,7 +88,7 @@ namespace Smartrac.SmartCosmos.Profiles.DataContext.Sample
                         Stopwatch watch = new Stopwatch();
                         watch.Start();
 
-                        TagMetaDataActionResult actionResult = tester.GetTagMetadata(requestTagMetaData, out responseTagMetaData);
+                        actionResult = tester.GetTagMetadata(requestTagMetaData, out responseTagMetaData);
                         result = result && (actionResult == TagMetaDataActionResult.Successful);
                         watch.Stop();
                         Logger.AddLog(request.tagIds.Count + " tags checked. Result:" + result + "  Required time:" + watch.Elapsed);
@@ -103,7 +104,7 @@ namespace Smartrac.SmartCosmos.Profiles.DataContext.Sample
                     Logger.AddLog(e.Message, LogType.Error);
                 }
 
-                OnAfterTest();
+                OnAfterTest(actionResult);
             }
             return result;
         }

@@ -37,7 +37,7 @@ namespace Smartrac.SmartCosmos.Objects.DataContext.Sample
 
         public override Urn GetUrnReference()
         {
-            return new Urn("urn:instagram:FooQux:47c23bc6-2a58-4e37-93b0-848776b42404");
+            return MyDataContext.GetSampleObjectUrn();
         }
 
         public override IEnumerable<FileDefinition> GetFileDefinitions()
@@ -46,12 +46,23 @@ namespace Smartrac.SmartCosmos.Objects.DataContext.Sample
             string sampleDataFile = Path.Combine(Path.GetDirectoryName(System.Reflection.Assembly.GetExecutingAssembly().Location), @"..\..\..\..\..\Documentation\SampleData\objects.png");
             if (System.IO.File.Exists(sampleDataFile))
             {
-                FileDefinitions.Add(new FileDefinition
+                FileDefinition fileDef = new FileDefinition
                 {
-                    file = new FileStream(sampleDataFile, FileMode.Open),
                     fileName = Path.GetFileName(sampleDataFile),
                     mimeType = "image/png"
-                });
+                };
+
+                FileStream file = new FileStream(sampleDataFile, FileMode.Open);
+                try
+                {
+                    fileDef.file = new MemoryStream();
+                    file.CopyTo(fileDef.file);
+                }
+                finally
+                {
+                    file.Close();
+                }
+                FileDefinitions.Add(fileDef);
             }
 
             return FileDefinitions;

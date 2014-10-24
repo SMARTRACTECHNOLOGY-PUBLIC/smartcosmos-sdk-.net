@@ -40,7 +40,7 @@ namespace Smartrac.SmartCosmos.Objects.DataContext.Sample
 
         public override string GeteMailAddress()
         {
-            return "testuser2@yourarea.com";
+            return MyDataContext.GeteMailAddress();
         }
 
         public override RoleType GetRoleType()

@@ -18,6 +18,7 @@
 #endregion License
 
 using System;
+using Newtonsoft.Json;
 using Smartrac.SmartCosmos.ClientEndpoint.BaseObject;
 using Smartrac.SmartCosmos.Objects.Base;
 
@@ -37,6 +38,7 @@ namespace Smartrac.SmartCosmos.Objects.ObjectManagement
             }
         }
 
+        [JsonIgnore]
         public Urn urn { get; set; }
 
         public string type { get; set; }
@@ -45,7 +47,7 @@ namespace Smartrac.SmartCosmos.Objects.ObjectManagement
 
         public string description { get; set; }
 
-        public bool? activeFlag { get; set; }
+        public bool activeFlag { get; set; }
 
         public string moniker { get; set; }
 
@@ -57,6 +59,11 @@ namespace Smartrac.SmartCosmos.Objects.ObjectManagement
                 (String.IsNullOrEmpty(name) || name.Length <= 255) &&
                 (String.IsNullOrEmpty(description) || description.Length <= 255) &&
                 (String.IsNullOrEmpty(moniker) || moniker.Length <= 2048);
+        }
+
+        public ObjectManagementRequest() : base()
+        {
+            activeFlag = true;
         }
     }
 

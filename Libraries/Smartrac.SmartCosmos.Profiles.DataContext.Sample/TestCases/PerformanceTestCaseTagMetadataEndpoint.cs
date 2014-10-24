@@ -53,14 +53,14 @@ namespace Smartrac.SmartCosmos.Profiles.DataContext.Sample
             if (File.Exists(dataContext.GetTagDataFile()))
             {
                 OnBeforeTest("Profiles", "TagMetadataEndpoint", "GetTagMetadata - PerformanceTest");
+                TagMetaDataActionResult actionResult = TagMetaDataActionResult.Failed;
                 try
                 {
                     TagMetaDataRequest requestTagMetaData = new TagMetaDataRequest(dataContext);
                     requestTagMetaData.tagIds.Clear();
                     TagMetaDataResponse responseTagMetaData;
                     Stopwatch watch = new Stopwatch();
-                    int tagCount = 0;
-                    TagMetaDataActionResult actionResult;
+                    int tagCount = 0;                    
 
                     // load data
                     XDocument doc;
@@ -107,7 +107,7 @@ namespace Smartrac.SmartCosmos.Profiles.DataContext.Sample
                     Logger.AddLog(e.Message, LogType.Error);
                 }
 
-                OnAfterTest();
+                OnAfterTest(actionResult);
             }
 
             return result;

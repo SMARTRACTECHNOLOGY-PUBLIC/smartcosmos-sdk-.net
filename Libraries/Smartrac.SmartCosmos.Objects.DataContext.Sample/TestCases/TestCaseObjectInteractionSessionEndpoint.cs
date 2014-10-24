@@ -64,10 +64,7 @@ namespace Smartrac.SmartCosmos.Objects.DataContext.Sample
             actionResult = tester.Start(requestStartData, out responseStartData);
             result = result && (actionResult == ObjInteractSessionActionResult.Successful);
             // log response
-            Logger.AddLog("Result: " + actionResult);
-            if (responseStartData != null)
-                Logger.AddLog("Result Data: " + responseStartData.ToJSON());
-            OnAfterTest();
+            OnAfterTest(actionResult, responseStartData);
 
             if ((responseStartData != null) && (responseStartData.sessionUrn != null) && (responseStartData.sessionUrn.IsValid()))
             {
@@ -78,9 +75,7 @@ namespace Smartrac.SmartCosmos.Objects.DataContext.Sample
                                             out responseStopData);
                 result = result && (actionResult == ObjInteractSessionActionResult.Successful);
                 // log response
-                Logger.AddLog("Result: " + actionResult);
-                Logger.AddLog("Result Data: " + responseStopData.ToJSON());
-                OnAfterTest();
+                OnAfterTest(actionResult, responseStopData);
 
                 OnBeforeTest("Objects", "ObjectInteractionSessionEndpoint", "Lookup Specific Object Interaction Session by URN");
                 ObjectInteractionSessionDataResponse responseLookupData;
@@ -90,9 +85,7 @@ namespace Smartrac.SmartCosmos.Objects.DataContext.Sample
                                                 dataContext.GetViewType());
                 result = result && (actionResult == ObjInteractSessionActionResult.Successful);
                 // log response
-                Logger.AddLog("Result: " + actionResult);
-                Logger.AddLog("Result Data: " + responseLookupData.ToJSON());
-                OnAfterTest();
+                OnAfterTest(actionResult, responseLookupData);
 
                 OnBeforeTest("Objects", "ObjectInteractionSessionEndpoint", "Lookup Object Interaction Sessions by Name");
                 ObjectInteractionSessionDataListResponse responseLookupListData;
@@ -102,9 +95,7 @@ namespace Smartrac.SmartCosmos.Objects.DataContext.Sample
                                              dataContext.GetViewType());
                 result = result && (actionResult == ObjInteractSessionActionResult.Successful);
                 // log response
-                Logger.AddLog("Result: " + actionResult);
-                Logger.AddLog("Result Data: " + responseLookupData.ToJSON());
-                OnAfterTest();
+                OnAfterTest(actionResult, responseLookupData);
             }
             return result;
         }

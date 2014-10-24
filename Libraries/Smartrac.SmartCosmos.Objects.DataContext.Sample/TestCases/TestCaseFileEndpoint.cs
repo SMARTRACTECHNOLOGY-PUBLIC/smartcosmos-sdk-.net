@@ -59,10 +59,7 @@ namespace Smartrac.SmartCosmos.Objects.DataContext.Sample
                                                                   );
             result = result && (actionResult == FileActionResult.Successful);
             // log response
-            Logger.AddLog("Result: " + actionResult);
-            if (responseListData != null)
-                Logger.AddLog("Result Data: " + responseListData.ToJSON());
-            OnAfterTest();
+            OnAfterTest(actionResult, responseListData);
 
             if ((null != responseListData) && (responseListData.Count > 0))
             {
@@ -75,10 +72,7 @@ namespace Smartrac.SmartCosmos.Objects.DataContext.Sample
                         actionResult = tester.Delete(item.Urn);
                         result = result && (actionResult == FileActionResult.Successful);
                         // log response
-                        Logger.AddLog("Result: " + actionResult);
-                        if (responseListData != null)
-                            Logger.AddLog("Result Data: " + responseListData.ToJSON());
-                        OnAfterTest();
+                        OnAfterTest(actionResult, responseListData);
                     }
                 }
             }
@@ -91,47 +85,41 @@ namespace Smartrac.SmartCosmos.Objects.DataContext.Sample
                 FileDefinitionRequest requestDefData = new FileDefinitionRequest
                 {
                     entityReferenceType = dataContext.GetEntityReferenceType(),
-                    referenceUrn = dataContext.GetUrnReference(),
+                    referenceUrnObj = dataContext.GetUrnReference(),
                     mimeType = file.mimeType
                 };
                 FileDefinitionResponse responseDefData;
                 actionResult = tester.GetFileDefinition(requestDefData, out responseDefData);
                 result = result && (actionResult == FileActionResult.Successful);
                 // log response
-                Logger.AddLog("Result: " + actionResult);
+                OnAfterTest(actionResult, responseDefData);
 
-                Logger.AddLog("Result Data: " + responseDefData.ToJSON());
-                OnAfterTest();
+                if ((responseDefData != null) && (responseDefData.fileUrn != null) && (responseDefData.fileUrn.IsValid()))
+                {
+                    OnBeforeTest("Objects", "FileEndpoint", "File Upload - Octet-Stream");
+                    Smartrac.SmartCosmos.Objects.File.FileUploadResponse responseUploadData;
+                    // create request & call endpoint
+                    actionResult = tester.UploadFileAsOctetStream(responseDefData.fileUrn, file.file, out responseUploadData);
+                    result = result && (actionResult == FileActionResult.Successful);
+                    // log response
+                    OnAfterTest(actionResult, responseUploadData);
 
-                OnBeforeTest("Objects", "FileEndpoint", "File Upload - Octet-Stream");
-                Smartrac.SmartCosmos.Objects.File.FileUploadResponse responseUploadData;
-                // create request & call endpoint
-                actionResult = tester.UploadFileAsOctetStream(responseDefData.fileUrn, file.file, out responseUploadData);
-                result = result && (actionResult == FileActionResult.Successful);
-                // log response
-                Logger.AddLog("Result: " + actionResult);
-                Logger.AddLog("Result Data: " + responseUploadData.ToJSON());
-                OnAfterTest();
+                    OnBeforeTest("Objects", "FileEndpoint", "Specific File Definition Retrieval");
+                    // create request & call endpoint
+                    FileDefinitionRetrievalResponse responseRetrievalData;
+                    actionResult = tester.LookupDefinition(responseDefData.fileUrn, out responseRetrievalData, dataContext.GetViewType());
+                    result = result && (actionResult == FileActionResult.Successful);
+                    // log response
+                    OnAfterTest(actionResult, responseRetrievalData);
 
-                OnBeforeTest("Objects", "FileEndpoint", "Specific File Definition Retrieval");
-                // create request & call endpoint
-                FileDefinitionRetrievalResponse responseRetrievalData;
-                actionResult = tester.LookupDefinition(responseDefData.fileUrn, out responseRetrievalData, dataContext.GetViewType());
-                result = result && (actionResult == FileActionResult.Successful);
-                // log response
-                Logger.AddLog("Result: " + actionResult);
-                Logger.AddLog("Result Data: " + responseRetrievalData.ToJSON());
-                OnAfterTest();
-
-                OnBeforeTest("Objects", "FileEndpoint", "File Content Retrieval");
-                // create request & call endpoint
-                FileContentRetrievalResponse responseContentData;
-                actionResult = tester.LookupContent(responseDefData.fileUrn, out responseContentData);
-                result = result && (actionResult == FileActionResult.Successful);
-                // log response
-                Logger.AddLog("Result: " + actionResult);
-                Logger.AddLog("Result Data: " + responseContentData.ToJSON());
-                OnAfterTest();
+                    OnBeforeTest("Objects", "FileEndpoint", "File Content Retrieval");
+                    // create request & call endpoint
+                    FileContentRetrievalResponse responseContentData;
+                    actionResult = tester.LookupContent(responseDefData.fileUrn, out responseContentData);
+                    result = result && (actionResult == FileActionResult.Successful);
+                    // log response
+                    OnAfterTest(actionResult); // don´t serialize responseContentData, because it is too big
+                }
             }
 
             OnBeforeTest("Objects", "FileEndpoint", "Related File Definitions Retrieval");
@@ -143,9 +131,7 @@ namespace Smartrac.SmartCosmos.Objects.DataContext.Sample
                                                                    dataContext.GetViewType());
             result = result && (actionResult == FileActionResult.Successful);
             // log response
-            Logger.AddLog("Result: " + actionResult);
-            Logger.AddLog("Result Data: " + responseListResultData.ToJSON());
-            OnAfterTest();
+            OnAfterTest(actionResult, responseListResultData);
 
             return result;
         }

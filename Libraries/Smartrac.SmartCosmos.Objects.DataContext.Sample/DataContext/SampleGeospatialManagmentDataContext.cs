@@ -32,7 +32,7 @@ namespace Smartrac.SmartCosmos.Objects.DataContext.Sample
 
         public override string GetName()
         {
-            return "Campus at 5th Street";
+            return "Campus at 6th Street";
         }
 
         public override string GetCategory()
@@ -42,7 +42,7 @@ namespace Smartrac.SmartCosmos.Objects.DataContext.Sample
 
         public override string GetDescription()
         {
-            return "Campus at 5th Street descr";
+            return "Campus at 6th Street";
         }
 
         public override bool GetActiveFlag()
@@ -54,7 +54,7 @@ namespace Smartrac.SmartCosmos.Objects.DataContext.Sample
         {
             var point = new GeoJSON.Net.Geometry.Point(new GeoJSON.Net.Geometry.GeographicPosition(45.79012, 15.94107));
             var featureProperties = new Dictionary<string, object> { { "Name", "Foo" } };
-            var model = new GeoJSON.Net.Feature.Feature(point, featureProperties, "FeatureCollection");
+            var model = new GeoJSON.Net.Feature.Feature(point, featureProperties);
             return model;
         }
 

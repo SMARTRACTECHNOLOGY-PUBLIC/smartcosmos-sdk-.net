@@ -87,13 +87,13 @@ namespace Smartrac.SmartCosmos.Objects.HashTag
         /// <param name="responseData">Tag data</param>
         /// <returns>HashTagActionResult</returns>
         HashTagActionResult Assign(EntityReferenceType entityReferenceType, Urn referenceUrn, HashTagListRequest requestData,
-            out DefaultResponse responseData);
+            out HashTagListResponse responseData);
 
         /// <summary>
         /// Deletes an existing tag by its system-assigned URN key
         /// </summary>
         /// <param name="fileUrn">fileUrn of the file record</param>
         /// <returns>FileActionResult</returns>
-        HashTagActionResult Delete(Urn tagUrn);
+        HashTagActionResult Delete(string tagName);
     }
 }

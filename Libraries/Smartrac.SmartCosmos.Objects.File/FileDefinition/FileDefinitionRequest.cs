@@ -30,7 +30,19 @@ namespace Smartrac.SmartCosmos.Objects.File
         public EntityReferenceType entityReferenceType { get; set; }
 
         [JsonIgnore]
-        public Urn referenceUrn { get; set; }
+        public Urn referenceUrnObj { get; set; }
+
+        public string referenceUrn
+        {
+            get
+            {
+                return (referenceUrnObj != null) ? referenceUrnObj.UUID : "";
+            }
+            set
+            {
+                referenceUrnObj = new Urn(value);
+            }
+        }
 
         public string mimeType { get; set; }
 
@@ -41,9 +53,10 @@ namespace Smartrac.SmartCosmos.Objects.File
         public override bool IsValid()
         {
             return base.IsValid() &&
-                referenceUrn.IsValid() &&
+                referenceUrnObj.IsValid() &&
+                mimeType != null &&
                 mimeType.Length <= 100 &&
-                moniker.Length <= 2048;
+                ( (moniker == null) || (moniker.Length <= 2048));
         }
     }
 }

@@ -18,6 +18,8 @@
 #endregion License
 
 using System;
+using System.Collections.Generic;
+using System.Net;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Converters;
 using Smartrac.SmartCosmos.ClientEndpoint.BaseObject;
@@ -25,7 +27,24 @@ using Smartrac.SmartCosmos.Objects.Base;
 
 namespace Smartrac.SmartCosmos.Objects.Metadata
 {
-    public class LookupMetadataResponse : DefaultResponse
+    public class LookupMetadataResponse : List<MetadataLookupItem>, IResponseMessage, IHttpStatusCode
+    {
+        //IResponseMessage
+        public int code { get; set; }
+        public string message { get; set; }
+
+        //IHttpStatusCode
+        public HttpStatusCode HTTPStatusCode { get; set; }
+
+        public LookupMetadataResponse()
+            : base()
+        {
+            this.code = 0;
+            this.HTTPStatusCode = HttpStatusCode.NotImplemented;
+        }
+    }
+
+    public class MetadataLookupItem
     {
         public string dataType
         {

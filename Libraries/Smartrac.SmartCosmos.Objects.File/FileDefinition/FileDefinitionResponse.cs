@@ -17,6 +17,7 @@
 
 #endregion License
 
+using Newtonsoft.Json;
 using Smartrac.SmartCosmos.ClientEndpoint.BaseObject;
 using Smartrac.SmartCosmos.Objects.Base;
 
@@ -24,6 +25,7 @@ namespace Smartrac.SmartCosmos.Objects.File
 {
     public class FileDefinitionResponse : DefaultResponse
     {
+        [JsonIgnore]
         public Urn fileUrn { get; set; }
     }
 }

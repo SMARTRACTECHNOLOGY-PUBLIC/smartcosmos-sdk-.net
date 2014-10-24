@@ -167,7 +167,10 @@ namespace Smartrac.SmartCosmos.Objects.HashTag
                     , WebRequestOption.Authorization);
 
                 var returnHTTPCode = ExecuteWebRequestJSON<HashTagListResponse>(request, out responseData);
-                if ((responseData != null) && (responseData.HTTPStatusCode == HttpStatusCode.OK))
+                if ((responseData != null) && 
+                    ( (responseData.HTTPStatusCode == HttpStatusCode.OK) ||
+                    (responseData.HTTPStatusCode == HttpStatusCode.NoContent)
+                    ))
                     return HashTagActionResult.Successful;
                 return HashTagActionResult.Failed;
             }
@@ -187,7 +190,7 @@ namespace Smartrac.SmartCosmos.Objects.HashTag
         /// <param name="requestData">Hash tag list</param>
         /// <param name="responseData">result</param>
         /// <returns>HashTagActionResult</returns>
-        public HashTagActionResult Assign(EntityReferenceType entityReferenceType, Urn referenceUrn, HashTagListRequest requestData, out DefaultResponse responseData)
+        public HashTagActionResult Assign(EntityReferenceType entityReferenceType, Urn referenceUrn, HashTagListRequest requestData, out HashTagListResponse responseData)
         {
             responseData = null;
             try
@@ -201,7 +204,7 @@ namespace Smartrac.SmartCosmos.Objects.HashTag
 
                 var request = CreateWebRequest("/tags/" + entityReferenceType.GetDescription() +
                                                "/" + referenceUrn.UUID, WebRequestOption.Authorization);
-                var returnHTTPCode = ExecuteWebRequestJSON<HashTagListRequest, DefaultResponse>(request, requestData, out responseData);
+                var returnHTTPCode = ExecuteWebRequestJSON<HashTagListRequest, HashTagListResponse>(request, requestData, out responseData, WebRequestMethods.Http.Put);
                 if ((responseData != null) && (responseData.HTTPStatusCode == HttpStatusCode.OK))
                     return HashTagActionResult.Successful;
                 return HashTagActionResult.Failed;
@@ -230,7 +233,7 @@ namespace Smartrac.SmartCosmos.Objects.HashTag
                     return HashTagActionResult.Failed;
                 }
 
-                var request = CreateWebRequest("/tags/tag/" + tagUrn.UUID);
+                var request = CreateWebRequest("/tags/tag/" + tagUrn.UUID, WebRequestOption.Authorization);
                 request.Method = "DELETE";
 
                 using (var response = request.GetResponseSafe() as System.Net.HttpWebResponse)
@@ -261,5 +264,53 @@ namespace Smartrac.SmartCosmos.Objects.HashTag
                 return HashTagActionResult.Failed;
             }
         }
+
+        /// <summary>
+        /// Deletes an existing hash tag by its system-assigned URN key
+        /// </summary>
+        /// <param name="fileUrn">fileUrn of the file record</param>
+        /// <returns>FileActionResult</returns>
+        public HashTagActionResult Delete(string tagName)
+        {
+            try
+            {
+                if (String.IsNullOrEmpty(tagName))
+                {
+                    if (null != Logger)
+                        Logger.AddLog("Invalid tagName", LogType.Error);
+                    return HashTagActionResult.Failed;
+                }
+
+                var request = CreateWebRequest("/tags/tag/" + tagName, WebRequestOption.Authorization);
+                request.Method = "DELETE";
+
+                using (var response = request.GetResponseSafe() as System.Net.HttpWebResponse)
+                {
+                    if (response != null)
+                    {
+                        try
+                        {
+                            if ( (response.StatusCode == HttpStatusCode.NoContent) ||
+                                 (response.StatusCode == HttpStatusCode.OK))
+                            {
+                                return HashTagActionResult.Successful;
+                            }
+                        }
+                        finally
+                        {
+                            response.Close();
+                        }
+                    }
+                }
+                return HashTagActionResult.Failed;
+            }
+            catch (Exception e)
+            {
+                if (null != Logger)
+                    Logger.AddLog(e.Message, LogType.Error);
+                return HashTagActionResult.Failed;
+            }
+        }
+    
     }
 }

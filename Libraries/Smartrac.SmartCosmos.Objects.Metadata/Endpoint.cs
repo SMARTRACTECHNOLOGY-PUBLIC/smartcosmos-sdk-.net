@@ -19,6 +19,7 @@
 
 using System;
 using System.Collections.Generic;
+using System.Globalization;
 using System.Net;
 using System.Text;
 using Smartrac.Base;
@@ -85,7 +86,7 @@ namespace Smartrac.SmartCosmos.Objects.Metadata
         /// <returns>MetadataActionResult</returns>
         public MetadataActionResult Encode(int value, out TypeSafeEncodingResponse responseData)
         {
-            return Encode(Convert.ToString(value), out responseData, MetadataDataType.Boolean);
+            return Encode(Convert.ToString(value), out responseData, MetadataDataType.Integer);
         }
 
         /// <summary>
@@ -160,7 +161,7 @@ namespace Smartrac.SmartCosmos.Objects.Metadata
         /// <returns>MetadataActionResult</returns>
         public MetadataActionResult Encode(double value, out TypeSafeEncodingResponse responseData)
         {
-            return Encode(Convert.ToString(value), out responseData, MetadataDataType.Double);
+            return Encode(Convert.ToString(value, CultureInfo.GetCultureInfo("en-US")), out responseData, MetadataDataType.Double);
         }
 
         /// <summary>
@@ -185,7 +186,7 @@ namespace Smartrac.SmartCosmos.Objects.Metadata
         /// <returns>MetadataActionResult</returns>
         public MetadataActionResult Encode(float value, out TypeSafeEncodingResponse responseData)
         {
-            return Encode(Convert.ToString(value), out responseData, MetadataDataType.Float);
+            return Encode(Convert.ToString(value, CultureInfo.GetCultureInfo("en-US")), out responseData, MetadataDataType.Float);
         }
 
         /// <summary>
@@ -215,7 +216,7 @@ namespace Smartrac.SmartCosmos.Objects.Metadata
             responseData = null;
             try
             {
-                if (!String.IsNullOrEmpty(Value))
+                if (String.IsNullOrEmpty(Value))
                 {
                     if (null != Logger)
                         Logger.AddLog("value is missing", LogType.Error);
@@ -314,7 +315,7 @@ namespace Smartrac.SmartCosmos.Objects.Metadata
             TypeSafeDecodingResponse responseData;
             MetadataActionResult result = Decode(value, out responseData, MetadataDataType.Date);
 
-            if (null == responseData)
+            if (null != responseData)
                 Rfc3339DateTime.TryParse(responseData.decodedValue, out decodedValue);
             else
             {
@@ -336,7 +337,7 @@ namespace Smartrac.SmartCosmos.Objects.Metadata
             TypeSafeDecodingResponse responseData;
             MetadataActionResult result = Decode(value, out responseData, MetadataDataType.Long);
 
-            if (null == responseData)
+            if (null != responseData)
             {
                 decodedValue = Convert.ToInt64(responseData.decodedValue);
             }
@@ -360,7 +361,7 @@ namespace Smartrac.SmartCosmos.Objects.Metadata
             TypeSafeDecodingResponse responseData;
             MetadataActionResult result = Decode(value, out responseData, MetadataDataType.Integer);
 
-            if (null == responseData)
+            if (null != responseData)
             {
                 decodedValue = Convert.ToInt32(responseData.decodedValue);
             }
@@ -384,7 +385,7 @@ namespace Smartrac.SmartCosmos.Objects.Metadata
             TypeSafeDecodingResponse responseData;
             MetadataActionResult result = Decode(value, out responseData, MetadataDataType.Boolean);
 
-            if (null == responseData)
+            if (null != responseData)
             {
                 decodedValue = Convert.ToBoolean(responseData.decodedValue);
             }
@@ -408,9 +409,9 @@ namespace Smartrac.SmartCosmos.Objects.Metadata
             TypeSafeDecodingResponse responseData;
             MetadataActionResult result = Decode(value, out responseData, MetadataDataType.Float);
 
-            if (null == responseData)
+            if (null != responseData)
             {
-                float.TryParse(responseData.decodedValue, out decodedValue);
+                float.TryParse(responseData.decodedValue, NumberStyles.Float, CultureInfo.GetCultureInfo("en-US"), out decodedValue);
             }
             else
             {
@@ -432,9 +433,9 @@ namespace Smartrac.SmartCosmos.Objects.Metadata
             TypeSafeDecodingResponse responseData;
             MetadataActionResult result = Decode(value, out responseData, MetadataDataType.Double);
 
-            if (null == responseData)
+            if (null != responseData)
             {
-                double.TryParse(responseData.decodedValue, out decodedValue);
+                double.TryParse(responseData.decodedValue, NumberStyles.Number, CultureInfo.GetCultureInfo("en-US"), out decodedValue);
             }
             else
             {
@@ -460,7 +461,7 @@ namespace Smartrac.SmartCosmos.Objects.Metadata
                 return MetadataActionResult.Failed;
             }
 
-            var request = CreateWebRequest("/metadata/mapper/encode/" + requestData.dataTypeObj.GetDescription(), WebRequestOption.Authorization);
+            var request = CreateWebRequest("/metadata/mapper/decode/" + requestData.dataTypeObj.GetDescription(), WebRequestOption.Authorization);
             ExecuteWebRequestJSON<TypeSafeDecodingRequest, TypeSafeDecodingResponse>(request, requestData, out responseData);
             if (responseData != null)
             {
@@ -491,8 +492,8 @@ namespace Smartrac.SmartCosmos.Objects.Metadata
                 return MetadataActionResult.Failed;
             }
 
-            var request = CreateWebRequest("/metadata/" + requestData.entityReferenceType.GetDescription() + "/" + requestData.entityUrn.UUID, WebRequestOption.Authorization);
-            ExecuteWebRequestJSON<List<MetadataItem>, CreateMetadataResponse>(request, requestData.MetaDataList, out responseData);
+            var request = CreateWebRequest("/metadata/" + requestData.entityReferenceType.GetDescription() + "/" + requestData.referenceUrn.UUID, WebRequestOption.Authorization);
+            ExecuteWebRequestJSON<List<MetadataItem>, CreateMetadataResponse>(request, requestData.MetaDataList, out responseData, WebRequestMethods.Http.Put);
             if (responseData != null)
             {
                 switch (responseData.HTTPStatusCode)
@@ -521,7 +522,8 @@ namespace Smartrac.SmartCosmos.Objects.Metadata
                 return MetadataActionResult.Failed;
             }
 
-            var request = CreateWebRequest("/metadata/" + requestData.entityReferenceType.GetDescription() + "/" + requestData.entityUrn.UUID + "/" + requestData.key);
+            var request = CreateWebRequest("/metadata/" + requestData.entityReferenceType.GetDescription() + "/" + requestData.entityUrn.UUID + "/" + requestData.key, 
+                WebRequestOption.Authorization);
             request.Method = "DELETE";
 
             HttpWebResponse response = request.GetResponseSafe() as System.Net.HttpWebResponse;
@@ -568,7 +570,7 @@ namespace Smartrac.SmartCosmos.Objects.Metadata
                 return MetadataActionResult.Failed;
             }
 
-            //metadata/{entityReferenceType}/{entityUrn}{?view,key}
+            //metadata/{entityReferenceType}/{referenceUrn}{?view,key}
             var request = CreateWebRequest("/metadata/" +
                                         requestData.entityReferenceType.GetDescription() + "/" +
                                         requestData.entityUrn.UUID +

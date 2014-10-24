@@ -52,7 +52,7 @@ namespace Smartrac.SmartCosmos.Objects.Metadata
         [Description("XMLType")]
         XML,
 
-        [Description("CustomType")]
+        [Description("Custom")]
         Custom
     }
 

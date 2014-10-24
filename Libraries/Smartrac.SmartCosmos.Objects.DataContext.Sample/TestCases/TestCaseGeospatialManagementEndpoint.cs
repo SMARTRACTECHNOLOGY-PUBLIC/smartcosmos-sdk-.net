@@ -64,9 +64,7 @@ namespace Smartrac.SmartCosmos.Objects.DataContext.Sample
             actionResult = tester.Create(requestNewData, out responseNewData);
             result = result && (actionResult == GeoActionResult.Successful);
             // log response
-            Logger.AddLog("Result: " + actionResult);
-            Logger.AddLog("Result Data: " + responseNewData.ToJSON());
-            OnAfterTest();
+            OnAfterTest(actionResult, responseNewData);
 
             if ((responseNewData != null) && (responseNewData.geospatialUrn != null) && (responseNewData.geospatialUrn.IsValid()))
             {
@@ -82,9 +80,7 @@ namespace Smartrac.SmartCosmos.Objects.DataContext.Sample
                 actionResult = tester.Update(requestUpdateData, out responseUpdateData);
                 result = result && (actionResult == GeoActionResult.Successful);
                 // log response
-                Logger.AddLog("Result: " + actionResult);
-                Logger.AddLog("Result Data: " + responseUpdateData.ToJSON());
-                OnAfterTest();
+                OnAfterTest(actionResult, responseUpdateData);
 
                 OnBeforeTest("Objects", "GeospatialManagementEndpoint", "Lookup Matching Geospatial Entries");
                 // create request
@@ -98,9 +94,7 @@ namespace Smartrac.SmartCosmos.Objects.DataContext.Sample
                 actionResult = tester.Lookup(requestQueryData, out responseQueryData);
                 result = result && (actionResult == GeoActionResult.Successful);
                 // log response
-                Logger.AddLog("Result: " + actionResult);
-                Logger.AddLog("Result Data: " + responseQueryData.ToJSON());
-                OnAfterTest();
+                OnAfterTest(actionResult, responseQueryData);
 
                 OnBeforeTest("Objects", "GeospatialManagementEndpoint", "Lookup Specific Geospatial Entity by URN");
                 GeospatialEntryDataResponse responseSpecificQueryData;
@@ -108,9 +102,7 @@ namespace Smartrac.SmartCosmos.Objects.DataContext.Sample
                 actionResult = tester.Lookup(responseNewData.geospatialUrn, out responseSpecificQueryData, dataContext.GetViewType());
                 result = result && (actionResult == GeoActionResult.Successful);
                 // log response
-                Logger.AddLog("Result: " + actionResult);
-                Logger.AddLog("Result Data: " + responseSpecificQueryData.ToJSON());
-                OnAfterTest();
+                OnAfterTest(actionResult, responseSpecificQueryData);
             }
             return result;
         }

@@ -68,11 +68,8 @@ namespace Smartrac.SmartCosmos.Profiles.DataContext.Sample
                     requestTagMetaData.tagIds.Clear();
                     watch.Reset();
 
-                    Logger.AddLog("Result: " + actionResult.ToString());
-
                     if (responseTagMetaData != null)
                     {
-                        Logger.AddLog("Result Data: " + responseTagMetaData.ToJSON(true));
                         string batchId;
                         string plantId;
                         long delivDate;
@@ -88,7 +85,7 @@ namespace Smartrac.SmartCosmos.Profiles.DataContext.Sample
                             }
                         }
                     }
-                    OnAfterTest();
+                    OnAfterTest(actionResult, responseTagMetaData);
                 }
                 catch (Exception e)
                 {

@@ -69,6 +69,9 @@
     <Reference Include="GeoJSON.Net">
       <HintPath>..\..\External\GeoJSON.Net.0.0.14\lib\GeoJSON.Net.dll</HintPath>
     </Reference>
+    <Reference Include="Newtonsoft.Json">
+      <HintPath>..\..\External\Newtonsoft.Json.6.0.6\lib\net40\Newtonsoft.Json.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.IO">
@@ -99,6 +102,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="DataContext\MyDataContext.cs" />
     <Compile Include="DataContext\SampleObjectInteractionSessionDataContext.cs" />
     <Compile Include="DataContext\SampleMetadataDataContext.cs" />
     <Compile Include="DataContext\SampleHashTagDataContext.cs" />

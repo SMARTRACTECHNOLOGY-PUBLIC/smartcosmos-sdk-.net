@@ -30,7 +30,7 @@ namespace Smartrac.SmartCosmos.Objects.DataContext.Sample
         /// </summary>
         public override Urn GetEntityUrn()
         {
-            return null;
+            return MyDataContext.GetSampleObjectUrn();
         }
 
         public override ViewType GetViewType()

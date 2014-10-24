@@ -23,23 +23,14 @@ namespace Smartrac.SmartCosmos.Objects.DataContext.Sample
 {
     public class SampleRegistrationDataContext : BaseRegistrationDataContext
     {
-        private int randomId;
-
-        public SampleRegistrationDataContext()
-            : base()
-        {
-            Random rdm = new Random();
-            randomId = rdm.Next(0, 100000000);
-        }
-
         public override string GetRealm()
         {
-            return "yourarea" + randomId + ".com";
+            return MyDataContext.GetRealm();
         }
 
         public override string GeteMailAddress()
         {
-            return "testuser@yourarea" + randomId + ".com";
+            return MyDataContext.GeteMailAddress();
         }
     }
 }

@@ -118,7 +118,7 @@
     <Compile Include="BaseRequest.cs" />
     <Compile Include="Interfaces\IHTTPStatusCode.cs" />
     <Compile Include="Interfaces\IResponseMessage.cs" />
-    <Compile Include="Json\JsonDictionaryConverter.cs" />
+    <Compile Include="Converter\JsonDictionaryConverter.cs" />
     <Compile Include="Extensions\ObjectExtensions.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

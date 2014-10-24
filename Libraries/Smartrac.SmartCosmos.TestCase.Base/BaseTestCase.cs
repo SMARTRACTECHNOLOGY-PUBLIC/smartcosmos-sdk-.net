@@ -17,10 +17,12 @@
 
 #endregion License
 
+using System;
 using System.Diagnostics;
 using Smartrac.Logging;
 using Smartrac.SmartCosmos.ClientEndpoint.Factory;
 using Smartrac.SmartCosmos.DataContextFactory;
+using Smartrac.SmartCosmos.ClientEndpoint.BaseObject;
 
 namespace Smartrac.SmartCosmos.TestCase.Base
 {
@@ -76,11 +78,27 @@ namespace Smartrac.SmartCosmos.TestCase.Base
             stopwatch.Reset();
             stopwatch.Start();
         }
-
+        
         protected void OnAfterTest()
         {
             stopwatch.Stop();
             Logger.AddLog("Required time: " + stopwatch.Elapsed);
+            Logger.AddLog("");
+            Logger.AddLog("");
+        }
+       
+        protected void OnAfterTest(Enum testResult)
+        {
+            OnAfterTest(testResult, null, true);
+        }
+
+        protected void OnAfterTest(Enum testResult, object response = null, bool formatIndented = true)
+        {
+            stopwatch.Stop();
+            if (response != null)
+              Logger.AddLog("Result Data: " + response.ToJSON(formatIndented));
+            Logger.AddLog("Required time: " + stopwatch.Elapsed);
+            Logger.AddLog("Result: " + testResult);
             Logger.AddLog("");
             Logger.AddLog("");
         }

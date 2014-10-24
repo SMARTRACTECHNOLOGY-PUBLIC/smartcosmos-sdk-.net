@@ -105,7 +105,7 @@ namespace Smartrac.SmartCosmos.Objects.File
                 request.Method = WebRequestMethods.Http.Post;
                 request.ContentType = "application/octet-stream";
 
-                request.ContentLength = data.Length;
+                //request.ContentLength = data.Length;
                 using (var writer = request.GetRequestStream())
                 {
                     data.CopyTo(writer);
@@ -287,7 +287,7 @@ namespace Smartrac.SmartCosmos.Objects.File
                     return FileActionResult.Failed;
                 }
 
-                var request = CreateWebRequest("/files/" + fileUrn.UUID + "?view=" + viewType.GetDescription());
+                var request = CreateWebRequest("/files/" + fileUrn.UUID + "?view=" + viewType.GetDescription(), WebRequestOption.Authorization);
                 HttpWebResponse webResponse;
                 var returnHTTPCode = ExecuteWebRequestJSON<FileDefinitionRetrievalResponse>(request, out responseData, out webResponse);
                 if ((responseData != null) && (webResponse != null))
@@ -335,7 +335,7 @@ namespace Smartrac.SmartCosmos.Objects.File
                     return FileActionResult.Failed;
                 }
 
-                var request = CreateWebRequest("/files/" + fileUrn.UUID + "/contents");
+                var request = CreateWebRequest("/files/" + fileUrn.UUID + "/contents", WebRequestOption.Authorization);
                 request.Method = WebRequestMethods.Http.Get;
 
                 using (var response = request.GetResponseSafe() as System.Net.HttpWebResponse)
@@ -413,7 +413,8 @@ namespace Smartrac.SmartCosmos.Objects.File
                     return FileActionResult.Failed;
                 }
 
-                var request = CreateWebRequest("/files/" + entityReferenceType.GetDescription() + "/" + referenceUrn.UUID + "?view=" + viewType.GetDescription());
+                var request = CreateWebRequest("/files/" + entityReferenceType.GetDescription() + "/" + referenceUrn.UUID + "?view=" + viewType.GetDescription(), 
+                    WebRequestOption.Authorization);
                 var returnHTTPCode = ExecuteWebRequestJSON<FileDefinitionRetrievalListResponse>(request, out responseData);
                 if (responseData != null)
                 {

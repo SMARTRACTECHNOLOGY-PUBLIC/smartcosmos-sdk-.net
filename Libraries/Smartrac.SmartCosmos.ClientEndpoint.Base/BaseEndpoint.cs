@@ -22,6 +22,7 @@ using System.IO;
 using System.Net;
 using System.Security.Cryptography;
 using System.Text;
+using Newtonsoft.Json;
 using Smartrac.Logging;
 using Smartrac.SmartCosmos.ClientEndpoint.BaseObject;
 
@@ -164,6 +165,11 @@ namespace Smartrac.SmartCosmos.ClientEndpoint.Base
             return request;
         }
 
+        protected virtual JsonSerializerSettings GetJsonSerializerSettings()
+        {
+            return null;
+        }
+
         protected HttpStatusCode ExecuteWebRequestJSON<requestType, responseType>(WebRequest request,
             requestType requestData,
             out responseType responseData,
@@ -205,7 +211,7 @@ namespace Smartrac.SmartCosmos.ClientEndpoint.Base
                         {
                             // convert stream to string
                             if (webResponse.ContentType == "application/json")
-                                responseData = responseData.FromJSON(webResponse.GetResponseStream());
+                                responseData = responseData.FromJSON(webResponse.GetResponseStream(), GetJsonSerializerSettings() );
                             else
                             {
                                 responseData = new responseType();

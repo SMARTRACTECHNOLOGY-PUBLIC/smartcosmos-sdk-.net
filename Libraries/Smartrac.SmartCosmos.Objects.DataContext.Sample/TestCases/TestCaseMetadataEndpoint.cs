@@ -62,7 +62,7 @@ namespace Smartrac.SmartCosmos.Objects.DataContext.Sample
                 CreateMetadataRequest requestCreateData = new CreateMetadataRequest
                 {
                     entityReferenceType = dataContext.GetEntityReferenceType(),
-                    entityUrn = dataContext.GetEntityUrn()
+                    referenceUrn = dataContext.GetEntityUrn()
                 };
                 requestCreateData.MetaDataList.AddRange(metadata);
                 CreateMetadataResponse responseCreateData;
@@ -70,9 +70,7 @@ namespace Smartrac.SmartCosmos.Objects.DataContext.Sample
                 MetadataActionResult actionResult = tester.Create(requestCreateData, out responseCreateData);
                 result = result && (actionResult == MetadataActionResult.Successful);
                 // log response
-                Logger.AddLog("Result: " + actionResult);
-                Logger.AddLog("Result Data: " + responseCreateData.ToJSON());
-                OnAfterTest();
+                OnAfterTest(actionResult, responseCreateData);
 
                 OnBeforeTest("Objects", "MetadataEndpoint", "Metadata Deletion");
                 // create request
@@ -87,9 +85,7 @@ namespace Smartrac.SmartCosmos.Objects.DataContext.Sample
                 actionResult = tester.Delete(requestDeleteData, out responseDeleteData);
                 result = result && (actionResult == MetadataActionResult.Successful);
                 // log response
-                Logger.AddLog("Result: " + actionResult);
-                Logger.AddLog("Result Data: " + responseDeleteData.ToJSON());
-                OnAfterTest();
+                OnAfterTest(actionResult, responseDeleteData);
 
                 OnBeforeTest("Objects", "MetadataEndpoint", "Lookup Associated Metadata");
                 // create request
@@ -104,9 +100,7 @@ namespace Smartrac.SmartCosmos.Objects.DataContext.Sample
                 actionResult = tester.Lookup(requestLookupData, out responseLookupData);
                 result = result && (actionResult == MetadataActionResult.Successful);
                 // log response
-                Logger.AddLog("Result: " + actionResult);
-                Logger.AddLog("Result Data: " + responseLookupData.ToJSON());
-                OnAfterTest();
+                OnAfterTest(actionResult, responseLookupData);
             }
             return result;
         }
@@ -180,7 +174,7 @@ namespace Smartrac.SmartCosmos.Objects.DataContext.Sample
             Logger.AddLog("Result: (double)" + actionResult);
 
             // call endpoint - DateTime
-            DateTime dateValueFix = DateTime.Now;
+            DateTime dateValueFix = DateTime.UtcNow;
             DateTime dateValue = dateValueFix;
             if ((tester.Encode(dateValue, out sValue) != MetadataActionResult.Successful) ||
                  (tester.Decode(sValue, out dateValue) != MetadataActionResult.Successful) ||
@@ -203,62 +197,8 @@ namespace Smartrac.SmartCosmos.Objects.DataContext.Sample
             }
             result = result && (actionResult == MetadataActionResult.Successful);
             // log response
-            Logger.AddLog("Result: (string)" + actionResult);
-            OnAfterTest();
+            OnAfterTest(actionResult);
 
-            /*
-            OnBeforeTest("Objects", "MetadataEndpoint", "Update an existing user");
-            // create request
-            MetadataRequest requestUpdateUserData = new MetadataRequest
-            {
-                emailAddress = dataContext.GeteMailAddress(),
-                givenName = dataContext.GetGivenName(),
-                surname = dataContext.GetSurname() + "_updated",
-            };
-            MetadataResponse responseUpdateUserData;
-            // call endpoint
-            actionResult = tester.UpdateUser(requestUpdateUserData, out responseUpdateUserData);
-            result = result && (actionResult == MetadataActionResult.Successful);
-            // log response
-            Logger.AddLog("Result: " + actionResult);
-            Logger.AddLog("Result Data: " + responseUpdateUserData.ToJSON());
-            OnAfterTest();
-
-            OnBeforeTest("Objects", "MetadataEndpoint", "Lookup Specific User by URN");
-            UserDataResponse responseUserData;
-            // call endpoint
-            actionResult = tester.LookupSpecificUser(responseNewUserData.userUrn, dataContext.GetViewType(), out responseUserData);
-            result = result && (actionResult == MetadataActionResult.Successful);
-            // log response
-            Logger.AddLog("Result: " + actionResult);
-            Logger.AddLog("Result Data: " + responseUserData.ToJSON());
-            OnAfterTest();
-
-            OnBeforeTest("Objects", "MetadataEndpoint", "Lookup Specific User by Email Address");
-            UserDataResponse responseUserEMailData;
-            // call endpoint
-            actionResult = tester.LookupSpecificUser(dataContext.GeteMailAddress(), dataContext.GetViewType(), out responseUserEMailData);
-            result = result && (actionResult == MetadataActionResult.Successful);
-            // log response
-            Logger.AddLog("Result: " + actionResult);
-            Logger.AddLog("Result Data: " + responseUserEMailData.ToJSON());
-            OnAfterTest();
-
-            OnBeforeTest("Objects", "MetadataEndpoint", "Change or Reset User Password");
-            ChangeOrResetUserPasswordRequest requestPasswordResetData = new ChangeOrResetUserPasswordRequest
-            {
-                emailAddress = dataContext.GeteMailAddress(),
-                newPassword = dataContext.GetNewPassword()
-            };
-            ChangeOrResetUserPasswordResponse responsePasswordResetData;
-            // call endpoint
-            actionResult = tester.ChangeOrResetUserPassword(requestPasswordResetData, out responsePasswordResetData);
-            result = result && (actionResult == MetadataActionResult.Successful);
-            // log response
-            Logger.AddLog("Result: " + actionResult);
-            Logger.AddLog("Result Data: " + responsePasswordResetData.ToJSON());
-            OnAfterTest();
-            */
             return result;
         }
     }

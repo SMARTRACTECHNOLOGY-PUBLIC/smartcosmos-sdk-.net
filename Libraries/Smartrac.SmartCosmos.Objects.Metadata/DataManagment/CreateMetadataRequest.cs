@@ -38,7 +38,7 @@ namespace Smartrac.SmartCosmos.Objects.Metadata
         /// Case-sensitive urn of an existing entity of type entityReferenceType
         /// </summary>
         [JsonIgnore]
-        public Urn entityUrn { get; set; }
+        public Urn referenceUrn { get; set; }
 
         private List<MetadataItem> MetaDataList_ = new List<MetadataItem>();
 
@@ -56,6 +56,8 @@ namespace Smartrac.SmartCosmos.Objects.Metadata
         public override bool IsValid()
         {
             return base.IsValid() &&
+                (referenceUrn != null) &&
+                referenceUrn.IsValid() &&
                 MetaDataList.Count > 0 &&
                 MetaDataList.TrueForAll(i => i.IsValid());
         }
@@ -76,6 +78,7 @@ namespace Smartrac.SmartCosmos.Objects.Metadata
             }
         }
 
+        [JsonIgnore]
         public MetadataDataType dataTypeObj { get; set; }
 
         /// <summary>

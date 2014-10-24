@@ -19,6 +19,7 @@
 
 using System;
 using System.Net;
+using Newtonsoft.Json;
 using Smartrac.Logging;
 using Smartrac.SmartCosmos.ClientEndpoint.Base;
 using Smartrac.SmartCosmos.Objects.Base;
@@ -30,6 +31,16 @@ namespace Smartrac.SmartCosmos.Objects.GeospatialManagement
     /// </summary>
     internal class GeospatialManagementEndpoint : BaseObjectsEndpoint, IGeospatialManagementEndpoint
     {
+        protected override JsonSerializerSettings GetJsonSerializerSettings()
+        {
+            JsonSerializerSettings settings = new JsonSerializerSettings {
+                NullValueHandling = NullValueHandling.Ignore,
+            };
+
+            settings.Converters.Add(new GeoJSONCreationConverter());
+            return settings;
+        }
+
         /// <summary>
         /// Create a new geospatial entry
         /// </summary>
@@ -93,7 +104,7 @@ namespace Smartrac.SmartCosmos.Objects.GeospatialManagement
 
                 var request = CreateWebRequest("/geospatial", WebRequestOption.Authorization);
                 HttpWebResponse webResponse = null;
-                ExecuteWebRequestJSON<GeospatialManagementUpdateRequest, GeospatialManagementUpdateResponse>(request, requestData, out responseData, out webResponse, WebRequestMethods.Http.Put);
+                ExecuteWebRequestJSON<GeospatialManagementUpdateRequest, GeospatialManagementUpdateResponse>(request, requestData, out responseData, out webResponse, WebRequestMethods.Http.Post);
                 if (responseData != null)
                 {
                     if ((responseData.HTTPStatusCode == HttpStatusCode.NoContent) &&

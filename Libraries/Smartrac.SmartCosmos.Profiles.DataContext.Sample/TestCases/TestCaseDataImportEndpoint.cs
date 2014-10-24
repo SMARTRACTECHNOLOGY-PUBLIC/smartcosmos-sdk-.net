@@ -55,9 +55,7 @@ namespace Smartrac.SmartCosmos.Profiles.DataContext.Sample
             actionResult = tester.CheckImportState(new ImportStateRequest(dataContext.GetImportId()), out responseImportState);
             result = result && (actionResult == DataActionResult.Successful);
             // log response
-            Logger.AddLog("Result: " + actionResult.ToString());
-            Logger.AddLog("Result Data: " + responseImportState.ToJSON());
-            OnAfterTest();
+            OnAfterTest(actionResult, responseImportState);
 
             return result;
         }

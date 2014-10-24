@@ -63,9 +63,7 @@ namespace Smartrac.SmartCosmos.Objects.DataContext.Sample
             actionResult = tester.CreateNewUser(requestNewUserData, out responseNewUserData);
             result = result && (actionResult == UserActionResult.Successful);
             // log response
-            Logger.AddLog("Result: " + actionResult);
-            Logger.AddLog("Result Data: " + responseNewUserData.ToJSON());
-            OnAfterTest();
+            OnAfterTest(actionResult, responseNewUserData);
 
             OnBeforeTest("Objects", "UserManagementEndpoint", "Update an existing user");
             // create request
@@ -80,10 +78,7 @@ namespace Smartrac.SmartCosmos.Objects.DataContext.Sample
             actionResult = tester.UpdateUser(requestUpdateUserData, out responseUpdateUserData);
             result = result && (actionResult == UserActionResult.Successful);
             // log response
-            Logger.AddLog("Result: " + actionResult);
-            if (responseUpdateUserData != null)
-                Logger.AddLog("Result Data: " + responseUpdateUserData.ToJSON());
-            OnAfterTest();
+            OnAfterTest(actionResult, responseUpdateUserData);
 
             if ((responseNewUserData != null) && (responseNewUserData.userUrn != null) && responseNewUserData.userUrn.IsValid())
             {
@@ -93,10 +88,7 @@ namespace Smartrac.SmartCosmos.Objects.DataContext.Sample
                 actionResult = tester.LookupSpecificUser(responseNewUserData.userUrn, dataContext.GetViewType(), out responseUserData);
                 result = result && (actionResult == UserActionResult.Successful);
                 // log response
-                Logger.AddLog("Result: " + actionResult);
-                if (responseUserData != null)
-                    Logger.AddLog("Result Data: " + responseUserData.ToJSON());
-                OnAfterTest();
+                OnAfterTest(actionResult, responseUserData);
             }
 
             OnBeforeTest("Objects", "UserManagementEndpoint", "Lookup Specific User by Email Address");
@@ -105,9 +97,7 @@ namespace Smartrac.SmartCosmos.Objects.DataContext.Sample
             actionResult = tester.LookupSpecificUser(dataContext.GeteMailAddress(), dataContext.GetViewType(), out responseUserEMailData);
             result = result && (actionResult == UserActionResult.Successful);
             // log response
-            Logger.AddLog("Result: " + actionResult);
-            Logger.AddLog("Result Data: " + responseUserEMailData.ToJSON());
-            OnAfterTest();
+            OnAfterTest(actionResult, responseUserEMailData);
 
             OnBeforeTest("Objects", "UserManagementEndpoint", "Change or Reset User Password");
             ChangeOrResetUserPasswordRequest requestPasswordResetData = new ChangeOrResetUserPasswordRequest
@@ -120,9 +110,7 @@ namespace Smartrac.SmartCosmos.Objects.DataContext.Sample
             actionResult = tester.ChangeOrResetUserPassword(requestPasswordResetData, out responsePasswordResetData);
             result = result && (actionResult == UserActionResult.Successful);
             // log response
-            Logger.AddLog("Result: " + actionResult);
-            Logger.AddLog("Result Data: " + responsePasswordResetData.ToJSON());
-            OnAfterTest();
+            OnAfterTest(actionResult, responsePasswordResetData);
 
             return result;
         }

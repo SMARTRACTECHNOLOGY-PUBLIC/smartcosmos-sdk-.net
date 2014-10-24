@@ -56,9 +56,7 @@ namespace Smartrac.SmartCosmos.Profiles.DataContext.Sample
             TagVerificationActionResult actionResult = tester.VerifyTags(requestVerifyTags, out responseVerifyTags);
             result = (actionResult == TagVerificationActionResult.Successful);
             // log response
-            Logger.AddLog("Result: " + actionResult.ToString());
-            Logger.AddLog("Result Data: " + responseVerifyTags.ToJSON(true));
-            OnAfterTest();
+            OnAfterTest(actionResult, responseVerifyTags);
 
             OnBeforeTest("Profiles", "TagVerificationEndpoint", "GetVerificationMessage");
             // create request
@@ -70,9 +68,7 @@ namespace Smartrac.SmartCosmos.Profiles.DataContext.Sample
             actionResult = tester.GetVerificationMessage(requestVerificationMessage, out responseVerificationMessage);
             result = result && (actionResult == TagVerificationActionResult.Successful);
             // log response
-            Logger.AddLog("Result: " + actionResult.ToString());
-            Logger.AddLog("Result Data: " + responseVerificationMessage.ToJSON());
-            OnAfterTest();
+            OnAfterTest(actionResult, responseVerificationMessage);
 
             return result;
         }

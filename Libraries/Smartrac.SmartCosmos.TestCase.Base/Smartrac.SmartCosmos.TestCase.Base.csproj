@@ -66,6 +66,9 @@
     <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="Newtonsoft.Json">
+      <HintPath>..\..\External\Newtonsoft.Json.6.0.6\lib\net40\Newtonsoft.Json.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.IO">
@@ -111,6 +114,10 @@
     <ProjectReference Include="..\Smartrac.Logging\Smartrac.Logging.csproj">
       <Project>{73ba0972-769b-4b84-9a21-9cf545a14a03}</Project>
       <Name>Smartrac.Logging</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Smartrac.SmartCosmos.ClientEndpoint.BaseObject\Smartrac.SmartCosmos.ClientEndpoint.BaseObject.csproj">
+      <Project>{28e0fa25-18da-4c11-83cd-92a36ddd060b}</Project>
+      <Name>Smartrac.SmartCosmos.ClientEndpoint.BaseObject</Name>
     </ProjectReference>
     <ProjectReference Include="..\Smartrac.SmartCosmos.ClientEndpoint.Factory\Smartrac.SmartCosmos.ClientEndpoint.Factory.csproj">
       <Project>{692630bd-502b-4a8a-bb36-84b322d0276f}</Project>

@@ -63,9 +63,7 @@ namespace Smartrac.SmartCosmos.Objects.DataContext.Sample
             actionResult = tester.Create(requestNewData, out responseNewData);
             result = result && (actionResult == HashTagActionResult.Successful);
             // log response
-            Logger.AddLog("Result: " + actionResult);
-            Logger.AddLog("Result Data: " + responseNewData.ToJSON());
-            OnAfterTest();
+            OnAfterTest(actionResult, responseNewData);
 
             OnBeforeTest("Objects", "HashTagEndpoint", "Lookup specific hash tag by URN");
             HashTagDataResponse responseLookupData;
@@ -73,18 +71,14 @@ namespace Smartrac.SmartCosmos.Objects.DataContext.Sample
             actionResult = tester.Lookup(responseNewData.tagUrn, out responseLookupData, dataContext.GetViewType());
             result = result && (actionResult == HashTagActionResult.Successful);
             // log response
-            Logger.AddLog("Result: " + actionResult);
-            Logger.AddLog("Result Data: " + responseLookupData.ToJSON());
-            OnAfterTest();
+            OnAfterTest(actionResult, responseLookupData);
 
             OnBeforeTest("Objects", "HashTagEndpoint", "Lookup specific hash tag by name");
             // call endpoint
             actionResult = tester.Lookup(dataContext.GetName(), out responseLookupData, dataContext.GetViewType());
             result = result && (actionResult == HashTagActionResult.Successful);
             // log response
-            Logger.AddLog("Result: " + actionResult);
-            Logger.AddLog("Result Data: " + responseLookupData.ToJSON());
-            OnAfterTest();
+            OnAfterTest(actionResult, responseLookupData);
 
             OnBeforeTest("Objects", "HashTagEndpoint", "Lookup specific hash tag by object reference");
             HashTagListResponse responseLookupListData;
@@ -95,14 +89,12 @@ namespace Smartrac.SmartCosmos.Objects.DataContext.Sample
                                          dataContext.GetViewType());
             result = result && (actionResult == HashTagActionResult.Successful);
             // log response
-            Logger.AddLog("Result: " + actionResult);
-            Logger.AddLog("Result Data: " + responseLookupListData.ToJSON());
-            OnAfterTest();
+            OnAfterTest(actionResult, responseLookupListData);
 
             OnBeforeTest("Objects", "HashTagEndpoint", "Assign hash tags to an object reference");
             HashTagListRequest requestAssignData = new HashTagListRequest();
             requestAssignData.Add(dataContext.GetName());
-            DefaultResponse responseAssignData;
+            HashTagListResponse responseAssignData;
             // call endpoint
             actionResult = tester.Assign(dataContext.GetEntityReferenceType(),
                                          dataContext.GetReferenceUrn(),
@@ -110,17 +102,17 @@ namespace Smartrac.SmartCosmos.Objects.DataContext.Sample
                                          out responseAssignData);
             result = result && (actionResult == HashTagActionResult.Successful);
             // log response
-            Logger.AddLog("Result: " + actionResult);
-            Logger.AddLog("Result Data: " + responseAssignData.ToJSON());
-            OnAfterTest();
+            OnAfterTest(actionResult, responseAssignData);
 
-            OnBeforeTest("Objects", "HashTagEndpoint", "Delete hash tag");
-            // call endpoint
-            actionResult = tester.Delete(responseNewData.tagUrn);
-            result = result && (actionResult == HashTagActionResult.Successful);
-            // log response
-            Logger.AddLog("Result: " + actionResult);
-            OnAfterTest();
+            if ((responseNewData != null) && (responseNewData.tagUrn != null) && (responseNewData.tagUrn.IsValid()))
+            {
+                OnBeforeTest("Objects", "HashTagEndpoint", "Delete hash tag");
+                // call endpoint
+                actionResult = tester.Delete(requestNewData.name);
+                result = result && (actionResult == HashTagActionResult.Successful);
+                // log response
+                OnAfterTest(actionResult);
+            }
 
             return result;
         }

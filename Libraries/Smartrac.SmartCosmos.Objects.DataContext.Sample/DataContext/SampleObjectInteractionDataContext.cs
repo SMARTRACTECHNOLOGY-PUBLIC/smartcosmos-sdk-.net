@@ -26,13 +26,12 @@ namespace Smartrac.SmartCosmos.Objects.DataContext.Sample
     {
         public override Urn GetObjectUrn()
         {
-            return new Urn("urn:building:mall:ParadiseValley");
+            return MyDataContext.GetSampleObjectUrn();
         }
 
         public override Urn GetReferenceUrn()
         {
-            return new Urn("urn:building:mall:ParadiseValley");
-            //return new Urn("urn:instagram:FooQux:47c23bc6-2a58-4e37-93b0-848776b42404");
+            return MyDataContext.GetSampleObjectUrn();
         }
 
         public override string GetInteractionType()

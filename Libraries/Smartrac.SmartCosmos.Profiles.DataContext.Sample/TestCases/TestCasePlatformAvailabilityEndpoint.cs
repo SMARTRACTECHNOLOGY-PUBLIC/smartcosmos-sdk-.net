@@ -37,8 +37,7 @@ namespace Smartrac.SmartCosmos.Profiles.DataContext.Sample
             actionResult = tester.Ping();
             result = result && (actionResult == PlatformAvailabilityActionResult.Successful);
 
-            Logger.AddLog("Result: " + actionResult);
-            OnAfterTest();
+            OnAfterTest(actionResult);
 
             return result;
         }
