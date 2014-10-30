@@ -18,11 +18,12 @@
 #endregion License
 
 using GeoJSON.Net;
+using Smartrac.SmartCosmos.ClientEndpoint.Base;
 using Smartrac.SmartCosmos.Objects.Base;
 
 namespace Smartrac.SmartCosmos.Objects.DataContext
 {
-    public interface IGeospatialManagementDataContext
+    public interface IGeospatialManagementDataContext : IBaseDataContext
     {
         Urn GetGeospatialUrn();
 

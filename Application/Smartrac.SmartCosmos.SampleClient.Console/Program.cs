@@ -20,8 +20,10 @@
 using System.Configuration;
 using Smartrac.Logging;
 using Smartrac.Logging.Console;
+using Smartrac.Logging.File;
 using Smartrac.SmartCosmos.ClientEndpoint.Factory;
 using Smartrac.SmartCosmos.DataContextFactory.Sample;
+using Smartrac.SmartCosmos.DataContextFactory.XML;
 using Smartrac.SmartCosmos.TestCase.Base;
 using Smartrac.SmartCosmos.TestCase.Runner;
 
@@ -36,19 +38,22 @@ namespace Smartrac.SmartCosmos.SampleClient.Console
 
             // factory for endpoints
             IEndpointFactory factory = new EndpointFactory(logger);
+            
             // user settings
-            // NOTE: please enter your SmartCosmos user name and password in the app.config
-            factory.UserName = ConfigurationManager.AppSettings["UserName"];
-            factory.UserPassword = ConfigurationManager.AppSettings["UserPassword"];
+            // NOTE: please enter your SmartCosmos Profiles user name and password in the app.config
+            factory.ProfilesUserName = ConfigurationManager.AppSettings["ProfilesUserName"];
+            factory.ProfilesUserPassword = ConfigurationManager.AppSettings["ProfilesUserPassword"];
 
-            // Configure server of SMART COSMOS Objects
-            factory.ObjectsServerURL = "http://54.171.86.156:8080";
-            factory.ProfilesServerURL = "";
-
+            // Configuration for SMART COSMOS Objects
+            factory.ProfilesUserName = ConfigurationManager.AppSettings["ObjectsUserName"];
+            factory.ProfilesUserPassword = ConfigurationManager.AppSettings["ObjectsUserPassword"];
+            factory.ObjectsServerURL = ConfigurationManager.AppSettings["ObjectsServerURL"]; // e.g. http://54.171.86.156:8080
+            
             // initate tester case runner
             ITestCaseRunner testCaseRunner = new TestCaseRunnerBuilder()
                                             .setLogger(logger) // set logger
                                             .setDataContextFactory(new SampleDataContextFactory()) // data context factory for sample data
+                                            //.setDataContextFactory(new XMLDataContextFactory(ConfigurationManager.AppSettings["XMLDataContextFactory"])) // data context factory for sample data
                                             .setEndpointFactory(factory) // set factory for endpoints
                                             .build();
 

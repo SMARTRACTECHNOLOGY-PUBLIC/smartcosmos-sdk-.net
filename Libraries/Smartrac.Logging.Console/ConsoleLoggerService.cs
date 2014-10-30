@@ -19,34 +19,45 @@
 
 namespace Smartrac.Logging.Console
 {
-    public sealed class ConsoleLoggerService : IMessageLogger
+    public class ConsoleLoggerService : BaseMessageLogger
     {
-        public void AddLog(string aMessage, LogType aLogType = LogType.Debug)
+        public ConsoleLoggerService(LogType logLevel) 
+            : base(logLevel)
         {
-            switch (aLogType)
+            System.Console.BufferHeight = 5000;
+        }
+
+        public ConsoleLoggerService()
+            : this(LogType.Debug)
+        {
+        }
+
+        protected override void DoAddLog(string message, LogType logType = LogType.Debug)
+        {
+            switch (logType)
             {
                 case LogType.Debug:
-                    System.Console.WriteLine(aMessage);
+                    System.Console.WriteLine(message);
                     break;
 
                 case LogType.Error:
-                    System.Console.WriteLine("ERR:" + aMessage);
+                    System.Console.WriteLine("ERR:" + message);
                     break;
 
                 case LogType.Fatal:
-                    System.Console.WriteLine("FATAL:" + aMessage);
+                    System.Console.WriteLine("FATAL:" + message);
                     break;
 
                 case LogType.Info:
-                    System.Console.WriteLine(aMessage);
+                    System.Console.WriteLine(message);
                     break;
 
                 case LogType.Warning:
-                    System.Console.WriteLine("WRN:" + aMessage);
+                    System.Console.WriteLine("WRN:" + message);
                     break;
 
                 default:
-                    System.Console.WriteLine("???:" + aMessage);
+                    System.Console.WriteLine("???:" + message);
                     break;
             }
         }

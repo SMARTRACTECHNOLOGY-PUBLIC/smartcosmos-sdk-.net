@@ -17,11 +17,12 @@
 
 #endregion License
 
+using Smartrac.SmartCosmos.ClientEndpoint.Base;
 using Smartrac.SmartCosmos.Objects.Base;
 
 namespace Smartrac.SmartCosmos.Objects.DataContext
 {
-    public interface IObjectInteractionSessionDataContext
+    public interface IObjectInteractionSessionDataContext : IBaseDataContext
     {
         Urn GetSessionUrn();
 

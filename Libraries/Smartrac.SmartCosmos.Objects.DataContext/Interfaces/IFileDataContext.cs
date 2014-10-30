@@ -19,11 +19,12 @@
 
 using System.Collections.Generic;
 using System.IO;
+using Smartrac.SmartCosmos.ClientEndpoint.Base;
 using Smartrac.SmartCosmos.Objects.Base;
 
 namespace Smartrac.SmartCosmos.Objects.DataContext
 {
-    public interface IFileDataContext
+    public interface IFileDataContext : IBaseDataContext
     {
         EntityReferenceType GetEntityReferenceType();
 

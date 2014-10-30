@@ -17,11 +17,12 @@
 
 #endregion License
 
+using Smartrac.SmartCosmos.ClientEndpoint.Base;
 using Smartrac.SmartCosmos.Objects.Base;
 
 namespace Smartrac.SmartCosmos.Objects.DataContext
 {
-    public interface IUserManagementDataContext
+    public interface IUserManagementDataContext : IBaseDataContext
     {
         Urn GetUserUrn();
 

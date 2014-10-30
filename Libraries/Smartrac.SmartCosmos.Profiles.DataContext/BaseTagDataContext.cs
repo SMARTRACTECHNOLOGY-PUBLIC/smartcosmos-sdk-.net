@@ -38,14 +38,14 @@ namespace Smartrac.SmartCosmos.Profiles.DataContext
             return null;
         }
 
-        public virtual string GetImportId()
+        public virtual IEnumerable<string> GetImportId()
         {
-            return "";
+            return null;
         }
 
-        public virtual string GetTagDataFile()
+        public virtual IEnumerable<string> GetTagDataFile()
         {
-            return "";
+            return null;
         }
     }
 }

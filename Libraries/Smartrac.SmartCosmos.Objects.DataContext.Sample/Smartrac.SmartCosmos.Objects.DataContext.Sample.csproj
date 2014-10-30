@@ -16,7 +16,7 @@
     <DebugSymbols>true</DebugSymbols>
     <DebugType>full</DebugType>
     <Optimize>false</Optimize>
-    <OutputPath>bin\Debug\</OutputPath>
+    <OutputPath>$(SolutionDir)\bin\$(Platform)\$(Configuration)</OutputPath>
     <DefineConstants>DEBUG;TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
@@ -24,7 +24,7 @@
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <DebugType>pdbonly</DebugType>
     <Optimize>true</Optimize>
-    <OutputPath>bin\Release\</OutputPath>
+    <OutputPath>$(SolutionDir)\bin\$(Platform)\$(Configuration)</OutputPath>
     <DefineConstants>TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
@@ -67,7 +67,7 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="GeoJSON.Net">
-      <HintPath>..\..\External\GeoJSON.Net.0.0.14\lib\GeoJSON.Net.dll</HintPath>
+      <HintPath>..\..\External\GeoJSON.Net.0.0.16\lib\GeoJSON.Net.dll</HintPath>
     </Reference>
     <Reference Include="Newtonsoft.Json">
       <HintPath>..\..\External\Newtonsoft.Json.6.0.6\lib\net40\Newtonsoft.Json.dll</HintPath>
@@ -102,22 +102,10 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="DataContext\MyDataContext.cs" />
+    <Compile Include="MyDataContext.cs" />
     <Compile Include="DataContext\SampleObjectInteractionSessionDataContext.cs" />
     <Compile Include="DataContext\SampleMetadataDataContext.cs" />
     <Compile Include="DataContext\SampleHashTagDataContext.cs" />
-    <Compile Include="TestCases\BaseObjectsTestCase.cs" />
-    <Compile Include="TestCases\TestCaseMetadataEndpoint.cs" />
-    <Compile Include="TestCases\TestCaseObjectInteractionSessionEndpoint.cs" />
-    <Compile Include="TestCases\TestCaseHashTagEndpoint.cs" />
-    <Compile Include="TestCases\TestCaseAccountManagementEndpoint.cs" />
-    <Compile Include="TestCases\TestCaseFileEndpoint.cs" />
-    <Compile Include="TestCases\TestCaseGeospatialManagementEndpoint.cs" />
-    <Compile Include="TestCases\TestCaseObjectInteractionEndpoint.cs" />
-    <Compile Include="TestCases\TestCaseObjectManagementEndpoint.cs" />
-    <Compile Include="TestCases\TestCaseRegistrationEndpoint.cs" />
-    <Compile Include="TestCases\TestCaseRelationshipManagementEndpoint.cs" />
-    <Compile Include="TestCases\TestCaseUserManagementEndpoint.cs" />
     <Compile Include="DataContext\SampleGeospatialManagmentDataContext.cs" />
     <Compile Include="DataContext\SampleRelationshipManagementDataContext.cs" />
     <Compile Include="DataContext\SampleObjectInteractionDataContext.cs" />
@@ -160,6 +148,10 @@
     <ProjectReference Include="..\Smartrac.SmartCosmos.Objects.Base\Smartrac.SmartCosmos.Objects.Base.csproj">
       <Project>{96f35cdc-1fe4-4d39-afad-907466426a72}</Project>
       <Name>Smartrac.SmartCosmos.Objects.Base</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Smartrac.SmartCosmos.Objects.TestCase\Smartrac.SmartCosmos.Objects.TestCase.csproj">
+      <Project>{b25ff844-52d4-4da4-a34d-fe8e101bd7d7}</Project>
+      <Name>Smartrac.SmartCosmos.Objects.TestCase.Base</Name>
     </ProjectReference>
     <ProjectReference Include="..\Smartrac.SmartCosmos.Objects.DataContext\Smartrac.SmartCosmos.Objects.DataContext.csproj">
       <Project>{955046d9-aa9a-462c-9057-8046c61ed701}</Project>

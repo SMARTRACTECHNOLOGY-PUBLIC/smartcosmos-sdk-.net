@@ -23,11 +23,17 @@ using Smartrac.Logging;
 using Smartrac.SmartCosmos.ClientEndpoint.Factory;
 using Smartrac.SmartCosmos.DataContextFactory;
 using Smartrac.SmartCosmos.ClientEndpoint.BaseObject;
+using Smartrac.SmartCosmos.ClientEndpoint.Base;
 
 namespace Smartrac.SmartCosmos.TestCase.Base
 {
-    public class BaseTestCase : ITestCase
+    public class BaseTestCase<C, E> : ITestCase
+        where C : IBaseDataContext
+        where E : IBaseEndpoint
     {
+        protected C dataContext;
+        protected E endpoint;
+
         protected IMessageLogger Logger { get; set; }
 
         protected IEndpointFactory EndpointFactory { get; set; }
@@ -39,21 +45,88 @@ namespace Smartrac.SmartCosmos.TestCase.Base
         public bool Run(IMessageLogger logger, IEndpointFactory endpointFactory, IDataContextFactory dataContextFactory)
         {
             Logger = logger;
-            EndpointFactory = endpointFactory;
-            DataContextFactory = dataContextFactory;
-            if (!OnBeforeRun())
-                return true; // maybe deactivated or not all parameters available
             try
-            {
-                return DoRun();
+            {               
+                EndpointFactory = endpointFactory;
+                DataContextFactory = dataContextFactory;
+                if (!OnBeforeRun())
+                    return true; // maybe deactivated or not all parameters available
+                try
+                {
+                    if (!PrepareDataContext())
+                        return false;
+
+                    if (!PrepareEndpoint())
+                        return false;
+                    
+                    return ExecuteTests();
+                }
+                finally
+                {
+                    OnAfterRun();
+                }
             }
-            finally
+            catch (Exception e)
             {
-                OnAfterRun();
+                if (Logger != null)
+                    Logger.AddLog("Run" + e.Message, LogType.Error);
+                return false;
             }
         }
 
-        protected virtual bool DoRun()
+        protected virtual bool PrepareDataContext()
+        {
+            try
+            {
+                dataContext = CreateDataContext();
+                if (dataContext == null)
+                {
+                    Logger.AddLog("");
+                    Logger.AddLog("Skip test cases in " + this.GetType().Name + ", because of missing data context", LogType.Info);
+                    return false;
+                }
+                return true;
+            }
+            catch (Exception e)
+            {
+                if (Logger != null)
+                    Logger.AddLog("PrepareDataContext: " + e.Message, LogType.Error);
+                return false;
+            }            
+        }
+
+        protected virtual C CreateDataContext()
+        {
+            throw new NotImplementedException();
+        }
+
+        protected virtual bool PrepareEndpoint()
+        {
+            try
+            {
+                endpoint = CreateEndpoint();
+                if (endpoint == null)
+                {
+                    Logger.AddLog("");
+                    Logger.AddLog("Skip test cases, because of missing endpoint", LogType.Info);
+                    return false;
+                }
+                return true;
+            }
+            catch (Exception e)
+            {
+                if (Logger != null)
+                    Logger.AddLog("PrepareDataContext: " + e.Message, LogType.Error);
+                return false;
+            }
+        }
+
+        protected virtual E CreateEndpoint()
+        {
+            throw new NotImplementedException();
+        }
+
+        protected virtual bool ExecuteTests()
         {
             return false;
         }
@@ -89,14 +162,7 @@ namespace Smartrac.SmartCosmos.TestCase.Base
        
         protected void OnAfterTest(Enum testResult)
         {
-            OnAfterTest(testResult, null, true);
-        }
-
-        protected void OnAfterTest(Enum testResult, object response = null, bool formatIndented = true)
-        {
             stopwatch.Stop();
-            if (response != null)
-              Logger.AddLog("Result Data: " + response.ToJSON(formatIndented));
             Logger.AddLog("Required time: " + stopwatch.Elapsed);
             Logger.AddLog("Result: " + testResult);
             Logger.AddLog("");

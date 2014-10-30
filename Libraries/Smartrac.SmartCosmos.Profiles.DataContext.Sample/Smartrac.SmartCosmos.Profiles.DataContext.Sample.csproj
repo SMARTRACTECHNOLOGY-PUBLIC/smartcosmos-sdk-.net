@@ -16,7 +16,7 @@
     <DebugSymbols>true</DebugSymbols>
     <DebugType>full</DebugType>
     <Optimize>false</Optimize>
-    <OutputPath>bin\Debug\</OutputPath>
+    <OutputPath>$(SolutionDir)\bin\$(Platform)\$(Configuration)</OutputPath>
     <DefineConstants>DEBUG;TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
@@ -24,7 +24,7 @@
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <DebugType>pdbonly</DebugType>
     <Optimize>true</Optimize>
-    <OutputPath>bin\Release\</OutputPath>
+    <OutputPath>$(SolutionDir)\bin\$(Platform)\$(Configuration)</OutputPath>
     <DefineConstants>TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
@@ -99,14 +99,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="TestCases\BaseObjectsTestCase.cs" />
-    <Compile Include="TestCases\PerformanceTestCaseTagMetadataEndpoint.cs" />
-    <Compile Include="TestCases\PerformanceTestCaseTagMetadataEndpointParallel.cs" />
-    <Compile Include="TestCases\TestCaseDataImportEndpoint.cs" />
-    <Compile Include="TestCases\TestCasePlatformAvailabilityEndpoint.cs" />
-    <Compile Include="TestCases\TestCaseTagMetadataEndpoint.cs" />
-    <Compile Include="TestCases\TestCaseTagVerificationEndpoint.cs" />
-    <Compile Include="DataContext\SampleTagDataContext.cs" />
+    <Compile Include="SampleTagDataContext.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -137,6 +130,10 @@
     <ProjectReference Include="..\Smartrac.SmartCosmos.Profiles.Base\Smartrac.SmartCosmos.Profiles.Base.csproj">
       <Project>{e7c0b1ed-7957-4d97-bf2c-65381a436e7c}</Project>
       <Name>Smartrac.SmartCosmos.Profiles.Base</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Smartrac.SmartCosmos.Profiles.TestCase\Smartrac.SmartCosmos.Profiles.TestCase.csproj">
+      <Project>{5d8b2364-f6cf-41e7-89af-5387cd6d9a5e}</Project>
+      <Name>Smartrac.SmartCosmos.Profiles.TestCase.Base</Name>
     </ProjectReference>
     <ProjectReference Include="..\Smartrac.SmartCosmos.Profiles.DataContext\Smartrac.SmartCosmos.Profiles.DataContext.csproj">
       <Project>{d3a5db54-fd8f-4c15-8e1d-e0a10c55465c}</Project>

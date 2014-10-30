@@ -18,10 +18,11 @@
 #endregion License
 
 using System.Collections.Generic;
+using Smartrac.SmartCosmos.ClientEndpoint.Base;
 
 namespace Smartrac.SmartCosmos.Profiles.DataContext
 {
-    public interface ITagDataContext
+    public interface ITagDataContext : IBaseDataContext
     {
         IEnumerable<string> GetTagIds();
 
@@ -29,8 +30,8 @@ namespace Smartrac.SmartCosmos.Profiles.DataContext
 
         IEnumerable<string> GetVerificationTypes();
 
-        string GetImportId();
+        IEnumerable<string> GetImportId();
 
-        string GetTagDataFile();
+        IEnumerable<string> GetTagDataFile();
     }
 }

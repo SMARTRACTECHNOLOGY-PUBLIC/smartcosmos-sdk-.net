@@ -16,7 +16,7 @@
     <DebugSymbols>true</DebugSymbols>
     <DebugType>full</DebugType>
     <Optimize>false</Optimize>
-    <OutputPath>bin\Debug\</OutputPath>
+    <OutputPath>$(SolutionDir)\bin\$(Platform)\$(Configuration)</OutputPath>
     <DefineConstants>DEBUG;TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
@@ -24,7 +24,7 @@
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <DebugType>pdbonly</DebugType>
     <Optimize>true</Optimize>
-    <OutputPath>bin\Release\</OutputPath>
+    <OutputPath>$(SolutionDir)\bin\$(Platform)\$(Configuration)</OutputPath>
     <DefineConstants>TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
@@ -78,28 +78,39 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="BaseFileDataContext.cs" />
+    <Compile Include="Base\BaseFileDataContext.cs" />
+    <Compile Include="Empty\EmptyAccountManagmentDataContext.cs" />
+    <Compile Include="Empty\EmptyFileDataContext.cs" />
+    <Compile Include="Empty\EmptyGeospatialManagmentDataContext.cs" />
+    <Compile Include="Empty\EmptyHashTagDataContext.cs" />
+    <Compile Include="Empty\EmptyMetadataDataContext.cs" />
+    <Compile Include="Empty\EmptyObjectInteractionDataContext.cs" />
+    <Compile Include="Empty\EmptyObjectInteractionSessionDataContext.cs" />
+    <Compile Include="Empty\EmptyObjectManagmentDataContext.cs" />
+    <Compile Include="Empty\EmptyRegistrationDataContext.cs" />
+    <Compile Include="Empty\EmptyRelationshipManagementDataContext.cs" />
+    <Compile Include="Empty\EmptyUserManagmentDataContext.cs" />
     <Compile Include="Interfaces\IFileDataContext.cs" />
-    <Compile Include="BaseAccountManagmentDataContext.cs" />
+    <Compile Include="Base\BaseAccountManagmentDataContext.cs" />
     <Compile Include="Interfaces\IRegistrationDataContext.cs" />
     <Compile Include="Interfaces\IAccountManagmentDataContext.cs" />
-    <Compile Include="BaseRegistrationDataContext.cs" />
-    <Compile Include="BaseUserManagmentDataContext.cs" />
+    <Compile Include="Base\BaseRegistrationDataContext.cs" />
+    <Compile Include="Base\BaseUserManagmentDataContext.cs" />
     <Compile Include="Interfaces\IUserManagmentDataContext.cs" />
-    <Compile Include="BaseObjectManagmentDataContext.cs" />
+    <Compile Include="Base\BaseObjectManagmentDataContext.cs" />
     <Compile Include="Interfaces\IObjectManagmentDataContext.cs" />
-    <Compile Include="BaseObjectInteractionDataContext.cs" />
+    <Compile Include="Base\BaseObjectInteractionDataContext.cs" />
     <Compile Include="Interfaces\IObjectInteractionDataContext.cs" />
-    <Compile Include="BaseRelationshipManagementDataContext.cs" />
+    <Compile Include="Base\BaseRelationshipManagementDataContext.cs" />
     <Compile Include="Interfaces\IRelationshipManagementDataContext.cs" />
     <Compile Include="Interfaces\IGeospatialManagementDataContext.cs" />
-    <Compile Include="BaseGeospatialManagmentDataContext.cs" />
+    <Compile Include="Base\BaseGeospatialManagmentDataContext.cs" />
     <Compile Include="Interfaces\IHashTagDataContext.cs" />
     <Compile Include="Interfaces\IMetadataDataContext.cs" />
     <Compile Include="Interfaces\IObjectInteractionSessionDataContext.cs" />
-    <Compile Include="BaseObjectInteractionSessionDataContext.cs" />
-    <Compile Include="BaseMetadataDataContext.cs" />
-    <Compile Include="BaseHashTagDataContext.cs" />
+    <Compile Include="Base\BaseObjectInteractionSessionDataContext.cs" />
+    <Compile Include="Base\BaseMetadataDataContext.cs" />
+    <Compile Include="Base\BaseHashTagDataContext.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

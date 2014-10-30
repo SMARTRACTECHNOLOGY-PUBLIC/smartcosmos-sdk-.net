@@ -18,12 +18,13 @@
 #endregion License
 
 using System.Collections.Generic;
+using Smartrac.SmartCosmos.ClientEndpoint.Base;
 using Smartrac.SmartCosmos.Objects.Base;
 using Smartrac.SmartCosmos.Objects.Metadata;
 
 namespace Smartrac.SmartCosmos.Objects.DataContext
 {
-    public interface IMetadataDataContext
+    public interface IMetadataDataContext : IBaseDataContext
     {
         Urn GetEntityUrn();
 

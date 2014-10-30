@@ -117,6 +117,7 @@
     <Compile Include="BaseEndpoint.cs" />
     <Compile Include="Builder\BaseEndpointBuilder.cs" />
     <Compile Include="Extensions\WebRequestExtensions.cs" />
+    <Compile Include="Interfaces\IBaseDataContext.cs" />
     <Compile Include="Interfaces\IBaseEndpoint.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

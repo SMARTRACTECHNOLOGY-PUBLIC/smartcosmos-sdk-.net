@@ -52,8 +52,11 @@ namespace Smartrac.SmartCosmos.TestCase.Runner
         /// <returns></returns>
         public bool Run(TestCaseType testCaseTypes, string assemblySearchPattern = "*.dll")
         {
+            Logger.AddLog("Start test runner...");
+            
             Dictionary<int, ITestCase> testList = new Dictionary<int, ITestCase>();
             bool result = true;
+            bool bTestSuiteFound = false;
 
             // Search all test cases
             foreach (string file in Directory.GetFiles(AppDomain.CurrentDomain.BaseDirectory, assemblySearchPattern))
@@ -84,8 +87,15 @@ namespace Smartrac.SmartCosmos.TestCase.Runner
                 foreach (var testItem in testList.OrderBy(i => i.Key))
                 {
                     result = testItem.Value.Run(Logger, EndpointFactory, DataContextFactory) && result;
+                    bTestSuiteFound = true;
                 }
                 testList.Clear();
+            }
+
+            if (! bTestSuiteFound)
+            {
+                Logger.AddLog("No test suites found!");
+                result = false;
             }
 
             Logger.AddLog("");

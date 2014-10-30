@@ -25,7 +25,20 @@ namespace Smartrac.SmartCosmos.Objects.GeospatialManagement
 {
     public class QueryGeospatialEntriesResponse : List<GeospatialEntryDataResponse>, IHttpStatusCode
     {
-        public HttpStatusCode HTTPStatusCode { get; set; }
+        private HttpStatusCode HTTPStatusCode_;
+        public HttpStatusCode HTTPStatusCode 
+        { 
+            get 
+            {
+                return HTTPStatusCode_;
+            }
+            
+            set 
+            {
+                HTTPStatusCode_ = value;
+                ForEach(i => i.HTTPStatusCode = value);
+            }
+        }
 
         public QueryGeospatialEntriesResponse()
             : base()

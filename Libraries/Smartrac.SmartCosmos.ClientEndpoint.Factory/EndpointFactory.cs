@@ -38,21 +38,58 @@ namespace Smartrac.SmartCosmos.ClientEndpoint.Factory
 {
     public class EndpointFactory : IEndpointFactory
     {
+        /// <summary>
+        /// URL of SMART COSMOS Profiles server
+        /// default value: https://www.smart-cosmos.com/service/rest
+        /// </summary>
         public string ProfilesServerURL { get; set; }
 
+        /// <summary>
+        /// URL of SMART COSMOS Objects server
+        /// </summary>
         public string ObjectsServerURL { get; set; }
 
+        /// <summary>
+        /// Defines if the connection should be keep alive
+        /// </summary>
         public bool KeepAlive { get; set; }
 
+        /// <summary>
+        /// Defines if invalid server certificates are allowed
+        /// </summary>
         public bool AllowInvalidServerCertificates { get; set; }
 
+        /// <summary>
+        /// Client language
+        /// For a couple of functions the client can use the HTTP Accept-Language to define the language of the respond content.
+        /// </summary>
         public string AcceptLanguage { get; set; }
 
+        /// <summary>
+        /// Used logger object
+        /// e.g. console, file, ...
+        /// </summary>
         public IMessageLogger Logger { get; set; }
 
-        public string UserName { get; set; }
+        /// <summary>
+        /// User name for SMART COSMOS Profiles
+        /// </summary>
+        public string ProfilesUserName { get; set; }
 
-        public string UserPassword { get; set; }
+        /// <summary>
+        /// User password for SMART COSMOS Profiles
+        /// </summary>
+        public string ProfilesUserPassword { get; set; }
+
+        /// <summary>
+        /// User name for SMART COSMOS Objects
+        /// </summary>
+        public string ObjectsUserName { get; set; }
+
+        /// <summary>
+        /// User password for SMART COSMOS Objects
+        /// </summary>
+        public string ObjectsUserPassword { get; set; }
 
         public EndpointFactory(IMessageLogger logger)
             : this(logger, "", "")
@@ -68,8 +105,8 @@ namespace Smartrac.SmartCosmos.ClientEndpoint.Factory
             this.ProfilesServerURL = "https://www.smart-cosmos.com/service/rest";
             this.ObjectsServerURL = ""; // TODO
             this.AllowInvalidServerCertificates = false;
-            this.UserName = userName;
-            this.UserPassword = userPassword;
+            this.ProfilesUserName = userName;
+            this.ProfilesUserPassword = userPassword;
         }
 
         #region PROFILES
@@ -91,7 +128,7 @@ namespace Smartrac.SmartCosmos.ClientEndpoint.Factory
                 .setKeepAlive(KeepAlive)
                 .setServerURL(ProfilesServerURL)
                 .setAllowInvalidServerCertificates(AllowInvalidServerCertificates)
-                .setUserAccount(UserName, UserPassword)
+                .setUserAccount(ProfilesUserName, ProfilesUserPassword)
                 .build();
         }
 
@@ -102,7 +139,7 @@ namespace Smartrac.SmartCosmos.ClientEndpoint.Factory
                 .setKeepAlive(KeepAlive)
                 .setServerURL(ProfilesServerURL)
                 .setAllowInvalidServerCertificates(AllowInvalidServerCertificates)
-                .setUserAccount(UserName, UserPassword)
+                .setUserAccount(ProfilesUserName, ProfilesUserPassword)
                 .build();
         }
 
@@ -113,7 +150,7 @@ namespace Smartrac.SmartCosmos.ClientEndpoint.Factory
                 .setKeepAlive(KeepAlive)
                 .setServerURL(ProfilesServerURL)
                 .setAllowInvalidServerCertificates(AllowInvalidServerCertificates)
-                .setUserAccount(UserName, UserPassword)
+                .setUserAccount(ProfilesUserName, ProfilesUserPassword)
                 .build();
         }
 
@@ -128,7 +165,7 @@ namespace Smartrac.SmartCosmos.ClientEndpoint.Factory
             .setKeepAlive(KeepAlive)
             .setServerURL(ObjectsServerURL)
             .setAllowInvalidServerCertificates(AllowInvalidServerCertificates)
-            .setUserAccount(UserName, UserPassword)
+            .setUserAccount(ObjectsUserName, ObjectsUserPassword)
             .build();
         }
 
@@ -139,7 +176,7 @@ namespace Smartrac.SmartCosmos.ClientEndpoint.Factory
             .setKeepAlive(KeepAlive)
             .setServerURL(ObjectsServerURL)
             .setAllowInvalidServerCertificates(AllowInvalidServerCertificates)
-            .setUserAccount(UserName, UserPassword)
+            .setUserAccount(ObjectsUserName, ObjectsUserPassword)
             .build();
         }
 
@@ -150,7 +187,7 @@ namespace Smartrac.SmartCosmos.ClientEndpoint.Factory
             .setKeepAlive(KeepAlive)
             .setServerURL(ObjectsServerURL)
             .setAllowInvalidServerCertificates(AllowInvalidServerCertificates)
-            .setUserAccount(UserName, UserPassword)
+            .setUserAccount(ObjectsUserName, ObjectsUserPassword)
             .build();
         }
 
@@ -161,7 +198,7 @@ namespace Smartrac.SmartCosmos.ClientEndpoint.Factory
             .setKeepAlive(KeepAlive)
             .setServerURL(ObjectsServerURL)
             .setAllowInvalidServerCertificates(AllowInvalidServerCertificates)
-            .setUserAccount(UserName, UserPassword)
+            .setUserAccount(ProfilesUserName, ProfilesUserPassword)
             .build();
         }
 
@@ -172,7 +209,7 @@ namespace Smartrac.SmartCosmos.ClientEndpoint.Factory
             .setKeepAlive(KeepAlive)
             .setServerURL(ObjectsServerURL)
             .setAllowInvalidServerCertificates(AllowInvalidServerCertificates)
-            .setUserAccount(UserName, UserPassword)
+            .setUserAccount(ProfilesUserName, ProfilesUserPassword)
             .build();
         }
 
@@ -183,7 +220,7 @@ namespace Smartrac.SmartCosmos.ClientEndpoint.Factory
             .setKeepAlive(KeepAlive)
             .setServerURL(ObjectsServerURL)
             .setAllowInvalidServerCertificates(AllowInvalidServerCertificates)
-            .setUserAccount(UserName, UserPassword)
+            .setUserAccount(ObjectsUserName, ObjectsUserPassword)
             .build();
         }
 
@@ -194,7 +231,7 @@ namespace Smartrac.SmartCosmos.ClientEndpoint.Factory
             .setKeepAlive(KeepAlive)
             .setServerURL(ObjectsServerURL)
             .setAllowInvalidServerCertificates(AllowInvalidServerCertificates)
-            .setUserAccount(UserName, UserPassword)
+            .setUserAccount(ObjectsUserName, ObjectsUserPassword)
             .build();
         }
 
@@ -205,7 +242,7 @@ namespace Smartrac.SmartCosmos.ClientEndpoint.Factory
             .setKeepAlive(KeepAlive)
             .setServerURL(ObjectsServerURL)
             .setAllowInvalidServerCertificates(AllowInvalidServerCertificates)
-            .setUserAccount(UserName, UserPassword)
+            .setUserAccount(ObjectsUserName, ObjectsUserPassword)
             .build();
         }
 
@@ -216,7 +253,7 @@ namespace Smartrac.SmartCosmos.ClientEndpoint.Factory
             .setKeepAlive(KeepAlive)
             .setServerURL(ObjectsServerURL)
             .setAllowInvalidServerCertificates(AllowInvalidServerCertificates)
-            .setUserAccount(UserName, UserPassword)
+            .setUserAccount(ObjectsUserName, ObjectsUserPassword)
             .build();
         }
 
@@ -227,7 +264,7 @@ namespace Smartrac.SmartCosmos.ClientEndpoint.Factory
             .setKeepAlive(KeepAlive)
             .setServerURL(ObjectsServerURL)
             .setAllowInvalidServerCertificates(AllowInvalidServerCertificates)
-            .setUserAccount(UserName, UserPassword)
+            .setUserAccount(ObjectsUserName, ObjectsUserPassword)
             .build();
         }
 
@@ -238,7 +275,7 @@ namespace Smartrac.SmartCosmos.ClientEndpoint.Factory
             .setKeepAlive(KeepAlive)
             .setServerURL(ObjectsServerURL)
             .setAllowInvalidServerCertificates(AllowInvalidServerCertificates)
-            .setUserAccount(UserName, UserPassword)
+            .setUserAccount(ObjectsUserName, ObjectsUserPassword)
             .build();
         }
 

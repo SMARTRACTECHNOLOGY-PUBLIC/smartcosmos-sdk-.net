@@ -25,41 +25,33 @@ namespace Smartrac.Logging.File
     /// <summary>
     /// Log to file service
     /// </summary>
-    public sealed class FileLoggerService : IMessageLogger
+    public class FileLoggerService : BaseMessageLogger
     {
         private static readonly Logger logger = LogManager.GetCurrentClassLogger();
 
-        public void AddLog(string aMessage, LogType aLogType = LogType.Debug)
+        private LogLevel MapLogLevel(LogType logType)
+        {
+            switch (logType)
+            {
+                case LogType.Debug: return NLog.LogLevel.Debug;
+                case LogType.Error: return NLog.LogLevel.Error;
+                case LogType.Fatal: return NLog.LogLevel.Fatal;
+                case LogType.Info: return NLog.LogLevel.Info;
+                case LogType.Warning: return NLog.LogLevel.Warn;
+                default: return NLog.LogLevel.Error;
+            }
+        }
+
+        public override bool CanLog(LogType logType)
+        {
+            return base.CanLog(logType) && (logger != null) && logger.IsEnabled(MapLogLevel(logType));
+        }
+
+        protected override void DoAddLog(string message, LogType logType = LogType.Debug)
         {
             if (logger == null)
                 return;
-
-            switch (aLogType)
-            {
-                case LogType.Debug:
-                    logger.Debug(aMessage);
-                    break;
-
-                case LogType.Error:
-                    logger.Error(aMessage);
-                    break;
-
-                case LogType.Fatal:
-                    logger.Fatal(aMessage);
-                    break;
-
-                case LogType.Info:
-                    logger.Info(aMessage);
-                    break;
-
-                case LogType.Warning:
-                    logger.Warn(aMessage);
-                    break;
-
-                default:
-                    logger.Error(aMessage);
-                    break;
-            }
+            logger.Log(MapLogLevel(logType), message);
         }
 
         /// <summary>

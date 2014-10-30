@@ -72,14 +72,24 @@ namespace Smartrac.SmartCosmos.ClientEndpoint.Factory
         IMessageLogger Logger { get; set; }
 
         /// <summary>
-        /// User name for SMART COSMOS
+        /// User name for SMART COSMOS Profiles
         /// </summary>
-        string UserName { get; set; }
+        string ProfilesUserName { get; set; }
 
         /// <summary>
-        /// User password for SMART COSMOS
+        /// User password for SMART COSMOS Profiles
         /// </summary>
-        string UserPassword { get; set; }
+        string ProfilesUserPassword { get; set; }
+        
+        /// <summary>
+        /// User name for SMART COSMOS Objects
+        /// </summary>
+        string ObjectsUserName { get; set; }
+
+        /// <summary>
+        /// User password for SMART COSMOS Objects
+        /// </summary>
+        string ObjectsUserPassword { get; set; }
 
         #region Profiles
 

@@ -30,7 +30,20 @@ namespace Smartrac.SmartCosmos.Objects.Metadata
         public string message { get; set; }
 
         //IHttpStatusCode
-        public HttpStatusCode HTTPStatusCode { get; set; }
+        private HttpStatusCode HTTPStatusCode_;
+        public HttpStatusCode HTTPStatusCode 
+        { 
+            get 
+            {
+                return HTTPStatusCode_;
+            }
+            
+            set 
+            {
+                HTTPStatusCode_ = value;
+                ForEach(i => i.HTTPStatusCode = value);
+            }
+        }
 
         public CreateMetadataResponse()
             : base()

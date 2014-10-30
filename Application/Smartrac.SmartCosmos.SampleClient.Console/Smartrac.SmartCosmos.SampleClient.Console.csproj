@@ -111,6 +111,10 @@
       <Project>{f50c4adc-6a33-4644-b608-2b2584bf15ce}</Project>
       <Name>Smartrac.Logging.Console</Name>
     </ProjectReference>
+    <ProjectReference Include="..\..\Libraries\Smartrac.Logging.File\Smartrac.Logging.File.csproj">
+      <Project>{c342d48d-a37d-486c-9b63-6333600445b2}</Project>
+      <Name>Smartrac.Logging.File</Name>
+    </ProjectReference>
     <ProjectReference Include="..\..\Libraries\Smartrac.Logging\Smartrac.Logging.csproj">
       <Project>{73ba0972-769b-4b84-9a21-9cf545a14a03}</Project>
       <Name>Smartrac.Logging</Name>
@@ -122,6 +126,10 @@
     <ProjectReference Include="..\..\Libraries\Smartrac.SmartCosmos.DataContextFactory.Sample\Smartrac.SmartCosmos.DataContextFactory.Sample.csproj">
       <Project>{b223794a-8654-4f79-ad3a-ee557a8c6bed}</Project>
       <Name>Smartrac.SmartCosmos.DataContextFactory.Sample</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\Libraries\Smartrac.SmartCosmos.DataContextFactory.XML\Smartrac.SmartCosmos.DataContextFactory.XML.csproj">
+      <Project>{fbf5a2a7-419e-4eae-b8e3-82516ebad4d9}</Project>
+      <Name>Smartrac.SmartCosmos.DataContextFactory.XML</Name>
     </ProjectReference>
     <ProjectReference Include="..\..\Libraries\Smartrac.SmartCosmos.DataContextFactory\Smartrac.SmartCosmos.DataContextFactory.csproj">
       <Project>{3cc1bfca-f7ac-4ff2-b8bf-fea215f32529}</Project>
@@ -137,7 +145,9 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <None Include="App.config" />
+    <None Include="App.config">
+      <SubType>Designer</SubType>
+    </None>
     <None Include="packages.config" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

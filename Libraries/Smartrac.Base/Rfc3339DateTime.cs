@@ -22,9 +22,6 @@ using System.Globalization;
 
 namespace Smartrac.Base
 {
-    // Source
-    // http://stackoverflow.com/questions/17017/how-do-i-parse-and-convert-datetimes-to-the-rfc-3339-date-time-format
-
     /// <summary>
     /// Provides methods for converting <see cref="DateTime"/> structures to and from the equivalent RFC 3339 string representation.
     /// </summary>

@@ -170,6 +170,17 @@ namespace Smartrac.SmartCosmos.ClientEndpoint.Base
             return null;
         }
 
+        /// <summary>
+        /// ExecuteWebRequestJSON
+        /// </summary>
+        /// <typeparam name="requestType">requestType</typeparam>
+        /// <typeparam name="responseType">responseType</typeparam>
+        /// <param name="request">web request</param>
+        /// <param name="requestData">request data</param>
+        /// <param name="responseData">response data</param>
+        /// <param name="webResponse">HttpWebResponse</param>
+        /// <param name="sendMethod">send method</param>
+        /// <returns>HttpStatusCode</returns>
         protected HttpStatusCode ExecuteWebRequestJSON<requestType, responseType>(WebRequest request,
             requestType requestData,
             out responseType responseData,
@@ -185,6 +196,9 @@ namespace Smartrac.SmartCosmos.ClientEndpoint.Base
                 request.Method = sendMethod;
                 request.ContentType = "application/json";
 
+                if ((null != Logger) && Logger.CanLog(LogType.Debug))
+                    Logger.AddLog("Request url [" + request.Method + "]: " + request.RequestUri.AbsoluteUri, LogType.Debug);
+
                 // Copy object to a JSON byte array
                 if (requestData != null)
                 {
@@ -195,6 +209,9 @@ namespace Smartrac.SmartCosmos.ClientEndpoint.Base
                     {
                         writer.Write(byteArray, 0, byteArray.Length);
                     }
+
+                    if ((null != requestData) && (null != Logger) && Logger.CanLog(LogType.Debug))
+                        Logger.AddLog("Request data : " + requestData.ToJSON(true), LogType.Debug);
                 }
 
                 // call the server
@@ -228,6 +245,9 @@ namespace Smartrac.SmartCosmos.ClientEndpoint.Base
                         {
                             (responseData as IHttpStatusCode).HTTPStatusCode = webResponse.StatusCode;
                         }
+
+                        if ((null != responseData) && (null != Logger) && Logger.CanLog(LogType.Debug))
+                            Logger.AddLog("Respond data [" + webResponse.StatusCode + "]: " + responseData.ToJSON(true), LogType.Debug);
                     }
                     finally
                     {
