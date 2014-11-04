@@ -17,15 +17,15 @@
 
 #endregion License
 
+using Smartrac.Logging;
+using Smartrac.SmartCosmos.ClientEndpoint.Factory;
+using Smartrac.SmartCosmos.DataContextFactory;
+using Smartrac.SmartCosmos.TestCase.Base;
 using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Reflection;
-using Smartrac.Logging;
-using Smartrac.SmartCosmos.ClientEndpoint.Factory;
-using Smartrac.SmartCosmos.DataContextFactory;
-using Smartrac.SmartCosmos.TestCase.Base;
 
 namespace Smartrac.SmartCosmos.TestCase.Runner
 {
@@ -53,7 +53,7 @@ namespace Smartrac.SmartCosmos.TestCase.Runner
         public bool Run(TestCaseType testCaseTypes, string assemblySearchPattern = "*.dll")
         {
             Logger.AddLog("Start test runner...");
-            
+
             Dictionary<int, ITestCase> testList = new Dictionary<int, ITestCase>();
             bool result = true;
             bool bTestSuiteFound = false;
@@ -92,7 +92,7 @@ namespace Smartrac.SmartCosmos.TestCase.Runner
                 testList.Clear();
             }
 
-            if (! bTestSuiteFound)
+            if (!bTestSuiteFound)
             {
                 Logger.AddLog("No test suites found!");
                 result = false;

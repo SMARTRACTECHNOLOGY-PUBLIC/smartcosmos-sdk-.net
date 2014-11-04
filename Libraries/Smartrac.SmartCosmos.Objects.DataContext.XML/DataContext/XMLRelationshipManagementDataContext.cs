@@ -20,7 +20,7 @@
 using System.Xml.Linq;
 using Smartrac.SmartCosmos.Objects.Base;
 
-namespace Smartrac.SmartCosmos.Objects.DataContext.Sample
+namespace Smartrac.SmartCosmos.Objects.DataContext.XML
 {/*
     public class XMLRelationshipManagementDataContext : EmptyRelationshipManagementDataContext
     {

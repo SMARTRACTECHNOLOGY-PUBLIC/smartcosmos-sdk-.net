@@ -17,36 +17,19 @@
 
 #endregion License
 
-using System.Collections.Generic;
+using System.Xml.Linq;
 using Smartrac.SmartCosmos.Objects.Base;
 
-namespace Smartrac.SmartCosmos.Objects.DataContext
+namespace Smartrac.SmartCosmos.Objects.DataContext.XML
 {
-    public class BaseFileDataContext : IFileDataContext
+    /*
+    public class XMLObjectManagementDataContext : EmptyObjectManagementDataContext
     {
-        public virtual EntityReferenceType GetEntityReferenceType()
-        {
-            return EntityReferenceType.Object;
-        }
-
-        public virtual ViewType GetViewType()
-        {
-            return ViewType.Standard;
-        }
-
-        public virtual Urn GetUrnReference()
-        {
-            return null;
-        }
-
-        public virtual IEnumerable<FileDefinition> GetFileDefinitions()
-        {
-            return null;
-        }
-
-        public BaseFileDataContext()
+        public bool Deserialze(XElement elem)
         {
 
+            return true;
         }
     }
+     */
 }

@@ -16,25 +16,47 @@
 // limitations under the License.
 -->
 <data>
-	<tagDataContext>
-		<tags>
-			<tag>0EEEE100000001</tag>
-			<tag>0EEEE100000002</tag>
-		</tags>
-		<tagProperties>
-			<tagProperty>custId</tagProperty>
-			<tagProperty>orderId</tagProperty>
-			<tagProperty>batchId</tagProperty>		
-		</tagProperties>
-		<verificationTypes>
-			<verificationType>RR</verificationType>
-		</verificationTypes>	
-		<importIds>
-			<importId>RR</importId>
-		</importIds>
-		<tagDataFiles>
-			<tagDataFile>..\..\..\..\..\Documentation\SampleData\SampleData30k.xml</tagDataFile>
-		</tagDataFiles>	
-	</tagDataContext>
+	<!-- data for tag data context -->
+	<TagDataContext>
+		<TagIds>
+			<Tag>0EEEE100000001</Tag>
+			<Tag>0EEEE100000002</Tag>
+		</TagIds>
+		<TagProperties>
+			<TagProperty>custId</TagProperty>
+			<TagProperty>orderId</TagProperty>
+			<TagProperty>batchId</TagProperty>		
+		</TagProperties>
+		<VerificationTypes>
+			<VerificationType>RR</VerificationType>
+		</VerificationTypes>	
+		<ImportIds>
+			<ImportId>RR</ImportId>
+		</ImportIds>
+		<TagDataFiles>
+			<TagDataFile>..\..\..\..\..\Documentation\SampleData\SampleData30k.xml</TagDataFile>
+		</TagDataFiles>	
+	</TagDataContext>
+
+	<!-- data for account management data context -->
+	<AccountManagementDataContext>
+		<viewType>Standard</viewType>
+		<OldPassword>111</OldPassword>
+		<NewPassword>222</NewPassword>
+		<eMailAddress>testuser@yourarea[RANDOM].com</eMailAddress>		
+	</AccountManagementDataContext>
+
+	<!-- data for file data context -->
+	<FileDataContext>
+		<viewType>Standard</viewType>
+		<entityReferenceType>Object</entityReferenceType>
+		<urnReference>222</urnReference>
+		<FileDefinitions>
+			<FileDefinition>
+			   <mimeType>image/png</mimeType>
+			   <fileName>..\..\..\..\..\Documentation\SampleData\objects.png</fileName>
+			</FileDefinition>
+		</FileDefinitions>
+	</FileDataContext>	
 </data>
 

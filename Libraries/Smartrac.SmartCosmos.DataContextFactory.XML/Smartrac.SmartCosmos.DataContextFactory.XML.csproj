@@ -100,6 +100,7 @@
   <ItemGroup>
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="XMLDataContextFactory.cs" />
+    <Compile Include="XMLDataContextSerializer.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Smartrac.Base\Smartrac.Base.csproj">
@@ -118,6 +119,10 @@
       <Project>{3cc1bfca-f7ac-4ff2-b8bf-fea215f32529}</Project>
       <Name>Smartrac.SmartCosmos.DataContextFactory</Name>
     </ProjectReference>
+    <ProjectReference Include="..\Smartrac.SmartCosmos.Objects.DataContext.XML\Smartrac.SmartCosmos.Objects.DataContext.XML.csproj">
+      <Project>{82d593be-6b21-48ee-a469-e5354e6f1879}</Project>
+      <Name>Smartrac.SmartCosmos.Objects.DataContext.XML</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Smartrac.SmartCosmos.Objects.TestCase\Smartrac.SmartCosmos.Objects.TestCase.csproj">
       <Project>{b25ff844-52d4-4da4-a34d-fe8e101bd7d7}</Project>
       <Name>Smartrac.SmartCosmos.Objects.TestCase.Base</Name>
@@ -125,6 +130,10 @@
     <ProjectReference Include="..\Smartrac.SmartCosmos.Objects.DataContext\Smartrac.SmartCosmos.Objects.DataContext.csproj">
       <Project>{955046d9-aa9a-462c-9057-8046c61ed701}</Project>
       <Name>Smartrac.SmartCosmos.Objects.DataContext</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Smartrac.SmartCosmos.Profiles.DataContext.XML\Smartrac.SmartCosmos.Profiles.DataContext.XML.csproj">
+      <Project>{740b2ce7-1547-48f4-a30f-8d9a3b81efb9}</Project>
+      <Name>Smartrac.SmartCosmos.Profiles.DataContext.XML</Name>
     </ProjectReference>
     <ProjectReference Include="..\Smartrac.SmartCosmos.Profiles.TestCase\Smartrac.SmartCosmos.Profiles.TestCase.csproj">
       <Project>{5d8b2364-f6cf-41e7-89af-5387cd6d9a5e}</Project>

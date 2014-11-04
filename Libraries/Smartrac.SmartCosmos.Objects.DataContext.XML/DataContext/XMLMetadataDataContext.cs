@@ -22,7 +22,7 @@ using System.Xml.Linq;
 using Smartrac.SmartCosmos.Objects.Base;
 using Smartrac.SmartCosmos.Objects.Metadata;
 
-namespace Smartrac.SmartCosmos.Objects.DataContext.Sample
+namespace Smartrac.SmartCosmos.Objects.DataContext.XML
 {/*
     public class XMLMetadataDataContext : EmptyMetadataDataContext
     {

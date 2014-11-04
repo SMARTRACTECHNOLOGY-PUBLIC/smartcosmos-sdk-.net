@@ -17,12 +17,15 @@
 
 #endregion License
 
+using System.Collections.Generic;
 using System.Xml.Linq;
+using GeoJSON.Net;
 using Smartrac.SmartCosmos.Objects.Base;
 
-namespace Smartrac.SmartCosmos.Objects.DataContext.Sample
+namespace Smartrac.SmartCosmos.Objects.DataContext.XML
 {
-    public class XMLAccountManagementDataContext : EmptyAccountManagementDataContext
+    /*
+    public class XMLGeospatialManagementDataContext : EmptyGeospatialManagementDataContext
     {
         public bool Deserialze(XElement elem)
         {
@@ -30,4 +33,5 @@ namespace Smartrac.SmartCosmos.Objects.DataContext.Sample
             return true;
         }
     }
+     * */
 }

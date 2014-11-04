@@ -92,6 +92,7 @@
     <Reference Include="System.Runtime">
       <HintPath>..\..\External\Microsoft.Bcl.1.1.9\lib\net40\System.Runtime.dll</HintPath>
     </Reference>
+    <Reference Include="System.Runtime.Serialization" />
     <Reference Include="System.Threading.Tasks">
       <HintPath>..\..\External\Microsoft.Bcl.1.1.9\lib\net40\System.Threading.Tasks.dll</HintPath>
     </Reference>
@@ -102,17 +103,17 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="XMLObjectInteractionSessionDataContext.cs" />
-    <Compile Include="XMLMetadataDataContext.cs" />
-    <Compile Include="XMLHashTagDataContext.cs" />
-    <Compile Include="XMLGeospatialManagmentDataContext.cs" />
-    <Compile Include="XMLRelationshipManagementDataContext.cs" />
-    <Compile Include="XMLObjectInteractionDataContext.cs" />
-    <Compile Include="XMLObjectManagmentDataContext.cs" />
-    <Compile Include="XMLUserManagmentDataContext.cs" />
-    <Compile Include="XMLAccountManagmentDataContext.cs" />
-    <Compile Include="XMLRegistrationDataContext.cs" />
-    <Compile Include="XMLFileDataContext.cs" />
+    <Compile Include="DataContext\XMLObjectInteractionSessionDataContext.cs" />
+    <Compile Include="DataContext\XMLMetadataDataContext.cs" />
+    <Compile Include="DataContext\XMLHashTagDataContext.cs" />
+    <Compile Include="DataContext\XMLGeospatialManagmentDataContext.cs" />
+    <Compile Include="DataContext\XMLRelationshipManagementDataContext.cs" />
+    <Compile Include="DataContext\XMLObjectInteractionDataContext.cs" />
+    <Compile Include="DataContext\XMLObjectManagmentDataContext.cs" />
+    <Compile Include="DataContext\XMLUserManagmentDataContext.cs" />
+    <Compile Include="DataContext\XMLAccountManagmentDataContext.cs" />
+    <Compile Include="DataContext\XMLRegistrationDataContext.cs" />
+    <Compile Include="DataContext\XMLFileDataContext.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

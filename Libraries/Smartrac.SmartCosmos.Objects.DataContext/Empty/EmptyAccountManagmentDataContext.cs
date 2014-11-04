@@ -23,7 +23,7 @@ namespace Smartrac.SmartCosmos.Objects.DataContext
 {
     public class EmptyAccountManagementDataContext : BaseAccountManagementDataContext
     {
-        public ViewType CurrentViewType { get; set; }
+        public ViewType viewType { get; set; }
         public string OldPassword { get; set; }
         public string NewPassword { get; set; }
         public string eMailAddress { get; set; }
@@ -31,7 +31,7 @@ namespace Smartrac.SmartCosmos.Objects.DataContext
         public EmptyAccountManagementDataContext()
             : base()
         {
-            CurrentViewType = ViewType.Standard;
+            viewType = ViewType.Standard;
         }
 
         public override ViewType GetViewType()

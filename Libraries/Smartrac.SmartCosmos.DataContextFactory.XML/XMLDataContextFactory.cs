@@ -17,9 +17,11 @@
 
 #endregion License
 
-using System.Xml.Linq;
 using Smartrac.SmartCosmos.Objects.DataContext;
+using Smartrac.SmartCosmos.Objects.DataContext.XML;
 using Smartrac.SmartCosmos.Profiles.DataContext;
+using Smartrac.SmartCosmos.Profiles.DataContext.XML;
+using System.Xml.Linq;
 
 namespace Smartrac.SmartCosmos.DataContextFactory.XML
 {
@@ -28,7 +30,8 @@ namespace Smartrac.SmartCosmos.DataContextFactory.XML
         protected XDocument doc = null;
         protected ITagDataContext TagDataContext = null;
         protected IFileDataContext FileDataContext = null;
-        
+        protected IAccountManagementDataContext AccountManagementDataContext = null;
+
         public XMLDataContextFactory(string XMLfile)
             : base()
         {
@@ -39,21 +42,7 @@ namespace Smartrac.SmartCosmos.DataContextFactory.XML
         {
             if (TagDataContext == null)
             {
-                EmptyTagDataContext tagDataContext = new EmptyTagDataContext();
-                XElement dataContext = doc.Element("tagDataContext");
-                
-                    foreach (var elem in dataContext.Descendants("tag"))
-                        tagDataContext.TagIds.Add(elem.Value);
-                    foreach (var elem in dataContext.Descendants("tagProperty"))
-                        tagDataContext.TagProperties.Add(elem.Value);
-                    foreach (var elem in dataContext.Descendants("verificationType"))
-                        tagDataContext.VerificationTypes.Add(elem.Value);
-                    foreach (var elem in dataContext.Descendants("importId"))
-                        tagDataContext.ImportIds.Add(elem.Value);
-                    foreach (var elem in dataContext.Descendants("tagDataFile"))
-                        tagDataContext.TagDataFiles.Add(elem.Value);
-                
-                TagDataContext = tagDataContext;
+                TagDataContext = XMLDataContextSerializer<XMLTagDataContext>.DeSerialize(doc.Element("data").Element("TagDataContext")) as ITagDataContext;
             }
 
             return TagDataContext;
@@ -61,29 +50,11 @@ namespace Smartrac.SmartCosmos.DataContextFactory.XML
 
         public override IFileDataContext CreateFileDataContext()
         {
-            return null;
-            /*
-            if (TagDataContext == null)
+            if (FileDataContext == null)
             {
-                EmptyFileDataContext fileDataContext = new EmptyFileDataContext();
-                foreach (var dataContext in doc.Descendants("fileDataContext"))
-                {
-                    foreach (var elem in dataContext.Descendants("viewType"))
-                        fileDataContext.CurrentViewType = ViewType . elem.Value
-                    foreach (var elem in dataContext.Descendants("tagProperty"))
-                        tagDataContext.TagProperties.Add(elem.Value);
-                    foreach (var elem in dataContext.Descendants("verificationType"))
-                        tagDataContext.VerificationTypes.Add(elem.Value);
-                    foreach (var elem in dataContext.Descendants("importId"))
-                        tagDataContext.ImportIds.Add(elem.Value);
-                    foreach (var elem in dataContext.Descendants("tagDataFile"))
-                        tagDataContext.TagDataFiles.Add(elem.Value);
-                }
-                FileDataContext = fileDataContext;
+                FileDataContext = XMLDataContextSerializer<XMLFileDataContext>.DeSerialize(doc.Element("data").Element("FileDataContext")) as IFileDataContext;
             }
-
-            return TagDataContext;
-             */
+            return FileDataContext;
         }
 
         public override IRegistrationDataContext CreateRegistrationDataContext()
@@ -93,7 +64,11 @@ namespace Smartrac.SmartCosmos.DataContextFactory.XML
 
         public override IAccountManagementDataContext CreateAccountManagementDataContext()
         {
-            return null; // new SampleAccountManagementDataContext();
+            if (AccountManagementDataContext == null)
+            {
+                AccountManagementDataContext = XMLDataContextSerializer<XMLAccountManagementDataContext>.DeSerialize(doc.Element("data").Element("AccountManagementDataContext")) as IAccountManagementDataContext;
+            }
+            return AccountManagementDataContext;
         }
 
         public override IUserManagementDataContext CreateUserManagementDataContext()

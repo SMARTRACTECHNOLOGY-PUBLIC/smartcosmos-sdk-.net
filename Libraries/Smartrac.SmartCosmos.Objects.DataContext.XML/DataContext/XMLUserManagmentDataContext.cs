@@ -20,9 +20,9 @@
 using System.Xml.Linq;
 using Smartrac.SmartCosmos.Objects.Base;
 
-namespace Smartrac.SmartCosmos.Objects.DataContext.Sample
-{/*
-    public class XMLHashTagDataContext : EmptyHashTagDataContext
+namespace Smartrac.SmartCosmos.Objects.DataContext.XML
+{ /*
+    public class XMLUserManagementDataContext : EmptyUserManagementDataContext
     {
         public bool Deserialze(XElement elem)
         {
@@ -30,5 +30,5 @@ namespace Smartrac.SmartCosmos.Objects.DataContext.Sample
             return true;
         }
     }
-    */
+   */ 
 }

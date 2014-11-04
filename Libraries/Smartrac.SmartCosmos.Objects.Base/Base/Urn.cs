@@ -50,5 +50,10 @@ namespace Smartrac.SmartCosmos.Objects.Base
             return !String.IsNullOrEmpty(UUID) &&
                 UUID.Length <= 1024;
         }
+
+        public Urn()
+        {
+
+        }
     }
 }

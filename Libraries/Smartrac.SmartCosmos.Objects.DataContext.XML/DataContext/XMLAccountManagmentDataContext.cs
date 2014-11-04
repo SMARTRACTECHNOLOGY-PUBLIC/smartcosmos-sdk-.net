@@ -19,17 +19,15 @@
 
 using System.Xml.Linq;
 using Smartrac.SmartCosmos.Objects.Base;
+using Smartrac.SmartCosmos.Objects.DataContext;
+using System.Xml.Serialization;
+using System;
 
-namespace Smartrac.SmartCosmos.Objects.DataContext.Sample
+namespace Smartrac.SmartCosmos.Objects.DataContext.XML
 {
-    /*
-    public class XMLObjectManagementDataContext : EmptyObjectManagementDataContext
+    [Serializable]
+    [XmlRoot("AccountManagementDataContext")]
+    public class XMLAccountManagementDataContext : EmptyAccountManagementDataContext
     {
-        public bool Deserialze(XElement elem)
-        {
-
-            return true;
-        }
     }
-     */
 }

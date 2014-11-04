@@ -17,14 +17,12 @@
 
 #endregion License
 
-using System.Collections.Generic;
-using System.IO;
 using System.Xml.Linq;
 using Smartrac.SmartCosmos.Objects.Base;
 
-namespace Smartrac.SmartCosmos.Objects.DataContext.Sample
-{
-    public class XMLFileDataContext : EmptyFileDataContext
+namespace Smartrac.SmartCosmos.Objects.DataContext.XML
+{/*
+    public class XMLHashTagDataContext : EmptyHashTagDataContext
     {
         public bool Deserialze(XElement elem)
         {
@@ -32,4 +30,5 @@ namespace Smartrac.SmartCosmos.Objects.DataContext.Sample
             return true;
         }
     }
+    */
 }

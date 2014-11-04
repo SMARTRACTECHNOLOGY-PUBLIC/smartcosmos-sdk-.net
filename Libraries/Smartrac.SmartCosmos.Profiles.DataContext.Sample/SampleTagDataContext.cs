@@ -17,17 +17,14 @@
 
 #endregion License
 
-using System;
-using System.Collections.Generic;
-using System.IO;
 using Smartrac.SmartCosmos.Profiles.TagMetadata;
+using System;
+using System.IO;
 
 namespace Smartrac.SmartCosmos.Profiles.DataContext.Sample
 {
     public class SampleTagDataContext : EmptyTagDataContext
     {
-        private string SampleDataFile;
-
         public SampleTagDataContext()
         {
             TagIds.Add("0EEEE100000001");     // existing dummy TID
@@ -59,7 +56,7 @@ namespace Smartrac.SmartCosmos.Profiles.DataContext.Sample
             TagProperties.Add(TagPropertyNumber.checkState.GetDescription());
 
             VerificationTypes.Add("RR");
-            
+
             var SampleDataFile = Path.Combine(Path.GetDirectoryName(System.Reflection.Assembly.GetExecutingAssembly().Location), @"..\..\..\..\..\Documentation\SampleData\SampleData30k.xml");
             if (File.Exists(SampleDataFile))
                 TagDataFiles.Add(SampleDataFile);

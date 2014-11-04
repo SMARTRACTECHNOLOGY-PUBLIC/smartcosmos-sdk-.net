@@ -24,27 +24,28 @@ namespace Smartrac.SmartCosmos.Objects.DataContext
 {
     public class EmptyFileDataContext : BaseFileDataContext
     {
-        public EntityReferenceType CurrentEntityReferenceType { get; set; }
-        public ViewType CurrentViewType { get; set; }
+        public EntityReferenceType entityReferenceType { get; set; }
+        public ViewType viewType { get; set; }
         public Urn UrnReference { get; set; }
         public List<FileDefinition> FileDefinitions { get; set; }
 
         public EmptyFileDataContext()
             : base()
         {
-            CurrentEntityReferenceType = EntityReferenceType.Object;
-            CurrentViewType = ViewType.Standard;
+            entityReferenceType = EntityReferenceType.Object;
+            viewType = ViewType.Standard;
             UrnReference = null;
+            FileDefinitions = new List<FileDefinition>();
         }
 
         public override EntityReferenceType GetEntityReferenceType()
         {
-            return CurrentEntityReferenceType;
+            return entityReferenceType;
         }
 
         public override ViewType GetViewType()
         {
-            return CurrentViewType;
+            return viewType;
         }
 
         public override Urn GetUrnReference()

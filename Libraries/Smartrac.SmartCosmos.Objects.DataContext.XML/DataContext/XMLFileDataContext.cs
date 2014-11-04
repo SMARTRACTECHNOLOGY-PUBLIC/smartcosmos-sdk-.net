@@ -18,20 +18,31 @@
 #endregion License
 
 using System.Collections.Generic;
+using System.IO;
 using System.Xml.Linq;
-using GeoJSON.Net;
+using System.Xml;
+using System.Xml.Serialization;
 using Smartrac.SmartCosmos.Objects.Base;
+using Smartrac.SmartCosmos.Objects.DataContext;
+using System.ComponentModel;
+using System;
 
-namespace Smartrac.SmartCosmos.Objects.DataContext.Sample
+namespace Smartrac.SmartCosmos.Objects.DataContext.XML
 {
-    /*
-    public class XMLGeospatialManagementDataContext : EmptyGeospatialManagementDataContext
+    [Serializable]
+    [XmlRoot("FileDataContext")]
+    public class XMLFileDataContext : EmptyFileDataContext
     {
-        public bool Deserialze(XElement elem)
+        public string urnReference
         {
-
-            return true;
+            get
+            {
+                return (UrnReference == null) ? "" : UrnReference.UUID;
+            }
+            set
+            {
+                UrnReference = new Urn(value);
+            }
         }
     }
-     * */
 }
