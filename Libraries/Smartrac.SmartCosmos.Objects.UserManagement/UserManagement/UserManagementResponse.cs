@@ -26,6 +26,6 @@ namespace Smartrac.SmartCosmos.Objects.UserManagement
     public class UserManagementResponse : DefaultResponse
     {
         [JsonIgnore]
-        public Urn userUrn { get; set; }
+        public string userPassword { get; set; }
     }
 }

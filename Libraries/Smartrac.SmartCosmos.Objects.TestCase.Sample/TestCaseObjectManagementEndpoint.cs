@@ -32,11 +32,12 @@ namespace Smartrac.SmartCosmos.Objects.TestCase.Sample
        protected override bool ExecuteTests()
         {
             Urn objectUrn;
+            Urn systemUrn;
 
             return RunTestCase_Create(out objectUrn) &&
                 RunTestCase_Update() &&
-                RunTestCase_LookupByUrn(objectUrn) &&
-                RunTestCase_LookupByObjectUrn() &&
+                RunTestCase_LookupByObjectUrn(objectUrn, out systemUrn) &&
+                RunTestCase_LookupByUrn(systemUrn) &&
                 RunTestCase_Query();
         }
 
@@ -76,28 +77,30 @@ namespace Smartrac.SmartCosmos.Objects.TestCase.Sample
             return (actionResult == ObjectActionResult.Successful);
         }
 
-        protected virtual bool RunTestCase_LookupByUrn(Urn objectUrn)
+        protected virtual bool RunTestCase_LookupByUrn(Urn systemUrn)
         {
             ObjectDataResponse responseObjectData;
-            if ((objectUrn == null) || (!objectUrn.IsValid()))
+            if ((systemUrn == null) || (!systemUrn.IsValid()))
             {
             Logger.AddLog("Skip RunTestCase_Lookup", LogType.Info);
             }
 
                 OnBeforeTest("Objects", "ObjectManagementEndpoint", "Lookup Specific Object by URN");
                 // call endpoint
-                ObjectActionResult actionResult = endpoint.Lookup(objectUrn, out responseObjectData, dataContext.GetViewType());
+                ObjectActionResult actionResult = endpoint.Lookup(systemUrn, out responseObjectData, dataContext.GetViewType());
                 OnAfterTest(actionResult);
             return (actionResult == ObjectActionResult.Successful);
         }
 
-        protected virtual bool RunTestCase_LookupByObjectUrn()
+        protected virtual bool RunTestCase_LookupByObjectUrn(Urn objectUrn, out Urn systemUrn)
         {
             OnBeforeTest("Objects", "ObjectManagementEndpoint", "Lookup Object by Object URN");
             ObjectDataResponse responseObjectData;
             // call endpoint
-            ObjectActionResult actionResult = endpoint.LookupByObjectUrn(dataContext.GetObjectUrn(), out responseObjectData, dataContext.GetViewType());
+            ObjectActionResult actionResult = endpoint.LookupByObjectUrn(objectUrn, out responseObjectData, dataContext.GetViewType());
             OnAfterTest(actionResult);
+            systemUrn = (responseObjectData == null) ? null : responseObjectData.urnObj;
+
             return (actionResult == ObjectActionResult.Successful);
         }
 

@@ -492,7 +492,11 @@ namespace Smartrac.SmartCosmos.Objects.Metadata
                 return MetadataActionResult.Failed;
             }
 
-            var request = CreateWebRequest("/metadata/" + requestData.entityReferenceType.GetDescription() + "/" + requestData.referenceUrn.UUID, WebRequestOption.Authorization);
+            Uri url = new Uri("/metadata", UriKind.Relative).
+                AddSubfolder(requestData.entityReferenceType.GetDescription()).
+                AddSubfolder(requestData.referenceUrn.UUID);
+
+            var request = CreateWebRequest(url, WebRequestOption.Authorization);
             ExecuteWebRequestJSON<List<MetadataItem>, CreateMetadataResponse>(request, requestData.MetaDataList, out responseData, WebRequestMethods.Http.Put);
             if (responseData != null)
             {
@@ -522,8 +526,12 @@ namespace Smartrac.SmartCosmos.Objects.Metadata
                 return MetadataActionResult.Failed;
             }
 
-            var request = CreateWebRequest("/metadata/" + requestData.entityReferenceType.GetDescription() + "/" + requestData.entityUrn.UUID + "/" + requestData.key, 
-                WebRequestOption.Authorization);
+            Uri url = new Uri("/metadata", UriKind.Relative).
+                AddSubfolder(requestData.entityReferenceType.GetDescription()).
+                AddSubfolder(requestData.entityUrn.UUID).
+                AddSubfolder(requestData.key);
+
+            var request = CreateWebRequest(url, WebRequestOption.Authorization);
             request.Method = "DELETE";
 
             HttpWebResponse response = request.GetResponseSafe() as System.Net.HttpWebResponse;
@@ -531,8 +539,8 @@ namespace Smartrac.SmartCosmos.Objects.Metadata
             {
                 try
                 {
-                    if ((response.StatusCode == HttpStatusCode.NoContent) &&
-                        (response.Headers.Get("SmartCosmos-Event") == "MetadataDeleted"))
+                    if ((response.StatusCode == HttpStatusCode.NoContent)) //&&
+                        //(response.Headers.Get("SmartCosmos-Event") == "MetadataDeleted"))
                     {
                         return MetadataActionResult.Successful;
                     }
@@ -571,12 +579,13 @@ namespace Smartrac.SmartCosmos.Objects.Metadata
             }
 
             //metadata/{entityReferenceType}/{referenceUrn}{?view,key}
-            var request = CreateWebRequest("/metadata/" +
-                                        requestData.entityReferenceType.GetDescription() + "/" +
-                                        requestData.entityUrn.UUID +
-                                        "?view=" + requestData.viewType.GetDescription() +
-                                        requestData.key ?? "&key" + requestData.key
-                                        , WebRequestOption.Authorization);
+            Uri url = new Uri("/metadata", UriKind.Relative).
+                AddSubfolder(requestData.entityReferenceType.GetDescription()).
+                AddSubfolder(requestData.entityUrn.UUID).
+                AddQuery("view", requestData.viewType.GetDescription()).
+                AddQuery("key", requestData.key);
+            
+            var request = CreateWebRequest(url, WebRequestOption.Authorization);
             ExecuteWebRequestJSON<LookupMetadataResponse>(request, out responseData);
             if (responseData != null)
             {

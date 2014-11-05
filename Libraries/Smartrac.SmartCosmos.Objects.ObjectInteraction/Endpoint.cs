@@ -93,9 +93,11 @@ namespace Smartrac.SmartCosmos.Objects.ObjectInteraction
                     return ObjInteractActionResult.Failed;
                 }
 
-                var urnParam = (null != objectUrn) ? "&objectUrn=" + objectUrn.UUID : "";
+                Uri url = new Uri("/interactions", UriKind.Relative).
+                    AddQuery("view", viewType.GetDescription()).
+                    AddQuery("objectUrn", objectUrn.UUID);
 
-                var request = CreateWebRequest("/interactions?view=" + viewType.GetDescription() + urnParam, WebRequestOption.Authorization);
+                var request = CreateWebRequest(url, WebRequestOption.Authorization);
                 var returnHTTPCode = ExecuteWebRequestJSON<QueryObjectInteractionsResponse>(request, out responseData);
                 if (responseData != null)
                 {
@@ -133,7 +135,11 @@ namespace Smartrac.SmartCosmos.Objects.ObjectInteraction
                     return ObjInteractActionResult.Failed;
                 }
 
-                var request = CreateWebRequest("/interactions/" + interactionUrn.UUID + "?view=" + viewType.GetDescription(), WebRequestOption.Authorization);
+                Uri url = new Uri("/interactions", UriKind.Relative).
+                    AddSubfolder(interactionUrn.UUID).
+                    AddQuery("view", viewType.GetDescription());
+
+                var request = CreateWebRequest(url, WebRequestOption.Authorization);
                 var returnHTTPCode = ExecuteWebRequestJSON<QueryObjectInteractionResponse>(request, out responseData);
 
                 if (responseData != null)

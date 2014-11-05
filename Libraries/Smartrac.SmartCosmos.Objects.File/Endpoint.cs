@@ -101,7 +101,11 @@ namespace Smartrac.SmartCosmos.Objects.File
                     return FileActionResult.Failed;
                 }
 
-                var request = CreateWebRequest("/files/" + fileUrn.UUID + "/octet", WebRequestOption.Authorization);
+                Uri url = new Uri("/files", UriKind.Relative).
+                    AddSubfolder(fileUrn.UUID).
+                    AddSubfolder("octet");
+
+                var request = CreateWebRequest(url, WebRequestOption.Authorization);
                 request.Method = WebRequestMethods.Http.Post;
                 request.ContentType = "application/octet-stream";
 
@@ -217,7 +221,11 @@ namespace Smartrac.SmartCosmos.Objects.File
                 copyTask.Start();
                 copyTask.Wait();
 
-                var request = CreateWebRequest("/files/" + fileUrn.UUID + "/multipart", WebRequestOption.Authorization);
+                Uri url = new Uri("/files", UriKind.Relative).
+                    AddSubfolder(fileUrn.UUID).
+                    AddSubfolder("multipart");
+
+                var request = CreateWebRequest(url, WebRequestOption.Authorization);
                 request.Method = WebRequestMethods.Http.Post;
                 request.ContentType = "multipart/form-data";
                 request.ContentLength = oPostStream.Length;
@@ -287,7 +295,11 @@ namespace Smartrac.SmartCosmos.Objects.File
                     return FileActionResult.Failed;
                 }
 
-                var request = CreateWebRequest("/files/" + fileUrn.UUID + "?view=" + viewType.GetDescription(), WebRequestOption.Authorization);
+                Uri url = new Uri("/files", UriKind.Relative).
+                    AddSubfolder(fileUrn.UUID).
+                    AddQuery("view", viewType.GetDescription());
+
+                var request = CreateWebRequest(url, WebRequestOption.Authorization);
                 HttpWebResponse webResponse;
                 var returnHTTPCode = ExecuteWebRequestJSON<FileDefinitionRetrievalResponse>(request, out responseData, out webResponse);
                 if ((responseData != null) && (webResponse != null))
@@ -335,7 +347,11 @@ namespace Smartrac.SmartCosmos.Objects.File
                     return FileActionResult.Failed;
                 }
 
-                var request = CreateWebRequest("/files/" + fileUrn.UUID + "/contents", WebRequestOption.Authorization);
+                Uri url = new Uri("/files", UriKind.Relative).
+                    AddSubfolder(fileUrn.UUID).
+                    AddSubfolder("contents");
+
+                var request = CreateWebRequest(url, WebRequestOption.Authorization);
                 request.Method = WebRequestMethods.Http.Get;
 
                 using (var response = request.GetResponseSafe() as System.Net.HttpWebResponse)
@@ -413,8 +429,12 @@ namespace Smartrac.SmartCosmos.Objects.File
                     return FileActionResult.Failed;
                 }
 
-                var request = CreateWebRequest("/files/" + entityReferenceType.GetDescription() + "/" + referenceUrn.UUID + "?view=" + viewType.GetDescription(), 
-                    WebRequestOption.Authorization);
+                Uri url = new Uri("/files", UriKind.Relative).
+                    AddSubfolder(entityReferenceType.GetDescription()).
+                    AddSubfolder(referenceUrn.UUID).
+                    AddQuery("view", viewType.GetDescription());
+
+                var request = CreateWebRequest(url, WebRequestOption.Authorization);
                 var returnHTTPCode = ExecuteWebRequestJSON<FileDefinitionRetrievalListResponse>(request, out responseData);
                 if (responseData != null)
                 {
@@ -461,7 +481,11 @@ namespace Smartrac.SmartCosmos.Objects.File
                     return FileActionResult.Failed;
                 }
 
-                var request = CreateWebRequest("/files/" + fileUrn.UUID);
+
+                Uri url = new Uri("/files", UriKind.Relative).
+                    AddSubfolder(fileUrn.UUID);
+
+                var request = CreateWebRequest(url, WebRequestOption.Authorization);
                 request.Method = "DELETE";
 
                 using (var response = request.GetResponseSafe() as System.Net.HttpWebResponse)
@@ -470,8 +494,8 @@ namespace Smartrac.SmartCosmos.Objects.File
                     {
                         try
                         {
-                            if ((response.StatusCode == HttpStatusCode.NoContent) &&
-                                (response.Headers.Get("SmartCosmos-Event") == "FileDeleted"))
+                            if ((response.StatusCode == HttpStatusCode.NoContent)) // &&
+                                //(response.Headers.Get("SmartCosmos-Event") == "FileDeleted"))
                             {
                                 return FileActionResult.Successful;
                             }

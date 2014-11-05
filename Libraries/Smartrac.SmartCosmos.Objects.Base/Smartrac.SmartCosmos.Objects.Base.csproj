@@ -93,6 +93,10 @@
       <Project>{fc09830c-0f35-4fc3-85bf-0b43fcb91f06}</Project>
       <Name>Smartrac.Base</Name>
     </ProjectReference>
+    <ProjectReference Include="..\Smartrac.Logging\Smartrac.Logging.csproj">
+      <Project>{73ba0972-769b-4b84-9a21-9cf545a14a03}</Project>
+      <Name>Smartrac.Logging</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Smartrac.SmartCosmos.ClientEndpoint.BaseObject\Smartrac.SmartCosmos.ClientEndpoint.BaseObject.csproj">
       <Project>{28e0fa25-18da-4c11-83cd-92a36ddd060b}</Project>
       <Name>Smartrac.SmartCosmos.ClientEndpoint.BaseObject</Name>

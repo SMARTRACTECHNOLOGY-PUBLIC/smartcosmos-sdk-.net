@@ -55,11 +55,10 @@ namespace Smartrac.SmartCosmos.Objects.UserManagement
                     switch (responseData.HTTPStatusCode)
                     {
                         case HttpStatusCode.Created:
-                            responseData.userUrn = new Urn(responseData.message);
+                            responseData.userPassword = responseData.message;
                             return UserActionResult.Successful;
 
                         case HttpStatusCode.Conflict:
-                            responseData.userUrn = new Urn(responseData.message);
                             return UserActionResult.Conflict;
 
                         default: return UserActionResult.Failed;
@@ -123,7 +122,7 @@ namespace Smartrac.SmartCosmos.Objects.UserManagement
         /// <param name="viewType">A valid JSON Serialization View name (case-sensitive)</param>
         /// <param name="responseData">user data</param>
         /// <returns>UserManagementActionResult</returns>
-        public UserActionResult LookupSpecificUser(Urn userUrn, ViewType? viewType, out UserDataResponse responseData)
+        public UserActionResult LookupSpecificUser(Urn userUrn, out UserDataResponse responseData, ViewType viewType = ViewType.Standard)
         {
             responseData = null;
             try
@@ -135,8 +134,11 @@ namespace Smartrac.SmartCosmos.Objects.UserManagement
                     return UserActionResult.Failed;
                 }
 
-                string viewTypeParam = ((null != viewType) && viewType.HasValue) ? "?view=" + viewType.Value.GetDescription() : "";
-                var request = CreateWebRequest("/users/" + userUrn.UUID + viewTypeParam, WebRequestOption.Authorization);
+                Uri url = new Uri("/users", UriKind.Relative).
+                    AddSubfolder(userUrn.UUID).
+                    AddQuery("view", viewType.GetDescription());
+
+                var request = CreateWebRequest(url, WebRequestOption.Authorization);
                 var returnHTTPCode = ExecuteWebRequestJSON<UserDataResponse>(request, out responseData);
                 if ((responseData != null) && (responseData.HTTPStatusCode == HttpStatusCode.OK))
                     return UserActionResult.Successful;
@@ -157,7 +159,7 @@ namespace Smartrac.SmartCosmos.Objects.UserManagement
         /// <param name="viewType">A valid JSON Serialization View name (case-sensitive)</param>
         /// <param name="responseData">user data</param>
         /// <returns>UserManagementActionResult</returns>
-        public UserActionResult LookupSpecificUser(string eMailAddress, ViewType? viewType, out UserDataResponse responseData)
+        public UserActionResult LookupSpecificUser(string eMailAddress, out UserDataResponse responseData, ViewType viewType = ViewType.Standard)
         {
             responseData = null;
             try
@@ -169,8 +171,11 @@ namespace Smartrac.SmartCosmos.Objects.UserManagement
                     return UserActionResult.Failed;
                 }
 
-                string viewTypeParam = ((null != viewType) && viewType.HasValue) ? "?view=" + viewType.Value.GetDescription() : "";
-                var request = CreateWebRequest("/users/user/" + eMailAddress + viewTypeParam, WebRequestOption.Authorization);
+                Uri url = new Uri("/users/user", UriKind.Relative).
+                    AddSubfolder(eMailAddress).
+                    AddQuery("view", viewType.GetDescription());
+
+                var request = CreateWebRequest(url, WebRequestOption.Authorization);
                 var returnHTTPCode = ExecuteWebRequestJSON<UserDataResponse>(request, out responseData);
                 if ((responseData != null) && (responseData.HTTPStatusCode == HttpStatusCode.OK))
                     return UserActionResult.Successful;

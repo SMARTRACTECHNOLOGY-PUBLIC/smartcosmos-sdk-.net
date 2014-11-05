@@ -26,18 +26,15 @@ namespace Smartrac.SmartCosmos.Objects.UserManagement
 {
     public class UserDataResponse : BaseResponse
     {
-        [JsonIgnore]
-        private Urn userUrn_;
-
         public string urn
         {
             get
             {
-                return (userUrn_ != null) ? userUrn_.UUID : "";
+                return (urnObj != null) ? urnObj.UUID : "";
             }
             set
             {
-                userUrn_ = new Urn(value);
+                urnObj = new Urn(value);
             }
         }
 
@@ -53,12 +50,6 @@ namespace Smartrac.SmartCosmos.Objects.UserManagement
         public string surname { get; set; }
 
         [JsonIgnore]
-        public Urn userUrn
-        {
-            get
-            {
-                return userUrn_;
-            }
-        }
+        public Urn urnObj { get; set; }
     }
 }

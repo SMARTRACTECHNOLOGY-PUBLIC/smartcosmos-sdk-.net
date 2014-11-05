@@ -95,7 +95,11 @@ namespace Smartrac.SmartCosmos.Objects.HashTag
                     return HashTagActionResult.Failed;
                 }
 
-                var request = CreateWebRequest("/tags/" + tagUrn.UUID + "?view=" + viewType.GetDescription(), WebRequestOption.Authorization);
+                Uri url = new Uri("/tags", UriKind.Relative).
+                    AddSubfolder(tagUrn.UUID).
+                    AddQuery("view", viewType.GetDescription());	
+
+                var request = CreateWebRequest(url, WebRequestOption.Authorization);
                 var returnHTTPCode = ExecuteWebRequestJSON<HashTagDataResponse>(request, out responseData);
                 if ((responseData != null) && (responseData.HTTPStatusCode == HttpStatusCode.OK))
                     return HashTagActionResult.Successful;
@@ -128,7 +132,11 @@ namespace Smartrac.SmartCosmos.Objects.HashTag
                     return HashTagActionResult.Failed;
                 }
 
-                var request = CreateWebRequest("/tags/tag/" + tagName + "?view=" + viewType.GetDescription(), WebRequestOption.Authorization);
+                Uri url = new Uri("/tags/tag/", UriKind.Relative).
+                    AddSubfolder(tagName).
+                    AddQuery("view", viewType.GetDescription());	
+
+                var request = CreateWebRequest(url, WebRequestOption.Authorization);
                 var returnHTTPCode = ExecuteWebRequestJSON<HashTagDataResponse>(request, out responseData);
                 if ((responseData != null) && (responseData.HTTPStatusCode == HttpStatusCode.OK))
                     return HashTagActionResult.Successful;
@@ -161,10 +169,12 @@ namespace Smartrac.SmartCosmos.Objects.HashTag
                     return HashTagActionResult.Failed;
                 }
 
-                var request = CreateWebRequest("/tags?view=" + viewType.GetDescription() +
-                    "&entityReferenceType=" + entityReferenceType.GetDescription() +
-                    "&referenceUrn=" + referenceUrn.UUID
-                    , WebRequestOption.Authorization);
+                Uri url = new Uri("/tags", UriKind.Relative).
+                    AddQuery("view", viewType.GetDescription()).
+                    AddQuery("entityReferenceType", entityReferenceType.GetDescription()).
+                    AddQuery("referenceUrn", referenceUrn.UUID);
+
+                var request = CreateWebRequest(url, WebRequestOption.Authorization);
 
                 var returnHTTPCode = ExecuteWebRequestJSON<HashTagListResponse>(request, out responseData);
                 if ((responseData != null) && 
@@ -202,8 +212,11 @@ namespace Smartrac.SmartCosmos.Objects.HashTag
                     return HashTagActionResult.Failed;
                 }
 
-                var request = CreateWebRequest("/tags/" + entityReferenceType.GetDescription() +
-                                               "/" + referenceUrn.UUID, WebRequestOption.Authorization);
+                Uri url = new Uri("/tags", UriKind.Relative).
+                    AddSubfolder(entityReferenceType.GetDescription()).
+                    AddSubfolder(referenceUrn.UUID);
+
+                var request = CreateWebRequest(url, WebRequestOption.Authorization);
                 var returnHTTPCode = ExecuteWebRequestJSON<HashTagListRequest, HashTagListResponse>(request, requestData, out responseData, WebRequestMethods.Http.Put);
                 if ((responseData != null) && (responseData.HTTPStatusCode == HttpStatusCode.OK))
                     return HashTagActionResult.Successful;
@@ -233,7 +246,10 @@ namespace Smartrac.SmartCosmos.Objects.HashTag
                     return HashTagActionResult.Failed;
                 }
 
-                var request = CreateWebRequest("/tags/tag/" + tagUrn.UUID, WebRequestOption.Authorization);
+                Uri url = new Uri("/tags/tag/", UriKind.Relative).
+                    AddSubfolder(tagUrn.UUID);
+
+                var request = CreateWebRequest(url, WebRequestOption.Authorization);
                 request.Method = "DELETE";
 
                 using (var response = request.GetResponseSafe() as System.Net.HttpWebResponse)
@@ -242,8 +258,8 @@ namespace Smartrac.SmartCosmos.Objects.HashTag
                     {
                         try
                         {
-                            if ((response.StatusCode == HttpStatusCode.NoContent) &&
-                                (response.Headers.Get("SmartCosmos-Event") == "FileDeleted")
+                            if ((response.StatusCode == HttpStatusCode.NoContent) // &&
+                                //(response.Headers.Get("SmartCosmos-Event") == "FileDeleted")
                                )
                             {
                                 return HashTagActionResult.Successful;
@@ -281,7 +297,10 @@ namespace Smartrac.SmartCosmos.Objects.HashTag
                     return HashTagActionResult.Failed;
                 }
 
-                var request = CreateWebRequest("/tags/tag/" + tagName, WebRequestOption.Authorization);
+                Uri url = new Uri("/tags/tag/", UriKind.Relative).
+                    AddSubfolder(tagName);
+
+                var request = CreateWebRequest(url, WebRequestOption.Authorization);
                 request.Method = "DELETE";
 
                 using (var response = request.GetResponseSafe() as System.Net.HttpWebResponse)

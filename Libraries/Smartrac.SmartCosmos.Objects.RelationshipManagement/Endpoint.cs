@@ -48,7 +48,11 @@ namespace Smartrac.SmartCosmos.Objects.RelationshipManagement
                     return RelationshipActionResult.Failed;
                 }
 
-                var request = CreateWebRequest("/relationships/" + requestData.entityReferenceType + "/" + requestData.referenceUrn, WebRequestOption.Authorization);
+                Uri url = new Uri("/relationships", UriKind.Relative).
+                    AddSubfolder(requestData.entityReferenceType.GetDescription()).
+                    AddSubfolder(requestData.referenceUrn);
+
+                var request = CreateWebRequest(url, WebRequestOption.Authorization);
                 ExecuteWebRequestJSON<RelationshipManagementRequest, RelationshipManagementResponse>(request, requestData, out responseData, WebRequestMethods.Http.Put);
                 if (responseData != null)
                 {
@@ -92,7 +96,11 @@ namespace Smartrac.SmartCosmos.Objects.RelationshipManagement
                     return RelationshipActionResult.Failed;
                 }
 
-                var request = CreateWebRequest("/relationships/" + relationshipUrn.UUID + "?view=" + viewType.GetDescription(), WebRequestOption.Authorization);
+                Uri url = new Uri("/relationships", UriKind.Relative).
+                    AddSubfolder(relationshipUrn.UUID).
+                    AddQuery("view", viewType.GetDescription());
+
+                var request = CreateWebRequest(url, WebRequestOption.Authorization);
                 ExecuteWebRequestJSON<RelationshipDataResponse>(request, out responseData);
                 if ((responseData != null) && (responseData.HTTPStatusCode == HttpStatusCode.OK))
                     return RelationshipActionResult.Successful;
@@ -125,11 +133,14 @@ namespace Smartrac.SmartCosmos.Objects.RelationshipManagement
                     return RelationshipActionResult.Failed;
                 }
 
-                var request = CreateWebRequest("/relationships/" + requestData.entityReferenceType + "/" +
-                                                                   requestData.referenceUrn + "/" +
-                                                                   requestData.relatedEntityReferenceType + "/" +
-                                                                   requestData.relatedReferenceUrn +
-                                                                   "?view=" + viewType.GetDescription(), WebRequestOption.Authorization);
+                Uri url = new Uri("/relationships", UriKind.Relative).
+                    AddSubfolder(requestData.entityReferenceType.GetDescription()).
+                    AddSubfolder(requestData.referenceUrn).
+                    AddSubfolder(requestData.relatedEntityReferenceType.GetDescription()).
+                    AddSubfolder(requestData.relatedReferenceUrn).
+                    AddQuery("view", viewType.GetDescription());
+
+                var request = CreateWebRequest(url, WebRequestOption.Authorization);
                 var HTTPStatusCodeResult = ExecuteWebRequestJSON<QueryObjectRelationshipsResponse>(request, out responseData);
                 if (responseData != null)
                 {
@@ -167,12 +178,15 @@ namespace Smartrac.SmartCosmos.Objects.RelationshipManagement
                     return RelationshipActionResult.Failed;
                 }
 
-                var request = CreateWebRequest("/relationships/" + requestData.entityReferenceType + "/" +
-                                                                   requestData.referenceUrn + "/" +
-                                                                   requestData.relatedEntityReferenceType + "/" +
-                                                                   requestData.relatedReferenceUrn + "/" +
-                                                                   requestData.type + "/" +
-                                                                   "?view=" + viewType.GetDescription(), WebRequestOption.Authorization);
+                Uri url = new Uri("/relationships", UriKind.Relative).
+                    AddSubfolder(requestData.entityReferenceType.GetDescription()).
+                    AddSubfolder(requestData.referenceUrn).
+                    AddSubfolder(requestData.relatedEntityReferenceType.GetDescription()).
+                    AddSubfolder(requestData.relatedReferenceUrn).
+                    AddSubfolder(requestData.type).
+                    AddQuery("view", viewType.GetDescription());
+
+                var request = CreateWebRequest(url, WebRequestOption.Authorization);
                 ExecuteWebRequestJSON<RelationshipDataResponse>(request, out responseData);
                 if ((responseData != null) && (responseData.HTTPStatusCode == HttpStatusCode.OK))
                     return RelationshipActionResult.Successful;
@@ -205,12 +219,14 @@ namespace Smartrac.SmartCosmos.Objects.RelationshipManagement
                     return RelationshipActionResult.Failed;
                 }
 
-                var request = CreateWebRequest("/relationships/" + requestData.entityReferenceType + "/" +
-                                                                   requestData.referenceUrn + "/" +
-                                                                   requestData.type +
-                                                                   "?view=" + viewType.GetDescription() +
-                                                                   "&reverse=" + requestData.reverse
-                                                                   , WebRequestOption.Authorization);
+                Uri url = new Uri("/relationships", UriKind.Relative).
+                    AddSubfolder(requestData.entityReferenceType.GetDescription()).
+                    AddSubfolder(requestData.referenceUrn).
+                    AddSubfolder(requestData.type).
+                    AddQuery("view", viewType.GetDescription()).
+                    AddQuery("reverse", requestData.reverse.ToString());
+
+                var request = CreateWebRequest(url, WebRequestOption.Authorization);
                 var HTTPStatusCodeResult = ExecuteWebRequestJSON<QueryObjectRelationshipsResponse>(request, out responseData);
                 if (responseData != null)
                 {
@@ -245,7 +261,10 @@ namespace Smartrac.SmartCosmos.Objects.RelationshipManagement
                     return RelationshipActionResult.Failed;
                 }
 
-                var request = CreateWebRequest("/relationships/" + relationshipUrn.UUID, WebRequestOption.Authorization);
+                Uri url = new Uri("/relationships", UriKind.Relative).
+                    AddSubfolder(relationshipUrn.UUID);
+
+                var request = CreateWebRequest(url, WebRequestOption.Authorization);
                 request.Method = "DELETE";
 
                 using (var response = request.GetResponseSafe() as System.Net.HttpWebResponse)
@@ -254,8 +273,8 @@ namespace Smartrac.SmartCosmos.Objects.RelationshipManagement
                     {
                         try
                         {
-                            if ((response.StatusCode == HttpStatusCode.NoContent) &&
-                                (response.Headers.Get("SmartCosmos-Event") == "RelationshipDeleted"))
+                            if ((response.StatusCode == HttpStatusCode.NoContent)) // &&
+                            //(response.Headers.Get("SmartCosmos-Event") == "RelationshipDeleted"))
                             {
                                 return RelationshipActionResult.Successful;
                             }

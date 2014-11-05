@@ -22,6 +22,7 @@ using System.Net;
 using Smartrac.Logging;
 using Smartrac.SmartCosmos.ClientEndpoint.Base;
 using Smartrac.SmartCosmos.Objects.Base;
+using System.Text;
 
 namespace Smartrac.SmartCosmos.Objects.AccountManagement
 {
@@ -36,14 +37,15 @@ namespace Smartrac.SmartCosmos.Objects.AccountManagement
         /// <param name="viewType">A valid JSON Serialization View name (case-sensitive)</param>
         /// <param name="responseData">out: Account details</param>
         /// <returns>AccountManagementActionResult</returns>
-        public AccountActionResult GetAccountDetails(ViewType? viewType, out AccountDetailsResponse responseData)
+        public AccountActionResult GetAccountDetails(out AccountDetailsResponse responseData, ViewType viewType = ViewType.Standard)
         {
             responseData = null;
             try
             {
-                string viewTypeParam = ((null != viewType) && viewType.HasValue) ? "?view=" + viewType.Value.GetDescription() : "";
+                Uri url = new Uri("/account", UriKind.Relative).
+                    AddQuery("view", viewType.GetDescription());
 
-                var request = CreateWebRequest("/account" + viewTypeParam, WebRequestOption.Authorization);
+                var request = CreateWebRequest(url, WebRequestOption.Authorization);
                 var returnHTTPCode = ExecuteWebRequestJSON<AccountDetailsResponse>(request, out responseData);
 
                 if ((responseData != null) && (responseData.HTTPStatusCode == HttpStatusCode.OK))
@@ -111,8 +113,15 @@ namespace Smartrac.SmartCosmos.Objects.AccountManagement
                     return AccountActionResult.Failed;
                 }
 
-                var request = CreateWebRequest("/account/password/reset");
-                ExecuteWebRequestJSON<ResetLostPasswordRequest, ResetLostPasswordResponse>(request, requestData, out responseData);
+                var request = CreateWebRequest("/account/password/reset", WebRequestOption.Authorization);
+                request.Method = WebRequestMethods.Http.Post;
+                request.ContentType = "text/plain";
+                request.ContentLength = requestData.emailAddress.Length;
+                using (var writer = request.GetRequestStream())
+                {
+                    writer.Write(Encoding.UTF8.GetBytes(requestData.emailAddress), 0, requestData.emailAddress.Length);
+                }
+                ExecuteWebRequestJSON<ResetLostPasswordResponse>(request, out responseData, WebRequestMethods.Http.Post);
                 if ((responseData != null) && (responseData.HTTPStatusCode == HttpStatusCode.OK))
                     return AccountActionResult.Successful;
 

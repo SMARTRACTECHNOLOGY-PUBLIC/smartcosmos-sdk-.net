@@ -46,7 +46,10 @@ namespace Smartrac.SmartCosmos.Objects.Registration
                     return RegistrationActionResult.Failed;
                 }
 
-                var request = CreateWebRequest("/registration/realm/" + realm);
+                Uri url = new Uri("/registration/realm/", UriKind.Relative).
+                    AddSubfolder(realm);
+
+                var request = CreateWebRequest(url);
                 var returnHTTPCode = ExecuteWebRequestJSON<RealmAvailabilityResponse>(request, out responseData);
                 if ((responseData != null) && (responseData.HTTPStatusCode == HttpStatusCode.OK))
                     return RegistrationActionResult.Successful;
@@ -116,7 +119,11 @@ namespace Smartrac.SmartCosmos.Objects.Registration
                     return RegistrationActionResult.Failed;
                 }
 
-                var request = CreateWebRequest("/registration/confirm/" + requestData.emailVerificationToken + "/" + requestData.emailAddress);
+                Uri url = new Uri("/registration/confirm", UriKind.Relative).
+                    AddSubfolder(requestData.emailVerificationToken).
+                    AddSubfolder(requestData.emailAddress);
+
+                var request = CreateWebRequest(url);
                 ExecuteWebRequestJSON<ConfirmRegistrationResponse>(request, out responseData);
                 if ((responseData != null) && (responseData.HTTPStatusCode == HttpStatusCode.OK))
                     return RegistrationActionResult.Successful;

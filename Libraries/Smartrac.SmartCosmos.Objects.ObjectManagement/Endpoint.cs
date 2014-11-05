@@ -132,7 +132,11 @@ namespace Smartrac.SmartCosmos.Objects.ObjectManagement
                     return ObjectActionResult.Failed;
                 }
 
-                var request = CreateWebRequest("/objects/" + urn.UUID + "?view=" + viewType.GetDescription(), WebRequestOption.Authorization);
+                Uri url = new Uri("/objects", UriKind.Relative).
+                    AddSubfolder( urn.UUID).
+                    AddQuery("view", viewType.GetDescription());
+
+                var request = CreateWebRequest(url, WebRequestOption.Authorization);
                 var returnHTTPCode = ExecuteWebRequestJSON<ObjectDataResponse>(request, out responseData);
                 if ((responseData != null) && (responseData.HTTPStatusCode == HttpStatusCode.OK))
                     return ObjectActionResult.Successful;
@@ -166,7 +170,12 @@ namespace Smartrac.SmartCosmos.Objects.ObjectManagement
                     return ObjectActionResult.Failed;
                 }
 
-                var request = CreateWebRequest("/objects/" + objectUrn.UUID + "?view=" + viewType.GetDescription() + "&exact=" + exact.ToString(), WebRequestOption.Authorization);
+                Uri url = new Uri("/objects", UriKind.Relative).
+                    AddSubfolder( objectUrn.UUID).
+                    AddQuery("view", viewType.GetDescription()).
+                    AddQuery("exact", exact.ToString());	
+
+                var request = CreateWebRequest(url, WebRequestOption.Authorization);
                 var returnHTTPCode = ExecuteWebRequestJSON<ObjectDataResponse>(request, out responseData);
                 if ((responseData != null) && (responseData.HTTPStatusCode == HttpStatusCode.OK))
                     return ObjectActionResult.Successful;
@@ -207,7 +216,7 @@ namespace Smartrac.SmartCosmos.Objects.ObjectManagement
                     AddQuery("modifiedAfter", requestData.modifiedAfter).
                     AddQuery("view", requestData.viewType.GetDescription());
 
-                var request = CreateWebRequest(url.OriginalString, WebRequestOption.Authorization);
+                var request = CreateWebRequest(url, WebRequestOption.Authorization);
                 var HTTPStatusCode = ExecuteWebRequestJSON<QueryObjectsResponse>(request, out responseData);
 
                 if (responseData != null)

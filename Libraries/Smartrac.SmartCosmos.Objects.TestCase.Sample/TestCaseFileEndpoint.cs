@@ -44,6 +44,7 @@ namespace Smartrac.SmartCosmos.Objects.TestCase.Sample
                           RunTestCase_UploadOctetStream(file, fileUrn) &&
                           RunTestCase_LookupByUrn(fileUrn) &&
                           RunTestCase_DownloadContent(fileUrn) &&
+                          RunTestCase_Delete(fileUrn) &&
                           bResult;
             }
             return RunTestCase_Lookup() && bResult;
@@ -79,6 +80,24 @@ namespace Smartrac.SmartCosmos.Objects.TestCase.Sample
                     if (actionResult != FileActionResult.Successful)
                         return false;
                 }
+            }
+            return (actionResult == FileActionResult.Successful);
+        }
+
+        protected virtual bool RunTestCase_Delete(Urn fileUrn)
+        {
+            if ((null == fileUrn))
+                return true;
+
+            FileActionResult actionResult = FileActionResult.Successful;
+            if (fileUrn.IsValid())
+            {
+                OnBeforeTest("Objects", "FileEndpoint", "File Delete");
+                // create request & call endpoint
+                actionResult = endpoint.Delete(fileUrn);
+                OnAfterTest(actionResult);
+                if (actionResult != FileActionResult.Successful)
+                    return false;
             }
             return (actionResult == FileActionResult.Successful);
         }

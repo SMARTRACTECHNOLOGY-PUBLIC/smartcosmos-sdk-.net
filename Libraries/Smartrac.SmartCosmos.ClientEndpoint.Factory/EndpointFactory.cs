@@ -198,7 +198,7 @@ namespace Smartrac.SmartCosmos.ClientEndpoint.Factory
             .setKeepAlive(KeepAlive)
             .setServerURL(ObjectsServerURL)
             .setAllowInvalidServerCertificates(AllowInvalidServerCertificates)
-            .setUserAccount(ProfilesUserName, ProfilesUserPassword)
+            .setUserAccount(ObjectsUserName, ObjectsUserPassword)
             .build();
         }
 
@@ -209,7 +209,7 @@ namespace Smartrac.SmartCosmos.ClientEndpoint.Factory
             .setKeepAlive(KeepAlive)
             .setServerURL(ObjectsServerURL)
             .setAllowInvalidServerCertificates(AllowInvalidServerCertificates)
-            .setUserAccount(ProfilesUserName, ProfilesUserPassword)
+            .setUserAccount(ObjectsUserName, ObjectsUserPassword)
             .build();
         }
 

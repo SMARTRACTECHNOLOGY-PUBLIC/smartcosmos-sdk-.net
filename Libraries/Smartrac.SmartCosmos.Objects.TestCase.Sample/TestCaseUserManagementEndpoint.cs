@@ -33,14 +33,14 @@ namespace Smartrac.SmartCosmos.Objects.TestCase.Sample
         {
             Urn userUrn;
 
-            return RunTestCase_CreateNewUser(out userUrn) &&
+            return RunTestCase_CreateNewUser() &&
                 RunTestCase_UpdateUser() &&
-                RunTestCase_LookupUserByURN(userUrn) &&
-                RunTestCase_LookupUserByEmail() &&
+                RunTestCase_LookupUserByEmail(out userUrn) &&
+                RunTestCase_LookupUserByURN(userUrn) &&                
                 RunTestCase_ChangeOrResetUserPassword();
         }
 
-        protected virtual bool RunTestCase_CreateNewUser(out Urn userUrn)
+        protected virtual bool RunTestCase_CreateNewUser()
         {
             OnBeforeTest("Objects", "UserManagementEndpoint", "Create new user");
             // create request
@@ -55,12 +55,6 @@ namespace Smartrac.SmartCosmos.Objects.TestCase.Sample
             // call endpoint
             UserActionResult actionResult = endpoint.CreateNewUser(requestNewUserData, out responseNewUserData);
             OnAfterTest(actionResult);
-
-            if (responseNewUserData != null)
-                userUrn = responseNewUserData.userUrn;
-            else
-                userUrn = null;
-
             return (actionResult == UserActionResult.Successful);
         }
 
@@ -87,20 +81,25 @@ namespace Smartrac.SmartCosmos.Objects.TestCase.Sample
             OnBeforeTest("Objects", "UserManagementEndpoint", "Lookup Specific User by URN");
             UserDataResponse responseUserData;
             // call endpoint
-            UserActionResult actionResult = endpoint.LookupSpecificUser(userUrn, dataContext.GetViewType(), out responseUserData);
+            UserActionResult actionResult = endpoint.LookupSpecificUser(userUrn, out responseUserData, dataContext.GetViewType());
             OnAfterTest(actionResult);
             return (actionResult == UserActionResult.Successful);
 
         }
 
-        protected virtual bool RunTestCase_LookupUserByEmail()
+        protected virtual bool RunTestCase_LookupUserByEmail(out Urn userUrn)
         {
             OnBeforeTest("Objects", "UserManagementEndpoint", "Lookup Specific User by Email Address");
             UserDataResponse responseUserEMailData;
             // call endpoint
-            UserActionResult actionResult = endpoint.LookupSpecificUser(dataContext.GeteMailAddress(), dataContext.GetViewType(), out responseUserEMailData);
+            UserActionResult actionResult = endpoint.LookupSpecificUser(dataContext.GeteMailAddress(), out responseUserEMailData, dataContext.GetViewType());
             // log response
             OnAfterTest(actionResult);
+
+            if (responseUserEMailData != null)
+                userUrn = responseUserEMailData.urnObj;
+            else
+                userUrn = null;
             return (actionResult == UserActionResult.Successful);
         }
 

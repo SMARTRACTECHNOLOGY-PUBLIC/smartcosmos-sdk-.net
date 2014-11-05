@@ -65,7 +65,7 @@ namespace Smartrac.SmartCosmos.Objects.UserManagement
         /// <param name="viewType">A valid JSON Serialization View name (case-sensitive)</param>
         /// <param name="responseData">user data</param>
         /// <returns>UserManagementActionResult</returns>
-        UserActionResult LookupSpecificUser(Urn userUrn, ViewType? viewType, out UserDataResponse responseData);
+        UserActionResult LookupSpecificUser(Urn userUrn, out UserDataResponse responseData, ViewType viewType = ViewType.Standard);
 
         /// <summary>
         /// Lookup a specific user by their email address
@@ -74,7 +74,7 @@ namespace Smartrac.SmartCosmos.Objects.UserManagement
         /// <param name="viewType">A valid JSON Serialization View name (case-sensitive)</param>
         /// <param name="responseData">user data</param>
         /// <returns>UserManagementActionResult</returns>
-        UserActionResult LookupSpecificUser(string eMailAddress, ViewType? viewType, out UserDataResponse responseData);
+        UserActionResult LookupSpecificUser(string eMailAddress, out UserDataResponse responseData, ViewType viewType = ViewType.Standard);
 
         /// <summary>
         /// Initiate a reset password workflow or specifically define the user's password

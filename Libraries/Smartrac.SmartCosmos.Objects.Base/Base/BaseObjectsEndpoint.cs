@@ -18,6 +18,8 @@
 #endregion License
 
 using Smartrac.SmartCosmos.ClientEndpoint.Base;
+using System;
+using System.Text;
 
 namespace Smartrac.SmartCosmos.Objects.Base
 {
@@ -26,5 +28,33 @@ namespace Smartrac.SmartCosmos.Objects.Base
     /// </summary>
     public class BaseObjectsEndpoint : BaseEndpoint
     {
+
+        /// <summary>
+        /// Set the user account which should be used for the authorization
+        /// </summary>
+        /// <param name="UserName">User name</param>
+        /// <param name="userPassword">User password</param>
+        public override void setUserAccount(string userName, string userPassword)
+        {
+            if ((userName == "") || (userPassword == ""))
+            {
+                if (null != Logger)
+                    Logger.AddLog("Clear authorization token");
+
+                AuthorizationToken = "";
+                return;
+            }
+
+            //if (null != Logger)
+            //    Logger.AddLog("Login with user " + userName);
+
+            // UserName and hased password are combined into a string "UserName:hashedpassword"
+            // For example, if the user agent uses 'Aladdin' as the UserName and 'open sesame' as the password then the header is formed as follows:.
+            // SHA512 hash of the password: 8470cdd3bf1ef85d5f092bce5ae5af97ce50820481bf43b2413807fec37e2785b533a65d4c7d71695b141d81ebcd4b6c4def4284e6067f0b9ddc318b1b230205
+            // Authorization: Basic QWxhZGRpbjo4NDcwY2RkM2JmMWVmODVkNWYwOTJiY2U1YWU1YWY5N2NlNTA4MjA0ODFiZjQzYjI0MTM4MDdmZWMzN2UyNzg1YjUzM2E2NWQ0YzdkNzE2OTViMTQxZDgxZWJjZDRiNmM0ZGVmNDI4NGU2MDY3ZjBiOWRkYzMxOGIxYjIzMDIwNQ==
+            AuthorizationToken =
+                "Basic " +
+                Convert.ToBase64String(Encoding.UTF8.GetBytes(userName + ":" + userPassword));
+        }
     }
 }

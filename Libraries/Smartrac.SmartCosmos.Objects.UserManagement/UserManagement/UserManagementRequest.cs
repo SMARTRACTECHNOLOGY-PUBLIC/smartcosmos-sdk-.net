@@ -20,6 +20,8 @@
 using System;
 using Smartrac.SmartCosmos.ClientEndpoint.BaseObject;
 using Smartrac.SmartCosmos.Objects.Base;
+using Newtonsoft.Json;
+using Newtonsoft.Json.Converters;
 
 namespace Smartrac.SmartCosmos.Objects.UserManagement
 {
@@ -27,6 +29,7 @@ namespace Smartrac.SmartCosmos.Objects.UserManagement
     {
         public string emailAddress { get; set; }
 
+        [JsonConverter(typeof(StringEnumConverter))]
         public RoleType roleType { get; set; }
 
         public string givenName { get; set; }

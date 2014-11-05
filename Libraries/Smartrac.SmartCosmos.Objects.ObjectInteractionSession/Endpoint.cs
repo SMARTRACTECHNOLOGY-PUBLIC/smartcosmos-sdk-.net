@@ -154,7 +154,11 @@ namespace Smartrac.SmartCosmos.Objects.ObjectInteractionSession
                     return ObjInteractSessionActionResult.Failed;
                 }
 
-                var request = CreateWebRequest("/sessions/" + sessionUrn.UUID + "?view=" + viewType.GetDescription(), WebRequestOption.Authorization);
+                Uri url = new Uri("/sessions", UriKind.Relative).
+                    AddSubfolder(sessionUrn.UUID).
+                    AddQuery("view", viewType.GetDescription());
+
+                var request = CreateWebRequest(url, WebRequestOption.Authorization);
                 var returnHTTPCode = ExecuteWebRequestJSON<ObjectInteractionSessionDataResponse>(request, out responseData);
 
                 if (responseData != null)
@@ -195,7 +199,11 @@ namespace Smartrac.SmartCosmos.Objects.ObjectInteractionSession
                     return ObjInteractSessionActionResult.Failed;
                 }
 
-                var request = CreateWebRequest("/sessions?nameLike=" + nameLike + "&view=" + viewType.GetDescription(), WebRequestOption.Authorization);
+                Uri url = new Uri("/objects", UriKind.Relative).
+                    AddQuery("nameLike", nameLike).
+                    AddQuery("view", viewType.GetDescription());
+
+                var request = CreateWebRequest(url, WebRequestOption.Authorization);
                 var returnHTTPCode = ExecuteWebRequestJSON<ObjectInteractionSessionDataListResponse>(request, out responseData);
 
                 if (responseData != null)

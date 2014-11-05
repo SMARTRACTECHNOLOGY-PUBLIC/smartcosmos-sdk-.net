@@ -107,8 +107,8 @@ namespace Smartrac.SmartCosmos.Objects.GeospatialManagement
                 ExecuteWebRequestJSON<GeospatialManagementUpdateRequest, GeospatialManagementUpdateResponse>(request, requestData, out responseData, out webResponse, WebRequestMethods.Http.Post);
                 if (responseData != null)
                 {
-                    if ((responseData.HTTPStatusCode == HttpStatusCode.NoContent) &&
-                       (webResponse.Headers.Get("SmartCosmos-Event") == "GeospatialEntryUpdated"))
+                    if ((responseData.HTTPStatusCode == HttpStatusCode.NoContent)) // &&
+                       //(webResponse.Headers.Get("SmartCosmos-Event") == "GeospatialEntryUpdated"))
                     {
                         return GeoActionResult.Successful;
                     }
@@ -146,9 +146,11 @@ namespace Smartrac.SmartCosmos.Objects.GeospatialManagement
                     return GeoActionResult.Failed;
                 }
 
-                string nameLikeParam = (requestData.nameLike != null) ? "&nameLike=" + requestData.nameLike : "";
+                Uri url = new Uri("/geospatial", UriKind.Relative).
+                    AddQuery("nameLike", requestData.nameLike).
+                    AddQuery("view", requestData.viewType.GetDescription());
 
-                var request = CreateWebRequest("/geospatial?view=" + requestData.viewType.GetDescription() + nameLikeParam, WebRequestOption.Authorization);
+                var request = CreateWebRequest(url, WebRequestOption.Authorization);
                 var HTTPStatusCodeResult = ExecuteWebRequestJSON<QueryGeospatialEntriesResponse>(request, out responseData);
                 if (responseData != null)
                 {
@@ -189,7 +191,11 @@ namespace Smartrac.SmartCosmos.Objects.GeospatialManagement
                     return GeoActionResult.Failed;
                 }
 
-                var request = CreateWebRequest("/geospatial/" + geospatialUrn.UUID + "?view=" + viewType.GetDescription(), WebRequestOption.Authorization);
+                Uri url = new Uri("/geospatial", UriKind.Relative).
+                    AddSubfolder(geospatialUrn.UUID).
+                    AddQuery("view", viewType.GetDescription());
+
+                var request = CreateWebRequest(url, WebRequestOption.Authorization);
                 ExecuteWebRequestJSON<GeospatialEntryDataResponse>(request, out responseData);
                 if (responseData != null)
                 {

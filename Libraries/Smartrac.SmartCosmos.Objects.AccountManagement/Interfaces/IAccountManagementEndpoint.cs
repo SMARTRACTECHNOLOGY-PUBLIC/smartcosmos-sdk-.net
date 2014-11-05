@@ -43,7 +43,7 @@ namespace Smartrac.SmartCosmos.Objects.AccountManagement
         /// <param name="viewType">A valid JSON Serialization View name (case-sensitive)</param>
         /// <param name="responseData">out: Account details</param>
         /// <returns>AccountManagementActionResult</returns>
-        AccountActionResult GetAccountDetails(ViewType? viewType, out AccountDetailsResponse responseData);
+        AccountActionResult GetAccountDetails(out AccountDetailsResponse responseData, ViewType viewType = ViewType.Standard);
 
         /// <summary>
         /// Change the authenticated user's password, presuming they know their existing password to change to a new password.

@@ -115,7 +115,7 @@ namespace Smartrac.SmartCosmos.ClientEndpoint.Base
         /// </summary>
         /// <param name="UserName">User name</param>
         /// <param name="userPassword">User password</param>
-        public void setUserAccount(string userName, string userPassword)
+        public virtual void setUserAccount(string userName, string userPassword)
         {
             if ((userName == "") || (userPassword == ""))
             {
@@ -143,9 +143,19 @@ namespace Smartrac.SmartCosmos.ClientEndpoint.Base
         /// </summary>
         /// <param name="subUrl">Sub url for the endpoint which extends the server url</param>
         /// <returns>Configured web request object</returns>
-        protected WebRequest CreateWebRequest(string subUrl)
+        protected WebRequest CreateWebRequest(string url, WebRequestOption options = 0)
         {
-            return CreateWebRequest(subUrl, 0);
+            return CreateWebRequest(new Uri(url, UriKind.Relative), options);
+        }
+
+        /// <summary>
+        /// Create and setup a web request for a URL endpoint without options
+        /// </summary>
+        /// <param name="subUrl">Sub url for the endpoint which extends the server url</param>
+        /// <returns>Configured web request object</returns>
+        protected WebRequest CreateWebRequest(Uri url)
+        {
+            return CreateWebRequest(url, 0);
         }
 
         /// <summary>
@@ -154,9 +164,9 @@ namespace Smartrac.SmartCosmos.ClientEndpoint.Base
         /// <param name="subUrl">Sub url for the endpoint which extends the server url</param>
         /// <param name="options">Web request options, e.g. to define if authorization is required</param>
         /// <returns>Configured web request object</returns>
-        protected WebRequest CreateWebRequest(string subUrl, WebRequestOption options)
+        protected WebRequest CreateWebRequest(Uri url, WebRequestOption options)
         {
-            var request = System.Net.WebRequest.Create(ServerURL + subUrl) as System.Net.HttpWebRequest;
+            var request = System.Net.WebRequest.Create(ServerURL + url.OriginalString) as System.Net.HttpWebRequest;
             request.KeepAlive = KeepAlive;
             if (options.HasFlag(WebRequestOption.Authorization) && (AuthorizationToken != ""))
                 request.Headers.Add("authorization", AuthorizationToken);
@@ -196,9 +206,6 @@ namespace Smartrac.SmartCosmos.ClientEndpoint.Base
                 request.Method = sendMethod;
                 request.ContentType = "application/json";
 
-                if ((null != Logger) && Logger.CanLog(LogType.Debug))
-                    Logger.AddLog("Request url [" + request.Method + "]: " + request.RequestUri.AbsoluteUri, LogType.Debug);
-
                 // Copy object to a JSON byte array
                 if (requestData != null)
                 {
@@ -214,13 +221,65 @@ namespace Smartrac.SmartCosmos.ClientEndpoint.Base
                         Logger.AddLog("Request data : " + requestData.ToJSON(true), LogType.Debug);
                 }
 
+                return ExecuteWebRequestJSON<responseType>(request, out responseData, out webResponse, sendMethod);
+            }
+            catch (Exception e)
+            {
+                if (null != Logger)
+                    Logger.AddLog(e.Message, LogType.Error);
+                return HttpStatusCode.InternalServerError;
+            }
+        }
+
+        /// <summary>
+        /// ExecuteWebRequestJSON
+        /// </summary>
+        /// <typeparam name="responseType">responseType</typeparam>
+        /// <param name="request">web request</param>
+        /// <param name="responseData">response data</param>
+        /// <param name="webResponse">HttpWebResponse</param>
+        /// <param name="sendMethod">send method</param>
+        /// <returns>HttpStatusCode</returns>
+        public HttpStatusCode ExecuteWebRequestJSON<responseType>(WebRequest request,
+            out responseType responseData,
+            string sendMethod = WebRequestMethods.Http.Post)
+            where responseType : class, new()
+        {
+            responseData = null;
+            HttpWebResponse webResponse = null;
+            return ExecuteWebRequestJSON<responseType>(request, out responseData, out webResponse, sendMethod);
+        }
+
+        /// <summary>
+        /// ExecuteWebRequestJSON
+        /// </summary>
+        /// <typeparam name="responseType">responseType</typeparam>
+        /// <param name="request">web request</param>
+        /// <param name="responseData">response data</param>
+        /// <param name="webResponse">HttpWebResponse</param>
+        /// <param name="sendMethod">send method</param>
+        /// <returns>HttpStatusCode</returns>
+        public HttpStatusCode ExecuteWebRequestJSON<responseType>(WebRequest request,
+            out responseType responseData,
+            out HttpWebResponse webResponse,
+            string sendMethod = WebRequestMethods.Http.Post)
+            where responseType : class, new()
+        {
+            webResponse = null;
+            responseData = null;
+            try
+            {
+                if ((null != Logger) && Logger.CanLog(LogType.Debug))
+                    Logger.AddLog("Request url [" + request.Method + "]: " + request.RequestUri.AbsoluteUri, LogType.Debug);
+
                 // call the server
                 webResponse = request.GetResponseSafe() as System.Net.HttpWebResponse;
                 if (webResponse != null)
                 {
                     try
                     {
-                        if (webResponse.StatusCode == HttpStatusCode.NoContent)
+                        if ( (webResponse.StatusCode == HttpStatusCode.NoContent) ||
+                             (webResponse.StatusCode == HttpStatusCode.InternalServerError))
                         {
                             responseData = new responseType();
                         }
@@ -228,7 +287,7 @@ namespace Smartrac.SmartCosmos.ClientEndpoint.Base
                         {
                             // convert stream to string
                             if (webResponse.ContentType == "application/json")
-                                responseData = responseData.FromJSON(webResponse.GetResponseStream(), GetJsonSerializerSettings() );
+                                responseData = responseData.FromJSON(webResponse.GetResponseStream(), GetJsonSerializerSettings());
                             else
                             {
                                 responseData = new responseType();

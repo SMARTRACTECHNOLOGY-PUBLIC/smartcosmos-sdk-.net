@@ -110,5 +110,19 @@ namespace System
             return ub.Uri;
               */
         }
+
+        public static Uri AddSubfolder(this Uri uri, string subfolder)
+        {
+            if (String.IsNullOrEmpty(subfolder))
+            {
+                return uri;
+            }
+
+            string query = uri.OriginalString;
+            query += query.EndsWith("/") ? subfolder : "/" + subfolder;
+
+            return new Uri(query, uri.IsAbsoluteUri ? UriKind.Absolute : UriKind.Relative);
+        }
+    
     }
 }

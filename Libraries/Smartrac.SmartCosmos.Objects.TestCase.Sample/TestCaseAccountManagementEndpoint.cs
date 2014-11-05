@@ -40,7 +40,7 @@ namespace Smartrac.SmartCosmos.Objects.TestCase.Sample
             OnBeforeTest("Objects", "AccountManagementEndpoint", "Account Details");
             // call endpoint
             AccountDetailsResponse responseDetailsData;
-            AccountActionResult actionResult = endpoint.GetAccountDetails(dataContext.GetViewType(), out responseDetailsData);
+            AccountActionResult actionResult = endpoint.GetAccountDetails(out responseDetailsData, dataContext.GetViewType());
             // log response
             OnAfterTest(actionResult);
             return (actionResult == AccountActionResult.Successful);            
