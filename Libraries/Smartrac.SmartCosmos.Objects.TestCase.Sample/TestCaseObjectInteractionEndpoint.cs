@@ -17,10 +17,7 @@
 
 #endregion License
 
-using Smartrac.Logging;
-using Smartrac.SmartCosmos.ClientEndpoint.BaseObject;
 using Smartrac.SmartCosmos.Objects.Base;
-using Smartrac.SmartCosmos.Objects.TestCase;
 using Smartrac.SmartCosmos.Objects.ObjectInteraction;
 using Smartrac.SmartCosmos.TestCase.Base;
 
@@ -70,7 +67,7 @@ namespace Smartrac.SmartCosmos.Objects.TestCase.Sample
             OnAfterTest(actionResult);
             return (actionResult == ObjInteractActionResult.Successful);
         }
-        
+
         protected virtual bool RunTestCase_LookupByUrn(Urn interactionUrn)
         {
             OnBeforeTest("Objects", "ObjectInteractionEndpoint", "Lookup Specific Object Interaction by URN");
@@ -81,7 +78,6 @@ namespace Smartrac.SmartCosmos.Objects.TestCase.Sample
                                             dataContext.GetViewType());
             OnAfterTest(actionResult);
             return (actionResult == ObjInteractActionResult.Successful);
-
         }
     }
 }

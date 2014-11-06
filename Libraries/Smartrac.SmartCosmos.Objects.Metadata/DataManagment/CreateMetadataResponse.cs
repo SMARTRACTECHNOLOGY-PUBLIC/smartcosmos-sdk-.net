@@ -17,9 +17,9 @@
 
 #endregion License
 
+using Smartrac.SmartCosmos.ClientEndpoint.BaseObject;
 using System.Collections.Generic;
 using System.Net;
-using Smartrac.SmartCosmos.ClientEndpoint.BaseObject;
 
 namespace Smartrac.SmartCosmos.Objects.Metadata
 {
@@ -27,18 +27,20 @@ namespace Smartrac.SmartCosmos.Objects.Metadata
     {
         //IResponseMessage
         public int code { get; set; }
+
         public string message { get; set; }
 
         //IHttpStatusCode
         private HttpStatusCode HTTPStatusCode_;
-        public HttpStatusCode HTTPStatusCode 
-        { 
-            get 
+
+        public HttpStatusCode HTTPStatusCode
+        {
+            get
             {
                 return HTTPStatusCode_;
             }
-            
-            set 
+
+            set
             {
                 HTTPStatusCode_ = value;
                 ForEach(i => i.HTTPStatusCode = value);
@@ -49,7 +51,7 @@ namespace Smartrac.SmartCosmos.Objects.Metadata
             : base()
         {
             this.code = 0;
-        this.HTTPStatusCode = HttpStatusCode.NotImplemented;
+            this.HTTPStatusCode = HttpStatusCode.NotImplemented;
         }
     }
 }

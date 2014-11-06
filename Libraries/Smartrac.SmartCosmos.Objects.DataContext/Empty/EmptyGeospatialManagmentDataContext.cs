@@ -17,47 +17,44 @@
 
 #endregion License
 
-using GeoJSON.Net;
-using Smartrac.SmartCosmos.Objects.Base;
-
 namespace Smartrac.SmartCosmos.Objects.DataContext
 {
-/*    public class BaseGeospatialManagementDataContext : IGeospatialManagementDataContext
-    {
-        public virtual Urn GetGeospatialUrn()
+    /*    public class BaseGeospatialManagementDataContext : IGeospatialManagementDataContext
         {
-            return null;
-        }
+            public virtual Urn GetGeospatialUrn()
+            {
+                return null;
+            }
 
-        public virtual string GetName()
-        {
-            return null;
-        }
+            public virtual string GetName()
+            {
+                return null;
+            }
 
-        public virtual string GetCategory()
-        {
-            return null;
-        }
+            public virtual string GetCategory()
+            {
+                return null;
+            }
 
-        public virtual string GetDescription()
-        {
-            return null;
-        }
+            public virtual string GetDescription()
+            {
+                return null;
+            }
 
-        public virtual bool GetActiveFlag()
-        {
-            return true;
-        }
+            public virtual bool GetActiveFlag()
+            {
+                return true;
+            }
 
-        public virtual GeoJSONObject GetGeometricShape()
-        {
-            return null;
-        }
+            public virtual GeoJSONObject GetGeometricShape()
+            {
+                return null;
+            }
 
-        public virtual ViewType GetViewType()
-        {
-            return ViewType.Standard;
+            public virtual ViewType GetViewType()
+            {
+                return ViewType.Standard;
+            }
         }
-    }
-*/
+    */
 }

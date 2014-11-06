@@ -17,12 +17,12 @@
 
 #endregion License
 
-using System;
-using System.Collections.Generic;
-using System.Net;
 using Newtonsoft.Json;
 using Smartrac.SmartCosmos.ClientEndpoint.BaseObject;
 using Smartrac.SmartCosmos.Objects.Base;
+using System;
+using System.Collections.Generic;
+using System.Net;
 
 namespace Smartrac.SmartCosmos.Objects.HashTag
 {
@@ -44,7 +44,7 @@ namespace Smartrac.SmartCosmos.Objects.HashTag
         {
             get
             {
-                if (String.IsNullOrEmpty(message) || 
+                if (String.IsNullOrEmpty(message) ||
                     (!message.Contains("urn:uuid:")))
                     return null;
                 else

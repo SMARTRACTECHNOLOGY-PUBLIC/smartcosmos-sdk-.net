@@ -36,12 +36,19 @@ namespace Smartrac.Base
             this.instance = instance;
         }
 
+        /// <summary>
+        /// Create and validate the object
+        /// </summary>
+        /// <returns>final object</returns>
         public T build()
         {
             onValidate();
             return instance;
         }
 
+        /// <summary>
+        /// Override this function to validate if all parameters are available and valid
+        /// </summary>
         protected virtual void onValidate()
         {
             // do override

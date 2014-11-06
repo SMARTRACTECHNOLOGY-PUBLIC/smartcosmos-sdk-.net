@@ -17,6 +17,8 @@
 
 #endregion License
 
+using Smartrac.Base;
+
 namespace System
 {
     /// <summary>
@@ -25,48 +27,69 @@ namespace System
     public static class DateTimeExtensions
     {
         /// <summary>
-        /// FromUnixTimestamp
-        /// </summary>                       
-        /// <param name="unixTimestamp">e.g. 1412841162</param>
-        /// <returns>date</returns>
-        public static DateTime FromUnixTimestamp(long unixTimestamp)
+        /// Converts a datetime into a RFC3339 time string
+        /// </summary>
+        /// <param name="time">date time</param>
+        /// <returns>RFC3339 time string</returns>
+        public static string ToRfc3339DateTime(this DateTime time)
         {
-            /*
-            DateTime unixYear0 = new DateTime(1970, 1, 1);
-            long unixTimeStampInTicks = unixTimestamp * TimeSpan.TicksPerSecond;
-            DateTime dtUnix = new DateTime(unixYear0.Ticks + unixTimeStampInTicks);
-            return dtUnix;
-             */
+            return Rfc3339DateTimeProvider.ToString(time);
+        }
 
+        /// <summary>
+        /// Converts a RFC3339 time string into a date time
+        /// </summary>
+        /// <param name="time">RFC3339 time string</param>
+        /// <returns>date time</returns>
+        public static DateTime FromRfc3339DateTime(this string timeString)
+        {
+            return Rfc3339DateTimeProvider.Parse(timeString);
+        }
+
+        /// <summary>
+        /// Converts a RFC3339 time string into a date time
+        /// </summary>
+        /// <param name="time">RFC3339 time string</param>
+        /// <returns>date time</returns>
+        public static bool FromRfc3339DateTime(this string timeString, out DateTime result)
+        {
+            return Rfc3339DateTimeProvider.TryParse(timeString, out result);
+        }
+
+        /// <summary>
+        /// Converts a long into a unix timestamp e.g. 1412841162
+        /// </summary>
+        /// <param name="unixTimestamp">unix timestamp as long</param>
+        /// <returns>date</returns>
+        public static DateTime FromUnixTimestamp(this long unixTimestamp)
+        {
             // Java timestamp is millisecods past epoch
             System.DateTime dtDateTime = new DateTime(1970, 1, 1, 0, 0, 0, 0);
             dtDateTime = dtDateTime.AddSeconds(Math.Round((double)(unixTimestamp / 1000)));
             return dtDateTime;
         }
 
-        public static DateTime FromJavaTimestamp(long javaTimestamp)
+        /// <summary>
+        /// Converts a long into a java timestamp e.g. 1412841162123
+        /// </summary>
+        /// <param name="javaTimestamp">java timestamp as long</param>
+        /// <returns>java timestamp as datetime</returns>
+        public static DateTime FromJavaTimestamp(this long javaTimestamp)
         {
-            /*
-            DateTime unixYear0 = new DateTime(1970, 1, 1);
-            long unixTimeStampInTicks = unixTimestamp * TimeSpan.TicksPerSecond;
-            DateTime dtUnix = new DateTime(unixYear0.Ticks + unixTimeStampInTicks);
-            return dtUnix;
-             */
-
             // Java timestamp is millisecods past epoch
             System.DateTime dtDateTime = new DateTime(1970, 1, 1, 0, 0, 0, 0);
             dtDateTime = dtDateTime.AddSeconds(Math.Round((double)(javaTimestamp / 1000)));
             return dtDateTime;
         }
 
-        public static long ToUnixTimestamp(DateTime date)
+        /// <summary>
+        /// Converts a date time into a unix timestamp e.g. 1412841162
+        /// </summary>
+        /// <param name="date">date tim</param>
+        /// <returns>unix timestamp</returns>
+        public static long ToUnixTimestamp(this DateTime date)
         {
             return Convert.ToInt64((date - new DateTime(1970, 1, 1).ToLocalTime()).TotalSeconds);
-            /*
-            long unixTimestamp = date.Ticks - new DateTime(1970, 1, 1).Ticks;
-            unixTimestamp /= TimeSpan.TicksPerSecond;
-            return unixTimestamp;
-             */
         }
     }
 }

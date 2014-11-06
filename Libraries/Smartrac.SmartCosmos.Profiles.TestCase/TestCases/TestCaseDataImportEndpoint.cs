@@ -17,11 +17,8 @@
 
 #endregion License
 
-using Smartrac.Logging;
 using Smartrac.SmartCosmos.Profiles.DataContext;
-using Smartrac.SmartCosmos.Profiles.TestCase;
 using Smartrac.SmartCosmos.Profiles.DataImport;
-using Smartrac.SmartCosmos.TestCase.Base;
 
 namespace Smartrac.SmartCosmos.Profiles.TestCase
 {

@@ -17,11 +17,11 @@
 
 #endregion License
 
-using System;
-using System.Net;
 using Smartrac.Logging;
 using Smartrac.SmartCosmos.ClientEndpoint.Base;
 using Smartrac.SmartCosmos.Objects.Base;
+using System;
+using System.Net;
 
 namespace Smartrac.SmartCosmos.Objects.ObjectManagement
 {
@@ -133,7 +133,7 @@ namespace Smartrac.SmartCosmos.Objects.ObjectManagement
                 }
 
                 Uri url = new Uri("/objects", UriKind.Relative).
-                    AddSubfolder( urn.UUID).
+                    AddSubfolder(urn.UUID).
                     AddQuery("view", viewType.GetDescription());
 
                 var request = CreateWebRequest(url, WebRequestOption.Authorization);
@@ -171,9 +171,9 @@ namespace Smartrac.SmartCosmos.Objects.ObjectManagement
                 }
 
                 Uri url = new Uri("/objects", UriKind.Relative).
-                    AddSubfolder( objectUrn.UUID).
+                    AddSubfolder(objectUrn.UUID).
                     AddQuery("view", viewType.GetDescription()).
-                    AddQuery("exact", exact.ToString());	
+                    AddQuery("exact", exact.ToString());
 
                 var request = CreateWebRequest(url, WebRequestOption.Authorization);
                 var returnHTTPCode = ExecuteWebRequestJSON<ObjectDataResponse>(request, out responseData);
@@ -224,9 +224,10 @@ namespace Smartrac.SmartCosmos.Objects.ObjectManagement
                     switch (responseData.HTTPStatusCode)
                     {
                         case HttpStatusCode.OK:
-                        case HttpStatusCode.NoContent: 
+                        case HttpStatusCode.NoContent:
                             return ObjectActionResult.Successful;
-                        case HttpStatusCode.BadRequest: 
+
+                        case HttpStatusCode.BadRequest:
                             return ObjectActionResult.Failed;
                     }
                 }

@@ -17,23 +17,24 @@
 
 #endregion License
 
+using Smartrac.SmartCosmos.ClientEndpoint.BaseObject;
 using System.Collections.Generic;
 using System.Net;
-using Smartrac.SmartCosmos.ClientEndpoint.BaseObject;
 
 namespace Smartrac.SmartCosmos.Objects.ObjectInteractionSession
 {
     public class ObjectInteractionSessionDataListResponse : List<ObjectInteractionSessionDataResponse>, IHttpStatusCode
     {
         private HttpStatusCode HTTPStatusCode_;
-        public HttpStatusCode HTTPStatusCode 
-        { 
-            get 
+
+        public HttpStatusCode HTTPStatusCode
+        {
+            get
             {
                 return HTTPStatusCode_;
             }
-            
-            set 
+
+            set
             {
                 HTTPStatusCode_ = value;
                 ForEach(i => i.HTTPStatusCode = value);

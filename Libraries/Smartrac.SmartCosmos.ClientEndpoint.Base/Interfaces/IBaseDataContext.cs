@@ -19,6 +19,9 @@
 
 namespace Smartrac.SmartCosmos.ClientEndpoint.Base
 {
+    /// <summary>
+    /// Base interface for data context
+    /// </summary>
     public interface IBaseDataContext
     {
     }

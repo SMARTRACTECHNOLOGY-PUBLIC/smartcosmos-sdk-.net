@@ -21,6 +21,9 @@ using System.Net;
 
 namespace Smartrac.SmartCosmos.ClientEndpoint.BaseObject
 {
+    /// <summary>
+    /// Base class for all response
+    /// </summary>
     public class BaseResponse : IHttpStatusCode
     {
         public HttpStatusCode HTTPStatusCode { get; set; }
@@ -32,6 +35,9 @@ namespace Smartrac.SmartCosmos.ClientEndpoint.BaseObject
         }
     }
 
+    /// <summary>
+    /// Default server response class
+    /// </summary>
     public class DefaultResponse : BaseResponse, IResponseMessage
     {
         public int code { get; set; }

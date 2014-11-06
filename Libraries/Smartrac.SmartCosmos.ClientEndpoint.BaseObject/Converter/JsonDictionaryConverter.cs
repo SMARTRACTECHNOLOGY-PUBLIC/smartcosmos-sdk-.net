@@ -17,40 +17,13 @@
 
 #endregion License
 
+using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
 using System.Globalization;
-using Newtonsoft.Json;
 
 namespace Smartrac.SmartCosmos.Objects.Base
 {
-    /*
-    public class JsonDictionaryConverter : JsonConverter
-    {
-        public override void WriteJson(JsonWriter writer, object value, JsonSerializer serializer)
-        {
-            throw new NotImplementedException();
-        }
-
-        public override object ReadJson(JsonReader reader, Type objectType, object existingValue, JsonSerializer serializer)
-        {
-            JObject jObject = JObject.Load(reader);
-
-            foreach (var prop in jObject)
-            {
-                return new MyCustomClass { Key = prop.Key, Value = prop.Value.ToString() };
-            }
-
-            return null;
-        }
-
-        public override bool CanConvert(Type objectType)
-        {
-            return typeof(Dictionary<string, object>).IsAssignableFrom(objectType);
-        }
-    }
-    */
-
     // based on ExpandoObjectConverter, but using arrays instead of IList, to behave similar to System.Web.Script.Serialization.JavaScriptSerializer
     public class DictionaryConverter : JsonConverter
     {

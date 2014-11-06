@@ -17,48 +17,47 @@
 
 #endregion License
 
-using Smartrac.SmartCosmos.Objects.Base;
-
 namespace Smartrac.SmartCosmos.Objects.DataContext
 {
- /*   public class BaseRelationshipManagementDataContext : IRelationshipManagementDataContext
-    {
-        public virtual Urn GetRelatedReferenceUrn()
-        {
-            return null;
-        }
+    /*   public class BaseRelationshipManagementDataContext : IRelationshipManagementDataContext
+       {
+           public virtual Urn GetRelatedReferenceUrn()
+           {
+               return null;
+           }
 
-        public virtual Urn GetReferenceUrn()
-        {
-            return null;
-        }
+           public virtual Urn GetReferenceUrn()
+           {
+               return null;
+           }
 
-        public virtual string GetRelationshipType()
-        {
-            return "";
-        }
+           public virtual string GetRelationshipType()
+           {
+               return "";
+           }
 
-        /// <summary>
-        /// entityReferenceType is required and constrained to a valid EntityReferenceType value
-        /// </summary>
-        /// <returns>EntityReferenceType</returns>
-        public virtual EntityReferenceType GetEntityReferenceType()
-        {
-            return EntityReferenceType.Object;
-        }
+           /// <summary>
+           /// entityReferenceType is required and constrained to a valid EntityReferenceType value
+           /// </summary>
+           /// <returns>EntityReferenceType</returns>
+           public virtual EntityReferenceType GetEntityReferenceType()
+           {
+               return EntityReferenceType.Object;
+           }
 
-        /// <summary>
-        /// entityReferenceType is required and constrained to a valid EntityReferenceType value
-        /// </summary>
-        /// <returns>EntityReferenceType</returns>
-        public virtual EntityReferenceType GetRelatedEntityReferenceType()
-        {
-            return EntityReferenceType.Object;
-        }
+           /// <summary>
+           /// entityReferenceType is required and constrained to a valid EntityReferenceType value
+           /// </summary>
+           /// <returns>EntityReferenceType</returns>
+           public virtual EntityReferenceType GetRelatedEntityReferenceType()
+           {
+               return EntityReferenceType.Object;
+           }
 
-        public virtual ViewType GetViewType()
-        {
-            return ViewType.Standard;
-        }
-    }
-*/}
+           public virtual ViewType GetViewType()
+           {
+               return ViewType.Standard;
+           }
+       }
+   */
+}

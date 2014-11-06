@@ -1,8 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Xml.Serialization;
 
 namespace Smartrac.SmartCosmos.Profiles.DataContext.XML
@@ -14,15 +11,19 @@ namespace Smartrac.SmartCosmos.Profiles.DataContext.XML
         [XmlArray("TagIds")]
         [XmlArrayItem(ElementName = "Tag")]
         public List<string> TagIds { get; set; }
+
         [XmlArray("TagProperties")]
         [XmlArrayItem(ElementName = "TagProperty")]
         public List<string> TagProperties { get; set; }
+
         [XmlArray("VerificationTypes")]
         [XmlArrayItem(ElementName = "VerificationType")]
         public List<string> VerificationTypes { get; set; }
+
         [XmlArray("ImportIds")]
         [XmlArrayItem(ElementName = "ImportId")]
         public List<string> ImportIds { get; set; }
+
         [XmlArray("TagDataFiles")]
         [XmlArrayItem(ElementName = "TagDataFile")]
         public List<string> TagDataFiles { get; set; }

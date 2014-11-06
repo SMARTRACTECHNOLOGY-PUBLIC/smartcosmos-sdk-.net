@@ -18,6 +18,7 @@
 #endregion License
 
 using System;
+
 namespace Smartrac.Logging
 {
     /// <summary>
@@ -38,6 +39,11 @@ namespace Smartrac.Logging
         {
         }
 
+        /// <summary>
+        /// Check if logging allowed
+        /// </summary>
+        /// <param name="logType">logType</param>
+        /// <returns>logging allowed</returns>
         public virtual bool CanLog(LogType logType)
         {
             return (int)logType <= (int)LogLevel;

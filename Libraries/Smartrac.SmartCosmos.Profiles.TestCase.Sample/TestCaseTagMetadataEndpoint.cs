@@ -17,13 +17,11 @@
 
 #endregion License
 
-using System;
-using System.Diagnostics;
-using System.IO;
 using Smartrac.Logging;
-using Smartrac.SmartCosmos.ClientEndpoint.BaseObject;
 using Smartrac.SmartCosmos.Profiles.TagMetadata;
 using Smartrac.SmartCosmos.TestCase.Base;
+using System;
+using System.Diagnostics;
 
 namespace Smartrac.SmartCosmos.Profiles.TestCase.Sample
 {
@@ -38,12 +36,12 @@ namespace Smartrac.SmartCosmos.Profiles.TestCase.Sample
             {
                 TagMetaDataRequest requestTagMetaData = new TagMetaDataRequest(dataContext);
                 TagMetaDataResponse responseTagMetaData;
-                
+
                 Stopwatch watch = new Stopwatch();
                 int tagCount = requestTagMetaData.tagIds.Count;
                 // validate
                 watch.Start();
-                actionResult = endpoint.GetTagMetadata(requestTagMetaData, out responseTagMetaData);               
+                actionResult = endpoint.GetTagMetadata(requestTagMetaData, out responseTagMetaData);
                 watch.Stop();
                 requestTagMetaData.tagIds.Clear();
                 watch.Reset();

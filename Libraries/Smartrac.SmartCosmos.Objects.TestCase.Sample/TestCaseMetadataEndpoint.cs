@@ -17,13 +17,11 @@
 
 #endregion License
 
-using System;
-using System.Collections.Generic;
 using Smartrac.Logging;
-using Smartrac.SmartCosmos.ClientEndpoint.BaseObject;
-using Smartrac.SmartCosmos.Objects.TestCase;
 using Smartrac.SmartCosmos.Objects.Metadata;
 using Smartrac.SmartCosmos.TestCase.Base;
+using System;
+using System.Collections.Generic;
 
 namespace Smartrac.SmartCosmos.Objects.TestCase.Sample
 {

@@ -17,16 +17,19 @@
 
 #endregion License
 
-using System.Collections.Generic;
 using Smartrac.SmartCosmos.Objects.Base;
+using System.Collections.Generic;
 
 namespace Smartrac.SmartCosmos.Objects.DataContext
 {
     public class EmptyFileDataContext : BaseFileDataContext
     {
         public EntityReferenceType entityReferenceType { get; set; }
+
         public ViewType viewType { get; set; }
+
         public Urn UrnReference { get; set; }
+
         public List<FileDefinition> FileDefinitions { get; set; }
 
         public EmptyFileDataContext()

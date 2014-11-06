@@ -19,6 +19,9 @@
 
 namespace Smartrac.SmartCosmos.ClientEndpoint.BaseObject
 {
+    /// <summary>
+    /// default request
+    /// </summary>
     public class BaseRequest
     {
         public virtual bool IsValid()

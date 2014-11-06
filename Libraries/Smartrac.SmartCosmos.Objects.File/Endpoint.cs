@@ -17,14 +17,14 @@
 
 #endregion License
 
-using System;
-using System.IO;
-using System.Net;
-using System.Net.Http;
 using Smartrac.Logging;
 using Smartrac.SmartCosmos.ClientEndpoint.Base;
 using Smartrac.SmartCosmos.ClientEndpoint.BaseObject;
 using Smartrac.SmartCosmos.Objects.Base;
+using System;
+using System.IO;
+using System.Net;
+using System.Net.Http;
 
 namespace Smartrac.SmartCosmos.Objects.File
 {
@@ -481,7 +481,6 @@ namespace Smartrac.SmartCosmos.Objects.File
                     return FileActionResult.Failed;
                 }
 
-
                 Uri url = new Uri("/files", UriKind.Relative).
                     AddSubfolder(fileUrn.UUID);
 
@@ -495,7 +494,7 @@ namespace Smartrac.SmartCosmos.Objects.File
                         try
                         {
                             if ((response.StatusCode == HttpStatusCode.NoContent)) // &&
-                                //(response.Headers.Get("SmartCosmos-Event") == "FileDeleted"))
+                            //(response.Headers.Get("SmartCosmos-Event") == "FileDeleted"))
                             {
                                 return FileActionResult.Successful;
                             }

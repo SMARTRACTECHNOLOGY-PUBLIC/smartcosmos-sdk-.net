@@ -17,45 +17,44 @@
 
 #endregion License
 
-using Smartrac.SmartCosmos.Objects.Base;
-
 namespace Smartrac.SmartCosmos.Objects.DataContext
 {
- /*   public class BaseUserManagementDataContext : IUserManagementDataContext
-    {
-        public virtual Urn GetUserUrn()
-        {
-            return null;
-        }
+    /*   public class BaseUserManagementDataContext : IUserManagementDataContext
+       {
+           public virtual Urn GetUserUrn()
+           {
+               return null;
+           }
 
-        public virtual ViewType GetViewType()
-        {
-            return ViewType.Standard;
-        }
+           public virtual ViewType GetViewType()
+           {
+               return ViewType.Standard;
+           }
 
-        public virtual string GetNewPassword()
-        {
-            return "";
-        }
+           public virtual string GetNewPassword()
+           {
+               return "";
+           }
 
-        public virtual string GeteMailAddress()
-        {
-            return "";
-        }
+           public virtual string GeteMailAddress()
+           {
+               return "";
+           }
 
-        public virtual RoleType GetRoleType()
-        {
-            return RoleType.User;
-        }
+           public virtual RoleType GetRoleType()
+           {
+               return RoleType.User;
+           }
 
-        public virtual string GetGivenName()
-        {
-            return "";
-        }
+           public virtual string GetGivenName()
+           {
+               return "";
+           }
 
-        public virtual string GetSurname()
-        {
-            return "";
-        }
-    }
-*/}
+           public virtual string GetSurname()
+           {
+               return "";
+           }
+       }
+   */
+}

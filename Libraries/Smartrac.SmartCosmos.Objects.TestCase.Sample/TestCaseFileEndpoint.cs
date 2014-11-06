@@ -17,12 +17,11 @@
 
 #endregion License
 
-using System.Collections.Generic;
 using Smartrac.SmartCosmos.Objects.Base;
-using Smartrac.SmartCosmos.Objects.TestCase;
+using Smartrac.SmartCosmos.Objects.DataContext;
 using Smartrac.SmartCosmos.Objects.File;
 using Smartrac.SmartCosmos.TestCase.Base;
-using Smartrac.SmartCosmos.Objects.DataContext;
+using System.Collections.Generic;
 
 namespace Smartrac.SmartCosmos.Objects.TestCase.Sample
 {
@@ -35,7 +34,7 @@ namespace Smartrac.SmartCosmos.Objects.TestCase.Sample
             IEnumerable<FileDefinition> files = dataContext.GetFileDefinitions();
             Urn fileUrn;
 
-            bool bResult = RunTestCase_RetrievalFiles(out responseListData) && 
+            bool bResult = RunTestCase_RetrievalFiles(out responseListData) &&
                            RunTestCase_Delete(responseListData);
 
             foreach (var file in files)

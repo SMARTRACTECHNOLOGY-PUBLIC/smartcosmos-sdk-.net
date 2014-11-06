@@ -26,6 +26,11 @@ namespace Smartrac.SmartCosmos.ClientEndpoint.Base
     /// </summary>
     public static class WebRequestExtensions
     {
+        /// <summary>
+        /// Avoid exceptions in case of 401, ...
+        /// </summary>
+        /// <param name="obj">WebRequest</param>
+        /// <returns>WebResponse</returns>
         public static WebResponse GetResponseSafe(this WebRequest obj)
         {
             WebResponse webResponse = null;

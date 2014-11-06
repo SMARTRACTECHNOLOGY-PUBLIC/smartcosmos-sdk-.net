@@ -17,13 +17,13 @@
 
 #endregion License
 
+using Smartrac.Logging;
+using Smartrac.SmartCosmos.Profiles.Base;
+using Smartrac.SmartCosmos.ClientEndpoint.Base;
+using Smartrac.SmartCosmos.ClientEndpoint.BaseObject;
 using System;
 using System.IO;
 using System.Net;
-using Smartrac.Logging;
-using Smartrac.SmartCosmos.ClientEndpoint.Base;
-using Smartrac.SmartCosmos.ClientEndpoint.BaseObject;
-using Smartrac.SmartCosmos.Profiles.Base;
 
 namespace Smartrac.SmartCosmos.Profiles.DataImport
 {

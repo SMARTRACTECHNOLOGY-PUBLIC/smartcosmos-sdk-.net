@@ -17,16 +17,15 @@
 
 #endregion License
 
+using Smartrac.Logging;
+using Smartrac.SmartCosmos.ClientEndpoint.Base;
+using Smartrac.SmartCosmos.ClientEndpoint.BaseObject;
+using Smartrac.SmartCosmos.Objects.Base;
 using System;
 using System.Collections.Generic;
 using System.Globalization;
 using System.Net;
 using System.Text;
-using Smartrac.Base;
-using Smartrac.Logging;
-using Smartrac.SmartCosmos.ClientEndpoint.Base;
-using Smartrac.SmartCosmos.ClientEndpoint.BaseObject;
-using Smartrac.SmartCosmos.Objects.Base;
 
 namespace Smartrac.SmartCosmos.Objects.Metadata
 {
@@ -111,7 +110,7 @@ namespace Smartrac.SmartCosmos.Objects.Metadata
         /// <returns>MetadataActionResult</returns>
         public MetadataActionResult Encode(DateTime value, out TypeSafeEncodingResponse responseData)
         {
-            return Encode(Rfc3339DateTime.ToString(value), out responseData, MetadataDataType.Date);
+            return Encode(value.ToRfc3339DateTime(), out responseData, MetadataDataType.Date);
         }
 
         /// <summary>
@@ -315,14 +314,14 @@ namespace Smartrac.SmartCosmos.Objects.Metadata
             TypeSafeDecodingResponse responseData;
             MetadataActionResult result = Decode(value, out responseData, MetadataDataType.Date);
 
-            if (null != responseData)
-                Rfc3339DateTime.TryParse(responseData.decodedValue, out decodedValue);
-            else
+            if ((null != responseData) &&
+                responseData.decodedValue.FromRfc3339DateTime(out decodedValue))
             {
-                decodedValue = DateTime.MinValue;
-                return MetadataActionResult.Failed;
+                return result;
             }
-            return result;
+
+            decodedValue = DateTime.MinValue;
+            return MetadataActionResult.Failed;
         }
 
         /// <summary>
@@ -540,7 +539,7 @@ namespace Smartrac.SmartCosmos.Objects.Metadata
                 try
                 {
                     if ((response.StatusCode == HttpStatusCode.NoContent)) //&&
-                        //(response.Headers.Get("SmartCosmos-Event") == "MetadataDeleted"))
+                    //(response.Headers.Get("SmartCosmos-Event") == "MetadataDeleted"))
                     {
                         return MetadataActionResult.Successful;
                     }
@@ -584,7 +583,7 @@ namespace Smartrac.SmartCosmos.Objects.Metadata
                 AddSubfolder(requestData.entityUrn.UUID).
                 AddQuery("view", requestData.viewType.GetDescription()).
                 AddQuery("key", requestData.key);
-            
+
             var request = CreateWebRequest(url, WebRequestOption.Authorization);
             ExecuteWebRequestJSON<LookupMetadataResponse>(request, out responseData);
             if (responseData != null)

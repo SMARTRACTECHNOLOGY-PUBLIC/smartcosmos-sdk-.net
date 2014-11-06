@@ -17,8 +17,8 @@
 
 #endregion License
 
-using System.Collections.Generic;
 using Smartrac.SmartCosmos.Objects.Base;
+using System.Collections.Generic;
 
 namespace Smartrac.SmartCosmos.Objects.DataContext
 {
@@ -46,7 +46,6 @@ namespace Smartrac.SmartCosmos.Objects.DataContext
 
         public BaseFileDataContext()
         {
-
         }
     }
 }

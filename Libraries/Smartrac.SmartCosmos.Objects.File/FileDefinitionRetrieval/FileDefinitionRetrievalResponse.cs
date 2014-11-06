@@ -17,12 +17,12 @@
 
 #endregion License
 
-using System.Collections.Generic;
-using System.Net;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Converters;
 using Smartrac.SmartCosmos.ClientEndpoint.BaseObject;
 using Smartrac.SmartCosmos.Objects.Base;
+using System.Collections.Generic;
+using System.Net;
 
 namespace Smartrac.SmartCosmos.Objects.File
 {
@@ -68,14 +68,15 @@ namespace Smartrac.SmartCosmos.Objects.File
     public class FileDefinitionRetrievalListResponse : List<FileDefinitionRetrievalResponse>, IHttpStatusCode
     {
         private HttpStatusCode HTTPStatusCode_;
-        public HttpStatusCode HTTPStatusCode 
-        { 
-            get 
+
+        public HttpStatusCode HTTPStatusCode
+        {
+            get
             {
                 return HTTPStatusCode_;
             }
-            
-            set 
+
+            set
             {
                 HTTPStatusCode_ = value;
                 ForEach(i => i.HTTPStatusCode = value);

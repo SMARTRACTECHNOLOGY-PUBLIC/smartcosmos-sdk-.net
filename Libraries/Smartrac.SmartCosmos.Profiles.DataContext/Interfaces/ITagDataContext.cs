@@ -17,8 +17,8 @@
 
 #endregion License
 
-using System.Collections.Generic;
 using Smartrac.SmartCosmos.ClientEndpoint.Base;
+using System.Collections.Generic;
 
 namespace Smartrac.SmartCosmos.Profiles.DataContext
 {

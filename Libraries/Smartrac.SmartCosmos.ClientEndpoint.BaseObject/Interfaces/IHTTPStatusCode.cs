@@ -21,6 +21,9 @@ using System.Net;
 
 namespace Smartrac.SmartCosmos.ClientEndpoint.BaseObject
 {
+    /// <summary>
+    /// response contains a HTTP status code
+    /// </summary>
     public interface IHttpStatusCode
     {
         HttpStatusCode HTTPStatusCode { get; set; }

@@ -218,7 +218,7 @@ namespace Smartrac.SmartCosmos.ClientEndpoint.Base
                     }
 
                     if ((null != requestData) && (null != Logger) && Logger.CanLog(LogType.Debug))
-                        Logger.AddLog("Request data : " + requestData.ToJSON(true), LogType.Debug);
+                        Logger.AddLog("Request data: " + requestData.ToJSON(true), LogType.Debug);
                 }
 
                 return ExecuteWebRequestJSON<responseType>(request, out responseData, out webResponse, sendMethod);

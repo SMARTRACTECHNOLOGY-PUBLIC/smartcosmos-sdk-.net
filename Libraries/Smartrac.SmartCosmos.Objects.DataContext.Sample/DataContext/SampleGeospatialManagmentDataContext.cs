@@ -17,9 +17,9 @@
 
 #endregion License
 
-using System.Collections.Generic;
 using GeoJSON.Net;
 using Smartrac.SmartCosmos.Objects.Base;
+using System.Collections.Generic;
 
 namespace Smartrac.SmartCosmos.Objects.DataContext.Sample
 {

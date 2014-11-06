@@ -17,10 +17,7 @@
 
 #endregion License
 
-using Smartrac.Logging;
-using Smartrac.SmartCosmos.ClientEndpoint.BaseObject;
 using Smartrac.SmartCosmos.Objects.Base;
-using Smartrac.SmartCosmos.Objects.TestCase;
 using Smartrac.SmartCosmos.Objects.UserManagement;
 using Smartrac.SmartCosmos.TestCase.Base;
 
@@ -36,7 +33,7 @@ namespace Smartrac.SmartCosmos.Objects.TestCase.Sample
             return RunTestCase_CreateNewUser() &&
                 RunTestCase_UpdateUser() &&
                 RunTestCase_LookupUserByEmail(out userUrn) &&
-                RunTestCase_LookupUserByURN(userUrn) &&                
+                RunTestCase_LookupUserByURN(userUrn) &&
                 RunTestCase_ChangeOrResetUserPassword();
         }
 
@@ -75,7 +72,7 @@ namespace Smartrac.SmartCosmos.Objects.TestCase.Sample
 
             return (actionResult == UserActionResult.Successful);
         }
-        
+
         protected virtual bool RunTestCase_LookupUserByURN(Urn userUrn)
         {
             OnBeforeTest("Objects", "UserManagementEndpoint", "Lookup Specific User by URN");
@@ -84,7 +81,6 @@ namespace Smartrac.SmartCosmos.Objects.TestCase.Sample
             UserActionResult actionResult = endpoint.LookupSpecificUser(userUrn, out responseUserData, dataContext.GetViewType());
             OnAfterTest(actionResult);
             return (actionResult == UserActionResult.Successful);
-
         }
 
         protected virtual bool RunTestCase_LookupUserByEmail(out Urn userUrn)

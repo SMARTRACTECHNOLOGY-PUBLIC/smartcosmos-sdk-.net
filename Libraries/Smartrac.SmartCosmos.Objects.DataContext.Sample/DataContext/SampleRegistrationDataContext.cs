@@ -17,8 +17,6 @@
 
 #endregion License
 
-using System;
-
 namespace Smartrac.SmartCosmos.Objects.DataContext.Sample
 {
     public class SampleRegistrationDataContext : BaseRegistrationDataContext

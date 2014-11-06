@@ -17,11 +17,8 @@
 
 #endregion License
 
-using Smartrac.Logging;
-using Smartrac.SmartCosmos.ClientEndpoint.BaseObject;
 using Smartrac.SmartCosmos.Objects.DataContext;
 using Smartrac.SmartCosmos.Objects.ObjectInteraction;
-using Smartrac.SmartCosmos.TestCase;
 
 namespace Smartrac.SmartCosmos.Objects.TestCase
 {
@@ -36,5 +33,5 @@ namespace Smartrac.SmartCosmos.Objects.TestCase
         {
             return EndpointFactory.CreateObjectInteractionEndpoint();
         }
-   }
+    }
 }

@@ -25,7 +25,7 @@ namespace Smartrac.Base
     /// <summary>
     /// Provides methods for converting <see cref="DateTime"/> structures to and from the equivalent RFC 3339 string representation.
     /// </summary>
-    public static class Rfc3339DateTime
+    internal static class Rfc3339DateTimeProvider
     {
         //============================================================
         //  Private members
@@ -143,7 +143,7 @@ namespace Smartrac.Base
             }
 
             DateTime result;
-            if (Rfc3339DateTime.TryParse(s, out result))
+            if (Rfc3339DateTimeProvider.TryParse(s, out result))
             {
                 return result;
             }
@@ -183,7 +183,7 @@ namespace Smartrac.Base
                 throw new ArgumentException("utcDateTime");
             }
 
-            return utcDateTime.ToString(Rfc3339DateTime.Rfc3339DateTimeFormat, DateTimeFormatInfo.InvariantInfo);
+            return utcDateTime.ToString(Rfc3339DateTimeProvider.Rfc3339DateTimeFormat, DateTimeFormatInfo.InvariantInfo);
         }
 
         #endregion ToString(DateTime utcDateTime)
@@ -217,7 +217,7 @@ namespace Smartrac.Base
             if (!String.IsNullOrEmpty(s))
             {
                 DateTime parseResult;
-                if (DateTime.TryParseExact(s, Rfc3339DateTime.Rfc3339DateTimePatterns, DateTimeFormatInfo.InvariantInfo, DateTimeStyles.AdjustToUniversal, out parseResult))
+                if (DateTime.TryParseExact(s, Rfc3339DateTimeProvider.Rfc3339DateTimePatterns, DateTimeFormatInfo.InvariantInfo, DateTimeStyles.AdjustToUniversal, out parseResult))
                 {
                     result = DateTime.SpecifyKind(parseResult, DateTimeKind.Utc);
                     wasConverted = true;

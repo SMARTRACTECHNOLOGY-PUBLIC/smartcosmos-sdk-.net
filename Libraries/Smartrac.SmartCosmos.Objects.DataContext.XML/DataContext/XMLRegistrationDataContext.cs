@@ -17,18 +17,14 @@
 
 #endregion License
 
-using System;
-using System.Xml.Linq;
-
 namespace Smartrac.SmartCosmos.Objects.DataContext.XML
 {/*
     public class XMLRegistrationDataContext : EmptyRegistrationDataContext
     {
         public bool Deserialze(XElement elem)
         {
-
             return true;
         }
     }
-  */ 
+  */
 }

@@ -56,7 +56,7 @@ namespace Smartrac.SmartCosmos.Objects.File
                 referenceUrnObj.IsValid() &&
                 mimeType != null &&
                 mimeType.Length <= 100 &&
-                ( (moniker == null) || (moniker.Length <= 2048));
+                ((moniker == null) || (moniker.Length <= 2048));
         }
     }
 }

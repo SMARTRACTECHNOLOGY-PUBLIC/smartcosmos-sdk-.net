@@ -17,19 +17,21 @@
 
 #endregion License
 
-using System.Xml;
-using System.Xml.Linq;
-using System.Xml.Serialization;
-using Smartrac.SmartCosmos.ClientEndpoint.Base;
-using Smartrac.SmartCosmos.Objects.DataContext;
 using System.IO;
 using System.Text;
+using System.Xml.Linq;
+using System.Xml.Serialization;
 
 namespace Smartrac.SmartCosmos.DataContextFactory.XML
 {
     public sealed class XMLDataContextSerializer<T>
         where T : class
     {
+        /// <summary>
+        /// deserialize objects from XML entry
+        /// </summary>
+        /// <param name="elem"></param>
+        /// <returns></returns>
         public static T DeSerialize(XElement elem)
         {
             if (elem == null) return null;
@@ -38,7 +40,7 @@ namespace Smartrac.SmartCosmos.DataContextFactory.XML
             {
                 var xmlSerializer = new XmlSerializer(typeof(T));
                 return (T)xmlSerializer.Deserialize(memoryStream);
-            }            
+            }
         }
     }
 }

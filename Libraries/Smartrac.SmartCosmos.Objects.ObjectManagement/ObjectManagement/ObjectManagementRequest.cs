@@ -17,10 +17,10 @@
 
 #endregion License
 
-using System;
 using Newtonsoft.Json;
 using Smartrac.SmartCosmos.ClientEndpoint.BaseObject;
 using Smartrac.SmartCosmos.Objects.Base;
+using System;
 
 namespace Smartrac.SmartCosmos.Objects.ObjectManagement
 {
@@ -61,7 +61,8 @@ namespace Smartrac.SmartCosmos.Objects.ObjectManagement
                 (String.IsNullOrEmpty(moniker) || moniker.Length <= 2048);
         }
 
-        public ObjectManagementRequest() : base()
+        public ObjectManagementRequest()
+            : base()
         {
             activeFlag = true;
         }

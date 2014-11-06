@@ -17,11 +17,11 @@
 
 #endregion License
 
-using System;
-using System.Net;
 using Smartrac.Logging;
 using Smartrac.SmartCosmos.ClientEndpoint.Base;
 using Smartrac.SmartCosmos.Objects.Base;
+using System;
+using System.Net;
 
 namespace Smartrac.SmartCosmos.Objects.UserManagement
 {
@@ -216,11 +216,13 @@ namespace Smartrac.SmartCosmos.Objects.UserManagement
                 switch (returnHTTPStatusCode)
                 {
                     case HttpStatusCode.OK:
-                    case HttpStatusCode.NoContent: 
-                      return UserActionResult.Successful;
-                    case HttpStatusCode.BadRequest: 
+                    case HttpStatusCode.NoContent:
+                        return UserActionResult.Successful;
+
+                    case HttpStatusCode.BadRequest:
                         return UserActionResult.Failed;
-                    default: 
+
+                    default:
                         return UserActionResult.Failed;
                 }
             }

@@ -27,6 +27,9 @@ namespace Smartrac.SmartCosmos.TestCase.Base
         Performance = 2
     }
 
+    /// <summary>
+    /// Test case attribute to mark valid SMART COSMOS test cases
+    /// </summary>
     [AttributeUsage(AttributeTargets.Class)]
     public class TestCaseAttribute : System.Attribute
     {

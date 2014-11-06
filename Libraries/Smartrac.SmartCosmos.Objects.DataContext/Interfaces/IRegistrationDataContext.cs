@@ -18,6 +18,7 @@
 #endregion License
 
 using Smartrac.SmartCosmos.ClientEndpoint.Base;
+
 namespace Smartrac.SmartCosmos.Objects.DataContext
 {
     public interface IRegistrationDataContext : IBaseDataContext

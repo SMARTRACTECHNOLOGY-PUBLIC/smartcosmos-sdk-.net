@@ -17,8 +17,6 @@
 
 #endregion License
 
-using Smartrac.Logging;
-using Smartrac.SmartCosmos.ClientEndpoint.BaseObject;
 using Smartrac.SmartCosmos.Profiles.DataImport;
 using Smartrac.SmartCosmos.TestCase.Base;
 
@@ -36,7 +34,7 @@ namespace Smartrac.SmartCosmos.Profiles.TestCase.Sample
                 OnBeforeTest("Profiles", "DataImportEndpoint", "CheckImportState");
                 // create client for endpoint
                 ImportStateResponse responseImportState;
-                // call endpoint            
+                // call endpoint
                 actionResult = endpoint.CheckImportState(new ImportStateRequest(importId), out responseImportState);
                 // log response
                 OnAfterTest(actionResult);

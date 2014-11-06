@@ -17,13 +17,12 @@
 
 #endregion License
 
-using System;
-using System.Diagnostics;
 using Smartrac.Logging;
+using Smartrac.SmartCosmos.ClientEndpoint.Base;
 using Smartrac.SmartCosmos.ClientEndpoint.Factory;
 using Smartrac.SmartCosmos.DataContextFactory;
-using Smartrac.SmartCosmos.ClientEndpoint.BaseObject;
-using Smartrac.SmartCosmos.ClientEndpoint.Base;
+using System;
+using System.Diagnostics;
 
 namespace Smartrac.SmartCosmos.TestCase.Base
 {
@@ -42,11 +41,18 @@ namespace Smartrac.SmartCosmos.TestCase.Base
 
         private Stopwatch stopwatch;
 
+        /// <summary>
+        /// Execute test case
+        /// </summary>
+        /// <param name="logger"></param>
+        /// <param name="endpointFactory"></param>
+        /// <param name="dataContextFactory"></param>
+        /// <returns></returns>
         public bool Run(IMessageLogger logger, IEndpointFactory endpointFactory, IDataContextFactory dataContextFactory)
         {
             Logger = logger;
             try
-            {               
+            {
                 EndpointFactory = endpointFactory;
                 DataContextFactory = dataContextFactory;
                 if (!OnBeforeRun())
@@ -58,7 +64,7 @@ namespace Smartrac.SmartCosmos.TestCase.Base
 
                     if (!PrepareEndpoint())
                         return false;
-                    
+
                     return ExecuteTests();
                 }
                 finally
@@ -92,7 +98,7 @@ namespace Smartrac.SmartCosmos.TestCase.Base
                 if (Logger != null)
                     Logger.AddLog("PrepareDataContext: " + e.Message, LogType.Error);
                 return false;
-            }            
+            }
         }
 
         protected virtual C CreateDataContext()
@@ -151,7 +157,7 @@ namespace Smartrac.SmartCosmos.TestCase.Base
             stopwatch.Reset();
             stopwatch.Start();
         }
-        
+
         protected void OnAfterTest()
         {
             stopwatch.Stop();
@@ -159,7 +165,7 @@ namespace Smartrac.SmartCosmos.TestCase.Base
             Logger.AddLog("");
             Logger.AddLog("");
         }
-       
+
         protected void OnAfterTest(Enum testResult)
         {
             stopwatch.Stop();

@@ -23,6 +23,13 @@ namespace System
 {
     public static class HttpExtensions
     {
+        /// <summary>
+        /// Add query to URL string
+        /// </summary>
+        /// <param name="uri"></param>
+        /// <param name="name"></param>
+        /// <param name="value"></param>
+        /// <returns></returns>
         public static Uri AddQuery(this Uri uri, string name, long? value)
         {
             if (value != null && value.HasValue)
@@ -31,6 +38,13 @@ namespace System
                 return uri;
         }
 
+        /// <summary>
+        /// Add query to URL string
+        /// </summary>
+        /// <param name="uri"></param>
+        /// <param name="name"></param>
+        /// <param name="value"></param>
+        /// <returns></returns>
         public static Uri AddQuery(this Uri uri, string name, string value)
         {
             if (String.IsNullOrEmpty(name) ||
@@ -44,73 +58,14 @@ namespace System
             query += name + "=" + HttpUtility.UrlEncode(value);
 
             return new Uri(query, uri.IsAbsoluteUri ? UriKind.Absolute : UriKind.Relative);
-            /*
-            var ub = new UriBuilder();
-            ub.Host = uri.Host;
-            ub.Query += String.IsNullOrEmpty(uri.Query) ? "?" : "&";
-            ub.Query += name + "=" + HttpUtility.UrlEncode(value);
-            */
-            //uri.Query += String.IsNullOrEmpty(uri.Query) ? "?" : "&";
-            //uri.Query += name + "=" + HttpUtility.UrlEncode(value);
-
-            /*
-            var ub = new UriBuilder(uri);
-
-            // decodes urlencoded pairs from uri.Query to HttpValueCollection
-            var httpValueCollection = HttpUtility.ParseQueryString(uri.Query);
-            httpValueCollection.Add(name, value);
-
-            // this code block is taken from httpValueCollection.ToString() method
-            // and modified so it encodes strings with HttpUtility.UrlEncode
-            if (httpValueCollection.Count == 0)
-                ub.Query = String.Empty;
-            else
-            {
-                var sb = new StringBuilder();
-
-                for (int i = 0; i < httpValueCollection.Count; i++)
-                {
-                    string text = httpValueCollection.GetKey(i);
-                    {
-                        text = HttpUtility.UrlEncode(text);
-
-                        string val = (text != null) ? (text + "=") : string.Empty;
-                        string[] vals = httpValueCollection.GetValues(i);
-
-                        if (sb.Length > 0)
-                            sb.Append('&');
-
-                        if (vals == null || vals.Length == 0)
-                            sb.Append(val);
-                        else
-                        {
-                            if (vals.Length == 1)
-                            {
-                                sb.Append(val);
-                                sb.Append(HttpUtility.UrlEncode(vals[0]));
-                            }
-                            else
-                            {
-                                for (int j = 0; j < vals.Length; j++)
-                                {
-                                    if (j > 0)
-                                        sb.Append('&');
-
-                                    sb.Append(val);
-                                    sb.Append(HttpUtility.UrlEncode(vals[j]));
-                                }
-                            }
-                        }
-                    }
-                }
-
-                ub.Query = sb.ToString();
-            }
-
-            return ub.Uri;
-              */
         }
 
+        /// <summary>
+        /// Add subfolder to URL string
+        /// </summary>
+        /// <param name="uri"></param>
+        /// <param name="subfolder"></param>
+        /// <returns></returns>
         public static Uri AddSubfolder(this Uri uri, string subfolder)
         {
             if (String.IsNullOrEmpty(subfolder))
@@ -119,10 +74,9 @@ namespace System
             }
 
             string query = uri.OriginalString;
-            query += query.EndsWith("/") ? subfolder : "/" + subfolder;
+            query += query.EndsWith("/") ? HttpUtility.UrlEncode(subfolder) : "/" + HttpUtility.UrlEncode(subfolder);
 
             return new Uri(query, uri.IsAbsoluteUri ? UriKind.Absolute : UriKind.Relative);
         }
-    
     }
 }

@@ -17,10 +17,7 @@
 
 #endregion License
 
-using Smartrac.Logging;
-using Smartrac.SmartCosmos.ClientEndpoint.BaseObject;
 using Smartrac.SmartCosmos.Objects.Base;
-using Smartrac.SmartCosmos.Objects.TestCase;
 using Smartrac.SmartCosmos.Objects.RelationshipManagement;
 using Smartrac.SmartCosmos.TestCase.Base;
 
@@ -114,10 +111,10 @@ namespace Smartrac.SmartCosmos.Objects.TestCase.Sample
             OnAfterTest(actionResult);
             return (actionResult == RelationshipActionResult.Successful);
         }
-            
+
         protected virtual bool RunTestCase_LookupSpecificType()
         {
-        OnBeforeTest("Objects", "RelationshipManagementEndpoint", "Lookup Specific Relationship Between Entities");
+            OnBeforeTest("Objects", "RelationshipManagementEndpoint", "Lookup Specific Relationship Between Entities");
             // create request
             QueryQueryRelationshipsByTypeRequest requestQueryTypeListData = new QueryQueryRelationshipsByTypeRequest
             {

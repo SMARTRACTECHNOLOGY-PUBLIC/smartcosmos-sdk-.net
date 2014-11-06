@@ -17,15 +17,9 @@
 
 #endregion License
 
-using System.Collections.Generic;
-using System.IO;
-using System.Xml.Linq;
-using System.Xml;
-using System.Xml.Serialization;
 using Smartrac.SmartCosmos.Objects.Base;
-using Smartrac.SmartCosmos.Objects.DataContext;
-using System.ComponentModel;
 using System;
+using System.Xml.Serialization;
 
 namespace Smartrac.SmartCosmos.Objects.DataContext.XML
 {

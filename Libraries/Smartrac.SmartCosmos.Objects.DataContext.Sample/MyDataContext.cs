@@ -1,8 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using Smartrac.SmartCosmos.Objects.Base;
+﻿using Smartrac.SmartCosmos.Objects.Base;
+using System;
 
 namespace Smartrac.SmartCosmos.Objects.DataContext.Sample
 {

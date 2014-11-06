@@ -17,49 +17,48 @@
 
 #endregion License
 
-using Smartrac.SmartCosmos.Objects.Base;
-
 namespace Smartrac.SmartCosmos.Objects.DataContext
 {
-/*    public class BaseObjectInteractionSessionDataContext : IObjectInteractionSessionDataContext
-    {
-        public virtual Urn GetSessionUrn()
+    /*    public class BaseObjectInteractionSessionDataContext : IObjectInteractionSessionDataContext
         {
-            return null;
-        }
+            public virtual Urn GetSessionUrn()
+            {
+                return null;
+            }
 
-        /// <summary>
-        /// The type field is available to create an ontology or high level categories that can be used to group related interactions. The platform makes no inferences about this case-sensitive field.
-        /// </summary>
-        /// <returns>interaction type</returns>
-        public virtual string GetInteractionType()
-        {
-            return "";
-        }
+            /// <summary>
+            /// The type field is available to create an ontology or high level categories that can be used to group related interactions. The platform makes no inferences about this case-sensitive field.
+            /// </summary>
+            /// <returns>interaction type</returns>
+            public virtual string GetInteractionType()
+            {
+                return "";
+            }
 
-        public virtual string GetDescription()
-        {
-            return "";
-        }
+            public virtual string GetDescription()
+            {
+                return "";
+            }
 
-        public virtual string GetName()
-        {
-            return "";
-        }
+            public virtual string GetName()
+            {
+                return "";
+            }
 
-        public virtual string GetMoniker()
-        {
-            return "";
-        }
+            public virtual string GetMoniker()
+            {
+                return "";
+            }
 
-        public virtual bool GetActiveFlag()
-        {
-            return true;
-        }
+            public virtual bool GetActiveFlag()
+            {
+                return true;
+            }
 
-        public virtual ViewType GetViewType()
-        {
-            return ViewType.Standard;
+            public virtual ViewType GetViewType()
+            {
+                return ViewType.Standard;
+            }
         }
-    }
-*/}
+    */
+}

@@ -17,12 +17,12 @@
 
 #endregion License
 
-using System;
-using System.Collections.Generic;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Converters;
 using Smartrac.SmartCosmos.ClientEndpoint.BaseObject;
 using Smartrac.SmartCosmos.Objects.Base;
+using System;
+using System.Collections.Generic;
 
 namespace Smartrac.SmartCosmos.Objects.Metadata
 {

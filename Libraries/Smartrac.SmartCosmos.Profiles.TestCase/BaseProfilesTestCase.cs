@@ -22,6 +22,11 @@ using Smartrac.SmartCosmos.TestCase.Base;
 
 namespace Smartrac.SmartCosmos.Profiles.TestCase
 {
+    /// <summary>
+    /// Base class for Profiles test cases
+    /// </summary>
+    /// <typeparam name="C"></typeparam>
+    /// <typeparam name="E"></typeparam>
     public class BaseProfilesTestCase<C, E> : BaseTestCase<C, E>
         where C : IBaseDataContext
         where E : IBaseEndpoint

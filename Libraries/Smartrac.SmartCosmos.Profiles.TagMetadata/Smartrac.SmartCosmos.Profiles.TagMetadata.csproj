@@ -142,7 +142,7 @@
       <Name>Smartrac.SmartCosmos.ClientEndpoint.BaseObject</Name>
     </ProjectReference>
     <ProjectReference Include="..\Smartrac.SmartCosmos.Profiles.Base\Smartrac.SmartCosmos.Profiles.Base.csproj">
-      <Project>{90b0fb18-9350-4f44-a7c2-84cdfb1361be}</Project>
+      <Project>{e7c0b1ed-7957-4d97-bf2c-65381a436e7c}</Project>
       <Name>Smartrac.SmartCosmos.Profiles.Base</Name>
     </ProjectReference>
     <ProjectReference Include="..\Smartrac.SmartCosmos.Profiles.DataContext\Smartrac.SmartCosmos.Profiles.DataContext.csproj">

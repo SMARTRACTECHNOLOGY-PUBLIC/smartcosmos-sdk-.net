@@ -53,7 +53,6 @@ namespace Smartrac.SmartCosmos.Objects.Base
 
         public Urn()
         {
-
         }
     }
 }

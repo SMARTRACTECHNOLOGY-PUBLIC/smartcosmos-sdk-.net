@@ -17,12 +17,8 @@
 
 #endregion License
 
-using System.Collections.Generic;
-using Smartrac.Logging;
-using Smartrac.SmartCosmos.ClientEndpoint.BaseObject;
 using Smartrac.SmartCosmos.Objects.DataContext;
 using Smartrac.SmartCosmos.Objects.File;
-using Smartrac.SmartCosmos.TestCase;
 
 namespace Smartrac.SmartCosmos.Objects.TestCase
 {
@@ -37,6 +33,5 @@ namespace Smartrac.SmartCosmos.Objects.TestCase
         {
             return EndpointFactory.CreateFileEndpoint();
         }
-
     }
 }

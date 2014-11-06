@@ -17,10 +17,7 @@
 
 #endregion License
 
-using Smartrac.Logging;
-using Smartrac.SmartCosmos.ClientEndpoint.BaseObject;
 using Smartrac.SmartCosmos.Objects.AccountManagement;
-using Smartrac.SmartCosmos.Objects.TestCase;
 using Smartrac.SmartCosmos.TestCase.Base;
 
 namespace Smartrac.SmartCosmos.Objects.TestCase.Sample
@@ -28,7 +25,7 @@ namespace Smartrac.SmartCosmos.Objects.TestCase.Sample
     [TestCaseAttribute(20)]
     public class TestCaseAccountManagementEndpoint : BaseTestCaseAccountManagementEndpoint
     {
-       protected override bool ExecuteTests()
+        protected override bool ExecuteTests()
         {
             return RunTestCase_GetAccountDetails() &&
                 RunTestCase_ChangeYourPassword() &&
@@ -43,7 +40,7 @@ namespace Smartrac.SmartCosmos.Objects.TestCase.Sample
             AccountActionResult actionResult = endpoint.GetAccountDetails(out responseDetailsData, dataContext.GetViewType());
             // log response
             OnAfterTest(actionResult);
-            return (actionResult == AccountActionResult.Successful);            
+            return (actionResult == AccountActionResult.Successful);
         }
 
         protected virtual bool RunTestCase_ChangeYourPassword()
@@ -58,7 +55,7 @@ namespace Smartrac.SmartCosmos.Objects.TestCase.Sample
             ChangeYourPasswordResponse responsePwdData;
             AccountActionResult actionResult = endpoint.ChangeYourPassword(requestPwdData, out responsePwdData);
             OnAfterTest(actionResult);
-            return (actionResult == AccountActionResult.Successful);            
+            return (actionResult == AccountActionResult.Successful);
         }
 
         protected virtual bool RunTestCase_ResetLostPassword()

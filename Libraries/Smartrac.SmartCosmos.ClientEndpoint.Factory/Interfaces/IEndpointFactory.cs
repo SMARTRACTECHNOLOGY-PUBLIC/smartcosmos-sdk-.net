@@ -40,7 +40,6 @@ namespace Smartrac.SmartCosmos.ClientEndpoint.Factory
     {
         /// <summary>
         /// URL of SMART COSMOS Profiles server
-        /// default value: https://www.smart-cosmos.com/service/rest
         /// </summary>
         string ProfilesServerURL { get; set; }
 
@@ -80,7 +79,7 @@ namespace Smartrac.SmartCosmos.ClientEndpoint.Factory
         /// User password for SMART COSMOS Profiles
         /// </summary>
         string ProfilesUserPassword { get; set; }
-        
+
         /// <summary>
         /// User name for SMART COSMOS Objects
         /// </summary>

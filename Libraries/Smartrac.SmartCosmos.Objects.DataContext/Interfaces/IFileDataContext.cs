@@ -17,10 +17,10 @@
 
 #endregion License
 
-using System.Collections.Generic;
-using System.IO;
 using Smartrac.SmartCosmos.ClientEndpoint.Base;
 using Smartrac.SmartCosmos.Objects.Base;
+using System.Collections.Generic;
+using System.IO;
 
 namespace Smartrac.SmartCosmos.Objects.DataContext
 {

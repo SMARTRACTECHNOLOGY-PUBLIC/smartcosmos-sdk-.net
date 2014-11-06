@@ -1,12 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using GeoJSON.Net;
+﻿using GeoJSON.Net;
 using GeoJSON.Net.Feature;
 using GeoJSON.Net.Geometry;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
+using System;
 
 namespace Smartrac.SmartCosmos.Objects.GeospatialManagement
 {
@@ -42,22 +39,31 @@ namespace Smartrac.SmartCosmos.Objects.GeospatialManagement
             {
                 case "FeatureCollection":
                     return new FeatureCollection(null);
+
                 case "Point":
                     return new Point(null);
+
                 case "MultiPoint":
                     return new MultiPoint();
+
                 case "LineString":
                     return new LineString(null);
+
                 case "MultiLineString":
                     return new MultiLineString(null);
+
                 case "Polygon":
                     return new Polygon();
+
                 case "MultiPolygon":
                     return new MultiPolygon();
+
                 case "GeometryCollection":
                     return new GeometryCollection();
+
                 case "Feature":
                     return new Feature(null);
+
                 default:
                     return null;
             }

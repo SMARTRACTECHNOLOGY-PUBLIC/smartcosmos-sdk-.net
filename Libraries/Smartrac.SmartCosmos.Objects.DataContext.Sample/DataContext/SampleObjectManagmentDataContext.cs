@@ -25,7 +25,7 @@ namespace Smartrac.SmartCosmos.Objects.DataContext.Sample
     {
         public override Urn GetObjectUrn()
         {
-            return MyDataContext.GetSampleObjectUrn(); 
+            return MyDataContext.GetSampleObjectUrn();
         }
 
         public override string GetCategory()

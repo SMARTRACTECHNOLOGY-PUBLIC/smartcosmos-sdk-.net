@@ -18,7 +18,6 @@
 #endregion License
 
 using Smartrac.SmartCosmos.Objects.Base;
-using Smartrac.SmartCosmos.Objects.TestCase;
 using Smartrac.SmartCosmos.Objects.GeospatialManagement;
 using Smartrac.SmartCosmos.TestCase.Base;
 

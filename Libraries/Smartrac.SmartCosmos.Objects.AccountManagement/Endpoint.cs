@@ -17,11 +17,11 @@
 
 #endregion License
 
-using System;
-using System.Net;
 using Smartrac.Logging;
 using Smartrac.SmartCosmos.ClientEndpoint.Base;
 using Smartrac.SmartCosmos.Objects.Base;
+using System;
+using System.Net;
 using System.Text;
 
 namespace Smartrac.SmartCosmos.Objects.AccountManagement

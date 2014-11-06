@@ -1,7 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 
 namespace Smartrac.Logging
 {
@@ -17,7 +14,18 @@ namespace Smartrac.Logging
 
     public interface IMessageLogger
     {
-        void AddLog(string aMessage, LogType aLogType = LogType.Debug);
-        bool CanLog(LogType aLogType);
+        /// <summary>
+        /// Add log message
+        /// </summary>
+        /// <param name="message">message</param>
+        /// <param name="logType">logType</param>
+        void AddLog(string message, LogType logType = LogType.Debug);
+
+        /// <summary>
+        /// Check if logging allowed
+        /// </summary>
+        /// <param name="logType">logType</param>
+        /// <returns>logging allowed</returns>
+        bool CanLog(LogType logType);
     }
 }

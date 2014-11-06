@@ -17,10 +17,10 @@
 
 #endregion License
 
-using System;
-using System.Diagnostics.Contracts;
 using Smartrac.Base;
 using Smartrac.Logging;
+using System;
+using System.Diagnostics.Contracts;
 
 namespace Smartrac.SmartCosmos.ClientEndpoint.Base
 {
@@ -38,42 +38,76 @@ namespace Smartrac.SmartCosmos.ClientEndpoint.Base
         {
         }
 
+        /// <summary>
+        /// keep connection alive
+        /// </summary>
+        /// <param name="keepAlive"></param>
+        /// <returns></returns>
         public E setKeepAlive(bool keepAlive)
         {
             instance.KeepAlive = keepAlive;
             return this as E;
         }
 
+        /// <summary>
+        /// set service url
+        /// </summary>
+        /// <param name="serverURL"></param>
+        /// <returns></returns>
         public E setServerURL(string serverURL)
         {
             instance.ServerURL = serverURL;
             return this as E;
         }
 
+        /// <summary>
+        /// allo invalid server certificates
+        /// </summary>
+        /// <param name="allowInvalidServerCertificates"></param>
+        /// <returns></returns>
         public E setAllowInvalidServerCertificates(bool allowInvalidServerCertificates)
         {
             instance.AllowInvalidServerCertificates = allowInvalidServerCertificates;
             return this as E;
         }
 
+        /// <summary>
+        /// Set client accept language
+        /// </summary>
+        /// <param name="acceptLanguage"></param>
+        /// <returns></returns>
         public E setAcceptLanguage(string acceptLanguage)
         {
             instance.AcceptLanguage = acceptLanguage;
             return this as E;
         }
 
+        /// <summary>
+        /// set logger
+        /// </summary>
+        /// <param name="logger">logger</param>
+        /// <returns>object</returns>
         public E setLogger(IMessageLogger logger)
         {
             instance.Logger = logger;
             return this as E;
         }
 
+        /// <summary>
+        /// set credentials
+        /// </summary>
+        /// <param name="userName"></param>
+        /// <param name="userPassword"></param>
+        /// <returns></returns>
         public E setUserAccount(string userName, string userPassword)
         {
             instance.setUserAccount(userName, userPassword);
             return this as E;
         }
 
+        /// <summary>
+        /// Validate parameters
+        /// </summary>
         protected override void onValidate()
         {
             Contract.Requires(!String.IsNullOrEmpty(instance.ServerURL));

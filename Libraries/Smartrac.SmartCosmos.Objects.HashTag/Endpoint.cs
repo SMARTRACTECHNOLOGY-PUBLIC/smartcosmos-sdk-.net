@@ -17,12 +17,11 @@
 
 #endregion License
 
-using System;
-using System.Net;
 using Smartrac.Logging;
 using Smartrac.SmartCosmos.ClientEndpoint.Base;
-using Smartrac.SmartCosmos.ClientEndpoint.BaseObject;
 using Smartrac.SmartCosmos.Objects.Base;
+using System;
+using System.Net;
 
 namespace Smartrac.SmartCosmos.Objects.HashTag
 {
@@ -97,7 +96,7 @@ namespace Smartrac.SmartCosmos.Objects.HashTag
 
                 Uri url = new Uri("/tags", UriKind.Relative).
                     AddSubfolder(tagUrn.UUID).
-                    AddQuery("view", viewType.GetDescription());	
+                    AddQuery("view", viewType.GetDescription());
 
                 var request = CreateWebRequest(url, WebRequestOption.Authorization);
                 var returnHTTPCode = ExecuteWebRequestJSON<HashTagDataResponse>(request, out responseData);
@@ -134,7 +133,7 @@ namespace Smartrac.SmartCosmos.Objects.HashTag
 
                 Uri url = new Uri("/tags/tag/", UriKind.Relative).
                     AddSubfolder(tagName).
-                    AddQuery("view", viewType.GetDescription());	
+                    AddQuery("view", viewType.GetDescription());
 
                 var request = CreateWebRequest(url, WebRequestOption.Authorization);
                 var returnHTTPCode = ExecuteWebRequestJSON<HashTagDataResponse>(request, out responseData);
@@ -177,8 +176,8 @@ namespace Smartrac.SmartCosmos.Objects.HashTag
                 var request = CreateWebRequest(url, WebRequestOption.Authorization);
 
                 var returnHTTPCode = ExecuteWebRequestJSON<HashTagListResponse>(request, out responseData);
-                if ((responseData != null) && 
-                    ( (responseData.HTTPStatusCode == HttpStatusCode.OK) ||
+                if ((responseData != null) &&
+                    ((responseData.HTTPStatusCode == HttpStatusCode.OK) ||
                     (responseData.HTTPStatusCode == HttpStatusCode.NoContent)
                     ))
                     return HashTagActionResult.Successful;
@@ -309,7 +308,7 @@ namespace Smartrac.SmartCosmos.Objects.HashTag
                     {
                         try
                         {
-                            if ( (response.StatusCode == HttpStatusCode.NoContent) ||
+                            if ((response.StatusCode == HttpStatusCode.NoContent) ||
                                  (response.StatusCode == HttpStatusCode.OK))
                             {
                                 return HashTagActionResult.Successful;
@@ -330,6 +329,5 @@ namespace Smartrac.SmartCosmos.Objects.HashTag
                 return HashTagActionResult.Failed;
             }
         }
-    
     }
 }

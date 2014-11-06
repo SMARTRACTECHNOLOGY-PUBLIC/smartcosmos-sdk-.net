@@ -17,8 +17,8 @@
 
 #endregion License
 
-using System.IO;
 using Smartrac.SmartCosmos.ClientEndpoint.Base;
+using System.IO;
 
 namespace Smartrac.SmartCosmos.Profiles.DataImport
 {

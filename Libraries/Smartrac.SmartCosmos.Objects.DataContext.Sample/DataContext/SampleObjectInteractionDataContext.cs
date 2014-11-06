@@ -17,8 +17,8 @@
 
 #endregion License
 
-using System;
 using Smartrac.SmartCosmos.Objects.Base;
+using System;
 
 namespace Smartrac.SmartCosmos.Objects.DataContext.Sample
 {

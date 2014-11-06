@@ -17,8 +17,8 @@
 
 #endregion License
 
-using System.Net;
 using Smartrac.SmartCosmos.ClientEndpoint.BaseObject;
+using System.Net;
 
 namespace Smartrac.SmartCosmos.Objects.ObjectInteraction
 {

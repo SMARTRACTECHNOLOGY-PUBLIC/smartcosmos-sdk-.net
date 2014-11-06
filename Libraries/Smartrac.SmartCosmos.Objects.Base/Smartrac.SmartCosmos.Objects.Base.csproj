@@ -82,7 +82,6 @@
   <ItemGroup>
     <Compile Include="Base\BaseObjectsEndpoint.cs" />
     <Compile Include="Base\Urn.cs" />
-    <Compile Include="Converter\EntityReferenceConverter.cs" />
     <Compile Include="Types\EntityReferenceType.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Types\RoleType.cs" />

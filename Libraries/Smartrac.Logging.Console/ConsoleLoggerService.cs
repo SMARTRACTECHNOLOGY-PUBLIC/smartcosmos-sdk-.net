@@ -21,7 +21,7 @@ namespace Smartrac.Logging.Console
 {
     public class ConsoleLoggerService : BaseMessageLogger
     {
-        public ConsoleLoggerService(LogType logLevel) 
+        public ConsoleLoggerService(LogType logLevel)
             : base(logLevel)
         {
             System.Console.BufferHeight = 5000;

@@ -17,15 +17,15 @@
 
 #endregion License
 
+using Smartrac.Logging;
+using Smartrac.SmartCosmos.Profiles.TagMetadata;
+using Smartrac.SmartCosmos.TestCase.Base;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.IO;
 using System.Threading.Tasks;
 using System.Xml.Linq;
-using Smartrac.Logging;
-using Smartrac.SmartCosmos.Profiles.TagMetadata;
-using Smartrac.SmartCosmos.TestCase.Base;
 
 namespace Smartrac.SmartCosmos.Profiles.TestCase.Sample
 {
@@ -40,7 +40,6 @@ namespace Smartrac.SmartCosmos.Profiles.TestCase.Sample
             {
                 if (File.Exists(file))
                 {
-
                     OnBeforeTest("Profiles", "TagMetadataEndpoint", "GetTagMetadata - PerformanceTest Parallel");
                     TagMetaDataActionResult actionResult = TagMetaDataActionResult.Failed;
                     try

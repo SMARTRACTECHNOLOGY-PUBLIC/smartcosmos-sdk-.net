@@ -17,11 +17,11 @@
 
 #endregion License
 
-using System.Diagnostics.Contracts;
 using Smartrac.Base;
 using Smartrac.Logging;
 using Smartrac.SmartCosmos.ClientEndpoint.Factory;
 using Smartrac.SmartCosmos.DataContextFactory;
+using System.Diagnostics.Contracts;
 
 namespace Smartrac.SmartCosmos.TestCase.Runner
 {

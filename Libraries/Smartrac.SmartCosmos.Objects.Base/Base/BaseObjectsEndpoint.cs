@@ -28,7 +28,6 @@ namespace Smartrac.SmartCosmos.Objects.Base
     /// </summary>
     public class BaseObjectsEndpoint : BaseEndpoint
     {
-
         /// <summary>
         /// Set the user account which should be used for the authorization
         /// </summary>
@@ -44,9 +43,6 @@ namespace Smartrac.SmartCosmos.Objects.Base
                 AuthorizationToken = "";
                 return;
             }
-
-            //if (null != Logger)
-            //    Logger.AddLog("Login with user " + userName);
 
             // UserName and hased password are combined into a string "UserName:hashedpassword"
             // For example, if the user agent uses 'Aladdin' as the UserName and 'open sesame' as the password then the header is formed as follows:.

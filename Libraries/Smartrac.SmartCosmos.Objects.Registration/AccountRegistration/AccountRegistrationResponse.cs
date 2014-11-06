@@ -48,7 +48,7 @@ namespace Smartrac.SmartCosmos.Objects.Registration
         public string realm { get; set; }
 
         [JsonIgnore]
-        public Urn Urn 
+        public Urn Urn
         {
             get
             {

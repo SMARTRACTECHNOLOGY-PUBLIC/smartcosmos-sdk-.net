@@ -19,6 +19,9 @@
 
 namespace Smartrac.SmartCosmos.ClientEndpoint.BaseObject
 {
+    /// <summary>
+    /// response contains a message field
+    /// </summary>
     public interface IResponseMessage
     {
         string message { get; set; }

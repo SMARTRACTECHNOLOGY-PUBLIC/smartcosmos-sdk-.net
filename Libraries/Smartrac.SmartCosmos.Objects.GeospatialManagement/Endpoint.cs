@@ -17,12 +17,12 @@
 
 #endregion License
 
-using System;
-using System.Net;
 using Newtonsoft.Json;
 using Smartrac.Logging;
 using Smartrac.SmartCosmos.ClientEndpoint.Base;
 using Smartrac.SmartCosmos.Objects.Base;
+using System;
+using System.Net;
 
 namespace Smartrac.SmartCosmos.Objects.GeospatialManagement
 {
@@ -33,7 +33,8 @@ namespace Smartrac.SmartCosmos.Objects.GeospatialManagement
     {
         protected override JsonSerializerSettings GetJsonSerializerSettings()
         {
-            JsonSerializerSettings settings = new JsonSerializerSettings {
+            JsonSerializerSettings settings = new JsonSerializerSettings
+            {
                 NullValueHandling = NullValueHandling.Ignore,
             };
 
@@ -108,7 +109,7 @@ namespace Smartrac.SmartCosmos.Objects.GeospatialManagement
                 if (responseData != null)
                 {
                     if ((responseData.HTTPStatusCode == HttpStatusCode.NoContent)) // &&
-                       //(webResponse.Headers.Get("SmartCosmos-Event") == "GeospatialEntryUpdated"))
+                    //(webResponse.Headers.Get("SmartCosmos-Event") == "GeospatialEntryUpdated"))
                     {
                         return GeoActionResult.Successful;
                     }

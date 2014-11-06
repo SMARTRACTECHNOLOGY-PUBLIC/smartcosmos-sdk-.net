@@ -17,14 +17,13 @@
 
 #endregion License
 
+using Smartrac.Logging;
+using Smartrac.SmartCosmos.Profiles.TagMetadata;
+using Smartrac.SmartCosmos.TestCase.Base;
 using System;
 using System.Diagnostics;
 using System.IO;
 using System.Xml.Linq;
-using Smartrac.Logging;
-using Smartrac.SmartCosmos.Profiles.TagMetadata;
-using Smartrac.SmartCosmos.Profiles.TestCase;
-using Smartrac.SmartCosmos.TestCase.Base;
 
 namespace Smartrac.SmartCosmos.Profiles.TestCase.Sample
 {

@@ -17,14 +17,8 @@
 
 #endregion License
 
-using System;
-using System.Diagnostics;
-using System.IO;
-using Smartrac.Logging;
-using Smartrac.SmartCosmos.Profiles.TestCase;
-using Smartrac.SmartCosmos.Profiles.TagMetadata;
-using Smartrac.SmartCosmos.TestCase.Base;
 using Smartrac.SmartCosmos.Profiles.DataContext;
+using Smartrac.SmartCosmos.Profiles.TagMetadata;
 
 namespace Smartrac.SmartCosmos.Profiles.TestCase
 {

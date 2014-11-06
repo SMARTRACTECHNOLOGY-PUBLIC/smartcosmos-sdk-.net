@@ -17,10 +17,10 @@
 
 #endregion License
 
-using System.IO;
-using System.Text;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Serialization;
+using System.IO;
+using System.Text;
 
 namespace Smartrac.SmartCosmos.ClientEndpoint.BaseObject
 {
@@ -29,6 +29,12 @@ namespace Smartrac.SmartCosmos.ClientEndpoint.BaseObject
     /// </summary>
     public static class ObjectExtensions
     {
+        /// <summary>
+        /// serialize the object to JSON
+        /// </summary>
+        /// <typeparam name="T"></typeparam>
+        /// <param name="obj"></param>
+        /// <returns></returns>
         public static string ToJSON<T>(this T obj) where T : class
         {
             if (obj == null)
@@ -41,6 +47,13 @@ namespace Smartrac.SmartCosmos.ClientEndpoint.BaseObject
                 });
         }
 
+        /// <summary>
+        /// serialize the object to (indented) JSON
+        /// </summary>
+        /// <typeparam name="T"></typeparam>
+        /// <param name="obj"></param>
+        /// <param name="formatIndented"></param>
+        /// <returns></returns>
         public static string ToJSON<T>(this T obj, bool formatIndented) where T : class
         {
             if (obj == null)
@@ -54,6 +67,14 @@ namespace Smartrac.SmartCosmos.ClientEndpoint.BaseObject
                 });
         }
 
+        /// <summary>
+        /// serialize the object to (indented) JSON dependend on settings
+        /// </summary>
+        /// <typeparam name="T"></typeparam>
+        /// <param name="obj"></param>
+        /// <param name="formatIndented"></param>
+        /// <param name="settings"></param>
+        /// <returns></returns>
         public static string ToJSON<T>(this T obj, bool formatIndented, JsonSerializerSettings settings) where T : class
         {
             if (obj == null)
@@ -63,23 +84,37 @@ namespace Smartrac.SmartCosmos.ClientEndpoint.BaseObject
                 settings);
         }
 
-        /*
-        public static string ToJSON<T>(this T obj, Type aType) where T : class
-        {
-            return JsonConvert.SerializeObject(obj);
-        }
-        */
-
+        /// <summary>
+        /// deserialize objects from JSON
+        /// </summary>
+        /// <typeparam name="T"></typeparam>
+        /// <param name="obj"></param>
+        /// <param name="json"></param>
+        /// <returns></returns>
         public static T FromJSON<T>(this T obj, string json) where T : class
         {
             return JsonConvert.DeserializeObject<T>(json);
         }
 
+        /// <summary>
+        /// deserialize objects from JSON
+        /// </summary>
+        /// <typeparam name="T"></typeparam>
+        /// <param name="obj"></param>
+        /// <param name="jsonBytes"></param>
+        /// <returns></returns>
         public static T FromJSON<T>(this T obj, byte[] jsonBytes) where T : class
         {
             return JsonConvert.DeserializeObject<T>(Encoding.UTF8.GetString(jsonBytes));
         }
 
+        /// <summary>
+        /// deserialize objects from JSON
+        /// </summary>
+        /// <typeparam name="T"></typeparam>
+        /// <param name="obj"></param>
+        /// <param name="jsonStream"></param>
+        /// <returns></returns>
         public static T FromJSON<T>(this T obj, Stream jsonStream) where T : class
         {
             // convert stream to string
@@ -87,6 +122,14 @@ namespace Smartrac.SmartCosmos.ClientEndpoint.BaseObject
             return JsonConvert.DeserializeObject<T>(reader.ReadToEnd());
         }
 
+        /// <summary>
+        /// deserialize objects from JSON
+        /// </summary>
+        /// <typeparam name="T"></typeparam>
+        /// <param name="obj"></param>
+        /// <param name="jsonStream"></param>
+        /// <param name="settings"></param>
+        /// <returns></returns>
         public static T FromJSON<T>(this T obj, Stream jsonStream, JsonSerializerSettings settings) where T : class
         {
             // convert stream to string

@@ -17,11 +17,6 @@
 
 #endregion License
 
-using System.Collections.Generic;
-using System.Xml.Linq;
-using GeoJSON.Net;
-using Smartrac.SmartCosmos.Objects.Base;
-
 namespace Smartrac.SmartCosmos.Objects.DataContext.XML
 {
     /*
@@ -29,7 +24,6 @@ namespace Smartrac.SmartCosmos.Objects.DataContext.XML
     {
         public bool Deserialze(XElement elem)
         {
-
             return true;
         }
     }

@@ -24,12 +24,17 @@ namespace Smartrac.SmartCosmos.Profiles.DataContext
     public class EmptyTagDataContext : BaseTagDataContext
     {
         public List<string> TagIds { get; set; }
+
         public List<string> TagProperties { get; set; }
+
         public List<string> VerificationTypes { get; set; }
+
         public List<string> ImportIds { get; set; }
+
         public List<string> TagDataFiles { get; set; }
 
-        public EmptyTagDataContext() : base()
+        public EmptyTagDataContext()
+            : base()
         {
             TagIds = new List<string>();
             TagProperties = new List<string>();

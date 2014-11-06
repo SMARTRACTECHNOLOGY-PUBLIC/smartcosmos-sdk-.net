@@ -18,9 +18,7 @@
 #endregion License
 
 using Smartrac.SmartCosmos.ClientEndpoint.Base;
-using Smartrac.SmartCosmos.Profiles.TestCase;
 using Smartrac.SmartCosmos.Profiles.PlatformAvailability;
-using Smartrac.SmartCosmos.TestCase.Base;
 
 namespace Smartrac.SmartCosmos.Profiles.TestCase
 {
@@ -30,13 +28,6 @@ namespace Smartrac.SmartCosmos.Profiles.TestCase
         {
             return true; // not required
         }
-       
-        /*
-        protected override ITagDataContext CreateDataContext()
-        {
-            return DataContextFactory.CreateTagDataContext();
-        }
-         */
 
         protected override IPlatformAvailabilityEndpoint CreateEndpoint()
         {

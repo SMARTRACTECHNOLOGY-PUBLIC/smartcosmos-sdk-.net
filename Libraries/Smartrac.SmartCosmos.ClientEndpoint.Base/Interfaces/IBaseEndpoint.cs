@@ -26,16 +26,36 @@ namespace Smartrac.SmartCosmos.ClientEndpoint.Base
     /// </summary>
     public interface IBaseEndpoint
     {
+        /// <summary>
+        /// Server Url
+        /// </summary>
         string ServerURL { get; set; }
 
+        /// <summary>
+        /// Keep connection alive
+        /// </summary>
         bool KeepAlive { get; set; }
 
+        /// <summary>
+        /// Allow invalid server certificates
+        /// </summary>
         bool AllowInvalidServerCertificates { get; set; }
 
+        /// <summary>
+        /// Client accept lanugage
+        /// </summary>
         string AcceptLanguage { get; set; }
 
+        /// <summary>
+        /// logger interface
+        /// </summary>
         IMessageLogger Logger { get; set; }
 
+        /// <summary>
+        /// Optional: credentials
+        /// </summary>
+        /// <param name="userName">user name</param>
+        /// <param name="userPassword">user password</param>
         void setUserAccount(string userName, string userPassword);
     }
 }

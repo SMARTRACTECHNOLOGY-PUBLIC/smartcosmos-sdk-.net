@@ -18,9 +18,7 @@
 #endregion License
 
 using Smartrac.Logging;
-using Smartrac.SmartCosmos.ClientEndpoint.BaseObject;
 using Smartrac.SmartCosmos.Objects.Base;
-using Smartrac.SmartCosmos.Objects.TestCase;
 using Smartrac.SmartCosmos.Objects.ObjectManagement;
 using Smartrac.SmartCosmos.TestCase.Base;
 
@@ -29,7 +27,7 @@ namespace Smartrac.SmartCosmos.Objects.TestCase.Sample
     [TestCaseAttribute(40)]
     public class TestCaseObjectManagementEndpoint : BaseTestCaseObjectManagementEndpoint
     {
-       protected override bool ExecuteTests()
+        protected override bool ExecuteTests()
         {
             Urn objectUrn;
             Urn systemUrn;
@@ -82,13 +80,13 @@ namespace Smartrac.SmartCosmos.Objects.TestCase.Sample
             ObjectDataResponse responseObjectData;
             if ((systemUrn == null) || (!systemUrn.IsValid()))
             {
-            Logger.AddLog("Skip RunTestCase_Lookup", LogType.Info);
+                Logger.AddLog("Skip RunTestCase_Lookup", LogType.Info);
             }
 
-                OnBeforeTest("Objects", "ObjectManagementEndpoint", "Lookup Specific Object by URN");
-                // call endpoint
-                ObjectActionResult actionResult = endpoint.Lookup(systemUrn, out responseObjectData, dataContext.GetViewType());
-                OnAfterTest(actionResult);
+            OnBeforeTest("Objects", "ObjectManagementEndpoint", "Lookup Specific Object by URN");
+            // call endpoint
+            ObjectActionResult actionResult = endpoint.Lookup(systemUrn, out responseObjectData, dataContext.GetViewType());
+            OnAfterTest(actionResult);
             return (actionResult == ObjectActionResult.Successful);
         }
 

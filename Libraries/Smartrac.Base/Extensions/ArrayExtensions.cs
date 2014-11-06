@@ -19,53 +19,56 @@
 
 namespace System
 {
-    namespace ArrayExtensions
+    /// <summary>
+    /// Array extensions
+    /// </summary>
+    public static class ArrayExtensions
     {
         /// <summary>
         /// implements ForEach method for all arrays
         /// </summary>
-        public static class ArrayExtensions
+        public static void ForEach(this Array array, Action<Array, int[]> action)
         {
-            public static void ForEach(this Array array, Action<Array, int[]> action)
+            if (array.LongLength == 0) return;
+            ArrayTraverse walker = new ArrayTraverse(array);
+            do action(array, walker.Position);
+            while (walker.Step());
+        }
+    }
+
+    /// <summary>
+    /// implements ArrayTraverse method
+    /// </summary>
+    internal class ArrayTraverse
+    {
+        public int[] Position;
+        private int[] maxLengths;
+
+        public ArrayTraverse(Array array)
+        {
+            maxLengths = new int[array.Rank];
+            for (int i = 0; i < array.Rank; ++i)
             {
-                if (array.LongLength == 0) return;
-                ArrayTraverse walker = new ArrayTraverse(array);
-                do action(array, walker.Position);
-                while (walker.Step());
+                maxLengths[i] = array.GetLength(i) - 1;
             }
+            Position = new int[array.Rank];
         }
 
-        internal class ArrayTraverse
+        public bool Step()
         {
-            public int[] Position;
-            private int[] maxLengths;
-
-            public ArrayTraverse(Array array)
+            for (int i = 0; i < Position.Length; ++i)
             {
-                maxLengths = new int[array.Rank];
-                for (int i = 0; i < array.Rank; ++i)
+                if (Position[i] < maxLengths[i])
                 {
-                    maxLengths[i] = array.GetLength(i) - 1;
-                }
-                Position = new int[array.Rank];
-            }
-
-            public bool Step()
-            {
-                for (int i = 0; i < Position.Length; ++i)
-                {
-                    if (Position[i] < maxLengths[i])
+                    Position[i]++;
+                    for (int j = 0; j < i; j++)
                     {
-                        Position[i]++;
-                        for (int j = 0; j < i; j++)
-                        {
-                            Position[j] = 0;
-                        }
-                        return true;
+                        Position[j] = 0;
                     }
+                    return true;
                 }
-                return false;
             }
+            return false;
         }
     }
 }

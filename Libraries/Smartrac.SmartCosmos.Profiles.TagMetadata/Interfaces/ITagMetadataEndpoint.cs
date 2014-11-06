@@ -17,8 +17,8 @@
 
 #endregion License
 
-using System.ComponentModel;
 using Smartrac.SmartCosmos.ClientEndpoint.Base;
+using System.ComponentModel;
 
 namespace Smartrac.SmartCosmos.Profiles.TagMetadata
 {
