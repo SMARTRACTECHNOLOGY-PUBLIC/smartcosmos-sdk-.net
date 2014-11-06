@@ -102,7 +102,7 @@
     <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="Newtonsoft.Json">
+    <Reference Include="Newtonsoft.Json, Version=6.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
       <HintPath>..\..\External\Newtonsoft.Json.6.0.6\lib\net40\Newtonsoft.Json.dll</HintPath>
     </Reference>
     <Reference Include="System" />
@@ -139,7 +139,7 @@
       <Name>Smartrac.SmartCosmos.ClientEndpoint.Base</Name>
     </ProjectReference>
     <ProjectReference Include="..\Smartrac.SmartCosmos.Profiles.Base\Smartrac.SmartCosmos.Profiles.Base.csproj">
-      <Project>{90b0fb18-9350-4f44-a7c2-84cdfb1361be}</Project>
+      <Project>{e7c0b1ed-7957-4d97-bf2c-65381a436e7c}</Project>
       <Name>Smartrac.SmartCosmos.Profiles.Base</Name>
     </ProjectReference>
   </ItemGroup>
