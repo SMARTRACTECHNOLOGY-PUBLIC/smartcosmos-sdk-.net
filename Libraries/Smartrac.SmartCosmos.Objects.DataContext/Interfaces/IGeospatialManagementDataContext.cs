@@ -19,6 +19,7 @@
 
 using GeoJSON.Net;
 using Smartrac.SmartCosmos.ClientEndpoint.Base;
+using Smartrac.SmartCosmos.ClientEndpoint.BaseObject;
 using Smartrac.SmartCosmos.Objects.Base;
 
 namespace Smartrac.SmartCosmos.Objects.DataContext

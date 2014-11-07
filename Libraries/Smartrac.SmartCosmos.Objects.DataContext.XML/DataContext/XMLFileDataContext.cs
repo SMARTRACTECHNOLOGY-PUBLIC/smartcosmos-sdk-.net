@@ -17,6 +17,7 @@
 
 #endregion License
 
+using Smartrac.SmartCosmos.ClientEndpoint.BaseObject;
 using Smartrac.SmartCosmos.Objects.Base;
 using System;
 using System.Xml.Serialization;

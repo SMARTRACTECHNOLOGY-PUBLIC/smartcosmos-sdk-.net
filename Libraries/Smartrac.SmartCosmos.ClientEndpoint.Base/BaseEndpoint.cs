@@ -45,6 +45,7 @@ namespace Smartrac.SmartCosmos.ClientEndpoint.Base
     {
         protected string AuthorizationToken = "";
         private string ServerURL_;
+        private string ServiceSubUrl_;        
         private bool AllowInvalidServerCertificates_;
 
         public BaseEndpoint()
@@ -53,6 +54,7 @@ namespace Smartrac.SmartCosmos.ClientEndpoint.Base
             this.AcceptLanguage = "en";
             this.ServerURL = "";
             this.AllowInvalidServerCertificates_ = false;
+            this.ServiceSubUrl = "/service/rest";
         }
 
         /// <summary>
@@ -107,6 +109,24 @@ namespace Smartrac.SmartCosmos.ClientEndpoint.Base
                     ServerURL_ = value.Remove(value.Length - 1);
                 else
                     ServerURL_ = value;
+            }
+        }
+
+        /// <summary>
+        /// Base subfolder of service URL of the defined SMART COSMOS service 
+        /// </summary>
+        public string ServiceSubUrl
+        {
+            get
+            {
+                return ServiceSubUrl_;
+            }
+            set
+            {
+                if (value.StartsWith("/"))
+                    ServiceSubUrl_ = value;
+                else
+                    ServiceSubUrl_ = "/" + value;
             }
         }
 
@@ -166,7 +186,7 @@ namespace Smartrac.SmartCosmos.ClientEndpoint.Base
         /// <returns>Configured web request object</returns>
         protected WebRequest CreateWebRequest(Uri url, WebRequestOption options)
         {
-            var request = System.Net.WebRequest.Create(ServerURL + url.OriginalString) as System.Net.HttpWebRequest;
+            var request = System.Net.WebRequest.Create(ServerURL + ServiceSubUrl + url.OriginalString) as System.Net.HttpWebRequest;
             request.KeepAlive = KeepAlive;
             if (options.HasFlag(WebRequestOption.Authorization) && (AuthorizationToken != ""))
                 request.Headers.Add("authorization", AuthorizationToken);
@@ -278,7 +298,7 @@ namespace Smartrac.SmartCosmos.ClientEndpoint.Base
                 {
                     try
                     {
-                        if ( (webResponse.StatusCode == HttpStatusCode.NoContent) ||
+                        if ((webResponse.StatusCode == HttpStatusCode.NoContent) ||
                              (webResponse.StatusCode == HttpStatusCode.InternalServerError))
                         {
                             responseData = new responseType();

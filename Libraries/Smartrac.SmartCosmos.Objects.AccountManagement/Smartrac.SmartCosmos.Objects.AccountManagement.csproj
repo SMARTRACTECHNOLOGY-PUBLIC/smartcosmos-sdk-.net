@@ -81,7 +81,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="AccountDetails\AccountDetailsResponse.cs" />
-    <Compile Include="Builder\RegistrationEndpointBuilder.cs" />
+    <Compile Include="Builder\AccountManagementEndpointBuilder.cs" />
     <Compile Include="ChangeYourPassword\ChangeYourPasswordRequest.cs" />
     <Compile Include="ChangeYourPassword\ChangeYourPasswordResponse.cs" />
     <Compile Include="Endpoint.cs" />

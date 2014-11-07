@@ -1,4 +1,5 @@
-﻿using Smartrac.SmartCosmos.Objects.Base;
+﻿using Smartrac.SmartCosmos.ClientEndpoint.BaseObject;
+using Smartrac.SmartCosmos.Objects.Base;
 using System;
 
 namespace Smartrac.SmartCosmos.Objects.DataContext.Sample

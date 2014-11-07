@@ -20,6 +20,7 @@
 using Newtonsoft.Json;
 using Smartrac.Logging;
 using Smartrac.SmartCosmos.ClientEndpoint.Base;
+using Smartrac.SmartCosmos.ClientEndpoint.BaseObject;
 using Smartrac.SmartCosmos.Objects.Base;
 using System;
 using System.Net;
