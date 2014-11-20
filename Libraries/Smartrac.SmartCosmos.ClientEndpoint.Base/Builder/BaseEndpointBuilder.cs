@@ -110,7 +110,7 @@ namespace Smartrac.SmartCosmos.ClientEndpoint.Base
         /// </summary>
         protected override void onValidate()
         {
-            Contract.Requires(!String.IsNullOrEmpty(instance.ServerURL));
+            Contract.Requires(!String.IsNullOrEmpty(instance.ServerURL), "Server URL is required");
         }
     }
 }
