@@ -35,6 +35,8 @@ namespace Smartrac.SmartCosmos.Profiles.DataContext.Sample
             TagIds.Add("E280113020003054990802EB");
             //   TagIds.Add("E12345678912345777");
 
+            TagMessage = 0;
+
             TagProperties.Add(TagPropertyString.customerId.GetDescription());
             TagProperties.Add(TagPropertyString.orderId.GetDescription());
             TagProperties.Add(TagPropertyLong.orderDate.GetDescription());

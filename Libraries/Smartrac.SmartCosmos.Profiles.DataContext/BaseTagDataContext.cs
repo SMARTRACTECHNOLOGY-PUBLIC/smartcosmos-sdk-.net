@@ -52,5 +52,10 @@ namespace Smartrac.SmartCosmos.Profiles.DataContext
         {
             return null;
         }
+
+        public virtual int GetTagMessage()
+        {
+            return 0;
+        }
     }
 }

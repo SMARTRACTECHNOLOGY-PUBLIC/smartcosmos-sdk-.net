@@ -67,18 +67,25 @@ namespace Smartrac.SmartCosmos.Profiles.TestCase.Sample
 
         protected virtual bool TestGetVerificationMessage()
         {
-            OnBeforeTest("Profiles", "TagVerificationEndpoint", "GetVerificationMessage");
-            // create request
-            VerificationMessageRequest requestVerificationMessage = new VerificationMessageRequest();
-            requestVerificationMessage.verificationState = 0;
-            requestVerificationMessage.verificationType = dataContext.GetVerificationTypes().First<string>();
-            VerificationMessageResponse responseVerificationMessage;
-            // call endpoint
-            TagVerificationActionResult actionResult = endpoint.GetVerificationMessage(requestVerificationMessage, out responseVerificationMessage);
-            // log response
-            OnAfterTest(actionResult);
+            bool testSuccessful = true;
 
-            return (actionResult == TagVerificationActionResult.Successful);
+            foreach (var item in dataContext.GetVerificationTypes())
+            {
+                OnBeforeTest("Profiles", "TagVerificationEndpoint", "GetVerificationMessage - " + item);
+                // create request
+                VerificationMessageRequest requestVerificationMessage = new VerificationMessageRequest();
+                requestVerificationMessage.verificationState = 0;
+                requestVerificationMessage.verificationType = item;
+                VerificationMessageResponse responseVerificationMessage;
+                // call endpoint
+                TagVerificationActionResult actionResult = endpoint.GetVerificationMessage(requestVerificationMessage, out responseVerificationMessage);
+                // log response
+                OnAfterTest(actionResult);
+
+                testSuccessful = (actionResult == TagVerificationActionResult.Successful) && testSuccessful;
+            }
+
+            return testSuccessful;
         }
     }
 }

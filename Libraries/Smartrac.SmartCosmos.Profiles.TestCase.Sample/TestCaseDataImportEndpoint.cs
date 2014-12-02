@@ -27,6 +27,11 @@ namespace Smartrac.SmartCosmos.Profiles.TestCase.Sample
     {
         protected override bool ExecuteTests()
         {
+            return TestCheckImportState();
+        }
+
+        protected virtual bool TestCheckImportState()
+        {
             DataActionResult actionResult = DataActionResult.Successful;
 
             foreach (string importId in dataContext.GetImportId())

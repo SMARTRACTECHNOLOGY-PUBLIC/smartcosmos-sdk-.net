@@ -45,7 +45,7 @@ namespace Smartrac.SmartCosmos.ClientEndpoint.Base
     {
         protected string AuthorizationToken = "";
         private string ServerURL_;
-        private string ServiceSubUrl_;        
+        private string ServiceSubUrl_;
         private bool AllowInvalidServerCertificates_;
 
         public BaseEndpoint()
@@ -139,10 +139,13 @@ namespace Smartrac.SmartCosmos.ClientEndpoint.Base
         {
             if ((userName == "") || (userPassword == ""))
             {
-                if (null != Logger)
-                    Logger.AddLog("Clear authorization token");
+                if (AuthorizationToken != "")
+                {
+                    if (null != Logger)
+                        Logger.AddLog("Clear authorization token");
 
-                AuthorizationToken = "";
+                    AuthorizationToken = "";
+                }
                 return;
             }
 
@@ -157,8 +160,8 @@ namespace Smartrac.SmartCosmos.ClientEndpoint.Base
                 "Basic " +
                 Convert.ToBase64String(
                   Encoding.UTF8.GetBytes(
-                    userName + 
-                    ":" + 
+                    userName +
+                    ":" +
                     BitConverter.ToString(
                       SHA512.Create().ComputeHash(
                         Encoding.UTF8.GetBytes(userPassword)

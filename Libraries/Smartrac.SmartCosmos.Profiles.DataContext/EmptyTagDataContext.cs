@@ -35,6 +35,8 @@ namespace Smartrac.SmartCosmos.Profiles.DataContext
 
         public List<string> MaterialPerformance { get; set; }
 
+        public int TagMessage { get; set; }
+
         public EmptyTagDataContext()
             : base()
         {
@@ -44,6 +46,7 @@ namespace Smartrac.SmartCosmos.Profiles.DataContext
             ImportIds = new List<string>();
             TagDataFiles = new List<string>();
             MaterialPerformance = new List<string>();
+            TagMessage = 0;
         }
 
         public override IEnumerable<string> GetTagIds()
@@ -74,6 +77,11 @@ namespace Smartrac.SmartCosmos.Profiles.DataContext
         public override IEnumerable<string> GetMaterialPerformance()
         {
             return MaterialPerformance;
+        }
+
+        public override int GetTagMessage()
+        {
+            return TagMessage;
         }
 
         

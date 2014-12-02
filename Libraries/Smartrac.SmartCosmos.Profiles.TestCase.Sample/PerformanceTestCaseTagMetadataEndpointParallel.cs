@@ -34,6 +34,11 @@ namespace Smartrac.SmartCosmos.Profiles.TestCase.Sample
     {
         protected override bool ExecuteTests()
         {
+            return TestTagMetadata();
+        }
+
+        protected virtual bool TestTagMetadata()
+        {
             bool result = true;
 
             foreach (string file in dataContext.GetTagDataFile())
