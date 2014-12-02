@@ -125,7 +125,7 @@
     </ProjectReference>
     <ProjectReference Include="..\Smartrac.SmartCosmos.Objects.TestCase\Smartrac.SmartCosmos.Objects.TestCase.csproj">
       <Project>{b25ff844-52d4-4da4-a34d-fe8e101bd7d7}</Project>
-      <Name>Smartrac.SmartCosmos.Objects.TestCase.Base</Name>
+      <Name>Smartrac.SmartCosmos.Objects.TestCase</Name>
     </ProjectReference>
     <ProjectReference Include="..\Smartrac.SmartCosmos.Objects.DataContext\Smartrac.SmartCosmos.Objects.DataContext.csproj">
       <Project>{955046d9-aa9a-462c-9057-8046c61ed701}</Project>
@@ -137,7 +137,7 @@
     </ProjectReference>
     <ProjectReference Include="..\Smartrac.SmartCosmos.Profiles.TestCase\Smartrac.SmartCosmos.Profiles.TestCase.csproj">
       <Project>{5d8b2364-f6cf-41e7-89af-5387cd6d9a5e}</Project>
-      <Name>Smartrac.SmartCosmos.Profiles.TestCase.Base</Name>
+      <Name>Smartrac.SmartCosmos.Profiles.TestCase</Name>
     </ProjectReference>
     <ProjectReference Include="..\Smartrac.SmartCosmos.Profiles.DataContext\Smartrac.SmartCosmos.Profiles.DataContext.csproj">
       <Project>{d3a5db54-fd8f-4c15-8e1d-e0a10c55465c}</Project>

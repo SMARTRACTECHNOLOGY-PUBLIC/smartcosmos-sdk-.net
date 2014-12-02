@@ -33,5 +33,7 @@ namespace Smartrac.SmartCosmos.Profiles.DataContext
         IEnumerable<string> GetImportId();
 
         IEnumerable<string> GetTagDataFile();
+
+        IEnumerable<string> GetMaterialPerformance();
     }
 }

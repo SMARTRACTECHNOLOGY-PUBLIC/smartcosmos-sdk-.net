@@ -17,9 +17,10 @@
 
 #endregion License
 
+using Smartrac.SmartCosmos.ClientEndpoint.BaseObject;
 namespace Smartrac.SmartCosmos.Profiles.TagMetadata
 {
-    public class TagMessageRequest
+    public class TagMessageRequest : BaseRequest
     {
         public int tagCode { get; set; }
     }

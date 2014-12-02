@@ -29,17 +29,36 @@ namespace Smartrac.SmartCosmos.Profiles.TestCase.Sample
         protected override bool ExecuteTests()
         {
             return TestVerifyTags() &&
-                   TestGetVerificationMessage();
+                   TestGetVerificationMessage() &&
+                   TestVerifyTagsForRoundRockCompliance();
         }
 
         protected virtual bool TestVerifyTags()
         {
-            OnBeforeTest("Profiles", "TagVerificationEndpoint", "VerifyTags");
+            TagVerificationActionResult actionResult = TagVerificationActionResult.Failed;
+            foreach (var verificationItem in dataContext.GetVerificationTypes())
+            {
+                OnBeforeTest("Profiles", "TagVerificationEndpoint", "VerifyTags " + verificationItem);
+                // create request
+                VerifyTagsRequest requestVerifyTags = new VerifyTagsRequest(dataContext);
+                requestVerifyTags.verificationType = verificationItem;
+                // call endpoint
+                VerifyTagsResponse responseVerifyTags;
+                actionResult = endpoint.VerifyTags(requestVerifyTags, out responseVerifyTags);
+                // log response
+                OnAfterTest(actionResult);
+            }
+            return (actionResult == TagVerificationActionResult.Successful);
+        }
+
+        protected virtual bool TestVerifyTagsForRoundRockCompliance()
+        {
+            OnBeforeTest("Profiles", "TagVerificationEndpoint", "VerifyTagsForRoundRockCompliance");
             // create request
-            VerifyTagsRequest requestVerifyTags = new VerifyTagsRequest(dataContext);
+            VerifyTagsRequestRR requestVerifyTags = new VerifyTagsRequestRR(dataContext);
             // call endpoint
             VerifyTagsResponse responseVerifyTags;
-            TagVerificationActionResult actionResult = endpoint.VerifyTags(requestVerifyTags, out responseVerifyTags);
+            TagVerificationActionResult actionResult = endpoint.VerifyTagsForRoundRockCompliance(requestVerifyTags, out responseVerifyTags);
             // log response
             OnAfterTest(actionResult);
 

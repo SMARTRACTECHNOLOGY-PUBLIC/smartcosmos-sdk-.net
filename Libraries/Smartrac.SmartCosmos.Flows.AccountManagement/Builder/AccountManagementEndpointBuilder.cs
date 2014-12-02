@@ -21,10 +21,10 @@ using Smartrac.SmartCosmos.ClientEndpoint.Base;
 
 namespace Smartrac.SmartCosmos.Flows.AccountManagement
 {
-    public class AccountManagementEndpointBuilder : BaseEndpointBuilder<IAccountManagementEndpoint, AccountManagementEndpointBuilder>
+    public class FlowsAccountManagementEndpointBuilder : BaseEndpointBuilder<IFlowsAccountManagementEndpoint, FlowsAccountManagementEndpointBuilder>
     {
-        public AccountManagementEndpointBuilder() :
-            base(new AccountManagementEndpoint())
+        public FlowsAccountManagementEndpointBuilder() :
+            base(new FlowsAccountManagementEndpoint())
         {
         }
     }

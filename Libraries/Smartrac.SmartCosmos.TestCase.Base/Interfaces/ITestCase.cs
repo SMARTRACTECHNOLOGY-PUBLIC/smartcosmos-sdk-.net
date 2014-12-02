@@ -20,6 +20,7 @@
 using Smartrac.Logging;
 using Smartrac.SmartCosmos.ClientEndpoint.Factory;
 using Smartrac.SmartCosmos.DataContextFactory;
+using System.Collections.Generic;
 
 namespace Smartrac.SmartCosmos.TestCase.Base
 {

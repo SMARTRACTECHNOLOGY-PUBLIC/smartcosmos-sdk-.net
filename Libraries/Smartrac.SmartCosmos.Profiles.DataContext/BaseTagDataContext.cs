@@ -47,5 +47,10 @@ namespace Smartrac.SmartCosmos.Profiles.DataContext
         {
             return null;
         }
+
+        public virtual IEnumerable<string> GetMaterialPerformance()
+        {
+            return null;
+        }
     }
 }

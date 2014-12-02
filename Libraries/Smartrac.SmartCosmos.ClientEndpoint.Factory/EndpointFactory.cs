@@ -18,6 +18,8 @@
 #endregion License
 
 using Smartrac.Logging;
+using Smartrac.SmartCosmos.Flows.BusinessRule;
+using Smartrac.SmartCosmos.Flows.AccountManagement;
 using Smartrac.SmartCosmos.Objects.AccountManagement;
 using Smartrac.SmartCosmos.Objects.File;
 using Smartrac.SmartCosmos.Objects.GeospatialManagement;
@@ -47,6 +49,11 @@ namespace Smartrac.SmartCosmos.ClientEndpoint.Factory
         /// URL of SMART COSMOS Objects server
         /// </summary>
         public string ObjectsServerURL { get; set; }
+
+        /// <summary>
+        /// URL of SMART COSMOS Flow server
+        /// </summary>
+        public string FlowsServerURL { get; set; }
 
         /// <summary>
         /// Defines if the connection should be keep alive
@@ -90,6 +97,16 @@ namespace Smartrac.SmartCosmos.ClientEndpoint.Factory
         /// </summary>
         public string ObjectsUserPassword { get; set; }
 
+        /// <summary>
+        /// User name for SMART COSMOS Flow
+        /// </summary>
+        public string FlowsUserName { get; set; }
+
+        /// <summary>
+        /// User password for SMART COSMOS Flow
+        /// </summary>
+        public string FlowsUserPassword { get; set; }
+
         public EndpointFactory(IMessageLogger logger)
             : this(logger, "", "")
         {
@@ -103,11 +120,38 @@ namespace Smartrac.SmartCosmos.ClientEndpoint.Factory
             this.AcceptLanguage = "en";
             this.ProfilesServerURL = "";
             this.ObjectsServerURL = ""; // TODO
+            this.FlowsServerURL = "";
             this.AllowInvalidServerCertificates = false;
             this.ProfilesUserName = userName;
             this.ProfilesUserPassword = userPassword;
         }
 
+        #region FLOWS
+
+        public virtual IFlowsAccountManagementEndpoint CreateFlowsAccountManagementEndpoint()
+        {
+            return new Smartrac.SmartCosmos.Flows.AccountManagement.FlowsAccountManagementEndpointBuilder()
+                .setLogger(Logger)
+                .setKeepAlive(KeepAlive)
+                .setServerURL(FlowsServerURL)
+                .setAllowInvalidServerCertificates(AllowInvalidServerCertificates)
+                .setUserAccount(FlowsUserName, FlowsUserPassword)
+                .build();
+        }
+
+        public virtual IBusinessRuleEndpoint CreateBusinessRuleEndpoint()
+        {
+            return new BusinessRuleEndpointBuilder()
+                .setLogger(Logger)
+                .setKeepAlive(KeepAlive)
+                .setServerURL(FlowsServerURL)
+                .setAllowInvalidServerCertificates(AllowInvalidServerCertificates)
+                .setUserAccount(FlowsUserName, FlowsUserPassword)
+                .build();
+        }        
+
+        #endregion FLOWS
+        
         #region PROFILES
 
         public virtual IPlatformAvailabilityEndpoint CreatePlatformAvailabilityEndpoint()

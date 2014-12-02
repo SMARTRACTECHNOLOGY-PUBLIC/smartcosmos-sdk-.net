@@ -18,6 +18,8 @@
 #endregion License
 
 using Smartrac.Logging;
+using Smartrac.SmartCosmos.Flows.AccountManagement;
+using Smartrac.SmartCosmos.Flows.BusinessRule;
 using Smartrac.SmartCosmos.Objects.AccountManagement;
 using Smartrac.SmartCosmos.Objects.File;
 using Smartrac.SmartCosmos.Objects.GeospatialManagement;
@@ -47,6 +49,11 @@ namespace Smartrac.SmartCosmos.ClientEndpoint.Factory
         /// URL of SMART COSMOS Objects server
         /// </summary>
         string ObjectsServerURL { get; set; }
+
+        /// <summary>
+        /// URL of SMART COSMOS Flow server
+        /// </summary>
+        string FlowsServerURL { get; set; }
 
         /// <summary>
         /// Defines if the connection should be keep alive
@@ -89,6 +96,16 @@ namespace Smartrac.SmartCosmos.ClientEndpoint.Factory
         /// User password for SMART COSMOS Objects
         /// </summary>
         string ObjectsUserPassword { get; set; }
+
+        /// <summary>
+        /// User name for SMART COSMOS Flow
+        /// </summary>
+        string FlowsUserName { get; set; }
+
+        /// <summary>
+        /// User password for SMART COSMOS Flow
+        /// </summary>
+        string FlowsUserPassword { get; set; }
 
         #region Profiles
 
@@ -147,5 +164,21 @@ namespace Smartrac.SmartCosmos.ClientEndpoint.Factory
         IUserManagementEndpoint CreateUserManagementEndpoint();
 
         #endregion Objects
+
+        #region Flows
+
+        /// <summary>
+        /// Create account management endpoints
+        /// </summary>
+        /// <returns>IAccountManagementEndpoint</returns>
+        IFlowsAccountManagementEndpoint CreateFlowsAccountManagementEndpoint();
+
+        /// <summary>
+        /// Create business rule endpoints
+        /// </summary>
+        /// <returns>IBusinessRuleEndpoint</returns>
+        IBusinessRuleEndpoint CreateBusinessRuleEndpoint();
+
+        #endregion Flows
     }
 }

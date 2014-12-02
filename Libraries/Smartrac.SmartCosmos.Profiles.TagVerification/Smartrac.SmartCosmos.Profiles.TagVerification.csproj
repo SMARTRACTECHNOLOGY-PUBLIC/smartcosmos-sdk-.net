@@ -120,6 +120,8 @@
     <Compile Include="VerificationMessage\VerificationMessageRequest.cs" />
     <Compile Include="VerificationMessage\VerificationMessageResponse.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="VerifyTags\VerifyTagsRequestBase.cs" />
+    <Compile Include="VerifyTags\VerifyTagsRequestRR.cs" />
     <Compile Include="VerifyTags\VerifyTagsRequest.cs" />
     <Compile Include="VerifyTags\VerifyTagsResponse.cs" />
   </ItemGroup>

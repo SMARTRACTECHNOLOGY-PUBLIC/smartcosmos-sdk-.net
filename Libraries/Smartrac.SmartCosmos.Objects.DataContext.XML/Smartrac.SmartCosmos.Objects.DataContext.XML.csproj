@@ -151,7 +151,7 @@
     </ProjectReference>
     <ProjectReference Include="..\Smartrac.SmartCosmos.Objects.TestCase\Smartrac.SmartCosmos.Objects.TestCase.csproj">
       <Project>{b25ff844-52d4-4da4-a34d-fe8e101bd7d7}</Project>
-      <Name>Smartrac.SmartCosmos.Objects.TestCase.Base</Name>
+      <Name>Smartrac.SmartCosmos.Objects.TestCase</Name>
     </ProjectReference>
     <ProjectReference Include="..\Smartrac.SmartCosmos.Objects.DataContext\Smartrac.SmartCosmos.Objects.DataContext.csproj">
       <Project>{955046d9-aa9a-462c-9057-8046c61ed701}</Project>

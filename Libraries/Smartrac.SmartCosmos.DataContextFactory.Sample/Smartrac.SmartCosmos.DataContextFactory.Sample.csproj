@@ -110,6 +110,14 @@
       <Project>{3cc1bfca-f7ac-4ff2-b8bf-fea215f32529}</Project>
       <Name>Smartrac.SmartCosmos.DataContextFactory</Name>
     </ProjectReference>
+    <ProjectReference Include="..\Smartrac.SmartCosmos.Flows.DataContext.Sample\Smartrac.SmartCosmos.Flows.DataContext.Sample.csproj">
+      <Project>{ee3c497c-ad7c-414a-a899-e7ccc817746c}</Project>
+      <Name>Smartrac.SmartCosmos.Flows.DataContext.Sample</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Smartrac.SmartCosmos.Flows.DataContext\Smartrac.SmartCosmos.Flows.DataContext.csproj">
+      <Project>{b937e916-b168-4bf2-92d3-c3f7c19dccc9}</Project>
+      <Name>Smartrac.SmartCosmos.Flows.DataContext</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Smartrac.SmartCosmos.Objects.DataContext.Sample\Smartrac.SmartCosmos.Objects.DataContext.Sample.csproj">
       <Project>{5bccf20e-9442-42e6-a4f2-d5dc156190da}</Project>
       <Name>Smartrac.SmartCosmos.Objects.DataContext.Sample</Name>

@@ -28,6 +28,7 @@ namespace Smartrac.SmartCosmos.Profiles.TestCase.Sample
         protected override bool ExecuteTests()
         {
             OnBeforeTest("Profiles", "PlatformAvailabilityEndpoint", "Ping");
+
             // call endpoint & send response to console
             PlatformAvailabilityActionResult actionResult = endpoint.Ping();
             OnAfterTest(actionResult);

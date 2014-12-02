@@ -82,7 +82,7 @@
     <Compile Include="AccountDetails\AccountDetailsResponse.cs" />
     <Compile Include="Builder\AccountManagementEndpointBuilder.cs" />
     <Compile Include="Endpoint.cs" />
-    <Compile Include="Interfaces\IAccountManagementEndpoint.cs" />
+    <Compile Include="Interfaces\IFlowsAccountManagementEndpoint.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="ResetLostPassword\ResetLostPasswordRequest.cs" />
     <Compile Include="ResetLostPassword\ResetLostPasswordResponse.cs" />

@@ -58,7 +58,34 @@ namespace Smartrac.SmartCosmos.Profiles.TagVerification
         }
 
         /// <summary>
-        /// Get a message to a single verification state
+        /// Verify tags for Round Rock compliance
+        /// </summary>
+        /// <param name="requestData">Input data</param>
+        /// <param name="responseData">Output data</param>
+        /// <returns>TagVerificationActionResult</returns>
+        public TagVerificationActionResult VerifyTagsForRoundRockCompliance(VerifyTagsRequestRR requestData, out VerifyTagsResponse responseData)
+        {
+            responseData = null;
+            try
+            {
+                var request = CreateWebRequest("/verification/tags/PR");
+                var returnHTTPCode = ExecuteWebRequestJSON<VerifyTagsRequestRR, VerifyTagsResponse>(request, requestData, out responseData);
+
+                if (returnHTTPCode == HttpStatusCode.OK)
+                    return TagVerificationActionResult.Successful;
+                else
+                    return TagVerificationActionResult.Failed;
+            }
+            catch (Exception e)
+            {
+                if (null != Logger)
+                    Logger.AddLog(e.Message, LogType.Error);
+                return TagVerificationActionResult.Failed;
+            }
+        }
+
+        /// <summary>
+        /// Get a message to a single verification state 
         /// </summary>
         /// <param name="requestData">Input data</param>
         /// <param name="responseData">Output data</param>

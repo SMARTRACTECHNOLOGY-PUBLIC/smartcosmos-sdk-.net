@@ -54,7 +54,7 @@ namespace Smartrac.SmartCosmos.ClientEndpoint.Base
             this.AcceptLanguage = "en";
             this.ServerURL = "";
             this.AllowInvalidServerCertificates_ = false;
-            this.ServiceSubUrl = "/service/rest";
+            this.ServiceSubUrl = "";
         }
 
         /// <summary>
@@ -155,7 +155,15 @@ namespace Smartrac.SmartCosmos.ClientEndpoint.Base
             // Authorization: Basic QWxhZGRpbjo4NDcwY2RkM2JmMWVmODVkNWYwOTJiY2U1YWU1YWY5N2NlNTA4MjA0ODFiZjQzYjI0MTM4MDdmZWMzN2UyNzg1YjUzM2E2NWQ0YzdkNzE2OTViMTQxZDgxZWJjZDRiNmM0ZGVmNDI4NGU2MDY3ZjBiOWRkYzMxOGIxYjIzMDIwNQ==
             AuthorizationToken =
                 "Basic " +
-                Convert.ToBase64String(Encoding.UTF8.GetBytes(userName + ":" + BitConverter.ToString(SHA512.Create().ComputeHash(Encoding.UTF8.GetBytes(userPassword))).Replace("-", "").ToLower()));
+                Convert.ToBase64String(
+                  Encoding.UTF8.GetBytes(
+                    userName + 
+                    ":" + 
+                    BitConverter.ToString(
+                      SHA512.Create().ComputeHash(
+                        Encoding.UTF8.GetBytes(userPassword)
+                      )
+                    ).Replace("-", "").ToLower()));
         }
 
         /// <summary>

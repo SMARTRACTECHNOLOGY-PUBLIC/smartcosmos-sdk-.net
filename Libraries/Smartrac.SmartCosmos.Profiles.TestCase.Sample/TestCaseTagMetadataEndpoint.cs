@@ -35,6 +35,7 @@ namespace Smartrac.SmartCosmos.Profiles.TestCase.Sample
             try
             {
                 TagMetaDataRequest requestTagMetaData = new TagMetaDataRequest(dataContext);
+                TagMetaDataRequest requestTagMetaMaterialData = new TagMetaDataRequest(dataContext, true);
                 TagMetaDataResponse responseTagMetaData;
 
                 Stopwatch watch = new Stopwatch();

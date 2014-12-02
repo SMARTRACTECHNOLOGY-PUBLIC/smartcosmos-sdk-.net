@@ -21,6 +21,7 @@ using Smartrac.Logging;
 using Smartrac.SmartCosmos.ClientEndpoint.Factory;
 using Smartrac.SmartCosmos.DataContextFactory;
 using Smartrac.SmartCosmos.TestCase.Base;
+using System.Collections.Generic;
 
 namespace Smartrac.SmartCosmos.TestCase.Runner
 {
@@ -32,6 +33,6 @@ namespace Smartrac.SmartCosmos.TestCase.Runner
 
         IDataContextFactory DataContextFactory { get; set; }
 
-        bool Run(TestCaseType testCaseTypes, string assemblySearchPattern = "*.dll");
+        bool Run(TestCaseType testCaseTypes, SmartCosmosService smartCosmosServices, string assemblySearchPattern = "*.dll");
     }
 }

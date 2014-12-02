@@ -130,7 +130,7 @@
     </ProjectReference>
     <ProjectReference Include="..\Smartrac.SmartCosmos.Profiles.TestCase\Smartrac.SmartCosmos.Profiles.TestCase.csproj">
       <Project>{5d8b2364-f6cf-41e7-89af-5387cd6d9a5e}</Project>
-      <Name>Smartrac.SmartCosmos.Profiles.TestCase.Base</Name>
+      <Name>Smartrac.SmartCosmos.Profiles.TestCase</Name>
     </ProjectReference>
     <ProjectReference Include="..\Smartrac.SmartCosmos.Profiles.DataContext\Smartrac.SmartCosmos.Profiles.DataContext.csproj">
       <Project>{d3a5db54-fd8f-4c15-8e1d-e0a10c55465c}</Project>

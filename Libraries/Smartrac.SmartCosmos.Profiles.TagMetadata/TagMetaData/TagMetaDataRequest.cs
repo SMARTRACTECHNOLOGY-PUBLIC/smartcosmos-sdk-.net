@@ -17,12 +17,13 @@
 
 #endregion License
 
+using Smartrac.SmartCosmos.ClientEndpoint.BaseObject;
 using Smartrac.SmartCosmos.Profiles.DataContext;
 using System.Collections.Generic;
 
 namespace Smartrac.SmartCosmos.Profiles.TagMetadata
 {
-    public class TagMetaDataRequest
+    public class TagMetaDataRequest : BaseRequest
     {
         public List<string> tagIds { get; set; }
 
@@ -30,19 +31,27 @@ namespace Smartrac.SmartCosmos.Profiles.TagMetadata
 
         public List<string> properties { get; set; }
 
+        //elective parameter
+        public List<string> materialPerformance { get; set; }
+
         public TagMetaDataRequest()
         {
             this.tagIds = new List<string>();
             this.verificationTypes = new List<string>();
             this.properties = new List<string>();
+            this.materialPerformance = new List<string>();
         }
 
-        public TagMetaDataRequest(ITagDataContext dataContext)
+        public TagMetaDataRequest(ITagDataContext dataContext, bool addMaterialPerformance = false)
             : this()
         {
             this.tagIds.AddRange(dataContext.GetTagIds());
             this.verificationTypes.AddRange(dataContext.GetVerificationTypes());
             this.properties.AddRange(dataContext.GetTagProperties());
+            if (addMaterialPerformance)
+            {
+                this.materialPerformance.AddRange(dataContext.GetMaterialPerformance());
+            }
         }
     }
 }

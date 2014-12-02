@@ -21,8 +21,10 @@ using Smartrac.Logging;
 using Smartrac.Logging.Console;
 using Smartrac.SmartCosmos.ClientEndpoint.Factory;
 using Smartrac.SmartCosmos.DataContextFactory.Sample;
+using Smartrac.SmartCosmos.DataContextFactory.XML;
 using Smartrac.SmartCosmos.TestCase.Base;
 using Smartrac.SmartCosmos.TestCase.Runner;
+using System.Collections.Generic;
 using System.Configuration;
 
 namespace Smartrac.SmartCosmos.SampleClient.Console
@@ -41,12 +43,17 @@ namespace Smartrac.SmartCosmos.SampleClient.Console
             // NOTE: please enter your SmartCosmos Profiles user name and password in the app.config
             factory.ProfilesUserName = ConfigurationManager.AppSettings["ProfilesUserName"];
             factory.ProfilesUserPassword = ConfigurationManager.AppSettings["ProfilesUserPassword"];
-            factory.ProfilesServerURL = ConfigurationManager.AppSettings["ProfilesServerURL"]; // e.g. https://www.smart-cosmos.com/service/rest
+            factory.ProfilesServerURL = ConfigurationManager.AppSettings["ProfilesServerURL"]; // e.g. https://www.smart-cosmos.com
 
             // Configuration for SMART COSMOS Objects
             factory.ObjectsUserName = ConfigurationManager.AppSettings["ObjectsUserName"];
             factory.ObjectsUserPassword = ConfigurationManager.AppSettings["ObjectsUserPassword"];
             factory.ObjectsServerURL = ConfigurationManager.AppSettings["ObjectsServerURL"];
+
+            // Configuration for SMART COSMOS Flows
+            factory.FlowsUserName = ConfigurationManager.AppSettings["FlowsUserName"];
+            factory.FlowsUserPassword = ConfigurationManager.AppSettings["FlowsUserPassword"];
+            factory.FlowsServerURL = ConfigurationManager.AppSettings["FlowsServerURL"];
 
             // initate tester case runner
             ITestCaseRunner testCaseRunner = new TestCaseRunnerBuilder()
@@ -57,7 +64,7 @@ namespace Smartrac.SmartCosmos.SampleClient.Console
                                             .build();
 
             // START TESTING ----
-            bool bTestResult = testCaseRunner.Run(TestCaseType.Functional);
+            bool bTestResult = testCaseRunner.Run(TestCaseType.Functional, SmartCosmosService.Profiles);
 
             // output
             System.Console.WriteLine("");

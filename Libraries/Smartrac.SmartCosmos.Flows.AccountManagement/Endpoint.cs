@@ -29,7 +29,7 @@ namespace Smartrac.SmartCosmos.Flows.AccountManagement
     /// <summary>
     /// Client for AccountManagement Endpoints
     /// </summary>
-    internal class AccountManagementEndpoint : BaseFlowsEndpoint, IAccountManagementEndpoint
+    internal class FlowsAccountManagementEndpoint : BaseFlowsEndpoint, IFlowsAccountManagementEndpoint
     {
         /// <summary>
         /// Lookup my account details
@@ -47,6 +47,8 @@ namespace Smartrac.SmartCosmos.Flows.AccountManagement
 
                 if ((responseData != null) && (responseData.HTTPStatusCode == HttpStatusCode.OK))
                     return AccountActionResult.Successful;
+                /*if (responseData == null || responseData.HTTPStatusCode == HttpStatusCode.OK)
+                    return AccountActionResult.Successful;*/
 
                 return AccountActionResult.Failed;
             }

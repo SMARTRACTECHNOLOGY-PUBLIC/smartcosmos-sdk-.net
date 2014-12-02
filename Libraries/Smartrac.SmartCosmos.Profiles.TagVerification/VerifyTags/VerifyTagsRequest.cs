@@ -22,27 +22,13 @@ using System.Collections.Generic;
 
 namespace Smartrac.SmartCosmos.Profiles.TagVerification
 {
-    public class VerifyTagsRequest
+    public class VerifyTagsRequest : VerifyTagsRequestBase
     {
-        public List<string> tagIds { get; set; }
-
         public string verificationType { get; set; }
 
-        public VerifyTagsRequest()
-        {
-            this.tagIds = new List<string>();
-        }
-
         public VerifyTagsRequest(ITagDataContext dataContext)
-            : this()
+            : base(dataContext)
         {
-            this.tagIds.AddRange(dataContext.GetTagIds());
-            using (var enumer = dataContext.GetVerificationTypes().GetEnumerator())
-            {
-                if (enumer.MoveNext())
-                    this.verificationType = enumer.Current;
-            }
-            //this.verificationType = dataContext.GetVerificationTypes().GetEnumerator().Current;
         }
     }
 }

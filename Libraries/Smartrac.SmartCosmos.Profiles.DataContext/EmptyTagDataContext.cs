@@ -33,6 +33,8 @@ namespace Smartrac.SmartCosmos.Profiles.DataContext
 
         public List<string> TagDataFiles { get; set; }
 
+        public List<string> MaterialPerformance { get; set; }
+
         public EmptyTagDataContext()
             : base()
         {
@@ -41,6 +43,7 @@ namespace Smartrac.SmartCosmos.Profiles.DataContext
             VerificationTypes = new List<string>();
             ImportIds = new List<string>();
             TagDataFiles = new List<string>();
+            MaterialPerformance = new List<string>();
         }
 
         public override IEnumerable<string> GetTagIds()
@@ -67,5 +70,12 @@ namespace Smartrac.SmartCosmos.Profiles.DataContext
         {
             return TagDataFiles;
         }
+
+        public override IEnumerable<string> GetMaterialPerformance()
+        {
+            return MaterialPerformance;
+        }
+
+        
     }
 }

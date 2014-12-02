@@ -104,6 +104,7 @@
     <Compile Include="BaseTestCase.cs" />
     <Compile Include="Interfaces\ITestCase.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="ServiceAttribute.cs" />
     <Compile Include="TestCaseAttribute.cs" />
   </ItemGroup>
   <ItemGroup>

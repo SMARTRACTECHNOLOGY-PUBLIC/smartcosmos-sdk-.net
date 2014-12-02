@@ -50,11 +50,19 @@ namespace Smartrac.SmartCosmos.Profiles.TagVerification
         TagVerificationActionResult VerifyTags(VerifyTagsRequest requestData, out VerifyTagsResponse responseData);
 
         /// <summary>
+        /// Verify Tags for Round Rock compliance
+        /// </summary>
+        /// <param name="requestData">Input data</param>
+        /// <param name="responseData">Output data</param>
+        /// <returns>TagVerificationActionResult</returns>
+        TagVerificationActionResult VerifyTagsForRoundRockCompliance(VerifyTagsRequestRR requestData, out VerifyTagsResponse responseData);
+
+        /// <summary>
         /// Get a message to a single verification state
         /// </summary>
         /// <param name="requestData">Input data</param>
         /// <param name="responseData">Output data</param>
         /// <returns>TagVerificationActionResult</returns>
-        TagVerificationActionResult GetVerificationMessage(VerificationMessageRequest requestData, out VerificationMessageResponse responseData);
+        TagVerificationActionResult GetVerificationMessage(VerificationMessageRequest requestData, out VerificationMessageResponse responseData);        
     }
 }

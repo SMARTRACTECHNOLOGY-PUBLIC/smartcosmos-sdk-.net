@@ -152,6 +152,8 @@ namespace Smartrac.SmartCosmos.Profiles.TagMetadata
 
         public TagProperties props { get; set; }
 
+        public MaterialPerformanceList materialPerformance { get; set; }
+
         //public Dictionary<string, object> props { get; set; }
 
         /*
@@ -162,4 +164,23 @@ namespace Smartrac.SmartCosmos.Profiles.TagMetadata
         }
         */
     }
+
+    public class MaterialPerformanceList{
+
+        public int rrAvg { get; set; }
+
+        public int rrAvgStdDev { get; set; }
+
+        public int rrMean { get; set; }
+
+        public int rrMeanStdDevPos { get; set; }
+
+        public int rrMeanStdDevNeg { get; set; }
+
+        public String grading { get; set; }
+
+    }
+
+    
+
 }

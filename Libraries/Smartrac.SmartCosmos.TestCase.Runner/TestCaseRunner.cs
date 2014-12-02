@@ -50,7 +50,7 @@ namespace Smartrac.SmartCosmos.TestCase.Runner
         /// </summary>
         /// <param name="testCaseTypes">Or linked TestCaseTypes</param>
         /// <returns></returns>
-        public bool Run(TestCaseType testCaseTypes, string assemblySearchPattern = "*.dll")
+        public bool Run(TestCaseType testCaseTypes, SmartCosmosService smartCosmosServices, string assemblySearchPattern = "*.dll")
         {
             Logger.AddLog("Start test runner...");
 
@@ -61,24 +61,45 @@ namespace Smartrac.SmartCosmos.TestCase.Runner
             // Search all test cases
             foreach (string file in Directory.GetFiles(AppDomain.CurrentDomain.BaseDirectory, assemblySearchPattern))
             {
+                // find
                 var typesWithMyAttribute =
                 from t in Assembly.LoadFile(file).GetTypes()
                 //where (t.Namespace != null) && t.Namespace.Contains("TestCase")
-                let attributes = t.GetCustomAttributes(typeof(TestCaseAttribute), true)
-                where attributes != null && attributes.Length > 0
-                select new { Type = t, Attributes = attributes.Cast<TestCaseAttribute>() };
+                let testCaseAttr = t.GetCustomAttributes(typeof(TestCaseAttribute), true)
+                let serviceAttr = t.GetCustomAttributes(typeof(ServiceAttribute), true)
+                where
+                    testCaseAttr != null && testCaseAttr.Length > 0 &&
+                    serviceAttr != null && serviceAttr.Length > 0
+                select new { 
+                    Type = t,
+                    TestCaseType = testCaseAttr.Cast<TestCaseAttribute>(),
+                    ServiceType = serviceAttr.Cast<ServiceAttribute>() 
+                };
 
+                // verify
                 foreach (var item in typesWithMyAttribute)
                 {
-                    foreach (var attr in item.Attributes)
+                    foreach (var testCaseAttr in item.TestCaseType)
                     {
-                        TestCaseAttribute testCase = (TestCaseAttribute)attr;
-                        if ((testCase != null) && (testCaseTypes.HasFlag(testCase.TestCaseType)))
+                        TestCaseAttribute testCase = (TestCaseAttribute)testCaseAttr;
+
+                        foreach (var serviceAttr in item.ServiceType)
                         {
-                            ITestCase MyTestCase = (ITestCase)Activator.CreateInstance(item.Type);
-                            if (MyTestCase != null)
+                            ServiceAttribute service = (ServiceAttribute)serviceAttr;
+                            
+                            if ((testCase != null) &&
+                                (testCaseTypes.HasFlag(testCase.TestCaseType)) &&
+                                (smartCosmosServices.HasFlag(service.SmartCosmosService))
+                                )
                             {
-                                testList.Add(testCase.TestPriority, MyTestCase);
+                                ITestCase MyTestCase = (ITestCase)Activator.CreateInstance(item.Type);
+                                if (MyTestCase != null)
+                                {
+                                    testList.Add(testCase.TestPriority, MyTestCase);
+
+                                    // only 1 combination possible
+                                    break;
+                                }
                             }
                         }
                     }

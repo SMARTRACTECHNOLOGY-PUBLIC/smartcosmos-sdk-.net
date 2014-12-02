@@ -56,6 +56,7 @@ namespace Smartrac.SmartCosmos.Profiles.DataContext.Sample
             TagProperties.Add(TagPropertyNumber.checkState.GetDescription());
 
             VerificationTypes.Add("RR");
+            MaterialPerformance.Add("carton");
 
             var SampleDataFile = Path.Combine(Path.GetDirectoryName(System.Reflection.Assembly.GetExecutingAssembly().Location), @"..\..\..\..\..\Documentation\SampleData\SampleData30k.xml");
             if (File.Exists(SampleDataFile))

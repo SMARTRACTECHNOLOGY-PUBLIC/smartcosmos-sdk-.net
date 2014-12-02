@@ -148,38 +148,29 @@ namespace Smartrac.SmartCosmos.Flows.BusinessRule
         }
 
         /// <summary>
-        /// Immediately run the specific business rule associated with the specified urn.
+        /// Start or stop a specific business rule associated with the specified urn.
         /// </summary>
         /// <param name="ruleUrn">object reference</param>
         /// <param name="xmlFile">business rule as xml</param>
         /// <param name="responseData">Response data</param>
         /// <returns>BusinessRuleActionResult</returns>
-        public BusinessRuleActionResult Run(Urn ruleUrn, Stream xmlFile, out BusinessRuleActionResponse responseData)
+        public BusinessRuleActionResult SetStatus(Urn ruleUrn, StatusBusinessRule statusBusinessRule, out BusinessRuleActionResponse responseData)
         {
             responseData = null;
             try
             {
-                if ((null == ruleUrn) || (!ruleUrn.IsValid() || (xmlFile == null)))
+                if ((null == ruleUrn) || (!ruleUrn.IsValid()))
                 {
                     if (null != Logger)
                         Logger.AddLog("Request data is not valid", LogType.Error);
                     return BusinessRuleActionResult.Failed;
                 }
 
-                Uri url = new Uri("/engine/rule", UriKind.Relative).
-                    AddSubfolder(ruleUrn.UUID).
-                    AddSubfolder("run");
+                Uri url = new Uri("/engine/rule/status", UriKind.Relative).
+                    AddSubfolder(ruleUrn.UUID);
 
                 var request = CreateWebRequest(url, WebRequestOption.Authorization);
-                request.ContentType = "application/octet-stream";
-
-                //request.ContentLength = data.Length;
-                using (var writer = request.GetRequestStream())
-                {
-                    xmlFile.CopyTo(writer);
-                }
-
-                ExecuteWebRequestJSON<BusinessRuleActionResponse>(request, out responseData);
+                ExecuteWebRequestJSON<StatusBusinessRuleRequest, BusinessRuleActionResponse>(request, new StatusBusinessRuleRequest { status = statusBusinessRule }, out responseData);
                 if ((responseData != null) && (responseData.HTTPStatusCode == HttpStatusCode.NoContent))
                     return BusinessRuleActionResult.Successful;
                 return BusinessRuleActionResult.Failed;
@@ -234,38 +225,30 @@ namespace Smartrac.SmartCosmos.Flows.BusinessRule
 
 
         /// <summary>
-        /// Update an existing business rule with a new XML definition.
+        /// Update an existing business rule with a new JSON definition.
         /// </summary>
         /// <param name="ruleUrn">object reference</param>
         /// <param name="xmlFile">business rule as xml</param>
         /// <param name="responseData">result</param>
         /// <returns>BusinessRuleActionResult</returns>
-        public BusinessRuleActionResult Update(Urn ruleUrn, Stream xmlFile, out BusinessRuleActionResponse responseData)
+        public BusinessRuleActionResult Update(Urn ruleUrn, BusinessRuleRequest ruleData, out BusinessRuleActionResponse responseData)
         {
             responseData = null;
             try
             {
-                if ((null == ruleUrn) || (!ruleUrn.IsValid() || (xmlFile == null)))
+                if ((null == ruleUrn) || (!ruleUrn.IsValid() || (ruleData == null)))
                 {
                     if (null != Logger)
                         Logger.AddLog("Request data is not valid", LogType.Error);
                     return BusinessRuleActionResult.Failed;
                 }
 
-                Uri url = new Uri("/rules/rule", UriKind.Relative).
+                Uri url = new Uri("/engine/rule", UriKind.Relative).
                     AddSubfolder(ruleUrn.UUID);
 
                 var request = CreateWebRequest(url, WebRequestOption.Authorization);
-                request.ContentType = "application/octet-stream";
-
-                //request.ContentLength = data.Length;
-                using (var writer = request.GetRequestStream())
-                {
-                    xmlFile.CopyTo(writer);
-                }
-
-                ExecuteWebRequestJSON<BusinessRuleActionResponse>(request, out responseData);
-                if ((responseData != null) && (responseData.HTTPStatusCode == HttpStatusCode.OK))
+                ExecuteWebRequestJSON<BusinessRuleRequest, BusinessRuleActionResponse>(request, ruleData, out responseData);
+                if ((responseData != null) && (responseData.HTTPStatusCode == HttpStatusCode.NoContent))
                     return BusinessRuleActionResult.Successful;
                 return BusinessRuleActionResult.Failed;
             }

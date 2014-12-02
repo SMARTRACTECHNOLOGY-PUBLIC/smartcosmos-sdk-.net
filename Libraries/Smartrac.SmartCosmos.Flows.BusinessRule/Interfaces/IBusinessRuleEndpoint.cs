@@ -63,14 +63,14 @@ namespace Smartrac.SmartCosmos.Flows.BusinessRule
         BusinessRuleActionResult Lookup(out BusinessRuleListResponse responseData);
 
         /// <summary>
-        /// Immediately run the specific business rule associated with the specified urn.
+        /// Start or stop a specific business rule associated with the specified urn.
         /// </summary>
         /// <param name="ruleUrn">object reference</param>
-        /// <param name="xmlFile">business rule as xml</param>
         /// <param name="responseData">Response data</param>
         /// <returns>BusinessRuleActionResult</returns>
-        BusinessRuleActionResult Run(Urn ruleUrn, Stream xmlFile, out BusinessRuleActionResponse responseData);
+        BusinessRuleActionResult SetStatus(Urn ruleUrn, StatusBusinessRule requestData, out BusinessRuleActionResponse responseData);
 
+        
         /// <summary>
         /// Defines the name and description of a new rule, defaulted in a STOPPED state.
         /// </summary>
@@ -86,7 +86,7 @@ namespace Smartrac.SmartCosmos.Flows.BusinessRule
         /// <param name="xmlFile">business rule as xml</param>
         /// <param name="responseData">result</param>
         /// <returns>BusinessRuleActionResult</returns>
-        BusinessRuleActionResult Update(Urn ruleUrn, Stream xmlFile, out BusinessRuleActionResponse responseData);
+        BusinessRuleActionResult Update(Urn ruleUrn, BusinessRuleRequest ruleData, out BusinessRuleActionResponse responseData);
 
         /// <summary>
         /// Deletes an existing business rule by its system-assigned URN key
