@@ -102,6 +102,8 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="DataContext\SampleNotificationDataContext.cs" />
+    <Compile Include="DataContext\SampleDeviceDataContext.cs" />
     <Compile Include="MyDataContext.cs" />
     <Compile Include="DataContext\SampleObjectInteractionSessionDataContext.cs" />
     <Compile Include="DataContext\SampleMetadataDataContext.cs" />

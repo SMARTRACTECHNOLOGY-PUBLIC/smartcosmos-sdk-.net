@@ -78,7 +78,11 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Base\BaseNotificationDataContext.cs" />
+    <Compile Include="Base\BaseDeviceDataContext.cs" />
     <Compile Include="Base\BaseFileDataContext.cs" />
+    <Compile Include="Empty\EmptyNotificationDataContext.cs" />
+    <Compile Include="Empty\EmptyDeviceDataContext.cs" />
     <Compile Include="Empty\EmptyAccountManagmentDataContext.cs" />
     <Compile Include="Empty\EmptyFileDataContext.cs" />
     <Compile Include="Empty\EmptyGeospatialManagmentDataContext.cs" />
@@ -90,6 +94,8 @@
     <Compile Include="Empty\EmptyRegistrationDataContext.cs" />
     <Compile Include="Empty\EmptyRelationshipManagementDataContext.cs" />
     <Compile Include="Empty\EmptyUserManagmentDataContext.cs" />
+    <Compile Include="Interfaces\INotificationDataContext.cs" />
+    <Compile Include="Interfaces\IDeviceDataContext.cs" />
     <Compile Include="Interfaces\IFileDataContext.cs" />
     <Compile Include="Base\BaseAccountManagmentDataContext.cs" />
     <Compile Include="Interfaces\IRegistrationDataContext.cs" />

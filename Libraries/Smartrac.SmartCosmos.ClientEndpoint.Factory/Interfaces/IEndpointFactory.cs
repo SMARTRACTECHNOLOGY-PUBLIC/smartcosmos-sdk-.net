@@ -21,10 +21,12 @@ using Smartrac.Logging;
 using Smartrac.SmartCosmos.Flows.AccountManagement;
 using Smartrac.SmartCosmos.Flows.BusinessRule;
 using Smartrac.SmartCosmos.Objects.AccountManagement;
+using Smartrac.SmartCosmos.Objects.Device;
 using Smartrac.SmartCosmos.Objects.File;
 using Smartrac.SmartCosmos.Objects.GeospatialManagement;
 using Smartrac.SmartCosmos.Objects.HashTag;
 using Smartrac.SmartCosmos.Objects.Metadata;
+using Smartrac.SmartCosmos.Objects.Notification;
 using Smartrac.SmartCosmos.Objects.ObjectInteraction;
 using Smartrac.SmartCosmos.Objects.ObjectInteractionSession;
 using Smartrac.SmartCosmos.Objects.ObjectManagement;
@@ -162,6 +164,10 @@ namespace Smartrac.SmartCosmos.ClientEndpoint.Factory
         IRelationshipManagementEndpoint CreateRelationshipManagementEndpoint();
 
         IUserManagementEndpoint CreateUserManagementEndpoint();
+
+        IDeviceEndpoint CreateDeviceEndpoint();
+
+        INotificationEndpoint CreateNotificationEndpoint();
 
         #endregion Objects
 

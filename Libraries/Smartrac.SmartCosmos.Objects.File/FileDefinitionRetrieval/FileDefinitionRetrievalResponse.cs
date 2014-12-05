@@ -34,7 +34,7 @@ namespace Smartrac.SmartCosmos.Objects.File
         {
             get
             {
-                return (urn_ != null) ? urn_.UUID : "";
+                return (urn_ != null) ? urn_.UUID : null;
             }
             set
             {
@@ -42,9 +42,12 @@ namespace Smartrac.SmartCosmos.Objects.File
             }
         }
 
-        public long timestamp { get; set; }
+        /// <summary>
+        /// Included in standard view
+        /// </summary>
+        public long? timestamp { get; set; }
 
-        public long lastModifiedTimestamp { get; set; }
+        public long? lastModifiedTimestamp { get; set; }
 
         public string fileName { get; set; }
 
@@ -63,6 +66,14 @@ namespace Smartrac.SmartCosmos.Objects.File
         }
 
         public string SmartCosmosEvent { get; set; }
+
+        public FileDefinitionRetrievalResponse() : base()
+        {
+            urn_ = null;
+            mimeType = null;
+            timestamp = null;
+            lastModifiedTimestamp = null;
+        }
     }
 
     public class FileDefinitionRetrievalListResponse : List<FileDefinitionRetrievalResponse>, IHttpStatusCode

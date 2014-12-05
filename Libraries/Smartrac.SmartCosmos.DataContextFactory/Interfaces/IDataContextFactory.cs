@@ -49,6 +49,10 @@ namespace Smartrac.SmartCosmos.DataContextFactory
 
         IUserManagementDataContext CreateUserManagementDataContext();
 
+        IDeviceDataContext CreateDeviceDataContext();
+
+        INotificationDataContext CreateNotificationDataContext();
+
         //FLows
         IFlowsAccountManagementDataContext CreateFlowsAccountManagementDataContext();
 

@@ -133,6 +133,10 @@
       <Project>{955046d9-aa9a-462c-9057-8046c61ed701}</Project>
       <Name>Smartrac.SmartCosmos.Objects.DataContext</Name>
     </ProjectReference>
+    <ProjectReference Include="..\Smartrac.SmartCosmos.Objects.Device\Smartrac.SmartCosmos.Objects.Device.csproj">
+      <Project>{3c575ca5-4cab-4ceb-b563-89eafcf677a6}</Project>
+      <Name>Smartrac.SmartCosmos.Objects.Device</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Smartrac.SmartCosmos.Objects.File\Smartrac.SmartCosmos.Objects.File.csproj">
       <Project>{7aa95048-8346-4dab-94f5-90f898b41824}</Project>
       <Name>Smartrac.SmartCosmos.Objects.File</Name>
@@ -148,6 +152,10 @@
     <ProjectReference Include="..\Smartrac.SmartCosmos.Objects.Metadata\Smartrac.SmartCosmos.Objects.Metadata.csproj">
       <Project>{3f715f22-7d75-4645-9ce6-e8a20ccdacc8}</Project>
       <Name>Smartrac.SmartCosmos.Objects.Metadata</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Smartrac.SmartCosmos.Objects.Notification\Smartrac.SmartCosmos.Objects.Notification.csproj">
+      <Project>{c1548e80-cbfb-40bf-971e-11036e870f4b}</Project>
+      <Name>Smartrac.SmartCosmos.Objects.Notification</Name>
     </ProjectReference>
     <ProjectReference Include="..\Smartrac.SmartCosmos.Objects.ObjectInteractionSession\Smartrac.SmartCosmos.Objects.ObjectInteractionSession.csproj">
       <Project>{ed080dde-a813-4d6f-b66e-e554e9b69d35}</Project>

@@ -105,6 +105,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="TestCaseDeviceEndpoint.cs" />
     <Compile Include="TestCaseAccountManagementEndpoint.cs" />
     <Compile Include="TestCaseFileEndpoint.cs" />
     <Compile Include="TestCaseGeospatialManagementEndpoint.cs" />
@@ -153,6 +154,10 @@
     <ProjectReference Include="..\Smartrac.SmartCosmos.Objects.DataContext\Smartrac.SmartCosmos.Objects.DataContext.csproj">
       <Project>{955046d9-aa9a-462c-9057-8046c61ed701}</Project>
       <Name>Smartrac.SmartCosmos.Objects.DataContext</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Smartrac.SmartCosmos.Objects.Device\Smartrac.SmartCosmos.Objects.Device.csproj">
+      <Project>{3c575ca5-4cab-4ceb-b563-89eafcf677a6}</Project>
+      <Name>Smartrac.SmartCosmos.Objects.Device</Name>
     </ProjectReference>
     <ProjectReference Include="..\Smartrac.SmartCosmos.Objects.File\Smartrac.SmartCosmos.Objects.File.csproj">
       <Project>{7aa95048-8346-4dab-94f5-90f898b41824}</Project>

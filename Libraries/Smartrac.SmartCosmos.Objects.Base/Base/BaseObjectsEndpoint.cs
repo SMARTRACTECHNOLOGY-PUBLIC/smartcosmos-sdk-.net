@@ -28,6 +28,14 @@ namespace Smartrac.SmartCosmos.Objects.Base
     /// </summary>
     public class BaseObjectsEndpoint : BaseEndpoint
     {
+
+        public BaseObjectsEndpoint()
+            : base()
+        {
+            this.ServiceSubUrl = "";
+            this.ServerURL = "";//https://www.smart-cosmos.com
+        }
+        
         /// <summary>
         /// Set the user account which should be used for the authorization
         /// </summary>

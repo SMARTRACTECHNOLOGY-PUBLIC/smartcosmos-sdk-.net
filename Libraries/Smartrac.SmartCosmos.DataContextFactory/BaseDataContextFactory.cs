@@ -90,6 +90,16 @@ namespace Smartrac.SmartCosmos.DataContextFactory
             return new BaseMetadataDataContext();
         }
 
+        public virtual IDeviceDataContext CreateDeviceDataContext()
+        {
+            return new BaseDeviceDataContext();
+        }
+
+        public virtual INotificationDataContext CreateNotificationDataContext()
+        {
+            return new BaseNotificationDataContext();
+        }
+
         //Flows
 
         public virtual IFlowsAccountManagementDataContext CreateFlowsAccountManagementDataContext()

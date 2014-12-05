@@ -93,6 +93,16 @@ namespace Smartrac.SmartCosmos.DataContextFactory.Sample
             return new SampleMetadataDataContext();
         }
 
+        public override IDeviceDataContext CreateDeviceDataContext()
+        {
+            return new SampleDeviceDataContext();
+        }
+
+        public override INotificationDataContext CreateNotificationDataContext()
+        {
+            return new SampleNotificationDataContext();
+        }
+        
         public override IFlowsAccountManagementDataContext CreateFlowsAccountManagementDataContext()
         {
             return new SampleFlowsAccountManagementDataContext();

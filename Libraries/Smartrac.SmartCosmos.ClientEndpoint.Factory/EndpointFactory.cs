@@ -35,6 +35,8 @@ using Smartrac.SmartCosmos.Profiles.DataImport;
 using Smartrac.SmartCosmos.Profiles.PlatformAvailability;
 using Smartrac.SmartCosmos.Profiles.TagMetadata;
 using Smartrac.SmartCosmos.Profiles.TagVerification;
+using Smartrac.SmartCosmos.Objects.Device;
+using Smartrac.SmartCosmos.Objects.Notification;
 
 namespace Smartrac.SmartCosmos.ClientEndpoint.Factory
 {
@@ -314,6 +316,28 @@ namespace Smartrac.SmartCosmos.ClientEndpoint.Factory
         public virtual IObjectInteractionSessionEndpoint CreateObjectInteractionSessionEndpoint()
         {
             return new ObjectInteractionSessionEndpointBuilder()
+            .setLogger(Logger)
+            .setKeepAlive(KeepAlive)
+            .setServerURL(ObjectsServerURL)
+            .setAllowInvalidServerCertificates(AllowInvalidServerCertificates)
+            .setUserAccount(ObjectsUserName, ObjectsUserPassword)
+            .build();
+        }
+
+        public virtual IDeviceEndpoint CreateDeviceEndpoint()
+        {
+            return new DeviceEndpointBuilder()
+            .setLogger(Logger)
+            .setKeepAlive(KeepAlive)
+            .setServerURL(ObjectsServerURL)
+            .setAllowInvalidServerCertificates(AllowInvalidServerCertificates)
+            .setUserAccount(ObjectsUserName, ObjectsUserPassword)
+            .build();
+        }
+
+        public virtual INotificationEndpoint CreateNotificationEndpoint()
+        {
+            return new NotificationEndpointBuilder()
             .setLogger(Logger)
             .setKeepAlive(KeepAlive)
             .setServerURL(ObjectsServerURL)

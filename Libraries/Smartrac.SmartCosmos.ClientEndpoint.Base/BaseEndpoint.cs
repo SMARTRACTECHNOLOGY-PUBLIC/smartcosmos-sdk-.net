@@ -123,7 +123,7 @@ namespace Smartrac.SmartCosmos.ClientEndpoint.Base
             }
             set
             {
-                if (value.StartsWith("/"))
+                if (value.StartsWith("/") || value.Length==0)
                     ServiceSubUrl_ = value;
                 else
                     ServiceSubUrl_ = "/" + value;
