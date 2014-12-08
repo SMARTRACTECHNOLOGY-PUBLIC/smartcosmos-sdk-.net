@@ -82,7 +82,12 @@
   <ItemGroup>
     <Compile Include="Builder\NotificationEndpointBuilder.cs" />
     <Compile Include="Endpoint.cs" />
+    <Compile Include="EnrollmentConfirmation\EnrollmentConfirmationRequest.cs" />
+    <Compile Include="EnrollNotifications\EnrollNotificationsRequest.cs" />
     <Compile Include="Interfaces\INotificationEndpoint.cs" />
+    <Compile Include="LookupNotifications\LookupNotificationsRequest.cs" />
+    <Compile Include="LookupNotifications\LookupNotificationsResponse.cs" />
+    <Compile Include="NotificationBaseResponse\NotificationBaseResponse.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
