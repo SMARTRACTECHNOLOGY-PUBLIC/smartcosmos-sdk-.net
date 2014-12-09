@@ -24,7 +24,7 @@ using Smartrac.SmartCosmos.TestCase.Base;
 
 namespace Smartrac.SmartCosmos.Objects.TestCase.Sample
 {
-    [TestCaseAttribute(1)]
+    [TestCaseAttribute(3)]
     public class TestCaseNotificationEndpoint : BaseTestCaseNotificationEndpoint
     {        
         
@@ -40,7 +40,7 @@ namespace Smartrac.SmartCosmos.Objects.TestCase.Sample
         protected virtual bool TestCreateNotification(out Urn notificationUrn)
         {
             notificationUrn = null;
-            OnBeforeTest("Objects", "NotificationEndpoint", "TestCreateNotification");
+            OnBeforeTest("Objects", "NotificationEndpoint", "CreateNotification");
             // call endpoint
             EnrollNotificationsRequest requestData = new EnrollNotificationsRequest
             {
@@ -57,7 +57,7 @@ namespace Smartrac.SmartCosmos.Objects.TestCase.Sample
 
         protected virtual bool TestConfirmNotification()
         {
-            OnBeforeTest("Objects", "NotificationEndpoint", "TestConfirmNotification");
+            OnBeforeTest("Objects", "NotificationEndpoint", "ConfirmNotification");
             // call endpoint
             EnrollmentConfirmationRequest requestData = new EnrollmentConfirmationRequest
             {
@@ -72,7 +72,7 @@ namespace Smartrac.SmartCosmos.Objects.TestCase.Sample
 
         protected virtual bool TestWithdrawNotification(Urn notificationUrn)
         {
-            OnBeforeTest("Objects", "NotificationEndpoint", "TestWithdrawNotification");
+            OnBeforeTest("Objects", "NotificationEndpoint", "WithdrawNotification");
             // call endpoint            
             NotificationBaseResponse responsedData;
             NotificationActionResult actionResult = endpoint.Delete(notificationUrn, out responsedData);
@@ -82,7 +82,7 @@ namespace Smartrac.SmartCosmos.Objects.TestCase.Sample
 
         protected virtual bool TestLookupNotificationByURN(Urn notificationUrn)
         {
-            OnBeforeTest("Objects", "NotificationEndpoint", "TestLookupNotificationByURN");
+            OnBeforeTest("Objects", "NotificationEndpoint", "LookupNotificationByURN");
             // call endpoint
             LookupNotificationsResponse responsedData;
             NotificationActionResult actionResult = endpoint.Lookup(notificationUrn, out responsedData);

@@ -41,13 +41,13 @@ namespace Smartrac.SmartCosmos.Objects.TestCase.Sample
         protected virtual bool TestCreateDevice(out Urn deviceUrn)
         {
             deviceUrn = null;
-            OnBeforeTest("Objects", "DeviceEndpoint", "TestCreate");
+            OnBeforeTest("Objects", "DeviceEndpoint", "Create");
             // call endpoint
             DeviceDefinitionRequest requestData = new DeviceDefinitionRequest
             {
                 identification = dataContext.GetIdentification(),
                 name = dataContext.GetName(),
-                type = dataContext.GetType()
+                type = dataContext.GetName()
             };
             DeviceDefinitionResponse responsedData;
             DeviceActionResult actionResult = endpoint.Create(requestData, out responsedData);
@@ -58,7 +58,7 @@ namespace Smartrac.SmartCosmos.Objects.TestCase.Sample
 
         protected virtual bool TestUpdateDevice()
         {
-            OnBeforeTest("Objects", "DeviceEndpoint", "TestUpdate");
+            OnBeforeTest("Objects", "DeviceEndpoint", "Update");
             // call endpoint
             DeviceUpdateRequest requestData = new DeviceUpdateRequest
             {
@@ -74,7 +74,7 @@ namespace Smartrac.SmartCosmos.Objects.TestCase.Sample
 
         protected virtual bool TestLookupByIdentificationDevice()
         {
-            OnBeforeTest("Objects", "DeviceEndpoint", "TestLookupByIdentifications");
+            OnBeforeTest("Objects", "DeviceEndpoint", "LookupByIdentifications");
             // call endpoint
             DeviceLookupResponse responsedData;
             DeviceActionResult actionResult = endpoint.Lookup(new Identification(dataContext.GetIdentification()), out responsedData);
@@ -84,7 +84,7 @@ namespace Smartrac.SmartCosmos.Objects.TestCase.Sample
 
         protected virtual bool TestLookupByUrlDevice(Urn deviceUrn)
         {
-            OnBeforeTest("Objects", "DeviceEndpoint", "TestLookupByUrl");
+            OnBeforeTest("Objects", "DeviceEndpoint", "LookupByUrl");
             // call endpoint
             DeviceLookupResponse responsedData;
             DeviceActionResult actionResult = endpoint.Lookup(deviceUrn, out responsedData);
@@ -94,7 +94,7 @@ namespace Smartrac.SmartCosmos.Objects.TestCase.Sample
 
         protected virtual bool TestLookupByNameDevice()
         {
-            OnBeforeTest("Objects", "DeviceEndpoint", "TestLookupByNameDevice");
+            OnBeforeTest("Objects", "DeviceEndpoint", "LookupByNameDevice");
             // call endpoint
             DeviceLookupsResponse responsedData;
             DeviceActionResult actionResult = endpoint.Lookup(new Name(dataContext.GetName()), out responsedData);
