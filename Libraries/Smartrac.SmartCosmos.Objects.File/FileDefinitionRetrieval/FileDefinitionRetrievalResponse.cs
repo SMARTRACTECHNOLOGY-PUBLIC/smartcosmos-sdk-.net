@@ -43,10 +43,18 @@ namespace Smartrac.SmartCosmos.Objects.File
         }
 
         /// <summary>
-        /// Included in standard view
+        /// Serialization Level: Full
+        /// </summary>
+        public DataIAccount account { get; set; }
+
+        /// <summary>
+        /// Serialization Level: Standard
         /// </summary>
         public long? timestamp { get; set; }
 
+        /// <summary>
+        /// Serialization Level: Standard
+        /// </summary>
         public long? lastModifiedTimestamp { get; set; }
 
         public string fileName { get; set; }
@@ -55,6 +63,21 @@ namespace Smartrac.SmartCosmos.Objects.File
         public EntityReferenceType entityReferenceType { get; set; }
 
         public string mimeType { get; set; }
+
+        /// <summary>
+        /// Serialization Level: Full
+        /// </summary>
+        public string moniker { get; set; }
+
+        /// <summary>
+        /// Serialization Level: Full
+        /// </summary>
+        public bool? pending { get; set; }
+
+        /// <summary>
+        /// Serialization Level: Full
+        /// </summary>
+        public string digitalSignature { get; set; }
 
         [JsonIgnore]
         public Urn Urn
@@ -67,12 +90,17 @@ namespace Smartrac.SmartCosmos.Objects.File
 
         public string SmartCosmosEvent { get; set; }
 
-        public FileDefinitionRetrievalResponse() : base()
+        public FileDefinitionRetrievalResponse() 
+            : base()
         {
             urn_ = null;
             mimeType = null;
             timestamp = null;
             lastModifiedTimestamp = null;
+            account = null;
+            pending = null;
+            moniker = null;
+            digitalSignature = null;
         }
     }
 

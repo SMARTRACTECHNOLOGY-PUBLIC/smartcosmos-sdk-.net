@@ -45,13 +45,30 @@ namespace Smartrac.SmartCosmos.Objects.GeospatialManagement
 
         public string type { get; set; }
 
+        /// <summary>
+        /// Serialization Level: Standard
+        /// </summary>
         public string description { get; set; }
 
-        public bool activeFlag { get; set; }
+        /// <summary>
+        /// Serialization Level: Standard
+        /// </summary>
+        public bool? activeFlag { get; set; }
 
-        public long lastModifiedTimestamp { get; set; }
+        /// <summary>
+        /// Serialization Level: Standard
+        /// </summary>
+        public long? lastModifiedTimestamp { get; set; }
 
+        /// <summary>
+        /// Serialization Level: Full
+        /// </summary>
         public string moniker { get; set; }
+
+        /// <summary>
+        /// Serialization Level: Full
+        /// </summary>
+        public DataIAccount account { get; set; }
 
         public GeoJSONObject geometricShape { get; set; }
 
@@ -61,6 +78,8 @@ namespace Smartrac.SmartCosmos.Objects.GeospatialManagement
             description = null;
             activeFlag = true;
             moniker = null;
+            lastModifiedTimestamp = null;
+            account = null;
         }
     }
 }

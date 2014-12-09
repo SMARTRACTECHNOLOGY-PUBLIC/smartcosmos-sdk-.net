@@ -26,6 +26,14 @@ namespace Smartrac.SmartCosmos.Objects.RelationshipManagement
 {
     public class RelationshipDataResponse : BaseResponse
     {
+        public RelationshipDataResponse()
+            : base()
+        {
+            moniker = null;
+            account = null;
+            lastModifiedTimestamp = null;
+        }
+
         public string urn
         {
             get
@@ -59,6 +67,11 @@ namespace Smartrac.SmartCosmos.Objects.RelationshipManagement
         [JsonIgnore]
         public Urn referenceUrnObj { get; set; }
 
+        /// <summary>
+        /// Serialization Level: Full
+        /// </summary>
+        public DataIAccount account { get; set; }
+
         public string type { get; set; }
 
         [JsonConverter(typeof(StringEnumConverter))]
@@ -79,6 +92,14 @@ namespace Smartrac.SmartCosmos.Objects.RelationshipManagement
         [JsonIgnore]
         public Urn relatedReferenceUrnObj { get; set; }
 
-        public long lastModifiedTimestamp { get; set; }
+        /// <summary>
+        /// Serialization Level: Standard
+        /// </summary>
+        public long? lastModifiedTimestamp { get; set; }
+
+        /// <summary>
+        /// Serialization Level: Full
+        /// </summary>
+        public string moniker { get; set; }
     }
 }

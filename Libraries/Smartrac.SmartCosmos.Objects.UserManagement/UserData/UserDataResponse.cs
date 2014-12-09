@@ -26,6 +26,16 @@ namespace Smartrac.SmartCosmos.Objects.UserManagement
 {
     public class UserDataResponse : BaseResponse
     {
+        public UserDataResponse()
+            : base()
+        {
+            lastModifiedTimestamp = null;
+            account = null;
+            moniker = null;
+            givenName = null;
+            surname = null;
+        }
+        
         public string urn
         {
             get
@@ -41,12 +51,31 @@ namespace Smartrac.SmartCosmos.Objects.UserManagement
         [JsonConverter(typeof(StringEnumConverter))]
         public RoleType roleType { get; set; }
 
-        public long lastModifiedTimestamp { get; set; }
+        /// <summary>
+        /// Serialization Level: Standard
+        /// </summary>
+        public long? lastModifiedTimestamp { get; set; }
 
         public string emailAddress { get; set; }
 
+        /// <summary>
+        /// Serialization Level: Full
+        /// </summary>
+        public DataIAccount account { get; set; }
+
+        /// <summary>
+        /// Serialization Level: Full
+        /// </summary>
+        public string moniker { get; set; }
+
+        /// <summary>
+        /// Serialization Level: Full
+        /// </summary>
         public string givenName { get; set; }
 
+        /// <summary>
+        /// Serialization Level: Full
+        /// </summary>
         public string surname { get; set; }
 
         [JsonIgnore]

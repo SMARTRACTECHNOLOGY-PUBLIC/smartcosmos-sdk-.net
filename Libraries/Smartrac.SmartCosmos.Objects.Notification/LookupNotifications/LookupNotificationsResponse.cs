@@ -26,6 +26,17 @@ namespace Smartrac.SmartCosmos.Objects.Notification
 {
     public class LookupNotificationsResponse : DefaultResponse
     {
+        public LookupNotificationsResponse()
+            : base()
+        {
+            account = null;
+            lastModifiedTimestamp = null;
+            activeFlag = null;
+            description = null;
+            moniker = null;
+            encodedPublicKey = null;
+            pendingConfirmation = null;
+        }
         public string urn
         {
             get
@@ -53,15 +64,44 @@ namespace Smartrac.SmartCosmos.Objects.Notification
             }
         }
 
-        public int lastModifiedTimestamp { get; set; }
+        /// <summary>
+        /// Serialization Level: Full
+        /// </summary>
+        public DataIAccount account { get; set; }
+
+        /// <summary>
+        /// Serialization Level: Standard
+        /// </summary>
+        public long? lastModifiedTimestamp { get; set; }
         
-        public bool activeFlag { get; set; }
+        /// <summary>
+        /// Serialization Level: Standard
+        /// </summary>
+        public bool? activeFlag { get; set; }
 
         public string name { get; set; }
 
+        /// <summary>
+        /// Serialization Level: Standard
+        /// </summary>
         public string description { get; set; }
 
-        public string endpointUrl { get; set; }
+        /// <summary>
+        /// Serialization Level: Full
+        /// </summary>
+        public string moniker { get; set; }
+
+        /// <summary>
+        /// Serialization Level: Standard
+        /// </summary>
+        public string encodedPublicKey { get; set; }
+
+        /// <summary>
+        /// Serialization Level: Boolean
+        /// </summary>
+        public string pendingConfirmation { get; set; }
+
+        public string notificationEndpointUrl { get; set; }
 
         [JsonIgnore]
         public Urn referenceUrnObj { get; set; }

@@ -47,6 +47,14 @@ namespace Smartrac.SmartCosmos.Objects.Metadata
 
     public class MetadataLookupItem
     {
+        public MetadataLookupItem()
+            : base()
+        {
+            moniker = null;
+            account = null;
+            lastModifiedTimestamp = null;
+        }
+
         public string dataType
         {
             get
@@ -114,5 +122,22 @@ namespace Smartrac.SmartCosmos.Objects.Metadata
         /// </summary>
 
         public string rawValue { get; set; }
+
+        /// <summary>
+        /// Serialization Level: Full
+        /// </summary>
+        public DataIAccount account { get; set; }
+
+        /// <summary>
+        /// Serialization Level: Standard
+        /// </summary>
+        public long? lastModifiedTimestamp { get; set; }
+
+        /// <summary>
+        /// Serialization Level: Full
+        /// </summary>
+        public string moniker { get; set; }
+
+        public string key { get; set; }
     }
 }

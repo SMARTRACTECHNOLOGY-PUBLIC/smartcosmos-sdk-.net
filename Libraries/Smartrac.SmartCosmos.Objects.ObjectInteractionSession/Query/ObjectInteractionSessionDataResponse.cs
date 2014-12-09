@@ -24,8 +24,28 @@ namespace Smartrac.SmartCosmos.Objects.ObjectInteractionSession
 {
     public class ObjectInteractionSessionDataResponse : BaseResponse
     {
-        public bool activeFlag { get; set; }
+        public ObjectInteractionSessionDataResponse()
+            : base()
+        {
+            account = null;
+            activeFlag = null;
+            description = null;
+            lastModifiedTimestamp = null;
+            moniker = null;
+        }
+        /// <summary>
+        /// Serialization Level: Full
+        /// </summary>
+        public DataIAccount account { get; set; }
+        
+        /// <summary>
+        /// Serialization Level: Standard
+        /// </summary>
+        public bool? activeFlag { get; set; }
 
+        /// <summary>
+        /// Serialization Level: Standard
+        /// </summary>
         public string description { get; set; }
 
         public string name { get; set; }
@@ -36,7 +56,15 @@ namespace Smartrac.SmartCosmos.Objects.ObjectInteractionSession
 
         public long stopTimestamp { get; set; }
 
-        public long lastModifiedTimestamp { get; set; }
+        /// <summary>
+        /// Serialization Level: Standard
+        /// </summary>
+        public long? lastModifiedTimestamp { get; set; }
+
+        /// <summary>
+        /// Serialization Level: Full
+        /// </summary>
+        public string moniker { get; set; }
 
         public string urn
         {

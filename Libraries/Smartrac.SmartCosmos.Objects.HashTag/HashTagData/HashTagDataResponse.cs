@@ -40,19 +40,42 @@ namespace Smartrac.SmartCosmos.Objects.HashTag
         [JsonIgnore]
         public Urn urnObj { get; set; }
 
+        /// <summary>
+        /// Serialization Level: Standard
+        /// </summary>
         public string description { get; set; }
 
         public string name { get; set; }
 
+        /// <summary>
+        /// Serialization Level: Full
+        /// </summary>
         public string moniker { get; set; }
 
-        public bool activeFlag { get; set; }
+        /// <summary>
+        /// Serialization Level: Standard
+        /// </summary>
+        public bool? activeFlag { get; set; }
+
+        /// <summary>
+        /// Serialization Level: Standard
+        /// </summary>
+        public long? lastModifiedTimestamp { get; set; }
+
+        /// <summary>
+        /// Serialization Level: Full
+        /// </summary>
+        public DataIAccount account { get; set; }
 
         public HashTagDataResponse()
             : base()
         {
             description = null;
-            activeFlag = true;
+            activeFlag = null;
+            moniker = null;
+            activeFlag = null;
+            lastModifiedTimestamp = null;
+            account = null;
         }
     }
 }
