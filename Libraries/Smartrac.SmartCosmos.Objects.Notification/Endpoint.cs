@@ -159,7 +159,7 @@ namespace Smartrac.SmartCosmos.Objects.Notification
                     return NotificationActionResult.Failed;
                 }
 
-                Uri url = new Uri("/devices/device", UriKind.Relative).
+                Uri url = new Uri("/notifications", UriKind.Relative).
                     AddSubfolder(notificationUrn.UUID).
                     AddQuery("view", viewType.GetDescription());
 

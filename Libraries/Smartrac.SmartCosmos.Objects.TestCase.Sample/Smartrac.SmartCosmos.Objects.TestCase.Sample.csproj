@@ -105,6 +105,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="TestCaseNotificationEndpoint.cs" />
     <Compile Include="TestCaseDeviceEndpoint.cs" />
     <Compile Include="TestCaseAccountManagementEndpoint.cs" />
     <Compile Include="TestCaseFileEndpoint.cs" />
@@ -174,6 +175,10 @@
     <ProjectReference Include="..\Smartrac.SmartCosmos.Objects.Metadata\Smartrac.SmartCosmos.Objects.Metadata.csproj">
       <Project>{3f715f22-7d75-4645-9ce6-e8a20ccdacc8}</Project>
       <Name>Smartrac.SmartCosmos.Objects.Metadata</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Smartrac.SmartCosmos.Objects.Notification\Smartrac.SmartCosmos.Objects.Notification.csproj">
+      <Project>{c1548e80-cbfb-40bf-971e-11036e870f4b}</Project>
+      <Name>Smartrac.SmartCosmos.Objects.Notification</Name>
     </ProjectReference>
     <ProjectReference Include="..\Smartrac.SmartCosmos.Objects.ObjectInteractionSession\Smartrac.SmartCosmos.Objects.ObjectInteractionSession.csproj">
       <Project>{ed080dde-a813-4d6f-b66e-e554e9b69d35}</Project>
