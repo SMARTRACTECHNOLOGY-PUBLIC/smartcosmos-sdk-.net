@@ -103,6 +103,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="DataContext\XMLDeviceDataContext.cs" />
     <Compile Include="DataContext\XMLObjectInteractionSessionDataContext.cs" />
     <Compile Include="DataContext\XMLMetadataDataContext.cs" />
     <Compile Include="DataContext\XMLHashTagDataContext.cs" />

@@ -30,6 +30,7 @@ namespace Smartrac.SmartCosmos.DataContextFactory.XML
         protected XDocument doc = null;
         protected ITagDataContext TagDataContext = null;
         protected IFileDataContext FileDataContext = null;
+        protected IDeviceDataContext DeviceDataContext = null;
         protected IAccountManagementDataContext AccountManagementDataContext = null;
 
         public XMLDataContextFactory(string XMLfile)
@@ -55,6 +56,15 @@ namespace Smartrac.SmartCosmos.DataContextFactory.XML
                 FileDataContext = XMLDataContextSerializer<XMLFileDataContext>.DeSerialize(doc.Element("data").Element("FileDataContext")) as IFileDataContext;
             }
             return FileDataContext;
+        }
+
+        public override IDeviceDataContext CreateDeviceDataContext()
+        {
+            if (DeviceDataContext == null)
+            {
+                DeviceDataContext = XMLDataContextSerializer<XMLDeviceDataContext>.DeSerialize(doc.Element("data").Element("DeviceDataContext")) as IDeviceDataContext;
+            }
+            return DeviceDataContext;
         }
 
         public override IRegistrationDataContext CreateRegistrationDataContext()

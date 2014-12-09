@@ -58,5 +58,24 @@
 			</FileDefinition>
 		</FileDefinitions>
 	</FileDataContext>	
+	<DeviceDataContext>
+		<viewType>Standard</viewType>
+		<name>Jason's Phone!</name>
+		<type>Android</type>
+		<identification>gqorighfawpftjqevznxclmndaawetha</identification>
+	</DeviceDataContext>
+	<GeospatialManagment>
+		<viewType>Standard</viewType>
+		<name>Campus at 6th Street</name>
+		<category>Building</category>
+		<activeFlag>true</activeFlag>
+		 <!-- <point>
+			<BoundingBoxes></BoundingBoxes>
+			<CRS>
+				<Type>1</Type>
+			</CRS>
+			<Type>1</Type>
+		</point> -->
+	</GeospatialManagment>
 </data>
 
