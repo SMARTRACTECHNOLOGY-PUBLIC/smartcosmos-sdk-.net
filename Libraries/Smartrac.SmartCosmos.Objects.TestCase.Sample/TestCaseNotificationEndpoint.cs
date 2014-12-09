@@ -30,11 +30,11 @@ namespace Smartrac.SmartCosmos.Objects.TestCase.Sample
         
         protected override bool ExecuteTests()
         {
-            Urn deviceUrn;
-            return TestCreateNotification(out deviceUrn) &&
+            Urn notificationUrn;
+            return TestCreateNotification(out notificationUrn) &&
                 TestConfirmNotification() &&
-                TestLookupNotificationByURN(deviceUrn) &&
-                TestWithdrawNotification(deviceUrn);
+                TestLookupNotificationByURN(notificationUrn) &&
+                TestWithdrawNotification(notificationUrn);
         }
 
         protected virtual bool TestCreateNotification(out Urn notificationUrn)
