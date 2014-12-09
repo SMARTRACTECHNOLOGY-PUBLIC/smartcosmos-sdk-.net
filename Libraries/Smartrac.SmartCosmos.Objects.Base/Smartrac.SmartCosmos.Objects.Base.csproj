@@ -80,8 +80,10 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Base\BaseObjectsEndpoint.cs" />
+    <Compile Include="Types\DataIAccount.cs" />
     <Compile Include="Types\EntityReferenceType.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Types\DataIObject.cs" />
     <Compile Include="Types\RoleType.cs" />
     <Compile Include="Types\ViewType.cs" />
   </ItemGroup>

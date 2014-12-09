@@ -26,6 +26,16 @@ namespace Smartrac.SmartCosmos.Objects.ObjectInteraction
 {
     public class ObjectInteractionItem
     {
+        public ObjectInteractionItem()
+            : base()
+        {
+            lastModifiedTimestamp = null;
+            account = null;
+            moniker = null;
+            objectInteractionSession = null;
+            recordedTimestamp = null;
+            receivedTimestamp = null;
+        }
         /// <summary>
         /// entityReferenceType is required and constrained to a valid EntityReferenceType value
         /// </summary>
@@ -34,16 +44,40 @@ namespace Smartrac.SmartCosmos.Objects.ObjectInteraction
 
         public bool hasSessionMembership { get; set; }
 
-        public long lastModifiedTimestamp { get; set; }
+        /// <summary>
+        /// Serialization Level: Standard
+        /// </summary>
+        public long? lastModifiedTimestamp { get; set; }
+
+        /// <summary>
+        /// Serialization Level: Full
+        /// </summary>
+        public DataIAccount account { get; set; }
+
+        /// <summary>
+        /// Serialization Level: Full
+        /// </summary>
+        public string moniker { get; set; }
 
         [JsonProperty(PropertyName = "object")]
-        public ObjectInteractionData objectData { get; set; }
+        public DataIObject objectData { get; set; }
 
+        /// <summary>
+        /// Serialization Level: Standard
+        /// </summary>
         public string objectInteractionSession { get; set; }
 
         public string type { get; set; }
 
-        public long recordedTimestamp { get; set; }
+        /// <summary>
+        /// Serialization Level: Standard
+        /// </summary>
+        public long? recordedTimestamp { get; set; }
+
+        /// <summary>
+        /// Serialization Level: Full
+        /// </summary>
+        public long? receivedTimestamp { get; set; }
 
         public string interactionUrn
         {
@@ -79,45 +113,5 @@ namespace Smartrac.SmartCosmos.Objects.ObjectInteraction
         [JsonIgnore]
         public Urn referenceUrnObj { get; set; }
     }
-
-    public class ObjectInteractionData
-    {
-        public bool activeFlag { get; set; }
-
-        public string description { get; set; }
-
-        public long lastModifiedTimestamp { get; set; }
-
-        public string name { get; set; }
-
-        public string type { get; set; }
-
-        public string interactionUrn
-        {
-            get
-            {
-                return (interactionUrnObj != null) ? interactionUrnObj.UUID : "";
-            }
-            set
-            {
-                interactionUrnObj = new Urn(value);
-            }
-        }
-
-        public Urn interactionUrnObj { get; set; }
-
-        public string urn
-        {
-            get
-            {
-                return (urnObj != null) ? urnObj.UUID : "";
-            }
-            set
-            {
-                urnObj = new Urn(value);
-            }
-        }
-
-        public Urn urnObj { get; set; }
-    }
+    
 }

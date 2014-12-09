@@ -25,6 +25,14 @@ namespace Smartrac.SmartCosmos.Objects.AccountManagement
 {
     public class AccountDetailsResponse : BaseResponse
     {
+        public AccountDetailsResponse()
+            : base()
+        {
+            lastModifiedTimestamp = null;
+            activeFlag = null;
+            description = null;
+        }
+
         private Urn urn_;
 
         public string urn
@@ -39,13 +47,22 @@ namespace Smartrac.SmartCosmos.Objects.AccountManagement
             }
         }
 
-        public long lastModifiedTimestamp { get; set; }
+        /// <summary>
+        /// Serialization Level: Standard
+        /// </summary>
+        public long? lastModifiedTimestamp { get; set; }
 
         public string name { get; set; }
 
+        /// <summary>
+        /// Serialization Level: Standard
+        /// </summary>
         public string description { get; set; }
 
-        public bool activeFlag { get; set; }
+        /// <summary>
+        /// Serialization Level: Standard
+        /// </summary>
+        public bool? activeFlag { get; set; }
 
         [JsonIgnore]
         public Urn Urn

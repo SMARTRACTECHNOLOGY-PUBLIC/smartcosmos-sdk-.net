@@ -38,6 +38,16 @@ namespace Smartrac.SmartCosmos.Objects.Device
 
     public class DeviceLookupResponse : DefaultResponse
     {
+        public DeviceLookupResponse()
+            : base()
+        {
+            account = null;
+            lastModifiedTimestamp = null;
+            moniker = null;
+            description = null;
+            activeFlag = null;
+        }
+
         [JsonIgnore]
         public Urn referenceUrnObj { get; set; }
 
@@ -53,15 +63,32 @@ namespace Smartrac.SmartCosmos.Objects.Device
             }
         }
 
-        public long lastModifiedTimestamp { get; set; }
+        /// <summary>
+        /// Serialization Level: Full
+        /// </summary>
+        public DataIAccount account { get; set; }
 
+        /// <summary>
+        /// Serialization Level: Standard
+        /// </summary>
+        public long? lastModifiedTimestamp { get; set; }
+
+        /// <summary>
+        /// Serialization Level: Full
+        /// </summary>
         public string moniker { get; set; }
 
         public string name { get; set; }
 
+        /// <summary>
+        /// Serialization Level: Standard
+        /// </summary>
         public string description { get; set; }
 
-        public bool activeFlag { get; set; }
+        /// <summary>
+        /// Serialization Level: Standard
+        /// </summary>
+        public bool? activeFlag { get; set; }
 
         public string identification { get; set; }
 

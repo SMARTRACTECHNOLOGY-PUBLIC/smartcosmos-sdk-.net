@@ -17,18 +17,17 @@
 
 #endregion License
 
-using Smartrac.SmartCosmos.ClientEndpoint.Base;
-using System;
+using Newtonsoft.Json;
+using Newtonsoft.Json.Converters;
+using Smartrac.SmartCosmos.ClientEndpoint.BaseObject;
+using Smartrac.SmartCosmos.Objects.Base;
 
-
-namespace Smartrac.SmartCosmos.Objects.Notification
+namespace Smartrac.SmartCosmos.Objects.Base
 {
-    public class NotificationEndpointBuilder : BaseEndpointBuilder<INotificationEndpoint, NotificationEndpointBuilder>
+    /// <summary>
+    /// TODO: implement data type
+    /// </summary>
+    public class DataIAccount
     {
-        public NotificationEndpointBuilder() :
-            base(new NotificationEndpoint())
-        {
-
-        }
     }
 }
