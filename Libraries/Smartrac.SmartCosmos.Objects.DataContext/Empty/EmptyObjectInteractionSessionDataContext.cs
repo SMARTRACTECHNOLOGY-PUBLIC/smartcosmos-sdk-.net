@@ -17,48 +17,76 @@
 
 #endregion License
 
+using Smartrac.SmartCosmos.ClientEndpoint.BaseObject;
+using Smartrac.SmartCosmos.Objects.Base;
 namespace Smartrac.SmartCosmos.Objects.DataContext
 {
-    /*    public class BaseObjectInteractionSessionDataContext : IObjectInteractionSessionDataContext
+    public class EmptyObjectInteractionSessionDataContext : BaseObjectInteractionSessionDataContext
+    {
+
+        Urn sessionUrn_;
+
+        public string sessionUrn
         {
-            public virtual Urn GetSessionUrn()
+            get
             {
-                return null;
+                return sessionUrn_.UUID;
             }
-
-            /// <summary>
-            /// The type field is available to create an ontology or high level categories that can be used to group related interactions. The platform makes no inferences about this case-sensitive field.
-            /// </summary>
-            /// <returns>interaction type</returns>
-            public virtual string GetInteractionType()
+            set
             {
-                return "";
-            }
-
-            public virtual string GetDescription()
-            {
-                return "";
-            }
-
-            public virtual string GetName()
-            {
-                return "";
-            }
-
-            public virtual string GetMoniker()
-            {
-                return "";
-            }
-
-            public virtual bool GetActiveFlag()
-            {
-                return true;
-            }
-
-            public virtual ViewType GetViewType()
-            {
-                return ViewType.Standard;
+                sessionUrn_ = new Urn(value);
             }
         }
-    */
+
+        public virtual Urn GetSessionUrn()
+        {
+            return sessionUrn_;
+        }
+
+        public string interactionType;
+
+        public string description;
+
+        public string name;
+
+        public string moniker;
+
+        public bool activeFlag;
+
+        public ViewType viewType;
+
+        /// <summary>
+        /// The type field is available to create an ontology or high level categories that can be used to group related interactions. The platform makes no inferences about this case-sensitive field.
+        /// </summary>
+        /// <returns>interaction type</returns>
+        public override string GetInteractionType()
+        {
+            return interactionType;
+        }
+
+        public override string GetDescription()
+        {
+            return description;
+        }
+
+        public override string GetName()
+        {
+            return name;
+        }
+
+        public override string GetMoniker()
+        {
+            return moniker;
+        }
+
+        public override bool GetActiveFlag()
+        {
+            return activeFlag;
+        }
+
+        public override ViewType GetViewType()
+        {
+            return viewType;
+        }
+    }    
 }

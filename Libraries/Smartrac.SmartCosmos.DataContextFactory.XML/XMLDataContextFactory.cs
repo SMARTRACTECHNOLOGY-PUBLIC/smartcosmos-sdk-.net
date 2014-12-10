@@ -31,8 +31,17 @@ namespace Smartrac.SmartCosmos.DataContextFactory.XML
         protected ITagDataContext TagDataContext = null;
         protected IFileDataContext FileDataContext = null;
         protected IDeviceDataContext DeviceDataContext = null;
+        protected IMetadataDataContext MetadataDataContext = null;
+        protected IObjectInteractionDataContext ObjectInteractionDataContext = null;
+        protected IObjectInteractionSessionDataContext ObjectInteractionSessionDataContext = null;
+        protected IObjectManagementDataContext ObjectManagementDataContext = null;
+        protected IRegistrationDataContext RegistrationDataContext = null;
+        protected IRelationshipManagementDataContext RelationshipManagementDataContext = null;
+        protected IUserManagementDataContext UserManagementDataContext = null;
+        protected IHashTagDataContext HashTagDataContext = null;
+        protected IGeospatialManagementDataContext GeospatialManagementDataContext = null;
         protected IAccountManagementDataContext AccountManagementDataContext = null;
-
+        
         public XMLDataContextFactory(string XMLfile)
             : base()
         {
@@ -69,7 +78,11 @@ namespace Smartrac.SmartCosmos.DataContextFactory.XML
 
         public override IRegistrationDataContext CreateRegistrationDataContext()
         {
-            return null; // new SampleRegistrationDataContext();
+            if (RegistrationDataContext == null)
+            {
+                RegistrationDataContext = XMLDataContextSerializer<XMLRegistrationDataContext>.DeSerialize(doc.Element("data").Element("RegistrationDataContext")) as IRegistrationDataContext;
+            }
+            return RegistrationDataContext;
         }
 
         public override IAccountManagementDataContext CreateAccountManagementDataContext()
@@ -83,42 +96,74 @@ namespace Smartrac.SmartCosmos.DataContextFactory.XML
 
         public override IUserManagementDataContext CreateUserManagementDataContext()
         {
-            return null; // new SampleUserManagementDataContext();
+            if (UserManagementDataContext == null)
+            {
+                UserManagementDataContext = XMLDataContextSerializer<XMLUserManagementDataContext>.DeSerialize(doc.Element("data").Element("UserManagementDataContext")) as IUserManagementDataContext;
+            }
+            return UserManagementDataContext;
         }
 
         public override IObjectManagementDataContext CreateObjectManagementDataContext()
         {
-            return null; // new SampleObjectManagementDataContext();
+            if (ObjectManagementDataContext == null)
+            {
+                ObjectManagementDataContext = XMLDataContextSerializer<XMLObjectManagementDataContext>.DeSerialize(doc.Element("data").Element("ObjectManagementDataContext")) as IObjectManagementDataContext;
+            }
+            return ObjectManagementDataContext;
         }
 
         public override IObjectInteractionDataContext CreateObjectInteractionDataContext()
         {
-            return null; // new SampleObjectInteractionDataContext();
+            if (ObjectInteractionDataContext == null)
+            {
+                ObjectInteractionDataContext = XMLDataContextSerializer<XMLObjectInteractionDataContext>.DeSerialize(doc.Element("data").Element("ObjectInteractionDataContext")) as IObjectInteractionDataContext;
+            }
+            return ObjectInteractionDataContext;
         }
 
         public override IRelationshipManagementDataContext CreateRelationshipManagementDataContext()
         {
-            return null; // new SampleRelationshipManagementDataContext();
+            if (RelationshipManagementDataContext == null)
+            {
+                RelationshipManagementDataContext = XMLDataContextSerializer<XMLRelationshipManagementDataContext>.DeSerialize(doc.Element("data").Element("RelationshipManagementDataContext")) as IRelationshipManagementDataContext;
+            }
+            return RelationshipManagementDataContext;
         }
 
         public override IGeospatialManagementDataContext CreateGeospatialManagementDataContext()
         {
-            return null; // new SampleGeospatialManagementDataContext();
+            if (GeospatialManagementDataContext == null)
+            {
+                GeospatialManagementDataContext = XMLDataContextSerializer<XMLGeospatialManagementDataContext>.DeSerialize(doc.Element("data").Element("GeospatialManagementDataContext")) as IGeospatialManagementDataContext;
+            }
+            return GeospatialManagementDataContext;
         }
 
         public override IHashTagDataContext CreateHashTagDataContext()
         {
-            return null; // new SampleHashTagDataContext();
+            if (HashTagDataContext == null)
+            {
+                HashTagDataContext = XMLDataContextSerializer<XMLHashTagDataContext>.DeSerialize(doc.Element("data").Element("HashTagDataContext")) as IHashTagDataContext;
+            }
+            return HashTagDataContext;
         }
 
         public override IObjectInteractionSessionDataContext CreateObjectInteractionSessionDataContext()
         {
-            return null; // new SampleObjectInteractionSessionDataContext();
+            if (ObjectInteractionSessionDataContext == null)
+            {
+                ObjectInteractionSessionDataContext = XMLDataContextSerializer<XMLObjectInteractionSessionDataContext>.DeSerialize(doc.Element("data").Element("ObjectInteractionSessionDataContext")) as IObjectInteractionSessionDataContext;
+            }
+            return ObjectInteractionSessionDataContext;
         }
 
         public override IMetadataDataContext CreateMetadataDataContext()
         {
-            return null; // new SampleMetadataDataContext();
+            if (MetadataDataContext == null)
+            {
+                MetadataDataContext = XMLDataContextSerializer<XMLMetadataDataContext>.DeSerialize(doc.Element("data").Element("MetadataDataContext")) as IMetadataDataContext;
+            }
+            return MetadataDataContext;
         }
     }
 }

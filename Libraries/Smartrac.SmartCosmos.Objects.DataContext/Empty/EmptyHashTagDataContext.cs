@@ -17,50 +17,92 @@
 
 #endregion License
 
+using Smartrac.SmartCosmos.ClientEndpoint.BaseObject;
+using Smartrac.SmartCosmos.Objects.Base;
 namespace Smartrac.SmartCosmos.Objects.DataContext
 {
-    /*
-    public class EmptyHashTagDataContext : BaseHashTagDataContext
+   public class EmptyHashTagDataContext : BaseHashTagDataContext
     {
-        public virtual Urn GetUrn()
+
+        public string urn
         {
-            return null;
+            get
+            {
+                return urn_.UUID;
+            }
+            set
+            {
+                urn_ = new Urn(value);
+            }
         }
 
-        public virtual string GetDescription()
+        Urn urn_;
+
+        public string referenceUrn
         {
-            return "";
+            get
+            {
+                return referenceUrn_.UUID;
+            }
+            set
+            {
+                referenceUrn_ = new Urn(value);
+            }
         }
 
-        public virtual string GetName()
+        Urn referenceUrn_;
+
+        public string moniker { get; set; }
+
+        public string name { get; set; }
+
+        public string description { get; set; }
+
+        public bool activeFlag { get; set; }
+
+        public EntityReferenceType entityReferenceType { get; set; }
+
+        public ViewType viewType { get; set; }
+       
+        public override Urn GetUrn()
         {
-            return "";
+            return urn_;
         }
 
-        public virtual string GetMoniker()
+        public override string GetDescription()
         {
-            return "";
+            return description;
         }
 
-        public virtual bool GetActiveFlag()
+        public override string GetName()
         {
-            return true;
+            return name;
         }
 
-        public virtual ViewType GetViewType()
+        public override string GetMoniker()
         {
-            return ViewType.Standard;
+            return moniker;
         }
 
-        public virtual Urn GetReferenceUrn()
+        public override bool GetActiveFlag()
         {
-            return null;
+            return activeFlag;
         }
 
-        public virtual EntityReferenceType GetEntityReferenceType()
+        public override ViewType GetViewType()
         {
-            return EntityReferenceType.Object;
+            return viewType;
+        }
+
+        public override Urn GetReferenceUrn()
+        {
+            return referenceUrn_;
+        }
+
+        public override EntityReferenceType GetEntityReferenceType()
+        {
+            return entityReferenceType;
         }
     }
-*/
+
 }

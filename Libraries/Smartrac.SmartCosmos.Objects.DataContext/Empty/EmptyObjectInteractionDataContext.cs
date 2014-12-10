@@ -17,57 +17,99 @@
 
 #endregion License
 
+using Smartrac.SmartCosmos.ClientEndpoint.BaseObject;
+using Smartrac.SmartCosmos.Objects.Base;
 namespace Smartrac.SmartCosmos.Objects.DataContext
 {
-    /*  public class BaseObjectInteractionDataContext : IObjectInteractionDataContext
-      {
-          public virtual Urn GetObjectUrn()
-          {
-              return null;
-          }
+    public class EmptyObjectInteractionDataContext : BaseObjectInteractionDataContext
+    {
+        public string objectUrn 
+        {
+            get
+            {
+                return objectUrn_.UUID;
+            }
+            set
+            {
+                objectUrn_ = new Urn(value);
+            } 
+        }
 
-          public virtual Urn GetReferenceUrn()
-          {
-              return null;
-          }
+        Urn objectUrn_;
 
-          /// <summary>
-          /// The type field is available to create an ontology or high level categories that can be used to group related interactions. The platform makes no inferences about this case-sensitive field.
-          /// </summary>
-          /// <returns>interaction type</returns>
-          public virtual string GetInteractionType()
-          {
-              return "";
-          }
+        public string referenceUrn
+        {
+            get
+            {
+                return referenceUrn_.UUID;
+            }
+            set
+            {
+                referenceUrn_ = new Urn(value);
+            }
+        }
 
-          public virtual long GetRecordedTimestamp()
-          {
-              return 0;
-          }
+        Urn referenceUrn_;
 
-          public virtual string GetDescription()
-          {
-              return "";
-          }
+        public string interactionType { get; set; }
 
-          public virtual bool GetActiveFlag()
-          {
-              return true;
-          }
+        public long recordedTimestamp { get; set; }
 
-          /// <summary>
-          /// entityReferenceType is required and constrained to a valid EntityReferenceType value
-          /// </summary>
-          /// <returns>EntityReferenceType</returns>
-          public virtual EntityReferenceType GetEntityReferenceType()
-          {
-              return EntityReferenceType.Object;
-          }
+        public string description { get; set; }
 
-          public virtual ViewType GetViewType()
-          {
-              return ViewType.Standard;
-          }
-      }
-  */
+        public bool activeFlag { get; set; }
+
+        public EntityReferenceType entityReferenceType { get; set; }
+
+        public ViewType viewType { get; set; }
+
+        public override Urn GetObjectUrn()
+        {
+            return objectUrn_;
+        }
+
+        public override Urn GetReferenceUrn()
+        {
+            return referenceUrn_;
+        }
+
+        /// <summary>
+        /// The type field is available to create an ontology or high level categories that can be used to group related interactions. The platform makes no inferences about this case-sensitive field.
+        /// </summary>
+        /// <returns>interaction type</returns>
+        public override string GetInteractionType()
+        {
+            return interactionType;
+        }
+
+        public override long GetRecordedTimestamp()
+        {
+            return recordedTimestamp;
+        }
+
+        public override string GetDescription()
+        {
+            return description;
+        }
+
+        public override bool GetActiveFlag()
+        {
+            return activeFlag;
+        }
+
+        /// <summary>
+        /// entityReferenceType is required and constrained to a valid EntityReferenceType value
+        /// </summary>
+        /// <returns>EntityReferenceType</returns>
+        public override EntityReferenceType GetEntityReferenceType()
+        {
+            return entityReferenceType;
+        }
+
+        public override ViewType GetViewType()
+        {
+            return viewType;
+        }
+    }
+  
 }

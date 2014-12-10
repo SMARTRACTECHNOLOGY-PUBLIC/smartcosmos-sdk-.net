@@ -17,47 +17,85 @@
 
 #endregion License
 
+using Smartrac.SmartCosmos.ClientEndpoint.BaseObject;
+using Smartrac.SmartCosmos.Objects.Base;
 namespace Smartrac.SmartCosmos.Objects.DataContext
 {
-    /*   public class BaseRelationshipManagementDataContext : IRelationshipManagementDataContext
-       {
-           public virtual Urn GetRelatedReferenceUrn()
-           {
-               return null;
-           }
+    public class EmptyRelationshipManagementDataContext : BaseRelationshipManagementDataContext
+    {
+        public string relatedReferenceUrn
+        {
+            get
+            {
+                return relatedReferenceUrn_.UUID;
+            }
+            set
+            {
+                relatedReferenceUrn_ = new Urn(value);
+            }
+        }
 
-           public virtual Urn GetReferenceUrn()
-           {
-               return null;
-           }
+        Urn relatedReferenceUrn_;
 
-           public virtual string GetRelationshipType()
-           {
-               return "";
-           }
+        public string referenceUrn
+        {
+            get
+            {
+                return referenceUrn_.UUID;
+            }
+            set
+            {
+                referenceUrn_ = new Urn(value);
+            }
+        }
 
-           /// <summary>
-           /// entityReferenceType is required and constrained to a valid EntityReferenceType value
-           /// </summary>
-           /// <returns>EntityReferenceType</returns>
-           public virtual EntityReferenceType GetEntityReferenceType()
-           {
-               return EntityReferenceType.Object;
-           }
+        Urn referenceUrn_;
 
-           /// <summary>
-           /// entityReferenceType is required and constrained to a valid EntityReferenceType value
-           /// </summary>
-           /// <returns>EntityReferenceType</returns>
-           public virtual EntityReferenceType GetRelatedEntityReferenceType()
-           {
-               return EntityReferenceType.Object;
-           }
+        public string relationshipType { get; set; }
 
-           public virtual ViewType GetViewType()
-           {
-               return ViewType.Standard;
-           }
-       }
-   */
+        public EntityReferenceType entityReferenceType { get; set; }
+
+        public EntityReferenceType relatedEntityReferenceType { get; set; }
+
+        public ViewType viewType { get; set; }
+
+        
+        public override Urn GetRelatedReferenceUrn()
+        {
+            return relatedReferenceUrn_;
+        }
+
+        public override Urn GetReferenceUrn()
+        {
+            return referenceUrn_;
+        }
+
+        public override string GetRelationshipType()
+        {
+            return relationshipType;
+        }
+
+        /// <summary>
+        /// entityReferenceType is required and constrained to a valid EntityReferenceType value
+        /// </summary>
+        /// <returns>EntityReferenceType</returns>
+        public override EntityReferenceType GetEntityReferenceType()
+        {
+            return entityReferenceType;
+        }
+
+        /// <summary>
+        /// entityReferenceType is required and constrained to a valid EntityReferenceType value
+        /// </summary>
+        /// <returns>EntityReferenceType</returns>
+        public override EntityReferenceType GetRelatedEntityReferenceType()
+        {
+            return relatedEntityReferenceType;
+        }
+
+        public override ViewType GetViewType()
+        {
+            return viewType;
+        }
+    }  
 }

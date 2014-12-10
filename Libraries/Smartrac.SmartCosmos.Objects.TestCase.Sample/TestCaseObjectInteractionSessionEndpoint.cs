@@ -24,7 +24,7 @@ using Smartrac.SmartCosmos.TestCase.Base;
 
 namespace Smartrac.SmartCosmos.Objects.TestCase.Sample
 {
-    [TestCaseAttribute(50)]
+    [TestCaseAttribute(107)]
     public class TestCaseObjectInteractionSessionEndpoint : BaseTestCaseObjectInteractionSessionEndpoint
     {
         protected override bool ExecuteTests()

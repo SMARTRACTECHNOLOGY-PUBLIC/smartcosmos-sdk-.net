@@ -19,17 +19,21 @@
 
 namespace Smartrac.SmartCosmos.Objects.DataContext
 {
-    /*  public class BaseRegistrationDataContext : IRegistrationDataContext
-      {
-          public virtual string GetRealm()
-          {
-              return "";
-          }
+    public class EmptyRegistrationDataContext : BaseRegistrationDataContext
+    {
+        public string realm;
 
-          public virtual string GeteMailAddress()
-          {
-              return "";
-          }
-      }
-      */
+        public string mailAddress;
+        
+        public override string GetRealm()
+        {
+            return realm;
+        }
+
+        public override string GeteMailAddress()
+        {
+            return mailAddress;
+        }
+    }
+      
 }

@@ -25,7 +25,7 @@ using System.Collections.Generic;
 
 namespace Smartrac.SmartCosmos.Objects.TestCase.Sample
 {
-    [TestCaseAttribute(90)]
+    [TestCaseAttribute(102)]
     public class TestCaseMetadataEndpoint : BaseTestCaseMetadataEndpoint
     {
         protected override bool ExecuteTests()

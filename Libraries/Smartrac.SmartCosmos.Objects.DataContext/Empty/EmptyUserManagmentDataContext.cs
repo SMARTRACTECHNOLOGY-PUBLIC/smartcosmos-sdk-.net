@@ -17,44 +17,72 @@
 
 #endregion License
 
+using Smartrac.SmartCosmos.ClientEndpoint.BaseObject;
+using Smartrac.SmartCosmos.Objects.Base;
 namespace Smartrac.SmartCosmos.Objects.DataContext
 {
-    /*   public class BaseUserManagementDataContext : IUserManagementDataContext
-       {
-           public virtual Urn GetUserUrn()
-           {
-               return null;
-           }
+    public class EmptyUserManagementDataContext : BaseUserManagementDataContext
+    {
 
-           public virtual ViewType GetViewType()
-           {
-               return ViewType.Standard;
-           }
+        public string userUrn
+        {
+            get
+            {
+                return userUrn_.UUID;
+            }
+            set
+            {
+                userUrn_ = new Urn(value);
+            }
+        }
 
-           public virtual string GetNewPassword()
-           {
-               return "";
-           }
+        Urn userUrn_;
 
-           public virtual string GeteMailAddress()
-           {
-               return "";
-           }
+        public string newPassword { get; set; }
 
-           public virtual RoleType GetRoleType()
-           {
-               return RoleType.User;
-           }
+        public string eMailAddress { get; set; }
 
-           public virtual string GetGivenName()
-           {
-               return "";
-           }
+        public string givenName { get; set; }
 
-           public virtual string GetSurname()
-           {
-               return "";
-           }
-       }
-   */
+        public string surname { get; set; }
+
+        public RoleType roleType { get; set; }
+
+        public ViewType viewType { get; set; }
+
+        public override Urn GetUserUrn()
+        {
+            return userUrn_;
+        }
+
+        public override ViewType GetViewType()
+        {
+            return viewType;
+        }
+
+        public override string GetNewPassword()
+        {
+            return newPassword;
+        }
+
+        public override string GeteMailAddress()
+        {
+            return eMailAddress;
+        }
+
+        public override RoleType GetRoleType()
+        {
+            return roleType;
+        }
+
+        public override string GetGivenName()
+        {
+            return givenName;
+        }
+
+        public override string GetSurname()
+        {
+            return surname;
+        }
+    }
 }

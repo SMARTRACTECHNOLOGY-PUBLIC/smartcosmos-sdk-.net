@@ -17,17 +17,47 @@
 
 #endregion License
 
+using Smartrac.SmartCosmos.ClientEndpoint.BaseObject;
+using Smartrac.SmartCosmos.Objects.Base;
+using Smartrac.SmartCosmos.Objects.Metadata;
+using System.Collections.Generic;
 namespace Smartrac.SmartCosmos.Objects.DataContext
 {
-    /*
-    public class BaseMetadataDataContext : IMetadataDataContext
+
+    public class EmptyMetadataDataContext : BaseMetadataDataContext
     {
-        public virtual Urn GetEntityUrn()
+        public ViewType viewType { get; set; }
+
+        public string entityUrn
         {
-            return null;
+            get
+            {
+                return entityUrn_.UUID;
+            }
+            set
+            {
+                entityUrn_ = new Urn(value);
+            }
         }
 
-        public virtual ViewType GetViewType()
+        Urn entityUrn_;
+
+        public List<MetadataItem> metadata { get; set; }
+
+        public EntityReferenceType entityReferenceType { get; set; }
+
+        public EmptyMetadataDataContext()
+            : base()
+        {
+            viewType = ViewType.Standard;
+        }
+        
+        public override Urn GetEntityUrn()
+        {
+            return entityUrn_;
+        }
+
+        public override ViewType GetViewType()
         {
             return ViewType.Standard;
         }
@@ -35,15 +65,15 @@ namespace Smartrac.SmartCosmos.Objects.DataContext
         /// <summary>
         /// Valid EntityReferenceType enum value
         /// </summary>
-        public virtual EntityReferenceType GetEntityReferenceType()
+        public override EntityReferenceType GetEntityReferenceType()
         {
             return EntityReferenceType.Object;
         }
 
-        public virtual List<MetadataItem> GetMetadata()
+        public override List<MetadataItem> GetMetadata()
         {
-            return null;
+            return metadata;
         }
     }
-    */
+    
 }

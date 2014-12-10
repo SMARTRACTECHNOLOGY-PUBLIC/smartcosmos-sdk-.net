@@ -58,24 +58,118 @@
 			</FileDefinition>
 		</FileDefinitions>
 	</FileDataContext>	
+	
+	<!-- data for device data context -->
 	<DeviceDataContext>
 		<viewType>Standard</viewType>
 		<name>Jason's Phone!</name>
 		<type>Android</type>
 		<identification>gqorighfawpftjqevznxclmndaawetha</identification>
 	</DeviceDataContext>
-	<GeospatialManagment>
+	
+	<!-- data for geospatial managment data context -->
+	<GeospatialManagementDataContext>
 		<viewType>Standard</viewType>
 		<name>Campus at 6th Street</name>
 		<category>Building</category>
+		<description>Campus at 6th Street</description>
 		<activeFlag>true</activeFlag>
-		 <!-- <point>
-			<BoundingBoxes></BoundingBoxes>
-			<CRS>
-				<Type>1</Type>
-			</CRS>
-			<Type>1</Type>
-		</point> -->
-	</GeospatialManagment>
+		<geospatialUrn>urn:building:mall:ParadiseValley:2</geospatialUrn>
+		<geometricShapeLatitude>45.79012</geometricShapeLatitude>
+		<geometricShapeLongitude>15.94107</geometricShapeLongitude>
+		<geometricShapeDictionaryKey>Name</geometricShapeDictionaryKey>
+		<geometricShapeDictionaryValue>Foo</geometricShapeDictionaryValue>
+	</GeospatialManagementDataContext>
+	
+	<!-- data for meta data context -->
+	<MetadataDataContext>
+		<viewType>Standard</viewType>
+		<entityReferenceType>Object</entityReferenceType>
+		<entityUrn>urn:building:mall:ParadiseValley:2</entityUrn>
+		<metadata>
+			<MetadataItem>
+				<dataTypeObj>Boolean</dataTypeObj>
+				<key>key</key>
+				<rawValue>AQ==</rawValue>
+			</MetadataItem>
+			<MetadataItem>
+				<dataTypeObj>String</dataTypeObj>
+				<key>foo</key>
+				<rawValue>KioqKioqKioqKioqKg==</rawValue>
+			</MetadataItem>
+		</metadata>
+	</MetadataDataContext>
+	
+	<!-- data for interaction data context -->
+	<ObjectInteractionDataContext>
+		<viewType>Standard</viewType>
+		<entityReferenceType>Object</entityReferenceType>
+		<interactionType>Building</interactionType>
+		<recordedTimestamp>1418201413</recordedTimestamp>
+		<activeFlag>true</activeFlag>
+		<description>test</description>
+		<objectUrn>urn:building:mall:ParadiseValley:2</objectUrn>	
+		<referenceUrn>urn:building:mall:ParadiseValley:2</referenceUrn>		
+	</ObjectInteractionDataContext>
+	
+	<!-- data for interaction session data context -->
+	<ObjectInteractionSessionDataContext>
+		<viewType>Standard</viewType>
+		<name>test name</name>
+		<interactionType>test type</interactionType>
+		<moniker>monikertest</moniker>
+		<activeFlag>true</activeFlag>
+		<description>test</description>
+		<sessionUrn>urn:building:mall:ParadiseValley:2</sessionUrn>		
+	</ObjectInteractionSessionDataContext>
+	
+	<!-- data for management data context -->
+	<ObjectManagementDataContext>
+		<viewType>Standard</viewType>
+		<name>Paradise Valley Merchant's Mall</name>
+		<category>Building</category>
+		<activeFlag>true</activeFlag>
+		<description>test</description>
+		<objectUrn>urn:building:mall:ParadiseValley:2</objectUrn>		
+	</ObjectManagementDataContext>
+	
+	<!-- data for registration data context -->
+	<RegistrationDataContext>
+		<realm>yourarea[RANDOM].com</realm>
+		<mailAddress>testuser@yourarea[RANDOM].com</mailAddress>	
+	</RegistrationDataContext>
+	
+	<!-- data for relationship management data context -->
+	<RelationshipManagementDataContext>
+		<viewType>Standard</viewType>
+		<entityReferenceType>Object</entityReferenceType>
+		<relatedEntityReferenceType>Object</relatedEntityReferenceType>
+		<relationshipType>Owns</relationshipType>
+		<relatedReferenceUrn>urn:building:mall:ParadiseValley:2</relatedReferenceUrn>	
+		<referenceUrn>urn:building:mall:ParadiseValley:2</referenceUrn>	
+	</RelationshipManagementDataContext>
+	
+	<!-- data for user management data context -->
+	<UserManagementDataContext>
+		<viewType>Standard</viewType>
+		<roleType>User</roleType>
+		<surname>too</surname>
+		<givenName>me</givenName>
+		<eMailAddress>testuser@yourarea[RANDOM].com</eMailAddress>
+		<newPassword>1234</newPassword>	
+		<userUrn>urn:building:mall:ParadiseValley:2</userUrn>	
+	</UserManagementDataContext>
+	
+	<!-- data for hash tag data context -->
+	<HashTagDataContext>
+		<viewType>Standard</viewType>
+		<entityReferenceType>Object</entityReferenceType>
+		<name>test name</name>
+		<description>test descr</description>
+		<activeFlag>true</activeFlag>
+		<moniker>test moniker</moniker>
+		<urn>urn:building:mall:ParadiseValley:2</urn>	
+		<referenceUrn>urn:building:mall:ParadiseValley:2</referenceUrn>	
+	</HashTagDataContext>
 </data>
 

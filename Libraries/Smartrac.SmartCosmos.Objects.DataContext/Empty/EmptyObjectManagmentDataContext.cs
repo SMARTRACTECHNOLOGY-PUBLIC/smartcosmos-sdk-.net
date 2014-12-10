@@ -17,39 +17,66 @@
 
 #endregion License
 
+using Smartrac.SmartCosmos.ClientEndpoint.BaseObject;
+using Smartrac.SmartCosmos.Objects.Base;
 namespace Smartrac.SmartCosmos.Objects.DataContext
 {
-    /*  public class BaseObjectManagementDataContext : IObjectManagementDataContext
-      {
-          public virtual Urn GetObjectUrn()
-          {
-              return null;
-          }
+    public class EmptyObjectManagementDataContext : BaseObjectManagementDataContext
+    {
 
-          public virtual string GetCategory()
-          {
-              return "";
-          }
+        Urn objectUrn_;
 
-          public virtual string GetName()
-          {
-              return "";
-          }
+        public string objectUrn
+        {
+            get
+            {
+                return objectUrn_.UUID;
+            }
+            set
+            {
+                objectUrn_ = new Urn(value);
+            }
+        }          
 
-          public virtual string GetDescription()
-          {
-              return "";
-          }
+        public string category;
 
-          public virtual bool GetActiveFlag()
-          {
-              return true;
-          }
+        public string description;
 
-          public virtual ViewType GetViewType()
-          {
-              return ViewType.Standard;
-          }
-      }
-  */
+        public string name;
+
+        public bool activeFlag;
+
+        public ViewType viewType;
+        
+        public override Urn GetObjectUrn()
+        {
+            return objectUrn_;
+        }
+
+        public override string GetCategory()
+        {
+            return category;
+        }
+
+        public override string GetName()
+        {
+            return name;
+        }
+
+        public override string GetDescription()
+        {
+            return description;
+        }
+
+        public override bool GetActiveFlag()
+        {
+            return activeFlag;
+        }
+
+        public override ViewType GetViewType()
+        {
+            return viewType;
+        }
+    }
+  
 }

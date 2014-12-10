@@ -17,44 +17,113 @@
 
 #endregion License
 
+using GeoJSON.Net;
+using Smartrac.SmartCosmos.ClientEndpoint.BaseObject;
+using Smartrac.SmartCosmos.Objects.Base;
+using System.Collections.Generic;
 namespace Smartrac.SmartCosmos.Objects.DataContext
 {
-    /*    public class BaseGeospatialManagementDataContext : IGeospatialManagementDataContext
+    public class EmptyGeospatialManagementDataContext : BaseGeospatialManagementDataContext
+    {
+
+        public string geospatialUrn
         {
-            public virtual Urn GetGeospatialUrn()
+            get
             {
-                return null;
+                return geospatialUrn_.UUID;
             }
-
-            public virtual string GetName()
+            set
             {
-                return null;
-            }
-
-            public virtual string GetCategory()
-            {
-                return null;
-            }
-
-            public virtual string GetDescription()
-            {
-                return null;
-            }
-
-            public virtual bool GetActiveFlag()
-            {
-                return true;
-            }
-
-            public virtual GeoJSONObject GetGeometricShape()
-            {
-                return null;
-            }
-
-            public virtual ViewType GetViewType()
-            {
-                return ViewType.Standard;
+                geospatialUrn_ = new Urn(value);
             }
         }
-    */
+
+        Urn geospatialUrn_;
+
+        /*public GeoJSONObjectBuilder geometricShape
+        {
+            get;
+            set;
+        }*/
+
+        Urn referenceUrn_;
+
+        public string name { get; set; }
+
+        public string category { get; set; }
+
+        public string description { get; set; }
+
+        public bool activeFlag { get; set; }
+
+        //public GeoJSONObject geometricShape_ { get; set; }
+
+        public ViewType viewType { get; set; }
+
+        public double geometricShapeWidth { get; set; }
+
+        public double geometricShapeHeight { get; set; }
+
+        public string geometricShapeDictionaryKey { get; set; }
+
+        public string geometricShapeDictionaryValue { get; set; }
+        
+        public override Urn GetGeospatialUrn()
+        {
+            return geospatialUrn_;
+        }
+
+        public override string GetName()
+        {
+            return name;
+        }
+
+        public override string GetCategory()
+        {
+            return category;
+        }
+
+        public override string GetDescription()
+        {
+            return description;
+        }
+
+        public override bool GetActiveFlag()
+        {
+            return activeFlag;
+        }
+
+        public override GeoJSONObject GetGeometricShape()
+        {
+            //return geometricShape.getGeoJSONObject();
+            var point = new GeoJSON.Net.Geometry.Point(new GeoJSON.Net.Geometry.GeographicPosition(geometricShapeWidth, geometricShapeHeight));
+            var featureProperties = new Dictionary<string, object> { { geometricShapeDictionaryKey, geometricShapeDictionaryValue } };
+            var model = new GeoJSON.Net.Feature.Feature(point, featureProperties);
+            return model;
+        }
+
+        public override ViewType GetViewType()
+        {
+            return viewType;
+        }
+    }
+
+    /*public class GeoJSONObjectBuilder
+    {
+        public double geometricShapeWidth;
+
+        public double geometricShapeHeight;
+
+        public string geometricShapeDictionaryKey { get; set; }
+
+        public string geometricShapeDictionaryValue { get; set; }
+
+        public GeoJSONObject getGeoJSONObject()
+        {
+            var point = new GeoJSON.Net.Geometry.Point(new GeoJSON.Net.Geometry.GeographicPosition(geometricShapeWidth, geometricShapeHeight));
+            var featureProperties = new Dictionary<string, object> { { geometricShapeDictionaryKey, geometricShapeDictionaryValue } };
+            var model = new GeoJSON.Net.Feature.Feature(point, featureProperties);
+            return model;
+        }
+    }*/
 }

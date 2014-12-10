@@ -17,15 +17,13 @@
 
 #endregion License
 
+using System;
+using System.Xml.Serialization;
 namespace Smartrac.SmartCosmos.Objects.DataContext.XML
 {
-    /*
+    [Serializable]
+    [XmlRoot("GeospatialManagementDataContext")]
     public class XMLGeospatialManagementDataContext : EmptyGeospatialManagementDataContext
     {
-        public bool Deserialze(XElement elem)
-        {
-            return true;
-        }
     }
-     * */
 }

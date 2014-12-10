@@ -17,14 +17,13 @@
 
 #endregion License
 
+using System;
+using System.Xml.Serialization;
 namespace Smartrac.SmartCosmos.Objects.DataContext.XML
-{/*
+{
+    [Serializable]
+    [XmlRoot("HashTagDataContext")]
     public class XMLHashTagDataContext : EmptyHashTagDataContext
     {
-        public bool Deserialze(XElement elem)
-        {
-            return true;
-        }
     }
-    */
 }
