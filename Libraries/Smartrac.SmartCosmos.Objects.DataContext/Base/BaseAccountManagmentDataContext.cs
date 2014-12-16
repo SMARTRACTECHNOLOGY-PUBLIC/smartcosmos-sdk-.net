@@ -17,11 +17,12 @@
 
 #endregion License
 
+using Smartrac.SmartCosmos.ClientEndpoint.BaseObject;
 using Smartrac.SmartCosmos.Objects.Base;
 
 namespace Smartrac.SmartCosmos.Objects.DataContext
 {
-    public class BaseAccountManagementDataContext : IAccountManagementDataContext
+    public class BaseAccountManagementDataContext : BaseDataContext, IAccountManagementDataContext
     {
         public virtual ViewType GetViewType()
         {

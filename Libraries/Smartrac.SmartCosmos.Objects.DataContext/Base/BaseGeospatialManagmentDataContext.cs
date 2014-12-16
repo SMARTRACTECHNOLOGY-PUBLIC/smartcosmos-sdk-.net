@@ -23,7 +23,7 @@ using Smartrac.SmartCosmos.Objects.Base;
 
 namespace Smartrac.SmartCosmos.Objects.DataContext
 {
-    public class BaseGeospatialManagementDataContext : IGeospatialManagementDataContext
+    public class BaseGeospatialManagementDataContext : BaseDataContext, IGeospatialManagementDataContext
     {
         public virtual Urn GetGeospatialUrn()
         {

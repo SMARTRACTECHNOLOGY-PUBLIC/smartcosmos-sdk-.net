@@ -22,10 +22,7 @@ using Smartrac.SmartCosmos.Objects.Base;
 
 namespace Smartrac.SmartCosmos.Objects.Notification
 {
-    public class NotificationBaseResponse : DefaultResponse
+    public class NotificationResponse : DefaultResponse
     {
-        public int code { get; set; }
-
-        public string message { get; set; }
     }
 }

@@ -126,10 +126,6 @@
       <Project>{73ba0972-769b-4b84-9a21-9cf545a14a03}</Project>
       <Name>Smartrac.Logging</Name>
     </ProjectReference>
-    <ProjectReference Include="..\Smartrac.SmartCosmos.ClientEndpoint.BaseObject\Smartrac.SmartCosmos.ClientEndpoint.BaseObject.csproj">
-      <Project>{28e0fa25-18da-4c11-83cd-92a36ddd060b}</Project>
-      <Name>Smartrac.SmartCosmos.ClientEndpoint.BaseObject</Name>
-    </ProjectReference>
     <ProjectReference Include="..\Smartrac.SmartCosmos.ClientEndpoint.Base\Smartrac.SmartCosmos.ClientEndpoint.Base.csproj">
       <Project>{f0e26f53-5847-42d0-b16f-2dbd1952e452}</Project>
       <Name>Smartrac.SmartCosmos.ClientEndpoint.Base</Name>

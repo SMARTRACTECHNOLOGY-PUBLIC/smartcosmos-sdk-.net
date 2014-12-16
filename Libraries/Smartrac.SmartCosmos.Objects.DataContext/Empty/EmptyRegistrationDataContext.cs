@@ -17,6 +17,8 @@
 
 #endregion License
 
+using System;
+
 namespace Smartrac.SmartCosmos.Objects.DataContext
 {
     public class EmptyRegistrationDataContext : BaseRegistrationDataContext
@@ -33,6 +35,12 @@ namespace Smartrac.SmartCosmos.Objects.DataContext
         public override string GeteMailAddress()
         {
             return mailAddress;
+        }
+
+        public override void Prepare()
+        {
+            realm = realm.ResolveVariables();
+            mailAddress = mailAddress.ResolveVariables();
         }
     }
       

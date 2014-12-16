@@ -17,6 +17,7 @@
 
 #endregion License
 
+using System;
 using Smartrac.SmartCosmos.ClientEndpoint.BaseObject;
 using Smartrac.SmartCosmos.Objects.Base;
 namespace Smartrac.SmartCosmos.Objects.DataContext
@@ -96,6 +97,11 @@ namespace Smartrac.SmartCosmos.Objects.DataContext
         public override ViewType GetViewType()
         {
             return viewType;
+        }
+
+        public override void Prepare()
+        {
+            relationshipType = relationshipType.ResolveVariables();
         }
     }  
 }

@@ -22,7 +22,7 @@ using Smartrac.SmartCosmos.Objects.Base;
 
 namespace Smartrac.SmartCosmos.Objects.DataContext
 {
-    public class BaseObjectInteractionSessionDataContext : IObjectInteractionSessionDataContext
+    public class BaseObjectInteractionSessionDataContext : BaseDataContext, IObjectInteractionSessionDataContext
     {
         public virtual Urn GetSessionUrn()
         {

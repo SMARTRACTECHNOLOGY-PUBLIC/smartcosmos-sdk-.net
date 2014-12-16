@@ -30,6 +30,6 @@ namespace Smartrac.SmartCosmos.Objects.DataContext
 
         string GetName();
 
-        string GetType();
+        string GetDeviceType();
     }
 }

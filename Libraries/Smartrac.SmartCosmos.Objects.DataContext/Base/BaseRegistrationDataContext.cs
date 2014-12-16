@@ -17,9 +17,10 @@
 
 #endregion License
 
+using Smartrac.SmartCosmos.ClientEndpoint.BaseObject;
 namespace Smartrac.SmartCosmos.Objects.DataContext
 {
-    public class BaseRegistrationDataContext : IRegistrationDataContext
+    public class BaseRegistrationDataContext : BaseDataContext, IRegistrationDataContext
     {
         public virtual string GetRealm()
         {

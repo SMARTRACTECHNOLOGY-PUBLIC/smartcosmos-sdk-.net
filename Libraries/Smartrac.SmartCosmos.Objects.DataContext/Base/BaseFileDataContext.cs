@@ -23,7 +23,7 @@ using System.Collections.Generic;
 
 namespace Smartrac.SmartCosmos.Objects.DataContext
 {
-    public class BaseFileDataContext : IFileDataContext
+    public class BaseFileDataContext : BaseDataContext, IFileDataContext
     {
         public virtual EntityReferenceType GetEntityReferenceType()
         {

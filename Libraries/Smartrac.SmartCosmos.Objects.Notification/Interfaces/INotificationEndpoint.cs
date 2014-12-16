@@ -51,7 +51,7 @@ namespace Smartrac.SmartCosmos.Objects.Notification
         /// <param name="requestData">All element available data</param>
         /// <param name="responseData">Urn or message with error description</param>
         /// <returns>NotificationActionResult</returns>
-        NotificationActionResult Create(EnrollNotificationsRequest requestData, out NotificationBaseResponse responseData);
+        NotificationActionResult Create(EnrollNotificationsRequest requestData, out NotificationResponse responseData);
 
         /// <summary>
         /// Confirms the enrollment of an endpoint running a web app that received a `topicArn`
@@ -59,7 +59,7 @@ namespace Smartrac.SmartCosmos.Objects.Notification
         /// <param name="requestData">topicArn, token</param>
         /// <param name="responseData">Returns code, message only for errors</param>
         /// <returns>NotificationActionResult</returns>
-        NotificationActionResult Confirm(EnrollmentConfirmationRequest requestData, out NotificationBaseResponse responseData);
+        NotificationActionResult Confirm(EnrollmentConfirmationRequest requestData, out NotificationResponse responseData);
 
         /// <summary>
         /// Withdraw or terminate delivery of events to an existing endpoint
@@ -68,7 +68,7 @@ namespace Smartrac.SmartCosmos.Objects.Notification
         /// <param name="responseData">Returns code, message only for errors</param>
         /// <returns>NotificationActionResult</returns>
         NotificationActionResult Delete(Urn notificationUrn,
-                                    out NotificationBaseResponse responseData);
+                                    out NotificationResponse responseData);
 
         /// <summary>
         /// Lookup a specific notification endpoint by its system-assigned URN key

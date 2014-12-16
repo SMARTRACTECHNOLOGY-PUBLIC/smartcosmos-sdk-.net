@@ -17,6 +17,7 @@
 
 #endregion License
 
+using System;
 using Smartrac.SmartCosmos.ClientEndpoint.BaseObject;
 using Smartrac.SmartCosmos.Objects.Base;
 namespace Smartrac.SmartCosmos.Objects.DataContext
@@ -38,7 +39,7 @@ namespace Smartrac.SmartCosmos.Objects.DataContext
             }
         }
 
-        public virtual Urn GetSessionUrn()
+        public override Urn GetSessionUrn()
         {
             return sessionUrn_;
         }
@@ -87,6 +88,14 @@ namespace Smartrac.SmartCosmos.Objects.DataContext
         public override ViewType GetViewType()
         {
             return viewType;
+        }
+
+        public override void Prepare()
+        {
+            interactionType = interactionType.ResolveVariables();
+            description = description.ResolveVariables();
+            name = name.ResolveVariables();
+            moniker = moniker.ResolveVariables();
         }
     }    
 }

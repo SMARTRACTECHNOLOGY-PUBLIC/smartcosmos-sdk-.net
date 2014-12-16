@@ -24,7 +24,7 @@ using Smartrac.SmartCosmos.TestCase.Base;
 
 namespace Smartrac.SmartCosmos.Objects.TestCase.Sample
 {
-    [TestCaseAttribute(1)]
+    [TestCaseAttribute(13)]
     public class TestCaseGeospatialManagementEndpoint : BaseTestCaseGeospatialManagementEndpoint
     {
         protected override bool ExecuteTests()

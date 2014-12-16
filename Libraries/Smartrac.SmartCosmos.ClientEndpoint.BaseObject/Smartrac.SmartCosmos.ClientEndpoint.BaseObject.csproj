@@ -115,6 +115,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Base\BaseDataContext.cs" />
     <Compile Include="Base\BaseResponse.cs" />
     <Compile Include="Base\BaseRequest.cs" />
     <Compile Include="Base\Urn.cs" />

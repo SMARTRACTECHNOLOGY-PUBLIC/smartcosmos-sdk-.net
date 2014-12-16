@@ -17,6 +17,7 @@
 
 #endregion License
 
+using System;
 using Smartrac.SmartCosmos.Objects.Base;
 
 namespace Smartrac.SmartCosmos.Objects.DataContext
@@ -55,6 +56,13 @@ namespace Smartrac.SmartCosmos.Objects.DataContext
         public override string GeteMailAddress()
         {
             return eMailAddress;
+        }
+
+        public override void Prepare()
+        {
+            OldPassword = OldPassword.ResolveVariables();
+            NewPassword = NewPassword.ResolveVariables();
+            eMailAddress = eMailAddress.ResolveVariables();
         }
     }
 }

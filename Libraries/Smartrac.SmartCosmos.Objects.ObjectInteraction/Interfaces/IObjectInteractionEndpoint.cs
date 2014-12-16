@@ -58,7 +58,7 @@ namespace Smartrac.SmartCosmos.Objects.ObjectInteraction
         /// <summary>
         /// Lookup a specific interaction by its system-assigned URN key
         /// </summary>
-        /// <param name="interactionUrn">System-assigned URN assigned at creation</param>
+        /// <param name="urn">System-assigned URN assigned at creation</param>
         /// <param name="viewType">A valid JSON Serialization View name (case-sensitive)</param>
         /// <param name="responseData">Object data</param>
         /// <returns>ObjectManagementActionResult</returns>

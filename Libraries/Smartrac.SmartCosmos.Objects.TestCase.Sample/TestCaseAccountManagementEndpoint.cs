@@ -22,7 +22,7 @@ using Smartrac.SmartCosmos.TestCase.Base;
 
 namespace Smartrac.SmartCosmos.Objects.TestCase.Sample
 {
-    [TestCaseAttribute(20)]
+    [TestCaseAttribute(2)]
     public class TestCaseAccountManagementEndpoint : BaseTestCaseAccountManagementEndpoint
     {
         protected override bool ExecuteTests()

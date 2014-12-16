@@ -17,11 +17,12 @@
 
 #endregion License
 
+using Smartrac.SmartCosmos.ClientEndpoint.BaseObject;
 using Smartrac.SmartCosmos.Objects.Base;
 
 namespace Smartrac.SmartCosmos.Objects.DataContext
 {
-    public class BaseDeviceDataContext : IDeviceDataContext
+    public class BaseDeviceDataContext : BaseDataContext, IDeviceDataContext
     {
         public virtual ViewType GetViewType()
         {
@@ -38,7 +39,7 @@ namespace Smartrac.SmartCosmos.Objects.DataContext
             return "";
         }
 
-        public virtual string GetType()
+        public virtual string GetDeviceType()
         {
             return "";
         }

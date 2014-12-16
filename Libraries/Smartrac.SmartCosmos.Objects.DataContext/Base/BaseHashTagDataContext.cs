@@ -22,7 +22,7 @@ using Smartrac.SmartCosmos.Objects.Base;
 
 namespace Smartrac.SmartCosmos.Objects.DataContext
 {
-    public class BaseHashTagDataContext : IHashTagDataContext
+    public class BaseHashTagDataContext : BaseDataContext, IHashTagDataContext
     {
         public virtual Urn GetUrn()
         {

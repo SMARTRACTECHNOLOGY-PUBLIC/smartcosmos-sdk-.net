@@ -17,6 +17,7 @@
 
 #endregion License
 
+using GeoJSON.Net;
 using System;
 using System.Xml.Serialization;
 namespace Smartrac.SmartCosmos.Objects.DataContext.XML

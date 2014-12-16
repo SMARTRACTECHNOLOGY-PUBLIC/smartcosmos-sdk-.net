@@ -38,7 +38,7 @@ namespace Smartrac.SmartCosmos.Objects.DataContext.Sample
             return "Jason's Phone!";
         }
 
-        public override string GetType()
+        public override string GetDeviceType()
         {
             return "Android";
         }

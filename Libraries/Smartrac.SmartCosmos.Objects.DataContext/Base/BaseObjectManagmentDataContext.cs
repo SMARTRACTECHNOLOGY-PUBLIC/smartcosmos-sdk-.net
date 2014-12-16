@@ -22,7 +22,7 @@ using Smartrac.SmartCosmos.Objects.Base;
 
 namespace Smartrac.SmartCosmos.Objects.DataContext
 {
-    public class BaseObjectManagementDataContext : IObjectManagementDataContext
+    public class BaseObjectManagementDataContext : BaseDataContext, IObjectManagementDataContext
     {
         public virtual Urn GetObjectUrn()
         {

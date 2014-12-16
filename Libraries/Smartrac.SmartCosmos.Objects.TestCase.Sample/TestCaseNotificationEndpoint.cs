@@ -48,7 +48,7 @@ namespace Smartrac.SmartCosmos.Objects.TestCase.Sample
                 name = "Test",
                 description = "About test"
             };
-            NotificationBaseResponse responsedData;
+            NotificationResponse responsedData;
             NotificationActionResult actionResult = endpoint.Create(requestData, out responsedData);
             notificationUrn = new Urn(responsedData.message);
             OnAfterTest(actionResult);
@@ -64,7 +64,7 @@ namespace Smartrac.SmartCosmos.Objects.TestCase.Sample
                 topicArn = "Test",
                 token = "About test"
             };
-            NotificationBaseResponse responsedData;
+            NotificationResponse responsedData;
             NotificationActionResult actionResult = endpoint.Confirm(requestData, out responsedData);
             OnAfterTest(actionResult);
             return (actionResult == NotificationActionResult.Successful);
@@ -74,7 +74,7 @@ namespace Smartrac.SmartCosmos.Objects.TestCase.Sample
         {
             OnBeforeTest("Objects", "NotificationEndpoint", "WithdrawNotification");
             // call endpoint            
-            NotificationBaseResponse responsedData;
+            NotificationResponse responsedData;
             NotificationActionResult actionResult = endpoint.Delete(notificationUrn, out responsedData);
             OnAfterTest(actionResult);
             return (actionResult == NotificationActionResult.Successful);

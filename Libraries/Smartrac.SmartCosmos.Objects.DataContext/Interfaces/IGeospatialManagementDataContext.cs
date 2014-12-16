@@ -21,6 +21,8 @@ using GeoJSON.Net;
 using Smartrac.SmartCosmos.ClientEndpoint.Base;
 using Smartrac.SmartCosmos.ClientEndpoint.BaseObject;
 using Smartrac.SmartCosmos.Objects.Base;
+using Smartrac.SmartCosmos.Objects.GeospatialManagement;
+using System.Xml.Serialization;
 
 namespace Smartrac.SmartCosmos.Objects.DataContext
 {
@@ -36,6 +38,8 @@ namespace Smartrac.SmartCosmos.Objects.DataContext
 
         bool GetActiveFlag();
 
+        //[XmlArray("ListItems")]
+        //[XmlArrayItem("ListItem", Type = typeof(AbstractXmlSerializer<AbstractType>))]
         GeoJSONObject GetGeometricShape();
 
         ViewType GetViewType();

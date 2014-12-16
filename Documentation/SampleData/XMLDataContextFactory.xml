@@ -75,10 +75,20 @@
 		<description>Campus at 6th Street</description>
 		<activeFlag>true</activeFlag>
 		<geospatialUrn>urn:building:mall:ParadiseValley:2</geospatialUrn>
-		<geometricShapeLatitude>45.79012</geometricShapeLatitude>
-		<geometricShapeLongitude>15.94107</geometricShapeLongitude>
-		<geometricShapeDictionaryKey>Name</geometricShapeDictionaryKey>
-		<geometricShapeDictionaryValue>Foo</geometricShapeDictionaryValue>
+		<geometricShape>
+		  <type>Polygon</type>		
+		  <coordinates>
+			<LineString>
+				<IPosition>13.42634</IPosition>
+				<IPosition>52.49533</IPosition>
+			</LineString>
+			<LineString>
+				<IPosition>13.42660</IPosition>
+				<IPosition>52.49524</IPosition>
+			</LineString>
+		  </coordinates>
+		</geometricShape>
+		
 	</GeospatialManagementDataContext>
 	
 	<!-- data for meta data context -->
@@ -172,4 +182,3 @@
 		<referenceUrn>urn:building:mall:ParadiseValley:2</referenceUrn>	
 	</HashTagDataContext>
 </data>
-

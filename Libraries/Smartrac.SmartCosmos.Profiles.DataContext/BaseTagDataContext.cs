@@ -17,11 +17,12 @@
 
 #endregion License
 
+using Smartrac.SmartCosmos.ClientEndpoint.BaseObject;
 using System.Collections.Generic;
 
 namespace Smartrac.SmartCosmos.Profiles.DataContext
 {
-    public class BaseTagDataContext : ITagDataContext
+    public class BaseTagDataContext : BaseDataContext, ITagDataContext
     {
         public virtual IEnumerable<string> GetTagIds()
         {

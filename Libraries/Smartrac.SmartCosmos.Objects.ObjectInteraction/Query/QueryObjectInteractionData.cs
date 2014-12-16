@@ -65,7 +65,8 @@ namespace Smartrac.SmartCosmos.Objects.ObjectInteraction
         /// <summary>
         /// Serialization Level: Standard
         /// </summary>
-        public string objectInteractionSession { get; set; }
+        [JsonProperty(PropertyName = "object")]
+        public DataIObjectInteractionSession objectInteractionSession { get; set; }
 
         public string type { get; set; }
 
@@ -79,20 +80,20 @@ namespace Smartrac.SmartCosmos.Objects.ObjectInteraction
         /// </summary>
         public long? receivedTimestamp { get; set; }
 
-        public string interactionUrn
+        public string urn
         {
             get
             {
-                return (interactionUrnObj != null) ? interactionUrnObj.UUID : "";
+                return (urnObj != null) ? urnObj.UUID : "";
             }
             set
             {
-                interactionUrnObj = new Urn(value);
+                urnObj = new Urn(value);
             }
         }
 
         [JsonIgnore]
-        public Urn interactionUrnObj { get; set; }
+        public Urn urnObj { get; set; }
 
         /// <summary>
         /// referenceUrn must point to a pre-existing record of the given entityReferenceType

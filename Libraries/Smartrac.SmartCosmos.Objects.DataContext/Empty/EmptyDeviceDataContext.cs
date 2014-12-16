@@ -17,6 +17,7 @@
 
 #endregion License
 
+using System;
 using Smartrac.SmartCosmos.Objects.Base;
 
 namespace Smartrac.SmartCosmos.Objects.DataContext
@@ -52,9 +53,16 @@ namespace Smartrac.SmartCosmos.Objects.DataContext
             return name;
         }
 
-        public override string GetType()
+        public override string GetDeviceType()
         {
             return type;
+        }
+
+        public override void Prepare()
+        {
+            type = type.ResolveVariables();
+            name = name.ResolveVariables();
+            identification = identification.ResolveVariables();
         }
     }
 }

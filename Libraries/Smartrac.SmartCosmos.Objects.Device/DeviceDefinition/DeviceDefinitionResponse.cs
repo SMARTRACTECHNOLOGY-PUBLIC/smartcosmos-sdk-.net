@@ -25,8 +25,5 @@ namespace Smartrac.SmartCosmos.Objects.Device
 {
     public class DeviceDefinitionResponse : DefaultResponse
     {
-        public int code { get; set; }
-
-        public string message { get; set; }
     }
 }

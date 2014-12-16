@@ -17,6 +17,7 @@
 
 #endregion License
 
+using System;
 using Smartrac.SmartCosmos.ClientEndpoint.BaseObject;
 using Smartrac.SmartCosmos.Objects.Base;
 namespace Smartrac.SmartCosmos.Objects.DataContext
@@ -83,6 +84,14 @@ namespace Smartrac.SmartCosmos.Objects.DataContext
         public override string GetSurname()
         {
             return surname;
+        }
+
+        public override void Prepare()
+        {
+            newPassword = newPassword.ResolveVariables();
+            eMailAddress = newPassword.ResolveVariables();
+            givenName = newPassword.ResolveVariables();
+            surname = newPassword.ResolveVariables();
         }
     }
 }

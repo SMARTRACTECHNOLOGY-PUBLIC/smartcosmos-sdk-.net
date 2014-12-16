@@ -64,7 +64,7 @@ namespace Smartrac.SmartCosmos.Objects.TestCase.Sample
             {
                 identification = dataContext.GetIdentification(),
                 name = dataContext.GetName(),
-                type = dataContext.GetType()
+                type = dataContext.GetDeviceType()
             };
             DeviceUpdateResponse responsedData;
             DeviceActionResult actionResult = endpoint.Update(requestData, out responsedData);

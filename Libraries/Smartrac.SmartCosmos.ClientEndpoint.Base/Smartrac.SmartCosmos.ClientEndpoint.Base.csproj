@@ -116,10 +116,18 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="BaseEndpoint.cs" />
+    <Compile Include="Base\BaseDataContext.cs" />
+    <Compile Include="Base\BaseRequest.cs" />
+    <Compile Include="Base\BaseResponse.cs" />
+    <Compile Include="Base\Urn.cs" />
     <Compile Include="Builder\BaseEndpointBuilder.cs" />
+    <Compile Include="Converter\JsonDictionaryConverter.cs" />
+    <Compile Include="Extensions\ObjectExtensions.cs" />
     <Compile Include="Extensions\WebRequestExtensions.cs" />
     <Compile Include="Interfaces\IBaseDataContext.cs" />
     <Compile Include="Interfaces\IBaseEndpoint.cs" />
+    <Compile Include="Interfaces\IHTTPStatusCode.cs" />
+    <Compile Include="Interfaces\IResponseMessage.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -130,10 +138,6 @@
     <ProjectReference Include="..\Smartrac.Logging\Smartrac.Logging.csproj">
       <Project>{73ba0972-769b-4b84-9a21-9cf545a14a03}</Project>
       <Name>Smartrac.Logging</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\Smartrac.SmartCosmos.ClientEndpoint.BaseObject\Smartrac.SmartCosmos.ClientEndpoint.BaseObject.csproj">
-      <Project>{28e0fa25-18da-4c11-83cd-92a36ddd060b}</Project>
-      <Name>Smartrac.SmartCosmos.ClientEndpoint.BaseObject</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>

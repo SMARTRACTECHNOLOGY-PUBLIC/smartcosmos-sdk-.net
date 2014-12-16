@@ -35,7 +35,7 @@ namespace Smartrac.SmartCosmos.Objects.Notification
         /// <param name="requestData">All element available data</param>
         /// <param name="responseData">Urn or message with error description</param>
         /// <returns>NotificationActionResult</returns>
-        public NotificationActionResult Create(EnrollNotificationsRequest requestData, out NotificationBaseResponse responseData)
+        public NotificationActionResult Create(EnrollNotificationsRequest requestData, out NotificationResponse responseData)
         {
             responseData = null;
             try
@@ -48,7 +48,7 @@ namespace Smartrac.SmartCosmos.Objects.Notification
                 }
 
                 var request = CreateWebRequest("/notifications/enroll", WebRequestOption.Authorization);
-                ExecuteWebRequestJSON<EnrollNotificationsRequest, NotificationBaseResponse>(request, requestData, out responseData, WebRequestMethods.Http.Put);
+                ExecuteWebRequestJSON<EnrollNotificationsRequest, NotificationResponse>(request, requestData, out responseData, WebRequestMethods.Http.Put);
                 if (responseData != null)
                 {
                     switch (responseData.HTTPStatusCode)
@@ -77,7 +77,7 @@ namespace Smartrac.SmartCosmos.Objects.Notification
         /// <param name="requestData">topicArn, token</param>
         /// <param name="responseData">Returns code, message only for errors</param>
         /// <returns>NotificationActionResult</returns>
-        public NotificationActionResult Confirm(EnrollmentConfirmationRequest requestData, out NotificationBaseResponse responseData)
+        public NotificationActionResult Confirm(EnrollmentConfirmationRequest requestData, out NotificationResponse responseData)
         {
             responseData = null;
             try
@@ -93,7 +93,7 @@ namespace Smartrac.SmartCosmos.Objects.Notification
                     AddSubfolder(requestData.topicArn);
 
                 var request = CreateWebRequest(url, WebRequestOption.Authorization);
-                ExecuteWebRequestJSON<EnrollmentConfirmationRequest, NotificationBaseResponse>(request, requestData, out responseData, WebRequestMethods.Http.Put);
+                ExecuteWebRequestJSON<EnrollmentConfirmationRequest, NotificationResponse>(request, requestData, out responseData, WebRequestMethods.Http.Put);
                 if (responseData != null)
                 {
                     switch (responseData.HTTPStatusCode)
@@ -122,7 +122,7 @@ namespace Smartrac.SmartCosmos.Objects.Notification
         /// <param name="responseData">Returns code, message only for errors</param>
         /// <returns>NotificationActionResult</returns>
         public NotificationActionResult Delete(Urn notificationUrn,
-                                    out NotificationBaseResponse responseData)
+                                    out NotificationResponse responseData)
         {
             responseData = null;
             try
@@ -135,7 +135,7 @@ namespace Smartrac.SmartCosmos.Objects.Notification
                 }
 
                 var request = CreateWebRequest("/notifications/withdraw", WebRequestOption.Authorization);
-                ExecuteWebRequestJSON<Urn, NotificationBaseResponse>(request, notificationUrn, out responseData, WebRequestMethods.Http.Put);
+                ExecuteWebRequestJSON<Urn, NotificationResponse>(request, notificationUrn, out responseData, WebRequestMethods.Http.Put);
                 if (responseData != null)
                 {
                     switch (responseData.HTTPStatusCode)

@@ -17,6 +17,7 @@
 
 #endregion License
 
+using System;
 using GeoJSON.Net;
 using Smartrac.SmartCosmos.ClientEndpoint.BaseObject;
 using Smartrac.SmartCosmos.Objects.Base;
@@ -46,7 +47,7 @@ namespace Smartrac.SmartCosmos.Objects.DataContext
             set;
         }*/
 
-        Urn referenceUrn_;
+        //Urn referenceUrn_;
 
         public string name { get; set; }
 
@@ -55,18 +56,10 @@ namespace Smartrac.SmartCosmos.Objects.DataContext
         public string description { get; set; }
 
         public bool activeFlag { get; set; }
-
-        //public GeoJSONObject geometricShape_ { get; set; }
+        
+        public GeoJSONObject geometricShape { get; set; }
 
         public ViewType viewType { get; set; }
-
-        public double geometricShapeWidth { get; set; }
-
-        public double geometricShapeHeight { get; set; }
-
-        public string geometricShapeDictionaryKey { get; set; }
-
-        public string geometricShapeDictionaryValue { get; set; }
         
         public override Urn GetGeospatialUrn()
         {
@@ -95,20 +88,25 @@ namespace Smartrac.SmartCosmos.Objects.DataContext
 
         public override GeoJSONObject GetGeometricShape()
         {
-            //return geometricShape.getGeoJSONObject();
-            var point = new GeoJSON.Net.Geometry.Point(new GeoJSON.Net.Geometry.GeographicPosition(geometricShapeWidth, geometricShapeHeight));
-            var featureProperties = new Dictionary<string, object> { { geometricShapeDictionaryKey, geometricShapeDictionaryValue } };
-            var model = new GeoJSON.Net.Feature.Feature(point, featureProperties);
-            return model;
+            return geometricShape;
         }
 
         public override ViewType GetViewType()
         {
             return viewType;
         }
+
+        public override void Prepare()
+        {
+            name = name.ResolveVariables();
+            category = category.ResolveVariables();
+            description = description.ResolveVariables();
+        }
     }
 
-    /*public class GeoJSONObjectBuilder
+    /*In future can be improved
+     * 
+     * public class GeoJSONObjectBuilder
     {
         public double geometricShapeWidth;
 
@@ -126,4 +124,5 @@ namespace Smartrac.SmartCosmos.Objects.DataContext
             return model;
         }
     }*/
+
 }

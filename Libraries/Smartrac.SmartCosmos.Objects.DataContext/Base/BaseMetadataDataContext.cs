@@ -24,7 +24,7 @@ using System.Collections.Generic;
 
 namespace Smartrac.SmartCosmos.Objects.DataContext
 {
-    public class BaseMetadataDataContext : IMetadataDataContext
+    public class BaseMetadataDataContext : BaseDataContext, IMetadataDataContext
     {
         public virtual Urn GetEntityUrn()
         {

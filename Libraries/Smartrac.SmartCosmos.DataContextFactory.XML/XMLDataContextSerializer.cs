@@ -17,6 +17,8 @@
 
 #endregion License
 
+using Smartrac.SmartCosmos.ClientEndpoint.BaseObject;
+using Smartrac.SmartCosmos.Objects.DataContext;
 using System.IO;
 using System.Text;
 using System.Xml.Linq;
@@ -25,7 +27,7 @@ using System.Xml.Serialization;
 namespace Smartrac.SmartCosmos.DataContextFactory.XML
 {
     public sealed class XMLDataContextSerializer<T>
-        where T : class
+        where T : BaseDataContext
     {
         /// <summary>
         /// deserialize objects from XML entry
@@ -39,7 +41,11 @@ namespace Smartrac.SmartCosmos.DataContextFactory.XML
             using (var memoryStream = new MemoryStream(Encoding.UTF8.GetBytes(elem.ToString())))
             {
                 var xmlSerializer = new XmlSerializer(typeof(T));
-                return (T)xmlSerializer.Deserialize(memoryStream);
+                
+                T obj = (T)xmlSerializer.Deserialize(memoryStream);
+                if (obj != null)
+                    obj.Prepare();
+                return obj;
             }
         }
     }

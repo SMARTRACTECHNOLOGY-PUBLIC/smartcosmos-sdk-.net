@@ -17,6 +17,7 @@
 
 #endregion License
 
+using System;
 using Smartrac.SmartCosmos.ClientEndpoint.BaseObject;
 using Smartrac.SmartCosmos.Objects.Base;
 namespace Smartrac.SmartCosmos.Objects.DataContext
@@ -102,6 +103,13 @@ namespace Smartrac.SmartCosmos.Objects.DataContext
         public override EntityReferenceType GetEntityReferenceType()
         {
             return entityReferenceType;
+        }
+
+        public override void Prepare()
+        {
+            moniker = moniker.ResolveVariables();
+            name = name.ResolveVariables();
+            description = description.ResolveVariables();
         }
     }
 
