@@ -105,19 +105,19 @@
   <ItemGroup>
     <ProjectReference Include="..\..\Libraries\Smartrac.SmartCosmos.Base\Smartrac.SmartCosmos.Base.csproj">
       <Project>{fc09830c-0f35-4fc3-85bf-0b43fcb91f06}</Project>
-      <Name>Smartrac.Base</Name>
+      <Name>Smartrac.SmartCosmos.Base</Name>
     </ProjectReference>
     <ProjectReference Include="..\..\Libraries\Smartrac.SmartCosmos.Logging.Console\Smartrac.SmartCosmos.Logging.Console.csproj">
       <Project>{f50c4adc-6a33-4644-b608-2b2584bf15ce}</Project>
-      <Name>Smartrac.Logging.Console</Name>
+      <Name>Smartrac.SmartCosmos.Logging.Console</Name>
     </ProjectReference>
     <ProjectReference Include="..\..\Libraries\Smartrac.SmartCosmos.Logging.File\Smartrac.SmartCosmos.Logging.File.csproj">
       <Project>{c342d48d-a37d-486c-9b63-6333600445b2}</Project>
-      <Name>Smartrac.Logging.File</Name>
+      <Name>Smartrac.SmartCosmos.Logging.File</Name>
     </ProjectReference>
     <ProjectReference Include="..\..\Libraries\Smartrac.SmartCosmos.Logging\Smartrac.SmartCosmos.Logging.csproj">
       <Project>{73ba0972-769b-4b84-9a21-9cf545a14a03}</Project>
-      <Name>Smartrac.Logging</Name>
+      <Name>Smartrac.SmartCosmos.Logging</Name>
     </ProjectReference>
     <ProjectReference Include="..\..\Libraries\Smartrac.SmartCosmos.ClientEndpoint.Factory\Smartrac.SmartCosmos.ClientEndpoint.Factory.csproj">
       <Project>{692630bd-502b-4a8a-bb36-84b322d0276f}</Project>

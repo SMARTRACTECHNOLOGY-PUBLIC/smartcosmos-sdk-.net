@@ -7,8 +7,8 @@
     <ProjectGuid>{73BA0972-769B-4B84-9A21-9CF545A14A03}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>Smartrac.Logging</RootNamespace>
-    <AssemblyName>Smartrac.Logging</AssemblyName>
+    <RootNamespace>Smartrac.SmartCosmos.Logging</RootNamespace>
+    <AssemblyName>Smartrac.SmartCosmos.Logging</AssemblyName>
     <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
   </PropertyGroup>

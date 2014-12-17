@@ -7,8 +7,8 @@
     <ProjectGuid>{F50C4ADC-6A33-4644-B608-2B2584BF15CE}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>Smartrac.Logging.Console</RootNamespace>
-    <AssemblyName>Smartrac.Logging.Console</AssemblyName>
+    <RootNamespace>Smartrac.SmartCosmos.Logging.Console</RootNamespace>
+    <AssemblyName>Smartrac.SmartCosmos.Logging.Console</AssemblyName>
     <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
   </PropertyGroup>
@@ -136,7 +136,7 @@
   <ItemGroup>
     <ProjectReference Include="..\Smartrac.SmartCosmos.Logging\Smartrac.SmartCosmos.Logging.csproj">
       <Project>{73ba0972-769b-4b84-9a21-9cf545a14a03}</Project>
-      <Name>Smartrac.Logging</Name>
+      <Name>Smartrac.SmartCosmos.Logging</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
