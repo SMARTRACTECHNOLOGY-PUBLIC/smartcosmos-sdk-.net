@@ -109,7 +109,7 @@
     <Compile Include="TestCases\TestCaseTagVerificationEndpoint.cs" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\Smartrac.Logging\Smartrac.Logging.csproj">
+    <ProjectReference Include="..\Smartrac.SmartCosmos.Logging\Smartrac.SmartCosmos.Logging.csproj">
       <Project>{73ba0972-769b-4b84-9a21-9cf545a14a03}</Project>
       <Name>Smartrac.Logging</Name>
     </ProjectReference>

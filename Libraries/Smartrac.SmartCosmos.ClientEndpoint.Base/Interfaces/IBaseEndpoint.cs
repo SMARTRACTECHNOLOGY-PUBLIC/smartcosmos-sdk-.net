@@ -17,7 +17,7 @@
 
 #endregion License
 
-using Smartrac.Logging;
+using Smartrac.SmartCosmos.Logging;
 
 namespace Smartrac.SmartCosmos.ClientEndpoint.Base
 {

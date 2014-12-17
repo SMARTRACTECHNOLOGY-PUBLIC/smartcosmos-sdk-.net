@@ -17,8 +17,8 @@
 
 #endregion License
 
-using Smartrac.Logging;
-using Smartrac.Logging.Console;
+using Smartrac.SmartCosmos.Logging;
+using Smartrac.SmartCosmos.Logging.Console;
 using Smartrac.SmartCosmos.ClientEndpoint.Factory;
 using Smartrac.SmartCosmos.DataContextFactory.Sample;
 using Smartrac.SmartCosmos.DataContextFactory.XML;

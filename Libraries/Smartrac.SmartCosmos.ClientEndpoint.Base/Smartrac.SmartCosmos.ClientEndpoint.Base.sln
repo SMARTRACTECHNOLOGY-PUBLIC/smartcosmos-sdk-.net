@@ -3,7 +3,7 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 2012
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Smartrac.SmartCosmos.ClientEndpoint.Base", "Smartrac.SmartCosmos.ClientEndpoint.Base.csproj", "{F0E26F53-5847-42D0-B16F-2DBD1952E452}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Smartrac.Logging", "..\Smartrac.Logging\Smartrac.Logging.csproj", "{73BA0972-769B-4B84-9A21-9CF545A14A03}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Smartrac.SmartCosmos.Logging", "..\Smartrac.SmartCosmos.Logging\Smartrac.SmartCosmos.Logging.csproj", "{73BA0972-769B-4B84-9A21-9CF545A14A03}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Smartrac.SmartCosmos.ClientEndpoint.BaseObject", "..\Smartrac.SmartCosmos.ClientEndpoint.BaseObject\Smartrac.SmartCosmos.ClientEndpoint.BaseObject.csproj", "{28E0FA25-18DA-4C11-83CD-92A36DDD060B}"
 EndProject

@@ -17,8 +17,8 @@
 
 #endregion License
 
-using Smartrac.Base;
-using Smartrac.Logging;
+using Smartrac.SmartCosmos.Base;
+using Smartrac.SmartCosmos.Logging;
 using Smartrac.SmartCosmos.ClientEndpoint.Factory;
 using Smartrac.SmartCosmos.DataContextFactory;
 using System.Diagnostics.Contracts;

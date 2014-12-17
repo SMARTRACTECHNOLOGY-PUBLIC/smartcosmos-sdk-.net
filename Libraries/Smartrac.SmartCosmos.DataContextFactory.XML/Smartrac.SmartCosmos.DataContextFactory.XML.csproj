@@ -103,11 +103,11 @@
     <Compile Include="XMLDataContextSerializer.cs" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\Smartrac.Base\Smartrac.Base.csproj">
+    <ProjectReference Include="..\Smartrac.SmartCosmos.Base\Smartrac.SmartCosmos.Base.csproj">
       <Project>{fc09830c-0f35-4fc3-85bf-0b43fcb91f06}</Project>
       <Name>Smartrac.Base</Name>
     </ProjectReference>
-    <ProjectReference Include="..\Smartrac.Logging\Smartrac.Logging.csproj">
+    <ProjectReference Include="..\Smartrac.SmartCosmos.Logging\Smartrac.SmartCosmos.Logging.csproj">
       <Project>{73ba0972-769b-4b84-9a21-9cf545a14a03}</Project>
       <Name>Smartrac.Logging</Name>
     </ProjectReference>

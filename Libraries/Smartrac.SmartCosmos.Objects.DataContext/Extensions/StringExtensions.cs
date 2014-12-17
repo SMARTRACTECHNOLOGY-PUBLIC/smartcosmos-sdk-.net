@@ -17,7 +17,7 @@
 
 #endregion License
 
-using Smartrac.Base;
+using Smartrac.SmartCosmos.Base;
 
 namespace System
 {

@@ -7,13 +7,13 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Smartrac.SmartCosmos.Sample
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Smartrac.SmartCosmos.ClientEndpoint.Base", "..\..\Libraries\Smartrac.SmartCosmos.ClientEndpoint.Base\Smartrac.SmartCosmos.ClientEndpoint.Base.csproj", "{F0E26F53-5847-42D0-B16F-2DBD1952E452}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Smartrac.Logging.Console", "..\..\Libraries\Smartrac.Logging.Console\Smartrac.Logging.Console.csproj", "{F50C4ADC-6A33-4644-B608-2B2584BF15CE}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Smartrac.SmartCosmos.Logging.Console", "..\..\Libraries\Smartrac.SmartCosmos.Logging.Console\Smartrac.SmartCosmos.Logging.Console.csproj", "{F50C4ADC-6A33-4644-B608-2B2584BF15CE}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Smartrac.Logging.File", "..\..\Libraries\Smartrac.Logging.File\Smartrac.Logging.File.csproj", "{C342D48D-A37D-486C-9B63-6333600445B2}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Smartrac.SmartCosmos.Logging.File", "..\..\Libraries\Smartrac.SmartCosmos.Logging.File\Smartrac.SmartCosmos.Logging.File.csproj", "{C342D48D-A37D-486C-9B63-6333600445B2}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Smartrac.Logging", "..\..\Libraries\Smartrac.Logging\Smartrac.Logging.csproj", "{73BA0972-769B-4B84-9A21-9CF545A14A03}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Smartrac.SmartCosmos.Logging", "..\..\Libraries\Smartrac.SmartCosmos.Logging\Smartrac.SmartCosmos.Logging.csproj", "{73BA0972-769B-4B84-9A21-9CF545A14A03}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Smartrac.Base", "..\..\Libraries\Smartrac.Base\Smartrac.Base.csproj", "{FC09830C-0F35-4FC3-85BF-0B43FCB91F06}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Smartrac.SmartCosmos.Base", "..\..\Libraries\Smartrac.SmartCosmos.Base\Smartrac.SmartCosmos.Base.csproj", "{FC09830C-0F35-4FC3-85BF-0B43FCB91F06}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Smartrac.SmartCosmos.ClientEndpoint.Factory", "..\..\Libraries\Smartrac.SmartCosmos.ClientEndpoint.Factory\Smartrac.SmartCosmos.ClientEndpoint.Factory.csproj", "{692630BD-502B-4A8A-BB36-84B322D0276F}"
 EndProject
