@@ -34,8 +34,15 @@ namespace Smartrac.SmartCosmos.ClientEndpoint.Base
     [Flags]
     public enum WebRequestOption
     {
-        Authorization = 1, // HTTP Header "Authorization" is required
-        AcceptLanguage = 2 // HTTP Header "Accept-Language" is required
+        /// <summary>
+        /// HTTP Header "Authorization" is required
+        /// </summary>
+        Authorization = 1,
+
+        /// <summary>
+        /// HTTP Header "Accept-Language" is required
+        /// </summary>
+        AcceptLanguage = 2 
     }
 
     /// <summary>
