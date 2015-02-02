@@ -52,10 +52,16 @@ namespace Smartrac.SmartCosmos.Objects.Base
                 return;
             }
 
-            // UserName and hased password are combined into a string "UserName:hashedpassword"
-            // For example, if the user agent uses 'Aladdin' as the UserName and 'open sesame' as the password then the header is formed as follows:.
-            // SHA512 hash of the password: 8470cdd3bf1ef85d5f092bce5ae5af97ce50820481bf43b2413807fec37e2785b533a65d4c7d71695b141d81ebcd4b6c4def4284e6067f0b9ddc318b1b230205
-            // Authorization: Basic QWxhZGRpbjo4NDcwY2RkM2JmMWVmODVkNWYwOTJiY2U1YWU1YWY5N2NlNTA4MjA0ODFiZjQzYjI0MTM4MDdmZWMzN2UyNzg1YjUzM2E2NWQ0YzdkNzE2OTViMTQxZDgxZWJjZDRiNmM0ZGVmNDI4NGU2MDY3ZjBiOWRkYzMxOGIxYjIzMDIwNQ==
+            /*
+            Several interface calls requires a HTTPS basic access authentication with your SMART COSMOS credentials.
+            The authorization header is constructed as follows:
+                User name and hashed password are combined into a string "username:password"
+                The resulting string literal is then encoded using the RFC2045-MIME variant of Base64, except not limited to 76 char/line
+                The authorization method and a space i.e. "Basic " is then put before the encoded string.
+            For example, if the user agent uses 'Aladdin' as the user name and 'open sesame' as the password then the header is formed as follows:.
+            Authorization: Basic QWxhZGRpbjpvcGVuIHNlc2FtZQ==
+            */
+
             AuthorizationToken =
                 "Basic " +
                 Convert.ToBase64String(Encoding.UTF8.GetBytes(userName + ":" + userPassword));
