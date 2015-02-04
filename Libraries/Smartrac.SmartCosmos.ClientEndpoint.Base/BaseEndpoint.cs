@@ -146,18 +146,12 @@ namespace Smartrac.SmartCosmos.ClientEndpoint.Base
         {
             if ((userName == "") || (userPassword == ""))
             {
-                if (AuthorizationToken != "")
-                {
-                    if (null != Logger)
-                        Logger.AddLog("Clear authorization token");
+                if (null != Logger)
+                    Logger.AddLog("Clear authorization token");
 
-                    AuthorizationToken = "";
-                }
+                AuthorizationToken = "";
                 return;
             }
-
-            //if (null != Logger)
-            //    Logger.AddLog("Login with user " + userName);
 
             // UserName and hased password are combined into a string "UserName:hashedpassword"
             // For example, if the user agent uses 'Aladdin' as the UserName and 'open sesame' as the password then the header is formed as follows:.
@@ -165,16 +159,9 @@ namespace Smartrac.SmartCosmos.ClientEndpoint.Base
             // Authorization: Basic QWxhZGRpbjo4NDcwY2RkM2JmMWVmODVkNWYwOTJiY2U1YWU1YWY5N2NlNTA4MjA0ODFiZjQzYjI0MTM4MDdmZWMzN2UyNzg1YjUzM2E2NWQ0YzdkNzE2OTViMTQxZDgxZWJjZDRiNmM0ZGVmNDI4NGU2MDY3ZjBiOWRkYzMxOGIxYjIzMDIwNQ==
             AuthorizationToken =
                 "Basic " +
-                Convert.ToBase64String(
-                  Encoding.UTF8.GetBytes(
-                    userName +
-                    ":" +
-                    BitConverter.ToString(
-                      SHA512.Create().ComputeHash(
-                        Encoding.UTF8.GetBytes(userPassword)
-                      )
-                    ).Replace("-", "").ToLower()));
-        }
+                Convert.ToBase64String(Encoding.UTF8.GetBytes(userName + ":" + userPassword));
+        }       
+        
 
         /// <summary>
         /// Create and setup a web request for a URL endpoint without options

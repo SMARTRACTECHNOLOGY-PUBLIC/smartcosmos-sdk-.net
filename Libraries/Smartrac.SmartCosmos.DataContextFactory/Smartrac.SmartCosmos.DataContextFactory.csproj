@@ -80,6 +80,10 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\Smartrac.SmartCosmos.AccountManager.DataContext\Smartrac.SmartCosmos.AccountManager.DataContext.csproj">
+      <Project>{11d76ea4-92a7-4bc3-adb5-55dd580892af}</Project>
+      <Name>Smartrac.SmartCosmos.AccountManager.DataContext</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Smartrac.SmartCosmos.Logging\Smartrac.SmartCosmos.Logging.csproj">
       <Project>{73ba0972-769b-4b84-9a21-9cf545a14a03}</Project>
       <Name>Smartrac.SmartCosmos.Logging</Name>

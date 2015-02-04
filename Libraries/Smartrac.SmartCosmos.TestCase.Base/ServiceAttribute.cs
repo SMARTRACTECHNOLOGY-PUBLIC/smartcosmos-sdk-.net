@@ -27,7 +27,8 @@ namespace Smartrac.SmartCosmos.TestCase.Base
         Profiles = 1,
         Objects = 2,
         Flows = 4,
-        All = Profiles | Objects | Flows
+        AccountManager = 8,
+        All = Profiles | Objects | Flows | AccountManager
     }
 
     /// <summary>

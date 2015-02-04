@@ -20,6 +20,7 @@
 using Smartrac.SmartCosmos.Objects.DataContext;
 using Smartrac.SmartCosmos.Profiles.DataContext;
 using Smartrac.SmartCosmos.Flows.DataContext;
+using Smartrac.SmartCosmos.AccountManager.DataContext;
 
 namespace Smartrac.SmartCosmos.DataContextFactory
 {
@@ -57,5 +58,10 @@ namespace Smartrac.SmartCosmos.DataContextFactory
         IFlowsAccountManagementDataContext CreateFlowsAccountManagementDataContext();
 
         IBusinessRuleDataContext CreateBusinessRuleDataContext();
+
+        //Account Manager
+        IUserDataContext CreateUserDataContext();
+
+        IRoleDataContext CreateRoleDataContext();
     }
 }

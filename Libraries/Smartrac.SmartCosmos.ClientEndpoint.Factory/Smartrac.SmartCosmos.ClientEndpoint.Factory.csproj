@@ -101,6 +101,14 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\Smartrac.SmartCosmos.AccountManager.Role\Smartrac.SmartCosmos.AccountManager.Role.csproj">
+      <Project>{18f013df-ec55-45f0-95a5-6dafde206cad}</Project>
+      <Name>Smartrac.SmartCosmos.AccountManager.Role</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Smartrac.SmartCosmos.AccountManager.User\Smartrac.SmartCosmos.AccountManager.User.csproj">
+      <Project>{865caa42-ceb1-417b-ae5b-880eeec2916c}</Project>
+      <Name>Smartrac.SmartCosmos.AccountManager.User</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Smartrac.SmartCosmos.Base\Smartrac.SmartCosmos.Base.csproj">
       <Project>{fc09830c-0f35-4fc3-85bf-0b43fcb91f06}</Project>
       <Name>Smartrac.SmartCosmos.Base</Name>

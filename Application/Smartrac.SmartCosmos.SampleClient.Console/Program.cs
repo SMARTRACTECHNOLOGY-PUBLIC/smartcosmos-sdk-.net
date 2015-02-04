@@ -55,18 +55,23 @@ namespace Smartrac.SmartCosmos.SampleClient.Console
             factory.FlowsUserPassword = ConfigurationManager.AppSettings["FlowsUserPassword"];
             factory.FlowsServerURL = ConfigurationManager.AppSettings["FlowsServerURL"];
 
+            // Configuration for SMART COSMOS AccountManager
+            factory.AccountManagerUserName = ConfigurationManager.AppSettings["AccountManagerUserName"];
+            factory.AccountManagerUserPassword = ConfigurationManager.AppSettings["AccountManagerUserPassword"];
+            factory.AccountManagerServerURL = ConfigurationManager.AppSettings["AccountManagerServerURL"];
+
             // initate tester case runner
             ITestCaseRunner testCaseRunner = new TestCaseRunnerBuilder()
                                             .setLogger(logger) // set logger
 
-                //         .setDataContextFactory(new SampleDataContextFactory()) // data context factory for sample data
-                                         .setDataContextFactory(new XMLDataContextFactory(ConfigurationManager.AppSettings["XMLDataContextFactory"])) // data context factory for sample data
+                       .setDataContextFactory(new SampleDataContextFactory()) // data context factory for sample data
+                                         //.setDataContextFactory(new XMLDataContextFactory(ConfigurationManager.AppSettings["XMLDataContextFactory"])) // data context factory for sample data
 
                                             .setEndpointFactory(factory) // set factory for endpoints
                                             .build();
 
             // START TESTING ----
-            bool bTestResult = testCaseRunner.Run(TestCaseType.Functional, SmartCosmosService.Objects);
+            bool bTestResult = testCaseRunner.Run(TestCaseType.Functional, SmartCosmosService.AccountManager);
 
             // output
             System.Console.WriteLine("");

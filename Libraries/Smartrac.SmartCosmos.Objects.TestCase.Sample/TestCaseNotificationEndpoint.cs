@@ -24,7 +24,7 @@ using Smartrac.SmartCosmos.TestCase.Base;
 
 namespace Smartrac.SmartCosmos.Objects.TestCase.Sample
 {
-    [TestCaseAttribute(3)]
+    [TestCaseAttribute(555)]
     public class TestCaseNotificationEndpoint : BaseTestCaseNotificationEndpoint
     {        
         

@@ -17,6 +17,8 @@
 
 #endregion License
 
+using Smartrac.SmartCosmos.AccountManager.DataContext;
+using Smartrac.SmartCosmos.AccountManager.DataContext.Sample;
 using Smartrac.SmartCosmos.Flows.DataContext;
 using Smartrac.SmartCosmos.Flows.DataContext.Sample;
 using Smartrac.SmartCosmos.Objects.DataContext;
@@ -111,6 +113,16 @@ namespace Smartrac.SmartCosmos.DataContextFactory.Sample
         public override IBusinessRuleDataContext CreateBusinessRuleDataContext()
         {
             return new SampleBusinessRuleDataContext();
+        }
+
+        public override IUserDataContext CreateUserDataContext()
+        {
+            return new SampleUserDataContext();
+        }
+
+        public override IRoleDataContext CreateRoleDataContext()
+        {
+            return new SampleRoleDataContext();
         }
     }
 }

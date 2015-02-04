@@ -37,6 +37,8 @@ using Smartrac.SmartCosmos.Profiles.TagMetadata;
 using Smartrac.SmartCosmos.Profiles.TagVerification;
 using Smartrac.SmartCosmos.Objects.Device;
 using Smartrac.SmartCosmos.Objects.Notification;
+using Smartrac.SmartCosmos.AccountManager.User;
+using Smartrac.SmartCosmos.AccountManager.Role;
 
 namespace Smartrac.SmartCosmos.ClientEndpoint.Factory
 {
@@ -51,6 +53,11 @@ namespace Smartrac.SmartCosmos.ClientEndpoint.Factory
         /// URL of SMART COSMOS Objects server
         /// </summary>
         public string ObjectsServerURL { get; set; }
+
+        /// <summary>
+        /// URL of SMART COSMOS AccountManager server
+        /// </summary>
+        public string AccountManagerServerURL { get; set; }
 
         /// <summary>
         /// URL of SMART COSMOS Flow server
@@ -109,6 +116,16 @@ namespace Smartrac.SmartCosmos.ClientEndpoint.Factory
         /// </summary>
         public string FlowsUserPassword { get; set; }
 
+        /// <summary>
+        /// User name for SMART COSMOS AccountManager
+        /// </summary>
+        public string AccountManagerUserName { get; set; }
+
+        /// <summary>
+        /// User password for SMART COSMOS AccountManager
+        /// </summary>
+        public string AccountManagerUserPassword { get; set; }
+
         public EndpointFactory(IMessageLogger logger)
             : this(logger, "", "")
         {
@@ -127,6 +144,32 @@ namespace Smartrac.SmartCosmos.ClientEndpoint.Factory
             this.ProfilesUserName = userName;
             this.ProfilesUserPassword = userPassword;
         }
+
+        #region ACCOUNT_MANAGER
+
+        public virtual IUserEndpoint CreateUserEndpoint()
+        {
+            return new UserEndpointBuilder()
+                .setLogger(Logger)
+                .setKeepAlive(KeepAlive)
+                .setServerURL(AccountManagerServerURL)
+                .setAllowInvalidServerCertificates(AllowInvalidServerCertificates)
+                .setUserAccount(AccountManagerUserName, AccountManagerUserPassword)
+                .build();
+        }
+
+        public virtual IRoleEndpoint CreateRoleEndpoint()
+        {
+            return new RoleEndpointBuilder()
+                .setLogger(Logger)
+                .setKeepAlive(KeepAlive)
+                .setServerURL(AccountManagerServerURL)
+                .setAllowInvalidServerCertificates(AllowInvalidServerCertificates)
+                .setUserAccount(AccountManagerUserName, AccountManagerUserPassword)
+                .build();
+        }
+
+        #endregion ACCOUNT_MANAGER
 
         #region FLOWS
 
@@ -150,7 +193,7 @@ namespace Smartrac.SmartCosmos.ClientEndpoint.Factory
                 .setAllowInvalidServerCertificates(AllowInvalidServerCertificates)
                 .setUserAccount(FlowsUserName, FlowsUserPassword)
                 .build();
-        }        
+        }
 
         #endregion FLOWS
         

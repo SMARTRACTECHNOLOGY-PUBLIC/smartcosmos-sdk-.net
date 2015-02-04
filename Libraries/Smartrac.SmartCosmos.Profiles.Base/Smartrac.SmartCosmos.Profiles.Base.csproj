@@ -86,6 +86,10 @@
       <Project>{f0e26f53-5847-42d0-b16f-2dbd1952e452}</Project>
       <Name>Smartrac.SmartCosmos.ClientEndpoint.Base</Name>
     </ProjectReference>
+    <ProjectReference Include="..\Smartrac.SmartCosmos.Logging\Smartrac.SmartCosmos.Logging.csproj">
+      <Project>{73ba0972-769b-4b84-9a21-9cf545a14a03}</Project>
+      <Name>Smartrac.SmartCosmos.Logging</Name>
+    </ProjectReference>
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />

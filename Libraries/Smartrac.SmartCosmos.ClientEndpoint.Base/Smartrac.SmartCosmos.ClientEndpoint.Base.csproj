@@ -122,6 +122,7 @@
     <Compile Include="Base\Urn.cs" />
     <Compile Include="Builder\BaseEndpointBuilder.cs" />
     <Compile Include="Converter\JsonDictionaryConverter.cs" />
+    <Compile Include="Base\Email.cs" />
     <Compile Include="Extensions\ObjectExtensions.cs" />
     <Compile Include="Extensions\WebRequestExtensions.cs" />
     <Compile Include="Interfaces\IBaseDataContext.cs" />
