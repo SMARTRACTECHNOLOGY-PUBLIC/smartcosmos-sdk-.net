@@ -4,6 +4,7 @@
 # User-specific files
 *.suo
 *.user
+!Libraries/Smartrac.SmartCosmos.AccountManager.User
 *.sln.docstates
 
 # Build results
