@@ -34,7 +34,7 @@ namespace Smartrac.SmartCosmos.Objects.Base
         {
             this.ServiceSubUrl = "";
             this.ServerURL = "";//https://www.smart-cosmos.com
-        }        
-        
+        }
+
     }
 }

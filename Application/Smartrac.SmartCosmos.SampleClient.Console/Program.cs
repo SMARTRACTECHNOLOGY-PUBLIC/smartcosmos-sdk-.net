@@ -67,6 +67,7 @@ namespace Smartrac.SmartCosmos.SampleClient.Console
                        .setDataContextFactory(new SampleDataContextFactory()) // data context factory for sample data
                                          //.setDataContextFactory(new XMLDataContextFactory(ConfigurationManager.AppSettings["XMLDataContextFactory"])) // data context factory for sample data
 
+
                                             .setEndpointFactory(factory) // set factory for endpoints
                                             .build();
 
