@@ -18,6 +18,7 @@
 #endregion License
 
 using Smartrac.SmartCosmos.ClientEndpoint.Base;
+using Smartrac.SmartCosmos.CredentialStore;
 using Smartrac.SmartCosmos.TestCase.Base;
 using System.Collections.Generic;
 
@@ -35,7 +36,9 @@ namespace Smartrac.SmartCosmos.Profiles.TestCase
     {
         protected override bool OnBeforeRun()
         {
-            return base.OnBeforeRun() && !string.IsNullOrEmpty(EndpointFactory.ProfilesServerURL);
+            return base.OnBeforeRun() &&
+                (EndpointFactory.CredentialStore != null) &&
+                EndpointFactory.CredentialStore.ValidateCredentials(SmartCosmosComponent.Profiles);
         }        
     }
 }

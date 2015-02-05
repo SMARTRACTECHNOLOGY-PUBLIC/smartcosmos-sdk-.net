@@ -107,6 +107,14 @@
       <Project>{fc09830c-0f35-4fc3-85bf-0b43fcb91f06}</Project>
       <Name>Smartrac.SmartCosmos.Base</Name>
     </ProjectReference>
+    <ProjectReference Include="..\..\Libraries\Smartrac.SmartCosmos.CredentialStore.XML\Smartrac.SmartCosmos.CredentialStore.XML.csproj">
+      <Project>{16018075-b94b-49f1-91d0-1c8c54446f7a}</Project>
+      <Name>Smartrac.SmartCosmos.CredentialStore.XML</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\Libraries\Smartrac.SmartCosmos.CredentialStore\Smartrac.SmartCosmos.CredentialStore.csproj">
+      <Project>{0bf9b316-2502-47b4-9db4-ceb90f3d22cd}</Project>
+      <Name>Smartrac.SmartCosmos.CredentialStore</Name>
+    </ProjectReference>
     <ProjectReference Include="..\..\Libraries\Smartrac.SmartCosmos.Logging.Console\Smartrac.SmartCosmos.Logging.Console.csproj">
       <Project>{f50c4adc-6a33-4644-b608-2b2584bf15ce}</Project>
       <Name>Smartrac.SmartCosmos.Logging.Console</Name>
@@ -149,6 +157,13 @@
       <SubType>Designer</SubType>
     </None>
     <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Credentials.xml">
+      <SubType>Designer</SubType>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Credentials.xml.template" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Import Project="$(MSBuildExtensionsPath)\MSBuildCommunityTasks\MSBuild.Community.Tasks.Targets" Condition="'$(SetAssemblyInfo)' != ''" />

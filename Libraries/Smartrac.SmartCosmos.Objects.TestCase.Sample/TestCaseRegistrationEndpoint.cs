@@ -17,9 +17,11 @@
 
 #endregion License
 
+using Smartrac.SmartCosmos.CredentialStore;
 using Smartrac.SmartCosmos.Logging;
 using Smartrac.SmartCosmos.Objects.Registration;
 using Smartrac.SmartCosmos.TestCase.Base;
+using System.Net;
 
 namespace Smartrac.SmartCosmos.Objects.TestCase.Sample
 {
@@ -92,10 +94,12 @@ namespace Smartrac.SmartCosmos.Objects.TestCase.Sample
             // user + pwd
             if (responseRegConfirmData != null)
             {
-                if (EndpointFactory.ProfilesUserName == "")
+                ICredential cred;
+                if ((EndpointFactory.CredentialStore !=  null) &&
+                   (EndpointFactory.CredentialStore.GetCredentials(SmartCosmosComponent.Profiles, out cred)))
                 {
-                    EndpointFactory.ProfilesUserName = dataContext.GeteMailAddress();
-                    EndpointFactory.ProfilesUserPassword = responseRegConfirmData.userPassword;
+                    cred.Username = dataContext.GeteMailAddress();
+                    cred.Password = responseRegConfirmData.userPassword;
                 }
             }
             // log response

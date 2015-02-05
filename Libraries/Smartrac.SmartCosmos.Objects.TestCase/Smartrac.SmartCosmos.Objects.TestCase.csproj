@@ -118,6 +118,10 @@
     <Compile Include="BaseTestCases\TestCaseUserManagementEndpoint.cs" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\Smartrac.SmartCosmos.CredentialStore\Smartrac.SmartCosmos.CredentialStore.csproj">
+      <Project>{0bf9b316-2502-47b4-9db4-ceb90f3d22cd}</Project>
+      <Name>Smartrac.SmartCosmos.CredentialStore</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Smartrac.SmartCosmos.Logging\Smartrac.SmartCosmos.Logging.csproj">
       <Project>{73ba0972-769b-4b84-9a21-9cf545a14a03}</Project>
       <Name>Smartrac.SmartCosmos.Logging</Name>
