@@ -65,7 +65,6 @@ namespace Smartrac.SmartCosmos.Objects.ObjectInteraction
         /// <summary>
         /// Serialization Level: Standard
         /// </summary>
-        [JsonProperty(PropertyName = "object")]
         public DataIObjectInteractionSession objectInteractionSession { get; set; }
 
         public string type { get; set; }

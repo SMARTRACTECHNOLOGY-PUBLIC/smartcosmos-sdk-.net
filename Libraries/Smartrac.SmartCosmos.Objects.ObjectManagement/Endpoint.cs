@@ -139,7 +139,7 @@ namespace Smartrac.SmartCosmos.Objects.ObjectManagement
 
                 var request = CreateWebRequest(url, WebRequestOption.Authorization);
                 var returnHTTPCode = ExecuteWebRequestJSON<ObjectDataResponse>(request, out responseData);
-                if ((responseData != null) && (responseData.HTTPStatusCode == HttpStatusCode.OK))
+                if (((responseData != null) && (responseData.HTTPStatusCode == HttpStatusCode.OK)) || responseData.HTTPStatusCode == HttpStatusCode.NoContent)
                     return ObjectActionResult.Successful;
                 return ObjectActionResult.Failed;
             }
@@ -171,14 +171,14 @@ namespace Smartrac.SmartCosmos.Objects.ObjectManagement
                     return ObjectActionResult.Failed;
                 }
 
-                Uri url = new Uri("/objects", UriKind.Relative).
+                Uri url = new Uri("/objects/object/", UriKind.Relative).
                     AddSubfolder(objectUrn.UUID).
                     AddQuery("view", viewType.GetDescription()).
                     AddQuery("exact", exact.ToString());
 
                 var request = CreateWebRequest(url, WebRequestOption.Authorization);
                 var returnHTTPCode = ExecuteWebRequestJSON<ObjectDataResponse>(request, out responseData);
-                if ((responseData != null) && (responseData.HTTPStatusCode == HttpStatusCode.OK))
+                if ((responseData != null) && (responseData.HTTPStatusCode == HttpStatusCode.OK) || responseData.HTTPStatusCode == HttpStatusCode.NoContent)
                     return ObjectActionResult.Successful;
 
                 return ObjectActionResult.Failed;

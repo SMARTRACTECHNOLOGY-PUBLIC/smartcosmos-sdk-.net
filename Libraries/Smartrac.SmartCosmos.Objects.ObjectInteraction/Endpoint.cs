@@ -142,13 +142,11 @@ namespace Smartrac.SmartCosmos.Objects.ObjectInteraction
 
                 var request = CreateWebRequest(url, WebRequestOption.Authorization);
                 var returnHTTPCode = ExecuteWebRequestJSON<QueryObjectInteractionResponse>(request, out responseData);
-
-                if (responseData != null)
-                {
-                    responseData.HTTPStatusCode = returnHTTPCode;
-                    if (responseData.HTTPStatusCode == HttpStatusCode.OK)
-                        return ObjInteractActionResult.Successful;
-                }
+                               
+                responseData.HTTPStatusCode = returnHTTPCode;
+                if (responseData.HTTPStatusCode == HttpStatusCode.OK || responseData.HTTPStatusCode == HttpStatusCode.NoContent)
+                    return ObjInteractActionResult.Successful;
+                
 
                 return ObjInteractActionResult.Failed;
             }
