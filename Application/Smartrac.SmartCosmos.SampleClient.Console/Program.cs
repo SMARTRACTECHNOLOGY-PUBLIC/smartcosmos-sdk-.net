@@ -54,7 +54,7 @@ namespace Smartrac.SmartCosmos.SampleClient.Console
                                             .build();
 
             // START TESTING ----
-            bool bTestResult = testCaseRunner.Run(TestCaseType.Functional, SmartCosmosService.All);
+            bool bTestResult = testCaseRunner.Run(TestCaseType.Functional, SmartCosmosService.AccountManager);
 
             // output
             System.Console.WriteLine("");
