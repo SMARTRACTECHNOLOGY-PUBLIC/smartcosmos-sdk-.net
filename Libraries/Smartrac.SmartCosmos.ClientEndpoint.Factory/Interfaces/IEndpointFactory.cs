@@ -39,31 +39,14 @@ using Smartrac.SmartCosmos.Profiles.TagMetadata;
 using Smartrac.SmartCosmos.Profiles.TagVerification;
 using Smartrac.SmartCosmos.AccountManager.User;
 using Smartrac.SmartCosmos.AccountManager.Role;
+using Smartrac.SmartCosmos.CredentialStore;
 
 namespace Smartrac.SmartCosmos.ClientEndpoint.Factory
 {
     public interface IEndpointFactory
     {
-        /// <summary>
-        /// URL of SMART COSMOS Profiles server
-        /// </summary>
-        string ProfilesServerURL { get; set; }
-
-        /// <summary>
-        /// URL of SMART COSMOS Objects server
-        /// </summary>
-        string ObjectsServerURL { get; set; }
-
-        /// <summary>
-        /// URL of SMART COSMOS Flow server
-        /// </summary>
-        string FlowsServerURL { get; set; }
-
-            /// <summary>
-        /// URL of SMART COSMOS Flow server
-        /// </summary>
-        string AccountManagerServerURL { get; set; }
-
+        ICredentialStore CredentialStore { get; set; }
+        
         /// <summary>
         /// Defines if the connection should be keep alive
         /// </summary>
@@ -85,46 +68,7 @@ namespace Smartrac.SmartCosmos.ClientEndpoint.Factory
         /// e.g. console, file, ...
         /// </summary>
         IMessageLogger Logger { get; set; }
-
-        /// <summary>
-        /// User name for SMART COSMOS Profiles
-        /// </summary>
-        string ProfilesUserName { get; set; }
-
-        /// <summary>
-        /// User password for SMART COSMOS Profiles
-        /// </summary>
-        string ProfilesUserPassword { get; set; }
-
-        /// <summary>
-        /// User name for SMART COSMOS Objects
-        /// </summary>
-        string ObjectsUserName { get; set; }
-
-        /// <summary>
-        /// User password for SMART COSMOS Objects
-        /// </summary>
-        string ObjectsUserPassword { get; set; }
-
-        /// <summary>
-        /// User name for SMART COSMOS Flow
-        /// </summary>
-        string FlowsUserName { get; set; }
-
-        /// <summary>
-        /// User password for SMART COSMOS Flow
-        /// </summary>
-        string FlowsUserPassword { get; set; }
-
-        /// <summary>
-        /// User name for SMART COSMOS AccountManager
-        /// </summary>
-        string AccountManagerUserName { get; set; }
-
-        /// <summary>
-        /// User password for SMART COSMOS AccountManager
-        /// </summary>
-        string AccountManagerUserPassword { get; set; }
+  
 
         #region Profiles
 

@@ -39,30 +39,13 @@ using Smartrac.SmartCosmos.Objects.Device;
 using Smartrac.SmartCosmos.Objects.Notification;
 using Smartrac.SmartCosmos.AccountManager.User;
 using Smartrac.SmartCosmos.AccountManager.Role;
+using Smartrac.SmartCosmos.CredentialStore;
 
 namespace Smartrac.SmartCosmos.ClientEndpoint.Factory
 {
     public class EndpointFactory : IEndpointFactory
     {
-        /// <summary>
-        /// URL of SMART COSMOS Profiles server
-        /// </summary>
-        public string ProfilesServerURL { get; set; }
-
-        /// <summary>
-        /// URL of SMART COSMOS Objects server
-        /// </summary>
-        public string ObjectsServerURL { get; set; }
-
-        /// <summary>
-        /// URL of SMART COSMOS AccountManager server
-        /// </summary>
-        public string AccountManagerServerURL { get; set; }
-
-        /// <summary>
-        /// URL of SMART COSMOS Flow server
-        /// </summary>
-        public string FlowsServerURL { get; set; }
+        public ICredentialStore CredentialStore { get; set; }
 
         /// <summary>
         /// Defines if the connection should be keep alive
@@ -86,86 +69,51 @@ namespace Smartrac.SmartCosmos.ClientEndpoint.Factory
         /// </summary>
         public IMessageLogger Logger { get; set; }
 
-        /// <summary>
-        /// User name for SMART COSMOS Profiles
-        /// </summary>
-        public string ProfilesUserName { get; set; }
-
-        /// <summary>
-        /// User password for SMART COSMOS Profiles
-        /// </summary>
-        public string ProfilesUserPassword { get; set; }
-
-        /// <summary>
-        /// User name for SMART COSMOS Objects
-        /// </summary>
-        public string ObjectsUserName { get; set; }
-
-        /// <summary>
-        /// User password for SMART COSMOS Objects
-        /// </summary>
-        public string ObjectsUserPassword { get; set; }
-
-        /// <summary>
-        /// User name for SMART COSMOS Flow
-        /// </summary>
-        public string FlowsUserName { get; set; }
-
-        /// <summary>
-        /// User password for SMART COSMOS Flow
-        /// </summary>
-        public string FlowsUserPassword { get; set; }
-
-        /// <summary>
-        /// User name for SMART COSMOS AccountManager
-        /// </summary>
-        public string AccountManagerUserName { get; set; }
-
-        /// <summary>
-        /// User password for SMART COSMOS AccountManager
-        /// </summary>
-        public string AccountManagerUserPassword { get; set; }
-
-        public EndpointFactory(IMessageLogger logger)
-            : this(logger, "", "")
-        {
-        }
-
-        public EndpointFactory(IMessageLogger logger, string userName, string userPassword)
+        public EndpointFactory(IMessageLogger logger, ICredentialStore credentialStore)
             : base()
         {
             this.Logger = logger;
+            this.CredentialStore = credentialStore;
             this.KeepAlive = true;
             this.AcceptLanguage = "en";
-            this.ProfilesServerURL = "";
-            this.ObjectsServerURL = ""; // TODO
-            this.FlowsServerURL = "";
             this.AllowInvalidServerCertificates = false;
-            this.ProfilesUserName = userName;
-            this.ProfilesUserPassword = userPassword;
+        }
+
+        private bool GetCredentials(SmartCosmosComponent component, out ICredential cred)
+        {
+            cred = (CredentialStore != null) ? CredentialStore.GetCredentials(component) : null;
+            return (cred != null);
         }
 
         #region ACCOUNT_MANAGER
 
         public virtual IUserEndpoint CreateUserEndpoint()
         {
+            ICredential cred;
+            if (!GetCredentials(SmartCosmosComponent.AccountManager, out cred)) 
+              return null;
+
             return new UserEndpointBuilder()
                 .setLogger(Logger)
                 .setKeepAlive(KeepAlive)
-                .setServerURL(AccountManagerServerURL)
+                .setServerURL(cred.Url)
                 .setAllowInvalidServerCertificates(AllowInvalidServerCertificates)
-                .setUserAccount(AccountManagerUserName, AccountManagerUserPassword)
+                .setUserAccount(cred.Username, cred.Password)
                 .build();
         }
 
         public virtual IRoleEndpoint CreateRoleEndpoint()
         {
+            ICredential cred;
+            if (!GetCredentials(SmartCosmosComponent.AccountManager, out cred))
+                return null;
+
             return new RoleEndpointBuilder()
                 .setLogger(Logger)
                 .setKeepAlive(KeepAlive)
-                .setServerURL(AccountManagerServerURL)
+                .setServerURL(cred.Url)
                 .setAllowInvalidServerCertificates(AllowInvalidServerCertificates)
-                .setUserAccount(AccountManagerUserName, AccountManagerUserPassword)
+                .setUserAccount(cred.Username, cred.Password)
                 .build();
         }
 
@@ -175,70 +123,94 @@ namespace Smartrac.SmartCosmos.ClientEndpoint.Factory
 
         public virtual IFlowsAccountManagementEndpoint CreateFlowsAccountManagementEndpoint()
         {
+            ICredential cred;
+            if (!GetCredentials(SmartCosmosComponent.Flows, out cred))
+                return null;
+            
             return new Smartrac.SmartCosmos.Flows.AccountManagement.FlowsAccountManagementEndpointBuilder()
                 .setLogger(Logger)
                 .setKeepAlive(KeepAlive)
-                .setServerURL(FlowsServerURL)
+                .setServerURL(cred.Url)
                 .setAllowInvalidServerCertificates(AllowInvalidServerCertificates)
-                .setUserAccount(FlowsUserName, FlowsUserPassword)
+                .setUserAccount(cred.Username, cred.Password)
                 .build();
         }
 
         public virtual IBusinessRuleEndpoint CreateBusinessRuleEndpoint()
         {
+            ICredential cred;
+            if (!GetCredentials(SmartCosmosComponent.Flows, out cred))
+                return null;
+
             return new BusinessRuleEndpointBuilder()
                 .setLogger(Logger)
                 .setKeepAlive(KeepAlive)
-                .setServerURL(FlowsServerURL)
+                .setServerURL(cred.Url)
                 .setAllowInvalidServerCertificates(AllowInvalidServerCertificates)
-                .setUserAccount(FlowsUserName, FlowsUserPassword)
+                .setUserAccount(cred.Username, cred.Password)
                 .build();
         }
 
         #endregion FLOWS
-        
+
         #region PROFILES
 
         public virtual IPlatformAvailabilityEndpoint CreatePlatformAvailabilityEndpoint()
         {
+            ICredential cred;
+            if (!GetCredentials(SmartCosmosComponent.Profiles, out cred))
+                return null;
+
             return new PlatformAvailabilityEndpointBuilder()
                 .setLogger(Logger)
                 .setKeepAlive(KeepAlive)
-                .setServerURL(ProfilesServerURL)
+                .setServerURL(cred.Url)
                 .setAllowInvalidServerCertificates(AllowInvalidServerCertificates)
                 .build();
         }
 
         public virtual IDataImportEndpoint CreateDataImportEndpoint()
         {
+            ICredential cred;
+            if (!GetCredentials(SmartCosmosComponent.Profiles, out cred))
+                return null;
+
             return new DataImportEndpointBuilder()
                 .setLogger(Logger)
                 .setKeepAlive(KeepAlive)
-                .setServerURL(ProfilesServerURL)
+                .setServerURL(cred.Url)
                 .setAllowInvalidServerCertificates(AllowInvalidServerCertificates)
-                .setUserAccount(ProfilesUserName, ProfilesUserPassword)
+                .setUserAccount(cred.Username, cred.Password)
                 .build();
         }
 
         public virtual ITagVerificationEndpoint CreateTagVerificationEndpoint()
         {
+            ICredential cred;
+            if (!GetCredentials(SmartCosmosComponent.Profiles, out cred))
+                return null;
+
             return new TagVerificationEndpointBuilder()
                 .setLogger(Logger)
                 .setKeepAlive(KeepAlive)
-                .setServerURL(ProfilesServerURL)
+                .setServerURL(cred.Url)
                 .setAllowInvalidServerCertificates(AllowInvalidServerCertificates)
-                .setUserAccount(ProfilesUserName, ProfilesUserPassword)
+                .setUserAccount(cred.Username, cred.Password)
                 .build();
         }
 
         public virtual ITagMetadataEndpoint CreateTagMetadataEndpoint()
         {
+            ICredential cred;
+            if (!GetCredentials(SmartCosmosComponent.Profiles, out cred))
+                return null;
+
             return new TagMetadataEndpointBuilder()
                 .setLogger(Logger)
                 .setKeepAlive(KeepAlive)
-                .setServerURL(ProfilesServerURL)
+                .setServerURL(cred.Url)
                 .setAllowInvalidServerCertificates(AllowInvalidServerCertificates)
-                .setUserAccount(ProfilesUserName, ProfilesUserPassword)
+                .setUserAccount(cred.Username, cred.Password)
                 .build();
         }
 
@@ -248,144 +220,196 @@ namespace Smartrac.SmartCosmos.ClientEndpoint.Factory
 
         public virtual IFileEndpoint CreateFileEndpoint()
         {
+            ICredential cred;
+            if (!GetCredentials(SmartCosmosComponent.Objects, out cred))
+                return null;
+
             return new FileEndpointBuilder()
             .setLogger(Logger)
             .setKeepAlive(KeepAlive)
-            .setServerURL(ObjectsServerURL)
+            .setServerURL(cred.Url)
             .setAllowInvalidServerCertificates(AllowInvalidServerCertificates)
-            .setUserAccount(ObjectsUserName, ObjectsUserPassword)
+            .setUserAccount(cred.Username, cred.Password)
             .build();
         }
 
         public virtual IRegistrationEndpoint CreateRegistrationEndpoint()
         {
+            ICredential cred;
+            if (!GetCredentials(SmartCosmosComponent.Objects, out cred))
+                return null;
+
             return new RegistrationEndpointBuilder()
             .setLogger(Logger)
             .setKeepAlive(KeepAlive)
-            .setServerURL(ObjectsServerURL)
+            .setServerURL(cred.Url)
             .setAllowInvalidServerCertificates(AllowInvalidServerCertificates)
-            .setUserAccount(ObjectsUserName, ObjectsUserPassword)
+            .setUserAccount(cred.Username, cred.Password)
             .build();
         }
 
         public virtual IAccountManagementEndpoint CreateAccountManagementEndpoint()
         {
+            ICredential cred;
+            if (!GetCredentials(SmartCosmosComponent.Objects, out cred))
+                return null;
+
             return new AccountManagementEndpointBuilder()
             .setLogger(Logger)
             .setKeepAlive(KeepAlive)
-            .setServerURL(ObjectsServerURL)
+            .setServerURL(cred.Url)
             .setAllowInvalidServerCertificates(AllowInvalidServerCertificates)
-            .setUserAccount(ObjectsUserName, ObjectsUserPassword)
+            .setUserAccount(cred.Username, cred.Password)
             .build();
         }
 
         public virtual IUserManagementEndpoint CreateUserManagementEndpoint()
         {
+            ICredential cred;
+            if (!GetCredentials(SmartCosmosComponent.Objects, out cred))
+                return null;
+
             return new UserManagementEndpointBuilder()
             .setLogger(Logger)
             .setKeepAlive(KeepAlive)
-            .setServerURL(ObjectsServerURL)
+            .setServerURL(cred.Url)
             .setAllowInvalidServerCertificates(AllowInvalidServerCertificates)
-            .setUserAccount(ObjectsUserName, ObjectsUserPassword)
+            .setUserAccount(cred.Username, cred.Password)
             .build();
         }
 
         public virtual IObjectManagementEndpoint CreateObjectManagementEndpoint()
         {
+            ICredential cred;
+            if (!GetCredentials(SmartCosmosComponent.Objects, out cred))
+                return null;
+
             return new ObjectManagementEndpointBuilder()
             .setLogger(Logger)
             .setKeepAlive(KeepAlive)
-            .setServerURL(ObjectsServerURL)
+            .setServerURL(cred.Url)
             .setAllowInvalidServerCertificates(AllowInvalidServerCertificates)
-            .setUserAccount(ObjectsUserName, ObjectsUserPassword)
+            .setUserAccount(cred.Username, cred.Password)
             .build();
         }
 
         public virtual IObjectInteractionEndpoint CreateObjectInteractionEndpoint()
         {
+            ICredential cred;
+            if (!GetCredentials(SmartCosmosComponent.Objects, out cred))
+                return null;
+
             return new ObjectInteractionEndpointBuilder()
             .setLogger(Logger)
             .setKeepAlive(KeepAlive)
-            .setServerURL(ObjectsServerURL)
+            .setServerURL(cred.Url)
             .setAllowInvalidServerCertificates(AllowInvalidServerCertificates)
-            .setUserAccount(ObjectsUserName, ObjectsUserPassword)
+            .setUserAccount(cred.Username, cred.Password)
             .build();
         }
 
         public virtual IRelationshipManagementEndpoint CreateRelationshipManagementEndpoint()
         {
+            ICredential cred;
+            if (!GetCredentials(SmartCosmosComponent.Objects, out cred))
+                return null;
+
             return new RelationshipManagementEndpointBuilder()
             .setLogger(Logger)
             .setKeepAlive(KeepAlive)
-            .setServerURL(ObjectsServerURL)
+            .setServerURL(cred.Url)
             .setAllowInvalidServerCertificates(AllowInvalidServerCertificates)
-            .setUserAccount(ObjectsUserName, ObjectsUserPassword)
+            .setUserAccount(cred.Username, cred.Password)
             .build();
         }
 
         public virtual IGeospatialManagementEndpoint CreateGeospatialManagementEndpoint()
         {
+            ICredential cred;
+            if (!GetCredentials(SmartCosmosComponent.Objects, out cred))
+                return null;
+
             return new GeospatialManagementEndpointBuilder()
             .setLogger(Logger)
             .setKeepAlive(KeepAlive)
-            .setServerURL(ObjectsServerURL)
+            .setServerURL(cred.Url)
             .setAllowInvalidServerCertificates(AllowInvalidServerCertificates)
-            .setUserAccount(ObjectsUserName, ObjectsUserPassword)
+            .setUserAccount(cred.Username, cred.Password)
             .build();
         }
 
         public virtual IHashTagEndpoint CreateHashTagEndpoint()
         {
+            ICredential cred;
+            if (!GetCredentials(SmartCosmosComponent.Objects, out cred))
+                return null;
+
             return new HashTagEndpointBuilder()
             .setLogger(Logger)
             .setKeepAlive(KeepAlive)
-            .setServerURL(ObjectsServerURL)
+            .setServerURL(cred.Url)
             .setAllowInvalidServerCertificates(AllowInvalidServerCertificates)
-            .setUserAccount(ObjectsUserName, ObjectsUserPassword)
+            .setUserAccount(cred.Username, cred.Password)
             .build();
         }
 
         public virtual IMetadataEndpoint CreateMetadataEndpoint()
         {
+            ICredential cred;
+            if (!GetCredentials(SmartCosmosComponent.Objects, out cred))
+                return null;
+
             return new MetadataEndpointBuilder()
             .setLogger(Logger)
             .setKeepAlive(KeepAlive)
-            .setServerURL(ObjectsServerURL)
+            .setServerURL(cred.Url)
             .setAllowInvalidServerCertificates(AllowInvalidServerCertificates)
-            .setUserAccount(ObjectsUserName, ObjectsUserPassword)
+            .setUserAccount(cred.Username, cred.Password)
             .build();
         }
 
         public virtual IObjectInteractionSessionEndpoint CreateObjectInteractionSessionEndpoint()
         {
+            ICredential cred;
+            if (!GetCredentials(SmartCosmosComponent.Objects, out cred))
+                return null;
+
             return new ObjectInteractionSessionEndpointBuilder()
             .setLogger(Logger)
             .setKeepAlive(KeepAlive)
-            .setServerURL(ObjectsServerURL)
+            .setServerURL(cred.Url)
             .setAllowInvalidServerCertificates(AllowInvalidServerCertificates)
-            .setUserAccount(ObjectsUserName, ObjectsUserPassword)
+            .setUserAccount(cred.Username, cred.Password)
             .build();
         }
 
         public virtual IDeviceEndpoint CreateDeviceEndpoint()
         {
+            ICredential cred;
+            if (!GetCredentials(SmartCosmosComponent.Objects, out cred))
+                return null;
+
             return new DeviceEndpointBuilder()
             .setLogger(Logger)
             .setKeepAlive(KeepAlive)
-            .setServerURL(ObjectsServerURL)
+            .setServerURL(cred.Url)
             .setAllowInvalidServerCertificates(AllowInvalidServerCertificates)
-            .setUserAccount(ObjectsUserName, ObjectsUserPassword)
+            .setUserAccount(cred.Username, cred.Password)
             .build();
         }
 
         public virtual INotificationEndpoint CreateNotificationEndpoint()
         {
+            ICredential cred;
+            if (!GetCredentials(SmartCosmosComponent.Objects, out cred))
+                return null;
+
             return new NotificationEndpointBuilder()
             .setLogger(Logger)
             .setKeepAlive(KeepAlive)
-            .setServerURL(ObjectsServerURL)
+            .setServerURL(cred.Url)
             .setAllowInvalidServerCertificates(AllowInvalidServerCertificates)
-            .setUserAccount(ObjectsUserName, ObjectsUserPassword)
+            .setUserAccount(cred.Username, cred.Password)
             .build();
         }
 

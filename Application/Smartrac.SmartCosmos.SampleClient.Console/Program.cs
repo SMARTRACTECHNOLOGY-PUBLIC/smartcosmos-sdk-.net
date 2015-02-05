@@ -26,6 +26,8 @@ using Smartrac.SmartCosmos.TestCase.Base;
 using Smartrac.SmartCosmos.TestCase.Runner;
 using System.Collections.Generic;
 using System.Configuration;
+using Smartrac.SmartCosmos.DataContextFactory;
+using System.IO;
 
 namespace Smartrac.SmartCosmos.SampleClient.Console
 {
@@ -37,42 +39,22 @@ namespace Smartrac.SmartCosmos.SampleClient.Console
             IMessageLogger logger = new ConsoleLoggerService();
 
             // factory for endpoints
-            IEndpointFactory factory = new EndpointFactory(logger);
+            IEndpointFactory factory = new EndpointFactory(logger, XMLCredentialStore.ReadFromFile( Path.Combine(Path.GetDirectoryName(System.Reflection.Assembly.GetExecutingAssembly().Location), ConfigurationManager.AppSettings["XMLCredentialStore"]) ) );
 
-            // user settings
-            // NOTE: please enter your SmartCosmos Profiles user name and password in the app.config
-            factory.ProfilesUserName = ConfigurationManager.AppSettings["ProfilesUserName"];
-            factory.ProfilesUserPassword = ConfigurationManager.AppSettings["ProfilesUserPassword"];
-            factory.ProfilesServerURL = ConfigurationManager.AppSettings["ProfilesServerURL"]; // e.g. https://www.smart-cosmos.com
-
-            // Configuration for SMART COSMOS Objects
-            factory.ObjectsUserName = ConfigurationManager.AppSettings["ObjectsUserName"];
-            factory.ObjectsUserPassword = ConfigurationManager.AppSettings["ObjectsUserPassword"];
-            factory.ObjectsServerURL = ConfigurationManager.AppSettings["ObjectsServerURL"];
-
-            // Configuration for SMART COSMOS Flows
-            factory.FlowsUserName = ConfigurationManager.AppSettings["FlowsUserName"];
-            factory.FlowsUserPassword = ConfigurationManager.AppSettings["FlowsUserPassword"];
-            factory.FlowsServerURL = ConfigurationManager.AppSettings["FlowsServerURL"];
-
-            // Configuration for SMART COSMOS AccountManager
-            factory.AccountManagerUserName = ConfigurationManager.AppSettings["AccountManagerUserName"];
-            factory.AccountManagerUserPassword = ConfigurationManager.AppSettings["AccountManagerUserPassword"];
-            factory.AccountManagerServerURL = ConfigurationManager.AppSettings["AccountManagerServerURL"];
+            // data context
+            IDataContextFactory dataContext = new SampleDataContextFactory(); // data context factory for sample data
+            //IDataContextFactory dataContext = new XMLDataContextFactory(ConfigurationManager.AppSettings["XMLDataContextFactory"]); // data context factory for sample data
+            
 
             // initate tester case runner
             ITestCaseRunner testCaseRunner = new TestCaseRunnerBuilder()
                                             .setLogger(logger) // set logger
-
-                       .setDataContextFactory(new SampleDataContextFactory()) // data context factory for sample data
-                                         //.setDataContextFactory(new XMLDataContextFactory(ConfigurationManager.AppSettings["XMLDataContextFactory"])) // data context factory for sample data
-
-
+                                            .setDataContextFactory(dataContext) 
                                             .setEndpointFactory(factory) // set factory for endpoints
                                             .build();
 
             // START TESTING ----
-            bool bTestResult = testCaseRunner.Run(TestCaseType.Functional, SmartCosmosService.Objects);
+            bool bTestResult = testCaseRunner.Run(TestCaseType.Functional, SmartCosmosService.All);
 
             // output
             System.Console.WriteLine("");
