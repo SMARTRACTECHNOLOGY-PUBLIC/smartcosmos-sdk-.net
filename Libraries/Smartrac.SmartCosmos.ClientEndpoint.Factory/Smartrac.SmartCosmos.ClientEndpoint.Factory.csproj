@@ -11,6 +11,7 @@
     <AssemblyName>Smartrac.SmartCosmos.ClientEndpoint.Factory</AssemblyName>
     <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
+    <NuGetPackageImportStamp>4ccd7058</NuGetPackageImportStamp>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -72,15 +73,17 @@
       <HintPath>..\..\External\Microsoft.Bcl.1.1.9\lib\net40\System.IO.dll</HintPath>
     </Reference>
     <Reference Include="System.Net.Http, Version=2.2.28.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
       <HintPath>..\..\External\Microsoft.Net.Http.2.2.28\lib\net40\System.Net.Http.dll</HintPath>
     </Reference>
-    <Reference Include="System.Net.Http.Extensions, Version=2.2.28.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+    <Reference Include="System.Net.Http.Extensions">
       <HintPath>..\..\External\Microsoft.Net.Http.2.2.28\lib\net40\System.Net.Http.Extensions.dll</HintPath>
     </Reference>
-    <Reference Include="System.Net.Http.Primitives, Version=2.2.28.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+    <Reference Include="System.Net.Http.Primitives">
       <HintPath>..\..\External\Microsoft.Net.Http.2.2.28\lib\net40\System.Net.Http.Primitives.dll</HintPath>
     </Reference>
     <Reference Include="System.Net.Http.WebRequest, Version=2.2.28.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
       <HintPath>..\..\External\Microsoft.Net.Http.2.2.28\lib\net40\System.Net.Http.WebRequest.dll</HintPath>
     </Reference>
     <Reference Include="System.Runtime">
@@ -101,6 +104,10 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\Smartrac.SmartCosmos.AccountManager.Base\Smartrac.SmartCosmos.AccountManager.Base.csproj">
+      <Project>{1afb8c80-0177-485b-88fb-d324ee5faa35}</Project>
+      <Name>Smartrac.SmartCosmos.AccountManager.Base</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Smartrac.SmartCosmos.AccountManager.Role\Smartrac.SmartCosmos.AccountManager.Role.csproj">
       <Project>{18f013df-ec55-45f0-95a5-6dafde206cad}</Project>
       <Name>Smartrac.SmartCosmos.AccountManager.Role</Name>
