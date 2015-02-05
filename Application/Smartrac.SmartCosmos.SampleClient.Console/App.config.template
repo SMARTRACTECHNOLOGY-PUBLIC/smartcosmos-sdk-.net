@@ -2,14 +2,18 @@
 <configuration>
   <appSettings>
 
-    <add key="ProfilesUserName" value="api.tester" />
-    <add key="ProfilesUserPassword" value="CbboX+S0j!e" />
+    <add key="ProfilesUserName" value="" />
+    <add key="ProfilesUserPassword" value="" />
     <add key="ProfilesServerURL" value="https://www.smart-cosmos.com" />
-<!--
-    <add key="ObjectsUserName" value="testuser@yourarea21936596.com" />
-    <add key="ObjectsUserPassword" value="1YOOPJACi0!8" />
+
+    <add key="ObjectsUserName" value="" />
+    <add key="ObjectsUserPassword" value="" />
     <add key="ObjectsServerURL" value="" />
--->
+	
+    <add key="FlowsUserName" value="" />
+    <add key="FlowsUserPassword" value="" />
+    <add key="FlowsServerURL" value="" />
+
     <add key="XMLDataContextFactory" value="..\..\..\..\..\Documentation\SampleData\XMLDataContextFactory.xml" />
   </appSettings>
   <runtime>
