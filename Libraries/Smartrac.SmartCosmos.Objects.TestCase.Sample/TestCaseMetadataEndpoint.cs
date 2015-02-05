@@ -25,7 +25,7 @@ using System.Collections.Generic;
 
 namespace Smartrac.SmartCosmos.Objects.TestCase.Sample
 {
-    [TestCaseAttribute(102)]
+    [TestCaseAttribute(2)]
     public class TestCaseMetadataEndpoint : BaseTestCaseMetadataEndpoint
     {
         protected override bool ExecuteTests()
@@ -199,10 +199,11 @@ namespace Smartrac.SmartCosmos.Objects.TestCase.Sample
             OnBeforeTest("Objects", "MetadataEndpoint", "Type-Safe Encoding / Decoding - DateTime");
             // call endpoint - DateTime
             DateTime dateValueFix = DateTime.UtcNow;
+            //string
             DateTime dateValue = dateValueFix;
             if ((endpoint.Encode(dateValue, out sValue) != MetadataActionResult.Successful) ||
                  (endpoint.Decode(sValue, out dateValue) != MetadataActionResult.Successful) ||
-                 (dateValueFix != dateValue))
+                 System.DateTime.Equals(dateValueFix, dateValue))
             {
                 actionResult = MetadataActionResult.Failed;
             }

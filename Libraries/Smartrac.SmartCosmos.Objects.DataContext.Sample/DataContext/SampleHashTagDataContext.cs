@@ -41,7 +41,7 @@ namespace Smartrac.SmartCosmos.Objects.DataContext.Sample
 
         public override string GetName()
         {
-            return "test name";
+            return "testName";
         }
 
         public override bool GetActiveFlag()

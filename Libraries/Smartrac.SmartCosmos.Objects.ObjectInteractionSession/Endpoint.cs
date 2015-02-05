@@ -199,7 +199,7 @@ namespace Smartrac.SmartCosmos.Objects.ObjectInteractionSession
                     return ObjInteractSessionActionResult.Failed;
                 }
 
-                Uri url = new Uri("/objects", UriKind.Relative).
+                Uri url = new Uri("/sessions", UriKind.Relative).
                     AddQuery("nameLike", nameLike).
                     AddQuery("view", viewType.GetDescription());
 
