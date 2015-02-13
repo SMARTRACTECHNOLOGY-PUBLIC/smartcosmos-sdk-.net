@@ -17,14 +17,13 @@
 
 #endregion License
 
+using Smartrac.SmartCosmos.ClientEndpoint.BaseObject;
 using System.Collections.Generic;
 
 namespace Smartrac.SmartCosmos.Profiles.TagVerification
 {
-    public class VerifyTagsResponse
+    public class VerifyTagsResponse : DefaultResponse
     {
-        public int code { get; set; }
-
         public List<TagProperties> result { get; set; }
     }
 

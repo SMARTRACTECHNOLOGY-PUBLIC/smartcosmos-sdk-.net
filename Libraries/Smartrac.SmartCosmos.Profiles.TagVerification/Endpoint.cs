@@ -68,7 +68,7 @@ namespace Smartrac.SmartCosmos.Profiles.TagVerification
             responseData = null;
             try
             {
-                var request = CreateWebRequest("/verification/tags/PR");
+                var request = CreateWebRequest("/verification/tags/RR");
                 var returnHTTPCode = ExecuteWebRequestJSON<VerifyTagsRequestRR, VerifyTagsResponse>(request, requestData, out responseData);
 
                 if (returnHTTPCode == HttpStatusCode.OK)
