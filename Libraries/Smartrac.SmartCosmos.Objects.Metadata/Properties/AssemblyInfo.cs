@@ -7,9 +7,9 @@ using System.Runtime.InteropServices;
 [assembly: AssemblyTitle("Smartrac.SmartCosmos.Objects.Metadata")]
 [assembly: AssemblyDescription("")]
 [assembly: AssemblyConfiguration("")]
-[assembly: AssemblyCompany("Hewlett-Packard Company")]
+[assembly: AssemblyCompany("SMARTRAC TECHNOLOGY GROUP")]
 [assembly: AssemblyProduct("Smartrac.SmartCosmos.Objects.Metadata")]
-[assembly: AssemblyCopyright("Copyright © Hewlett-Packard Company 2014")]
+[assembly: AssemblyCopyright("Copyright © SMARTRAC TECHNOLOGY GROUP 2015")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
 

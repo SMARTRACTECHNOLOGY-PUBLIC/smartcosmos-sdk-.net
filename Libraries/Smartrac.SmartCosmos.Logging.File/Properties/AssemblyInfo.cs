@@ -1,7 +1,7 @@
 ﻿#region License
 
 // SMART COSMOS .Net SDK
-// (C) Copyright 2014 SMARTRAC TECHNOLOGY GmbH, (http://www.smartrac-group.com)
+// (C) Copyright 2013 - 2015 SMARTRAC TECHNOLOGY GmbH, (http://www.smartrac-group.com)
 //
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
@@ -26,9 +26,9 @@ using System.Runtime.InteropServices;
 [assembly: AssemblyTitle("Smartrac.SmartCosmos.Logging.File")]
 [assembly: AssemblyDescription("")]
 [assembly: AssemblyConfiguration("")]
-[assembly: AssemblyCompany("Hewlett-Packard Company")]
+[assembly: AssemblyCompany("SMARTRAC TECHNOLOGY GROUP")]
 [assembly: AssemblyProduct("Smartrac.SmartCosmos.Logging.File")]
-[assembly: AssemblyCopyright("Copyright © Hewlett-Packard Company 2014")]
+[assembly: AssemblyCopyright("Copyright © SMARTRAC TECHNOLOGY GROUP 2015")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
 
