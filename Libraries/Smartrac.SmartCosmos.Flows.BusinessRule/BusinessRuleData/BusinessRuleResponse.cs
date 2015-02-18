@@ -17,6 +17,7 @@
 
 #endregion License
 
+using Newtonsoft.Json;
 using Smartrac.SmartCosmos.ClientEndpoint.BaseObject;
 using Smartrac.SmartCosmos.Objects.Base;
 
@@ -24,6 +25,19 @@ namespace Smartrac.SmartCosmos.Flows.BusinessRule
 {
     public class BusinessRuleResponse : DefaultResponse
     {
+        public string uuid
+        {
+            get
+            {
+                return (ruleUrn != null) ? ruleUrn.UUID : "";
+            }
+            set
+            {
+                ruleUrn = new Urn(value);
+            }
+        }
+
+        [JsonIgnore]
         public Urn ruleUrn { get; set; }
     }
 }

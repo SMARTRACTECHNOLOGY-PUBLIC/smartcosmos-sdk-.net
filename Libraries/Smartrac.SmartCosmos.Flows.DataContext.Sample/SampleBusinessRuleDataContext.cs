@@ -33,7 +33,7 @@ namespace Smartrac.SmartCosmos.Flows.DataContext.Sample
             statusStop = StatusBusinessRule.Stop;
             ruleData = new BusinessRuleRequest();
             DateTime thisDay = DateTime.UtcNow;
-            ruleData.name = "TestAPI_" + thisDay.ToString("d").Replace('.', '_');
+            ruleData.name = "TestAPI_" + thisDay.ToString().Replace('.', '_').Replace(' ', '_').Replace(':', '_');
             ruleData.description = "Last test was: " + thisDay.ToString().Replace('.', '_');
         }
     }

@@ -30,16 +30,32 @@ namespace Smartrac.SmartCosmos.Flows.TestCase.Sample
     {
         protected override bool ExecuteTests()
         {
-            return TestListOfBusinessRule() && TestStructureOfBusinessRule() && TestStatusBusinessRule(dataContext.GetStatusStart()) &&
-                TestStatusBusinessRule(dataContext.GetStatusStop()) && TestUpdateBusinessRule() && TestDeleteBusinessRule();
+            BusinessRuleResponse responseData;
+            return TestCreateBusinessRule(out responseData) && TestListOfBusinessRule() && TestStructureOfBusinessRule(responseData) && TestStatusBusinessRule(dataContext.GetStatusStart(), responseData) &&
+                TestStatusBusinessRule(dataContext.GetStatusStop(), responseData) && TestUpdateBusinessRule(responseData) && TestDeleteBusinessRule(responseData);
         }
 
-        protected virtual bool TestStatusBusinessRule(StatusBusinessRule statusBusinessRule)
+        protected virtual bool TestCreateBusinessRule(out BusinessRuleResponse responseData)
+        {
+            OnBeforeTest("Flows", "BusinessRuleEndpoint", "StatusBusinessRule");
+            // create request
+            responseData = null;
+            BusinessRuleRequest requestData = new BusinessRuleRequest
+            {
+                name = "apiTest",
+                description = "Bar is a rule that can do baq"
+            };
+            BusinessRuleActionResult actionResult = endpoint.Create(requestData, out responseData);
+            OnAfterTest(actionResult);
+            return (actionResult == BusinessRuleActionResult.Successful);
+        }
+        
+        protected virtual bool TestStatusBusinessRule(StatusBusinessRule statusBusinessRule, BusinessRuleResponse requestData)
         {
             OnBeforeTest("Flows", "BusinessRuleEndpoint", "StatusBusinessRule");
             // create request
             BusinessRuleActionResponse responseData;
-            BusinessRuleActionResult actionResult = endpoint.SetStatus(dataContext.GetUrn(), statusBusinessRule, out responseData);
+            BusinessRuleActionResult actionResult = endpoint.SetStatus(requestData.ruleUrn, statusBusinessRule, out responseData);
             OnAfterTest(actionResult);
             return (actionResult == BusinessRuleActionResult.Successful);
         }
@@ -54,32 +70,31 @@ namespace Smartrac.SmartCosmos.Flows.TestCase.Sample
             return (actionResult == BusinessRuleActionResult.Successful);
         }
 
-        protected virtual bool TestStructureOfBusinessRule()
+        protected virtual bool TestStructureOfBusinessRule(BusinessRuleResponse requestData)
         {
             OnBeforeTest("Flows", "BusinessRuleEndpoint", "LookupBusinessRule");
             // create request
             BusinessRuleDataResponse responseData;
-            BusinessRuleActionResult actionResult = endpoint.Lookup(dataContext.GetUrn(), out responseData);
+            BusinessRuleActionResult actionResult = endpoint.Lookup(requestData.ruleUrn, out responseData);
             OnAfterTest(actionResult);
             return (actionResult == BusinessRuleActionResult.Successful);
         }
 
-        protected virtual bool TestUpdateBusinessRule()
+        protected virtual bool TestUpdateBusinessRule(BusinessRuleResponse requestData)
         {
             OnBeforeTest("Flows", "BusinessRuleEndpoint", "UpdateBusinessRule");
             // create request
             BusinessRuleActionResponse responseData;
-            BusinessRuleActionResult actionResult = endpoint.Update(dataContext.GetUrn(), dataContext.GetRuleData(), out responseData);
+            BusinessRuleActionResult actionResult = endpoint.Update(requestData.ruleUrn, dataContext.GetRuleData(), out responseData);
             OnAfterTest(actionResult);
             return (actionResult == BusinessRuleActionResult.Successful);
         }
 
-        protected virtual bool TestDeleteBusinessRule()
+        protected virtual bool TestDeleteBusinessRule(BusinessRuleResponse requestData)
         {
             OnBeforeTest("Flows", "BusinessRuleEndpoint", "DeleteBusinessRule");
             // create request
-            Urn deleteUrn = new Urn("urn:uuid:63df5662-3e18-4d7a-8649-0b4c6f96cbc0");
-            BusinessRuleActionResult actionResult = endpoint.Delete(deleteUrn);
+            BusinessRuleActionResult actionResult = endpoint.Delete(requestData.ruleUrn);
             OnAfterTest(actionResult);
             return (actionResult == BusinessRuleActionResult.Successful);
         }

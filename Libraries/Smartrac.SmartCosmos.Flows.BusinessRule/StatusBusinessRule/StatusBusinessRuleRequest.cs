@@ -43,6 +43,6 @@ namespace Smartrac.SmartCosmos.Flows.BusinessRule
     public class StatusBusinessRuleRequest : BaseRequest
     {
         [JsonConverter(typeof(StringEnumConverter))]
-        public StatusBusinessRule status { get; set; }
+        public StatusBusinessRule action { get; set; }
     }
 }

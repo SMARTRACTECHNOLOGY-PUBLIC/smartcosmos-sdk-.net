@@ -32,7 +32,7 @@ namespace Smartrac.SmartCosmos.Objects.Base
         public BaseObjectsEndpoint()
             : base()
         {
-            this.ServiceSubUrl = "";
+            this.ServiceSubUrl = "rest";
             this.ServerURL = "";//https://www.smart-cosmos.com
         }
 

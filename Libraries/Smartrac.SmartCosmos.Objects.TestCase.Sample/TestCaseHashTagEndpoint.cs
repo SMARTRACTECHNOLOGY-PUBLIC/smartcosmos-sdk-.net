@@ -34,8 +34,8 @@ namespace Smartrac.SmartCosmos.Objects.TestCase.Sample
             return RunTestCase_Create(out tagUrn) &&
                 RunTestCase_LookupByUrn(tagUrn) &&
                 RunTestCase_LookupByName() &&
-                RunTestCase_LookupByObjectUrn() &&
                 RunTestCase_Assign() &&
+                RunTestCase_LookupByObjectUrn() &&
                 RunTestCase_Delete();
         }
 

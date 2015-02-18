@@ -51,15 +51,15 @@ namespace Smartrac.SmartCosmos.Flows.BusinessRule
                     return BusinessRuleActionResult.Failed;
                 }
 
-                var request = CreateWebRequest("/rules/rule", WebRequestOption.Authorization);
-                ExecuteWebRequestJSON<BusinessRuleRequest, BusinessRuleResponse>(request, requestData, out responseData, WebRequestMethods.Http.Post);
+                var request = CreateWebRequest("/rules", WebRequestOption.Authorization);
+                ExecuteWebRequestJSON<BusinessRuleRequest, BusinessRuleResponse>(request, requestData, out responseData, WebRequestMethods.Http.Put);
                 if (responseData != null)
                 {
                     switch (responseData.HTTPStatusCode)
                     {
                         case HttpStatusCode.Created:
                         case HttpStatusCode.OK:
-                            responseData.ruleUrn = new Urn(responseData.message);
+                            //responseData.ruleUrn = new Urn(responseData.message);
                             return BusinessRuleActionResult.Successful;
 
                         default: return BusinessRuleActionResult.Failed;
@@ -94,7 +94,7 @@ namespace Smartrac.SmartCosmos.Flows.BusinessRule
                     return BusinessRuleActionResult.Failed;
                 }
 
-                Uri url = new Uri("/rules/rule", UriKind.Relative).
+                Uri url = new Uri("/rules", UriKind.Relative).
                     AddSubfolder(ruleUrn.UUID);
 
                 HttpWebResponse webResponse;
@@ -166,12 +166,13 @@ namespace Smartrac.SmartCosmos.Flows.BusinessRule
                     return BusinessRuleActionResult.Failed;
                 }
 
-                Uri url = new Uri("/engine/rule/status", UriKind.Relative).
-                    AddSubfolder(ruleUrn.UUID);
+                Uri url = new Uri("/rules", UriKind.Relative).
+                    AddSubfolder(ruleUrn.UUID).
+                    AddSubfolder("status");
 
                 var request = CreateWebRequest(url, WebRequestOption.Authorization);
-                ExecuteWebRequestJSON<StatusBusinessRuleRequest, BusinessRuleActionResponse>(request, new StatusBusinessRuleRequest { status = statusBusinessRule }, out responseData);
-                if ((responseData != null) && (responseData.HTTPStatusCode == HttpStatusCode.NoContent))
+                ExecuteWebRequestJSON<StatusBusinessRuleRequest, BusinessRuleActionResponse>(request, new StatusBusinessRuleRequest { action = statusBusinessRule }, out responseData);
+                if ((responseData != null) && (responseData.HTTPStatusCode == HttpStatusCode.OK))
                     return BusinessRuleActionResult.Successful;
                 return BusinessRuleActionResult.Failed;
             }
@@ -202,11 +203,12 @@ namespace Smartrac.SmartCosmos.Flows.BusinessRule
                 }
 
 
-                Uri url = new Uri("/engine/rule", UriKind.Relative).
+                Uri url = new Uri("/rules", UriKind.Relative).
                     AddSubfolder(requestData.ruleUrn.UUID);
 
                 var request = CreateWebRequest(url, WebRequestOption.Authorization);
-                ExecuteWebRequestJSON<BusinessRuleStateRequest, BusinessRuleActionResponse>(request, requestData, out responseData, WebRequestMethods.Http.Post);
+                request.Method = "DELETE";
+                ExecuteWebRequestJSON<BusinessRuleStateRequest, BusinessRuleActionResponse>(request, requestData, out responseData);
                 if ((responseData != null) && 
                     (responseData.HTTPStatusCode == HttpStatusCode.NoContent)) 
                 {
@@ -243,7 +245,7 @@ namespace Smartrac.SmartCosmos.Flows.BusinessRule
                     return BusinessRuleActionResult.Failed;
                 }
 
-                Uri url = new Uri("/engine/rule", UriKind.Relative).
+                Uri url = new Uri("/rules", UriKind.Relative).
                     AddSubfolder(ruleUrn.UUID);
 
                 var request = CreateWebRequest(url, WebRequestOption.Authorization);
@@ -276,7 +278,7 @@ namespace Smartrac.SmartCosmos.Flows.BusinessRule
                     return BusinessRuleActionResult.Failed;
                 }
 
-                Uri url = new Uri("/rules/rule", UriKind.Relative).
+                Uri url = new Uri("/rules", UriKind.Relative).
                     AddSubfolder(ruleUrn.UUID);
 
                 var request = CreateWebRequest(url, WebRequestOption.Authorization);
