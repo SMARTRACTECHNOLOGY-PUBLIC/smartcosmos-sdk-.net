@@ -179,7 +179,7 @@
     <Error Condition="!Exists('..\..\External\Microsoft.Bcl.Build.1.0.21\build\Microsoft.Bcl.Build.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\..\External\Microsoft.Bcl.Build.1.0.21\build\Microsoft.Bcl.Build.targets'))" />
   </Target>
   <PropertyGroup>
-    <PostBuildEvent>If Not Exist "$(ProjectDir)Credentials.xml" (xcopy "$(ProjectDir)Credentials.xml.template" "$(TargetDir)Credentials.xml" /Y) else (xcopy "$(ProjectDir)Credentials.xml" "$(TargetDir)" /Y)</PostBuildEvent>
+    <PostBuildEvent>If Not Exist "$(ProjectDir)Credentials.xml" (If Not Exist "$(TargetDir)Credentials.xml" (xcopy "$(ProjectDir)Credentials.xml.template" "$(TargetDir)Credentials.xml" /Y)) else (xcopy "$(ProjectDir)Credentials.xml" "$(TargetDir)" /Y/D)</PostBuildEvent>
   </PropertyGroup>
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
