@@ -58,7 +58,7 @@ namespace Smartrac.SmartCosmos.Objects.Base
 
         public string moniker { get; set; }
 
-        public string accountUrn
+        public string urn
         {
             get
             {
@@ -70,6 +70,7 @@ namespace Smartrac.SmartCosmos.Objects.Base
             }
         }
 
+        [JsonIgnore]
         public Urn accountUrnObj { get; set; }
         
     }

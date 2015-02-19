@@ -89,15 +89,15 @@ namespace Smartrac.SmartCosmos.Objects.TestCase.Sample
         {
             OnBeforeTest("Objects", "MetadataEndpoint", "Lookup Associated Metadata");
             // create request
-            LookupMetadataRequest requestLookupData = new LookupMetadataRequest
+            /*LookupMetadataRequest requestLookupData = new LookupMetadataRequest
             {
                 entityReferenceType = dataContext.GetEntityReferenceType(),
                 entityUrn = dataContext.GetEntityUrn(),
                 viewType = dataContext.GetViewType()
-            };
+            };*/
             LookupMetadataResponse responseLookupData;
             // call endpoint
-            MetadataActionResult actionResult = endpoint.Lookup(requestLookupData, out responseLookupData);
+            MetadataActionResult actionResult = endpoint.Lookup(dataContext.GetEntityUrn(), dataContext.GetEntityReferenceType(), null, out responseLookupData);
             OnAfterTest(actionResult);
             return (actionResult == MetadataActionResult.Successful);
         }

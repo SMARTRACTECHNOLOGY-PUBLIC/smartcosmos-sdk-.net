@@ -36,7 +36,7 @@ namespace Smartrac.SmartCosmos.Objects.Base
 
         public string type { get; set; }
 
-        public string interactionUrn
+        public string referenceUrn
         {
             get
             {
@@ -48,6 +48,7 @@ namespace Smartrac.SmartCosmos.Objects.Base
             }
         }
 
+        [JsonIgnore]
         public Urn interactionUrnObj { get; set; }
 
         public string urn
@@ -62,6 +63,7 @@ namespace Smartrac.SmartCosmos.Objects.Base
             }
         }
 
+        [JsonIgnore]
         public Urn urnObj { get; set; }
     }
 }

@@ -24,7 +24,7 @@ using Smartrac.SmartCosmos.TestCase.Base;
 
 namespace Smartrac.SmartCosmos.Objects.TestCase.Sample
 {
-    [TestCaseAttribute(121)]
+    [TestCaseAttribute(1)]
     public class TestCaseUserManagementEndpoint : BaseTestCaseUserManagementEndpoint
     {
         protected override bool ExecuteTests()
@@ -79,7 +79,7 @@ namespace Smartrac.SmartCosmos.Objects.TestCase.Sample
             OnBeforeTest("Objects", "UserManagementEndpoint", "Lookup Specific User by URN");
             UserDataResponse responseUserData;
             // call endpoint
-            UserActionResult actionResult = endpoint.LookupSpecificUser(userUrn, out responseUserData, dataContext.GetViewType());
+            UserActionResult actionResult = endpoint.LookupSpecificUser(userUrn, out responseUserData, ViewType.Full);
             OnAfterTest(actionResult);
             return (actionResult == UserActionResult.Successful);
         }
@@ -89,7 +89,7 @@ namespace Smartrac.SmartCosmos.Objects.TestCase.Sample
             OnBeforeTest("Objects", "UserManagementEndpoint", "Lookup Specific User by Email Address");
             UserDataResponse responseUserEMailData;
             // call endpoint
-            UserActionResult actionResult = endpoint.LookupSpecificUser(dataContext.GeteMailAddress(), out responseUserEMailData, dataContext.GetViewType());
+            UserActionResult actionResult = endpoint.LookupSpecificUser(dataContext.GeteMailAddress(), out responseUserEMailData, ViewType.Full);
             // log response
             OnAfterTest(actionResult);
 

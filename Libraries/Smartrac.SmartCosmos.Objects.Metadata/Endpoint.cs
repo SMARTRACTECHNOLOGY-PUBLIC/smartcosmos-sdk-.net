@@ -567,10 +567,11 @@ namespace Smartrac.SmartCosmos.Objects.Metadata
         /// <param name="requestData">request data</param>
         /// <param name="responseData">response data</param>
         /// <returns>MetadataActionResult</returns>
-        public MetadataActionResult Lookup(LookupMetadataRequest requestData, out LookupMetadataResponse responseData)
+        public MetadataActionResult Lookup(Urn referenceUrn, EntityReferenceType entityReferenceType, string key, out LookupMetadataResponse responseData, ViewType viewType = ViewType.Standard)
+            //LookupMetadataRequest requestData, out LookupMetadataResponse responseData, ViewType viewType = ViewType.Standard)
         {
             responseData = null;
-            if ((null == requestData) || !requestData.IsValid())
+            if ((null == referenceUrn) || !referenceUrn.IsValid())
             {
                 if (null != Logger)
                     Logger.AddLog("request data is invalid", LogType.Error);
@@ -579,10 +580,10 @@ namespace Smartrac.SmartCosmos.Objects.Metadata
 
             //metadata/{entityReferenceType}/{referenceUrn}{?view,key}
             Uri url = new Uri("/metadata", UriKind.Relative).
-                AddSubfolder(requestData.entityReferenceType.GetDescription()).
-                AddSubfolder(requestData.entityUrn.UUID).
-                AddQuery("view", requestData.viewType.GetDescription()).
-                AddQuery("key", requestData.key);
+                AddSubfolder(entityReferenceType.GetDescription()).
+                AddSubfolder(referenceUrn.UUID).
+                AddQuery("view", viewType.GetDescription()).
+                AddQuery("key", key);
 
             var request = CreateWebRequest(url, WebRequestOption.Authorization);
             ExecuteWebRequestJSON<LookupMetadataResponse>(request, out responseData);
