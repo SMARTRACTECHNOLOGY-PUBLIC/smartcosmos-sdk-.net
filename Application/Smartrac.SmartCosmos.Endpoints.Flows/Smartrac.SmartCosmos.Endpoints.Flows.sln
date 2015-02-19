@@ -21,6 +21,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Smartrac.SmartCosmos.Flows.
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Smartrac.SmartCosmos.Flows.BusinessRule", "..\..\Libraries\Smartrac.SmartCosmos.Flows.BusinessRule\Smartrac.SmartCosmos.Flows.BusinessRule.csproj", "{640A11D8-C1B8-4C15-9D04-07B5ED990233}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Smartrac.SmartCosmos.Flows.DeviceManagement", "..\..\Libraries\Smartrac.SmartCosmos.Flows.DeviceManagement\Smartrac.SmartCosmos.Flows.DeviceManagement.csproj", "{7C501B6D-D73B-4304-918B-AB2311711E2E}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -91,6 +93,7 @@ Global
 		{F50C4ADC-6A33-4644-B608-2B2584BF15CE}.Release|x64.Build.0 = Release|x64
 		{F50C4ADC-6A33-4644-B608-2B2584BF15CE}.Release|x86.ActiveCfg = Release|x86
 		{F50C4ADC-6A33-4644-B608-2B2584BF15CE}.Release|x86.Build.0 = Release|x86
+		{F50C4ADC-6A33-4644-B608-2B2584BF15CE}.Release|x86.Deploy.0 = Release|x86
 		{FC09830C-0F35-4FC3-85BF-0B43FCB91F06}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{FC09830C-0F35-4FC3-85BF-0B43FCB91F06}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{FC09830C-0F35-4FC3-85BF-0B43FCB91F06}.Debug|x64.ActiveCfg = Debug|x64
@@ -139,6 +142,18 @@ Global
 		{640A11D8-C1B8-4C15-9D04-07B5ED990233}.Release|x64.Build.0 = Release|x64
 		{640A11D8-C1B8-4C15-9D04-07B5ED990233}.Release|x86.ActiveCfg = Release|x86
 		{640A11D8-C1B8-4C15-9D04-07B5ED990233}.Release|x86.Build.0 = Release|x86
+		{7C501B6D-D73B-4304-918B-AB2311711E2E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7C501B6D-D73B-4304-918B-AB2311711E2E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7C501B6D-D73B-4304-918B-AB2311711E2E}.Debug|x64.ActiveCfg = Debug|x64
+		{7C501B6D-D73B-4304-918B-AB2311711E2E}.Debug|x64.Build.0 = Debug|x64
+		{7C501B6D-D73B-4304-918B-AB2311711E2E}.Debug|x86.ActiveCfg = Debug|x86
+		{7C501B6D-D73B-4304-918B-AB2311711E2E}.Debug|x86.Build.0 = Debug|x86
+		{7C501B6D-D73B-4304-918B-AB2311711E2E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7C501B6D-D73B-4304-918B-AB2311711E2E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{7C501B6D-D73B-4304-918B-AB2311711E2E}.Release|x64.ActiveCfg = Release|x64
+		{7C501B6D-D73B-4304-918B-AB2311711E2E}.Release|x64.Build.0 = Release|x64
+		{7C501B6D-D73B-4304-918B-AB2311711E2E}.Release|x86.ActiveCfg = Release|x86
+		{7C501B6D-D73B-4304-918B-AB2311711E2E}.Release|x86.Build.0 = Release|x86
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

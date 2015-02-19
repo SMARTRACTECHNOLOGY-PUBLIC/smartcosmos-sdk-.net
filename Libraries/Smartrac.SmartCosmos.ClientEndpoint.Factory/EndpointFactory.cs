@@ -40,6 +40,7 @@ using Smartrac.SmartCosmos.Objects.Notification;
 using Smartrac.SmartCosmos.AccountManager.User;
 using Smartrac.SmartCosmos.AccountManager.Role;
 using Smartrac.SmartCosmos.CredentialStore;
+using Smartrac.SmartCosmos.Flows.DeviceManagement;
 
 namespace Smartrac.SmartCosmos.ClientEndpoint.Factory
 {
@@ -143,6 +144,21 @@ namespace Smartrac.SmartCosmos.ClientEndpoint.Factory
                 return null;
 
             return new BusinessRuleEndpointBuilder()
+                .setLogger(Logger)
+                .setKeepAlive(KeepAlive)
+                .setServerURL(cred.Url)
+                .setAllowInvalidServerCertificates(AllowInvalidServerCertificates)
+                .setUserAccount(cred.Username, cred.Password)
+                .build();
+        }
+
+        public virtual IDeviceManagementEndpoint CreateDeviceManagementEndpoint()
+        {
+            ICredential cred;
+            if (!GetCredentials(SmartCosmosComponent.Flows, out cred))
+                return null;
+
+            return new DeviceManagementEndpointBuilder()
                 .setLogger(Logger)
                 .setKeepAlive(KeepAlive)
                 .setServerURL(cred.Url)

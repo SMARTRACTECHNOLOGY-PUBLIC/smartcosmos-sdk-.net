@@ -82,6 +82,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="BaseFlowsTestCase.cs" />
+    <Compile Include="BaseTestCases\TestCaseDeviceManagementEndpoint.cs" />
     <Compile Include="BaseTestCases\TestCaseBusinessRuleEndpoint.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="BaseTestCases\TestCaseFlowsAccountManagementEndpoint.cs" />
@@ -120,6 +121,10 @@
     <ProjectReference Include="..\Smartrac.SmartCosmos.Flows.BusinessRule\Smartrac.SmartCosmos.Flows.BusinessRule.csproj">
       <Project>{640a11d8-c1b8-4c15-9d04-07b5ed990233}</Project>
       <Name>Smartrac.SmartCosmos.Flows.BusinessRule</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Smartrac.SmartCosmos.Flows.DeviceManagement\Smartrac.SmartCosmos.Flows.DeviceManagement.csproj">
+      <Project>{2ce5af75-7961-4dbe-b1f6-b6d403b3446b}</Project>
+      <Name>Smartrac.SmartCosmos.Flows.DeviceManagement</Name>
     </ProjectReference>
     <ProjectReference Include="..\Smartrac.SmartCosmos.TestCase.Base\Smartrac.SmartCosmos.TestCase.Base.csproj">
       <Project>{27fd25e4-0e9e-45a1-a568-fba5f0f8742f}</Project>

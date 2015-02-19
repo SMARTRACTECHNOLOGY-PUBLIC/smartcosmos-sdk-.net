@@ -76,10 +76,13 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Base\BaseDeviceManagementDataContext.cs" />
     <Compile Include="Base\BaseBusinessRuleDataContext.cs" />
     <Compile Include="Base\BaseFlowsAccountManagementDataContext.cs" />
+    <Compile Include="Empty\EmptyDeviceManagementDataContext.cs" />
     <Compile Include="Empty\EmptyBusinessRuleDataContext.cs" />
     <Compile Include="Empty\EmptyFlowsAccountManagementDataContext.cs" />
+    <Compile Include="Interfaces\IDeviceManagementDataContext.cs" />
     <Compile Include="Interfaces\IBusinessRuleDataContext.cs" />
     <Compile Include="Interfaces\IFlowsAccountManagementDataContext.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

@@ -113,6 +113,11 @@ namespace Smartrac.SmartCosmos.DataContextFactory
             return new BaseBusinessRuleDataContext();
         }
 
+        public virtual IDeviceManagementDataContext CreateDeviceManagementDataContext()
+        {
+            return new BaseDeviceManagementDataContext();
+        }
+
         //Account Manager
 
         public virtual IUserDataContext CreateUserDataContext()

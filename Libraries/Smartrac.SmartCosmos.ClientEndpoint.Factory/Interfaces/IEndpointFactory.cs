@@ -40,6 +40,7 @@ using Smartrac.SmartCosmos.Profiles.TagVerification;
 using Smartrac.SmartCosmos.AccountManager.User;
 using Smartrac.SmartCosmos.AccountManager.Role;
 using Smartrac.SmartCosmos.CredentialStore;
+using Smartrac.SmartCosmos.Flows.DeviceManagement;
 
 namespace Smartrac.SmartCosmos.ClientEndpoint.Factory
 {
@@ -145,6 +146,12 @@ namespace Smartrac.SmartCosmos.ClientEndpoint.Factory
         /// </summary>
         /// <returns>IBusinessRuleEndpoint</returns>
         IBusinessRuleEndpoint CreateBusinessRuleEndpoint();
+
+        /// <summary>
+        /// Create device management endpoints
+        /// </summary>
+        /// <returns>IDeviceManagementEndpoint</returns>
+        IDeviceManagementEndpoint CreateDeviceManagementEndpoint();
 
         #endregion Flows
 

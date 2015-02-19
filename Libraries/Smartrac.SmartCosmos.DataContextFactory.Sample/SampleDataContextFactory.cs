@@ -115,6 +115,11 @@ namespace Smartrac.SmartCosmos.DataContextFactory.Sample
             return new SampleBusinessRuleDataContext();
         }
 
+        public override IDeviceManagementDataContext CreateDeviceManagementDataContext()
+        {
+            return new SampleDeviceManagementDataContext();
+        }
+
         public override IUserDataContext CreateUserDataContext()
         {
             return new SampleUserDataContext();

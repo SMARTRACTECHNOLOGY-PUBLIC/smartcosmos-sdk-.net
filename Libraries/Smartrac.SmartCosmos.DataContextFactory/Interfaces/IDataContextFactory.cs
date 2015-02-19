@@ -59,6 +59,8 @@ namespace Smartrac.SmartCosmos.DataContextFactory
 
         IBusinessRuleDataContext CreateBusinessRuleDataContext();
 
+        IDeviceManagementDataContext CreateDeviceManagementDataContext();
+
         //Account Manager
         IUserDataContext CreateUserDataContext();
 
