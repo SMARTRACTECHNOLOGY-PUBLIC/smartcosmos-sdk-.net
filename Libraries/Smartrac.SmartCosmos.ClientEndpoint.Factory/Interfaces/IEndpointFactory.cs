@@ -37,8 +37,10 @@ using Smartrac.SmartCosmos.Profiles.DataImport;
 using Smartrac.SmartCosmos.Profiles.PlatformAvailability;
 using Smartrac.SmartCosmos.Profiles.TagMetadata;
 using Smartrac.SmartCosmos.Profiles.TagVerification;
+/*
 using Smartrac.SmartCosmos.AccountManager.User;
 using Smartrac.SmartCosmos.AccountManager.Role;
+ */
 using Smartrac.SmartCosmos.CredentialStore;
 
 namespace Smartrac.SmartCosmos.ClientEndpoint.Factory
@@ -147,7 +149,7 @@ namespace Smartrac.SmartCosmos.ClientEndpoint.Factory
         IBusinessRuleEndpoint CreateBusinessRuleEndpoint();
 
         #endregion Flows
-
+        /*
         #region AccountManager
 
         /// <summary>
@@ -163,5 +165,6 @@ namespace Smartrac.SmartCosmos.ClientEndpoint.Factory
         IRoleEndpoint CreateRoleEndpoint();
 
         #endregion AccountManager
+         */
     }
 }

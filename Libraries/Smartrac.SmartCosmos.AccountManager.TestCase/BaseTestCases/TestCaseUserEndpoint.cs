@@ -32,7 +32,7 @@ namespace Smartrac.SmartCosmos.AccountManager.TestCase
 
         protected override IUserEndpoint CreateEndpoint()
         {
-            return EndpointFactory.CreateUserEndpoint();
+            return null; //return EndpointFactory.CreateUserEndpoint();
         }
     }
 }

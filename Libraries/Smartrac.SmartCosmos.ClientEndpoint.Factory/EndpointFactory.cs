@@ -37,8 +37,10 @@ using Smartrac.SmartCosmos.Profiles.TagMetadata;
 using Smartrac.SmartCosmos.Profiles.TagVerification;
 using Smartrac.SmartCosmos.Objects.Device;
 using Smartrac.SmartCosmos.Objects.Notification;
+/*
 using Smartrac.SmartCosmos.AccountManager.User;
 using Smartrac.SmartCosmos.AccountManager.Role;
+ */
 using Smartrac.SmartCosmos.CredentialStore;
 
 namespace Smartrac.SmartCosmos.ClientEndpoint.Factory
@@ -84,7 +86,7 @@ namespace Smartrac.SmartCosmos.ClientEndpoint.Factory
             cred = (CredentialStore != null) ? CredentialStore.GetCredentials(component) : null;
             return (cred != null);
         }
-
+        /*
         #region ACCOUNT_MANAGER
 
         public virtual IUserEndpoint CreateUserEndpoint()
@@ -118,7 +120,7 @@ namespace Smartrac.SmartCosmos.ClientEndpoint.Factory
         }
 
         #endregion ACCOUNT_MANAGER
-
+        */
         #region FLOWS
 
         public virtual IFlowsAccountManagementEndpoint CreateFlowsAccountManagementEndpoint()

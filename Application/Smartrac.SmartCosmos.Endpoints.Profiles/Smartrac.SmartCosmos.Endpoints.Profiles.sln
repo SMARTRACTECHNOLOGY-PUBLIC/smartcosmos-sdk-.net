@@ -9,8 +9,6 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Smartrac.SmartCosmos.Profil
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Smartrac.SmartCosmos.ClientEndpoint.Base", "..\..\Libraries\Smartrac.SmartCosmos.ClientEndpoint.Base\Smartrac.SmartCosmos.ClientEndpoint.Base.csproj", "{F0E26F53-5847-42D0-B16F-2DBD1952E452}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Smartrac.SmartCosmos.ClientEndpoint.BaseObject", "..\..\Libraries\Smartrac.SmartCosmos.ClientEndpoint.BaseObject\Smartrac.SmartCosmos.ClientEndpoint.BaseObject.csproj", "{28E0FA25-18DA-4C11-83CD-92A36DDD060B}"
-EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Smartrac.SmartCosmos.Profiles.DataImport", "..\..\Libraries\Smartrac.SmartCosmos.Profiles.DataImport\Smartrac.SmartCosmos.Profiles.DataImport.csproj", "{0A933DFB-C8E8-403C-9A6D-D152871E366C}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Smartrac.SmartCosmos.Profiles.TagVerification", "..\..\Libraries\Smartrac.SmartCosmos.Profiles.TagVerification\Smartrac.SmartCosmos.Profiles.TagVerification.csproj", "{83E86795-1EB5-4135-BF50-6573B1780542}"
@@ -73,18 +71,6 @@ Global
 		{F0E26F53-5847-42D0-B16F-2DBD1952E452}.Release|x64.Build.0 = Release|x64
 		{F0E26F53-5847-42D0-B16F-2DBD1952E452}.Release|x86.ActiveCfg = Release|x86
 		{F0E26F53-5847-42D0-B16F-2DBD1952E452}.Release|x86.Build.0 = Release|x86
-		{28E0FA25-18DA-4C11-83CD-92A36DDD060B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{28E0FA25-18DA-4C11-83CD-92A36DDD060B}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{28E0FA25-18DA-4C11-83CD-92A36DDD060B}.Debug|x64.ActiveCfg = Debug|x64
-		{28E0FA25-18DA-4C11-83CD-92A36DDD060B}.Debug|x64.Build.0 = Debug|x64
-		{28E0FA25-18DA-4C11-83CD-92A36DDD060B}.Debug|x86.ActiveCfg = Debug|x86
-		{28E0FA25-18DA-4C11-83CD-92A36DDD060B}.Debug|x86.Build.0 = Debug|x86
-		{28E0FA25-18DA-4C11-83CD-92A36DDD060B}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{28E0FA25-18DA-4C11-83CD-92A36DDD060B}.Release|Any CPU.Build.0 = Release|Any CPU
-		{28E0FA25-18DA-4C11-83CD-92A36DDD060B}.Release|x64.ActiveCfg = Release|x64
-		{28E0FA25-18DA-4C11-83CD-92A36DDD060B}.Release|x64.Build.0 = Release|x64
-		{28E0FA25-18DA-4C11-83CD-92A36DDD060B}.Release|x86.ActiveCfg = Release|x86
-		{28E0FA25-18DA-4C11-83CD-92A36DDD060B}.Release|x86.Build.0 = Release|x86
 		{0A933DFB-C8E8-403C-9A6D-D152871E366C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{0A933DFB-C8E8-403C-9A6D-D152871E366C}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{0A933DFB-C8E8-403C-9A6D-D152871E366C}.Debug|x64.ActiveCfg = Debug|x64
