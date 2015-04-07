@@ -53,23 +53,11 @@ namespace Smartrac.SmartCosmos.Profiles.DataImport
                     data.CopyTo(writer);
                 }
 
-                using (var response = request.GetResponseSafe() as System.Net.HttpWebResponse)
-                {
-                    if (response != null)
-                    {
-                        try
-                        {
-                            responseData = responseData.FromJSON(response.GetResponseStream());
-                            if (response.StatusCode == HttpStatusCode.OK)
-                                return DataActionResult.Successful;
-                        }
-                        finally
-                        {
-                            response.Close();
-                        }
-                    }
-                }
-                return DataActionResult.Failed;
+                var returnHTTPCode = ExecuteWebRequestJSON<FileUploadResponse>(request, out responseData);
+                if (returnHTTPCode == HttpStatusCode.OK)
+                    return DataActionResult.Successful;
+                else
+                    return DataActionResult.Failed;
             }
             catch (Exception e)
             {

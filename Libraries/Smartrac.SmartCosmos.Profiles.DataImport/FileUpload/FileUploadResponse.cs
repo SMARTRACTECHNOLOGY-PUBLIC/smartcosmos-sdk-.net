@@ -17,14 +17,11 @@
 
 #endregion License
 
+using Smartrac.SmartCosmos.ClientEndpoint.BaseObject;
 namespace Smartrac.SmartCosmos.Profiles.DataImport
 {
-    public class FileUploadResponse
+    public class FileUploadResponse : DefaultResponse
     {
-        public int code { get; set; }
-
-        public string message { get; set; }
-
         public string importId { get; set; }
     }
 }

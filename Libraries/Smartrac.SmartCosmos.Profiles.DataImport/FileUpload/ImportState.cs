@@ -17,17 +17,14 @@
 
 #endregion License
 
+using Smartrac.SmartCosmos.ClientEndpoint.BaseObject;
 namespace Smartrac.SmartCosmos.Profiles.DataImport
 {
-    public class ImportStateResponse
+    public class ImportStateResponse : DefaultResponse
     {
-        public int code { get; set; }
-
         public int state { get; set; }
 
         public double progress { get; set; }
-
-        public string message { get; set; }
     }
 
     public class ImportStateRequest
