@@ -36,6 +36,9 @@ namespace Smartrac.SmartCosmos.Profiles.Base
             this.ServerURL = "";//https://www.smart-cosmos.com
         }
 
+        /*
+         no longer required, because SHA skipped
+         
         /// <summary>
         /// Set the user account which should be used for the authorization
         /// </summary>
@@ -74,5 +77,6 @@ namespace Smartrac.SmartCosmos.Profiles.Base
                       )
                     ).Replace("-", "").ToLower()));
         }
+        */
     }
 }
