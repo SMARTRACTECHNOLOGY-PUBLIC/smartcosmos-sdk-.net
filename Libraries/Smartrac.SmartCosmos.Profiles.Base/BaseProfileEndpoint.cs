@@ -32,7 +32,7 @@ namespace Smartrac.SmartCosmos.Profiles.Base
         public BaseProfileEndpoint()
             : base()
         {
-            this.ServiceSubUrl = "/profiles/rest";
+            this.ServiceSubUrl = "/rest";
             this.ServerURL = "";//https://www.smart-cosmos.com
         }
 
