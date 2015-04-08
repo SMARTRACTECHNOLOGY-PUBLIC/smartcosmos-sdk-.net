@@ -72,7 +72,7 @@ namespace Smartrac.SmartCosmos.Objects.GeospatialManagement
                     return new MultiLineString(null);
 
                 case "Polygon":
-                    return new Polygon();
+                    return new Polygon(null);
 
                 case "MultiPolygon":
                     return new MultiPolygon();
