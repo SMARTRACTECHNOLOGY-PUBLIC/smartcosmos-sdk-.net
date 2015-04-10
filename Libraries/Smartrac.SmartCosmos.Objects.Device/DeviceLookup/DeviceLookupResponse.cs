@@ -93,6 +93,5 @@ namespace Smartrac.SmartCosmos.Objects.Device
         public string identification { get; set; }
 
         public string type { get; set; }
-
     }
 }

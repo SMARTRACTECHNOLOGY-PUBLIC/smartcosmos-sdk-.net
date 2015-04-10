@@ -17,9 +17,8 @@
 
 #endregion License
 
+using Smartrac.SmartCosmos.ClientEndpoint.Base;
 using Smartrac.SmartCosmos.Logging;
-using Smartrac.SmartCosmos.ClientEndpoint.Base;
-using Smartrac.SmartCosmos.ClientEndpoint.Base;
 using Smartrac.SmartCosmos.Objects.Base;
 using System;
 using System.Net;
@@ -28,10 +27,10 @@ namespace Smartrac.SmartCosmos.Objects.Device
 {
     /// <summary>
     /// Device Endpoints
-    /// SMART COSMOS may be used to capture metadata about devices in order to make the association 
-    /// that this user used this device. The identification field is the most important field in this data type, 
-    /// as it represents the unique identifier of the device. On a laptop, this could be the computer's network 
-    /// MAC address, or serial number printed on an asset tag affixed to the computer, or on a cell phone it 
+    /// SMART COSMOS may be used to capture metadata about devices in order to make the association
+    /// that this user used this device. The identification field is the most important field in this data type,
+    /// as it represents the unique identifier of the device. On a laptop, this could be the computer's network
+    /// MAC address, or serial number printed on an asset tag affixed to the computer, or on a cell phone it
     /// could be the manufacturer's IMEI string or perhaps the phone number.
     /// </summary>
     internal class DeviceEndpoint : BaseObjectsEndpoint, IDeviceEndpoint
@@ -53,7 +52,7 @@ namespace Smartrac.SmartCosmos.Objects.Device
                         Logger.AddLog("Request data is invalid!", LogType.Error);
                     return DeviceActionResult.Failed;
                 }
-                
+
                 var request = CreateWebRequest("/devices", WebRequestOption.Authorization);
                 ExecuteWebRequestJSON<DeviceDefinitionRequest, DeviceDefinitionResponse>(request, requestData, out responseData, WebRequestMethods.Http.Put);
                 if (responseData != null)
@@ -78,7 +77,6 @@ namespace Smartrac.SmartCosmos.Objects.Device
             }
             //return DeviceActionResult.Successful;
         }
-
 
         /// <summary>
         /// Update an existing device
@@ -122,7 +120,6 @@ namespace Smartrac.SmartCosmos.Objects.Device
             //return DeviceActionResult.Successful;
         }
 
-
         /// <summary>
         /// Lookup a specific device by its system-assigned URN key
         /// </summary>
@@ -159,7 +156,7 @@ namespace Smartrac.SmartCosmos.Objects.Device
                         default: return DeviceActionResult.Failed;
                     }
                 }
-               
+
                 return DeviceActionResult.Failed;
             }
             catch (Exception e)

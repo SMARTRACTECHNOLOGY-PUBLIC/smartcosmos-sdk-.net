@@ -24,14 +24,13 @@ namespace Smartrac.SmartCosmos.Objects.DataContext
 {
     public class EmptyAccountManagementDataContext : BaseAccountManagementDataContext
     {
-      
         public ViewType viewType { get; set; }
 
         public string OldPassword { get; set; }
 
         public string NewPassword { get; set; }
 
-        public string eMailAddress { get; set; } 
+        public string eMailAddress { get; set; }
 
         public EmptyAccountManagementDataContext()
             : base()
@@ -55,7 +54,7 @@ namespace Smartrac.SmartCosmos.Objects.DataContext
         }
 
         public override string GeteMailAddress()
-        {   
+        {
             return eMailAddress;
         }
 

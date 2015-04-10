@@ -18,9 +18,7 @@
 #endregion License
 
 using Newtonsoft.Json;
-using Newtonsoft.Json.Converters;
 using Smartrac.SmartCosmos.ClientEndpoint.Base;
-using Smartrac.SmartCosmos.Objects.Base;
 
 namespace Smartrac.SmartCosmos.Objects.Base
 {

@@ -83,7 +83,5 @@ namespace Smartrac.SmartCosmos.Profiles.DataContext
         {
             return TagMessage;
         }
-
-        
     }
 }

@@ -21,9 +21,9 @@ using Smartrac.SmartCosmos.ClientEndpoint.Base;
 using Smartrac.SmartCosmos.Objects.Base;
 using Smartrac.SmartCosmos.Objects.Metadata;
 using System.Collections.Generic;
+
 namespace Smartrac.SmartCosmos.Objects.DataContext
 {
-
     public class EmptyMetadataDataContext : BaseMetadataDataContext
     {
         public ViewType viewType { get; set; }
@@ -40,7 +40,7 @@ namespace Smartrac.SmartCosmos.Objects.DataContext
             }
         }
 
-        Urn entityUrn_;
+        private Urn entityUrn_;
 
         public List<MetadataItem> metadata { get; set; }
 
@@ -51,7 +51,7 @@ namespace Smartrac.SmartCosmos.Objects.DataContext
         {
             viewType = ViewType.Standard;
         }
-        
+
         public override Urn GetEntityUrn()
         {
             return entityUrn_;
@@ -75,5 +75,4 @@ namespace Smartrac.SmartCosmos.Objects.DataContext
             return metadata;
         }
     }
-    
 }

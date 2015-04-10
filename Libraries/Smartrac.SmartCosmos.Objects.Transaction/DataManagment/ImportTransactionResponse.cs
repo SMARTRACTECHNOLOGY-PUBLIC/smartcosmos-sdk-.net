@@ -18,8 +18,6 @@
 #endregion License
 
 using Smartrac.SmartCosmos.ClientEndpoint.Base;
-using System.Collections.Generic;
-using System.Net;
 
 namespace Smartrac.SmartCosmos.Objects.Transaction
 {

@@ -21,7 +21,6 @@ using Newtonsoft.Json;
 using Newtonsoft.Json.Converters;
 using Smartrac.SmartCosmos.ClientEndpoint.Base;
 using Smartrac.SmartCosmos.Flows.Base;
-using Smartrac.SmartCosmos.Objects.Base;
 using System.Collections.Generic;
 using System.Net;
 

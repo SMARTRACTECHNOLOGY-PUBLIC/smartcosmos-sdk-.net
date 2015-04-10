@@ -90,7 +90,7 @@ namespace Smartrac.SmartCosmos.Objects.File
 
         public string SmartCosmosEvent { get; set; }
 
-        public FileDefinitionRetrievalResponse() 
+        public FileDefinitionRetrievalResponse()
             : base()
         {
             urn_ = null;

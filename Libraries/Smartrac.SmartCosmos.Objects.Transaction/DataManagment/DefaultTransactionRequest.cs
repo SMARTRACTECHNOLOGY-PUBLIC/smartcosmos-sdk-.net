@@ -19,8 +19,6 @@
 
 using Newtonsoft.Json;
 using Newtonsoft.Json.Converters;
-using Smartrac.SmartCosmos.ClientEndpoint.Base;
-using Smartrac.SmartCosmos.ClientEndpoint.Base;
 using Smartrac.SmartCosmos.Objects.Base;
 using Smartrac.SmartCosmos.Objects.Metadata;
 using System;
@@ -31,13 +29,27 @@ namespace Smartrac.SmartCosmos.Objects.Transaction
     public class ObjectsAccount
     {
         public string name { get; set; }
+
         public string moniker { get; set; }
+
         public string description { get; set; }
+
         public bool activeFlag { get; set; }
 
-        public bool ShouldSerializedescription() { return !String.IsNullOrEmpty(description); }
-        public bool ShouldSerializemoniker() { return !String.IsNullOrEmpty(moniker); }
-        public bool ShouldSerializeactiveFlag() { return activeFlag != true; }
+        public bool ShouldSerializedescription()
+        {
+            return !String.IsNullOrEmpty(description);
+        }
+
+        public bool ShouldSerializemoniker()
+        {
+            return !String.IsNullOrEmpty(moniker);
+        }
+
+        public bool ShouldSerializeactiveFlag()
+        {
+            return activeFlag != true;
+        }
 
         public ObjectsAccount()
         {
@@ -53,15 +65,31 @@ namespace Smartrac.SmartCosmos.Objects.Transaction
     public class ObjectsDevice
     {
         public string identification { get; set; }
+
         public string name { get; set; }
+
         public string type { get; set; }
+
         public string description { get; set; }
+
         public bool activeFlag { get; set; }
+
         public string moniker { get; set; }
 
-        public bool ShouldSerializedescription() { return !String.IsNullOrEmpty(description); }
-        public bool ShouldSerializemoniker() { return !String.IsNullOrEmpty(moniker); }
-        public bool ShouldSerializeactiveFlag() { return activeFlag != true; }
+        public bool ShouldSerializedescription()
+        {
+            return !String.IsNullOrEmpty(description);
+        }
+
+        public bool ShouldSerializemoniker()
+        {
+            return !String.IsNullOrEmpty(moniker);
+        }
+
+        public bool ShouldSerializeactiveFlag()
+        {
+            return activeFlag != true;
+        }
 
         public ObjectsDevice()
         {
@@ -79,15 +107,31 @@ namespace Smartrac.SmartCosmos.Objects.Transaction
     public class ObjectsObject
     {
         public string objectUrn { get; set; }
+
         public string type { get; set; }
+
         public string name { get; set; }
+
         public string description { get; set; }
+
         public bool activeFlag { get; set; }
+
         public string moniker { get; set; }
 
-        public bool ShouldSerializedescription() { return !String.IsNullOrEmpty(description); }
-        public bool ShouldSerializemoniker() { return !String.IsNullOrEmpty(moniker); }
-        public bool ShouldSerializeactiveFlag() { return activeFlag != true; }
+        public bool ShouldSerializedescription()
+        {
+            return !String.IsNullOrEmpty(description);
+        }
+
+        public bool ShouldSerializemoniker()
+        {
+            return !String.IsNullOrEmpty(moniker);
+        }
+
+        public bool ShouldSerializeactiveFlag()
+        {
+            return activeFlag != true;
+        }
 
         public ObjectsObject()
         {
@@ -105,22 +149,57 @@ namespace Smartrac.SmartCosmos.Objects.Transaction
     public class ObjectsObjectAddress
     {
         public string objectUrn { get; set; }
+
         public string type { get; set; }
+
         public string line1 { get; set; }
+
         public string line2 { get; set; }
+
         public string city { get; set; }
+
         public long timestamp { get; set; }
+
         public string stateProvince { get; set; }
+
         public string postalCode { get; set; }
+
         public string countryAbbreviation { get; set; }
 
-        public bool ShouldSerializeline1() { return !String.IsNullOrEmpty(line1); }
-        public bool ShouldSerializeline2() { return !String.IsNullOrEmpty(line2); }
-        public bool ShouldSerializetimestamp() { return timestamp > 0; }
-        public bool ShouldSerializepostalCode() { return !String.IsNullOrEmpty(postalCode); }
-        public bool ShouldSerializecountryAbbreviation() { return !String.IsNullOrEmpty(countryAbbreviation); }
-        public bool ShouldSerializestateProvince() { return !String.IsNullOrEmpty(stateProvince); }
-        public bool ShouldSerializecity() { return !String.IsNullOrEmpty(city); }
+        public bool ShouldSerializeline1()
+        {
+            return !String.IsNullOrEmpty(line1);
+        }
+
+        public bool ShouldSerializeline2()
+        {
+            return !String.IsNullOrEmpty(line2);
+        }
+
+        public bool ShouldSerializetimestamp()
+        {
+            return timestamp > 0;
+        }
+
+        public bool ShouldSerializepostalCode()
+        {
+            return !String.IsNullOrEmpty(postalCode);
+        }
+
+        public bool ShouldSerializecountryAbbreviation()
+        {
+            return !String.IsNullOrEmpty(countryAbbreviation);
+        }
+
+        public bool ShouldSerializestateProvince()
+        {
+            return !String.IsNullOrEmpty(stateProvince);
+        }
+
+        public bool ShouldSerializecity()
+        {
+            return !String.IsNullOrEmpty(city);
+        }
 
         public ObjectsObjectAddress()
         {
@@ -138,14 +217,22 @@ namespace Smartrac.SmartCosmos.Objects.Transaction
     {
         [JsonConverter(typeof(StringEnumConverter))]
         public EntityReferenceType entityReferenceType { get; set; }
+
         public string referenceUrn { get; set; }
+
         public string type { get; set; }
+
         [JsonConverter(typeof(StringEnumConverter))]
         public EntityReferenceType relatedEntityReferenceType { get; set; }
+
         public string relatedReferenceUrn { get; set; }
+
         public string moniker { get; set; }
 
-        public bool ShouldSerializemoniker() { return !String.IsNullOrEmpty(moniker); }
+        public bool ShouldSerializemoniker()
+        {
+            return !String.IsNullOrEmpty(moniker);
+        }
 
         public ObjectsRelationship()
         {
@@ -165,10 +252,15 @@ namespace Smartrac.SmartCosmos.Objects.Transaction
     {
         [JsonConverter(typeof(StringEnumConverter))]
         public EntityReferenceType entityReferenceType { get; set; }
+
         public string referenceUrn { get; set; }
+
         public string mimeType { get; set; }
+
         public long timestamp { get; set; }
+
         public string contentUrl { get; set; }
+
         public string octedStream { get; set; }
 
         public ObjectsFile()
@@ -187,9 +279,13 @@ namespace Smartrac.SmartCosmos.Objects.Transaction
     {
         [JsonConverter(typeof(StringEnumConverter))]
         public EntityReferenceType entityReferenceType { get; set; }
+
         public string referenceUrn { get; set; }
+
         public string dataType { get; set; }
+
         public string key { get; set; }
+
         public string decodedValue { get; set; }
 
         public ObjectsMetadata()
@@ -206,25 +302,56 @@ namespace Smartrac.SmartCosmos.Objects.Transaction
         }
     }
 
-
-
     public class TransactionItem
     {
         public ObjectsAccount account { get; set; }
+
         public List<ObjectsDevice> devices { get; set; }
+
         public List<ObjectsObject> objects { get; set; }
+
         public List<ObjectsObjectAddress> objectaddresses { get; set; }
+
         public List<ObjectsRelationship> relationships { get; set; }
+
         public List<ObjectsFile> files { get; set; }
+
         public List<ObjectsMetadata> metadata { get; set; }
 
-        public bool ShouldSerializeaccount() { return ((account != null) && (account.name != "")); }
-        public bool ShouldSerializedevices() { return ((devices != null) && (devices.Count > 0)); }
-        public bool ShouldSerializeobjects() { return ((objects != null) && (objects.Count > 0)); }
-        public bool ShouldSerializeobjectaddresses() { return ((objectaddresses != null) && (objectaddresses.Count > 0)); }
-        public bool ShouldSerializerelationships() { return ((relationships != null) && (relationships.Count > 0)); }
-        public bool ShouldSerializefiles() { return ((files != null) && (files.Count > 0)); }
-        public bool ShouldSerializemetadata() { return ((metadata != null) && (metadata.Count > 0)); }
+        public bool ShouldSerializeaccount()
+        {
+            return ((account != null) && (account.name != ""));
+        }
+
+        public bool ShouldSerializedevices()
+        {
+            return ((devices != null) && (devices.Count > 0));
+        }
+
+        public bool ShouldSerializeobjects()
+        {
+            return ((objects != null) && (objects.Count > 0));
+        }
+
+        public bool ShouldSerializeobjectaddresses()
+        {
+            return ((objectaddresses != null) && (objectaddresses.Count > 0));
+        }
+
+        public bool ShouldSerializerelationships()
+        {
+            return ((relationships != null) && (relationships.Count > 0));
+        }
+
+        public bool ShouldSerializefiles()
+        {
+            return ((files != null) && (files.Count > 0));
+        }
+
+        public bool ShouldSerializemetadata()
+        {
+            return ((metadata != null) && (metadata.Count > 0));
+        }
 
         public TransactionItem()
             : base()

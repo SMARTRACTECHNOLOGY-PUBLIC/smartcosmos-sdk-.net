@@ -17,14 +17,14 @@
 
 #endregion License
 
-using System;
 using Smartrac.SmartCosmos.ClientEndpoint.Base;
 using Smartrac.SmartCosmos.Objects.Base;
+using System;
+
 namespace Smartrac.SmartCosmos.Objects.DataContext
 {
-   public class EmptyHashTagDataContext : BaseHashTagDataContext
+    public class EmptyHashTagDataContext : BaseHashTagDataContext
     {
-
         public string urn
         {
             get
@@ -37,7 +37,7 @@ namespace Smartrac.SmartCosmos.Objects.DataContext
             }
         }
 
-        Urn urn_;
+        private Urn urn_;
 
         public string referenceUrn
         {
@@ -51,7 +51,7 @@ namespace Smartrac.SmartCosmos.Objects.DataContext
             }
         }
 
-        Urn referenceUrn_;
+        private Urn referenceUrn_;
 
         public string moniker { get; set; }
 
@@ -64,7 +64,7 @@ namespace Smartrac.SmartCosmos.Objects.DataContext
         public EntityReferenceType entityReferenceType { get; set; }
 
         public ViewType viewType { get; set; }
-       
+
         public override Urn GetUrn()
         {
             return urn_;
@@ -112,5 +112,4 @@ namespace Smartrac.SmartCosmos.Objects.DataContext
             description = description.ResolveVariables();
         }
     }
-
 }

@@ -18,13 +18,10 @@
 #endregion License
 
 using Smartrac.SmartCosmos.ClientEndpoint.Base;
-using Smartrac.SmartCosmos.ClientEndpoint.Base;
 using Smartrac.SmartCosmos.Objects.Base;
-using System;
 
 namespace Smartrac.SmartCosmos.Objects.Notification
 {
-
     public enum NotificationActionResult
     {
         /// <summary>
@@ -80,6 +77,5 @@ namespace Smartrac.SmartCosmos.Objects.Notification
         NotificationActionResult Lookup(Urn notificationUrn,
                                                      out LookupNotificationsResponse responseData,
                                                      ViewType viewType = ViewType.Standard);
-        
     }
 }

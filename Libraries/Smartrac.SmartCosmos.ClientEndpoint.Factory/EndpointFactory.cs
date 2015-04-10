@@ -17,14 +17,22 @@
 
 #endregion License
 
-using Smartrac.SmartCosmos.Logging;
-using Smartrac.SmartCosmos.Flows.BusinessRule;
+/*
+using Smartrac.SmartCosmos.AccountManager.User;
+using Smartrac.SmartCosmos.AccountManager.Role;
+ */
+
+using Smartrac.SmartCosmos.CredentialStore;
 using Smartrac.SmartCosmos.Flows.AccountManagement;
+using Smartrac.SmartCosmos.Flows.BusinessRule;
+using Smartrac.SmartCosmos.Logging;
 using Smartrac.SmartCosmos.Objects.AccountManagement;
+using Smartrac.SmartCosmos.Objects.Device;
 using Smartrac.SmartCosmos.Objects.File;
 using Smartrac.SmartCosmos.Objects.GeospatialManagement;
 using Smartrac.SmartCosmos.Objects.HashTag;
 using Smartrac.SmartCosmos.Objects.Metadata;
+using Smartrac.SmartCosmos.Objects.Notification;
 using Smartrac.SmartCosmos.Objects.ObjectInteraction;
 using Smartrac.SmartCosmos.Objects.ObjectInteractionSession;
 using Smartrac.SmartCosmos.Objects.ObjectManagement;
@@ -35,13 +43,6 @@ using Smartrac.SmartCosmos.Profiles.DataImport;
 using Smartrac.SmartCosmos.Profiles.PlatformAvailability;
 using Smartrac.SmartCosmos.Profiles.TagMetadata;
 using Smartrac.SmartCosmos.Profiles.TagVerification;
-using Smartrac.SmartCosmos.Objects.Device;
-using Smartrac.SmartCosmos.Objects.Notification;
-/*
-using Smartrac.SmartCosmos.AccountManager.User;
-using Smartrac.SmartCosmos.AccountManager.Role;
- */
-using Smartrac.SmartCosmos.CredentialStore;
 
 namespace Smartrac.SmartCosmos.ClientEndpoint.Factory
 {
@@ -86,13 +87,15 @@ namespace Smartrac.SmartCosmos.ClientEndpoint.Factory
             cred = (CredentialStore != null) ? CredentialStore.GetCredentials(component) : null;
             return (cred != null);
         }
+
         /*
+
         #region ACCOUNT_MANAGER
 
         public virtual IUserEndpoint CreateUserEndpoint()
         {
             ICredential cred;
-            if (!GetCredentials(SmartCosmosComponent.AccountManager, out cred)) 
+            if (!GetCredentials(SmartCosmosComponent.AccountManager, out cred))
               return null;
 
             return new UserEndpointBuilder()
@@ -120,7 +123,9 @@ namespace Smartrac.SmartCosmos.ClientEndpoint.Factory
         }
 
         #endregion ACCOUNT_MANAGER
+
         */
+
         #region FLOWS
 
         public virtual IFlowsAccountManagementEndpoint CreateFlowsAccountManagementEndpoint()
@@ -128,7 +133,7 @@ namespace Smartrac.SmartCosmos.ClientEndpoint.Factory
             ICredential cred;
             if (!GetCredentials(SmartCosmosComponent.Flows, out cred))
                 return null;
-            
+
             return new Smartrac.SmartCosmos.Flows.AccountManagement.FlowsAccountManagementEndpointBuilder()
                 .setLogger(Logger)
                 .setKeepAlive(KeepAlive)

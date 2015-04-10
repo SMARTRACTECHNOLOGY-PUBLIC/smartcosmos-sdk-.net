@@ -18,10 +18,6 @@
 #endregion License
 
 using Smartrac.SmartCosmos.ClientEndpoint.Base;
-using Smartrac.SmartCosmos.ClientEndpoint.Base;
-using Smartrac.SmartCosmos.Objects.Base;
-using System;
-using System.ComponentModel;
 
 namespace Smartrac.SmartCosmos.Objects.Transaction
 {
@@ -34,7 +30,7 @@ namespace Smartrac.SmartCosmos.Objects.Transaction
         string GetHandler();
 
         /// <summary>
-        /// JSON object 
+        /// JSON object
         /// </summary>
         /// <returns>JSON object</returns>
         object GetTransactionRequest();

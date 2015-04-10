@@ -18,9 +18,6 @@
 #endregion License
 
 using Smartrac.SmartCosmos.ClientEndpoint.Base;
-using System;
-using System.Security.Cryptography;
-using System.Text;
 
 namespace Smartrac.SmartCosmos.Profiles.Base
 {
@@ -38,7 +35,7 @@ namespace Smartrac.SmartCosmos.Profiles.Base
 
         /*
          no longer required, because SHA skipped
-         
+
         /// <summary>
         /// Set the user account which should be used for the authorization
         /// </summary>

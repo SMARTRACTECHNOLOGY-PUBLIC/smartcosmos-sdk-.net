@@ -17,14 +17,11 @@
 
 #endregion License
 
-using Smartrac.SmartCosmos.Logging;
-using Smartrac.SmartCosmos.ClientEndpoint.Base;
 using Smartrac.SmartCosmos.ClientEndpoint.Base;
 using Smartrac.SmartCosmos.Flows.Base;
+using Smartrac.SmartCosmos.Logging;
 using System;
-using System.IO;
 using System.Net;
-using System.Text;
 
 namespace Smartrac.SmartCosmos.Flows.BusinessRule
 {
@@ -106,7 +103,7 @@ namespace Smartrac.SmartCosmos.Flows.BusinessRule
                     {
                         webResponse.GetResponseStream().CopyTo(responseData.xmlFile);
                     }
-                    
+
                     return BusinessRuleActionResult.Successful;
                 }
                 return BusinessRuleActionResult.Failed;
@@ -131,9 +128,9 @@ namespace Smartrac.SmartCosmos.Flows.BusinessRule
             {
                 var request = CreateWebRequest("/rules", WebRequestOption.Authorization);
                 ExecuteWebRequestJSON<BusinessRuleListResponse>(request, out responseData);
-                if ((responseData != null) && 
+                if ((responseData != null) &&
                     ((responseData.HTTPStatusCode == HttpStatusCode.OK) ||
-                     (responseData.HTTPStatusCode == HttpStatusCode.NoContent)) )
+                     (responseData.HTTPStatusCode == HttpStatusCode.NoContent)))
                 {
                     return BusinessRuleActionResult.Successful;
                 }
@@ -202,15 +199,14 @@ namespace Smartrac.SmartCosmos.Flows.BusinessRule
                     return BusinessRuleActionResult.Failed;
                 }
 
-
                 Uri url = new Uri("/rules", UriKind.Relative).
                     AddSubfolder(requestData.ruleUrn.UUID);
 
                 var request = CreateWebRequest(url, WebRequestOption.Authorization);
                 request.Method = "DELETE";
                 ExecuteWebRequestJSON<BusinessRuleStateRequest, BusinessRuleActionResponse>(request, requestData, out responseData);
-                if ((responseData != null) && 
-                    (responseData.HTTPStatusCode == HttpStatusCode.NoContent)) 
+                if ((responseData != null) &&
+                    (responseData.HTTPStatusCode == HttpStatusCode.NoContent))
                 {
                     return BusinessRuleActionResult.Failed;
                 }
@@ -224,7 +220,6 @@ namespace Smartrac.SmartCosmos.Flows.BusinessRule
                 return BusinessRuleActionResult.Failed;
             }
         }
-
 
         /// <summary>
         /// Update an existing business rule with a new JSON definition.

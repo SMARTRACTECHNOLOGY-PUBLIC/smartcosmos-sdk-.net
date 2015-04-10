@@ -17,14 +17,15 @@
 
 #endregion License
 
-using System;
 using Smartrac.SmartCosmos.ClientEndpoint.Base;
 using Smartrac.SmartCosmos.Objects.Base;
+using System;
+
 namespace Smartrac.SmartCosmos.Objects.DataContext
 {
     public class EmptyObjectInteractionDataContext : BaseObjectInteractionDataContext
     {
-        public string objectUrn 
+        public string objectUrn
         {
             get
             {
@@ -33,10 +34,10 @@ namespace Smartrac.SmartCosmos.Objects.DataContext
             set
             {
                 objectUrn_ = new Urn(value);
-            } 
+            }
         }
 
-        Urn objectUrn_;
+        private Urn objectUrn_;
 
         public string referenceUrn
         {
@@ -50,7 +51,7 @@ namespace Smartrac.SmartCosmos.Objects.DataContext
             }
         }
 
-        Urn referenceUrn_;
+        private Urn referenceUrn_;
 
         public string interactionType { get; set; }
 
@@ -118,5 +119,4 @@ namespace Smartrac.SmartCosmos.Objects.DataContext
             description = description.ResolveVariables();
         }
     }
-  
 }

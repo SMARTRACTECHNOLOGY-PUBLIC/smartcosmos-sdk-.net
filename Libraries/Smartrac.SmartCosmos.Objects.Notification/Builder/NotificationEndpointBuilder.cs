@@ -18,8 +18,6 @@
 #endregion License
 
 using Smartrac.SmartCosmos.ClientEndpoint.Base;
-using System;
-
 
 namespace Smartrac.SmartCosmos.Objects.Notification
 {
@@ -28,7 +26,6 @@ namespace Smartrac.SmartCosmos.Objects.Notification
         public NotificationEndpointBuilder() :
             base(new NotificationEndpoint())
         {
-
         }
     }
 }

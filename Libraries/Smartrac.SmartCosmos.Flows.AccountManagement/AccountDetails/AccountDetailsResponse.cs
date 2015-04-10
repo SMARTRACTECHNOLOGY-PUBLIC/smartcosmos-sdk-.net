@@ -19,7 +19,6 @@
 
 using Newtonsoft.Json;
 using Smartrac.SmartCosmos.ClientEndpoint.Base;
-using Smartrac.SmartCosmos.Objects.Base;
 using System.Collections.Generic;
 
 namespace Smartrac.SmartCosmos.Flows.AccountManagement
@@ -63,18 +62,21 @@ namespace Smartrac.SmartCosmos.Flows.AccountManagement
     public class AccountAction
     {
         public string name { get; set; }
+
         public bool enabled { get; set; }
     }
 
     public class AccountModule
     {
         public string name { get; set; }
+
         public List<AccountAction> actions { get; set; }
     }
 
     public class AccountProfile
     {
         public string name { get; set; }
+
         public List<AccountModule> modules { get; set; }
     }
 }

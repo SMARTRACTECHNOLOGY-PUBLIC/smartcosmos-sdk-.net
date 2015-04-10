@@ -35,7 +35,7 @@ namespace Smartrac.SmartCosmos.Objects.UserManagement
             givenName = null;
             surname = null;
         }
-        
+
         public string urn
         {
             get

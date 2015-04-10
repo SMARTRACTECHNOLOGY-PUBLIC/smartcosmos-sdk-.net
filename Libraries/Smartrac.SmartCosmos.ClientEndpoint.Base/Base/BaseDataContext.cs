@@ -22,7 +22,7 @@ namespace Smartrac.SmartCosmos.ClientEndpoint.Base
     public class BaseDataContext
     {
         public virtual void Prepare()
-        {            
+        {
         }
     }
 }

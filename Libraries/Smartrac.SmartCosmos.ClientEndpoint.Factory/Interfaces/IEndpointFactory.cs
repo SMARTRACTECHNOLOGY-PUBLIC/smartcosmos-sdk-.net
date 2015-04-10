@@ -17,9 +17,15 @@
 
 #endregion License
 
-using Smartrac.SmartCosmos.Logging;
+/*
+using Smartrac.SmartCosmos.AccountManager.User;
+using Smartrac.SmartCosmos.AccountManager.Role;
+ */
+
+using Smartrac.SmartCosmos.CredentialStore;
 using Smartrac.SmartCosmos.Flows.AccountManagement;
 using Smartrac.SmartCosmos.Flows.BusinessRule;
+using Smartrac.SmartCosmos.Logging;
 using Smartrac.SmartCosmos.Objects.AccountManagement;
 using Smartrac.SmartCosmos.Objects.Device;
 using Smartrac.SmartCosmos.Objects.File;
@@ -37,18 +43,13 @@ using Smartrac.SmartCosmos.Profiles.DataImport;
 using Smartrac.SmartCosmos.Profiles.PlatformAvailability;
 using Smartrac.SmartCosmos.Profiles.TagMetadata;
 using Smartrac.SmartCosmos.Profiles.TagVerification;
-/*
-using Smartrac.SmartCosmos.AccountManager.User;
-using Smartrac.SmartCosmos.AccountManager.Role;
- */
-using Smartrac.SmartCosmos.CredentialStore;
 
 namespace Smartrac.SmartCosmos.ClientEndpoint.Factory
 {
     public interface IEndpointFactory
     {
         ICredentialStore CredentialStore { get; set; }
-        
+
         /// <summary>
         /// Defines if the connection should be keep alive
         /// </summary>
@@ -70,7 +71,6 @@ namespace Smartrac.SmartCosmos.ClientEndpoint.Factory
         /// e.g. console, file, ...
         /// </summary>
         IMessageLogger Logger { get; set; }
-  
 
         #region Profiles
 
@@ -149,7 +149,9 @@ namespace Smartrac.SmartCosmos.ClientEndpoint.Factory
         IBusinessRuleEndpoint CreateBusinessRuleEndpoint();
 
         #endregion Flows
+
         /*
+
         #region AccountManager
 
         /// <summary>
@@ -165,6 +167,7 @@ namespace Smartrac.SmartCosmos.ClientEndpoint.Factory
         IRoleEndpoint CreateRoleEndpoint();
 
         #endregion AccountManager
+
          */
     }
 }

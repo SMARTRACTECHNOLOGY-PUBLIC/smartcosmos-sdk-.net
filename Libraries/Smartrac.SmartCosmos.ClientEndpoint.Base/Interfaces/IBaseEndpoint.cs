@@ -32,7 +32,7 @@ namespace Smartrac.SmartCosmos.ClientEndpoint.Base
         string ServerURL { get; set; }
 
         /// <summary>
-        /// Base subfolder of service URL of the defined SMART COSMOS service 
+        /// Base subfolder of service URL of the defined SMART COSMOS service
         /// </summary>
         string ServiceSubUrl { get; set; }
 

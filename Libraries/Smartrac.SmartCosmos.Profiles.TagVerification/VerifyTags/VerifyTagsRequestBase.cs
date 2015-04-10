@@ -28,7 +28,7 @@ namespace Smartrac.SmartCosmos.Profiles.TagVerification
         public List<string> tagIds { get; set; }
 
         public VerifyTagsRequestBase(ITagDataContext dataContext)
-            :base()
+            : base()
         {
             this.tagIds = new List<string>();
             this.tagIds.AddRange(dataContext.GetTagIds());

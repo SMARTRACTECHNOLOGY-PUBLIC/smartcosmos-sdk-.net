@@ -18,9 +18,6 @@
 #endregion License
 
 using Smartrac.SmartCosmos.ClientEndpoint.Base;
-using Smartrac.SmartCosmos.ClientEndpoint.Base;
-using Smartrac.SmartCosmos.Flows.Base;
-using System.IO;
 
 namespace Smartrac.SmartCosmos.Flows.BusinessRule
 {
@@ -46,7 +43,7 @@ namespace Smartrac.SmartCosmos.Flows.BusinessRule
         /// <param name="responseData">result</param>
         /// <returns>BusinessRuleActionResult</returns>
         BusinessRuleActionResult Create(BusinessRuleRequest requestData, out BusinessRuleResponse responseData);
-        
+
         /// <summary>
         /// Retrieve the specific business rule associated with the specified urn.
         /// </summary>
@@ -70,7 +67,6 @@ namespace Smartrac.SmartCosmos.Flows.BusinessRule
         /// <returns>BusinessRuleActionResult</returns>
         BusinessRuleActionResult SetStatus(Urn ruleUrn, StatusBusinessRule requestData, out BusinessRuleActionResponse responseData);
 
-        
         /// <summary>
         /// Defines the name and description of a new rule, defaulted in a STOPPED state.
         /// </summary>

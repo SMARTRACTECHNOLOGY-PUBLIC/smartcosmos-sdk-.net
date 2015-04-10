@@ -22,7 +22,7 @@ using System;
 namespace Smartrac.SmartCosmos.ClientEndpoint.Base
 {
     /// <summary>
-    /// 
+    ///
     /// </summary>
     public class Email
     {

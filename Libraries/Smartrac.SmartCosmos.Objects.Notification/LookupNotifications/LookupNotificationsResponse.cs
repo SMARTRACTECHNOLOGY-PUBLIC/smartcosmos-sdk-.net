@@ -37,6 +37,7 @@ namespace Smartrac.SmartCosmos.Objects.Notification
             encodedPublicKey = null;
             pendingConfirmation = null;
         }
+
         public string urn
         {
             get
@@ -73,7 +74,7 @@ namespace Smartrac.SmartCosmos.Objects.Notification
         /// Serialization Level: Standard
         /// </summary>
         public long? lastModifiedTimestamp { get; set; }
-        
+
         /// <summary>
         /// Serialization Level: Standard
         /// </summary>
@@ -108,7 +109,5 @@ namespace Smartrac.SmartCosmos.Objects.Notification
 
         [JsonIgnore]
         public Urn urnObj { get; set; }
-
-       
     }
 }

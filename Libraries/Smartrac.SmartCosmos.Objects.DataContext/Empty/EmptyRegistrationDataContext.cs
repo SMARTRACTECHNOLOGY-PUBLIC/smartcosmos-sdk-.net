@@ -26,7 +26,7 @@ namespace Smartrac.SmartCosmos.Objects.DataContext
         public string realm;
 
         public string mailAddress;
-        
+
         public override string GetRealm()
         {
             return realm;
@@ -43,5 +43,4 @@ namespace Smartrac.SmartCosmos.Objects.DataContext
             mailAddress = mailAddress.ResolveVariables();
         }
     }
-      
 }

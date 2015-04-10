@@ -18,11 +18,9 @@
 #endregion License
 
 using System;
-using System.Xml.Serialization;
 using System.Collections.Generic;
-using System.IO;
 using System.Xml;
-using Smartrac.SmartCosmos.Base;
+using System.Xml.Serialization;
 
 namespace Smartrac.SmartCosmos.CredentialStore
 {
@@ -42,13 +40,11 @@ namespace Smartrac.SmartCosmos.CredentialStore
             return Servers.Server.Find(i => i.Component == component);
         }
 
-
         public bool ValidateCredentials(SmartCosmosComponent component)
         {
             ICredential cred = Servers.Server.Find(i => i.Component == component);
             return (cred != null) && !String.IsNullOrEmpty(cred.Url);
         }
-
 
         public bool GetCredentials(SmartCosmosComponent component, out ICredential cred)
         {
@@ -57,15 +53,15 @@ namespace Smartrac.SmartCosmos.CredentialStore
         }
     }
 
-	[XmlRoot(ElementName="server")]
-	public class Server : ICredential
+    [XmlRoot(ElementName = "server")]
+    public class Server : ICredential
     {
         /// <summary>
         /// Component name for SMART COSMOS service
-        /// </summary>   
+        /// </summary>
         [XmlAttribute(AttributeName = "name")]
-        public string Name 
-        { 
+        public string Name
+        {
             get
             {
                 return Component.GetDescription();
@@ -82,27 +78,27 @@ namespace Smartrac.SmartCosmos.CredentialStore
 
         /// <summary>
         /// User name for SMART COSMOS service
-        /// </summary>        
+        /// </summary>
         [XmlElement(ElementName = "username")]
         public string Username { get; set; }
-        
+
         /// <summary>
         /// Password for SMART COSMOS service
-        /// </summary>   
-		[XmlElement(ElementName="password")]
-		public string Password { get; set; }
+        /// </summary>
+        [XmlElement(ElementName = "password")]
+        public string Password { get; set; }
 
         /// <summary>
         /// URL for SMART COSMOS service
-        /// </summary>   
-		[XmlElement(ElementName="url")]
-		public string Url { get; set; }
-	}
+        /// </summary>
+        [XmlElement(ElementName = "url")]
+        public string Url { get; set; }
+    }
 
-	[XmlRoot(ElementName="servers")]
-	public class Servers 
+    [XmlRoot(ElementName = "servers")]
+    public class Servers
     {
-		[XmlElement(ElementName="server")]
-		public List<Server> Server { get; set; }
-	}
+        [XmlElement(ElementName = "server")]
+        public List<Server> Server { get; set; }
+    }
 }

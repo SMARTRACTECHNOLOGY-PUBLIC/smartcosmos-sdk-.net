@@ -17,9 +17,8 @@
 
 #endregion License
 
+using Smartrac.SmartCosmos.ClientEndpoint.Base;
 using Smartrac.SmartCosmos.Logging;
-using Smartrac.SmartCosmos.ClientEndpoint.Base;
-using Smartrac.SmartCosmos.ClientEndpoint.Base;
 using Smartrac.SmartCosmos.Objects.Base;
 using System;
 using System.Collections.Generic;
@@ -568,7 +567,7 @@ namespace Smartrac.SmartCosmos.Objects.Metadata
         /// <param name="responseData">response data</param>
         /// <returns>MetadataActionResult</returns>
         public MetadataActionResult Lookup(Urn referenceUrn, EntityReferenceType entityReferenceType, string key, out LookupMetadataResponse responseData, ViewType viewType = ViewType.Standard)
-            //LookupMetadataRequest requestData, out LookupMetadataResponse responseData, ViewType viewType = ViewType.Standard)
+        //LookupMetadataRequest requestData, out LookupMetadataResponse responseData, ViewType viewType = ViewType.Standard)
         {
             responseData = null;
             if ((null == referenceUrn) || !referenceUrn.IsValid())

@@ -165,8 +165,8 @@ namespace Smartrac.SmartCosmos.Profiles.TagMetadata
         */
     }
 
-    public class MaterialPerformanceList{
-
+    public class MaterialPerformanceList
+    {
         public int rrAvg { get; set; }
 
         public int rrAvgStdDev { get; set; }
@@ -178,9 +178,5 @@ namespace Smartrac.SmartCosmos.Profiles.TagMetadata
         public int rrMeanStdDevNeg { get; set; }
 
         public String grading { get; set; }
-
     }
-
-    
-
 }

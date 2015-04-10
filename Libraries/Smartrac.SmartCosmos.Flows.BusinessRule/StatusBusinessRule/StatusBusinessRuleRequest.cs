@@ -20,7 +20,6 @@
 using Newtonsoft.Json;
 using Newtonsoft.Json.Converters;
 using Smartrac.SmartCosmos.ClientEndpoint.Base;
-using System;
 using System.ComponentModel;
 
 namespace Smartrac.SmartCosmos.Flows.BusinessRule

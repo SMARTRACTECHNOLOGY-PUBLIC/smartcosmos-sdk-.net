@@ -63,6 +63,6 @@ namespace Smartrac.SmartCosmos.Profiles.TagVerification
         /// <param name="requestData">Input data</param>
         /// <param name="responseData">Output data</param>
         /// <returns>TagVerificationActionResult</returns>
-        TagVerificationActionResult GetVerificationMessage(VerificationMessageRequest requestData, out VerificationMessageResponse responseData);        
+        TagVerificationActionResult GetVerificationMessage(VerificationMessageRequest requestData, out VerificationMessageResponse responseData);
     }
 }

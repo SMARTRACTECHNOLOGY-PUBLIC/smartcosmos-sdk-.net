@@ -36,6 +36,7 @@ namespace Smartrac.SmartCosmos.Objects.ObjectInteraction
             recordedTimestamp = null;
             receivedTimestamp = null;
         }
+
         /// <summary>
         /// entityReferenceType is required and constrained to a valid EntityReferenceType value
         /// </summary>
@@ -113,5 +114,4 @@ namespace Smartrac.SmartCosmos.Objects.ObjectInteraction
         [JsonIgnore]
         public Urn referenceUrnObj { get; set; }
     }
-    
 }

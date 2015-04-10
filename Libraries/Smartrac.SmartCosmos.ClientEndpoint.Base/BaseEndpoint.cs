@@ -17,14 +17,12 @@
 
 #endregion License
 
+using Newtonsoft.Json;
+using Smartrac.SmartCosmos.Logging;
 using System;
 using System.IO;
 using System.Net;
-using System.Security.Cryptography;
 using System.Text;
-using Newtonsoft.Json;
-using Smartrac.SmartCosmos.Logging;
-using Smartrac.SmartCosmos.ClientEndpoint.Base;
 
 namespace Smartrac.SmartCosmos.ClientEndpoint.Base
 {
@@ -42,7 +40,7 @@ namespace Smartrac.SmartCosmos.ClientEndpoint.Base
         /// <summary>
         /// HTTP Header "Accept-Language" is required
         /// </summary>
-        AcceptLanguage = 2 
+        AcceptLanguage = 2
     }
 
     /// <summary>
@@ -120,7 +118,7 @@ namespace Smartrac.SmartCosmos.ClientEndpoint.Base
         }
 
         /// <summary>
-        /// Base subfolder of service URL of the defined SMART COSMOS service 
+        /// Base subfolder of service URL of the defined SMART COSMOS service
         /// </summary>
         public string ServiceSubUrl
         {
@@ -130,7 +128,7 @@ namespace Smartrac.SmartCosmos.ClientEndpoint.Base
             }
             set
             {
-                if (value.StartsWith("/") || value.Length==0)
+                if (value.StartsWith("/") || value.Length == 0)
                     ServiceSubUrl_ = value;
                 else
                     ServiceSubUrl_ = "/" + value;
@@ -153,11 +151,10 @@ namespace Smartrac.SmartCosmos.ClientEndpoint.Base
                 return;
             }
 
-           AuthorizationToken =
-                "Basic " +
-                Convert.ToBase64String(Encoding.UTF8.GetBytes(userName + ":" + userPassword));
-        }       
-        
+            AuthorizationToken =
+                 "Basic " +
+                 Convert.ToBase64String(Encoding.UTF8.GetBytes(userName + ":" + userPassword));
+        }
 
         /// <summary>
         /// Create and setup a web request for a URL endpoint without options

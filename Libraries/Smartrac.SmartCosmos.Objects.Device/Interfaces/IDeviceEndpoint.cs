@@ -18,10 +18,7 @@
 #endregion License
 
 using Smartrac.SmartCosmos.ClientEndpoint.Base;
-using Smartrac.SmartCosmos.ClientEndpoint.Base;
 using Smartrac.SmartCosmos.Objects.Base;
-using System;
-
 
 namespace Smartrac.SmartCosmos.Objects.Device
 {
@@ -42,7 +39,7 @@ namespace Smartrac.SmartCosmos.Objects.Device
         /// </summary>
         //Conflict
     }
-    
+
     public interface IDeviceEndpoint : IBaseEndpoint
     {
         /// <summary>
@@ -68,8 +65,8 @@ namespace Smartrac.SmartCosmos.Objects.Device
         /// <param name="responseData">All element available data</param>
         /// <param name="viewType">A valid JSON Serialization View name (case-sensitive)</param>
         /// <returns>DeviceActionResult</returns>
-        DeviceActionResult Lookup(Urn deviceUrn, 
-                                    out DeviceLookupResponse responseData, 
+        DeviceActionResult Lookup(Urn deviceUrn,
+                                    out DeviceLookupResponse responseData,
                                     ViewType viewType = ViewType.Standard);
 
         /// <summary>
@@ -93,6 +90,5 @@ namespace Smartrac.SmartCosmos.Objects.Device
         DeviceActionResult Lookup(Name identificationElement,
                                                      out DeviceLookupsResponse responseData,
                                                      ViewType viewType = ViewType.Standard);
-
     }
 }

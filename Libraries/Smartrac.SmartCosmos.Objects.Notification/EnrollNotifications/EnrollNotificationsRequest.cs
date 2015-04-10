@@ -29,7 +29,7 @@ namespace Smartrac.SmartCosmos.Objects.Notification
     {
         [JsonConverter(typeof(StringEnumConverter))]
         public EntityReferenceType entityReferenceType { get; set; }
-        
+
         public string description { get; set; }
 
         public string name { get; set; }

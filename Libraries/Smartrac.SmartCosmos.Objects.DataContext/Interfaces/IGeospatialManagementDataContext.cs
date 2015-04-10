@@ -19,10 +19,7 @@
 
 using GeoJSON.Net;
 using Smartrac.SmartCosmos.ClientEndpoint.Base;
-using Smartrac.SmartCosmos.ClientEndpoint.Base;
 using Smartrac.SmartCosmos.Objects.Base;
-using Smartrac.SmartCosmos.Objects.GeospatialManagement;
-using System.Xml.Serialization;
 
 namespace Smartrac.SmartCosmos.Objects.DataContext
 {

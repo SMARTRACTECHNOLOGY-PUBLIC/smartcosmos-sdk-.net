@@ -18,7 +18,6 @@
 #endregion License
 
 using Smartrac.SmartCosmos.Profiles.DataContext;
-using System.Collections.Generic;
 
 namespace Smartrac.SmartCosmos.Profiles.TagVerification
 {

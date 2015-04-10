@@ -17,8 +17,8 @@
 
 #endregion License
 
-using Smartrac.SmartCosmos.Logging;
 using Smartrac.SmartCosmos.ClientEndpoint.Base;
+using Smartrac.SmartCosmos.Logging;
 using Smartrac.SmartCosmos.Profiles.Base;
 using System;
 using System.Net;

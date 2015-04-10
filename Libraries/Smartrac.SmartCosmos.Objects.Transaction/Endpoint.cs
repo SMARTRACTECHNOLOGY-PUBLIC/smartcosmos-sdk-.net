@@ -17,15 +17,11 @@
 
 #endregion License
 
+using Smartrac.SmartCosmos.ClientEndpoint.Base;
 using Smartrac.SmartCosmos.Logging;
-using Smartrac.SmartCosmos.ClientEndpoint.Base;
-using Smartrac.SmartCosmos.ClientEndpoint.Base;
 using Smartrac.SmartCosmos.Objects.Base;
 using System;
-using System.Collections.Generic;
-using System.Globalization;
 using System.Net;
-using System.Text;
 
 namespace Smartrac.SmartCosmos.Objects.Transaction
 {
@@ -56,7 +52,7 @@ namespace Smartrac.SmartCosmos.Objects.Transaction
             }
 
             Uri url = new Uri("transaction", UriKind.Relative).
-                AddQuery("handler", requestData.GetHandler() );
+                AddQuery("handler", requestData.GetHandler());
 
             var request = CreateWebRequest(url, WebRequestOption.Authorization);
             ExecuteWebRequestJSON<object, ImportTransactionResponse>(request, requestData.GetTransactionRequest(), out responseData);

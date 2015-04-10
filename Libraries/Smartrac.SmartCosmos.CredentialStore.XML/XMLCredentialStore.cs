@@ -17,12 +17,10 @@
 
 #endregion License
 
-using System;
-using System.Xml.Serialization;
-using System.Collections.Generic;
+using Smartrac.SmartCosmos.CredentialStore;
 using System.IO;
 using System.Xml;
-using Smartrac.SmartCosmos.CredentialStore;
+using System.Xml.Serialization;
 
 namespace Smartrac.SmartCosmos.ClientEndpoint.Factory
 {

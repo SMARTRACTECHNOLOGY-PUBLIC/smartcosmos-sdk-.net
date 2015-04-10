@@ -18,9 +18,7 @@
 #endregion License
 
 using Newtonsoft.Json;
-using Newtonsoft.Json.Converters;
 using Smartrac.SmartCosmos.ClientEndpoint.Base;
-using Smartrac.SmartCosmos.Objects.Base;
 
 namespace Smartrac.SmartCosmos.Objects.Device
 {
@@ -59,7 +57,7 @@ namespace Smartrac.SmartCosmos.Objects.Device
         public override bool IsValid()
         {
             return base.IsValid() &&
-                ((referenceUrnObj != null && referenceUrnObj.UUID!=null) || (identification != null && identification.Length <= 255)) &&
+                ((referenceUrnObj != null && referenceUrnObj.UUID != null) || (identification != null && identification.Length <= 255)) &&
                 ((name == null) || (name.Length <= 255)) &&
                 ((type == null) || (type.Length <= 255)) &&
                 ((description == null) || (description.Length <= 2048)) &&

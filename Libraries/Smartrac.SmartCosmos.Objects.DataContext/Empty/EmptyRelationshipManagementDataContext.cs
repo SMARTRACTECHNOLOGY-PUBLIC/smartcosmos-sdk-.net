@@ -17,9 +17,10 @@
 
 #endregion License
 
-using System;
 using Smartrac.SmartCosmos.ClientEndpoint.Base;
 using Smartrac.SmartCosmos.Objects.Base;
+using System;
+
 namespace Smartrac.SmartCosmos.Objects.DataContext
 {
     public class EmptyRelationshipManagementDataContext : BaseRelationshipManagementDataContext
@@ -36,7 +37,7 @@ namespace Smartrac.SmartCosmos.Objects.DataContext
             }
         }
 
-        Urn relatedReferenceUrn_;
+        private Urn relatedReferenceUrn_;
 
         public string referenceUrn
         {
@@ -50,7 +51,7 @@ namespace Smartrac.SmartCosmos.Objects.DataContext
             }
         }
 
-        Urn referenceUrn_;
+        private Urn referenceUrn_;
 
         public string relationshipType { get; set; }
 
@@ -60,7 +61,6 @@ namespace Smartrac.SmartCosmos.Objects.DataContext
 
         public ViewType viewType { get; set; }
 
-        
         public override Urn GetRelatedReferenceUrn()
         {
             return relatedReferenceUrn_;
@@ -103,5 +103,5 @@ namespace Smartrac.SmartCosmos.Objects.DataContext
         {
             relationshipType = relationshipType.ResolveVariables();
         }
-    }  
+    }
 }

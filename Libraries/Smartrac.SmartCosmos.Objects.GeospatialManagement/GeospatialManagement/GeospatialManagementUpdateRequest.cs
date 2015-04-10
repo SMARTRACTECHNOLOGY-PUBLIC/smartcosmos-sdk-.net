@@ -20,7 +20,6 @@
 using GeoJSON.Net;
 using Newtonsoft.Json;
 using Smartrac.SmartCosmos.ClientEndpoint.Base;
-using Smartrac.SmartCosmos.Objects.Base;
 
 namespace Smartrac.SmartCosmos.Objects.GeospatialManagement
 {

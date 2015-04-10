@@ -19,7 +19,6 @@
 
 using Newtonsoft.Json;
 using Smartrac.SmartCosmos.ClientEndpoint.Base;
-using Smartrac.SmartCosmos.Objects.Base;
 using System;
 using System.Collections.Generic;
 using System.Net;

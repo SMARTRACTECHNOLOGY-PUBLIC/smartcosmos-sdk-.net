@@ -18,6 +18,7 @@
 #endregion License
 
 using Newtonsoft.Json;
+
 #region License
 
 // SMART COSMOS .Net SDK
@@ -37,9 +38,7 @@ using Newtonsoft.Json;
 
 #endregion License
 
-using Newtonsoft.Json.Converters;
 using Smartrac.SmartCosmos.ClientEndpoint.Base;
-using Smartrac.SmartCosmos.Objects.Base;
 
 namespace Smartrac.SmartCosmos.Objects.Base
 {
@@ -72,6 +71,5 @@ namespace Smartrac.SmartCosmos.Objects.Base
 
         [JsonIgnore]
         public Urn accountUrnObj { get; set; }
-        
     }
 }

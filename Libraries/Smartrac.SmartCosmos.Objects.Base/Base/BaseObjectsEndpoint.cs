@@ -18,8 +18,6 @@
 #endregion License
 
 using Smartrac.SmartCosmos.ClientEndpoint.Base;
-using System;
-using System.Text;
 
 namespace Smartrac.SmartCosmos.Objects.Base
 {
@@ -28,13 +26,11 @@ namespace Smartrac.SmartCosmos.Objects.Base
     /// </summary>
     public class BaseObjectsEndpoint : BaseEndpoint
     {
-
         public BaseObjectsEndpoint()
             : base()
         {
             this.ServiceSubUrl = "rest";
             this.ServerURL = "";//https://www.smart-cosmos.com
         }
-
     }
 }

@@ -17,21 +17,19 @@
 
 #endregion License
 
-using Smartrac.SmartCosmos.Base;
-
 namespace System
 {
     /// <summary>
     /// implementes Copy extension method for all objects
     /// </summary>
     public static class StringExtensions
-    {       
+    {
         public static string ResolveVariables(this string value)
         {
             if (String.IsNullOrEmpty(value))
                 return "";
 
-            string tmp = value.Replace("[RANDOM]", System.Convert.ToString(new Random().Next(0, 100000000) ) );
+            string tmp = value.Replace("[RANDOM]", System.Convert.ToString(new Random().Next(0, 100000000)));
             // resolve other vars...
 
             return tmp;

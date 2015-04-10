@@ -17,13 +17,11 @@
 
 #endregion License
 
+using Smartrac.SmartCosmos.ClientEndpoint.Base;
 using Smartrac.SmartCosmos.Logging;
-using Smartrac.SmartCosmos.ClientEndpoint.Base;
-using Smartrac.SmartCosmos.ClientEndpoint.Base;
 using Smartrac.SmartCosmos.Objects.Base;
 using System;
 using System.Net;
-
 
 namespace Smartrac.SmartCosmos.Objects.Notification
 {
@@ -190,8 +188,9 @@ namespace Smartrac.SmartCosmos.Objects.Notification
                     switch (responseData.HTTPStatusCode)
                     {
                         case HttpStatusCode.OK:
-                        case HttpStatusCode.NoContent: 
+                        case HttpStatusCode.NoContent:
                             return NotificationActionResult.Successful;
+
                         default: return NotificationActionResult.Failed;
                     }
                 }

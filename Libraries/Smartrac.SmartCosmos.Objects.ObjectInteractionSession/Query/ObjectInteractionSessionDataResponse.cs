@@ -33,11 +33,12 @@ namespace Smartrac.SmartCosmos.Objects.ObjectInteractionSession
             lastModifiedTimestamp = null;
             moniker = null;
         }
+
         /// <summary>
         /// Serialization Level: Full
         /// </summary>
         public DataIAccount account { get; set; }
-        
+
         /// <summary>
         /// Serialization Level: Standard
         /// </summary>

@@ -18,10 +18,7 @@
 #endregion License
 
 using Newtonsoft.Json;
-using Newtonsoft.Json.Converters;
 using Smartrac.SmartCosmos.ClientEndpoint.Base;
-using Smartrac.SmartCosmos.Objects.Base;
-using System;
 
 namespace Smartrac.SmartCosmos.Objects.Notification
 {
@@ -40,7 +37,7 @@ namespace Smartrac.SmartCosmos.Objects.Notification
         }
 
         [JsonIgnore]
-        public Urn urnObj { get; set; }        
+        public Urn urnObj { get; set; }
 
         public override bool IsValid()
         {

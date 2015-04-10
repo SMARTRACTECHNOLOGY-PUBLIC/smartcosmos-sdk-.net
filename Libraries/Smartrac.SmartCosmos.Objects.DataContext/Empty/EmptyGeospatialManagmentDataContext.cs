@@ -17,16 +17,15 @@
 
 #endregion License
 
-using System;
 using GeoJSON.Net;
 using Smartrac.SmartCosmos.ClientEndpoint.Base;
 using Smartrac.SmartCosmos.Objects.Base;
-using System.Collections.Generic;
+using System;
+
 namespace Smartrac.SmartCosmos.Objects.DataContext
 {
     public class EmptyGeospatialManagementDataContext : BaseGeospatialManagementDataContext
     {
-
         public string geospatialUrn
         {
             get
@@ -39,7 +38,7 @@ namespace Smartrac.SmartCosmos.Objects.DataContext
             }
         }
 
-        Urn geospatialUrn_;
+        private Urn geospatialUrn_;
 
         /*public GeoJSONObjectBuilder geometricShape
         {
@@ -56,11 +55,11 @@ namespace Smartrac.SmartCosmos.Objects.DataContext
         public string description { get; set; }
 
         public bool activeFlag { get; set; }
-        
+
         public GeoJSONObject geometricShape { get; set; }
 
         public ViewType viewType { get; set; }
-        
+
         public override Urn GetGeospatialUrn()
         {
             return geospatialUrn_;
@@ -105,7 +104,7 @@ namespace Smartrac.SmartCosmos.Objects.DataContext
     }
 
     /*In future can be improved
-     * 
+     *
      * public class GeoJSONObjectBuilder
     {
         public double geometricShapeWidth;
@@ -124,5 +123,4 @@ namespace Smartrac.SmartCosmos.Objects.DataContext
             return model;
         }
     }*/
-
 }

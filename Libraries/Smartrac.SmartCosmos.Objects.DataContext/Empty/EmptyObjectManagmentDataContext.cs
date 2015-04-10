@@ -19,12 +19,12 @@
 
 using Smartrac.SmartCosmos.ClientEndpoint.Base;
 using Smartrac.SmartCosmos.Objects.Base;
+
 namespace Smartrac.SmartCosmos.Objects.DataContext
 {
     public class EmptyObjectManagementDataContext : BaseObjectManagementDataContext
     {
-
-        Urn objectUrn_;
+        private Urn objectUrn_;
 
         public string objectUrn
         {
@@ -36,7 +36,7 @@ namespace Smartrac.SmartCosmos.Objects.DataContext
             {
                 objectUrn_ = new Urn(value);
             }
-        }          
+        }
 
         public string category;
 
@@ -47,7 +47,7 @@ namespace Smartrac.SmartCosmos.Objects.DataContext
         public bool activeFlag;
 
         public ViewType viewType;
-        
+
         public override Urn GetObjectUrn()
         {
             return objectUrn_;
@@ -78,5 +78,4 @@ namespace Smartrac.SmartCosmos.Objects.DataContext
             return viewType;
         }
     }
-  
 }

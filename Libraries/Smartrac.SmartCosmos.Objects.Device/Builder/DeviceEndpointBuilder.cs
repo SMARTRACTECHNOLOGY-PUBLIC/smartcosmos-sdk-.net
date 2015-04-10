@@ -18,8 +18,6 @@
 #endregion License
 
 using Smartrac.SmartCosmos.ClientEndpoint.Base;
-using System;
-
 
 namespace Smartrac.SmartCosmos.Objects.Device
 {
@@ -28,7 +26,6 @@ namespace Smartrac.SmartCosmos.Objects.Device
         public DeviceEndpointBuilder() :
             base(new DeviceEndpoint())
         {
-
         }
     }
 }

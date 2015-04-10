@@ -17,11 +17,6 @@
 
 #endregion License
 
-using GeoJSON.Net;
-using GeoJSON.Net.Feature;
-using GeoJSON.Net.Geometry;
-using Newtonsoft.Json;
-using Newtonsoft.Json.Linq;
 using System;
 using System.Xml.Serialization;
 
@@ -42,6 +37,7 @@ namespace Smartrac.SmartCosmos.Objects.GeospatialManagement
         }
 
         private AbstractType _data;
+
         /// <summary>
         /// [Concrete] Data to be stored/is stored as XML.
         /// </summary>
@@ -115,6 +111,6 @@ namespace Smartrac.SmartCosmos.Objects.GeospatialManagement
             new XmlSerializer(type).Serialize(writer, _data);
         }
 
-        #endregion
+        #endregion IXmlSerializable Members
     }
 }

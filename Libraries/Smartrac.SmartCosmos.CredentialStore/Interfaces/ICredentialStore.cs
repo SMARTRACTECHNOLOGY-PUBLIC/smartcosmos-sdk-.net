@@ -18,6 +18,7 @@
 #endregion License
 
 using System.ComponentModel;
+
 namespace Smartrac.SmartCosmos.CredentialStore
 {
     public enum SmartCosmosComponent
@@ -34,18 +35,22 @@ namespace Smartrac.SmartCosmos.CredentialStore
         [DescriptionAttribute("SMART COSMOS Account Manager")]
         AccountManager = 4
     }
-    
+
     public interface ICredential
     {
         string Username { get; set; }
+
         string Password { get; set; }
+
         string Url { get; set; }
     }
 
     public interface ICredentialStore
     {
         ICredential GetCredentials(SmartCosmosComponent component);
+
         bool GetCredentials(SmartCosmosComponent component, out ICredential cred);
+
         bool ValidateCredentials(SmartCosmosComponent component);
     }
 }

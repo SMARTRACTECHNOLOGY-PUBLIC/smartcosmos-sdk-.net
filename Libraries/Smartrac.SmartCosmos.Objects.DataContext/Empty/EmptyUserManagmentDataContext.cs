@@ -17,14 +17,14 @@
 
 #endregion License
 
-using System;
 using Smartrac.SmartCosmos.ClientEndpoint.Base;
 using Smartrac.SmartCosmos.Objects.Base;
+using System;
+
 namespace Smartrac.SmartCosmos.Objects.DataContext
 {
     public class EmptyUserManagementDataContext : BaseUserManagementDataContext
     {
-
         public string userUrn
         {
             get
@@ -37,7 +37,7 @@ namespace Smartrac.SmartCosmos.Objects.DataContext
             }
         }
 
-        Urn userUrn_;
+        private Urn userUrn_;
 
         public string newPassword { get; set; }
 

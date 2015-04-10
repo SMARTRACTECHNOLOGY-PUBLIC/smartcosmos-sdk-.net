@@ -18,7 +18,6 @@
 #endregion License
 
 using Smartrac.SmartCosmos.ClientEndpoint.Base;
-using Smartrac.SmartCosmos.Flows.Base;
 
 namespace Smartrac.SmartCosmos.Flows.AccountManagement
 {
@@ -47,7 +46,7 @@ namespace Smartrac.SmartCosmos.Flows.AccountManagement
 
         /*
          01-12-2014 deactivated, because of new Account component
-         
+
         /// <summary>
         /// Trigger a password reset workflow via email for the specified Account associated with the indicated email address.
         /// </summary>

@@ -17,9 +17,8 @@
 
 #endregion License
 
+using Smartrac.SmartCosmos.ClientEndpoint.Base;
 using Smartrac.SmartCosmos.Logging;
-using Smartrac.SmartCosmos.ClientEndpoint.Base;
-using Smartrac.SmartCosmos.ClientEndpoint.Base;
 using Smartrac.SmartCosmos.Objects.Base;
 using System;
 using System.Net;
@@ -142,11 +141,10 @@ namespace Smartrac.SmartCosmos.Objects.ObjectInteraction
 
                 var request = CreateWebRequest(url, WebRequestOption.Authorization);
                 var returnHTTPCode = ExecuteWebRequestJSON<QueryObjectInteractionResponse>(request, out responseData);
-                               
+
                 responseData.HTTPStatusCode = returnHTTPCode;
                 if (responseData.HTTPStatusCode == HttpStatusCode.OK || responseData.HTTPStatusCode == HttpStatusCode.NoContent)
                     return ObjInteractActionResult.Successful;
-                
 
                 return ObjInteractActionResult.Failed;
             }

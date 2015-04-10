@@ -17,8 +17,8 @@
 
 #endregion License
 
-using Smartrac.SmartCosmos.Logging;
 using Smartrac.SmartCosmos.ClientEndpoint.Base;
+using Smartrac.SmartCosmos.Logging;
 using Smartrac.SmartCosmos.Profiles.Base;
 using System;
 using System.Net;
@@ -85,7 +85,7 @@ namespace Smartrac.SmartCosmos.Profiles.TagVerification
         }
 
         /// <summary>
-        /// Get a message to a single verification state 
+        /// Get a message to a single verification state
         /// </summary>
         /// <param name="requestData">Input data</param>
         /// <param name="responseData">Output data</param>

@@ -17,15 +17,15 @@
 
 #endregion License
 
-using System;
 using Smartrac.SmartCosmos.ClientEndpoint.Base;
 using Smartrac.SmartCosmos.Objects.Base;
+using System;
+
 namespace Smartrac.SmartCosmos.Objects.DataContext
 {
     public class EmptyObjectInteractionSessionDataContext : BaseObjectInteractionSessionDataContext
     {
-
-        Urn sessionUrn_;
+        private Urn sessionUrn_;
 
         public string sessionUrn
         {
@@ -97,5 +97,5 @@ namespace Smartrac.SmartCosmos.Objects.DataContext
             name = name.ResolveVariables();
             moniker = moniker.ResolveVariables();
         }
-    }    
+    }
 }
