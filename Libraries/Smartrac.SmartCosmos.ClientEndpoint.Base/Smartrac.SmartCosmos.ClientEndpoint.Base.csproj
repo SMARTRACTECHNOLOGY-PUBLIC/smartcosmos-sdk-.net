@@ -125,6 +125,7 @@
     <Compile Include="Base\Email.cs" />
     <Compile Include="Extensions\ObjectExtensions.cs" />
     <Compile Include="Extensions\WebRequestExtensions.cs" />
+    <Compile Include="Interfaces\IBaseRequest.cs" />
     <Compile Include="Interfaces\IBaseDataContext.cs" />
     <Compile Include="Interfaces\IBaseEndpoint.cs" />
     <Compile Include="Interfaces\IHTTPStatusCode.cs" />

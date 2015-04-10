@@ -24,7 +24,7 @@ using System.Security.Cryptography;
 using System.Text;
 using Newtonsoft.Json;
 using Smartrac.SmartCosmos.Logging;
-using Smartrac.SmartCosmos.ClientEndpoint.BaseObject;
+using Smartrac.SmartCosmos.ClientEndpoint.Base;
 
 namespace Smartrac.SmartCosmos.ClientEndpoint.Base
 {

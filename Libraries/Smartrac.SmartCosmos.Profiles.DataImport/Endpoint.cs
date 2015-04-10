@@ -20,7 +20,7 @@
 using Smartrac.SmartCosmos.Logging;
 using Smartrac.SmartCosmos.Profiles.Base;
 using Smartrac.SmartCosmos.ClientEndpoint.Base;
-using Smartrac.SmartCosmos.ClientEndpoint.BaseObject;
+using Smartrac.SmartCosmos.ClientEndpoint.Base;
 using System;
 using System.IO;
 using System.Net;

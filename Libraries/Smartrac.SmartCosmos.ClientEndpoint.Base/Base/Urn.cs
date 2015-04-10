@@ -19,7 +19,7 @@
 
 using System;
 
-namespace Smartrac.SmartCosmos.ClientEndpoint.BaseObject
+namespace Smartrac.SmartCosmos.ClientEndpoint.Base
 {
     /// <summary>
     /// Base class for all SMART COSMOS urn´s

@@ -19,7 +19,7 @@
 
 using System.Net;
 
-namespace Smartrac.SmartCosmos.ClientEndpoint.BaseObject
+namespace Smartrac.SmartCosmos.ClientEndpoint.Base
 {
     /// <summary>
     /// response contains a HTTP status code

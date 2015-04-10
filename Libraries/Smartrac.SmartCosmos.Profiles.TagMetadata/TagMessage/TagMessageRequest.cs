@@ -17,7 +17,7 @@
 
 #endregion License
 
-using Smartrac.SmartCosmos.ClientEndpoint.BaseObject;
+using Smartrac.SmartCosmos.ClientEndpoint.Base;
 namespace Smartrac.SmartCosmos.Profiles.TagMetadata
 {
     public class TagMessageRequest : BaseRequest

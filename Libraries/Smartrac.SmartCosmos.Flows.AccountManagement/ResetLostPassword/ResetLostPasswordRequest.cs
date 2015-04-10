@@ -17,7 +17,7 @@
 
 #endregion License
 
-using Smartrac.SmartCosmos.ClientEndpoint.BaseObject;
+using Smartrac.SmartCosmos.ClientEndpoint.Base;
 using System;
 
 namespace Smartrac.SmartCosmos.Flows.AccountManagement

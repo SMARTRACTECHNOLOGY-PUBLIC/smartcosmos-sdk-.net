@@ -17,7 +17,7 @@
 
 #endregion License
 
-namespace Smartrac.SmartCosmos.ClientEndpoint.BaseObject
+namespace Smartrac.SmartCosmos.ClientEndpoint.Base
 {
     public class BaseDataContext
     {

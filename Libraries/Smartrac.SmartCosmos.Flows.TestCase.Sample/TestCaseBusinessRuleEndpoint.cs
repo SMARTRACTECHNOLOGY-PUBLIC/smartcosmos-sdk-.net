@@ -20,7 +20,7 @@
 using Smartrac.SmartCosmos.TestCase.Base;
 using Smartrac.SmartCosmos.Flows.TestCase;
 using Smartrac.SmartCosmos.Flows.BusinessRule;
-using Smartrac.SmartCosmos.ClientEndpoint.BaseObject;
+using Smartrac.SmartCosmos.ClientEndpoint.Base;
 
 
 namespace Smartrac.SmartCosmos.Flows.TestCase.Sample

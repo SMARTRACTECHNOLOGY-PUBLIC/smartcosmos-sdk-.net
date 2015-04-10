@@ -22,7 +22,7 @@ using Newtonsoft.Json.Serialization;
 using System.IO;
 using System.Text;
 
-namespace Smartrac.SmartCosmos.ClientEndpoint.BaseObject
+namespace Smartrac.SmartCosmos.ClientEndpoint.Base
 {
     /// <summary>
     /// Object extensions

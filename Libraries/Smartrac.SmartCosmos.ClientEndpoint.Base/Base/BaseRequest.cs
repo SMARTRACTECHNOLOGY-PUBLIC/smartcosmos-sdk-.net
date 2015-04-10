@@ -17,12 +17,12 @@
 
 #endregion License
 
-namespace Smartrac.SmartCosmos.ClientEndpoint.BaseObject
+namespace Smartrac.SmartCosmos.ClientEndpoint.Base
 {
     /// <summary>
     /// default request
     /// </summary>
-    public class BaseRequest
+    public class BaseRequest : IBaseRequest
     {
         public virtual bool IsValid()
         {
