@@ -51,6 +51,17 @@ namespace Smartrac.SmartCosmos.CredentialStore
             cred = GetCredentials(component);
             return cred != null;
         }
+
+        public void AddServer(string url, string userName, string password, SmartCosmosComponent component)
+        {
+            Servers.Server.Add(new Server
+            {
+                Component = component,
+                Name = component.GetDescription(),
+                Password = password,
+                Username = userName
+            });
+        }
     }
 
     [XmlRoot(ElementName = "server")]

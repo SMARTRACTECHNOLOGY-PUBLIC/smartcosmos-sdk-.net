@@ -38,6 +38,7 @@ using Smartrac.SmartCosmos.Objects.ObjectInteractionSession;
 using Smartrac.SmartCosmos.Objects.ObjectManagement;
 using Smartrac.SmartCosmos.Objects.Registration;
 using Smartrac.SmartCosmos.Objects.RelationshipManagement;
+using Smartrac.SmartCosmos.Objects.Transaction;
 using Smartrac.SmartCosmos.Objects.UserManagement;
 using Smartrac.SmartCosmos.Profiles.DataImport;
 using Smartrac.SmartCosmos.Profiles.PlatformAvailability;
@@ -419,6 +420,23 @@ namespace Smartrac.SmartCosmos.ClientEndpoint.Factory
             .setUserAccount(cred.Username, cred.Password)
             .build();
         }
+
+        public virtual ITransactionEndpoint CreateTransactionEndpoint()
+        {
+            ICredential cred;
+            if (!GetCredentials(SmartCosmosComponent.Objects, out cred))
+                return null;
+
+            return new TransactionEndpointBuilder()
+            .setLogger(Logger)
+            .setKeepAlive(KeepAlive)
+            .setServerURL(cred.Url)
+            .setAllowInvalidServerCertificates(AllowInvalidServerCertificates)
+            .setUserAccount(cred.Username, cred.Password)
+            .build();
+        }
+
+        
 
         #endregion OBJECTS
     }

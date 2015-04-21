@@ -38,6 +38,7 @@ using Smartrac.SmartCosmos.Objects.ObjectInteractionSession;
 using Smartrac.SmartCosmos.Objects.ObjectManagement;
 using Smartrac.SmartCosmos.Objects.Registration;
 using Smartrac.SmartCosmos.Objects.RelationshipManagement;
+using Smartrac.SmartCosmos.Objects.Transaction;
 using Smartrac.SmartCosmos.Objects.UserManagement;
 using Smartrac.SmartCosmos.Profiles.DataImport;
 using Smartrac.SmartCosmos.Profiles.PlatformAvailability;
@@ -131,6 +132,8 @@ namespace Smartrac.SmartCosmos.ClientEndpoint.Factory
         IDeviceEndpoint CreateDeviceEndpoint();
 
         INotificationEndpoint CreateNotificationEndpoint();
+
+        ITransactionEndpoint CreateTransactionEndpoint();
 
         #endregion Objects
 
