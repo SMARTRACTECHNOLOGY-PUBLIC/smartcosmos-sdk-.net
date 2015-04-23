@@ -275,93 +275,189 @@ namespace Smartrac.SmartCosmos.Objects.Transaction
         }
     }
 
-    public class ObjectsMetadata
+    public class ObjectsMetadataBase
     {
         [JsonConverter(typeof(StringEnumConverter))]
         public EntityReferenceType entityReferenceType { get; set; }
-
         public string referenceUrn { get; set; }
-
-        public string dataType { get; set; }
-
+        [JsonConverter(typeof(StringEnumConverter))]
+        public MetadataDataType dataType { get; set; }
         public string key { get; set; }
+        public bool alreadyEncoded { get; set; }
 
-        public string decodedValue { get; set; }
+        public bool ShouldSerializealreadyEncoded() { return alreadyEncoded; } // default = false
 
-        public ObjectsMetadata()
+        public ObjectsMetadataBase()
         {
             entityReferenceType = EntityReferenceType.Object;
+            dataType = MetadataDataType.String;
+            alreadyEncoded = false;
         }
 
-        public bool IsValid()
+        public virtual bool IsValid()
         {
             return !String.IsNullOrEmpty(referenceUrn) &&
-                !String.IsNullOrEmpty(dataType) &&
+                //!String.IsNullOrEmpty(dataType) &&
                 !String.IsNullOrEmpty(key) &&
-                !String.IsNullOrEmpty(decodedValue);
+                (this.GetType().Name != "ObjectsMetadataBase");
+            //&&
+            //!String.IsNullOrEmpty(value);
         }
     }
+
+    public class ObjectsMetadataBoolean : ObjectsMetadataBase
+    {
+        public bool value { get; set; }
+
+        public ObjectsMetadataBoolean()
+            : base()
+        {
+            dataType = MetadataDataType.Boolean;
+            value = true;
+        }
+    }
+
+    public class ObjectsMetadataLong : ObjectsMetadataBase
+    {
+        public long value { get; set; }
+
+        public ObjectsMetadataLong()
+            : base()
+        {
+            dataType = MetadataDataType.Long;
+            value = 0;
+        }
+    }
+
+    public class ObjectsMetadataDouble : ObjectsMetadataBase
+    {
+        public double value { get; set; }
+
+        public ObjectsMetadataDouble()
+            : base()
+        {
+            dataType = MetadataDataType.Double;
+            value = 0;
+        }
+    }
+
+    public class ObjectsMetadataInteger : ObjectsMetadataBase
+    {
+        public int value { get; set; }
+
+        public ObjectsMetadataInteger()
+            : base()
+        {
+            dataType = MetadataDataType.Integer;
+            value = 0;
+        }
+    }
+
+    public class ObjectsMetadataFloat : ObjectsMetadataBase
+    {
+        public float value { get; set; }
+
+        public ObjectsMetadataFloat()
+        {
+            dataType = MetadataDataType.Float;
+            value = 0;
+        }
+    }
+
+    public class ObjectsMetadataDate : ObjectsMetadataString
+    {
+        public ObjectsMetadataDate()
+            : base()
+        {
+            dataType = MetadataDataType.Date;
+        }
+        /*
+        [JsonIgnore]
+        public DateTime valueJavaDate
+        {
+            get
+            {
+                return Smartrac.Base.DateTimeExtensions.FromJavaTimestamp(value);
+            }
+            set
+            {
+                this.value = Smartrac.Base.DateTimeExtensions.ToJavaTimestamp(value);
+            }
+        }
+         */
+    }
+
+    public class ObjectsMetadataString : ObjectsMetadataBase
+    {
+        public string value { get; set; }
+
+        public ObjectsMetadataString()
+            : base()
+        {
+            dataType = MetadataDataType.String;
+        }
+
+        public override bool IsValid()
+        {
+            return base.IsValid()
+                && !String.IsNullOrEmpty(value);
+        }
+    }
+
+    public class ObjectsMetadataCustom : ObjectsMetadataString
+    {
+        public ObjectsMetadataCustom()
+            : base()
+        {
+            dataType = MetadataDataType.Custom;
+        }
+    }
+
+    public class ObjectsMetadataJSON : ObjectsMetadataString
+    {
+        public ObjectsMetadataJSON()
+        {
+            dataType = MetadataDataType.JSON;
+        }
+    }
+
+    public class ObjectsMetadataXML : ObjectsMetadataString
+    {
+        public ObjectsMetadataXML()
+        {
+            dataType = MetadataDataType.XML;
+        }
+    }
+
+
 
     public class TransactionItem
     {
         public ObjectsAccount account { get; set; }
-
         public List<ObjectsDevice> devices { get; set; }
-
         public List<ObjectsObject> objects { get; set; }
-
-        public List<ObjectsObjectAddress> objectaddresses { get; set; }
-
+        public List<ObjectsObjectAddress> objectAddresses { get; set; }
         public List<ObjectsRelationship> relationships { get; set; }
-
         public List<ObjectsFile> files { get; set; }
+        public List<ObjectsMetadataBase> metadata { get; set; }
 
-        public List<ObjectsMetadata> metadata { get; set; }
-
-        public bool ShouldSerializeaccount()
-        {
-            return ((account != null) && (account.name != ""));
-        }
-
-        public bool ShouldSerializedevices()
-        {
-            return ((devices != null) && (devices.Count > 0));
-        }
-
-        public bool ShouldSerializeobjects()
-        {
-            return ((objects != null) && (objects.Count > 0));
-        }
-
-        public bool ShouldSerializeobjectaddresses()
-        {
-            return ((objectaddresses != null) && (objectaddresses.Count > 0));
-        }
-
-        public bool ShouldSerializerelationships()
-        {
-            return ((relationships != null) && (relationships.Count > 0));
-        }
-
-        public bool ShouldSerializefiles()
-        {
-            return ((files != null) && (files.Count > 0));
-        }
-
-        public bool ShouldSerializemetadata()
-        {
-            return ((metadata != null) && (metadata.Count > 0));
-        }
+        public bool ShouldSerializeaccount() { return ((account != null) && (account.name != "")); }
+        public bool ShouldSerializedevices() { return ((devices != null) && (devices.Count > 0)); }
+        public bool ShouldSerializeobjects() { return ((objects != null) && (objects.Count > 0)); }
+        public bool ShouldSerializeobjectaddresses() { return ((objectAddresses != null) && (objectAddresses.Count > 0)); }
+        public bool ShouldSerializerelationships() { return ((relationships != null) && (relationships.Count > 0)); }
+        public bool ShouldSerializefiles() { return ((files != null) && (files.Count > 0)); }
+        public bool ShouldSerializemetadata() { return ((metadata != null) && (metadata.Count > 0)); }
 
         public TransactionItem()
             : base()
         {
             devices = new List<ObjectsDevice>();
             objects = new List<ObjectsObject>();
-            objectaddresses = new List<ObjectsObjectAddress>();
+            objectAddresses = new List<ObjectsObjectAddress>();
             relationships = new List<ObjectsRelationship>();
             files = new List<ObjectsFile>();
-            metadata = new List<ObjectsMetadata>();
+            metadata = new List<ObjectsMetadataBase>();
         }
 
         public bool IsValid()
@@ -369,7 +465,7 @@ namespace Smartrac.SmartCosmos.Objects.Transaction
             return ((account == null) || account.IsValid())
                 && ((devices.Count == 0) || (devices.TrueForAll(i => i.IsValid())))
                 && ((objects.Count == 0) || (objects.TrueForAll(i => i.IsValid())))
-                && ((objectaddresses.Count == 0) || (objectaddresses.TrueForAll(i => i.IsValid())))
+                && ((objectAddresses.Count == 0) || (objectAddresses.TrueForAll(i => i.IsValid())))
                 && ((relationships.Count == 0) || (relationships.TrueForAll(i => i.IsValid())))
                 && ((files.Count == 0) || (files.TrueForAll(i => i.IsValid())))
                 && ((metadata.Count == 0) || (metadata.TrueForAll(i => i.IsValid())));
@@ -402,7 +498,7 @@ namespace Smartrac.SmartCosmos.Objects.Transaction
             return obj;
         }
 
-        public ObjectsObjectAddress AddObjectaddress(string objectUrn, string type, string line1, string postalCode, string city, string countryAbbreviation)
+        public ObjectsObjectAddress AddObjectAddress(string objectUrn, string type, string line1, string postalCode, string city, string countryAbbreviation)
         {
             ObjectsObjectAddress obj = new ObjectsObjectAddress
             {
@@ -413,22 +509,88 @@ namespace Smartrac.SmartCosmos.Objects.Transaction
                 countryAbbreviation = countryAbbreviation,
                 city = city
             };
-            objectaddresses.Add(obj);
+            objectAddresses.Add(obj);
             return obj;
         }
 
-        public ObjectsMetadata AddMetaData(EntityReferenceType entityReferenceType, string referenceUrn, MetadataDataType dataType, string key, string decodedValue)
+        public ObjectsMetadataBase AddMetaDataAsString(EntityReferenceType entityReferenceType, string referenceUrn, string key, string value,
+            MetadataDataType dataType = MetadataDataType.String,
+            bool alreadyEncoded = false)
         {
-            if (String.IsNullOrEmpty(decodedValue))
+            if (String.IsNullOrEmpty(value))
                 return null;
 
-            ObjectsMetadata obj = new ObjectsMetadata
+            if (dataType.HasFlag(MetadataDataType.String | MetadataDataType.XML | MetadataDataType.Custom | MetadataDataType.Date))
+                throw new MissingFieldException("invalid dataType " + dataType.GetDescription());
+
+            ObjectsMetadataString obj = new ObjectsMetadataString
             {
                 entityReferenceType = Objects.Base.EntityReferenceType.Object,
                 referenceUrn = referenceUrn,
-                dataType = dataType.GetDescription(),
+                dataType = dataType,
                 key = key,
-                decodedValue = decodedValue
+                value = value,
+                alreadyEncoded = alreadyEncoded
+            };
+            metadata.Add(obj);
+            return obj;
+        }
+
+        public ObjectsMetadataBase AddMetaDataAsDouble(EntityReferenceType entityReferenceType, string referenceUrn, string key, double value,
+            bool alreadyEncoded = false)
+        {
+            ObjectsMetadataDouble obj = new ObjectsMetadataDouble
+            {
+                entityReferenceType = Objects.Base.EntityReferenceType.Object,
+                referenceUrn = referenceUrn,
+                key = key,
+                value = value,
+                alreadyEncoded = alreadyEncoded
+            };
+            metadata.Add(obj);
+            return obj;
+        }
+
+        public ObjectsMetadataBase AddMetaDataAsFloat(EntityReferenceType entityReferenceType, string referenceUrn, string key, float value,
+            bool alreadyEncoded = false)
+        {
+            ObjectsMetadataFloat obj = new ObjectsMetadataFloat
+            {
+                entityReferenceType = Objects.Base.EntityReferenceType.Object,
+                referenceUrn = referenceUrn,
+                key = key,
+                value = value,
+                alreadyEncoded = alreadyEncoded
+            };
+            metadata.Add(obj);
+            return obj;
+        }
+
+        public ObjectsMetadataBase AddMetaDataAsLong(EntityReferenceType entityReferenceType, string referenceUrn, string key, long value,
+            bool alreadyEncoded = false)
+        {
+            ObjectsMetadataLong obj = new ObjectsMetadataLong
+            {
+                entityReferenceType = Objects.Base.EntityReferenceType.Object,
+                referenceUrn = referenceUrn,
+                key = key,
+                value = value,
+                alreadyEncoded = alreadyEncoded
+            };
+            metadata.Add(obj);
+            return obj;
+        }
+
+        public ObjectsMetadataBase AddMetaDataAsInteger(EntityReferenceType entityReferenceType, string referenceUrn, string key, int value,
+            bool alreadyEncoded = false)
+        {
+            ObjectsMetadataInteger obj = new ObjectsMetadataInteger
+            {
+                entityReferenceType = Objects.Base.EntityReferenceType.Object,
+                referenceUrn = referenceUrn,
+                key = key,
+                value = value,
+                alreadyEncoded = alreadyEncoded
             };
             metadata.Add(obj);
             return obj;
