@@ -280,7 +280,21 @@ namespace Smartrac.SmartCosmos.Objects.Transaction
         [JsonConverter(typeof(StringEnumConverter))]
         public EntityReferenceType entityReferenceType { get; set; }
         public string referenceUrn { get; set; }
-        [JsonConverter(typeof(StringEnumConverter))]
+        [JsonProperty("dataType")]
+        public string dataTypeString
+        {
+            get
+            {
+                return dataType.GetDescription();
+            }
+
+            set
+            {
+                dataType = MetadataDataType.Boolean.GetFlagByDescription(value);
+            }
+        }
+
+        [JsonIgnore]
         public MetadataDataType dataType { get; set; }
         public string key { get; set; }
         public bool alreadyEncoded { get; set; }
