@@ -111,5 +111,10 @@ namespace Smartrac.SmartCosmos.CredentialStore
     {
         [XmlElement(ElementName = "server")]
         public List<Server> Server { get; set; }
+
+        public Servers()
+        {
+            Server = new List<Server>();
+        }
     }
 }
