@@ -631,9 +631,9 @@ namespace Smartrac.SmartCosmos.Objects.Transaction
             return TrueForAll(i => i.IsValid());
         }
 
-        public string GetHandler()
+        public string GetHandlerName()
         {
-            return "DefaultJsonHandler";
+            return "defaultTransactionHandler";
         }
 
         public object GetTransactionRequest()

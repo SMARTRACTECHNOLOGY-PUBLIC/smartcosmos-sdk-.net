@@ -27,7 +27,7 @@ namespace Smartrac.SmartCosmos.Objects.Transaction
         /// Handler identification, e.g. DefaultJsonHandler
         /// </summary>
         /// <returns>Handler identification</returns>
-        string GetHandler();
+        string GetHandlerName();
 
         /// <summary>
         /// JSON object

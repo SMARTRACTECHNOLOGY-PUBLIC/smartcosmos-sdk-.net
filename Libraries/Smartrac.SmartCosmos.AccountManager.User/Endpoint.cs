@@ -19,7 +19,6 @@
 
 using Smartrac.SmartCosmos.Logging;
 using Smartrac.SmartCosmos.ClientEndpoint.Base;
-using Smartrac.SmartCosmos.ClientEndpoint.Base;
 using Smartrac.SmartCosmos.AccountManager.Base;
 using System;
 using System.Net;
