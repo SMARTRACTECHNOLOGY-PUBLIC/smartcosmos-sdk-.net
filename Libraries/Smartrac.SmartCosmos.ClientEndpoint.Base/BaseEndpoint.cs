@@ -184,7 +184,10 @@ namespace Smartrac.SmartCosmos.ClientEndpoint.Base
         /// <returns>Configured web request object</returns>
         protected WebRequest CreateWebRequest(Uri url, WebRequestOption options)
         {
-            var request = System.Net.WebRequest.Create(ServerURL + ServiceSubUrl + url.OriginalString) as System.Net.HttpWebRequest;
+            string urlString = url.OriginalString;
+            if (! urlString.StartsWith("/") && (urlString.Length != 0))
+                urlString = "/" + urlString;
+            var request = System.Net.WebRequest.Create(ServerURL + ServiceSubUrl + urlString) as System.Net.HttpWebRequest;
             request.KeepAlive = KeepAlive;
             if (options.HasFlag(WebRequestOption.Authorization) && (AuthorizationToken != ""))
                 request.Headers.Add("authorization", AuthorizationToken);

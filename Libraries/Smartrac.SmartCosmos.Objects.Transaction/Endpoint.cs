@@ -53,7 +53,7 @@ namespace Smartrac.SmartCosmos.Objects.Transaction
             }
 
             Uri url = new Uri("transaction", UriKind.Relative).
-                AddQuery("handler", requestData.GetHandlerName());
+                AddSubfolder(requestData.GetHandlerName());
 
             var request = CreateWebRequest(url, WebRequestOption.Authorization);
             ExecuteWebRequestJSON<object, ImportTransactionResponse>(request, requestData.GetTransactionRequest(), out responseData);
