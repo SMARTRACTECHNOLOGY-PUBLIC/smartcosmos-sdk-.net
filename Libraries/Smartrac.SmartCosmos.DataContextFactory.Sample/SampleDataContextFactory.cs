@@ -104,6 +104,11 @@ namespace Smartrac.SmartCosmos.DataContextFactory.Sample
         {
             return new SampleNotificationDataContext();
         }
+
+        public override ITransactionDataContext CreateTransactionDataContext()
+        {
+            return new SampleTransactionDataContext();
+        }
         
         public override IFlowsAccountManagementDataContext CreateFlowsAccountManagementDataContext()
         {

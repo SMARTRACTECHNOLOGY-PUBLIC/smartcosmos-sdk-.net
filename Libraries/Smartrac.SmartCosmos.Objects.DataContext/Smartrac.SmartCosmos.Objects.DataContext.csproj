@@ -81,6 +81,7 @@
     <Compile Include="Base\BaseNotificationDataContext.cs" />
     <Compile Include="Base\BaseDeviceDataContext.cs" />
     <Compile Include="Base\BaseFileDataContext.cs" />
+    <Compile Include="Base\BaseTransactionDataContext.cs" />
     <Compile Include="Extensions\StringExtensions.cs" />
     <Compile Include="Empty\EmptyNotificationDataContext.cs" />
     <Compile Include="Empty\EmptyDeviceDataContext.cs" />
@@ -99,6 +100,7 @@
     <Compile Include="Interfaces\IDeviceDataContext.cs" />
     <Compile Include="Interfaces\IFileDataContext.cs" />
     <Compile Include="Base\BaseAccountManagmentDataContext.cs" />
+    <Compile Include="Interfaces\ITransactionDataContext.cs" />
     <Compile Include="Interfaces\IRegistrationDataContext.cs" />
     <Compile Include="Interfaces\IAccountManagmentDataContext.cs" />
     <Compile Include="Base\BaseRegistrationDataContext.cs" />

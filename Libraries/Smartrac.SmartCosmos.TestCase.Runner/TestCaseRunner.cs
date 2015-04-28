@@ -54,7 +54,7 @@ namespace Smartrac.SmartCosmos.TestCase.Runner
         {
             Logger.AddLog("Start test runner...");
 
-            Dictionary<int, ITestCase> testList = new Dictionary<int, ITestCase>();
+            List<KeyValuePair<int, ITestCase>> testList = new List<KeyValuePair<int, ITestCase>>();
             bool result = true;
             bool bTestSuiteFound = false;
 
@@ -95,7 +95,7 @@ namespace Smartrac.SmartCosmos.TestCase.Runner
                                 ITestCase MyTestCase = (ITestCase)Activator.CreateInstance(item.Type);
                                 if (MyTestCase != null)
                                 {
-                                    testList.Add(testCase.TestPriority, MyTestCase);
+                                    testList.Add(new KeyValuePair<int, ITestCase>(testCase.TestPriority, MyTestCase));
 
                                     // only 1 combination possible
                                     break;

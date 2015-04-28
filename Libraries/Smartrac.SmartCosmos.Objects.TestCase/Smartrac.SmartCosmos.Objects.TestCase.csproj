@@ -106,6 +106,7 @@
   <ItemGroup>
     <Compile Include="BaseTestCases\TestCaseNotificationEndpoint.cs" />
     <Compile Include="BaseTestCases\TestCaseDeviceEndpoint.cs" />
+    <Compile Include="BaseTestCases\TestCaseTransactionEndpoint.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="BaseObjectsTestCase.cs" />
     <Compile Include="BaseTestCases\TestCaseAccountManagementEndpoint.cs" />
@@ -196,6 +197,10 @@
     <ProjectReference Include="..\Smartrac.SmartCosmos.Objects.RelationshipManagement\Smartrac.SmartCosmos.Objects.RelationshipManagement.csproj">
       <Project>{f273de29-fcfb-4a29-8e56-af65107d4d84}</Project>
       <Name>Smartrac.SmartCosmos.Objects.RelationshipManagement</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Smartrac.SmartCosmos.Objects.Transaction\Smartrac.SmartCosmos.Objects.Transaction.csproj">
+      <Project>{5e0d3e88-3905-485f-b4d3-575bee50ed01}</Project>
+      <Name>Smartrac.SmartCosmos.Objects.Transaction</Name>
     </ProjectReference>
     <ProjectReference Include="..\Smartrac.SmartCosmos.Objects.UserManagement\Smartrac.SmartCosmos.Objects.UserManagement.csproj">
       <Project>{401ea240-52ed-4a3f-b475-c7edbda211fe}</Project>

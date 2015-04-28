@@ -101,6 +101,11 @@ namespace Smartrac.SmartCosmos.DataContextFactory
             return new BaseNotificationDataContext();
         }
 
+        public virtual ITransactionDataContext CreateTransactionDataContext()
+        {
+            return new BaseTransactionDataContext();
+        }
+
         //Flows
 
         public virtual IFlowsAccountManagementDataContext CreateFlowsAccountManagementDataContext()

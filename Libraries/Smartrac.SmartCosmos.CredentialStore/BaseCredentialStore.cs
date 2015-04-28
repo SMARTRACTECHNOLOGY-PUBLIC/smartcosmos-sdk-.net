@@ -59,7 +59,8 @@ namespace Smartrac.SmartCosmos.CredentialStore
                 Component = component,
                 Name = component.GetDescription(),
                 Password = password,
-                Username = userName
+                Username = userName,
+                Url = url
             });
         }
     }

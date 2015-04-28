@@ -54,6 +54,8 @@ namespace Smartrac.SmartCosmos.DataContextFactory
 
         INotificationDataContext CreateNotificationDataContext();
 
+        ITransactionDataContext CreateTransactionDataContext();
+
         //FLows
         IFlowsAccountManagementDataContext CreateFlowsAccountManagementDataContext();
 

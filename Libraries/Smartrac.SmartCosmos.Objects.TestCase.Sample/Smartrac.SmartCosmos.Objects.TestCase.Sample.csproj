@@ -119,6 +119,7 @@
     <Compile Include="TestCaseObjectInteractionEndpoint.cs" />
     <Compile Include="TestCaseObjectInteractionSessionEndpoint.cs" />
     <Compile Include="TestCaseObjectManagementEndpoint.cs" />
+    <Compile Include="TestCaseTransactionEndpoint.cs" />
     <Compile Include="TestCaseRegistrationEndpoint.cs" />
     <Compile Include="TestCaseRelationshipManagementEndpoint.cs" />
     <Compile Include="TestCaseUserManagementEndpoint.cs" />
