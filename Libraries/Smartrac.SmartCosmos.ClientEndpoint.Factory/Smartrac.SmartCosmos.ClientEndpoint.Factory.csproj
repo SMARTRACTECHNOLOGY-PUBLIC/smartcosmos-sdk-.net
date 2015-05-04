@@ -138,6 +138,10 @@
       <Project>{2c79fc96-b023-465d-9374-77235df068f4}</Project>
       <Name>Smartrac.SmartCosmos.Objects.AccountManagement</Name>
     </ProjectReference>
+    <ProjectReference Include="..\Smartrac.SmartCosmos.Objects.BatchTransmission\Smartrac.SmartCosmos.Objects.BatchTransmission.csproj">
+      <Project>{b0fce0ef-6374-4cfa-b58e-1ebbd75c8942}</Project>
+      <Name>Smartrac.SmartCosmos.Objects.BatchTransmission</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Smartrac.SmartCosmos.Objects.DataContext\Smartrac.SmartCosmos.Objects.DataContext.csproj">
       <Project>{955046d9-aa9a-462c-9057-8046c61ed701}</Project>
       <Name>Smartrac.SmartCosmos.Objects.DataContext</Name>

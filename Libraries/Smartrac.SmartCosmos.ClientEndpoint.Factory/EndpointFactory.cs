@@ -27,6 +27,7 @@ using Smartrac.SmartCosmos.Flows.AccountManagement;
 using Smartrac.SmartCosmos.Flows.BusinessRule;
 using Smartrac.SmartCosmos.Logging;
 using Smartrac.SmartCosmos.Objects.AccountManagement;
+using Smartrac.SmartCosmos.Objects.BatchTransmission;
 using Smartrac.SmartCosmos.Objects.Device;
 using Smartrac.SmartCosmos.Objects.File;
 using Smartrac.SmartCosmos.Objects.GeospatialManagement;
@@ -353,6 +354,21 @@ namespace Smartrac.SmartCosmos.ClientEndpoint.Factory
                 return null;
 
             return new HashTagEndpointBuilder()
+            .setLogger(Logger)
+            .setKeepAlive(KeepAlive)
+            .setServerURL(cred.Url)
+            .setAllowInvalidServerCertificates(AllowInvalidServerCertificates)
+            .setUserAccount(cred.Username, cred.Password)
+            .build();
+        }
+
+        public virtual IBatchTransmissionEndpoint CreateBatchTransmissionEndpoint()
+        {
+            ICredential cred;
+            if (!GetCredentials(SmartCosmosComponent.Objects, out cred))
+                return null;
+
+            return new BatchTransmissionEndpointBuilder()
             .setLogger(Logger)
             .setKeepAlive(KeepAlive)
             .setServerURL(cred.Url)

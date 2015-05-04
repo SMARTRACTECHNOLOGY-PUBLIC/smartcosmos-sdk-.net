@@ -27,6 +27,7 @@ using Smartrac.SmartCosmos.Flows.AccountManagement;
 using Smartrac.SmartCosmos.Flows.BusinessRule;
 using Smartrac.SmartCosmos.Logging;
 using Smartrac.SmartCosmos.Objects.AccountManagement;
+using Smartrac.SmartCosmos.Objects.BatchTransmission;
 using Smartrac.SmartCosmos.Objects.Device;
 using Smartrac.SmartCosmos.Objects.File;
 using Smartrac.SmartCosmos.Objects.GeospatialManagement;
@@ -134,6 +135,9 @@ namespace Smartrac.SmartCosmos.ClientEndpoint.Factory
         INotificationEndpoint CreateNotificationEndpoint();
 
         ITransactionEndpoint CreateTransactionEndpoint();
+
+        IBatchTransmissionEndpoint CreateBatchTransmissionEndpoint();
+        
 
         #endregion Objects
 
