@@ -190,6 +190,10 @@
       <Project>{f273de29-fcfb-4a29-8e56-af65107d4d84}</Project>
       <Name>Smartrac.SmartCosmos.Objects.RelationshipManagement</Name>
     </ProjectReference>
+    <ProjectReference Include="..\Smartrac.SmartCosmos.Objects.Timeline\Smartrac.SmartCosmos.Objects.Timeline.csproj">
+      <Project>{77038937-f9ed-4efa-80d9-182a8f7ddbb3}</Project>
+      <Name>Smartrac.SmartCosmos.Objects.Timeline</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Smartrac.SmartCosmos.Objects.Transaction\Smartrac.SmartCosmos.Objects.Transaction.csproj">
       <Project>{5e0d3e88-3905-485f-b4d3-575bee50ed01}</Project>
       <Name>Smartrac.SmartCosmos.Objects.Transaction</Name>

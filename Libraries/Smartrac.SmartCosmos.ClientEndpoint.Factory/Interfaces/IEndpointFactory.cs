@@ -39,6 +39,7 @@ using Smartrac.SmartCosmos.Objects.ObjectInteractionSession;
 using Smartrac.SmartCosmos.Objects.ObjectManagement;
 using Smartrac.SmartCosmos.Objects.Registration;
 using Smartrac.SmartCosmos.Objects.RelationshipManagement;
+using Smartrac.SmartCosmos.Objects.Timeline;
 using Smartrac.SmartCosmos.Objects.Transaction;
 using Smartrac.SmartCosmos.Objects.UserManagement;
 using Smartrac.SmartCosmos.Profiles.DataImport;
@@ -135,6 +136,8 @@ namespace Smartrac.SmartCosmos.ClientEndpoint.Factory
         INotificationEndpoint CreateNotificationEndpoint();
 
         ITransactionEndpoint CreateTransactionEndpoint();
+
+        ITimelineEndpoint CreateTimelineEndpoint();
 
         IBatchTransmissionEndpoint CreateBatchTransmissionEndpoint();
         
