@@ -25,6 +25,6 @@ namespace Smartrac.SmartCosmos.Objects.BatchTransmission
     {
         public string transmissionUrn { get; set; }
         public string protocol { get; set; }
-        public string routingUrn { get; set; }
+        public string endpointUri { get; set; }
     }
 }
