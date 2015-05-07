@@ -39,6 +39,11 @@ namespace Smartrac.SmartCosmos.Profiles.TestCase
             return base.OnBeforeRun() &&
                 (EndpointFactory.CredentialStore != null) &&
                 EndpointFactory.CredentialStore.ValidateCredentials(SmartCosmosComponent.Profiles);
-        }        
+        }
+
+        public SmartCosmosComponent GetComponent()
+        {
+            return SmartCosmosComponent.Profiles;
+        }
     }
 }

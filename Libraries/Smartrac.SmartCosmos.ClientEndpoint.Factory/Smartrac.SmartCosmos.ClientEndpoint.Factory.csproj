@@ -182,6 +182,10 @@
       <Project>{e1c1b7b7-5437-4d43-a598-5c4b00fae58d}</Project>
       <Name>Smartrac.SmartCosmos.Objects.ObjectManagement</Name>
     </ProjectReference>
+    <ProjectReference Include="..\Smartrac.SmartCosmos.Objects.PlatformAvailability\Smartrac.SmartCosmos.Objects.PlatformAvailability.csproj">
+      <Project>{168afb1a-139c-43a1-9e14-1e0dc7f943bf}</Project>
+      <Name>Smartrac.SmartCosmos.Objects.PlatformAvailability</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Smartrac.SmartCosmos.Objects.Registration\Smartrac.SmartCosmos.Objects.Registration.csproj">
       <Project>{c0345647-e3b3-42f2-8136-f8ac8a03cb08}</Project>
       <Name>Smartrac.SmartCosmos.Objects.Registration</Name>

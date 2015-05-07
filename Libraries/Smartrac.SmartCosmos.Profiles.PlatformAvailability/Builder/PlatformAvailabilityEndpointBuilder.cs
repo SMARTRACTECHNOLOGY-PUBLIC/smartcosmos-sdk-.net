@@ -21,9 +21,9 @@ using Smartrac.SmartCosmos.ClientEndpoint.Base;
 
 namespace Smartrac.SmartCosmos.Profiles.PlatformAvailability
 {
-    public class PlatformAvailabilityEndpointBuilder : BaseEndpointBuilder<IPlatformAvailabilityEndpoint, PlatformAvailabilityEndpointBuilder>
+    public class PlatformAvailabilityEndpointBuilderProfiles : BaseEndpointBuilder<IPlatformAvailabilityEndpoint, PlatformAvailabilityEndpointBuilderProfiles>
     {
-        public PlatformAvailabilityEndpointBuilder() :
+        public PlatformAvailabilityEndpointBuilderProfiles() :
             base(new PlatformAvailabilityEndpoint())
         {
         }

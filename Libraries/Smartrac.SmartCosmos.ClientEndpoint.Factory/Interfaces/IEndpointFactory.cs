@@ -22,6 +22,7 @@ using Smartrac.SmartCosmos.AccountManager.User;
 using Smartrac.SmartCosmos.AccountManager.Role;
  */
 
+using Smartrac.SmartCosmos.ClientEndpoint.Base;
 using Smartrac.SmartCosmos.CredentialStore;
 using Smartrac.SmartCosmos.Flows.AccountManagement;
 using Smartrac.SmartCosmos.Flows.BusinessRule;
@@ -75,13 +76,13 @@ namespace Smartrac.SmartCosmos.ClientEndpoint.Factory
         /// </summary>
         IMessageLogger Logger { get; set; }
 
-        #region Profiles
-
         /// <summary>
         /// Create platform availability endpoint
         /// </summary>
         /// <returns>IPlatformAvailabilityEndpoint</returns>
-        IPlatformAvailabilityEndpoint CreatePlatformAvailabilityEndpoint();
+        IPlatformAvailabilityEndpoint CreatePlatformAvailabilityEndpoint(SmartCosmosComponent component);
+
+        #region Profiles
 
         /// <summary>
         /// Create data import endpoint

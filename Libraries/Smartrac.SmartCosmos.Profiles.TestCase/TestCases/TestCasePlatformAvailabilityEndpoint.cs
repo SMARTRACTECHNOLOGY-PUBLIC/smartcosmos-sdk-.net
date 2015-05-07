@@ -31,7 +31,7 @@ namespace Smartrac.SmartCosmos.Profiles.TestCase
 
         protected override IPlatformAvailabilityEndpoint CreateEndpoint()
         {
-            return EndpointFactory.CreatePlatformAvailabilityEndpoint();
+            return EndpointFactory.CreatePlatformAvailabilityEndpoint(GetComponent());
         }
     }
 }

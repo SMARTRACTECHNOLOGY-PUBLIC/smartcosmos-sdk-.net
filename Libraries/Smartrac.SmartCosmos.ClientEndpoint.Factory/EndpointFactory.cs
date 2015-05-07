@@ -22,6 +22,7 @@ using Smartrac.SmartCosmos.AccountManager.User;
 using Smartrac.SmartCosmos.AccountManager.Role;
  */
 
+using Smartrac.SmartCosmos.ClientEndpoint.Base;
 using Smartrac.SmartCosmos.CredentialStore;
 using Smartrac.SmartCosmos.Flows.AccountManagement;
 using Smartrac.SmartCosmos.Flows.BusinessRule;
@@ -37,6 +38,7 @@ using Smartrac.SmartCosmos.Objects.Notification;
 using Smartrac.SmartCosmos.Objects.ObjectInteraction;
 using Smartrac.SmartCosmos.Objects.ObjectInteractionSession;
 using Smartrac.SmartCosmos.Objects.ObjectManagement;
+using Smartrac.SmartCosmos.Objects.PlatformAvailability;
 using Smartrac.SmartCosmos.Objects.Registration;
 using Smartrac.SmartCosmos.Objects.RelationshipManagement;
 using Smartrac.SmartCosmos.Objects.Timeline;
@@ -129,6 +131,41 @@ namespace Smartrac.SmartCosmos.ClientEndpoint.Factory
 
         */
 
+        #region COMMOM
+
+        public virtual IPlatformAvailabilityEndpoint CreatePlatformAvailabilityEndpoint(SmartCosmosComponent component)
+        {
+            ICredential cred;
+            if (!GetCredentials(component, out cred))
+                return null;
+
+            switch (component)
+            {
+                case SmartCosmosComponent.Profiles:
+                    return new PlatformAvailabilityEndpointBuilderProfiles()
+                        .setLogger(Logger)
+                        .setKeepAlive(KeepAlive)
+                        .setServerURL(cred.Url)
+                        .setAllowInvalidServerCertificates(AllowInvalidServerCertificates)
+                        .build();
+                case SmartCosmosComponent.Objects:
+                    return new PlatformAvailabilityEndpointBuilderObjects()
+                        .setLogger(Logger)
+                        .setKeepAlive(KeepAlive)
+                        .setServerURL(cred.Url)
+                        .setAllowInvalidServerCertificates(AllowInvalidServerCertificates)
+                        .build();
+                case SmartCosmosComponent.Flows:
+                    return null;
+                case SmartCosmosComponent.AccountManager:
+                    return null;
+                default:
+                    return null;
+            }
+        }
+
+        #endregion
+
         #region FLOWS
 
         public virtual IFlowsAccountManagementEndpoint CreateFlowsAccountManagementEndpoint()
@@ -164,20 +201,6 @@ namespace Smartrac.SmartCosmos.ClientEndpoint.Factory
         #endregion FLOWS
 
         #region PROFILES
-
-        public virtual IPlatformAvailabilityEndpoint CreatePlatformAvailabilityEndpoint()
-        {
-            ICredential cred;
-            if (!GetCredentials(SmartCosmosComponent.Profiles, out cred))
-                return null;
-
-            return new PlatformAvailabilityEndpointBuilder()
-                .setLogger(Logger)
-                .setKeepAlive(KeepAlive)
-                .setServerURL(cred.Url)
-                .setAllowInvalidServerCertificates(AllowInvalidServerCertificates)
-                .build();
-        }
 
         public virtual IDataImportEndpoint CreateDataImportEndpoint()
         {
@@ -468,7 +491,7 @@ namespace Smartrac.SmartCosmos.ClientEndpoint.Factory
             .build();
         }
 
-        
+
 
         #endregion OBJECTS
     }

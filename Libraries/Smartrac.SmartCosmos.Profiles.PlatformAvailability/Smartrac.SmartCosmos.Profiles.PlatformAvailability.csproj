@@ -116,7 +116,6 @@
   <ItemGroup>
     <Compile Include="Builder\PlatformAvailabilityEndpointBuilder.cs" />
     <Compile Include="Endpoint.cs" />
-    <Compile Include="Interfaces\IPlatformAvailabilityEndpoint.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

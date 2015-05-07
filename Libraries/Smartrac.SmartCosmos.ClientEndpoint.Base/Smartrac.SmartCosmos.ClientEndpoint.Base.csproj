@@ -128,6 +128,7 @@
     <Compile Include="Interfaces\IBaseDataContext.cs" />
     <Compile Include="Interfaces\IBaseEndpoint.cs" />
     <Compile Include="Interfaces\IHTTPStatusCode.cs" />
+    <Compile Include="Interfaces\IPlatformAvailabilityEndpoint.cs" />
     <Compile Include="Interfaces\IResponseMessage.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
