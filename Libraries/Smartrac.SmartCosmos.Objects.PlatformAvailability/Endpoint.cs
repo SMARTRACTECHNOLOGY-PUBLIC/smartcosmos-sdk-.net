@@ -30,6 +30,12 @@ namespace Smartrac.SmartCosmos.Objects.PlatformAvailability
     /// </summary>
     internal class PlatformAvailabilityEndpoint : BaseObjectsEndpoint, IPlatformAvailabilityEndpoint
     {
+        public PlatformAvailabilityEndpoint()
+            : base()
+        {
+            ServiceSubUrl = ""; // no "rest" level
+        }
+
         /// <summary>
         /// Resource for checking the Platform availability
         /// </summary>

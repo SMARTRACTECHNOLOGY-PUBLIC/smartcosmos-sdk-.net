@@ -48,7 +48,7 @@ namespace Smartrac.SmartCosmos.Objects.BatchTransmission
             }
 
             var request = CreateWebRequest("batch", WebRequestOption.Authorization);
-            ExecuteWebRequestJSON<FileTransmissionRequestRequest, FileTransmissionRequestResponse>(request, requestData, out responseData);
+            ExecuteWebRequestJSON<FileTransmissionRequestRequest, FileTransmissionRequestResponse>(request, requestData, out responseData, WebRequestMethods.Http.Put);
             if (responseData != null)
             {
                 switch (responseData.HTTPStatusCode)
