@@ -53,7 +53,8 @@ namespace Smartrac.SmartCosmos.Objects.BatchTransmission
             {
                 switch (responseData.HTTPStatusCode)
                 {
-                    case HttpStatusCode.OK: return BatchTransmissionActionResult.Successful;
+                    case HttpStatusCode.Created:
+					case HttpStatusCode.OK: return BatchTransmissionActionResult.Successful;
                     default: return BatchTransmissionActionResult.Failed;
                 }
             }
