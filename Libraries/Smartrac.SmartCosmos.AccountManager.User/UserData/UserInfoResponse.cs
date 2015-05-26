@@ -19,7 +19,6 @@
 
 using Newtonsoft.Json;
 using Smartrac.SmartCosmos.ClientEndpoint.Base;
-using Smartrac.SmartCosmos.AccountManager.Base;
 using System.Collections.Generic;
 
 namespace Smartrac.SmartCosmos.AccountManager.User

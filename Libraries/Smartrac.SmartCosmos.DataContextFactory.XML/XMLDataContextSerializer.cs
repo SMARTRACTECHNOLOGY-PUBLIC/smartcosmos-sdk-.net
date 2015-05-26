@@ -18,7 +18,6 @@
 #endregion License
 
 using Smartrac.SmartCosmos.ClientEndpoint.Base;
-using Smartrac.SmartCosmos.Objects.DataContext;
 using System.IO;
 using System.Text;
 using System.Xml.Linq;
@@ -41,7 +40,7 @@ namespace Smartrac.SmartCosmos.DataContextFactory.XML
             using (var memoryStream = new MemoryStream(Encoding.UTF8.GetBytes(elem.ToString())))
             {
                 var xmlSerializer = new XmlSerializer(typeof(T));
-                
+
                 T obj = (T)xmlSerializer.Deserialize(memoryStream);
                 if (obj != null)
                     obj.Prepare();

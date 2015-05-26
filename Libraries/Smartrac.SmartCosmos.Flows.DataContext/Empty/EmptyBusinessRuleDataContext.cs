@@ -18,9 +18,7 @@
 #endregion License
 
 using Smartrac.SmartCosmos.ClientEndpoint.Base;
-using Smartrac.SmartCosmos.Flows.Base;
 using Smartrac.SmartCosmos.Flows.BusinessRule;
-using Smartrac.SmartCosmos.Flows.DataContext;
 
 namespace Smartrac.SmartCosmos.Flows.DataContext
 {

@@ -18,7 +18,6 @@
 #endregion License
 
 using Smartrac.SmartCosmos.ClientEndpoint.Base;
-using System;
 
 namespace Smartrac.SmartCosmos.AccountManager.Role
 {
@@ -27,7 +26,6 @@ namespace Smartrac.SmartCosmos.AccountManager.Role
         public RoleEndpointBuilder() :
             base(new RoleEndpoint())
         {
-
         }
     }
 }

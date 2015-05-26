@@ -18,15 +18,13 @@
 #endregion License
 
 using Smartrac.SmartCosmos.ClientEndpoint.Base;
-using Smartrac.SmartCosmos.AccountManager.Base;
 using System.Collections.Generic;
 using System.Net;
 
 namespace Smartrac.SmartCosmos.AccountManager.Role
 {
-    
-    public class OneRole{
-
+    public class OneRole
+    {
         public string name { get; set; }
 
         public string urn
@@ -41,10 +39,9 @@ namespace Smartrac.SmartCosmos.AccountManager.Role
             }
         }
 
-        Urn referenceUrnObj;
-
+        private Urn referenceUrnObj;
     }
-    
+
     public class RolesResponse : List<OneRole>, IHttpStatusCode
     {
         public HttpStatusCode HTTPStatusCode { get; set; }

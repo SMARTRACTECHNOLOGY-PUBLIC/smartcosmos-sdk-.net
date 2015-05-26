@@ -19,7 +19,6 @@
 
 using Smartrac.SmartCosmos.Profiles.TagVerification;
 using Smartrac.SmartCosmos.TestCase.Base;
-using System.Linq;
 
 namespace Smartrac.SmartCosmos.Profiles.TestCase.Sample
 {

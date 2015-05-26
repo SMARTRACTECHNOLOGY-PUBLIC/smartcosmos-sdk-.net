@@ -19,6 +19,7 @@
 
 using System;
 using System.Xml.Serialization;
+
 namespace Smartrac.SmartCosmos.Objects.DataContext.XML
 {
     [Serializable]

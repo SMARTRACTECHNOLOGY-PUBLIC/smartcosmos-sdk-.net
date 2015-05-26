@@ -18,7 +18,6 @@
 #endregion License
 
 using Smartrac.SmartCosmos.ClientEndpoint.Base;
-using Smartrac.SmartCosmos.Objects.Device;
 using Smartrac.SmartCosmos.Objects.Notification;
 using Smartrac.SmartCosmos.TestCase.Base;
 
@@ -26,8 +25,7 @@ namespace Smartrac.SmartCosmos.Objects.TestCase.Sample
 {
     [TestCaseAttribute(555)]
     public class TestCaseNotificationEndpoint : BaseTestCaseNotificationEndpoint
-    {        
-        
+    {
         protected override bool ExecuteTests()
         {
             Urn notificationUrn;
@@ -73,7 +71,7 @@ namespace Smartrac.SmartCosmos.Objects.TestCase.Sample
         protected virtual bool TestWithdrawNotification(Urn notificationUrn)
         {
             OnBeforeTest("Objects", "NotificationEndpoint", "WithdrawNotification");
-            // call endpoint            
+            // call endpoint
             NotificationResponse responsedData;
             NotificationActionResult actionResult = endpoint.Delete(notificationUrn, out responsedData);
             OnAfterTest(actionResult);
@@ -88,6 +86,6 @@ namespace Smartrac.SmartCosmos.Objects.TestCase.Sample
             NotificationActionResult actionResult = endpoint.Lookup(notificationUrn, out responsedData);
             OnAfterTest(actionResult);
             return (actionResult == NotificationActionResult.Successful);
-        }        
+        }
     }
 }

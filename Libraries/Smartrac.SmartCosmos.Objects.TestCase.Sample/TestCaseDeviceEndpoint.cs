@@ -26,12 +26,10 @@ namespace Smartrac.SmartCosmos.Objects.TestCase.Sample
     [TestCaseAttribute(2123)]
     public class TestCaseDeviceEndpoint : BaseTestCaseDeviceEndpoint
     {
-        
-        
         protected override bool ExecuteTests()
         {
             Urn deviceUrn;
-            return TestCreateDevice(out deviceUrn) && 
+            return TestCreateDevice(out deviceUrn) &&
                 TestUpdateDevice() &&
                 TestLookupByUrlDevice(deviceUrn) &&
                 TestLookupByIdentificationDevice() &&

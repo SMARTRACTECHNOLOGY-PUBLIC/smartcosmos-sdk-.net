@@ -18,7 +18,6 @@
 #endregion License
 
 using Smartrac.SmartCosmos.ClientEndpoint.Base;
-using Smartrac.SmartCosmos.Objects.Base;
 using Smartrac.SmartCosmos.Objects.RelationshipManagement;
 using Smartrac.SmartCosmos.TestCase.Base;
 

@@ -21,7 +21,7 @@ using Smartrac.SmartCosmos.ClientEndpoint.Base;
 using System.Collections.Generic;
 
 namespace Smartrac.SmartCosmos.AccountManager.User
-{    
+{
     public enum UserActionResult
     {
         /// <summary>
@@ -94,5 +94,4 @@ namespace Smartrac.SmartCosmos.AccountManager.User
         /// <returns>UserActionResult</returns>
         UserActionResult Dissociate(Email userEmail, Urn roleUrn, out DefaultResponse responseData);
     }
-    
 }

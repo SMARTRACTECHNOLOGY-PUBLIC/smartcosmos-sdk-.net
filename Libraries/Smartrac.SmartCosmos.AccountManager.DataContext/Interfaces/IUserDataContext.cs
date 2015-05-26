@@ -18,8 +18,6 @@
 #endregion License
 
 using Smartrac.SmartCosmos.ClientEndpoint.Base;
-using System;
-
 
 namespace Smartrac.SmartCosmos.AccountManager.DataContext
 {
@@ -32,7 +30,7 @@ namespace Smartrac.SmartCosmos.AccountManager.DataContext
         string GetSurname();
 
         string GetGivenName();
-            
+
         bool GetEnabled();
     }
 }

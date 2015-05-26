@@ -41,7 +41,7 @@ namespace Smartrac.SmartCosmos.DataContextFactory.XML
         protected IHashTagDataContext HashTagDataContext = null;
         protected IGeospatialManagementDataContext GeospatialManagementDataContext = null;
         protected IAccountManagementDataContext AccountManagementDataContext = null;
-        
+
         public XMLDataContextFactory(string XMLfile)
             : base()
         {

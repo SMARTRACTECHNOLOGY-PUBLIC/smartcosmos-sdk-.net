@@ -18,8 +18,6 @@
 #endregion License
 
 using Smartrac.SmartCosmos.ClientEndpoint.Base;
-using System;
-
 
 namespace Smartrac.SmartCosmos.AccountManager.DataContext.Sample
 {
@@ -30,7 +28,7 @@ namespace Smartrac.SmartCosmos.AccountManager.DataContext.Sample
             return "testSDK";
         }
 
-       public override bool GetEnabled()
+        public override bool GetEnabled()
         {
             return true;
         }

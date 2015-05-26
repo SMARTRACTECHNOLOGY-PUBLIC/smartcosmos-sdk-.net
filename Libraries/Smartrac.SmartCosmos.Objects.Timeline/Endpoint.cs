@@ -181,7 +181,7 @@ namespace Smartrac.SmartCosmos.Objects.Timeline
             responseData = null;
             try
             {
-                if (! String.IsNullOrEmpty(nameLike))
+                if (!String.IsNullOrEmpty(nameLike))
                 {
                     if (null != Logger)
                         Logger.AddLog("nameLike is empty", LogType.Error);

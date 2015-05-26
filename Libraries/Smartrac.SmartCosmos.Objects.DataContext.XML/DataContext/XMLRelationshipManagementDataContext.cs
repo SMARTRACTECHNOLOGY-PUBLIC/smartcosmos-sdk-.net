@@ -19,12 +19,12 @@
 
 using System;
 using System.Xml.Serialization;
+
 namespace Smartrac.SmartCosmos.Objects.DataContext.XML
 {
     [Serializable]
     [XmlRoot("RelationshipManagementDataContext")]
     public class XMLRelationshipManagementDataContext : EmptyRelationshipManagementDataContext
     {
-
-    } 
+    }
 }

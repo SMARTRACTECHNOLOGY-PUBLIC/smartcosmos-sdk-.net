@@ -21,7 +21,6 @@ using Smartrac.SmartCosmos.ClientEndpoint.Factory;
 using Smartrac.SmartCosmos.Flows.AccountManagement;
 using Smartrac.SmartCosmos.Flows.DataContext;
 
-
 namespace Smartrac.SmartCosmos.Flows.TestCase
 {
     public class BaseTestCaseFlowsAccountManagementEndpoint : BaseFlowsTestCase<IFlowsAccountManagementDataContext, IFlowsAccountManagementEndpoint>

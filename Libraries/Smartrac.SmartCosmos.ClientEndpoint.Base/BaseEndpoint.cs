@@ -185,7 +185,7 @@ namespace Smartrac.SmartCosmos.ClientEndpoint.Base
         protected WebRequest CreateWebRequest(Uri url, WebRequestOption options)
         {
             string urlString = url.OriginalString;
-            if (! urlString.StartsWith("/") && (urlString.Length != 0))
+            if (!urlString.StartsWith("/") && (urlString.Length != 0))
                 urlString = "/" + urlString;
             var request = System.Net.WebRequest.Create(ServerURL + ServiceSubUrl + urlString) as System.Net.HttpWebRequest;
             request.KeepAlive = KeepAlive;

@@ -279,7 +279,9 @@ namespace Smartrac.SmartCosmos.Objects.Transaction
     {
         [JsonConverter(typeof(StringEnumConverter))]
         public EntityReferenceType entityReferenceType { get; set; }
+
         public string referenceUrn { get; set; }
+
         [JsonProperty("dataType")]
         public string dataTypeString
         {
@@ -296,10 +298,15 @@ namespace Smartrac.SmartCosmos.Objects.Transaction
 
         [JsonIgnore]
         public MetadataDataType dataType { get; set; }
+
         public string key { get; set; }
+
         public bool alreadyEncoded { get; set; }
 
-        public bool ShouldSerializealreadyEncoded() { return alreadyEncoded; } // default = false
+        public bool ShouldSerializealreadyEncoded()
+        {
+            return alreadyEncoded;
+        } // default = false
 
         public ObjectsMetadataBase()
         {
@@ -385,6 +392,7 @@ namespace Smartrac.SmartCosmos.Objects.Transaction
         {
             dataType = MetadataDataType.Date;
         }
+
         /*
         [JsonIgnore]
         public DateTime valueJavaDate
@@ -443,25 +451,56 @@ namespace Smartrac.SmartCosmos.Objects.Transaction
         }
     }
 
-
-
     public class TransactionItem
     {
         public ObjectsAccount account { get; set; }
+
         public List<ObjectsDevice> devices { get; set; }
+
         public List<ObjectsObject> objects { get; set; }
+
         public List<ObjectsObjectAddress> objectAddresses { get; set; }
+
         public List<ObjectsRelationship> relationships { get; set; }
+
         public List<ObjectsFile> files { get; set; }
+
         public List<ObjectsMetadataBase> metadata { get; set; }
 
-        public bool ShouldSerializeaccount() { return ((account != null) && (account.name != "")); }
-        public bool ShouldSerializedevices() { return ((devices != null) && (devices.Count > 0)); }
-        public bool ShouldSerializeobjects() { return ((objects != null) && (objects.Count > 0)); }
-        public bool ShouldSerializeobjectaddresses() { return ((objectAddresses != null) && (objectAddresses.Count > 0)); }
-        public bool ShouldSerializerelationships() { return ((relationships != null) && (relationships.Count > 0)); }
-        public bool ShouldSerializefiles() { return ((files != null) && (files.Count > 0)); }
-        public bool ShouldSerializemetadata() { return ((metadata != null) && (metadata.Count > 0)); }
+        public bool ShouldSerializeaccount()
+        {
+            return ((account != null) && (account.name != ""));
+        }
+
+        public bool ShouldSerializedevices()
+        {
+            return ((devices != null) && (devices.Count > 0));
+        }
+
+        public bool ShouldSerializeobjects()
+        {
+            return ((objects != null) && (objects.Count > 0));
+        }
+
+        public bool ShouldSerializeobjectaddresses()
+        {
+            return ((objectAddresses != null) && (objectAddresses.Count > 0));
+        }
+
+        public bool ShouldSerializerelationships()
+        {
+            return ((relationships != null) && (relationships.Count > 0));
+        }
+
+        public bool ShouldSerializefiles()
+        {
+            return ((files != null) && (files.Count > 0));
+        }
+
+        public bool ShouldSerializemetadata()
+        {
+            return ((metadata != null) && (metadata.Count > 0));
+        }
 
         public TransactionItem()
             : base()

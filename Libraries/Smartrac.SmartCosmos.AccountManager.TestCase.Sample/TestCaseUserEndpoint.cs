@@ -59,7 +59,7 @@ namespace Smartrac.SmartCosmos.AccountManager.TestCase.Sample
             OnBeforeTest("AccountManager", "UserEndpoint", "Get user information");
             // call endpoint
             DefaultResponse responseDetailsData;
-            
+
             UserActionResult actionResult = endpoint.Lookup(dataContext.GetEmail(), out responseDetailsData);
             // log response
             OnAfterTest(actionResult);
@@ -70,7 +70,7 @@ namespace Smartrac.SmartCosmos.AccountManager.TestCase.Sample
         {
             OnBeforeTest("AccountManager", "UserEndpoint", "Reset user password");
             // call endpoint
-            DefaultResponse responseDetailsData;            
+            DefaultResponse responseDetailsData;
             UserActionResult actionResult = endpoint.ResetLostPassword(dataContext.GetEmail(), out responseDetailsData);
             // log response
             OnAfterTest(actionResult);
@@ -110,12 +110,11 @@ namespace Smartrac.SmartCosmos.AccountManager.TestCase.Sample
         {
             OnBeforeTest("AccountManager", "UserEndpoint", "Remove role from user");
             // call endpoint
-            DefaultResponse responseDetailsData;            
+            DefaultResponse responseDetailsData;
             UserActionResult actionResult = endpoint.Dissociate(dataContext.GetEmail(), dataContext.GetRoleUrn(), out responseDetailsData);
             // log response
             OnAfterTest(actionResult);
             return (actionResult == UserActionResult.Successful);
         }
-        
     }
 }

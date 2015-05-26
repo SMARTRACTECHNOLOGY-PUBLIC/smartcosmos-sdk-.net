@@ -18,7 +18,6 @@
 #endregion License
 
 using Smartrac.SmartCosmos.ClientEndpoint.Base;
-using Smartrac.SmartCosmos.Profiles.PlatformAvailability;
 
 namespace Smartrac.SmartCosmos.Profiles.TestCase
 {

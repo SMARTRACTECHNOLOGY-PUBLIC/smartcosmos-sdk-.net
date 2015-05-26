@@ -18,14 +18,11 @@
 #endregion License
 
 using Smartrac.SmartCosmos.ClientEndpoint.Base;
-using Smartrac.SmartCosmos.AccountManager.Base;
-using System;
 
 namespace Smartrac.SmartCosmos.AccountManager.DataContext.Sample
 {
     public static class MyDataContext
     {
-       
         public static string GetName()
         {
             return "testSDK";

@@ -17,11 +17,8 @@
 
 #endregion License
 
-using Smartrac.SmartCosmos.TestCase.Base;
-using Smartrac.SmartCosmos.Flows.TestCase;
 using Smartrac.SmartCosmos.Flows.BusinessRule;
-using Smartrac.SmartCosmos.ClientEndpoint.Base;
-
+using Smartrac.SmartCosmos.TestCase.Base;
 
 namespace Smartrac.SmartCosmos.Flows.TestCase.Sample
 {
@@ -49,7 +46,7 @@ namespace Smartrac.SmartCosmos.Flows.TestCase.Sample
             OnAfterTest(actionResult);
             return (actionResult == BusinessRuleActionResult.Successful);
         }
-        
+
         protected virtual bool TestStatusBusinessRule(StatusBusinessRule statusBusinessRule, BusinessRuleResponse requestData)
         {
             OnBeforeTest("Flows", "BusinessRuleEndpoint", "StatusBusinessRule");

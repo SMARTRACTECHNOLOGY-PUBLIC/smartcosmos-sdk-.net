@@ -21,7 +21,6 @@ using Smartrac.SmartCosmos.CredentialStore;
 using Smartrac.SmartCosmos.Logging;
 using Smartrac.SmartCosmos.Objects.Registration;
 using Smartrac.SmartCosmos.TestCase.Base;
-using System.Net;
 
 namespace Smartrac.SmartCosmos.Objects.TestCase.Sample
 {
@@ -95,7 +94,7 @@ namespace Smartrac.SmartCosmos.Objects.TestCase.Sample
             if (responseRegConfirmData != null)
             {
                 ICredential cred;
-                if ((EndpointFactory.CredentialStore !=  null) &&
+                if ((EndpointFactory.CredentialStore != null) &&
                    (EndpointFactory.CredentialStore.GetCredentials(SmartCosmosComponent.Profiles, out cred)))
                 {
                     cred.Username = dataContext.GeteMailAddress();

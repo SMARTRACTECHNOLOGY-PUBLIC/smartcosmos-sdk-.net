@@ -17,15 +17,11 @@
 
 #endregion License
 
-using Smartrac.SmartCosmos.ClientEndpoint.Base;
-using System;
-
 namespace Smartrac.SmartCosmos.AccountManager.DataContext.Sample
 {
     public class SampleRoleDataContext : BaseRoleDataContext
     {
-        
-       public override string GetName()
+        public override string GetName()
         {
             return "TestSDK";
         }

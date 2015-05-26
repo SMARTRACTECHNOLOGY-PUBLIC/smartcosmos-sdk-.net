@@ -44,7 +44,6 @@ using Smartrac.SmartCosmos.Objects.Timeline;
 using Smartrac.SmartCosmos.Objects.Transaction;
 using Smartrac.SmartCosmos.Objects.UserManagement;
 using Smartrac.SmartCosmos.Profiles.DataImport;
-using Smartrac.SmartCosmos.Profiles.PlatformAvailability;
 using Smartrac.SmartCosmos.Profiles.TagMetadata;
 using Smartrac.SmartCosmos.Profiles.TagVerification;
 
@@ -141,7 +140,6 @@ namespace Smartrac.SmartCosmos.ClientEndpoint.Factory
         ITimelineEndpoint CreateTimelineEndpoint();
 
         IBatchTransmissionEndpoint CreateBatchTransmissionEndpoint();
-        
 
         #endregion Objects
 

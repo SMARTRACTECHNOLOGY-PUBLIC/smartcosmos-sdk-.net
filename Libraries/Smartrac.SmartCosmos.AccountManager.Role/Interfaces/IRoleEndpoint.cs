@@ -18,8 +18,6 @@
 #endregion License
 
 using Smartrac.SmartCosmos.ClientEndpoint.Base;
-using Smartrac.SmartCosmos.AccountManager.Base;
-using System.Collections.Generic;
 
 namespace Smartrac.SmartCosmos.AccountManager.Role
 {
@@ -65,6 +63,5 @@ namespace Smartrac.SmartCosmos.AccountManager.Role
         /// <param name="responseData">result</param>
         /// <returns>RoleActionResult</returns>
         RoleActionResult Delete(Urn roleUrn, out DefaultResponse responseData);
-            
     }
 }

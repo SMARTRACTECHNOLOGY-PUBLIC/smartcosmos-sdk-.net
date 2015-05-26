@@ -18,17 +18,13 @@
 #endregion License
 
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Smartrac.SmartCosmos.AccountManager.Role
 {
     public class RoleNameRequest
     {
         private string name_;
-        
+
         public string Name
         {
             get

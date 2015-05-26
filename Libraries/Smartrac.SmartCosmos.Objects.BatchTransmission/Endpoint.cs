@@ -21,7 +21,6 @@ using Smartrac.SmartCosmos.ClientEndpoint.Base;
 using Smartrac.SmartCosmos.Logging;
 using Smartrac.SmartCosmos.Objects.Base;
 using System;
-using System.IO;
 using System.Net;
 
 namespace Smartrac.SmartCosmos.Objects.BatchTransmission
@@ -54,7 +53,7 @@ namespace Smartrac.SmartCosmos.Objects.BatchTransmission
                 switch (responseData.HTTPStatusCode)
                 {
                     case HttpStatusCode.Created:
-					case HttpStatusCode.OK: return BatchTransmissionActionResult.Successful;
+                    case HttpStatusCode.OK: return BatchTransmissionActionResult.Successful;
                     default: return BatchTransmissionActionResult.Failed;
                 }
             }
@@ -83,8 +82,7 @@ namespace Smartrac.SmartCosmos.Objects.BatchTransmission
             {
                 switch (responseData.HTTPStatusCode)
                 {
-                    case HttpStatusCode.Created:
-                    case HttpStatusCode.OK: return BatchTransmissionActionResult.Successful;
+                    case HttpStatusCode.NoContent: return BatchTransmissionActionResult.Successful;
                     default: return BatchTransmissionActionResult.Failed;
                 }
             }

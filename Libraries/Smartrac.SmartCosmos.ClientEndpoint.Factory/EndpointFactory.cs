@@ -148,6 +148,7 @@ namespace Smartrac.SmartCosmos.ClientEndpoint.Factory
                         .setServerURL(cred.Url)
                         .setAllowInvalidServerCertificates(AllowInvalidServerCertificates)
                         .build();
+
                 case SmartCosmosComponent.Objects:
                     return new PlatformAvailabilityEndpointBuilderObjects()
                         .setLogger(Logger)
@@ -155,16 +156,19 @@ namespace Smartrac.SmartCosmos.ClientEndpoint.Factory
                         .setServerURL(cred.Url)
                         .setAllowInvalidServerCertificates(AllowInvalidServerCertificates)
                         .build();
+
                 case SmartCosmosComponent.Flows:
                     return null;
+
                 case SmartCosmosComponent.AccountManager:
                     return null;
+
                 default:
                     return null;
             }
         }
 
-        #endregion
+        #endregion COMMOM
 
         #region FLOWS
 
@@ -490,8 +494,6 @@ namespace Smartrac.SmartCosmos.ClientEndpoint.Factory
             .setUserAccount(cred.Username, cred.Password)
             .build();
         }
-
-
 
         #endregion OBJECTS
     }

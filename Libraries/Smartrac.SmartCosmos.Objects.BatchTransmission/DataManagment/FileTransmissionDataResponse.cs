@@ -26,6 +26,7 @@ namespace Smartrac.SmartCosmos.Objects.BatchTransmission
     public class FileTransmissionDataResponse : DefaultResponse
     {
         public string transmissionUrn { get; set; }
+
         [JsonConverter(typeof(StringEnumConverter))]
         public TransmissionResult transmissionResult { get; set; }
     }

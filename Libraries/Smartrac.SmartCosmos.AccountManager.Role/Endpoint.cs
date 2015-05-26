@@ -17,15 +17,11 @@
 
 #endregion License
 
-using Smartrac.SmartCosmos.Logging;
-using Smartrac.SmartCosmos.ClientEndpoint.Base;
 using Smartrac.SmartCosmos.AccountManager.Base;
+using Smartrac.SmartCosmos.ClientEndpoint.Base;
+using Smartrac.SmartCosmos.Logging;
 using System;
-using System.Collections.Generic;
-using System.Globalization;
 using System.Net;
-using System.Text;
-
 
 namespace Smartrac.SmartCosmos.AccountManager.Role
 {
@@ -71,7 +67,7 @@ namespace Smartrac.SmartCosmos.AccountManager.Role
         public RoleActionResult Lookup(out RolesResponse responseData)
         {
             responseData = null;
-            
+
             Uri url = new Uri("/roles", UriKind.Relative);
 
             var request = CreateWebRequest(url, WebRequestOption.Authorization);
@@ -114,7 +110,7 @@ namespace Smartrac.SmartCosmos.AccountManager.Role
             {
                 try
                 {
-                    if ((response.StatusCode == HttpStatusCode.NoContent)) 
+                    if ((response.StatusCode == HttpStatusCode.NoContent))
                     {
                         return RoleActionResult.Successful;
                     }

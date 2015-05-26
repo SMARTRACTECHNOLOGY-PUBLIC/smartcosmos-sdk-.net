@@ -24,7 +24,9 @@ namespace Smartrac.SmartCosmos.Objects.BatchTransmission
     public class FileTransmissionRequestResponse : DefaultResponse
     {
         public string transmissionUrn { get; set; }
+
         public string protocol { get; set; }
+
         public string endpointUri { get; set; }
     }
 }

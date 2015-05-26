@@ -17,10 +17,10 @@
 
 #endregion License
 
+using Smartrac.SmartCosmos.AccountManager.DataContext;
+using Smartrac.SmartCosmos.Flows.DataContext;
 using Smartrac.SmartCosmos.Objects.DataContext;
 using Smartrac.SmartCosmos.Profiles.DataContext;
-using Smartrac.SmartCosmos.Flows.DataContext;
-using Smartrac.SmartCosmos.AccountManager.DataContext;
 
 namespace Smartrac.SmartCosmos.DataContextFactory
 {

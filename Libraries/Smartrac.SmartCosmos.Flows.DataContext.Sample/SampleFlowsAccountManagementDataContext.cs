@@ -17,8 +17,6 @@
 
 #endregion License
 
-
-
 namespace Smartrac.SmartCosmos.Flows.DataContext.Sample
 {
     public class SampleFlowsAccountManagementDataContext : EmptyFlowsAccountManagementDataContext

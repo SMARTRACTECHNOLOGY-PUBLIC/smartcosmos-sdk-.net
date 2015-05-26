@@ -19,7 +19,6 @@
 
 using Smartrac.SmartCosmos.AccountManager.DataContext;
 using Smartrac.SmartCosmos.AccountManager.User;
-using System;
 
 namespace Smartrac.SmartCosmos.AccountManager.TestCase
 {

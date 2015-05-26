@@ -22,19 +22,16 @@ using Smartrac.SmartCosmos.Profiles.TagMetadata;
 using Smartrac.SmartCosmos.TestCase.Base;
 using System;
 using System.Diagnostics;
-using System.IO;
-using System.Xml.Linq;
 
 namespace Smartrac.SmartCosmos.Profiles.TestCase.Sample
 {
     [TestCaseAttribute(20)]
     public class TestCaseTagMetadataEndpoint : BaseTestCaseTagMetadataEndpoint
     {
-
         protected override bool ExecuteTests()
         {
-            return TestGetTagMessage() && 
-                TestGetTagMetadata(new TagMetaDataRequest(dataContext)) && 
+            return TestGetTagMessage() &&
+                TestGetTagMetadata(new TagMetaDataRequest(dataContext)) &&
                 TestGetTagMetadata(new TagMetaDataRequest(dataContext, true));
         }
 
@@ -43,14 +40,14 @@ namespace Smartrac.SmartCosmos.Profiles.TestCase.Sample
             OnBeforeTest("Profiles", "TagMetadataEndpoint", "GetTagMessage");
             // create request
             TagMessageRequest requestData = new TagMessageRequest();
-            requestData .tagCode = dataContext.GetTagMessage();
+            requestData.tagCode = dataContext.GetTagMessage();
             requestData.tagCode = 0;
             TagMessageResponse responseData;
             TagMetaDataActionResult actionResult = endpoint.GetTagMessage(requestData, out responseData);
             OnAfterTest(actionResult);
             return (actionResult == TagMetaDataActionResult.Successful);
         }
-        
+
         protected virtual bool TestGetTagMetadata(TagMetaDataRequest requestTagMetaData)
         {
             TagMetaDataActionResult actionResult = TagMetaDataActionResult.Failed;

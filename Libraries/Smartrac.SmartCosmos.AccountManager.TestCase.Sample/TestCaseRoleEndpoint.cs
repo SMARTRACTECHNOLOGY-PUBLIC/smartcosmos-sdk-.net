@@ -18,10 +18,8 @@
 #endregion License
 
 using Smartrac.SmartCosmos.AccountManager.Role;
-using Smartrac.SmartCosmos.AccountManager.User;
 using Smartrac.SmartCosmos.ClientEndpoint.Base;
 using Smartrac.SmartCosmos.TestCase.Base;
-using System.Collections.Generic;
 
 namespace Smartrac.SmartCosmos.AccountManager.TestCase.Sample
 {
@@ -33,7 +31,7 @@ namespace Smartrac.SmartCosmos.AccountManager.TestCase.Sample
             Urn roleUrn;
             return RunTestCase_CreateRole(out roleUrn) &&
                 RunTestCase_LookupRoles() &&
-                RunTestCase_DeleteRole(roleUrn) ;
+                RunTestCase_DeleteRole(roleUrn);
         }
 
         protected virtual bool RunTestCase_CreateRole(out Urn roleUrn)
@@ -75,7 +73,6 @@ namespace Smartrac.SmartCosmos.AccountManager.TestCase.Sample
             // log response
             OnAfterTest(actionResult);
             return (actionResult == RoleActionResult.Successful);
-        }        
-        
+        }
     }
 }

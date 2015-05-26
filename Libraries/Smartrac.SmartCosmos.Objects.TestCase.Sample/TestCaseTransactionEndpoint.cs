@@ -17,11 +17,7 @@
 
 #endregion License
 
-using Smartrac.SmartCosmos.CredentialStore;
-using Smartrac.SmartCosmos.Logging;
-using Smartrac.SmartCosmos.Objects.Registration;
 using Smartrac.SmartCosmos.TestCase.Base;
-using System.Net;
 
 namespace Smartrac.SmartCosmos.Objects.TestCase.Sample
 {

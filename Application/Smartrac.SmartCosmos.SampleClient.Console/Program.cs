@@ -17,16 +17,14 @@
 
 #endregion License
 
+using Smartrac.SmartCosmos.ClientEndpoint.Factory;
+using Smartrac.SmartCosmos.DataContextFactory;
+using Smartrac.SmartCosmos.DataContextFactory.Sample;
 using Smartrac.SmartCosmos.Logging;
 using Smartrac.SmartCosmos.Logging.Console;
-using Smartrac.SmartCosmos.ClientEndpoint.Factory;
-using Smartrac.SmartCosmos.DataContextFactory.Sample;
-using Smartrac.SmartCosmos.DataContextFactory.XML;
 using Smartrac.SmartCosmos.TestCase.Base;
 using Smartrac.SmartCosmos.TestCase.Runner;
-using System.Collections.Generic;
 using System.Configuration;
-using Smartrac.SmartCosmos.DataContextFactory;
 using System.IO;
 
 namespace Smartrac.SmartCosmos.SampleClient.Console
@@ -39,17 +37,16 @@ namespace Smartrac.SmartCosmos.SampleClient.Console
             IMessageLogger logger = new ConsoleLoggerService();
 
             // factory for endpoints
-            IEndpointFactory factory = new EndpointFactory(logger, XMLCredentialStore.ReadFromFile( Path.Combine(Path.GetDirectoryName(System.Reflection.Assembly.GetExecutingAssembly().Location), ConfigurationManager.AppSettings["XMLCredentialStore"]) ) );
+            IEndpointFactory factory = new EndpointFactory(logger, XMLCredentialStore.ReadFromFile(Path.Combine(Path.GetDirectoryName(System.Reflection.Assembly.GetExecutingAssembly().Location), ConfigurationManager.AppSettings["XMLCredentialStore"])));
 
             // data context
             IDataContextFactory dataContext = new SampleDataContextFactory(); // data context factory for sample data
             //IDataContextFactory dataContext = new XMLDataContextFactory(ConfigurationManager.AppSettings["XMLDataContextFactory"]); // data context factory for sample data
-            
 
             // initate tester case runner
             ITestCaseRunner testCaseRunner = new TestCaseRunnerBuilder()
                                             .setLogger(logger) // set logger
-                                            .setDataContextFactory(dataContext) 
+                                            .setDataContextFactory(dataContext)
                                             .setEndpointFactory(factory) // set factory for endpoints
                                             .build();
 

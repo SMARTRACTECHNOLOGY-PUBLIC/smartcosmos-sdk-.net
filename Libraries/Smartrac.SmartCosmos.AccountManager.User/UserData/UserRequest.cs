@@ -17,9 +17,8 @@
 
 #endregion License
 
-using Smartrac.SmartCosmos.ClientEndpoint.Base;
-using Smartrac.SmartCosmos.AccountManager.Base;
 using Newtonsoft.Json;
+using Smartrac.SmartCosmos.ClientEndpoint.Base;
 
 namespace Smartrac.SmartCosmos.AccountManager.User
 {
@@ -44,7 +43,8 @@ namespace Smartrac.SmartCosmos.AccountManager.User
 
         public string givenName { get; set; }
 
-        public bool isValid(){
+        public bool isValid()
+        {
             if (EmailAddress.IsValid())
             {
                 return true;

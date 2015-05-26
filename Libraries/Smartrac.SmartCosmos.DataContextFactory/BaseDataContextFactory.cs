@@ -129,6 +129,5 @@ namespace Smartrac.SmartCosmos.DataContextFactory
         {
             return new BaseRoleDataContext();
         }
-        
     }
 }

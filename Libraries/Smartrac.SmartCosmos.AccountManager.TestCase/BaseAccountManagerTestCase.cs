@@ -20,7 +20,6 @@
 using Smartrac.SmartCosmos.ClientEndpoint.Base;
 using Smartrac.SmartCosmos.CredentialStore;
 using Smartrac.SmartCosmos.TestCase.Base;
-using System.Collections.Generic;
 
 namespace Smartrac.SmartCosmos.AccountManager.TestCase
 {
@@ -34,6 +33,6 @@ namespace Smartrac.SmartCosmos.AccountManager.TestCase
             return base.OnBeforeRun() &&
                 (EndpointFactory.CredentialStore != null) &&
                 EndpointFactory.CredentialStore.ValidateCredentials(SmartCosmosComponent.AccountManager);
-        }       
+        }
     }
 }

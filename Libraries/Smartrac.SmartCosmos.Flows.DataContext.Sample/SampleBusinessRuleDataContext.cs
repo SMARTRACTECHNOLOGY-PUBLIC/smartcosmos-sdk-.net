@@ -21,7 +21,6 @@ using Smartrac.SmartCosmos.ClientEndpoint.Base;
 using Smartrac.SmartCosmos.Flows.BusinessRule;
 using System;
 
-
 namespace Smartrac.SmartCosmos.Flows.DataContext.Sample
 {
     public class SampleBusinessRuleDataContext : EmptyBusinessRuleDataContext

@@ -20,8 +20,6 @@
 using Smartrac.SmartCosmos.ClientEndpoint.Base;
 using Smartrac.SmartCosmos.CredentialStore;
 using Smartrac.SmartCosmos.TestCase.Base;
-using System.Collections.Generic;
-
 
 namespace Smartrac.SmartCosmos.Flows.TestCase
 {

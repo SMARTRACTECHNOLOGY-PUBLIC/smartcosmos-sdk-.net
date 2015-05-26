@@ -17,9 +17,9 @@
 
 #endregion License
 
-using Smartrac.SmartCosmos.Logging;
 using Smartrac.SmartCosmos.ClientEndpoint.Factory;
 using Smartrac.SmartCosmos.DataContextFactory;
+using Smartrac.SmartCosmos.Logging;
 using Smartrac.SmartCosmos.TestCase.Base;
 using System;
 using System.Collections.Generic;
@@ -70,10 +70,11 @@ namespace Smartrac.SmartCosmos.TestCase.Runner
                 where
                     testCaseAttr != null && testCaseAttr.Length > 0 &&
                     serviceAttr != null && serviceAttr.Length > 0
-                select new { 
+                select new
+                {
                     Type = t,
                     TestCaseType = testCaseAttr.Cast<TestCaseAttribute>(),
-                    ServiceType = serviceAttr.Cast<ServiceAttribute>() 
+                    ServiceType = serviceAttr.Cast<ServiceAttribute>()
                 };
 
                 // verify
@@ -86,7 +87,7 @@ namespace Smartrac.SmartCosmos.TestCase.Runner
                         foreach (var serviceAttr in item.ServiceType)
                         {
                             ServiceAttribute service = (ServiceAttribute)serviceAttr;
-                            
+
                             if ((testCase != null) &&
                                 (testCaseTypes.HasFlag(testCase.TestCaseType)) &&
                                 (smartCosmosServices.HasFlag(service.SmartCosmosService))

@@ -18,8 +18,8 @@
 #endregion License
 
 using Smartrac.SmartCosmos.Flows.AccountManagement;
-using Smartrac.SmartCosmos.TestCase.Base;
 using Smartrac.SmartCosmos.Flows.TestCase;
+using Smartrac.SmartCosmos.TestCase.Base;
 
 namespace Smartrac.SmartCosmos.Flows.DataContext.Sample
 {
@@ -28,7 +28,7 @@ namespace Smartrac.SmartCosmos.Flows.DataContext.Sample
     {
         protected override bool ExecuteTests()
         {
-           return TestGetAccountDetails() /*&& TestResetLostPassword()*/;
+            return TestGetAccountDetails() /*&& TestResetLostPassword()*/;
         }
 
         protected virtual bool TestGetAccountDetails()
