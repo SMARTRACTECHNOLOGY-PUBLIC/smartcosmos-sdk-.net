@@ -40,8 +40,9 @@ namespace Smartrac.SmartCosmos.Objects.Transaction
         /// </summary>
         /// <param name="requestData">request data</param>
         /// <param name="responseData">response data</param>
+        /// <param name="timeOutMilliseconds">timeout in Milliseconds (default 20 min)</param>
         /// <returns>TransactionActionResult</returns>
-        public TransactionActionResult Import(ITransactionRequest requestData, out ImportTransactionResponse responseData)
+        public TransactionActionResult Import(ITransactionRequest requestData, out ImportTransactionResponse responseData, int timeout = 20 * 60 * 1000)
         {
             responseData = null;
             if ((null == requestData) || !requestData.IsValid())
@@ -55,6 +56,7 @@ namespace Smartrac.SmartCosmos.Objects.Transaction
                 AddSubfolder(requestData.GetHandlerName());
 
             var request = CreateWebRequest(url, WebRequestOption.Authorization);
+            request.Timeout = timeout;
             ExecuteWebRequestJSON<object, ImportTransactionResponse>(request, requestData.GetTransactionRequest(), out responseData);
             if (responseData != null)
             {
