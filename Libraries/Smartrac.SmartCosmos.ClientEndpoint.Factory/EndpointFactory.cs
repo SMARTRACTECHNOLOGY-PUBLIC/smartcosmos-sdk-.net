@@ -17,11 +17,6 @@
 
 #endregion License
 
-/*
-using Smartrac.SmartCosmos.AccountManager.User;
-using Smartrac.SmartCosmos.AccountManager.Role;
- */
-
 using Smartrac.SmartCosmos.ClientEndpoint.Base;
 using Smartrac.SmartCosmos.CredentialStore;
 using Smartrac.SmartCosmos.Flows.AccountManagement;
@@ -93,44 +88,6 @@ namespace Smartrac.SmartCosmos.ClientEndpoint.Factory
             return (cred != null);
         }
 
-        /*
-
-        #region ACCOUNT_MANAGER
-
-        public virtual IUserEndpoint CreateUserEndpoint()
-        {
-            ICredential cred;
-            if (!GetCredentials(SmartCosmosComponent.AccountManager, out cred))
-              return null;
-
-            return new UserEndpointBuilder()
-                .setLogger(Logger)
-                .setKeepAlive(KeepAlive)
-                .setServerURL(cred.Url)
-                .setAllowInvalidServerCertificates(AllowInvalidServerCertificates)
-                .setUserAccount(cred.Username, cred.Password)
-                .build();
-        }
-
-        public virtual IRoleEndpoint CreateRoleEndpoint()
-        {
-            ICredential cred;
-            if (!GetCredentials(SmartCosmosComponent.AccountManager, out cred))
-                return null;
-
-            return new RoleEndpointBuilder()
-                .setLogger(Logger)
-                .setKeepAlive(KeepAlive)
-                .setServerURL(cred.Url)
-                .setAllowInvalidServerCertificates(AllowInvalidServerCertificates)
-                .setUserAccount(cred.Username, cred.Password)
-                .build();
-        }
-
-        #endregion ACCOUNT_MANAGER
-
-        */
-
         #region COMMOM
 
         public virtual IPlatformAvailabilityEndpoint CreatePlatformAvailabilityEndpoint(SmartCosmosComponent component)
@@ -158,9 +115,6 @@ namespace Smartrac.SmartCosmos.ClientEndpoint.Factory
                         .build();
 
                 case SmartCosmosComponent.Flows:
-                    return null;
-
-                case SmartCosmosComponent.AccountManager:
                     return null;
 
                 default:

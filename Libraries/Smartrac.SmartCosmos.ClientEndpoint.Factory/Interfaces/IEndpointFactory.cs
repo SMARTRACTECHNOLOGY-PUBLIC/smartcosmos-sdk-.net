@@ -17,11 +17,6 @@
 
 #endregion License
 
-/*
-using Smartrac.SmartCosmos.AccountManager.User;
-using Smartrac.SmartCosmos.AccountManager.Role;
- */
-
 using Smartrac.SmartCosmos.ClientEndpoint.Base;
 using Smartrac.SmartCosmos.CredentialStore;
 using Smartrac.SmartCosmos.Flows.AccountManagement;
@@ -158,25 +153,5 @@ namespace Smartrac.SmartCosmos.ClientEndpoint.Factory
         IBusinessRuleEndpoint CreateBusinessRuleEndpoint();
 
         #endregion Flows
-
-        /*
-
-        #region AccountManager
-
-        /// <summary>
-        /// Create User's Accounts Endpoint
-        /// </summary>
-        /// <returns>IUserEndpoint</returns>
-        IUserEndpoint CreateUserEndpoint();
-
-        /// <summary>
-        /// Create Roles Endpoint
-        /// </summary>
-        /// <returns>IRoleEndpoint</returns>
-        IRoleEndpoint CreateRoleEndpoint();
-
-        #endregion AccountManager
-
-         */
     }
 }

@@ -36,14 +36,7 @@ namespace Smartrac.SmartCosmos.Objects.TestCase.Sample
                 Logger.AddLog("GetMetadata== 0, some tests skipped", LogType.Info);
             }
 
-            return RunTestCase_EncodeDecode_Bool() &&
-                   RunTestCase_EncodeDecode_Integer() &&
-                   RunTestCase_EncodeDecode_Long() &&
-                   RunTestCase_EncodeDecode_Float() &&
-                   RunTestCase_EncodeDecode_Double() &&
-                   RunTestCase_EncodeDecode_DateTime() &&
-                   RunTestCase_EncodeDecode_String() &&
-                   RunTestCase_Create(metadata) &&
+            return RunTestCase_Create(metadata) &&
                    RunTestCase_Lookup(metadata) &&
                    RunTestCase_Delete(metadata);
         }
@@ -101,7 +94,7 @@ namespace Smartrac.SmartCosmos.Objects.TestCase.Sample
             OnAfterTest(actionResult);
             return (actionResult == MetadataActionResult.Successful);
         }
-
+        /*
         protected bool RunTestCase_EncodeDecode_Bool()
         {
             MetadataActionResult actionResult = MetadataActionResult.Successful;
@@ -229,5 +222,6 @@ namespace Smartrac.SmartCosmos.Objects.TestCase.Sample
             OnAfterTest(actionResult);
             return (actionResult == MetadataActionResult.Successful); ;
         }
+         */ 
     }
 }

@@ -36,7 +36,7 @@ Visual Studio 2012
 1. Checkout the code
 2. Open the project <Checkout folder>\Application\Smartrac.SmartCosmos.SampleClient.Console\Smartrac.SmartCosmos.SampleClient.Console.sln
 3. Build the application
-4. Enter you SMART COSMOS credentials in the App.config
+4. Rename the "Credentials.xml.template" into Credentials.xml and enter you SMART COSMOS credentials
 5. Run the application 
 
 ### Any questions or problems?

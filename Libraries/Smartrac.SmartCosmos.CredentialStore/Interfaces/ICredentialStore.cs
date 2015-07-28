@@ -30,10 +30,7 @@ namespace Smartrac.SmartCosmos.CredentialStore
         Objects = 2,
 
         [DescriptionAttribute("SMART COSMOS Flows")]
-        Flows = 3,
-
-        [DescriptionAttribute("SMART COSMOS Account Manager")]
-        AccountManager = 4
+        Flows = 3
     }
 
     public interface ICredential

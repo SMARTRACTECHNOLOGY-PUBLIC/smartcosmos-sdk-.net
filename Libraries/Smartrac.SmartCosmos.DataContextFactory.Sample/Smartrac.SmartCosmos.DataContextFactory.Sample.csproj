@@ -104,14 +104,6 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\Smartrac.SmartCosmos.AccountManager.DataContext.Sample\Smartrac.SmartCosmos.AccountManager.DataContext.Sample.csproj">
-      <Project>{8a127cf7-403a-4e56-a20b-cd9e12305533}</Project>
-      <Name>Smartrac.SmartCosmos.AccountManager.DataContext.Sample</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\Smartrac.SmartCosmos.AccountManager.DataContext\Smartrac.SmartCosmos.AccountManager.DataContext.csproj">
-      <Project>{11d76ea4-92a7-4bc3-adb5-55dd580892af}</Project>
-      <Name>Smartrac.SmartCosmos.AccountManager.DataContext</Name>
-    </ProjectReference>
     <ProjectReference Include="..\Smartrac.SmartCosmos.ClientEndpoint.Base\Smartrac.SmartCosmos.ClientEndpoint.Base.csproj">
       <Project>{f0e26f53-5847-42d0-b16f-2dbd1952e452}</Project>
       <Name>Smartrac.SmartCosmos.ClientEndpoint.Base</Name>

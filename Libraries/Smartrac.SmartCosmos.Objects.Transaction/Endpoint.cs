@@ -40,7 +40,7 @@ namespace Smartrac.SmartCosmos.Objects.Transaction
         /// </summary>
         /// <param name="requestData">request data</param>
         /// <param name="responseData">response data</param>
-        /// <param name="timeOutMilliseconds">timeout in Milliseconds (default 20 min)</param>
+        /// <param name="timeout">timeout in Milliseconds (default 20 min)</param>
         /// <returns>TransactionActionResult</returns>
         public TransactionActionResult Import(ITransactionRequest requestData, out ImportTransactionResponse responseData, int timeout = 20 * 60 * 1000)
         {

@@ -17,7 +17,6 @@
 
 #endregion License
 
-using Smartrac.SmartCosmos.AccountManager.DataContext;
 using Smartrac.SmartCosmos.Flows.DataContext;
 using Smartrac.SmartCosmos.Objects.DataContext;
 using Smartrac.SmartCosmos.Profiles.DataContext;
@@ -116,18 +115,6 @@ namespace Smartrac.SmartCosmos.DataContextFactory
         public virtual IBusinessRuleDataContext CreateBusinessRuleDataContext()
         {
             return new BaseBusinessRuleDataContext();
-        }
-
-        //Account Manager
-
-        public virtual IUserDataContext CreateUserDataContext()
-        {
-            return new BaseUserDataContext();
-        }
-
-        public virtual IRoleDataContext CreateRoleDataContext()
-        {
-            return new BaseRoleDataContext();
         }
     }
 }
