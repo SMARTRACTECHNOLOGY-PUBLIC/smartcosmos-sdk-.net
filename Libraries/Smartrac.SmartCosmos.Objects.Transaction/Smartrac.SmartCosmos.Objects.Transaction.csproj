@@ -79,6 +79,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Builder\DefaultTransactionRequestBuilder.cs" />
     <Compile Include="Builder\TransactionEndpointBuilder.cs" />
     <Compile Include="DataManagment\DefaultTransactionRequest.cs" />
     <Compile Include="DataManagment\ImportTransactionResponse.cs" />

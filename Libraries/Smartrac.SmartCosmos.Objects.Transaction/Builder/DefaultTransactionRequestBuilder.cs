@@ -22,10 +22,10 @@ using Smartrac.SmartCosmos.ClientEndpoint.Base;
 
 namespace Smartrac.SmartCosmos.Objects.Transaction
 {
-    public class TransactionEndpointBuilder : BaseEndpointBuilder<ITransactionEndpoint, TransactionEndpointBuilder>
+    public class DefaultTransactionRequestBuilder : BaseBuilder<ITransactionRequest, DefaultTransactionRequestBuilder>
     {
-        public TransactionEndpointBuilder() :
-            base(new TransactionEndpoint())
+        public DefaultTransactionRequestBuilder() :
+            base(new DefaultTransactionRequest())
         {
         }
     }

@@ -663,7 +663,7 @@ namespace Smartrac.SmartCosmos.Objects.Transaction
         }
     }
 
-    public class DefaultTransactionRequest : List<TransactionItem>, ITransactionRequest
+    class DefaultTransactionRequest : List<TransactionItem>, ITransactionRequest
     {
         public bool IsValid()
         {
