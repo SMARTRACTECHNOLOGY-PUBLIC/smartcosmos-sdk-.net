@@ -74,7 +74,7 @@ namespace System
             }
 
             string query = uri.OriginalString;
-            query += query.EndsWith("/") ? HttpUtility.UrlEncode(subfolder) : "/" + HttpUtility.UrlEncode(subfolder);
+            query += query.EndsWith("/") ? HttpUtility.UrlPathEncode(subfolder) : "/" + HttpUtility.UrlPathEncode(subfolder);
 
             return new Uri(query, uri.IsAbsoluteUri ? UriKind.Absolute : UriKind.Relative);
         }
