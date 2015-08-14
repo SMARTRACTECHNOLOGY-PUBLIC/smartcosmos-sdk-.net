@@ -668,5 +668,10 @@ namespace Smartrac.SmartCosmos.Objects.Transaction
             Add(itm);
             return itm;
         }
+
+        public List<ITransactionItem> Items()
+        { 
+           return this;
+        }
     }
 }
