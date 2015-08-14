@@ -43,6 +43,12 @@ namespace Smartrac.SmartCosmos.Objects.Transaction
         /// </summary>
         /// <returns>TransactionItem</returns>
         ITransactionItem AddTransaction();
+
+        /// <summary>
+        /// List of transaction items
+        /// </summary>
+        /// <returns></returns>
+        List<ITransactionItem> Items();
     }
 
     public interface ITransactionItem : IBaseRequest
