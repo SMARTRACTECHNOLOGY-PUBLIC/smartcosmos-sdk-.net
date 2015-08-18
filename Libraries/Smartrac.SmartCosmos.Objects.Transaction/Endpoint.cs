@@ -30,9 +30,10 @@ namespace Smartrac.SmartCosmos.Objects.Transaction
     /// </summary>
     internal class TransactionEndpoint : BaseObjectsEndpoint, ITransactionEndpoint
     {
-        public DefaultTransactionRequest CreateDefaultTransaction()
+        public ITransactionRequest CreateDefaultTransaction()
         {
-            return new DefaultTransactionRequest();
+            return new DefaultTransactionRequestBuilder()
+                   .build();
         }
 
         /// <summary>

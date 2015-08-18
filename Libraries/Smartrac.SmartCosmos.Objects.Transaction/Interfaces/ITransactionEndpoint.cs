@@ -77,5 +77,11 @@ namespace Smartrac.SmartCosmos.Objects.Transaction
         /// <param name="responseData">response data</param>
         /// <returns>TransactionActionResult</returns>
         TransactionActionResult Import(ITransactionRequest requestData, out ImportTransactionResponse responseData, int timeout = 20 * 60 * 1000);
+
+        /// <summary>
+        /// Create default request
+        /// </summary>
+        /// <returns>ITransactionRequest</returns>
+        ITransactionRequest CreateDefaultTransaction();
     }
 }
