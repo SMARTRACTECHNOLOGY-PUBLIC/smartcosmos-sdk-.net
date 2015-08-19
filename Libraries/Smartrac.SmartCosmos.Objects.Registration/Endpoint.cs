@@ -53,7 +53,7 @@ namespace Smartrac.SmartCosmos.Objects.Registration
                 var returnHTTPCode = ExecuteWebRequestJSON<RealmAvailabilityResponse>(request, out responseData);
                 if ( (responseData != null) 
                     && (responseData.HTTPStatusCode == HttpStatusCode.OK)
-                    && (responseData.code == 0) // 0 = free - 1 = in use
+                    // && (responseData.code == 0) // 0 = free - 1 = in use
                     )
                 {                   
                     return RegistrationActionResult.Successful;
