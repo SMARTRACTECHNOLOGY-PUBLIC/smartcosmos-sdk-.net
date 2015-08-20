@@ -55,7 +55,7 @@ namespace System
 
             string query = uri.OriginalString;
             query += query.Contains("?") ? "&" : "?";
-            query += name + "=" + HttpUtility.UrlEncode(value);
+            query += name + "=" + Uri.EscapeDataString(value); // converts "/" to "+" = unexpected! :  HttpUtility.UrlEncode(value);
 
             return new Uri(query, uri.IsAbsoluteUri ? UriKind.Absolute : UriKind.Relative);
         }
@@ -74,7 +74,11 @@ namespace System
             }
 
             string query = uri.OriginalString;
-            query += query.EndsWith("/") ? HttpUtility.UrlPathEncode(subfolder) : "/" + HttpUtility.UrlPathEncode(subfolder);
+
+            // HttpUtility.UrlPathEncode converts
+            //query += query.EndsWith("/") ? HttpUtility.UrlPathEncode(subfolder) : "/" + HttpUtility.UrlPathEncode(subfolder);
+            query += query.EndsWith("/") ? Uri.EscapeDataString(subfolder) : "/" + Uri.EscapeDataString(subfolder);
+
 
             return new Uri(query, uri.IsAbsoluteUri ? UriKind.Absolute : UriKind.Relative);
         }
