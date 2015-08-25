@@ -46,7 +46,12 @@ namespace Smartrac.SmartCosmos.ClientEndpoint.Base
         /// <summary>
         /// Hack to avoid: http://example.com/%2F gets translated into http://example.com// before transmitting it.
         /// </summary>
-        ForceCanonicalPathAndQuery = 3
+        ForceCanonicalPathAndQuery = 3,
+
+        /// <summary>
+        /// Hack to avoid: http://stackoverflow.com/questions/856885/httpwebrequest-to-url-with-dot-at-the-end
+        /// </summary>
+        FixDotAtEndIssue = 4
     }
 
     /// <summary>
@@ -194,6 +199,28 @@ namespace Smartrac.SmartCosmos.ClientEndpoint.Base
             flagsFieldInfo.SetValue(uri, flags);
         }
 
+        // Hack
+        // http://stackoverflow.com/questions/856885/httpwebrequest-to-url-with-dot-at-the-end
+        static void FixDotAtEndIssue(Uri uri)
+        {
+            System.Reflection.MethodInfo getSyntax = typeof(UriParser).GetMethod("GetSyntax", System.Reflection.BindingFlags.Static | System.Reflection.BindingFlags.NonPublic);
+            System.Reflection.FieldInfo flagsField = typeof(UriParser).GetField("m_Flags", System.Reflection.BindingFlags.Instance | System.Reflection.BindingFlags.NonPublic);
+            if (getSyntax != null && flagsField != null)
+            {
+                foreach (string scheme in new[] { "http", "https" })
+                {
+                    UriParser parser = (UriParser)getSyntax.Invoke(null, new object[] { scheme });
+                    if (parser != null)
+                    {
+                        int flagsValue = (int)flagsField.GetValue(parser);
+                        // Clear the CanonicalizeAsFilePath attribute
+                        if ((flagsValue & 0x1000000) != 0)
+                            flagsField.SetValue(parser, flagsValue & ~0x1000000);
+                    }
+                }
+            }
+        }
+
         /// <summary>
         /// Create and setup a web request for a URL endpoint with options
         /// </summary>
@@ -209,6 +236,9 @@ namespace Smartrac.SmartCosmos.ClientEndpoint.Base
             Uri urlFinal = new Uri(ServerURL + ServiceSubUrl + urlString, UriKind.Absolute);
             if (options.HasFlag(WebRequestOption.ForceCanonicalPathAndQuery))
                 ForceCanonicalPathAndQuery(urlFinal);
+
+            if (options.HasFlag(WebRequestOption.FixDotAtEndIssue))
+                FixDotAtEndIssue(urlFinal);            
 
             var request = System.Net.WebRequest.Create(urlFinal) as System.Net.HttpWebRequest;
             request.KeepAlive = KeepAlive;
