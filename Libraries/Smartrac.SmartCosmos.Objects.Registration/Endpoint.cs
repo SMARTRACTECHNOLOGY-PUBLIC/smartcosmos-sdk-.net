@@ -49,7 +49,7 @@ namespace Smartrac.SmartCosmos.Objects.Registration
                 Uri url = new Uri("/registration/realm/", UriKind.Relative).
                     AddSubfolder(realm);
 
-                var request = CreateWebRequest(url);
+                var request = CreateWebRequest(url, ClientEndpoint.Base.WebRequestOption.ForceCanonicalPathAndQuery); // fix problems with / in realm names
                 var returnHTTPCode = ExecuteWebRequestJSON<RealmAvailabilityResponse>(request, out responseData);
                 if ( (responseData != null) 
                     && (responseData.HTTPStatusCode == HttpStatusCode.OK)
@@ -128,7 +128,7 @@ namespace Smartrac.SmartCosmos.Objects.Registration
                     AddSubfolder(requestData.emailVerificationToken).
                     AddSubfolder(requestData.emailAddress);
 
-                var request = CreateWebRequest(url);
+                var request = CreateWebRequest(url, ClientEndpoint.Base.WebRequestOption.ForceCanonicalPathAndQuery); // fix problems with / in realm names
                 ExecuteWebRequestJSON<ConfirmRegistrationResponse>(request, out responseData);
                 if ((responseData != null) && (responseData.HTTPStatusCode == HttpStatusCode.OK))
                     return RegistrationActionResult.Successful;

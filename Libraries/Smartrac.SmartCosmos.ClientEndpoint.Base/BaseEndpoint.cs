@@ -22,6 +22,7 @@ using Smartrac.SmartCosmos.Logging;
 using System;
 using System.IO;
 using System.Net;
+using System.Reflection;
 using System.Text;
 
 namespace Smartrac.SmartCosmos.ClientEndpoint.Base
@@ -40,7 +41,12 @@ namespace Smartrac.SmartCosmos.ClientEndpoint.Base
         /// <summary>
         /// HTTP Header "Accept-Language" is required
         /// </summary>
-        AcceptLanguage = 2
+        AcceptLanguage = 2,
+
+        /// <summary>
+        /// Hack to avoid: http://example.com/%2F gets translated into http://example.com// before transmitting it.
+        /// </summary>
+        ForceCanonicalPathAndQuery = 3
     }
 
     /// <summary>
@@ -176,6 +182,18 @@ namespace Smartrac.SmartCosmos.ClientEndpoint.Base
             return CreateWebRequest(url, 0);
         }
 
+        // Hack
+        // --> So http://example.com/%2F gets translated into http://example.com// before transmitting it.
+        // http://stackoverflow.com/questions/781205/getting-a-url-with-an-url-encoded-slash
+        private void ForceCanonicalPathAndQuery(Uri uri)
+        {
+            string paq = uri.PathAndQuery; // need to access PathAndQuery
+            FieldInfo flagsFieldInfo = typeof(Uri).GetField("m_Flags", BindingFlags.Instance | BindingFlags.NonPublic);
+            ulong flags = (ulong)flagsFieldInfo.GetValue(uri);
+            flags &= ~((ulong)0x30); // Flags.PathNotCanonical|Flags.QueryNotCanonical
+            flagsFieldInfo.SetValue(uri, flags);
+        }
+
         /// <summary>
         /// Create and setup a web request for a URL endpoint with options
         /// </summary>
@@ -187,8 +205,17 @@ namespace Smartrac.SmartCosmos.ClientEndpoint.Base
             string urlString = url.OriginalString;
             if (!urlString.StartsWith("/") && (urlString.Length != 0))
                 urlString = "/" + urlString;
-            var request = System.Net.WebRequest.Create(ServerURL + ServiceSubUrl + urlString) as System.Net.HttpWebRequest;
+
+            Uri urlFinal = new Uri(ServerURL + ServiceSubUrl + urlString, UriKind.Absolute);
+            if (options.HasFlag(WebRequestOption.ForceCanonicalPathAndQuery))
+                ForceCanonicalPathAndQuery(urlFinal);
+
+            var request = System.Net.WebRequest.Create(urlFinal) as System.Net.HttpWebRequest;
             request.KeepAlive = KeepAlive;
+
+            if ((null != Logger) && Logger.CanLog(LogType.Debug))
+                Logger.AddLog("AbsoluteUri = " + request.RequestUri.AbsoluteUri, LogType.Debug);
+
             if (options.HasFlag(WebRequestOption.Authorization) && (AuthorizationToken != ""))
                 request.Headers.Add("authorization", AuthorizationToken);
             if (options.HasFlag(WebRequestOption.AcceptLanguage) && (AcceptLanguage != ""))
