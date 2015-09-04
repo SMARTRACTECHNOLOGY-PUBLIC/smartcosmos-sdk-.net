@@ -41,6 +41,10 @@ namespace Smartrac.SmartCosmos.Profiles.PlatformAvailability
                 WebRequest request = CreateWebRequest("/test/ping");
                 request.Method = WebRequestMethods.Http.Get;
                 request.ContentLength = 0;
+
+                if ((null != Logger) && Logger.CanLog(LogType.Debug))
+                    Logger.AddLog("Request url [" + request.Method + "]: " + request.RequestUri.AbsoluteUri, LogType.Debug);
+
                 using (var response = request.GetResponseSafe() as System.Net.HttpWebResponse)
                 {
                     response.Close();
@@ -48,7 +52,9 @@ namespace Smartrac.SmartCosmos.Profiles.PlatformAvailability
                     {
                         case HttpStatusCode.NoContent: return PlatformAvailabilityActionResult.Successful;
                         case HttpStatusCode.ServiceUnavailable: return PlatformAvailabilityActionResult.Unavailable;
-                        default: return PlatformAvailabilityActionResult.Failed;
+                        default:
+                            Logger.AddLog("Respond StatusCode: " + response.StatusCode, LogType.Warning);                            
+                            return PlatformAvailabilityActionResult.Failed;
                     }
                 }
             }
