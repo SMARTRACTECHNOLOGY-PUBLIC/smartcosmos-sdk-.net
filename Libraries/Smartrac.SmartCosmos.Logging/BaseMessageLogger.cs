@@ -46,7 +46,7 @@ namespace Smartrac.SmartCosmos.Logging
         /// <returns>logging allowed</returns>
         public virtual bool CanLog(LogType logType)
         {
-            return (int)logType <= (int)LogLevel;
+            return (int)logType >= (int)LogLevel;
         }
 
         public void AddLog(string message, LogType logType = LogType.Debug)
@@ -60,6 +60,11 @@ namespace Smartrac.SmartCosmos.Logging
         protected virtual void DoAddLog(string message, LogType logType = LogType.Debug)
         {
             throw new NotImplementedException();
+        }
+
+        public virtual string GetLoggerId()
+        {
+            return "";
         }
     }
 }

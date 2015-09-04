@@ -24,11 +24,11 @@ namespace Smartrac.SmartCosmos.Logging
     [Flags]
     public enum LogType
     {
-        Info = 1,  //     Info log level.
-        Debug = 2, //     Debug log level.
+        Debug = 1, //     Debug log level.
+        Info = 2,  //     Info log level.        
         Warning = 4, //    Warning log level.
         Error = 8, //     Error log level.
-        Fatal = 16 //     Fatal log level.
+        Fatal = 16 //     Fatal log level
     }
 
     public interface IMessageLogger
@@ -46,5 +46,18 @@ namespace Smartrac.SmartCosmos.Logging
         /// <param name="logType">logType</param>
         /// <returns>logging allowed</returns>
         bool CanLog(LogType logType);
+
+        /// <summary>
+        /// "Unique" logger id
+        /// </summary>
+        /// <returns>logger id</returns>
+        string GetLoggerId();
+    }
+
+    public interface IMessageFileLogger : IMessageLogger
+    {
+        string LogFilePath { get; set; }
+
+        void Flush();
     }
 }

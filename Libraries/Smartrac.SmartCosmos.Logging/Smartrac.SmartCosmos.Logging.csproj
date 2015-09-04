@@ -131,6 +131,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="BaseMessageLogger.cs" />
+    <Compile Include="Interfaces\IMessageFileLogger.cs" />
     <Compile Include="Interfaces\IMessageLogger.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

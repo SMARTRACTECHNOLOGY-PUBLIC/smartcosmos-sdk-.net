@@ -18,56 +18,74 @@
 #endregion License
 
 using NLog;
-using NLog.Targets;
+using System;
 
 namespace Smartrac.SmartCosmos.Logging.File
 {
-    /// <summary>
-    /// Log to file service
-    /// </summary>
-    public class FileLoggerService : BaseMessageLogger
+    public class FileLoggerService : BaseMessageLogger, Smartrac.SmartCosmos.Logging.IMessageFileLogger
     {
-        private static readonly Logger logger = LogManager.GetCurrentClassLogger();
+        private Logger logger;
+        public string loggerId = "f";
 
-        private LogLevel MapLogLevel(LogType logType)
+        public FileLoggerService(string LoggerId = "f")
+            : base()
         {
-            switch (logType)
-            {
-                case LogType.Debug: return NLog.LogLevel.Debug;
-                case LogType.Error: return NLog.LogLevel.Error;
-                case LogType.Fatal: return NLog.LogLevel.Fatal;
-                case LogType.Info: return NLog.LogLevel.Info;
-                case LogType.Warning: return NLog.LogLevel.Warn;
-                default: return NLog.LogLevel.Error;
-            }
-        }
-
-        public override bool CanLog(LogType logType)
-        {
-            return base.CanLog(logType) && (logger != null) && logger.IsEnabled(MapLogLevel(logType));
-        }
-
-        protected override void DoAddLog(string message, LogType logType = LogType.Debug)
-        {
+            loggerId = LoggerId;
+            logger = LogManager.GetLogger(loggerId);
             if (logger == null)
-                return;
-            logger.Log(MapLogLevel(logType), message);
+                throw new Exception("Logger not found in Nlog.config: " + loggerId);
         }
 
-        /// <summary>
-        /// Change output file for logging. Accepts NLog placeholders such as {basedir}.
-        /// Use '/' for path element separators.
-        /// </summary>
-        /// <param name="sLogFilePath">log file path</param>
-        public static void SetLogFilePath(string sLogFilePath)
+        protected override void DoAddLog(string aMessage, LogType aLogType = LogType.Debug)
         {
-            // Name of target must match name property in <target xsi:type="File" name="f" ... /> of NLog.config
-            var target = (FileTarget)LogManager.Configuration.FindTargetByName("f");
-            if (target != null)
+            switch (aLogType)
             {
-                target.FileName = sLogFilePath;
-                LogManager.ReconfigExistingLoggers();
+                case LogType.Debug:
+                    logger.Debug(aMessage);
+                    break;
+
+                case LogType.Error:
+                    logger.Error(aMessage);
+                    break;
+
+                case LogType.Fatal:
+                    logger.Fatal(aMessage);
+                    break;
+
+                case LogType.Info:
+                    logger.Info(aMessage);
+                    break;
+
+                case LogType.Warning:
+                    logger.Warn(aMessage);
+                    break;
+
+                default:
+                    logger.Error(aMessage);
+                    break;
             }
+        }
+
+        public string LogFilePath
+        {
+            get
+            {
+                return SingleFileLoggerService.GetLogFilePath(loggerId);
+            }
+            set
+            {
+                SingleFileLoggerService.SetLogFilePath(value, loggerId);
+            }
+        }
+
+        public void Flush()
+        {
+            SingleFileLoggerService.Flush();
+        }
+
+        public override string GetLoggerId()
+        {
+            return loggerId;
         }
     }
 }

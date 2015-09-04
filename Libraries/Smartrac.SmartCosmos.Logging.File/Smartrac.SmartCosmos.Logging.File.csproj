@@ -135,6 +135,7 @@
   <ItemGroup>
     <Compile Include="FileLoggerService.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="SimpleFileLoggerService.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="NLog.config">
