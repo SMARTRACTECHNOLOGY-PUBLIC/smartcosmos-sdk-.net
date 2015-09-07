@@ -383,7 +383,7 @@ namespace Smartrac.SmartCosmos.ClientEndpoint.Base
                     Logger.AddLog("Request url [" + request.Method + "]: " + request.RequestUri.AbsoluteUri, LogType.Debug);
 
                 // call the server
-                if (GetResponse(request, out webResponse))
+                if (! GetResponse(request, out webResponse))
                 {
                     return HttpStatusCode.InternalServerError;
                 }
@@ -484,6 +484,12 @@ namespace Smartrac.SmartCosmos.ClientEndpoint.Base
             HttpWebResponse response = null;
             try
             {
+                if (request == null)
+                {
+                    Logger.AddLog("No request from client", LogType.Error);
+                    return null;
+                }
+
                 response =  request.GetResponseSafe() as System.Net.HttpWebResponse;
                 if (response == null)
                 {

@@ -92,7 +92,7 @@ namespace Smartrac.SmartCosmos.Objects.Metadata
             request.Method = "DELETE";
 
             HttpWebResponse response;
-            if (GetResponse(request, out response))
+            if (! GetResponse(request, out response))
             {
                 Logger.AddLog("No response from server", LogType.Warning);
                 return MetadataActionResult.Failed;

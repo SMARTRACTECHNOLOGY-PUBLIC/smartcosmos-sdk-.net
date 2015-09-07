@@ -53,7 +53,6 @@ namespace Smartrac.SmartCosmos.Profiles.PlatformAvailability
                         return PlatformAvailabilityActionResult.Failed;
                     }
 
-                    response.Close();
                     switch (response.StatusCode)
                     {
                         case HttpStatusCode.NoContent: return PlatformAvailabilityActionResult.Successful;
