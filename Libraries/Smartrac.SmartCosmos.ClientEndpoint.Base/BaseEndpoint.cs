@@ -80,6 +80,16 @@ namespace Smartrac.SmartCosmos.ClientEndpoint.Base
         public string AcceptLanguage { get; set; }
 
         /// <summary>
+        /// If set (CookieKey and CookieValue), each call will contains a cookie 
+        /// </summary>
+        public string CookieKey { get; set; }
+
+        /// <summary>
+        /// If set (CookieKey and CookieValue), each call will contains a cookie
+        /// </summary>
+        public string CookieValue { get; set; }
+
+        /// <summary>
         /// Logger
         /// </summary>
         public IMessageLogger Logger { get; set; }
@@ -250,6 +260,17 @@ namespace Smartrac.SmartCosmos.ClientEndpoint.Base
                 request.Headers.Add("authorization", AuthorizationToken);
             if (options.HasFlag(WebRequestOption.AcceptLanguage) && (AcceptLanguage != ""))
                 request.Headers.Add("Accept-Language", AcceptLanguage);
+
+            if (!String.IsNullOrEmpty(CookieKey)
+                && !String.IsNullOrEmpty(CookieValue))
+            {
+                if (request.CookieContainer == null)
+                {
+                    request.CookieContainer = new CookieContainer();
+                }
+                request.CookieContainer.Add(new Cookie(CookieKey, CookieValue));
+            }
+
             return request;
         }
 

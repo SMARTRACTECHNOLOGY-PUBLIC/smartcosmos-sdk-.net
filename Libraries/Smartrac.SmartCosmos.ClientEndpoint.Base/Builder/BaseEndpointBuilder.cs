@@ -50,6 +50,24 @@ namespace Smartrac.SmartCosmos.ClientEndpoint.Base
         }
 
         /// <summary>
+        /// If set (CookieKey and CookieValue), each call will contains a cookie 
+        /// </summary>
+        public E setCookieValue(string cookieValue)
+        {
+            instance.CookieValue = cookieValue;
+            return this as E;
+        }
+
+        /// <summary>
+        /// If set (CookieKey and CookieValue), each call will contains a cookie
+        /// </summary>
+        public E setCookieKey(string cookieKey)
+        {
+            instance.CookieKey = cookieKey;
+            return this as E;
+        }
+
+        /// <summary>
         /// set service url
         /// </summary>
         /// <param name="serverURL"></param>

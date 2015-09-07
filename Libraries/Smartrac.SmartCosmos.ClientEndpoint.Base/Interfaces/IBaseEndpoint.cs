@@ -42,6 +42,16 @@ namespace Smartrac.SmartCosmos.ClientEndpoint.Base
         bool KeepAlive { get; set; }
 
         /// <summary>
+        /// If set (CookieKey and CookieValue), each call will contains a cookie 
+        /// </summary>
+        string CookieKey { get; set; }
+
+        /// <summary>
+        /// If set (CookieKey and CookieValue), each call will contains a cookie
+        /// </summary>
+        string CookieValue { get; set; }
+
+        /// <summary>
         /// Allow invalid server certificates
         /// </summary>
         bool AllowInvalidServerCertificates { get; set; }
