@@ -80,14 +80,19 @@ namespace Smartrac.SmartCosmos.ClientEndpoint.Base
         public string AcceptLanguage { get; set; }
 
         /// <summary>
-        /// If set (CookieKey and CookieValue), each call will contains a cookie 
+        /// If set (CookieKey and CookieValue and CookieDomain), each call will contains a cookie 
         /// </summary>
         public string CookieKey { get; set; }
 
         /// <summary>
-        /// If set (CookieKey and CookieValue), each call will contains a cookie
+        /// If set (CookieKey and CookieValue and CookieDomain), each call will contains a cookie
         /// </summary>
         public string CookieValue { get; set; }
+
+        /// <summary>
+        /// If set (CookieKey and CookieValue and CookieDomain), each call will contains a cookie
+        /// </summary>
+        public string CookieDomain { get; set; }        
 
         /// <summary>
         /// Logger
@@ -262,13 +267,19 @@ namespace Smartrac.SmartCosmos.ClientEndpoint.Base
                 request.Headers.Add("Accept-Language", AcceptLanguage);
 
             if (!String.IsNullOrEmpty(CookieKey)
-                && !String.IsNullOrEmpty(CookieValue))
+                && !String.IsNullOrEmpty(CookieValue)
+                && !String.IsNullOrEmpty(CookieDomain))
             {
                 if (request.CookieContainer == null)
                 {
                     request.CookieContainer = new CookieContainer();
                 }
-                request.CookieContainer.Add(new Cookie(CookieKey, CookieValue));
+
+                Cookie cookie = new Cookie(CookieKey, CookieValue);
+                cookie.Domain = CookieDomain;
+                //cookie.Path = "/";
+                //cookie.Expires = DateTime.Now.AddHours(3);
+                request.CookieContainer.Add(cookie);
             }
 
             return request;

@@ -56,14 +56,19 @@ namespace Smartrac.SmartCosmos.ClientEndpoint.Factory
         public bool KeepAlive { get; set; }
 
         /// <summary>
-        /// If set (CookieKey and CookieValue), each call will contains a cookie
+        /// If set (CookieKey and CookieValue and CookieDomain), each call will contains a cookie
         /// </summary>
         public string CookieKey { get; set; }
 
         /// <summary>
-        /// If set (CookieKey and CookieValue), each call will contains a cookie
+        /// If set (CookieKey and CookieValue and CookieDomain), each call will contains a cookie
         /// </summary>
         public string CookieValue { get; set; }
+
+        /// <summary>
+        /// If set (CookieKey and CookieValue and CookieDomain), each call will contains a cookie
+        /// </summary>
+        public string CookieDomain { get; set; }
 
         /// <summary>
         /// Defines if invalid server certificates are allowed
@@ -82,10 +87,11 @@ namespace Smartrac.SmartCosmos.ClientEndpoint.Factory
         /// </summary>
         public IMessageLogger Logger { get; set; }
 
-        public EndpointFactory(IMessageLogger logger, ICredentialStore credentialStore, string cookieValue)
+        public EndpointFactory(IMessageLogger logger, ICredentialStore credentialStore, string cookieValue, string cookieDomain)
             : this(logger, credentialStore)
         {
             this.CookieValue = cookieValue;
+            this.CookieDomain = cookieDomain;
         }
 
         public EndpointFactory(IMessageLogger logger, ICredentialStore credentialStore)
@@ -119,7 +125,7 @@ namespace Smartrac.SmartCosmos.ClientEndpoint.Factory
                     return new PlatformAvailabilityEndpointBuilderProfiles()
                         .setLogger(Logger)
                         .setCookieValue(CookieValue)
-                        .setCookieKey(CookieKey)
+                        .setCookieKey(CookieKey).setCookieDomain(CookieDomain)
                         .setKeepAlive(KeepAlive)
                         .setServerURL(cred.Url)
                         .setAllowInvalidServerCertificates(AllowInvalidServerCertificates)
@@ -129,7 +135,7 @@ namespace Smartrac.SmartCosmos.ClientEndpoint.Factory
                     return new PlatformAvailabilityEndpointBuilderObjects()
                         .setLogger(Logger)
                         .setCookieValue(CookieValue)
-                        .setCookieKey(CookieKey)
+                        .setCookieKey(CookieKey).setCookieDomain(CookieDomain)
                         .setKeepAlive(KeepAlive)
                         .setServerURL(cred.Url)
                         .setAllowInvalidServerCertificates(AllowInvalidServerCertificates)
@@ -156,7 +162,7 @@ namespace Smartrac.SmartCosmos.ClientEndpoint.Factory
             return new Smartrac.SmartCosmos.Flows.AccountManagement.FlowsAccountManagementEndpointBuilder()
                 .setLogger(Logger)
                 .setCookieValue(CookieValue)
-                .setCookieKey(CookieKey)
+                .setCookieKey(CookieKey).setCookieDomain(CookieDomain)
                 .setKeepAlive(KeepAlive)
                 .setServerURL(cred.Url)
                 .setAllowInvalidServerCertificates(AllowInvalidServerCertificates)
@@ -173,7 +179,7 @@ namespace Smartrac.SmartCosmos.ClientEndpoint.Factory
             return new BusinessRuleEndpointBuilder()
                 .setLogger(Logger)
                 .setCookieValue(CookieValue)
-                .setCookieKey(CookieKey)
+                .setCookieKey(CookieKey).setCookieDomain(CookieDomain)
                 .setKeepAlive(KeepAlive)
                 .setServerURL(cred.Url)
                 .setAllowInvalidServerCertificates(AllowInvalidServerCertificates)
@@ -194,7 +200,7 @@ namespace Smartrac.SmartCosmos.ClientEndpoint.Factory
             return new DataImportEndpointBuilder()
                 .setLogger(Logger)
                 .setCookieValue(CookieValue)
-                .setCookieKey(CookieKey)
+                .setCookieKey(CookieKey).setCookieDomain(CookieDomain)
                 .setKeepAlive(KeepAlive)
                 .setServerURL(cred.Url)
                 .setAllowInvalidServerCertificates(AllowInvalidServerCertificates)
@@ -211,7 +217,7 @@ namespace Smartrac.SmartCosmos.ClientEndpoint.Factory
             return new TagVerificationEndpointBuilder()
                 .setLogger(Logger)
                 .setCookieValue(CookieValue)
-                .setCookieKey(CookieKey)
+                .setCookieKey(CookieKey).setCookieDomain(CookieDomain)
                 .setKeepAlive(KeepAlive)
                 .setServerURL(cred.Url)
                 .setAllowInvalidServerCertificates(AllowInvalidServerCertificates)
@@ -228,7 +234,7 @@ namespace Smartrac.SmartCosmos.ClientEndpoint.Factory
             return new TagMetadataEndpointBuilder()
                 .setLogger(Logger)
                 .setCookieValue(CookieValue)
-                .setCookieKey(CookieKey)
+                .setCookieKey(CookieKey).setCookieDomain(CookieDomain)
                 .setKeepAlive(KeepAlive)
                 .setServerURL(cred.Url)
                 .setAllowInvalidServerCertificates(AllowInvalidServerCertificates)
@@ -249,7 +255,7 @@ namespace Smartrac.SmartCosmos.ClientEndpoint.Factory
             return new FileEndpointBuilder()
                 .setLogger(Logger)
                 .setCookieValue(CookieValue)
-                .setCookieKey(CookieKey)
+                .setCookieKey(CookieKey).setCookieDomain(CookieDomain)
                 .setKeepAlive(KeepAlive)
                 .setServerURL(cred.Url)
                 .setAllowInvalidServerCertificates(AllowInvalidServerCertificates)
@@ -266,7 +272,7 @@ namespace Smartrac.SmartCosmos.ClientEndpoint.Factory
             return new RegistrationEndpointBuilder()
                 .setLogger(Logger)
                 .setCookieValue(CookieValue)
-                .setCookieKey(CookieKey)
+                .setCookieKey(CookieKey).setCookieDomain(CookieDomain)
                 .setKeepAlive(KeepAlive)
                 .setServerURL(cred.Url)
                 .setAllowInvalidServerCertificates(AllowInvalidServerCertificates)
@@ -283,7 +289,7 @@ namespace Smartrac.SmartCosmos.ClientEndpoint.Factory
             return new AccountManagementEndpointBuilder()
                 .setLogger(Logger)
                 .setCookieValue(CookieValue)
-                .setCookieKey(CookieKey)
+                .setCookieKey(CookieKey).setCookieDomain(CookieDomain)
                 .setKeepAlive(KeepAlive)
                 .setServerURL(cred.Url)
                 .setAllowInvalidServerCertificates(AllowInvalidServerCertificates)
@@ -300,7 +306,7 @@ namespace Smartrac.SmartCosmos.ClientEndpoint.Factory
             return new UserManagementEndpointBuilder()
                 .setLogger(Logger)
                 .setCookieValue(CookieValue)
-                .setCookieKey(CookieKey)
+                .setCookieKey(CookieKey).setCookieDomain(CookieDomain)
                 .setKeepAlive(KeepAlive)
                 .setServerURL(cred.Url)
                 .setAllowInvalidServerCertificates(AllowInvalidServerCertificates)
@@ -317,7 +323,7 @@ namespace Smartrac.SmartCosmos.ClientEndpoint.Factory
             return new ObjectManagementEndpointBuilder()
                 .setLogger(Logger)
                 .setCookieValue(CookieValue)
-                .setCookieKey(CookieKey)
+                .setCookieKey(CookieKey).setCookieDomain(CookieDomain)
                 .setKeepAlive(KeepAlive)
                 .setServerURL(cred.Url)
                 .setAllowInvalidServerCertificates(AllowInvalidServerCertificates)
@@ -334,7 +340,7 @@ namespace Smartrac.SmartCosmos.ClientEndpoint.Factory
             return new ObjectInteractionEndpointBuilder()
                 .setLogger(Logger)
                 .setCookieValue(CookieValue)
-                .setCookieKey(CookieKey)
+                .setCookieKey(CookieKey).setCookieDomain(CookieDomain)
                 .setKeepAlive(KeepAlive)
                 .setServerURL(cred.Url)
                 .setAllowInvalidServerCertificates(AllowInvalidServerCertificates)
@@ -351,7 +357,7 @@ namespace Smartrac.SmartCosmos.ClientEndpoint.Factory
             return new RelationshipManagementEndpointBuilder()
                 .setLogger(Logger)
                 .setCookieValue(CookieValue)
-                .setCookieKey(CookieKey)
+                .setCookieKey(CookieKey).setCookieDomain(CookieDomain)
                 .setKeepAlive(KeepAlive)
                 .setServerURL(cred.Url)
                 .setAllowInvalidServerCertificates(AllowInvalidServerCertificates)
@@ -368,7 +374,7 @@ namespace Smartrac.SmartCosmos.ClientEndpoint.Factory
             return new GeospatialManagementEndpointBuilder()
                 .setLogger(Logger)
                 .setCookieValue(CookieValue)
-                .setCookieKey(CookieKey)
+                .setCookieKey(CookieKey).setCookieDomain(CookieDomain)
                 .setKeepAlive(KeepAlive)
                 .setServerURL(cred.Url)
                 .setAllowInvalidServerCertificates(AllowInvalidServerCertificates)
@@ -385,7 +391,7 @@ namespace Smartrac.SmartCosmos.ClientEndpoint.Factory
             return new HashTagEndpointBuilder()
                 .setLogger(Logger)
                 .setCookieValue(CookieValue)
-                .setCookieKey(CookieKey)
+                .setCookieKey(CookieKey).setCookieDomain(CookieDomain)
                 .setKeepAlive(KeepAlive)
                 .setServerURL(cred.Url)
                 .setAllowInvalidServerCertificates(AllowInvalidServerCertificates)
@@ -402,7 +408,7 @@ namespace Smartrac.SmartCosmos.ClientEndpoint.Factory
             return new BatchTransmissionEndpointBuilder()
                 .setLogger(Logger)
                 .setCookieValue(CookieValue)
-                .setCookieKey(CookieKey)
+                .setCookieKey(CookieKey).setCookieDomain(CookieDomain)
                 .setKeepAlive(KeepAlive)
                 .setServerURL(cred.Url)
                 .setAllowInvalidServerCertificates(AllowInvalidServerCertificates)
@@ -419,7 +425,7 @@ namespace Smartrac.SmartCosmos.ClientEndpoint.Factory
             return new MetadataEndpointBuilder()
                 .setLogger(Logger)
                 .setCookieValue(CookieValue)
-                .setCookieKey(CookieKey)
+                .setCookieKey(CookieKey).setCookieDomain(CookieDomain)
                 .setKeepAlive(KeepAlive)
                 .setServerURL(cred.Url)
                 .setAllowInvalidServerCertificates(AllowInvalidServerCertificates)
@@ -436,7 +442,7 @@ namespace Smartrac.SmartCosmos.ClientEndpoint.Factory
             return new ObjectInteractionSessionEndpointBuilder()
                 .setLogger(Logger)
                 .setCookieValue(CookieValue)
-                .setCookieKey(CookieKey)
+                .setCookieKey(CookieKey).setCookieDomain(CookieDomain)
                 .setKeepAlive(KeepAlive)
                 .setServerURL(cred.Url)
                 .setAllowInvalidServerCertificates(AllowInvalidServerCertificates)
@@ -453,7 +459,7 @@ namespace Smartrac.SmartCosmos.ClientEndpoint.Factory
             return new DeviceEndpointBuilder()
                 .setLogger(Logger)
                 .setCookieValue(CookieValue)
-                .setCookieKey(CookieKey)
+                .setCookieKey(CookieKey).setCookieDomain(CookieDomain)
                 .setKeepAlive(KeepAlive)
                 .setServerURL(cred.Url)
                 .setAllowInvalidServerCertificates(AllowInvalidServerCertificates)
@@ -470,7 +476,7 @@ namespace Smartrac.SmartCosmos.ClientEndpoint.Factory
             return new NotificationEndpointBuilder()
                 .setLogger(Logger)
                 .setCookieValue(CookieValue)
-                .setCookieKey(CookieKey)
+                .setCookieKey(CookieKey).setCookieDomain(CookieDomain)
                 .setKeepAlive(KeepAlive)
                 .setServerURL(cred.Url)
                 .setAllowInvalidServerCertificates(AllowInvalidServerCertificates)
@@ -487,7 +493,7 @@ namespace Smartrac.SmartCosmos.ClientEndpoint.Factory
             return new TransactionEndpointBuilder()
                 .setLogger(Logger)
                 .setCookieValue(CookieValue)
-                .setCookieKey(CookieKey)
+                .setCookieKey(CookieKey).setCookieDomain(CookieDomain)
                 .setKeepAlive(KeepAlive)
                 .setServerURL(cred.Url)
                 .setAllowInvalidServerCertificates(AllowInvalidServerCertificates)
@@ -504,7 +510,7 @@ namespace Smartrac.SmartCosmos.ClientEndpoint.Factory
             return new TimelineEndpointBuilder()
                 .setLogger(Logger)
                 .setCookieValue(CookieValue)
-                .setCookieKey(CookieKey)
+                .setCookieKey(CookieKey).setCookieDomain(CookieDomain)
                 .setKeepAlive(KeepAlive)
                 .setServerURL(cred.Url)
                 .setAllowInvalidServerCertificates(AllowInvalidServerCertificates)

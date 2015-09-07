@@ -37,7 +37,10 @@ namespace Smartrac.SmartCosmos.SampleClient.Console
             IMessageLogger logger = new ConsoleLoggerService();
 
             // factory for endpoints
-            IEndpointFactory factory = new EndpointFactory(logger, XMLCredentialStore.ReadFromFile(Path.Combine(Path.GetDirectoryName(System.Reflection.Assembly.GetExecutingAssembly().Location), ConfigurationManager.AppSettings["XMLCredentialStore"])));
+            IEndpointFactory factory = new EndpointFactory(logger, 
+                XMLCredentialStore.ReadFromFile(Path.Combine(Path.GetDirectoryName(System.Reflection.Assembly.GetExecutingAssembly().Location), ConfigurationManager.AppSettings["XMLCredentialStore"])),
+                "client-1",
+                "amazonaws.com");
 
             // data context
             IDataContextFactory dataContext = new SampleDataContextFactory(); // data context factory for sample data
