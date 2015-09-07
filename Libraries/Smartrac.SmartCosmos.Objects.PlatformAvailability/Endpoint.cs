@@ -47,7 +47,7 @@ namespace Smartrac.SmartCosmos.Objects.PlatformAvailability
                 WebRequest request = CreateWebRequest("/admin/ping");
                 request.Method = WebRequestMethods.Http.Get;
                 request.ContentLength = 0;
-                using (var response = request.GetResponseSafe() as System.Net.HttpWebResponse)
+                using (var response = GetResponse(request))
                 {
                     response.Close();
                     switch (response.StatusCode)

@@ -114,7 +114,7 @@ namespace Smartrac.SmartCosmos.Objects.File
                     data.CopyTo(writer);
                 }
 
-                using (var response = request.GetResponseSafe() as System.Net.HttpWebResponse)
+                using (var response = GetResponse(request))
                 {
                     if (response != null)
                     {
@@ -137,8 +137,10 @@ namespace Smartrac.SmartCosmos.Objects.File
                             response.Close();
                         }
                     }
+                    else
+                        Logger.AddLog("No response from server", LogType.Warning);
                 }
-
+                
                 return FileActionResult.Failed;
             }
             catch (Exception e)
@@ -234,7 +236,7 @@ namespace Smartrac.SmartCosmos.Objects.File
                     oPostStream.CopyTo(writer);
                 }
 
-                using (var response = request.GetResponseSafe() as System.Net.HttpWebResponse)
+                using (var response = GetResponse(request))
                 {
                     if (response != null)
                     {
@@ -257,7 +259,9 @@ namespace Smartrac.SmartCosmos.Objects.File
                             response.Close();
                         }
                     }
-                }
+                    else
+                        Logger.AddLog("No response from server", LogType.Warning);
+                }                
                 return FileActionResult.Failed;
             }
             catch (Exception e)
@@ -353,7 +357,7 @@ namespace Smartrac.SmartCosmos.Objects.File
                 var request = CreateWebRequest(url, WebRequestOption.Authorization);
                 request.Method = WebRequestMethods.Http.Get;
 
-                using (var response = request.GetResponseSafe() as System.Net.HttpWebResponse)
+                using (var response = GetResponse(request))
                 {
                     if (response != null)
                     {
@@ -390,6 +394,8 @@ namespace Smartrac.SmartCosmos.Objects.File
                             response.Close();
                         }
                     }
+                    else
+                        Logger.AddLog("No response from server", LogType.Warning);
                 }
                 return FileActionResult.Failed;
             }
@@ -486,7 +492,7 @@ namespace Smartrac.SmartCosmos.Objects.File
                 var request = CreateWebRequest(url, WebRequestOption.Authorization);
                 request.Method = "DELETE";
 
-                using (var response = request.GetResponseSafe() as System.Net.HttpWebResponse)
+                using (var response = GetResponse(request))
                 {
                     if (response != null)
                     {
@@ -503,6 +509,8 @@ namespace Smartrac.SmartCosmos.Objects.File
                             response.Close();
                         }
                     }
+                    else
+                        Logger.AddLog("No response from server", LogType.Warning);
 
                     return FileActionResult.Failed;
                 }

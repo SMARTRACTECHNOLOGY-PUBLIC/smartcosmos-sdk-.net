@@ -45,8 +45,14 @@ namespace Smartrac.SmartCosmos.Profiles.PlatformAvailability
                 if ((null != Logger) && Logger.CanLog(LogType.Debug))
                     Logger.AddLog("Request url [" + request.Method + "]: " + request.RequestUri.AbsoluteUri, LogType.Debug);
 
-                using (var response = request.GetResponseSafe() as System.Net.HttpWebResponse)
+                using (var response = GetResponse(request))
                 {
+                    if (response == null)
+                    {
+                        Logger.AddLog("No response from server", LogType.Warning);
+                        return PlatformAvailabilityActionResult.Failed;
+                    }
+
                     response.Close();
                     switch (response.StatusCode)
                     {

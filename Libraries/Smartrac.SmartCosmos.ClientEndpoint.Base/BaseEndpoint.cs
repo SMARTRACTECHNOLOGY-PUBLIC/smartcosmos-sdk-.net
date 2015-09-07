@@ -238,7 +238,7 @@ namespace Smartrac.SmartCosmos.ClientEndpoint.Base
                 ForceCanonicalPathAndQuery(urlFinal);
 
             if (options.HasFlag(WebRequestOption.FixDotAtEndIssue))
-                FixDotAtEndIssue(urlFinal);            
+                FixDotAtEndIssue(urlFinal);
 
             var request = System.Net.WebRequest.Create(urlFinal) as System.Net.HttpWebRequest;
             request.KeepAlive = KeepAlive;
@@ -351,51 +351,48 @@ namespace Smartrac.SmartCosmos.ClientEndpoint.Base
                     Logger.AddLog("Request url [" + request.Method + "]: " + request.RequestUri.AbsoluteUri, LogType.Debug);
 
                 // call the server
-                webResponse = request.GetResponseSafe() as System.Net.HttpWebResponse;
-                if (webResponse != null)
+                if (GetResponse(request, out webResponse))
                 {
-                    try
-                    {
-                        if ((webResponse.StatusCode == HttpStatusCode.NoContent) ||
-                             (webResponse.StatusCode == HttpStatusCode.InternalServerError))
-                        {
-                            responseData = new responseType();
-                        }
-                        else
-                        {
-                            // convert stream to string
-                            if (webResponse.ContentType == "application/json")
-                                responseData = responseData.FromJSON(webResponse.GetResponseStream(), GetJsonSerializerSettings());
-                            else
-                            {
-                                responseData = new responseType();
-                                if ((webResponse.ContentType == "text/plain") &&
-                                 (responseData is IResponseMessage))
-                                {
-                                    StreamReader reader = new StreamReader(webResponse.GetResponseStream());
-                                    (responseData as IResponseMessage).message = reader.ReadToEnd();
-                                }
-                            }
-                        }
-
-                        if (responseData is IHttpStatusCode)
-                        {
-                            (responseData as IHttpStatusCode).HTTPStatusCode = webResponse.StatusCode;
-                        }
-
-                        if ((null != responseData) && (null != Logger) && Logger.CanLog(LogType.Debug))
-                            Logger.AddLog("Respond data [" + webResponse.StatusCode + "]: " + responseData.ToJSON(true), LogType.Debug);
-                    }
-                    finally
-                    {
-                        webResponse.Close();
-                    }
-                    return webResponse.StatusCode;
+                    return HttpStatusCode.InternalServerError;
                 }
 
-                if (null != Logger)
-                    Logger.AddLog("No respond", LogType.Warning);
-                return HttpStatusCode.InternalServerError;
+                try
+                {
+                    if ((webResponse.StatusCode == HttpStatusCode.NoContent) ||
+                            (webResponse.StatusCode == HttpStatusCode.InternalServerError))
+                    {
+                        responseData = new responseType();
+                    }
+                    else
+                    {
+                        // convert stream to string
+                        if (webResponse.ContentType == "application/json")
+                            responseData = responseData.FromJSON(webResponse.GetResponseStream(), GetJsonSerializerSettings());
+                        else
+                        {
+                            responseData = new responseType();
+                            if ((webResponse.ContentType == "text/plain") &&
+                                (responseData is IResponseMessage))
+                            {
+                                StreamReader reader = new StreamReader(webResponse.GetResponseStream());
+                                (responseData as IResponseMessage).message = reader.ReadToEnd();
+                            }
+                        }
+                    }
+
+                    if (responseData is IHttpStatusCode)
+                    {
+                        (responseData as IHttpStatusCode).HTTPStatusCode = webResponse.StatusCode;
+                    }
+
+                    if ((null != responseData) && (null != Logger) && Logger.CanLog(LogType.Debug))
+                        Logger.AddLog("Respond data [" + webResponse.StatusCode + "]: " + responseData.ToJSON(true), LogType.Debug);
+                }
+                finally
+                {
+                    webResponse.Close();
+                }
+                return webResponse.StatusCode;
             }
             catch (Exception e)
             {
@@ -448,6 +445,32 @@ namespace Smartrac.SmartCosmos.ClientEndpoint.Base
         {
             HttpWebResponse webResponse;
             return ExecuteWebRequestJSON<requestType, responseType>(request, requestData, out responseData, out webResponse, sendMethod);
+        }
+
+        protected HttpWebResponse GetResponse(WebRequest request)
+        {
+            HttpWebResponse response = null;
+            try
+            {
+                response =  request.GetResponseSafe() as System.Net.HttpWebResponse;
+                if (response == null)
+                {
+                    Logger.AddLog("No response from server", LogType.Warning);
+                }
+            }
+            catch (Exception e)
+            {
+                Logger.AddLog(this.GetType().Name + ".GetResponse failed: " + e.Message, LogType.Error);
+                return null;
+            }
+
+            return response;
+        }
+
+        protected bool GetResponse(WebRequest request, out HttpWebResponse response)
+        {
+            response = GetResponse(request);
+            return response != null;
         }
     }
 }

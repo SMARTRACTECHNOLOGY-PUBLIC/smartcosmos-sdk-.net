@@ -251,7 +251,7 @@ namespace Smartrac.SmartCosmos.Objects.HashTag
                 var request = CreateWebRequest(url, WebRequestOption.Authorization);
                 request.Method = "DELETE";
 
-                using (var response = request.GetResponseSafe() as System.Net.HttpWebResponse)
+                using (var response = GetResponse(request))
                 {
                     if (response != null)
                     {
@@ -302,7 +302,7 @@ namespace Smartrac.SmartCosmos.Objects.HashTag
                 var request = CreateWebRequest(url, WebRequestOption.Authorization);
                 request.Method = "DELETE";
 
-                using (var response = request.GetResponseSafe() as System.Net.HttpWebResponse)
+                using (var response = GetResponse(request))
                 {
                     if (response != null)
                     {

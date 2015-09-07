@@ -91,29 +91,32 @@ namespace Smartrac.SmartCosmos.Objects.Metadata
             var request = CreateWebRequest(url, WebRequestOption.Authorization);
             request.Method = "DELETE";
 
-            HttpWebResponse response = request.GetResponseSafe() as System.Net.HttpWebResponse;
-            if (response != null)
+            HttpWebResponse response;
+            if (GetResponse(request, out response))
             {
-                try
+                Logger.AddLog("No response from server", LogType.Warning);
+                return MetadataActionResult.Failed;
+            }
+
+            try
+            {
+                if ((response.StatusCode == HttpStatusCode.NoContent)) //&&
+                //(response.Headers.Get("SmartCosmos-Event") == "MetadataDeleted"))
                 {
-                    if ((response.StatusCode == HttpStatusCode.NoContent)) //&&
-                    //(response.Headers.Get("SmartCosmos-Event") == "MetadataDeleted"))
+                    return MetadataActionResult.Successful;
+                }
+                else
+                {
+                    responseData = responseData.FromJSON(response.GetResponseStream());
+                    if (responseData is IHttpStatusCode)
                     {
-                        return MetadataActionResult.Successful;
-                    }
-                    else
-                    {
-                        responseData = responseData.FromJSON(response.GetResponseStream());
-                        if (responseData is IHttpStatusCode)
-                        {
-                            (responseData as IHttpStatusCode).HTTPStatusCode = response.StatusCode;
-                        }
+                        (responseData as IHttpStatusCode).HTTPStatusCode = response.StatusCode;
                     }
                 }
-                finally
-                {
-                    response.Close();
-                }
+            }
+            finally
+            {
+                response.Close();
             }
 
             return MetadataActionResult.Failed;

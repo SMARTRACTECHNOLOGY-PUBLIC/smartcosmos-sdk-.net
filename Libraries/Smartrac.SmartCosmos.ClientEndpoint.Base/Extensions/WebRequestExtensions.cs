@@ -31,7 +31,7 @@ namespace Smartrac.SmartCosmos.ClientEndpoint.Base
         /// </summary>
         /// <param name="obj">WebRequest</param>
         /// <returns>WebResponse</returns>
-        public static WebResponse GetResponseSafe(this WebRequest obj)
+        public static WebResponse GetResponseSafe(this WebRequest obj, bool throwExceptionIfExceptionResponseIsNull = true)
         {
             WebResponse webResponse = null;
             try
@@ -41,6 +41,8 @@ namespace Smartrac.SmartCosmos.ClientEndpoint.Base
             catch (WebException e)
             {
                 webResponse = e.Response as System.Net.HttpWebResponse;
+                if(throwExceptionIfExceptionResponseIsNull)
+                    throw e;
             }
             return webResponse;
         }
