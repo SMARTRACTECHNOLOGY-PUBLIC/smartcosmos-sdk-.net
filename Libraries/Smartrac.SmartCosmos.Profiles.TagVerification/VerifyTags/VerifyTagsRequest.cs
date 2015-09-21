@@ -25,6 +25,11 @@ namespace Smartrac.SmartCosmos.Profiles.TagVerification
     {
         public string verificationType { get; set; }
 
+        public VerifyTagsRequest()
+            : this(null)
+        {
+        }
+
         public VerifyTagsRequest(ITagDataContext dataContext)
             : base(dataContext)
         {

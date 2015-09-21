@@ -516,6 +516,11 @@ namespace Smartrac.SmartCosmos.Objects.Transaction
                 && ((metadata.Count == 0) || (metadata.TrueForAll(i => i.IsValid())));
         }
 
+        public IObjectsObject FindObject(string objectUrn)
+        {
+            return objects.Find(i => i.objectUrn == objectUrn);
+        }
+
         public IObjectsObject AddObject(string objectUrn, string type, string name)
         {
             ObjectsObject obj = new ObjectsObject

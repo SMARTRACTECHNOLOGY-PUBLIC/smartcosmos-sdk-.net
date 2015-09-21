@@ -67,6 +67,8 @@ namespace Smartrac.SmartCosmos.Objects.Transaction
 
         List<IObjectsMetadataBase> metadata { get; set; }
 
+        IObjectsObject FindObject(string objectUrn);
+
         IObjectsObject AddObject(string objectUrn, string type, string name);
 
         IObjectsRelationship AddRelationship(EntityReferenceType entityReferenceType, string referenceUrn, string type,
