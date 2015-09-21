@@ -39,7 +39,8 @@ namespace Smartrac.SmartCosmos.Profiles.TestCase.Sample
             {
                 OnBeforeTest("Profiles", "TagVerificationEndpoint", "VerifyTags " + verificationItem);
                 // create request
-                VerifyTagsRequest requestVerifyTags = new VerifyTagsRequest(dataContext);
+                VerifyTagsRequest requestVerifyTags = new VerifyTagsRequest();
+                requestVerifyTags.tagIds.AddRange(dataContext.GetTagIds());
                 requestVerifyTags.verificationType = verificationItem;
                 // call endpoint
                 VerifyTagsResponse responseVerifyTags;
@@ -54,7 +55,8 @@ namespace Smartrac.SmartCosmos.Profiles.TestCase.Sample
         {
             OnBeforeTest("Profiles", "TagVerificationEndpoint", "VerifyTagsForRoundRockCompliance");
             // create request
-            VerifyTagsRequestRR requestVerifyTags = new VerifyTagsRequestRR(dataContext);
+            VerifyTagsRequestRR requestVerifyTags = new VerifyTagsRequestRR();
+            requestVerifyTags.tagIds.AddRange(dataContext.GetTagIds());
             // call endpoint
             VerifyTagsResponse responseVerifyTags;
             TagVerificationActionResult actionResult = endpoint.VerifyTagsForRoundRockCompliance(requestVerifyTags, out responseVerifyTags);

@@ -27,15 +27,10 @@ namespace Smartrac.SmartCosmos.Profiles.TagVerification
     {
         public List<string> tagIds { get; set; }
 
-        public VerifyTagsRequestBase() : this(null)
-        { }
-
-        public VerifyTagsRequestBase(ITagDataContext dataContext)
+        public VerifyTagsRequestBase()
             : base()
         {
             this.tagIds = new List<string>();
-            if (dataContext == null)
-              this.tagIds.AddRange(dataContext.GetTagIds());
         }
     }
 }

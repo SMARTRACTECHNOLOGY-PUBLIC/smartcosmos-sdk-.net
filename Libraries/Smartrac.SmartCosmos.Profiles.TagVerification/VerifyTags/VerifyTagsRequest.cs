@@ -24,15 +24,5 @@ namespace Smartrac.SmartCosmos.Profiles.TagVerification
     public class VerifyTagsRequest : VerifyTagsRequestBase
     {
         public string verificationType { get; set; }
-
-        public VerifyTagsRequest()
-            : this(null)
-        {
-        }
-
-        public VerifyTagsRequest(ITagDataContext dataContext)
-            : base(dataContext)
-        {
-        }
     }
 }
