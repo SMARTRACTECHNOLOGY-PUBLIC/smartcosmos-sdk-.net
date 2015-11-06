@@ -39,6 +39,7 @@ using Newtonsoft.Json;
 #endregion License
 
 using Smartrac.SmartCosmos.ClientEndpoint.Base;
+using System;
 
 namespace Smartrac.SmartCosmos.Objects.Base
 {
@@ -56,6 +57,11 @@ namespace Smartrac.SmartCosmos.Objects.Base
         public string name { get; set; }
 
         public string moniker { get; set; }
+
+        public bool ShouldSerializemoniker()
+        {
+            return !String.IsNullOrEmpty(moniker);
+        }
 
         public string urn
         {

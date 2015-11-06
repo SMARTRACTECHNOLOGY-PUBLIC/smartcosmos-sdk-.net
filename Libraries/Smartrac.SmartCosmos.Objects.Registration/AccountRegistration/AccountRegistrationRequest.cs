@@ -28,6 +28,13 @@ namespace Smartrac.SmartCosmos.Objects.Registration
 
         public string realm { get; set; }
 
+        public string moniker { get; set; }
+
+        public bool ShouldSerializemoniker()
+        {
+            return !String.IsNullOrEmpty(moniker);
+        }
+
         public override bool IsValid()
         {
             return base.IsValid() &&
