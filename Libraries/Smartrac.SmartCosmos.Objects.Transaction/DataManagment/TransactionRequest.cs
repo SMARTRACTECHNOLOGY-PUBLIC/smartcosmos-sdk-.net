@@ -320,60 +320,60 @@ namespace Smartrac.SmartCosmos.Objects.Transaction
 
     public class ObjectsMetadataBoolean : ObjectsMetadataBase
     {
-        public bool value { get; set; }
+        public bool rawValue { get; set; }
 
         public ObjectsMetadataBoolean()
             : base()
         {
             dataType = MetadataDataType.Boolean;
-            value = true;
+            rawValue = true;
         }
     }
 
     public class ObjectsMetadataLong : ObjectsMetadataBase
     {
-        public long value { get; set; }
+        public long rawValue { get; set; }
 
         public ObjectsMetadataLong()
             : base()
         {
             dataType = MetadataDataType.Long;
-            value = 0;
+            rawValue = 0;
         }
     }
 
     public class ObjectsMetadataDouble : ObjectsMetadataBase
     {
-        public double value { get; set; }
+        public double rawValue { get; set; }
 
         public ObjectsMetadataDouble()
             : base()
         {
             dataType = MetadataDataType.Double;
-            value = 0;
+            rawValue = 0;
         }
     }
 
     public class ObjectsMetadataInteger : ObjectsMetadataBase
     {
-        public int value { get; set; }
+        public int rawValue { get; set; }
 
         public ObjectsMetadataInteger()
             : base()
         {
             dataType = MetadataDataType.Integer;
-            value = 0;
+            rawValue = 0;
         }
     }
 
     public class ObjectsMetadataFloat : ObjectsMetadataBase
     {
-        public float value { get; set; }
+        public float rawValue { get; set; }
 
         public ObjectsMetadataFloat()
         {
             dataType = MetadataDataType.Float;
-            value = 0;
+            rawValue = 0;
         }
     }
 
@@ -403,7 +403,7 @@ namespace Smartrac.SmartCosmos.Objects.Transaction
 
     public class ObjectsMetadataString : ObjectsMetadataBase
     {
-        public string value { get; set; }
+        public string rawValue { get; set; }
 
         public ObjectsMetadataString()
             : base()
@@ -414,7 +414,7 @@ namespace Smartrac.SmartCosmos.Objects.Transaction
         public override bool IsValid()
         {
             return base.IsValid()
-                && !String.IsNullOrEmpty(value);
+                && !String.IsNullOrEmpty(rawValue);
         }
     }
 
@@ -578,7 +578,7 @@ namespace Smartrac.SmartCosmos.Objects.Transaction
                 referenceUrn = referenceUrn,
                 dataType = dataType,
                 key = key,
-                value = value
+                rawValue = value
             };
             metadata.Add(obj);
             return obj;
@@ -591,7 +591,7 @@ namespace Smartrac.SmartCosmos.Objects.Transaction
                 entityReferenceType = Objects.Base.EntityReferenceType.Object,
                 referenceUrn = referenceUrn,
                 key = key,
-                value = value
+                rawValue = value
             };
             metadata.Add(obj);
             return obj;
@@ -604,7 +604,7 @@ namespace Smartrac.SmartCosmos.Objects.Transaction
                 entityReferenceType = Objects.Base.EntityReferenceType.Object,
                 referenceUrn = referenceUrn,
                 key = key,
-                value = value
+                rawValue = value
             };
             metadata.Add(obj);
             return obj;
@@ -617,7 +617,7 @@ namespace Smartrac.SmartCosmos.Objects.Transaction
                 entityReferenceType = Objects.Base.EntityReferenceType.Object,
                 referenceUrn = referenceUrn,
                 key = key,
-                value = value
+                rawValue = value
             };
             metadata.Add(obj);
             return obj;
@@ -630,7 +630,7 @@ namespace Smartrac.SmartCosmos.Objects.Transaction
                 entityReferenceType = Objects.Base.EntityReferenceType.Object,
                 referenceUrn = referenceUrn,
                 key = key,
-                value = value
+                rawValue = value
             };
             metadata.Add(obj);
             return obj;

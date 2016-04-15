@@ -53,6 +53,9 @@ namespace Smartrac.SmartCosmos.Objects.Transaction
 
     public interface ITransactionItem : IBaseRequest
     {
+        /// <summary>
+        /// not used anymore
+        /// </summary>
         IObjectsAccount account { get; set; }
 
         List<IObjectsDevice> devices { get; set; }
