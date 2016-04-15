@@ -62,7 +62,7 @@ namespace Smartrac.SmartCosmos.Logging.Console
             }
         }
 		
-        public string GetLoggerId()
+        public override string GetLoggerId()
         {
             return "Console";
         }		
