@@ -121,7 +121,7 @@ namespace Smartrac.SmartCosmos.Objects.Metadata
         /// Opaque Base64 encoded value when using built-in encoding
         /// </summary>
 
-        public string rawValue { get; set; }
+        public string value { get; set; }
 
         /// <summary>
         /// Serialization Level: Full

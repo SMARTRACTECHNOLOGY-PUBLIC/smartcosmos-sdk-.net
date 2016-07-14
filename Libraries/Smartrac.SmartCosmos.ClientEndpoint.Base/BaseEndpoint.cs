@@ -80,7 +80,7 @@ namespace Smartrac.SmartCosmos.ClientEndpoint.Base
         public string AcceptLanguage { get; set; }
 
         /// <summary>
-        /// If set (CookieKey and CookieValue and CookieDomain), each call will contains a cookie 
+        /// If set (CookieKey and CookieValue and CookieDomain), each call will contains a cookie
         /// </summary>
         public string CookieKey { get; set; }
 
@@ -92,7 +92,7 @@ namespace Smartrac.SmartCosmos.ClientEndpoint.Base
         /// <summary>
         /// If set (CookieKey and CookieValue and CookieDomain), each call will contains a cookie
         /// </summary>
-        public string CookieDomain { get; set; }        
+        public string CookieDomain { get; set; }
 
         /// <summary>
         /// Logger
@@ -216,7 +216,7 @@ namespace Smartrac.SmartCosmos.ClientEndpoint.Base
 
         // Hack
         // http://stackoverflow.com/questions/856885/httpwebrequest-to-url-with-dot-at-the-end
-        static void FixDotAtEndIssue(Uri uri)
+        private static void FixDotAtEndIssue(Uri uri)
         {
             System.Reflection.MethodInfo getSyntax = typeof(UriParser).GetMethod("GetSyntax", System.Reflection.BindingFlags.Static | System.Reflection.BindingFlags.NonPublic);
             System.Reflection.FieldInfo flagsField = typeof(UriParser).GetField("m_Flags", System.Reflection.BindingFlags.Instance | System.Reflection.BindingFlags.NonPublic);
@@ -383,7 +383,7 @@ namespace Smartrac.SmartCosmos.ClientEndpoint.Base
                     Logger.AddLog("Request url [" + request.Method + "]: " + request.RequestUri.AbsoluteUri, LogType.Debug);
 
                 // call the server
-                if (! GetResponse(request, out webResponse))
+                if (!GetResponse(request, out webResponse))
                 {
                     return HttpStatusCode.InternalServerError;
                 }
@@ -490,7 +490,7 @@ namespace Smartrac.SmartCosmos.ClientEndpoint.Base
                     return null;
                 }
 
-                response =  request.GetResponseSafe() as System.Net.HttpWebResponse;
+                response = request.GetResponseSafe() as System.Net.HttpWebResponse;
                 if (response == null)
                 {
                     Logger.AddLog("No response from server", LogType.Warning);

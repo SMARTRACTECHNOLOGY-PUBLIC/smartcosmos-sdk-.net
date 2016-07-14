@@ -320,60 +320,60 @@ namespace Smartrac.SmartCosmos.Objects.Transaction
 
     public class ObjectsMetadataBoolean : ObjectsMetadataBase
     {
-        public bool rawValue { get; set; }
+        public bool value { get; set; }
 
         public ObjectsMetadataBoolean()
             : base()
         {
             dataType = MetadataDataType.Boolean;
-            rawValue = true;
+            value = true;
         }
     }
 
     public class ObjectsMetadataLong : ObjectsMetadataBase
     {
-        public long rawValue { get; set; }
+        public long value { get; set; }
 
         public ObjectsMetadataLong()
             : base()
         {
             dataType = MetadataDataType.Long;
-            rawValue = 0;
+            value = 0;
         }
     }
 
     public class ObjectsMetadataDouble : ObjectsMetadataBase
     {
-        public double rawValue { get; set; }
+        public double value { get; set; }
 
         public ObjectsMetadataDouble()
             : base()
         {
             dataType = MetadataDataType.Double;
-            rawValue = 0;
+            value = 0;
         }
     }
 
     public class ObjectsMetadataInteger : ObjectsMetadataBase
     {
-        public int rawValue { get; set; }
+        public int value { get; set; }
 
         public ObjectsMetadataInteger()
             : base()
         {
             dataType = MetadataDataType.Integer;
-            rawValue = 0;
+            value = 0;
         }
     }
 
     public class ObjectsMetadataFloat : ObjectsMetadataBase
     {
-        public float rawValue { get; set; }
+        public float value { get; set; }
 
         public ObjectsMetadataFloat()
         {
             dataType = MetadataDataType.Float;
-            rawValue = 0;
+            value = 0;
         }
     }
 
@@ -403,7 +403,7 @@ namespace Smartrac.SmartCosmos.Objects.Transaction
 
     public class ObjectsMetadataString : ObjectsMetadataBase
     {
-        public string rawValue { get; set; }
+        public string value { get; set; }
 
         public ObjectsMetadataString()
             : base()
@@ -414,7 +414,7 @@ namespace Smartrac.SmartCosmos.Objects.Transaction
         public override bool IsValid()
         {
             return base.IsValid()
-                && !String.IsNullOrEmpty(rawValue);
+                && !String.IsNullOrEmpty(value);
         }
     }
 
@@ -443,7 +443,7 @@ namespace Smartrac.SmartCosmos.Objects.Transaction
         }
     }
 
-    class TransactionItem : ITransactionItem
+    internal class TransactionItem : ITransactionItem
     {
         public IObjectsAccount account { get; set; }
 
@@ -578,7 +578,7 @@ namespace Smartrac.SmartCosmos.Objects.Transaction
                 referenceUrn = referenceUrn,
                 dataType = dataType,
                 key = key,
-                rawValue = value
+                value = value
             };
             metadata.Add(obj);
             return obj;
@@ -591,7 +591,7 @@ namespace Smartrac.SmartCosmos.Objects.Transaction
                 entityReferenceType = Objects.Base.EntityReferenceType.Object,
                 referenceUrn = referenceUrn,
                 key = key,
-                rawValue = value
+                value = value
             };
             metadata.Add(obj);
             return obj;
@@ -604,7 +604,7 @@ namespace Smartrac.SmartCosmos.Objects.Transaction
                 entityReferenceType = Objects.Base.EntityReferenceType.Object,
                 referenceUrn = referenceUrn,
                 key = key,
-                rawValue = value
+                value = value
             };
             metadata.Add(obj);
             return obj;
@@ -617,7 +617,7 @@ namespace Smartrac.SmartCosmos.Objects.Transaction
                 entityReferenceType = Objects.Base.EntityReferenceType.Object,
                 referenceUrn = referenceUrn,
                 key = key,
-                rawValue = value
+                value = value
             };
             metadata.Add(obj);
             return obj;
@@ -630,7 +630,7 @@ namespace Smartrac.SmartCosmos.Objects.Transaction
                 entityReferenceType = Objects.Base.EntityReferenceType.Object,
                 referenceUrn = referenceUrn,
                 key = key,
-                rawValue = value
+                value = value
             };
             metadata.Add(obj);
             return obj;
@@ -650,7 +650,7 @@ namespace Smartrac.SmartCosmos.Objects.Transaction
         }
     }
 
-    class BaseTransactionRequest : List<ITransactionItem>, ITransactionRequest
+    internal class BaseTransactionRequest : List<ITransactionItem>, ITransactionRequest
     {
         public virtual bool IsValid()
         {
@@ -675,8 +675,8 @@ namespace Smartrac.SmartCosmos.Objects.Transaction
         }
 
         public List<ITransactionItem> Items()
-        { 
-           return this;
+        {
+            return this;
         }
     }
 }

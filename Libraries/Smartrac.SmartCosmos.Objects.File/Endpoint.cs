@@ -140,7 +140,7 @@ namespace Smartrac.SmartCosmos.Objects.File
                     else
                         Logger.AddLog("No response from server", LogType.Warning);
                 }
-                
+
                 return FileActionResult.Failed;
             }
             catch (Exception e)
@@ -261,7 +261,7 @@ namespace Smartrac.SmartCosmos.Objects.File
                     }
                     else
                         Logger.AddLog("No response from server", LogType.Warning);
-                }                
+                }
                 return FileActionResult.Failed;
             }
             catch (Exception e)

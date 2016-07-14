@@ -41,7 +41,7 @@ namespace Smartrac.SmartCosmos.ClientEndpoint.Base
             catch (WebException e)
             {
                 webResponse = e.Response as System.Net.HttpWebResponse;
-                if(throwExceptionIfExceptionResponseIsNull)
+                if (throwExceptionIfExceptionResponseIsNull)
                     throw e;
             }
             return webResponse;

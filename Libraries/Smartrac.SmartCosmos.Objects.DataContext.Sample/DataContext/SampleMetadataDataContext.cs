@@ -54,13 +54,13 @@ namespace Smartrac.SmartCosmos.Objects.DataContext.Sample
             {
                 dataTypeObj = MetadataDataType.Boolean,
                 key = "bar",
-                rawValue = "AQ=="
+                value = "AQ=="
             });
             list.Add(new MetadataItem
             {
                 dataTypeObj = MetadataDataType.String,
                 key = "foo",
-                rawValue = "KioqKioqKioqKioqKg=="
+                value = "KioqKioqKioqKioqKg=="
             });
             return list;
         }

@@ -20,7 +20,6 @@
 using Smartrac.SmartCosmos.Logging;
 using Smartrac.SmartCosmos.Objects.Metadata;
 using Smartrac.SmartCosmos.TestCase.Base;
-using System;
 using System.Collections.Generic;
 
 namespace Smartrac.SmartCosmos.Objects.TestCase.Sample
@@ -94,6 +93,7 @@ namespace Smartrac.SmartCosmos.Objects.TestCase.Sample
             OnAfterTest(actionResult);
             return (actionResult == MetadataActionResult.Successful);
         }
+
         /*
         protected bool RunTestCase_EncodeDecode_Bool()
         {
@@ -222,6 +222,6 @@ namespace Smartrac.SmartCosmos.Objects.TestCase.Sample
             OnAfterTest(actionResult);
             return (actionResult == MetadataActionResult.Successful); ;
         }
-         */ 
+         */
     }
 }

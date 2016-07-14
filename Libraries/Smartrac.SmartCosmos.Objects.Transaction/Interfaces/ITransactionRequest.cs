@@ -87,7 +87,7 @@ namespace Smartrac.SmartCosmos.Objects.Transaction
         IObjectsMetadataBase AddMetaDataAsFloat(EntityReferenceType entityReferenceType, string referenceUrn, string key, float value);
 
         IObjectsMetadataBase AddMetaDataAsLong(EntityReferenceType entityReferenceType, string referenceUrn, string key, long value);
-        
+
         IObjectsMetadataBase AddMetaDataAsInteger(EntityReferenceType entityReferenceType, string referenceUrn, string key, int value);
 
         IObjectsAccount SetAccount(string Id, string name);
@@ -184,7 +184,6 @@ namespace Smartrac.SmartCosmos.Objects.Transaction
 
         string octedStream { get; set; }
     }
-
 
     public interface IObjectsMetadataBase : IBaseRequest
     {

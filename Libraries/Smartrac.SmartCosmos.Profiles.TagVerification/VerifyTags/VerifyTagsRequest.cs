@@ -17,8 +17,6 @@
 
 #endregion License
 
-using Smartrac.SmartCosmos.Profiles.DataContext;
-
 namespace Smartrac.SmartCosmos.Profiles.TagVerification
 {
     public class VerifyTagsRequest : VerifyTagsRequestBase

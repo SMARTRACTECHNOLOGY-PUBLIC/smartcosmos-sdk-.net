@@ -58,7 +58,7 @@ namespace Smartrac.SmartCosmos.Profiles.PlatformAvailability
                         case HttpStatusCode.NoContent: return PlatformAvailabilityActionResult.Successful;
                         case HttpStatusCode.ServiceUnavailable: return PlatformAvailabilityActionResult.Unavailable;
                         default:
-                            Logger.AddLog("Respond StatusCode: " + response.StatusCode, LogType.Warning);                            
+                            Logger.AddLog("Respond StatusCode: " + response.StatusCode, LogType.Warning);
                             return PlatformAvailabilityActionResult.Failed;
                     }
                 }

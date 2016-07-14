@@ -17,16 +17,9 @@
 
 #endregion License
 
-using Newtonsoft.Json;
-using Newtonsoft.Json.Converters;
-using Smartrac.SmartCosmos.Objects.Base;
-using Smartrac.SmartCosmos.Objects.Metadata;
-using System;
-using System.Collections.Generic;
-
 namespace Smartrac.SmartCosmos.Objects.Transaction
 {
-    class DefaultTransactionRequest : BaseTransactionRequest
+    internal class DefaultTransactionRequest : BaseTransactionRequest
     {
         public override string GetHandlerName()
         {

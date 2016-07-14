@@ -50,13 +50,13 @@ namespace Smartrac.SmartCosmos.Objects.Registration
                 Uri url = new Uri("/registration/realm/", UriKind.Relative).
                     AddSubfolder(realm);
 
-                var request = CreateWebRequest(url, WebRequestOption.ForceCanonicalPathAndQuery |WebRequestOption.FixDotAtEndIssue); // fix problems with / in realm names
+                var request = CreateWebRequest(url, WebRequestOption.ForceCanonicalPathAndQuery | WebRequestOption.FixDotAtEndIssue); // fix problems with / in realm names
                 var returnHTTPCode = ExecuteWebRequestJSON<RealmAvailabilityResponse>(request, out responseData);
-                if ( (responseData != null) 
+                if ((responseData != null)
                     && (responseData.HTTPStatusCode == HttpStatusCode.OK)
                     // && (responseData.code == 0) // 0 = free - 1 = in use
                     )
-                {                   
+                {
                     return RegistrationActionResult.Successful;
                 }
 

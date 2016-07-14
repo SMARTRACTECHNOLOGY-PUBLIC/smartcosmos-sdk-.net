@@ -42,7 +42,7 @@ namespace Smartrac.SmartCosmos.ClientEndpoint.Base
         bool KeepAlive { get; set; }
 
         /// <summary>
-        /// If set (CookieKey and CookieValue and CookieDomain), each call will contains a cookie 
+        /// If set (CookieKey and CookieValue and CookieDomain), each call will contains a cookie
         /// </summary>
         string CookieKey { get; set; }
 

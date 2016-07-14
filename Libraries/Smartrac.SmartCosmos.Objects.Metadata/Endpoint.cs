@@ -22,9 +22,7 @@ using Smartrac.SmartCosmos.Logging;
 using Smartrac.SmartCosmos.Objects.Base;
 using System;
 using System.Collections.Generic;
-using System.Globalization;
 using System.Net;
-using System.Text;
 
 namespace Smartrac.SmartCosmos.Objects.Metadata
 {
@@ -92,7 +90,7 @@ namespace Smartrac.SmartCosmos.Objects.Metadata
             request.Method = "DELETE";
 
             HttpWebResponse response;
-            if (! GetResponse(request, out response))
+            if (!GetResponse(request, out response))
             {
                 Logger.AddLog("No response from server", LogType.Warning);
                 return MetadataActionResult.Failed;

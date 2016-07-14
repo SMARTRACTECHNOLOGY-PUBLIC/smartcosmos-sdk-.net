@@ -61,10 +61,10 @@ namespace Smartrac.SmartCosmos.Logging.Console
                     break;
             }
         }
-		
+
         public override string GetLoggerId()
         {
             return "Console";
-        }		
+        }
     }
 }

@@ -87,7 +87,7 @@ namespace Smartrac.SmartCosmos.Objects.Metadata
 
         public string key { get; set; }
 
-        public string rawValue { get; set; }
+        public string value { get; set; }
 
         public override bool IsValid()
         {

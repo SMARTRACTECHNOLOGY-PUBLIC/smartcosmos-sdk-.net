@@ -25,7 +25,7 @@ namespace Smartrac.SmartCosmos.Logging
     public enum LogType
     {
         Debug = 1, //     Debug log level.
-        Info = 2,  //     Info log level.        
+        Info = 2,  //     Info log level.
         Warning = 4, //    Warning log level.
         Error = 8, //     Error log level.
         Fatal = 16 //     Fatal log level

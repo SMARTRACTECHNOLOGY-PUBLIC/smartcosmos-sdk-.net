@@ -17,8 +17,6 @@
 
 #endregion License
 
-using System.Web;
-
 namespace System
 {
     public static class HttpExtensions
@@ -78,7 +76,6 @@ namespace System
             // HttpUtility.UrlPathEncode converts
             //query += query.EndsWith("/") ? HttpUtility.UrlPathEncode(subfolder) : "/" + HttpUtility.UrlPathEncode(subfolder);
             query += query.EndsWith("/") ? Uri.EscapeDataString(subfolder) : "/" + Uri.EscapeDataString(subfolder);
-
 
             return new Uri(query, uri.IsAbsoluteUri ? UriKind.Absolute : UriKind.Relative);
         }
