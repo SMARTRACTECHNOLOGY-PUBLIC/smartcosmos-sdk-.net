@@ -17,7 +17,7 @@
 
 #endregion License
 
-using GeoJSON.Net;
+// using GeoJSON.Net;
 using Smartrac.SmartCosmos.ClientEndpoint.Base;
 using Smartrac.SmartCosmos.Objects.Base;
 
@@ -37,7 +37,7 @@ namespace Smartrac.SmartCosmos.Objects.DataContext
 
         //[XmlArray("ListItems")]
         //[XmlArrayItem("ListItem", Type = typeof(AbstractXmlSerializer<AbstractType>))]
-        GeoJSONObject GetGeometricShape();
+        // GeoJSONObject GetGeometricShape();
 
         ViewType GetViewType();
     }

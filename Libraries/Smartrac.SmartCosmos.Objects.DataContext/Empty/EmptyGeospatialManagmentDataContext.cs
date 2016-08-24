@@ -17,7 +17,7 @@
 
 #endregion License
 
-using GeoJSON.Net;
+//using GeoJSON.Net;
 using Smartrac.SmartCosmos.ClientEndpoint.Base;
 using Smartrac.SmartCosmos.Objects.Base;
 using System;
@@ -56,7 +56,7 @@ namespace Smartrac.SmartCosmos.Objects.DataContext
 
         public bool activeFlag { get; set; }
 
-        public GeoJSONObject geometricShape { get; set; }
+        //public GeoJSONObject geometricShape { get; set; }
 
         public ViewType viewType { get; set; }
 
@@ -84,12 +84,12 @@ namespace Smartrac.SmartCosmos.Objects.DataContext
         {
             return activeFlag;
         }
-
+        /*
         public override GeoJSONObject GetGeometricShape()
         {
             return geometricShape;
         }
-
+        */
         public override ViewType GetViewType()
         {
             return viewType;
