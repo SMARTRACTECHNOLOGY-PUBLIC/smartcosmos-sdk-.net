@@ -139,10 +139,6 @@
       <Project>{96f35cdc-1fe4-4d39-afad-907466426a72}</Project>
       <Name>Smartrac.SmartCosmos.Objects.Base</Name>
     </ProjectReference>
-    <ProjectReference Include="..\Smartrac.SmartCosmos.Objects.GeospatialManagement\Smartrac.SmartCosmos.Objects.GeospatialManagement.csproj">
-      <Project>{9b5244a9-a358-4aee-b92a-fa7b2a2a6694}</Project>
-      <Name>Smartrac.SmartCosmos.Objects.GeospatialManagement</Name>
-    </ProjectReference>
     <ProjectReference Include="..\Smartrac.SmartCosmos.Objects.Metadata\Smartrac.SmartCosmos.Objects.Metadata.csproj">
       <Project>{3f715f22-7d75-4645-9ce6-e8a20ccdacc8}</Project>
       <Name>Smartrac.SmartCosmos.Objects.Metadata</Name>

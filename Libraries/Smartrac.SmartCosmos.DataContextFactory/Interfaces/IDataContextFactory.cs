@@ -17,7 +17,7 @@
 
 #endregion License
 
-using Smartrac.SmartCosmos.Flows.DataContext;
+// using Smartrac.SmartCosmos.Flows.DataContext;
 using Smartrac.SmartCosmos.Objects.DataContext;
 using Smartrac.SmartCosmos.Profiles.DataContext;
 
@@ -56,8 +56,8 @@ namespace Smartrac.SmartCosmos.DataContextFactory
         ITransactionDataContext CreateTransactionDataContext();
 
         //FLows
-        IFlowsAccountManagementDataContext CreateFlowsAccountManagementDataContext();
+        // IFlowsAccountManagementDataContext CreateFlowsAccountManagementDataContext();
 
-        IBusinessRuleDataContext CreateBusinessRuleDataContext();
+        // IBusinessRuleDataContext CreateBusinessRuleDataContext();
     }
 }

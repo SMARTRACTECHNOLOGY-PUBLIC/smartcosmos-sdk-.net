@@ -19,14 +19,14 @@
 
 using Smartrac.SmartCosmos.ClientEndpoint.Base;
 using Smartrac.SmartCosmos.CredentialStore;
-using Smartrac.SmartCosmos.Flows.AccountManagement;
-using Smartrac.SmartCosmos.Flows.BusinessRule;
+// using Smartrac.SmartCosmos.Flows.AccountManagement;
+// using Smartrac.SmartCosmos.Flows.BusinessRule;
 using Smartrac.SmartCosmos.Logging;
 using Smartrac.SmartCosmos.Objects.AccountManagement;
 using Smartrac.SmartCosmos.Objects.BatchTransmission;
-using Smartrac.SmartCosmos.Objects.Device;
+// using Smartrac.SmartCosmos.Objects.Device;
 using Smartrac.SmartCosmos.Objects.File;
-using Smartrac.SmartCosmos.Objects.GeospatialManagement;
+// using Smartrac.SmartCosmos.Objects.GeospatialManagement;
 using Smartrac.SmartCosmos.Objects.HashTag;
 using Smartrac.SmartCosmos.Objects.Metadata;
 using Smartrac.SmartCosmos.Objects.Notification;
@@ -152,7 +152,7 @@ namespace Smartrac.SmartCosmos.ClientEndpoint.Factory
         #endregion COMMOM
 
         #region FLOWS
-
+/*
         public virtual IFlowsAccountManagementEndpoint CreateFlowsAccountManagementEndpoint()
         {
             ICredential cred;
@@ -186,7 +186,7 @@ namespace Smartrac.SmartCosmos.ClientEndpoint.Factory
                 .setUserAccount(cred.Username, cred.Password)
                 .build();
         }
-
+        */
         #endregion FLOWS
 
         #region PROFILES
@@ -364,7 +364,7 @@ namespace Smartrac.SmartCosmos.ClientEndpoint.Factory
                 .setUserAccount(cred.Username, cred.Password)
                 .build();
         }
-
+        /*
         public virtual IGeospatialManagementEndpoint CreateGeospatialManagementEndpoint()
         {
             ICredential cred;
@@ -381,7 +381,7 @@ namespace Smartrac.SmartCosmos.ClientEndpoint.Factory
                 .setUserAccount(cred.Username, cred.Password)
                 .build();
         }
-
+        */
         public virtual IHashTagEndpoint CreateHashTagEndpoint()
         {
             ICredential cred;
@@ -449,7 +449,7 @@ namespace Smartrac.SmartCosmos.ClientEndpoint.Factory
                 .setUserAccount(cred.Username, cred.Password)
                 .build();
         }
-
+        /*
         public virtual IDeviceEndpoint CreateDeviceEndpoint()
         {
             ICredential cred;
@@ -466,7 +466,7 @@ namespace Smartrac.SmartCosmos.ClientEndpoint.Factory
                 .setUserAccount(cred.Username, cred.Password)
                 .build();
         }
-
+        */
         public virtual INotificationEndpoint CreateNotificationEndpoint()
         {
             ICredential cred;

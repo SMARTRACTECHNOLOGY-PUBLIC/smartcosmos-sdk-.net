@@ -18,10 +18,11 @@
 #endregion License
 
 using Smartrac.SmartCosmos.Objects.DataContext;
-using Smartrac.SmartCosmos.Objects.GeospatialManagement;
+//using Smartrac.SmartCosmos.Objects.GeospatialManagement;
 
 namespace Smartrac.SmartCosmos.Objects.TestCase
 {
+    /*
     public class BaseTestCaseGeospatialManagementEndpoint : BaseObjectsTestCase<IGeospatialManagementDataContext, IGeospatialManagementEndpoint>
     {
         protected override IGeospatialManagementDataContext CreateDataContext()
@@ -34,4 +35,5 @@ namespace Smartrac.SmartCosmos.Objects.TestCase
             return EndpointFactory.CreateGeospatialManagementEndpoint();
         }
     }
+     */
 }

@@ -88,10 +88,6 @@
       <Project>{f0e26f53-5847-42d0-b16f-2dbd1952e452}</Project>
       <Name>Smartrac.SmartCosmos.ClientEndpoint.Base</Name>
     </ProjectReference>
-    <ProjectReference Include="..\Smartrac.SmartCosmos.Flows.DataContext\Smartrac.SmartCosmos.Flows.DataContext.csproj">
-      <Project>{b937e916-b168-4bf2-92d3-c3f7c19dccc9}</Project>
-      <Name>Smartrac.SmartCosmos.Flows.DataContext</Name>
-    </ProjectReference>
     <ProjectReference Include="..\Smartrac.SmartCosmos.Objects.DataContext\Smartrac.SmartCosmos.Objects.DataContext.csproj">
       <Project>{955046d9-aa9a-462c-9057-8046c61ed701}</Project>
       <Name>Smartrac.SmartCosmos.Objects.DataContext</Name>

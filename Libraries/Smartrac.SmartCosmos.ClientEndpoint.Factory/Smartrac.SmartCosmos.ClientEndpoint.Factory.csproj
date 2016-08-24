@@ -122,18 +122,6 @@
       <Project>{f0e26f53-5847-42d0-b16f-2dbd1952e452}</Project>
       <Name>Smartrac.SmartCosmos.ClientEndpoint.Base</Name>
     </ProjectReference>
-    <ProjectReference Include="..\Smartrac.SmartCosmos.Flows.AccountManagement\Smartrac.SmartCosmos.Flows.AccountManagement.csproj">
-      <Project>{d26b9d4d-b45e-4c3e-bffa-adaa22f3e609}</Project>
-      <Name>Smartrac.SmartCosmos.Flows.AccountManagement</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\Smartrac.SmartCosmos.Flows.Base\Smartrac.SmartCosmos.Flows.Base.csproj">
-      <Project>{b9c9514e-d1e0-445a-9963-41ff041895eb}</Project>
-      <Name>Smartrac.SmartCosmos.Flows.Base</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\Smartrac.SmartCosmos.Flows.BusinessRule\Smartrac.SmartCosmos.Flows.BusinessRule.csproj">
-      <Project>{640a11d8-c1b8-4c15-9d04-07b5ed990233}</Project>
-      <Name>Smartrac.SmartCosmos.Flows.BusinessRule</Name>
-    </ProjectReference>
     <ProjectReference Include="..\Smartrac.SmartCosmos.Objects.AccountManagement\Smartrac.SmartCosmos.Objects.AccountManagement.csproj">
       <Project>{2c79fc96-b023-465d-9374-77235df068f4}</Project>
       <Name>Smartrac.SmartCosmos.Objects.AccountManagement</Name>
@@ -146,17 +134,9 @@
       <Project>{955046d9-aa9a-462c-9057-8046c61ed701}</Project>
       <Name>Smartrac.SmartCosmos.Objects.DataContext</Name>
     </ProjectReference>
-    <ProjectReference Include="..\Smartrac.SmartCosmos.Objects.Device\Smartrac.SmartCosmos.Objects.Device.csproj">
-      <Project>{3c575ca5-4cab-4ceb-b563-89eafcf677a6}</Project>
-      <Name>Smartrac.SmartCosmos.Objects.Device</Name>
-    </ProjectReference>
     <ProjectReference Include="..\Smartrac.SmartCosmos.Objects.File\Smartrac.SmartCosmos.Objects.File.csproj">
       <Project>{7aa95048-8346-4dab-94f5-90f898b41824}</Project>
       <Name>Smartrac.SmartCosmos.Objects.File</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\Smartrac.SmartCosmos.Objects.GeospatialManagement\Smartrac.SmartCosmos.Objects.GeospatialManagement.csproj">
-      <Project>{9b5244a9-a358-4aee-b92a-fa7b2a2a6694}</Project>
-      <Name>Smartrac.SmartCosmos.Objects.GeospatialManagement</Name>
     </ProjectReference>
     <ProjectReference Include="..\Smartrac.SmartCosmos.Objects.HashTag\Smartrac.SmartCosmos.Objects.HashTag.csproj">
       <Project>{ce76c35f-f25c-419d-ba66-48a22d5a021f}</Project>

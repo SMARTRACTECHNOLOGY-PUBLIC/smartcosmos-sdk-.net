@@ -19,14 +19,14 @@
 
 using Smartrac.SmartCosmos.ClientEndpoint.Base;
 using Smartrac.SmartCosmos.CredentialStore;
-using Smartrac.SmartCosmos.Flows.AccountManagement;
-using Smartrac.SmartCosmos.Flows.BusinessRule;
+// using Smartrac.SmartCosmos.Flows.AccountManagement;
+// using Smartrac.SmartCosmos.Flows.BusinessRule;
 using Smartrac.SmartCosmos.Logging;
 using Smartrac.SmartCosmos.Objects.AccountManagement;
 using Smartrac.SmartCosmos.Objects.BatchTransmission;
-using Smartrac.SmartCosmos.Objects.Device;
+// using Smartrac.SmartCosmos.Objects.Device;
 using Smartrac.SmartCosmos.Objects.File;
-using Smartrac.SmartCosmos.Objects.GeospatialManagement;
+// using Smartrac.SmartCosmos.Objects.GeospatialManagement;
 using Smartrac.SmartCosmos.Objects.HashTag;
 using Smartrac.SmartCosmos.Objects.Metadata;
 using Smartrac.SmartCosmos.Objects.Notification;
@@ -108,7 +108,7 @@ namespace Smartrac.SmartCosmos.ClientEndpoint.Factory
 
         IFileEndpoint CreateFileEndpoint();
 
-        IGeospatialManagementEndpoint CreateGeospatialManagementEndpoint();
+        // IGeospatialManagementEndpoint CreateGeospatialManagementEndpoint();
 
         IHashTagEndpoint CreateHashTagEndpoint();
 
@@ -126,7 +126,7 @@ namespace Smartrac.SmartCosmos.ClientEndpoint.Factory
 
         IUserManagementEndpoint CreateUserManagementEndpoint();
 
-        IDeviceEndpoint CreateDeviceEndpoint();
+        // IDeviceEndpoint CreateDeviceEndpoint();
 
         INotificationEndpoint CreateNotificationEndpoint();
 
@@ -144,13 +144,13 @@ namespace Smartrac.SmartCosmos.ClientEndpoint.Factory
         /// Create account management endpoints
         /// </summary>
         /// <returns>IAccountManagementEndpoint</returns>
-        IFlowsAccountManagementEndpoint CreateFlowsAccountManagementEndpoint();
+        // IFlowsAccountManagementEndpoint CreateFlowsAccountManagementEndpoint();
 
         /// <summary>
         /// Create business rule endpoints
         /// </summary>
         /// <returns>IBusinessRuleEndpoint</returns>
-        IBusinessRuleEndpoint CreateBusinessRuleEndpoint();
+        // IBusinessRuleEndpoint CreateBusinessRuleEndpoint();
 
         #endregion Flows
     }

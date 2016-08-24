@@ -97,18 +97,6 @@
       <Project>{f0e26f53-5847-42d0-b16f-2dbd1952e452}</Project>
       <Name>Smartrac.SmartCosmos.ClientEndpoint.Base</Name>
     </ProjectReference>
-    <ProjectReference Include="..\Smartrac.SmartCosmos.Flows.AccountManagement\Smartrac.SmartCosmos.Flows.AccountManagement.csproj">
-      <Project>{d26b9d4d-b45e-4c3e-bffa-adaa22f3e609}</Project>
-      <Name>Smartrac.SmartCosmos.Flows.AccountManagement</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\Smartrac.SmartCosmos.Flows.BusinessRule\Smartrac.SmartCosmos.Flows.BusinessRule.csproj">
-      <Project>{640a11d8-c1b8-4c15-9d04-07b5ed990233}</Project>
-      <Name>Smartrac.SmartCosmos.Flows.BusinessRule</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\Smartrac.SmartCosmos.Flows.DataContext\Smartrac.SmartCosmos.Flows.DataContext.csproj">
-      <Project>{b937e916-b168-4bf2-92d3-c3f7c19dccc9}</Project>
-      <Name>Smartrac.SmartCosmos.Flows.DataContext</Name>
-    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
